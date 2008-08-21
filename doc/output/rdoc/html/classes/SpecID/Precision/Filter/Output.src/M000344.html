@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="iso-8859-1"?>
+<!DOCTYPE html 
+     PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+     "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html>
+<head>
+  <title>yaml (SpecID::Precision::Filter::Output)</title>
+  <meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1" />
+  <link rel="stylesheet" href="../../../../.././rdoc-style.css" type="text/css" media="screen" />
+</head>
+<body class="standalone-code">
+  <pre><span class="ruby-comment cmt"># File lib/spec_id/precision/filter/output.rb, line 89</span>
+  <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">yaml</span>(<span class="ruby-identifier">fh</span>, <span class="ruby-identifier">answer</span>)
+    <span class="ruby-identifier">final_output</span> = { <span class="ruby-identifier">:params</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-identifier">answer</span>[<span class="ruby-identifier">:params</span>].<span class="ruby-identifier">dup</span> }
+    <span class="ruby-comment cmt">#&quot;PEPHITS&quot;</span>
+    <span class="ruby-comment cmt">#answer[:pephits]</span>
+    <span class="ruby-identifier">final_output</span>[<span class="ruby-identifier">:pephits</span>] = <span class="ruby-identifier">answer</span>[<span class="ruby-identifier">:pephits</span>].<span class="ruby-identifier">size</span> 
+    <span class="ruby-keyword kw">if</span> <span class="ruby-identifier">answer</span>[<span class="ruby-identifier">:prothits</span>]
+      <span class="ruby-identifier">final_output</span>[<span class="ruby-identifier">:prothits_precision</span>] = <span class="ruby-identifier">answer</span>[<span class="ruby-identifier">:params</span>][<span class="ruby-identifier">:validators</span>].<span class="ruby-identifier">zip</span>( <span class="ruby-identifier">answer</span>[<span class="ruby-identifier">:prothits_precision</span>] ).<span class="ruby-identifier">map</span> <span class="ruby-keyword kw">do</span> <span class="ruby-operator">|</span><span class="ruby-identifier">val</span>, <span class="ruby-identifier">precision</span><span class="ruby-operator">|</span>
+        {<span class="ruby-value str">'validator'</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-constant">Validator</span><span class="ruby-operator">::</span><span class="ruby-constant">Validator_to_string</span>[<span class="ruby-identifier">val</span>.<span class="ruby-identifier">class</span>.<span class="ruby-identifier">to_s</span>], <span class="ruby-value str">'values'</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-identifier">precision</span> }
+      <span class="ruby-keyword kw">end</span>
+      <span class="ruby-identifier">final_output</span>[<span class="ruby-identifier">:prothits</span>] = <span class="ruby-identifier">answer</span>[<span class="ruby-identifier">:prothits</span>].<span class="ruby-identifier">size</span> 
+
+      <span class="ruby-comment cmt">#final_output[:prothits_precision] = {} if answer[:prothits_precision]</span>
+      <span class="ruby-comment cmt">#final_output[:prothits] = answer[:prothits].size </span>
+      <span class="ruby-comment cmt">#answer[:params][:validators].zip( answer[:prothits_precision] ) do |val, precision|</span>
+      <span class="ruby-comment cmt">#  final_output[:prothits_precision][Validator::Validator_to_string[val.class.to_s]] = precision</span>
+      <span class="ruby-comment cmt">#end</span>
+    <span class="ruby-keyword kw">end</span>
+    <span class="ruby-identifier">final_output</span>[<span class="ruby-identifier">:pephits_precision</span>] = <span class="ruby-identifier">answer</span>[<span class="ruby-identifier">:params</span>][<span class="ruby-identifier">:validators</span>].<span class="ruby-identifier">zip</span>( <span class="ruby-identifier">answer</span>[<span class="ruby-identifier">:pephits_precision</span>] ).<span class="ruby-identifier">map</span> <span class="ruby-keyword kw">do</span> <span class="ruby-operator">|</span><span class="ruby-identifier">val</span>, <span class="ruby-identifier">precision</span><span class="ruby-operator">|</span>
+      { <span class="ruby-value str">'validator'</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-constant">Validator</span><span class="ruby-operator">::</span><span class="ruby-constant">Validator_to_string</span>[<span class="ruby-identifier">val</span>.<span class="ruby-identifier">class</span>.<span class="ruby-identifier">to_s</span>], <span class="ruby-value str">'value'</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-identifier">precision</span> }
+    <span class="ruby-keyword kw">end</span>
+    <span class="ruby-identifier">final_output</span>[<span class="ruby-identifier">:pephits</span>] = <span class="ruby-identifier">answer</span>[<span class="ruby-identifier">:pephits</span>].<span class="ruby-identifier">size</span> 
+    <span class="ruby-identifier">final_output_as_strings</span> = <span class="ruby-constant">SpecID</span><span class="ruby-operator">::</span><span class="ruby-constant">Precision</span><span class="ruby-operator">::</span><span class="ruby-constant">Output</span>.<span class="ruby-identifier">symbol_keys_to_string</span>(<span class="ruby-identifier">final_output</span>)
+    <span class="ruby-identifier">cleanup_params_hash</span>(<span class="ruby-identifier">final_output_as_strings</span>[<span class="ruby-value str">'params'</span>])
+    <span class="ruby-identifier">fh</span>.<span class="ruby-identifier">print</span>(<span class="ruby-identifier">final_output_as_strings</span>.<span class="ruby-identifier">to_yaml</span> )
+  <span class="ruby-keyword kw">end</span></pre>
+</body>
+</html>

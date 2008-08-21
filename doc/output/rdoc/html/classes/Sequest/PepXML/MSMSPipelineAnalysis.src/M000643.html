@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="iso-8859-1"?>
+<!DOCTYPE html 
+     PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+     "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html>
+<head>
+  <title>to_pepxml (Sequest::PepXML::MSMSPipelineAnalysis)</title>
+  <meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1" />
+  <link rel="stylesheet" href="../../../.././rdoc-style.css" type="text/css" media="screen" />
+</head>
+<body class="standalone-code">
+  <pre><span class="ruby-comment cmt"># File lib/spec_id/sequest/pepxml.rb, line 80</span>
+  <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">to_pepxml</span>
+    <span class="ruby-keyword kw">case</span> <span class="ruby-constant">Sequest</span><span class="ruby-operator">::</span><span class="ruby-constant">PepXML</span>.<span class="ruby-identifier">pepxml_version</span>
+    <span class="ruby-keyword kw">when</span> <span class="ruby-value">18</span>
+      <span class="ruby-identifier">element_xml_and_att_string</span>(<span class="ruby-identifier">:msms_pipeline_analysis</span>, <span class="ruby-node">&quot;date=\&quot;#{date}\&quot; xmlns=\&quot;#{xmlns}\&quot; xmlns:xsi=\&quot;#{xmlns_xsi}\&quot; xsi:schemaLocation=\&quot;#{xsi_schema_location}\&quot; summary_xml=\&quot;#{summary_xml}\&quot;&quot;</span>) <span class="ruby-keyword kw">do</span>
+        <span class="ruby-ivar">@msms_run_summary</span>.<span class="ruby-identifier">to_pepxml</span>
+      <span class="ruby-keyword kw">end</span>
+    <span class="ruby-keyword kw">else</span>
+      <span class="ruby-identifier">abort</span> <span class="ruby-node">&quot;Don't know how to deal with version: #{Sequest::PepXML.pepxml_version}&quot;</span>
+    <span class="ruby-keyword kw">end</span>
+  <span class="ruby-keyword kw">end</span></pre>
+</body>
+</html>

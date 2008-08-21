@@ -1,0 +1,12 @@
+
+split spec into mspire-spec package and the rest as mspire-id
+maybe together as mspire
+
+for bioworks_to_pepxml:
+when I give a database params file on the command line and it is different than the one in the params file, I end up with (original/last_part_part_of_given).
+
+freeze protein_summary and fals.. output
+
+get all documentation working properly and detected, etc.
+
+get array based objects to ignore the flatten command....

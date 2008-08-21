@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="iso-8859-1"?>
+<!DOCTYPE html 
+     PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+     "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html>
+<head>
+  <title>num_prots_to_html (ProteinSummary)</title>
+  <meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1" />
+  <link rel="stylesheet" href="../.././rdoc-style.css" type="text/css" media="screen" />
+</head>
+<body class="standalone-code">
+  <pre><span class="ruby-comment cmt"># File lib/spec_id/protein_summary.rb, line 380</span>
+  <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">num_prots_to_html</span>(<span class="ruby-identifier">desired_cutoff</span>, <span class="ruby-identifier">actual_cutoff</span>, <span class="ruby-identifier">num_proteins</span>)
+    <span class="ruby-identifier">actual_cutoff</span> = <span class="ruby-identifier">sprintf</span>(<span class="ruby-value str">&quot;%.3f&quot;</span>, <span class="ruby-identifier">actual_cutoff</span>)
+    <span class="ruby-identifier">desired_cutoff</span> = <span class="ruby-identifier">sprintf</span>(<span class="ruby-value str">&quot;%.3f&quot;</span>, <span class="ruby-identifier">desired_cutoff</span>)
+    <span class="ruby-node">&quot;&lt;div class=\&quot;num_proteins\&quot;&gt;&lt;h3&gt;False Positive Predictive Rate [ FP/(TP+FP) ]&lt;/h3&gt;
+    Desired FPPR: #{desired_cutoff} %&lt;br/&gt;
+    Actual FPPR: #{actual_cutoff} %&lt;br/&gt;
+    Number of Proteins at Actual FPPR: #{num_proteins}
+    &lt;/div&gt;&quot;</span>
+  <span class="ruby-keyword kw">end</span></pre>
+</body>
+</html>

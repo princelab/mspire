@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="iso-8859-1"?>
+<!DOCTYPE html 
+     PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+     "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html>
+<head>
+  <title>read_dta_files (SRF)</title>
+  <meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1" />
+  <link rel="stylesheet" href="../.././rdoc-style.css" type="text/css" media="screen" />
+</head>
+<body class="standalone-code">
+  <pre><span class="ruby-comment cmt"># File lib/spec_id/srf.rb, line 437</span>
+  <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">read_dta_files</span>(<span class="ruby-identifier">fh</span>, <span class="ruby-identifier">num_files</span>, <span class="ruby-identifier">unpack_35</span>)
+    <span class="ruby-identifier">measured_mhs</span> = <span class="ruby-constant">Array</span>.<span class="ruby-identifier">new</span>(<span class="ruby-identifier">num_files</span>) <span class="ruby-comment cmt">## A parallel array to capture the actual mh</span>
+    <span class="ruby-identifier">dta_files</span> = <span class="ruby-constant">Array</span>.<span class="ruby-identifier">new</span>(<span class="ruby-identifier">num_files</span>)
+    <span class="ruby-identifier">start</span> = <span class="ruby-identifier">dta_start_byte</span>
+    <span class="ruby-keyword kw">unless</span> <span class="ruby-identifier">fh</span>.<span class="ruby-identifier">pos</span> <span class="ruby-operator">==</span> <span class="ruby-identifier">start</span>
+      <span class="ruby-identifier">fh</span>.<span class="ruby-identifier">pos</span> = <span class="ruby-identifier">start</span>
+    <span class="ruby-keyword kw">end</span>
+
+    <span class="ruby-identifier">header</span>.<span class="ruby-identifier">num_dta_files</span>.<span class="ruby-identifier">times</span> <span class="ruby-keyword kw">do</span> <span class="ruby-operator">|</span><span class="ruby-identifier">i</span><span class="ruby-operator">|</span>
+      <span class="ruby-identifier">dta_file</span> = <span class="ruby-constant">SRF</span><span class="ruby-operator">::</span><span class="ruby-constant">DTA</span>.<span class="ruby-identifier">new</span>.<span class="ruby-identifier">from_handle</span>(<span class="ruby-identifier">fh</span>, <span class="ruby-identifier">unpack_35</span>) 
+      <span class="ruby-identifier">measured_mhs</span>[<span class="ruby-identifier">i</span>] = <span class="ruby-identifier">dta_file</span>[<span class="ruby-value">0</span>]
+      <span class="ruby-identifier">dta_files</span>[<span class="ruby-identifier">i</span>] = <span class="ruby-identifier">dta_file</span>
+    <span class="ruby-keyword kw">end</span>
+    [<span class="ruby-identifier">dta_files</span>, <span class="ruby-identifier">measured_mhs</span>]
+  <span class="ruby-keyword kw">end</span></pre>
+</body>
+</html>

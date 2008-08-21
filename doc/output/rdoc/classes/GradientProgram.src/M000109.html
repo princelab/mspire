@@ -1,0 +1,71 @@
+<?xml version="1.0" encoding="iso-8859-1"?>
+<!DOCTYPE html 
+     PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+     "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html>
+<head>
+  <title>get_gradient_program (GradientProgram)</title>
+  <meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1" />
+  <link rel="stylesheet" href="../.././rdoc-style.css" type="text/css" media="screen" />
+</head>
+<body class="standalone-code">
+  <pre><span class="ruby-comment cmt"># File lib/ms/gradient_program.rb, line 20</span>
+  <span class="ruby-keyword kw">def</span> <span class="ruby-keyword kw">self</span>.<span class="ruby-identifier">get_gradient_program</span>(<span class="ruby-identifier">fh</span>)
+    <span class="ruby-identifier">thermo_newline</span> = <span class="ruby-value str">&quot;\n\000&quot;</span>
+    <span class="ruby-comment cmt">#gtable = &quot;g\000r\000a\000d\000i\000e\000n\000t\000 \000t\000a\000b\000l\000e&quot;</span>
+    <span class="ruby-identifier">gradient</span> = <span class="ruby-value str">&quot;[Gg]\000r\000a\000d\000i\000e\000n\000t\000 \000&quot;</span>
+    
+    
+    <span class="ruby-identifier">xcal_2x</span> = <span class="ruby-identifier">gradient</span> <span class="ruby-operator">+</span> <span class="ruby-value str">&quot;t\000a\000b\000l\000e\000:\000&quot;</span>
+    <span class="ruby-identifier">xcal_1x</span> = <span class="ruby-identifier">gradient</span> <span class="ruby-operator">+</span> <span class="ruby-value str">&quot;P\000r\000o\000g\000r\000a\000m\000:\000&quot;</span>
+    <span class="ruby-identifier">xcal_2x_regexp</span> = <span class="ruby-constant">Regexp</span>.<span class="ruby-identifier">new</span>(<span class="ruby-identifier">xcal_2x</span>)
+    <span class="ruby-identifier">xcal_1x_regexp</span> = <span class="ruby-constant">Regexp</span>.<span class="ruby-identifier">new</span>(<span class="ruby-identifier">xcal_1x</span>)
+    <span class="ruby-identifier">find_gtable_regexp</span> = <span class="ruby-constant">Regexp</span>.<span class="ruby-identifier">new</span>(<span class="ruby-identifier">gradient</span>)
+
+    <span class="ruby-identifier">found_one_2x</span> = <span class="ruby-keyword kw">false</span>
+    <span class="ruby-identifier">found_one_1x</span> = <span class="ruby-keyword kw">false</span>
+    <span class="ruby-identifier">pump_type</span> = <span class="ruby-value str">''</span>
+    <span class="ruby-identifier">fh</span>.<span class="ruby-identifier">each</span>(<span class="ruby-identifier">thermo_newline</span>) <span class="ruby-keyword kw">do</span> <span class="ruby-operator">|</span><span class="ruby-identifier">line</span><span class="ruby-operator">|</span>
+      <span class="ruby-comment cmt"># first identify the line, then </span>
+      <span class="ruby-keyword kw">if</span> <span class="ruby-identifier">line</span> <span class="ruby-operator">=~</span> <span class="ruby-identifier">find_gtable_regexp</span>
+        <span class="ruby-keyword kw">if</span> <span class="ruby-identifier">line</span> <span class="ruby-operator">=~</span> <span class="ruby-identifier">xcal_1x_regexp</span>
+          <span class="ruby-identifier">pump_type</span> = <span class="ruby-value str">''</span>  <span class="ruby-comment cmt">## have to look way back in file for this</span>
+          <span class="ruby-identifier">found_one_1x</span> = <span class="ruby-keyword kw">true</span>
+          <span class="ruby-keyword kw">break</span>
+        <span class="ruby-keyword kw">elsif</span> <span class="ruby-identifier">line</span> <span class="ruby-operator">=~</span> <span class="ruby-identifier">xcal_2x_regexp</span>
+          <span class="ruby-identifier">grab_pump_type_regexp</span> = <span class="ruby-regexp re">/(.*) .g.r.a.d.i.e.n.t. .t.a.b.l.e/</span>
+          <span class="ruby-identifier">pump_type</span> = <span class="ruby-identifier">read_thermo_string</span>(<span class="ruby-identifier">grab_pump_type_regexp</span>.<span class="ruby-identifier">match</span>(<span class="ruby-identifier">line</span>).<span class="ruby-identifier">captures</span>[<span class="ruby-value">0</span>])
+          <span class="ruby-identifier">found_one_2x</span> = <span class="ruby-keyword kw">true</span>
+          <span class="ruby-keyword kw">break</span>
+        <span class="ruby-keyword kw">end</span>
+      <span class="ruby-keyword kw">end</span>
+    <span class="ruby-keyword kw">end</span>
+    <span class="ruby-keyword kw">if</span> <span class="ruby-identifier">found_one_2x</span>
+      <span class="ruby-identifier">fh</span>.<span class="ruby-identifier">gets</span>(<span class="ruby-identifier">thermo_newline</span>) <span class="ruby-comment cmt"># nothing</span>
+      <span class="ruby-identifier">table_headers</span> = <span class="ruby-identifier">fh</span>.<span class="ruby-identifier">gets</span>(<span class="ruby-identifier">thermo_newline</span>)
+      <span class="ruby-identifier">time_points</span> = []
+      <span class="ruby-keyword kw">while</span> (<span class="ruby-identifier">line</span> = <span class="ruby-identifier">fh</span>.<span class="ruby-identifier">gets</span>(<span class="ruby-identifier">thermo_newline</span>)) <span class="ruby-operator">!=</span> <span class="ruby-identifier">thermo_newline</span>
+        <span class="ruby-comment cmt"># 0   0.00  95.0  5.0   0.0   0.0   38.0   x   </span>
+        <span class="ruby-comment cmt"># 1   1.00  90.0  10.0  0.0   0.0   38.0   o</span>
+
+        <span class="ruby-identifier">pieces</span> = <span class="ruby-identifier">table_row_to_pieces</span>(<span class="ruby-identifier">line</span>, <span class="ruby-value str">'2.0'</span>)
+        <span class="ruby-identifier">time_points</span> <span class="ruby-operator">&lt;&lt;</span> <span class="ruby-constant">TimePoint</span>.<span class="ruby-identifier">new</span>(<span class="ruby-identifier">pieces</span>[<span class="ruby-value">1</span>].<span class="ruby-identifier">to_f</span>, <span class="ruby-identifier">pieces</span>[<span class="ruby-value">6</span>].<span class="ruby-identifier">to_f</span>, <span class="ruby-identifier">pieces</span>[<span class="ruby-value">2</span>,<span class="ruby-value">4</span>].<span class="ruby-identifier">map</span>{<span class="ruby-operator">|</span><span class="ruby-identifier">x</span><span class="ruby-operator">|</span> <span class="ruby-identifier">x</span>.<span class="ruby-identifier">to_f</span> })
+      <span class="ruby-keyword kw">end</span>
+      <span class="ruby-constant">GradientProgram</span>.<span class="ruby-identifier">new</span>(<span class="ruby-identifier">pump_type</span>, <span class="ruby-identifier">time_points</span>, <span class="ruby-node">%w(A B C D)</span>)
+    <span class="ruby-keyword kw">elsif</span> <span class="ruby-identifier">found_one_1x</span>
+      <span class="ruby-identifier">fh</span>.<span class="ruby-identifier">gets</span>(<span class="ruby-identifier">thermo_newline</span>) <span class="ruby-comment cmt"># nothing</span>
+      <span class="ruby-identifier">table_headers</span> = <span class="ruby-identifier">fh</span>.<span class="ruby-identifier">gets</span>(<span class="ruby-identifier">thermo_newline</span>)
+      <span class="ruby-identifier">time_points</span> = []
+      <span class="ruby-identifier">null_char_regexp</span> = <span class="ruby-constant">Regexp</span>.<span class="ruby-identifier">new</span>(<span class="ruby-value str">&quot;^\000\000\000\000&quot;</span>)
+      <span class="ruby-keyword kw">while</span> (<span class="ruby-identifier">line</span> = <span class="ruby-identifier">fh</span>.<span class="ruby-identifier">gets</span>(<span class="ruby-identifier">thermo_newline</span>)) <span class="ruby-operator">!~</span> <span class="ruby-identifier">null_char_regexp</span>
+        <span class="ruby-identifier">pieces</span> = <span class="ruby-identifier">table_row_to_pieces</span>(<span class="ruby-identifier">line</span>, <span class="ruby-value str">'1.0'</span>)
+        <span class="ruby-identifier">time_points</span> <span class="ruby-operator">&lt;&lt;</span> <span class="ruby-constant">TimePoint</span>.<span class="ruby-identifier">new</span>(<span class="ruby-identifier">pieces</span>[<span class="ruby-value">1</span>].<span class="ruby-identifier">to_f</span>, <span class="ruby-identifier">pieces</span>[<span class="ruby-value">6</span>].<span class="ruby-identifier">to_f</span>, <span class="ruby-identifier">pieces</span>[<span class="ruby-value">2</span>,<span class="ruby-value">4</span>].<span class="ruby-identifier">map</span>{<span class="ruby-operator">|</span><span class="ruby-identifier">x</span><span class="ruby-operator">|</span> <span class="ruby-identifier">x</span>.<span class="ruby-identifier">to_f</span> })
+      <span class="ruby-keyword kw">end</span>
+      <span class="ruby-constant">GradientProgram</span>.<span class="ruby-identifier">new</span>(<span class="ruby-identifier">pump_type</span>, <span class="ruby-identifier">time_points</span>, <span class="ruby-node">%w(A B C D)</span>)
+    <span class="ruby-keyword kw">else</span>
+      <span class="ruby-keyword kw">nil</span>
+    <span class="ruby-keyword kw">end</span>
+  <span class="ruby-keyword kw">end</span></pre>
+</body>
+</html>

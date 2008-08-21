@@ -1,0 +1,182 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.1//EN" "http://www.w3.org/TR/xhtml11/DTD/xhtml11.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en">
+  <head>
+    <title>MSRun</title>
+    <link href="../default.css" rel="stylesheet" />
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+  </head>
+  <body>
+    <div id="logo">
+        <a href=../index.html><img src=../images/mspire_logo.png border="0" alt="mspire - mass spectrometry proteomics in ruby"/></a>
+  </div>
+    <div id="header">
+      <h1>MSRun</h1>
+    </div>
+
+    <div id="headerbar" class="bar">
+        <!-- <span class="left">Location: <a href="../index.html" title="mspire">mspire</a> / <a href="./index.html" title="MS">MS</a> / <a href="./msrun.html" title="MSRun">MSRun</a></span> -->
+      <!--<span class="right">Language: <a href="./msrun.html" title="en">en</a></span>-->
+      <div style="clear:both"></div>
+    </div>
+
+    <div id="menu">
+        <div class="webgen-menu-vert "><ul><li ><a href="../index.html" title="Home">Home</a></li><li class="webgen-menu-submenu"><a href="../install/index.html" title="Install">Install</a></li><li class="webgen-menu-submenu webgen-menu-submenu-inhierarchy"><a href="./index.html" title="MS">MS</a><ul><li class="webgen-menu-item-selected"><a href="./msrun.html" title="MSRun">MSRun</a></li><li ><a href="./obiwarp.html" title="Preparing files for OBI-Warp">Preparing files for OBI-Warp</a></li></ul></li><li class="webgen-menu-submenu"><a href="../spec_id/index.html" title="SpecID">SpecID</a></li><li class="webgen-menu-submenu"><a href="../tutorial/index.html" title="Tutorials">Tutorials</a></li></ul></div>
+        <a style="font-size:130%; padding-left:20px" href="rdoc/index.html">rdoc</a>
+        <br/>
+        <a style="font-size:85%; padding-left:20px" href="http://rubyforge.org/projects/mspire/">Rubyforge Project Page</a>
+        <br/>
+        <br/>
+        <br/>
+        <br/>
+        <a href="http://www.ruby-lang.org/en/"><img style="padding-left:20px" src=../images/ruby_logo_small.png border="0" alt="Ruby Programming Language"/></a>
+    </div>
+
+    <div id="body">
+      <h1>Object Model</h1>
+
+<p><img src="../images/msrun_object_model.png" alt="MS::MSRun object model" title="MS:MSRun Object model"/></p>
+
+<p>The diamonds represent composition (e.g., an msrun is composed of scans).  Lines represent associations.</p>
+
+<h1>Examples</h1>
+
+<p>MS::MSRun objects are meant to capture LC/MS and LC/MS(n) runs.  The object model will still read in MALDI data, but it will not capture all the information useful to spotted scanning.</p>
+
+<h2>Reading a file or io object</h2>
+
+<pre><code>require "ms/msrun" 
+
+ms = MS::MSRun.new("file.mzXML")        # an mzXML file
+ms = MS::MSRun.new("file.mzData")        # an mzData file
+
+# also takes an io object
+ms = File.open("file.mzXML") {|io| MS::MSRun.new(io) }
+</code></pre>
+
+<h2>Accessing run information</h2>
+
+<pre><code>ms.start_time
+ms.end_time
+
+ms.scan_count    # number of scans
+ms.scan_count(0) # same thing (number of scans)
+ms.scan_count(1) # number of MS scans
+ms.scan_count(2) # number of MS/MS scans, etc.
+</code></pre>
+
+<h2>Accessing scan information</h2>
+
+<pre><code>ms.scans.each do |scan|
+  scan.num          # scan number
+  scan.ms_level     # ms_level
+  scan.time         # retention time in seconds
+  scan.start_mz     # the first m/z value
+  scan.end_mz       # the last m/z value
+
+  pr = scan.precursor  # an MS::Precursor object!
+  pr.mz
+  pr.intensity
+  pr.parent         # the parent scan
+  pr.charge_states  # Array of possible charge states of the precursor
+                    # ('charge_states' is not always defined)
+end
+</code></pre>
+
+<p>The precursor intensity is not always defined in mass spec files.  Some magic
+happens under the hood if you request an intensity and its not defined: the
+parent scan's spectrum is queried for the intensity at that m/z (does a fast
+binary search for the nearest m/z value since rounding errors make an exact
+match uncertain.  It's fast enough that you probably won't notice the time it
+takes).  If you don't read in the spectra (see :no_spectra) and the intensity
+is not defined in the xml file itself, then this will return nil.</p>
+
+<h2>Lazy evaluation of spectra</h2>
+
+<p>mspire gives the user the option of what type of lazy evalution to use</p>
+
+<h3>:lazy => :string</h3>
+
+<pre><code>ms = MS::MSRun.new("file.mzXML")
+ms = MS::MSRun.new("file.mzXML", :lazy =&gt; :string) # the same thing
+
+ms.scans.each do |scan|
+  mz_ar = scan.spectrum.mzs   # now the string is converted into an array
+  intensity_ar = scan.spectrum.intensities # now converted too
+end
+</code></pre>
+
+<p>By default spectral information is decoded from base64 strings
+and held until spectral information is requested.  This is the most compact
+way to store spectra and is sufficient for most files.  For mzXML files, peaks
+are deconvolved into an array of m/z data and an array of intensity data so
+that subsequent access of mz and intensity attributes are fast and independent
+of one another.</p>
+
+<h3>:lazy => :io</h3>
+
+<p>The easiest way to use the <code>:lazy =&gt; :io</code> option is with the <code>MS::MSRun.open</code> method:</p>
+
+<pre><code>MS::MSRun.open("file.mzXML") do |ms|
+  # do something with your ms object here ...
+  # ... ms.scans etc. ...
+end
+</code></pre>
+
+<p>This is equivalent to doing this:</p>
+
+<pre><code>File.open("file.mzXML") do |io|
+  ms = MS::MSRun.new(io, :lazy =&gt; :io)
+  # do something with your ms object here ...
+  # ... ms.scans etc. ...
+end
+
+# this is NOT allowed and will raise an exception! (must be an io object)
+ms = MS::MSRun.new("file.mzXML", :lazy =&gt; :io)
+</code></pre>
+
+<p><em>NOTE:</em> if you have an mzXML file (does not apply to mzData or mzML) its best to access your data with 'mzs<em>and</em>intensities' when using :lazy => :io</p>
+
+<pre><code>(mzs, intensitites) = ms.scans.first.spectrum.mzs_and_intensities
+</code></pre>
+
+<p>Using the conventional access shown below is twice as slow as above for mzXML (again, this does <em>not</em> apply to mzData or mzML) since each call reads and decodes the spectral information for itself.</p>
+
+<pre><code># slow for mzXML files under :lazy =&gt; :io
+mzs = ms.scans.first.spectrum.mzs
+intensities = ms.scans.first.spectrum.intensities
+</code></pre>
+
+<p>Spectra store byte indices into the io object and read and convert
+to spectra when information is called.  This should be used for <em>really</em> large
+files > 300 MB ?) Typically, this is the fastest mode of access, even if you
+are going to read all the spectrum.  However, since spectra are decoded for
+each call, this can be slow for repeated querying of spectral information.
+Also, since mzXML spectra are stored as peaks, two separate calls to get m/z's
+and intensities will take longer than other methods.  For mzXML files, access
+spectral information with the <code>mzs_and_intensities</code> method.</p>
+
+<h3>:lazy => :no_spectra</h3>
+
+<pre><code>ms = MS::MSRun.new("file.mzXML", :lazy =&gt; :no_spectra)
+ms.scans.first.precursor.mz      # most information is still available
+ms.scans.first.spectrum # =&gt; nil
+</code></pre>
+
+<p>Spectral information is not read in the from the file (but all other information is)</p>
+
+<h3>:lazy => :not</h3>
+
+<pre><code>ms = MS::MSRun.new("file.mzXML", :lazy =&gt; :not)
+</code></pre>
+
+<p>This reads and parses all data at the beginning (it's not lazy).  If you have
+a medium to small file (&lt; 90MB on a 2GB memory machine) and you plan to access
+spectral information over and over, this option is for you.</p>
+    </div>
+
+    <div id="footer" class="bar">
+      Last update: <i>Monday, August 18 10:50:23 MDT 2008</i>
+    </div>
+  </body>
+</html>

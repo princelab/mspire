@@ -1,0 +1,88 @@
+--- 
+- time_to_access: 0.032793
+  scan_count: 5899
+  file_size: 33175093
+  scans_to_read: all
+  total_time_to_read_and_access: 34.091839
+  time_to_read: 34.059021
+  lazy_type: :not
+  end_time: 11999.81
+  start_time: 300.06
+  file: B30_1ms_4msms.mzXML
+--- 
+- time_to_access: 0.034626
+  scan_count: 5946
+  file_size: 32103277
+  scans_to_read: all
+  total_time_to_read_and_access: 35.25554
+  time_to_read: 35.22089
+  lazy_type: :not
+  end_time: 11998.09
+  start_time: 300.02
+  file: B29_1ms_4msms.mzXML
+--- 
+- time_to_access: 0.032901
+  scan_count: 5777
+  file_size: 35804337
+  scans_to_read: all
+  total_time_to_read_and_access: 41.15
+  time_to_read: 41.117077
+  lazy_type: :not
+  end_time: 12002.81
+  start_time: 300.06
+  file: B30_1ms_3msms.mzXML
+--- 
+- time_to_access: 0.031968
+  scan_count: 5584
+  file_size: 48122330
+  scans_to_read: all
+  total_time_to_read_and_access: 55.487561
+  time_to_read: 55.455568
+  lazy_type: :not
+  end_time: 11999.54
+  start_time: 300.08
+  file: B29_1ms_1msms.mzXML
+--- 
+- time_to_access: 0.031722
+  scan_count: 5556
+  file_size: 40471018
+  scans_to_read: all
+  total_time_to_read_and_access: 46.043587
+  time_to_read: 46.011844
+  lazy_type: :not
+  end_time: 12004.33
+  start_time: 300.1099
+  file: B30_1ms_2msms.mzXML
+--- 
+- time_to_access: 0.029855
+  scan_count: 5241
+  file_size: 48250213
+  scans_to_read: all
+  total_time_to_read_and_access: 56.019874
+  time_to_read: 55.989996
+  lazy_type: :not
+  end_time: 11998.32
+  start_time: 300.1
+  file: B30_1ms_1msms.mzXML
+--- 
+- time_to_access: 0.033357
+  scan_count: 5822
+  file_size: 39448692
+  scans_to_read: all
+  total_time_to_read_and_access: 45.441602
+  time_to_read: 45.408223
+  lazy_type: :not
+  end_time: 11999.52
+  start_time: 300.07
+  file: B29_1ms_2msms.mzXML
+--- 
+- time_to_access: 0.033822
+  scan_count: 5896
+  file_size: 35060935
+  scans_to_read: all
+  total_time_to_read_and_access: 41.312142
+  time_to_read: 41.278297
+  lazy_type: :not
+  end_time: 11999.45
+  start_time: 300.08
+  file: B29_1ms_3msms.mzXML

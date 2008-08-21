@@ -1,0 +1,1269 @@
+--- 
+- time_to_access: 0.000709
+  first_scan: 
+    last_peak: 
+    - 1798.31689453125
+    - 6515.0
+    num: 1
+    first_peak: 
+    - 400.433898925781
+    - 32382.0
+  scan_count: 5527
+  file_size: 41854480
+  last_scan: 
+    last_peak: 
+    - 1797.7099609375
+    - 799.0
+    num: 5527
+    first_peak: 
+    - 400.367126464844
+    - 28568.0
+  scans_to_read: fl
+  total_time_to_read_and_access: 27.502128
+  time_to_read: 27.5014
+  lazy_type: :string
+  end_time: 8098.38
+  start_time: 300.09
+  file: NIBSC_glyco_lcq_10_1.mzXML
+--- 
+- time_to_access: 0.000919
+  first_scan: 
+    last_peak: 
+    - 1799.5556640625
+    - 16779.0
+    num: 1
+    first_peak: 
+    - 400.267944335938
+    - 38943.0
+  scan_count: 5684
+  file_size: 37510817
+  last_scan: 
+    last_peak: 
+    - 1795.03784179688
+    - 6355.0
+    num: 5684
+    first_peak: 
+    - 400.467651367188
+    - 18964.0
+  scans_to_read: fl
+  total_time_to_read_and_access: 22.638849
+  time_to_read: 22.637915
+  lazy_type: :string
+  end_time: 8099.3
+  start_time: 300.05
+  file: NIBSC_glyco_lcq_11_1.mzXML
+--- 
+- time_to_access: 0.000796
+  first_scan: 
+    last_peak: 
+    - 1799.79809570312
+    - 13016.0
+    num: 1
+    first_peak: 
+    - 400.39306640625
+    - 59269.0
+  scan_count: 5766
+  file_size: 36834920
+  last_scan: 
+    last_peak: 
+    - 1787.48681640625
+    - 5292.0
+    num: 5766
+    first_peak: 
+    - 400.545043945312
+    - 15154.0
+  scans_to_read: fl
+  total_time_to_read_and_access: 22.39286
+  time_to_read: 22.392046
+  lazy_type: :string
+  end_time: 8099.71
+  start_time: 300.08
+  file: NIBSC_glyco_lcq_12_1.mzXML
+--- 
+- time_to_access: 0.000597
+  first_scan: 
+    last_peak: 
+    - 1590.7509765625
+    - 1035.0
+    num: 1
+    first_peak: 
+    - 401.0517578125
+    - 30247.0
+  scan_count: 5807
+  file_size: 36430564
+  last_scan: 
+    last_peak: 
+    - 1759.70288085938
+    - 2551.0
+    num: 5807
+    first_peak: 
+    - 400.566284179688
+    - 26380.0
+  scans_to_read: fl
+  total_time_to_read_and_access: 22.354035
+  time_to_read: 22.353421
+  lazy_type: :string
+  end_time: 8099.88
+  start_time: 300.04
+  file: NIBSC_glyco_lcq_13_1.mzXML
+--- 
+- time_to_access: 0.000579
+  first_scan: 
+    last_peak: 
+    - 1799.50561523438
+    - 59411.0
+    num: 1
+    first_peak: 
+    - 400.26220703125
+    - 19539.0
+  scan_count: 5847
+  file_size: 36715087
+  last_scan: 
+    last_peak: 
+    - 1785.166015625
+    - 1615.0
+    num: 5847
+    first_peak: 
+    - 400.351867675781
+    - 22841.0
+  scans_to_read: fl
+  total_time_to_read_and_access: 22.317526
+  time_to_read: 22.316932
+  lazy_type: :string
+  end_time: 8099.04
+  start_time: 300.11
+  file: NIBSC_glyco_lcq_14_1.mzXML
+--- 
+- time_to_access: 6.8e-05
+  first_scan: 
+    last_peak: 
+    - 1214.89306640625
+    - 5926.0
+    num: 1
+    first_peak: 
+    - 1214.89306640625
+    - 5926.0
+  scan_count: 5798
+  file_size: 36323146
+  last_scan: 
+    last_peak: 
+    - 1986.1064453125
+    - 19092.0
+    num: 5798
+    first_peak: 
+    - 1399.4267578125
+    - 37889.0
+  scans_to_read: fl
+  total_time_to_read_and_access: 22.377085
+  time_to_read: 22.377002
+  lazy_type: :string
+  end_time: 7499.55
+  start_time: 300.07
+  file: NIBSC_glyco_lcq_15_1.mzXML
+--- 
+- time_to_access: 0.000175
+  first_scan: 
+    last_peak: 
+    - 1376.76708984375
+    - 3150.0
+    num: 1
+    first_peak: 
+    - 400.27490234375
+    - 36412.0
+  scan_count: 5825
+  file_size: 36792425
+  last_scan: 
+    last_peak: 
+    - 1962.08984375
+    - 17840.0
+    num: 5825
+    first_peak: 
+    - 457.870971679688
+    - 39579.0
+  scans_to_read: fl
+  total_time_to_read_and_access: 22.322587
+  time_to_read: 22.322398
+  lazy_type: :string
+  end_time: 7501.77
+  start_time: 300.1
+  file: NIBSC_glyco_lcq_16_1.mzXML
+--- 
+- time_to_access: 0.000148
+  first_scan: 
+    last_peak: 
+    - 1722.19140625
+    - 3377.0
+    num: 1
+    first_peak: 
+    - 400.25244140625
+    - 28699.0
+  scan_count: 5808
+  file_size: 37336655
+  last_scan: 
+    last_peak: 
+    - 1399.37060546875
+    - 1193.0
+    num: 5808
+    first_peak: 
+    - 1399.37060546875
+    - 1193.0
+  scans_to_read: fl
+  total_time_to_read_and_access: 23.102772
+  time_to_read: 23.10261
+  lazy_type: :string
+  end_time: 7504.76
+  start_time: 300.04
+  file: NIBSC_glyco_lcq_17_1.mzXML
+--- 
+- time_to_access: 0.000151
+  first_scan: 
+    last_peak: 
+    - 1693.90234375
+    - 1029.0
+    num: 1
+    first_peak: 
+    - 400.391784667969
+    - 68024.0
+  scan_count: 5811
+  file_size: 37458052
+  last_scan: 
+    last_peak: 
+    - 1307.20727539062
+    - 4465.0
+    num: 5811
+    first_peak: 
+    - 1307.20727539062
+    - 4465.0
+  scans_to_read: fl
+  total_time_to_read_and_access: 22.920921
+  time_to_read: 22.920755
+  lazy_type: :string
+  end_time: 7499.69
+  start_time: 300.02
+  file: NIBSC_glyco_lcq_18_1.mzXML
+--- 
+- time_to_access: 0.000449
+  first_scan: 
+    last_peak: 
+    - 1786.37573242188
+    - 3902.0
+    num: 1
+    first_peak: 
+    - 400.609313964844
+    - 57891.0
+  scan_count: 5840
+  file_size: 37251603
+  last_scan: 
+    last_peak: 
+    - 1975.36181640625
+    - 12367.0
+    num: 5840
+    first_peak: 
+    - 1089.74072265625
+    - 32833.0
+  scans_to_read: fl
+  total_time_to_read_and_access: 22.844744
+  time_to_read: 22.84428
+  lazy_type: :string
+  end_time: 7499.18
+  start_time: 300.07
+  file: NIBSC_glyco_lcq_19_1.mzXML
+--- 
+- time_to_access: 0.000797
+  first_scan: 
+    last_peak: 
+    - 1799.80493164062
+    - 67202.0
+    num: 1
+    first_peak: 
+    - 400.378967285156
+    - 112776.0
+  scan_count: 5848
+  file_size: 36923877
+  last_scan: 
+    last_peak: 
+    - 1841.50219726562
+    - 1902.0
+    num: 5848
+    first_peak: 
+    - 1841.50219726562
+    - 1902.0
+  scans_to_read: fl
+  total_time_to_read_and_access: 22.910408
+  time_to_read: 22.909594
+  lazy_type: :string
+  end_time: 7504.51
+  start_time: 300.07
+  file: NIBSC_glyco_lcq_20_1.mzXML
+--- 
+- time_to_access: 7.4e-05
+  first_scan: 
+    last_peak: 
+    - 1402.4345703125
+    - 1849.0
+    num: 1
+    first_peak: 
+    - 458.841369628906
+    - 1747.0
+  scan_count: 5803
+  file_size: 36943571
+  last_scan: 
+    last_peak: 
+    - 1370.232421875
+    - 2378.0
+    num: 5803
+    first_peak: 
+    - 1370.232421875
+    - 2378.0
+  scans_to_read: fl
+  total_time_to_read_and_access: 22.571147
+  time_to_read: 22.571059
+  lazy_type: :string
+  end_time: 7499.33
+  start_time: 300.11
+  file: NIBSC_glyco_lcq_21_1.mzXML
+--- 
+- time_to_access: 0.000332
+  first_scan: 
+    last_peak: 
+    - 1791.39721679688
+    - 969.0
+    num: 1
+    first_peak: 
+    - 400.229614257812
+    - 25306.0
+  scan_count: 5796
+  file_size: 36596631
+  last_scan: 
+    last_peak: 
+    - 1726.88793945312
+    - 2798.0
+    num: 5796
+    first_peak: 
+    - 1322.18310546875
+    - 6164.0
+  scans_to_read: fl
+  total_time_to_read_and_access: 22.669802
+  time_to_read: 22.669454
+  lazy_type: :string
+  end_time: 7502.93
+  start_time: 300.06
+  file: NIBSC_glyco_lcq_22_1.mzXML
+--- 
+- time_to_access: 0.000281
+  first_scan: 
+    last_peak: 
+    - 1797.39575195312
+    - 2366.0
+    num: 1
+    first_peak: 
+    - 400.288513183594
+    - 9359.0
+  scan_count: 5788
+  file_size: 36717190
+  last_scan: 
+    last_peak: 
+    - 1999.33349609375
+    - 26377.0
+    num: 5788
+    first_peak: 
+    - 777.13427734375
+    - 8952.0
+  scans_to_read: fl
+  total_time_to_read_and_access: 22.42199
+  time_to_read: 22.421695
+  lazy_type: :string
+  end_time: 7501.97
+  start_time: 300.07
+  file: NIBSC_glyco_lcq_23_1.mzXML
+--- 
+- time_to_access: 0.000889
+  first_scan: 
+    last_peak: 
+    - 1799.67333984375
+    - 184203.0
+    num: 1
+    first_peak: 
+    - 400.453918457031
+    - 1412125.0
+  scan_count: 5846
+  file_size: 35946334
+  last_scan: 
+    last_peak: 
+    - 1997.69458007812
+    - 9401.0
+    num: 5846
+    first_peak: 
+    - 1064.23559570312
+    - 6854.0
+  scans_to_read: fl
+  total_time_to_read_and_access: 22.195066
+  time_to_read: 22.194161
+  lazy_type: :string
+  end_time: 7502.02
+  start_time: 300.1
+  file: NIBSC_glyco_lcq_24_1.mzXML
+--- 
+- time_to_access: 0.000357
+  first_scan: 
+    last_peak: 
+    - 1799.69677734375
+    - 1069381.0
+    num: 1
+    first_peak: 
+    - 400.337646484375
+    - 361575.0
+  scan_count: 5785
+  file_size: 36602845
+  last_scan: 
+    last_peak: 
+    - 1281.150390625
+    - 4060.0
+    num: 5785
+    first_peak: 
+    - 828.259765625
+    - 2860.0
+  scans_to_read: fl
+  total_time_to_read_and_access: 22.424057
+  time_to_read: 22.423685
+  lazy_type: :string
+  end_time: 7498.82
+  start_time: 300.04
+  file: NIBSC_glyco_lcq_25_1.mzXML
+--- 
+- time_to_access: 0.000585
+  first_scan: 
+    last_peak: 
+    - 1799.69018554688
+    - 1496570.0
+    num: 1
+    first_peak: 
+    - 400.407470703125
+    - 830908.0
+  scan_count: 6247
+  file_size: 40704936
+  last_scan: 
+    last_peak: 
+    - 1798.46875
+    - 20801.0
+    num: 6247
+    first_peak: 
+    - 400.211669921875
+    - 9764.0
+  scans_to_read: fl
+  total_time_to_read_and_access: 24.827335
+  time_to_read: 24.826736
+  lazy_type: :string
+  end_time: 8099.51
+  start_time: 300.1
+  file: NIBSC_glyco_lcq_26_1.mzXML
+--- 
+- time_to_access: 0.000457
+  first_scan: 
+    last_peak: 
+    - 1773.59643554688
+    - 1411.0
+    num: 1
+    first_peak: 
+    - 450.934997558594
+    - 3198.0
+  scan_count: 6128
+  file_size: 39829030
+  last_scan: 
+    last_peak: 
+    - 1797.9140625
+    - 7.0
+    num: 6128
+    first_peak: 
+    - 400.331848144531
+    - 61007.0
+  scans_to_read: fl
+  total_time_to_read_and_access: 24.66215
+  time_to_read: 24.661678
+  lazy_type: :string
+  end_time: 8099.13
+  start_time: 300.1
+  file: NIBSC_glyco_lcq_27_1.mzXML
+--- 
+- time_to_access: 0.000811
+  first_scan: 
+    last_peak: 
+    - 1797.9873046875
+    - 10460.0
+    num: 1
+    first_peak: 
+    - 400.476867675781
+    - 19170.0
+  scan_count: 6157
+  file_size: 41995453
+  last_scan: 
+    last_peak: 
+    - 1796.56225585938
+    - 5287.0
+    num: 6157
+    first_peak: 
+    - 400.471984863281
+    - 15697.0
+  scans_to_read: fl
+  total_time_to_read_and_access: 25.980342
+  time_to_read: 25.979515
+  lazy_type: :string
+  end_time: 8099.78
+  start_time: 300.05
+  file: NIBSC_glyco_lcq_28_1.mzXML
+--- 
+- time_to_access: 0.000928
+  first_scan: 
+    last_peak: 
+    - 1799.55200195312
+    - 5555.0
+    num: 1
+    first_peak: 
+    - 400.196411132812
+    - 34604.0
+  scan_count: 6191
+  file_size: 42073615
+  last_scan: 
+    last_peak: 
+    - 1799.05712890625
+    - 12241.0
+    num: 6191
+    first_peak: 
+    - 400.556701660156
+    - 36536.0
+  scans_to_read: fl
+  total_time_to_read_and_access: 25.934574
+  time_to_read: 25.93363
+  lazy_type: :string
+  end_time: 8099.66
+  start_time: 300.06
+  file: NIBSC_glyco_lcq_29_1.mzXML
+--- 
+- time_to_access: 0.000877
+  first_scan: 
+    last_peak: 
+    - 1795.40307617188
+    - 8035.0
+    num: 1
+    first_peak: 
+    - 400.285217285156
+    - 16807.0
+  scan_count: 6188
+  file_size: 42048683
+  last_scan: 
+    last_peak: 
+    - 1799.84790039062
+    - 3414.0
+    num: 6188
+    first_peak: 
+    - 400.433654785156
+    - 36073.0
+  scans_to_read: fl
+  total_time_to_read_and_access: 25.889938
+  time_to_read: 25.889045
+  lazy_type: :string
+  end_time: 8098.5
+  start_time: 300.11
+  file: NIBSC_glyco_lcq_30_1.mzXML
+--- 
+- time_to_access: 0.001082
+  first_scan: 
+    last_peak: 
+    - 1799.54052734375
+    - 6601.0
+    num: 1
+    first_peak: 
+    - 400.264892578125
+    - 12356.0
+  scan_count: 6232
+  file_size: 42014117
+  last_scan: 
+    last_peak: 
+    - 1791.35473632812
+    - 6087.0
+    num: 6232
+    first_peak: 
+    - 400.144409179688
+    - 7673.0
+  scans_to_read: fl
+  total_time_to_read_and_access: 25.895663
+  time_to_read: 25.894565
+  lazy_type: :string
+  end_time: 8099.85
+  start_time: 300.07
+  file: NIBSC_glyco_lcq_31_1.mzXML
+--- 
+- time_to_access: 0.000625
+  first_scan: 
+    last_peak: 
+    - 1799.53051757812
+    - 10280.0
+    num: 1
+    first_peak: 
+    - 400.182495117188
+    - 9403.0
+  scan_count: 6230
+  file_size: 41536983
+  last_scan: 
+    last_peak: 
+    - 1798.34985351562
+    - 4.0
+    num: 6230
+    first_peak: 
+    - 400.4814453125
+    - 16464.0
+  scans_to_read: fl
+  total_time_to_read_and_access: 25.378515
+  time_to_read: 25.377877
+  lazy_type: :string
+  end_time: 8099.48
+  start_time: 300.02
+  file: NIBSC_glyco_lcq_32_1.mzXML
+--- 
+- time_to_access: 0.000659
+  first_scan: 
+    last_peak: 
+    - 1799.66845703125
+    - 4280.0
+    num: 1
+    first_peak: 
+    - 400.417114257812
+    - 59454.0
+  scan_count: 6153
+  file_size: 42234294
+  last_scan: 
+    last_peak: 
+    - 1799.8173828125
+    - 3470.0
+    num: 6153
+    first_peak: 
+    - 400.388061523438
+    - 25207.0
+  scans_to_read: fl
+  total_time_to_read_and_access: 26.051839
+  time_to_read: 26.051164
+  lazy_type: :string
+  end_time: 8099.86
+  start_time: 300.04
+  file: NIBSC_glyco_lcq_33_1.mzXML
+--- 
+- time_to_access: 0.000507
+  first_scan: 
+    last_peak: 
+    - 1798.38940429688
+    - 5656.0
+    num: 1
+    first_peak: 
+    - 401.129821777344
+    - 1625.0
+  scan_count: 6170
+  file_size: 39834431
+  last_scan: 
+    last_peak: 
+    - 1799.19140625
+    - 1852.0
+    num: 6170
+    first_peak: 
+    - 400.179138183594
+    - 5995.0
+  scans_to_read: fl
+  total_time_to_read_and_access: 24.479391
+  time_to_read: 24.47887
+  lazy_type: :string
+  end_time: 8099.64
+  start_time: 300.09
+  file: NIBSC_glyco_lcq_34_1.mzXML
+--- 
+- time_to_access: 0.000589
+  first_scan: 
+    last_peak: 
+    - 1799.75854492188
+    - 16915.0
+    num: 1
+    first_peak: 
+    - 400.521911621094
+    - 66863.0
+  scan_count: 6178
+  file_size: 40602149
+  last_scan: 
+    last_peak: 
+    - 1787.5966796875
+    - 296.0
+    num: 6178
+    first_peak: 
+    - 400.491088867188
+    - 18542.0
+  scans_to_read: fl
+  total_time_to_read_and_access: 24.822816
+  time_to_read: 24.822211
+  lazy_type: :string
+  end_time: 8099.63
+  start_time: 300.05
+  file: NIBSC_glyco_lcq_35_1.mzXML
+--- 
+- time_to_access: 0.000716
+  first_scan: 
+    last_peak: 
+    - 1784.68212890625
+    - 1389.0
+    num: 1
+    first_peak: 
+    - 414.857543945312
+    - 2189.0
+  scan_count: 6046
+  file_size: 43307520
+  last_scan: 
+    last_peak: 
+    - 1799.5966796875
+    - 39596.0
+    num: 6046
+    first_peak: 
+    - 400.77880859375
+    - 39951.0
+  scans_to_read: fl
+  total_time_to_read_and_access: 26.712603
+  time_to_read: 26.711872
+  lazy_type: :string
+  end_time: 8099.38
+  start_time: 300.04
+  file: NIBSC_glyco_lcq_36_1.mzXML
+--- 
+- time_to_access: 0.000629
+  first_scan: 
+    last_peak: 
+    - 1722.73095703125
+    - 7795.0
+    num: 1
+    first_peak: 
+    - 400.636535644531
+    - 22665.0
+  scan_count: 6190
+  file_size: 42246227
+  last_scan: 
+    last_peak: 
+    - 1799.33862304688
+    - 11479.0
+    num: 6190
+    first_peak: 
+    - 400.411865234375
+    - 25418.0
+  scans_to_read: fl
+  total_time_to_read_and_access: 26.070041
+  time_to_read: 26.069395
+  lazy_type: :string
+  end_time: 8099.84
+  start_time: 300.11
+  file: NIBSC_glyco_lcq_37_1.mzXML
+--- 
+- time_to_access: 0.000375
+  first_scan: 
+    last_peak: 
+    - 1758.33569335938
+    - 1025.0
+    num: 1
+    first_peak: 
+    - 445.024841308594
+    - 1262.0
+  scan_count: 6046
+  file_size: 43224609
+  last_scan: 
+    last_peak: 
+    - 1799.43334960938
+    - 16.0
+    num: 6046
+    first_peak: 
+    - 401.259216308594
+    - 88392.0
+  scans_to_read: fl
+  total_time_to_read_and_access: 26.456621
+  time_to_read: 26.45623
+  lazy_type: :string
+  end_time: 8099.21
+  start_time: 300.06
+  file: NIBSC_glyco_lcq_38_1.mzXML
+--- 
+- time_to_access: 0.000799
+  first_scan: 
+    last_peak: 
+    - 1776.38330078125
+    - 3827.0
+    num: 1
+    first_peak: 
+    - 400.492736816406
+    - 27723.0
+  scan_count: 6131
+  file_size: 43245329
+  last_scan: 
+    last_peak: 
+    - 1797.55200195312
+    - 8635.0
+    num: 6131
+    first_peak: 
+    - 400.229431152344
+    - 6614.0
+  scans_to_read: fl
+  total_time_to_read_and_access: 26.610423
+  time_to_read: 26.609609
+  lazy_type: :string
+  end_time: 8099.43
+  start_time: 300.04
+  file: NIBSC_glyco_lcq_39_1.mzXML
+--- 
+- time_to_access: 0.000413
+  first_scan: 
+    last_peak: 
+    - 1522.02001953125
+    - 2488.0
+    num: 1
+    first_peak: 
+    - 400.392822265625
+    - 14613.0
+  scan_count: 5386
+  file_size: 65483995
+  last_scan: 
+    last_peak: 
+    - 1797.32690429688
+    - 25887.0
+    num: 5386
+    first_peak: 
+    - 400.181579589844
+    - 7256.0
+  scans_to_read: fl
+  total_time_to_read_and_access: 40.27497
+  time_to_read: 40.274543
+  lazy_type: :string
+  end_time: 8098.91
+  start_time: 300.04
+  file: NIBSC_glyco_lcq_40_1.mzXML
+--- 
+- time_to_access: 0.000313
+  first_scan: 
+    last_peak: 
+    - 741.179931640625
+    - 2652.0
+    num: 1
+    first_peak: 
+    - 741.179931640625
+    - 2652.0
+  scan_count: 5204
+  file_size: 66643778
+  last_scan: 
+    last_peak: 
+    - 1786.72192382812
+    - 26157.0
+    num: 5204
+    first_peak: 
+    - 400.261474609375
+    - 35910.0
+  scans_to_read: fl
+  total_time_to_read_and_access: 40.698609
+  time_to_read: 40.698282
+  lazy_type: :string
+  end_time: 8099.15
+  start_time: 300.06
+  file: NIBSC_glyco_lcq_40_2.mzXML
+--- 
+- time_to_access: 0.000686
+  first_scan: 
+    last_peak: 
+    - 1621.2041015625
+    - 3473.0
+    num: 1
+    first_peak: 
+    - 400.572326660156
+    - 14290.0
+  scan_count: 5892
+  file_size: 48813914
+  last_scan: 
+    last_peak: 
+    - 1799.7919921875
+    - 10644.0
+    num: 5892
+    first_peak: 
+    - 400.848754882812
+    - 45329.0
+  scans_to_read: fl
+  total_time_to_read_and_access: 29.940622
+  time_to_read: 29.939922
+  lazy_type: :string
+  end_time: 8098.45
+  start_time: 300.08
+  file: NIBSC_glyco_lcq_41_1.mzXML
+--- 
+- time_to_access: 0.00071
+  first_scan: 
+    last_peak: 
+    - 1798.185546875
+    - 11792.0
+    num: 1
+    first_peak: 
+    - 400.658508300781
+    - 108683.0
+  scan_count: 5614
+  file_size: 46140891
+  last_scan: 
+    last_peak: 
+    - 1799.50463867188
+    - 11933.0
+    num: 5614
+    first_peak: 
+    - 400.419555664062
+    - 34734.0
+  scans_to_read: fl
+  total_time_to_read_and_access: 28.025147
+  time_to_read: 28.024423
+  lazy_type: :string
+  end_time: 8099.48
+  start_time: 300.06
+  file: NIBSC_glyco_lcq_41_2.mzXML
+--- 
+- time_to_access: 0.000195
+  first_scan: 
+    last_peak: 
+    - 1489.560546875
+    - 2272.0
+    num: 1
+    first_peak: 
+    - 400.461853027344
+    - 17723.0
+  scan_count: 5926
+  file_size: 40743718
+  last_scan: 
+    last_peak: 
+    - 1720.28955078125
+    - 965.0
+    num: 5926
+    first_peak: 
+    - 400.584655761719
+    - 9055.0
+  scans_to_read: fl
+  total_time_to_read_and_access: 24.762836
+  time_to_read: 24.762625
+  lazy_type: :string
+  end_time: 8099.52
+  start_time: 300.07
+  file: NIBSC_glyco_lcq_42_1.mzXML
+--- 
+- time_to_access: 0.000362
+  first_scan: 
+    last_peak: 
+    - 1799.18286132812
+    - 4036.0
+    num: 1
+    first_peak: 
+    - 400.482238769531
+    - 84299.0
+  scan_count: 5571
+  file_size: 45431207
+  last_scan: 
+    last_peak: 
+    - 446.624938964844
+    - 22491.0
+    num: 5571
+    first_peak: 
+    - 209.057189941406
+    - 5146.0
+  scans_to_read: fl
+  total_time_to_read_and_access: 27.708536
+  time_to_read: 27.70816
+  lazy_type: :string
+  end_time: 8101.46
+  start_time: 300.05
+  file: NIBSC_glyco_lcq_42_2.mzXML
+--- 
+- time_to_access: 0.000609
+  first_scan: 
+    last_peak: 
+    - 1799.640625
+    - 59449.0
+    num: 1
+    first_peak: 
+    - 400.359191894531
+    - 47766.0
+  scan_count: 5711
+  file_size: 42152771
+  last_scan: 
+    last_peak: 
+    - 1751.07446289062
+    - 2026.0
+    num: 5711
+    first_peak: 
+    - 400.425903320312
+    - 30390.0
+  scans_to_read: fl
+  total_time_to_read_and_access: 25.724923
+  time_to_read: 25.724299
+  lazy_type: :string
+  end_time: 8098.2
+  start_time: 300.06
+  file: NIBSC_glyco_lcq_43_1.mzXML
+--- 
+- time_to_access: 0.000592
+  first_scan: 
+    last_peak: 
+    - 1799.86450195312
+    - 2735.0
+    num: 1
+    first_peak: 
+    - 400.636840820312
+    - 30758.0
+  scan_count: 5472
+  file_size: 52438836
+  last_scan: 
+    last_peak: 
+    - 1791.02124023438
+    - 1856.0
+    num: 5472
+    first_peak: 
+    - 400.239807128906
+    - 24083.0
+  scans_to_read: fl
+  total_time_to_read_and_access: 32.003046
+  time_to_read: 32.00244
+  lazy_type: :string
+  end_time: 8098.77
+  start_time: 300.07
+  file: NIBSC_glyco_lcq_44_1.mzXML
+--- 
+- time_to_access: 0.000389
+  first_scan: 
+    last_peak: 
+    - 1469.53759765625
+    - 4277.0
+    num: 1
+    first_peak: 
+    - 400.380126953125
+    - 6932.0
+  scan_count: 5935
+  file_size: 40591309
+  last_scan: 
+    last_peak: 
+    - 1799.69213867188
+    - 3127.0
+    num: 5935
+    first_peak: 
+    - 400.568908691406
+    - 54505.0
+  scans_to_read: fl
+  total_time_to_read_and_access: 24.813782
+  time_to_read: 24.813379
+  lazy_type: :string
+  end_time: 8099.69
+  start_time: 300.11
+  file: NIBSC_glyco_lcq_45_1.mzXML
+--- 
+- time_to_access: 0.00053
+  first_scan: 
+    last_peak: 
+    - 1797.4501953125
+    - 9325.0
+    num: 1
+    first_peak: 
+    - 400.725952148438
+    - 35696.0
+  scan_count: 5933
+  file_size: 42057769
+  last_scan: 
+    last_peak: 
+    - 1791.49926757812
+    - 3995.0
+    num: 5933
+    first_peak: 
+    - 400.431640625
+    - 41347.0
+  scans_to_read: fl
+  total_time_to_read_and_access: 25.856295
+  time_to_read: 25.855751
+  lazy_type: :string
+  end_time: 8098.9
+  start_time: 300.08
+  file: NIBSC_glyco_lcq_46_1.mzXML
+--- 
+- time_to_access: 0.000555
+  first_scan: 
+    last_peak: 
+    - 1799.40771484375
+    - 56815.0
+    num: 1
+    first_peak: 
+    - 400.325744628906
+    - 25582.0
+  scan_count: 5841
+  file_size: 38558165
+  last_scan: 
+    last_peak: 
+    - 1735.078125
+    - 1766.0
+    num: 5841
+    first_peak: 
+    - 400.456970214844
+    - 35355.0
+  scans_to_read: fl
+  total_time_to_read_and_access: 23.788305
+  time_to_read: 23.787735
+  lazy_type: :string
+  end_time: 8098.56
+  start_time: 300.08
+  file: NIBSC_glyco_lcq_47_1.mzXML
+--- 
+- time_to_access: 0.000571
+  first_scan: 
+    last_peak: 
+    - 1798.64892578125
+    - 25527.0
+    num: 1
+    first_peak: 
+    - 400.404907226562
+    - 36981.0
+  scan_count: 5920
+  file_size: 38073621
+  last_scan: 
+    last_peak: 
+    - 1745.65063476562
+    - 1380.0
+    num: 5920
+    first_peak: 
+    - 400.471374511719
+    - 49197.0
+  scans_to_read: fl
+  total_time_to_read_and_access: 23.368424
+  time_to_read: 23.367837
+  lazy_type: :string
+  end_time: 8098.85
+  start_time: 300.08
+  file: NIBSC_glyco_lcq_48_1.mzXML
+--- 
+- time_to_access: 0.000936
+  first_scan: 
+    last_peak: 
+    - 1797.44165039062
+    - 17234.0
+    num: 1
+    first_peak: 
+    - 400.362731933594
+    - 23131.0
+  scan_count: 5918
+  file_size: 39648935
+  last_scan: 
+    last_peak: 
+    - 1782.59912109375
+    - 1805.0
+    num: 5918
+    first_peak: 
+    - 400.329711914062
+    - 31155.0
+  scans_to_read: fl
+  total_time_to_read_and_access: 24.458451
+  time_to_read: 24.457499
+  lazy_type: :string
+  end_time: 8099.22
+  start_time: 300.07
+  file: NIBSC_glyco_lcq_49_1.mzXML
+--- 
+- time_to_access: 0.000691
+  first_scan: 
+    last_peak: 
+    - 1799.8525390625
+    - 2286.0
+    num: 1
+    first_peak: 
+    - 400.5302734375
+    - 62346.0
+  scan_count: 5816
+  file_size: 37752102
+  last_scan: 
+    last_peak: 
+    - 1791.12768554688
+    - 13651.0
+    num: 5816
+    first_peak: 
+    - 400.374084472656
+    - 15131.0
+  scans_to_read: fl
+  total_time_to_read_and_access: 23.043334
+  time_to_read: 23.042628
+  lazy_type: :string
+  end_time: 8099.76
+  start_time: 300.11
+  file: NIBSC_glyco_lcq_50_1.mzXML
+--- 
+- time_to_access: 0.000671
+  first_scan: 
+    last_peak: 
+    - 1798.93090820312
+    - 5729.0
+    num: 1
+    first_peak: 
+    - 400.486633300781
+    - 37040.0
+  scan_count: 5984
+  file_size: 37838736
+  last_scan: 
+    last_peak: 
+    - 1790.14331054688
+    - 1679.0
+    num: 5984
+    first_peak: 
+    - 400.389404296875
+    - 26680.0
+  scans_to_read: fl
+  total_time_to_read_and_access: 23.087079
+  time_to_read: 23.086395
+  lazy_type: :string
+  end_time: 8099.3
+  start_time: 300.03
+  file: NIBSC_glyco_lcq_51_1.mzXML
+--- 
+- time_to_access: 0.00031
+  first_scan: 
+    last_peak: 
+    - 1521.29565429688
+    - 1787.0
+    num: 1
+    first_peak: 
+    - 400.580749511719
+    - 10876.0
+  scan_count: 5997
+  file_size: 38044662
+  last_scan: 
+    last_peak: 
+    - 1774.53442382812
+    - 2691.0
+    num: 5997
+    first_peak: 
+    - 400.438537597656
+    - 25173.0
+  scans_to_read: fl
+  total_time_to_read_and_access: 23.315192
+  time_to_read: 23.314868
+  lazy_type: :string
+  end_time: 8098.92
+  start_time: 300.06
+  file: NIBSC_glyco_lcq_52_1.mzXML
+--- 
+- time_to_access: 0.000342
+  first_scan: 
+    last_peak: 
+    - 1702.2978515625
+    - 3488.0
+    num: 1
+    first_peak: 
+    - 400.404968261719
+    - 14719.0
+  scan_count: 6021
+  file_size: 37354470
+  last_scan: 
+    last_peak: 
+    - 1789.80883789062
+    - 2538.0
+    num: 6021
+    first_peak: 
+    - 400.360778808594
+    - 17168.0
+  scans_to_read: fl
+  total_time_to_read_and_access: 22.875869
+  time_to_read: 22.875513
+  lazy_type: :string
+  end_time: 8099.16
+  start_time: 300.11
+  file: NIBSC_glyco_lcq_53_1.mzXML

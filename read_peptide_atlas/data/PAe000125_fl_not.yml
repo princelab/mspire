@@ -1,0 +1,324 @@
+--- 
+- time_to_access: 3.4e-05
+  first_scan: 
+    last_peak: 
+    - 1498.84326171875
+    - 9097.0
+    num: 1
+    first_peak: 
+    - 400.677062988281
+    - 41492.0
+  scan_count: 3665
+  file_size: 18030194
+  last_scan: 
+    last_peak: 
+    - 1797.21826171875
+    - 2012.0
+    num: 3665
+    first_peak: 
+    - 351.863098144531
+    - 936.0
+  scans_to_read: fl
+  total_time_to_read_and_access: 9.893908
+  time_to_read: 9.893859
+  lazy_type: :not
+  end_time: 4804.45
+  start_time: 600.09
+  file: SCX-F10-cont-2-5-05.mzXML
+--- 
+- time_to_access: 3.2e-05
+  first_scan: 
+    last_peak: 
+    - 1498.92529296875
+    - 19856.0
+    num: 1
+    first_peak: 
+    - 400.009338378906
+    - 1691.0
+  scan_count: 3684
+  file_size: 17976287
+  last_scan: 
+    last_peak: 
+    - 1772.3779296875
+    - 682.0
+    num: 3684
+    first_peak: 
+    - 311.876647949219
+    - 1727.0
+  scans_to_read: fl
+  total_time_to_read_and_access: 10.961245
+  time_to_read: 10.9612
+  lazy_type: :not
+  end_time: 4802.83
+  start_time: 600.03
+  file: SCX-F11-cont-2-5-05.mzXML
+--- 
+- time_to_access: 3.0e-05
+  first_scan: 
+    last_peak: 
+    - 1499.80883789062
+    - 15.0
+    num: 1
+    first_peak: 
+    - 400.470458984375
+    - 16821.0
+  scan_count: 3620
+  file_size: 17941958
+  last_scan: 
+    last_peak: 
+    - 1658.34521484375
+    - 4101.0
+    num: 3620
+    first_peak: 
+    - 510.924438476562
+    - 1410.0
+  scans_to_read: fl
+  total_time_to_read_and_access: 11.55116
+  time_to_read: 11.551115
+  lazy_type: :not
+  end_time: 4801.7
+  start_time: 600.06
+  file: SCX-F12-cont-2-5-05.mzXML
+--- 
+- time_to_access: 3.1e-05
+  first_scan: 
+    last_peak: 
+    - 1499.85180664062
+    - 6635.0
+    num: 1
+    first_peak: 
+    - 400.173889160156
+    - 12450.0
+  scan_count: 3312
+  file_size: 16079662
+  last_scan: 
+    last_peak: 
+    - 1787.71997070312
+    - 743.0
+    num: 3312
+    first_peak: 
+    - 512.965454101562
+    - 2024.0
+  scans_to_read: fl
+  total_time_to_read_and_access: 10.377582
+  time_to_read: 10.377535
+  lazy_type: :not
+  end_time: 4803.34
+  start_time: 600.07
+  file: SCX-F13-cont-2-5-05.mzXML
+--- 
+- time_to_access: 3.2e-05
+  first_scan: 
+    last_peak: 
+    - 1499.80297851562
+    - 67705.0
+    num: 1
+    first_peak: 
+    - 400.08740234375
+    - 14089.0
+  scan_count: 3496
+  file_size: 15839121
+  last_scan: 
+    last_peak: 
+    - 1813.74780273438
+    - 2268.0
+    num: 3496
+    first_peak: 
+    - 379.636352539062
+    - 2519.0
+  scans_to_read: fl
+  total_time_to_read_and_access: 9.308823
+  time_to_read: 9.308777
+  lazy_type: :not
+  end_time: 4802.13
+  start_time: 600.02
+  file: SCX-F2-cont-2-5-05.mzXML
+--- 
+- time_to_access: 3.1e-05
+  first_scan: 
+    last_peak: 
+    - 1499.708984375
+    - 100298.0
+    num: 1
+    first_peak: 
+    - 415.042114257812
+    - 134743.0
+  scan_count: 3592
+  file_size: 17153596
+  last_scan: 
+    last_peak: 
+    - 1009.27551269531
+    - 631.0
+    num: 3592
+    first_peak: 
+    - 543.731201171875
+    - 1496.0
+  scans_to_read: fl
+  total_time_to_read_and_access: 10.74187
+  time_to_read: 10.741823
+  lazy_type: :not
+  end_time: 4800.87
+  start_time: 600.05
+  file: SCX-F3-cont-2-5-05.mzXML
+--- 
+- time_to_access: 3.2e-05
+  first_scan: 
+    last_peak: 
+    - 1499.59106445312
+    - 741513.0
+    num: 1
+    first_peak: 
+    - 400.753234863281
+    - 152247.0
+  scan_count: 3642
+  file_size: 18162518
+  last_scan: 
+    last_peak: 
+    - 1090.60986328125
+    - 841.0
+    num: 3642
+    first_peak: 
+    - 244.812133789062
+    - 998.0
+  scans_to_read: fl
+  total_time_to_read_and_access: 11.217306
+  time_to_read: 11.217259
+  lazy_type: :not
+  end_time: 4804.63
+  start_time: 600.1
+  file: SCX-F4-cont-2-5-05.mzXML
+--- 
+- time_to_access: 3.3e-05
+  first_scan: 
+    last_peak: 
+    - 1499.86376953125
+    - 105963.0
+    num: 1
+    first_peak: 
+    - 405.002197265625
+    - 237584.0
+  scan_count: 3656
+  file_size: 18635756
+  last_scan: 
+    last_peak: 
+    - 1374.4296875
+    - 1078.0
+    num: 3656
+    first_peak: 
+    - 285.753784179688
+    - 1136.0
+  scans_to_read: fl
+  total_time_to_read_and_access: 11.559745
+  time_to_read: 11.559698
+  lazy_type: :not
+  end_time: 4801.31
+  start_time: 600.08
+  file: SCX-F5-cont-2-5-05.mzXML
+--- 
+- time_to_access: 3.3e-05
+  first_scan: 
+    last_peak: 
+    - 1499.5830078125
+    - 188732.0
+    num: 1
+    first_peak: 
+    - 400.37353515625
+    - 91528.0
+  scan_count: 3683
+  file_size: 17653234
+  last_scan: 
+    last_peak: 
+    - 1990.5712890625
+    - 2254.0
+    num: 3683
+    first_peak: 
+    - 458.344299316406
+    - 1986.0
+  scans_to_read: fl
+  total_time_to_read_and_access: 11.135402
+  time_to_read: 11.135354
+  lazy_type: :not
+  end_time: 4804.4
+  start_time: 600.04
+  file: SCX-F6-cont-2-5-05.mzXML
+--- 
+- time_to_access: 3.2e-05
+  first_scan: 
+    last_peak: 
+    - 1499.580078125
+    - 1735835.0
+    num: 1
+    first_peak: 
+    - 401.442321777344
+    - 55811.0
+  scan_count: 3700
+  file_size: 17134906
+  last_scan: 
+    last_peak: 
+    - 1376.15087890625
+    - 1440.0
+    num: 3700
+    first_peak: 
+    - 630.2578125
+    - 2066.0
+  scans_to_read: fl
+  total_time_to_read_and_access: 10.215817
+  time_to_read: 10.215771
+  lazy_type: :not
+  end_time: 4799.12
+  start_time: 600.02
+  file: SCX-F7-cont-2-5-05.mzXML
+--- 
+- time_to_access: 3.4e-05
+  first_scan: 
+    last_peak: 
+    - 1499.46875
+    - 52273.0
+    num: 1
+    first_peak: 
+    - 400.794189453125
+    - 41101.0
+  scan_count: 3689
+  file_size: 17347270
+  last_scan: 
+    last_peak: 
+    - 629.8466796875
+    - 1775.0
+    num: 3689
+    first_peak: 
+    - 128.56982421875
+    - 2511.0
+  scans_to_read: fl
+  total_time_to_read_and_access: 10.870719
+  time_to_read: 10.870671
+  lazy_type: :not
+  end_time: 4802.37
+  start_time: 600.09
+  file: SCX-F8-cont-2-5-05.mzXML
+--- 
+- time_to_access: 3.3e-05
+  first_scan: 
+    last_peak: 
+    - 1499.65625
+    - 61773.0
+    num: 1
+    first_peak: 
+    - 400.151733398438
+    - 25600.0
+  scan_count: 3672
+  file_size: 17682751
+  last_scan: 
+    last_peak: 
+    - 1756.61938476562
+    - 3287.0
+    num: 3672
+    first_peak: 
+    - 286.614501953125
+    - 2052.0
+  scans_to_read: fl
+  total_time_to_read_and_access: 11.059663
+  time_to_read: 11.059617
+  lazy_type: :not
+  end_time: 4804.24
+  start_time: 600.11
+  file: SCX-F9-cont-2-5-05.mzXML

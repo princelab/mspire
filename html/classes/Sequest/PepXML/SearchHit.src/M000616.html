@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="iso-8859-1"?>
+<!DOCTYPE html 
+     PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+     "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html>
+<head>
+  <title>from_pepxml_node (Sequest::PepXML::SearchHit)</title>
+  <meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1" />
+  <link rel="stylesheet" href="../../../.././rdoc-style.css" type="text/css" media="screen" />
+</head>
+<body class="standalone-code">
+  <pre><span class="ruby-comment cmt"># File lib/spec_id/sequest/pepxml.rb, line 1362</span>
+  <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">from_pepxml_node</span>(<span class="ruby-identifier">node</span>)
+    <span class="ruby-keyword kw">self</span>[<span class="ruby-value">0</span>] = <span class="ruby-identifier">node</span>[<span class="ruby-value str">'hit_rank'</span>].<span class="ruby-identifier">to_i</span>
+    <span class="ruby-keyword kw">self</span>[<span class="ruby-value">1</span>] = <span class="ruby-identifier">node</span>[<span class="ruby-value str">'peptide'</span>]
+    <span class="ruby-keyword kw">self</span>[<span class="ruby-value">2</span>] = <span class="ruby-identifier">node</span>[<span class="ruby-value str">'peptide_prev_aa'</span>]
+    <span class="ruby-keyword kw">self</span>[<span class="ruby-value">3</span>] = <span class="ruby-identifier">node</span>[<span class="ruby-value str">'peptide_next_aa'</span>]
+    <span class="ruby-keyword kw">self</span>[<span class="ruby-value">4</span>] = <span class="ruby-identifier">node</span>[<span class="ruby-value str">'protein'</span>]  <span class="ruby-comment cmt">## will this be the string?? (yes, for now)</span>
+    <span class="ruby-keyword kw">self</span>[<span class="ruby-value">5</span>] = <span class="ruby-identifier">node</span>[<span class="ruby-value str">'num_tot_proteins'</span>].<span class="ruby-identifier">to_i</span>
+    <span class="ruby-keyword kw">self</span>[<span class="ruby-value">6</span>] = <span class="ruby-identifier">node</span>[<span class="ruby-value str">'num_matched_ions'</span>].<span class="ruby-identifier">to_i</span>
+    <span class="ruby-keyword kw">self</span>[<span class="ruby-value">7</span>] = <span class="ruby-identifier">node</span>[<span class="ruby-value str">'tot_num_ions'</span>].<span class="ruby-identifier">to_i</span>
+    <span class="ruby-keyword kw">self</span>[<span class="ruby-value">8</span>] = <span class="ruby-identifier">node</span>[<span class="ruby-value str">'calc_neutral_pep_mass'</span>].<span class="ruby-identifier">to_f</span>
+    <span class="ruby-keyword kw">self</span>[<span class="ruby-value">9</span>] = <span class="ruby-identifier">node</span>[<span class="ruby-value str">'massdiff'</span>].<span class="ruby-identifier">to_f</span>
+    <span class="ruby-keyword kw">self</span>[<span class="ruby-value">10</span>] = <span class="ruby-identifier">node</span>[<span class="ruby-value str">'num_tol_term'</span>].<span class="ruby-identifier">to_i</span>
+    <span class="ruby-keyword kw">self</span>[<span class="ruby-value">11</span>] = <span class="ruby-identifier">node</span>[<span class="ruby-value str">'num_missed_cleavages'</span>].<span class="ruby-identifier">to_i</span>
+    <span class="ruby-keyword kw">self</span>[<span class="ruby-value">12</span>] = <span class="ruby-identifier">node</span>[<span class="ruby-value str">'is_rejected'</span>].<span class="ruby-identifier">to_i</span>
+    <span class="ruby-keyword kw">self</span>
+  <span class="ruby-keyword kw">end</span></pre>
+</body>
+</html>

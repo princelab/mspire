@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="iso-8859-1"?>
+<!DOCTYPE html 
+     PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+     "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html>
+<head>
+  <title>is_bioworks33? (MS::Parser::MzData::DOM)</title>
+  <meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1" />
+  <link rel="stylesheet" href="../../../../.././rdoc-style.css" type="text/css" media="screen" />
+</head>
+<body class="standalone-code">
+  <pre><span class="ruby-comment cmt"># File lib/ms/parser/mzdata/dom.rb, line 18</span>
+  <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">is_bioworks33?</span>(<span class="ruby-identifier">description_node</span>)
+    <span class="ruby-keyword kw">begin</span>
+      <span class="ruby-identifier">software_node</span> = <span class="ruby-identifier">description_node</span>.<span class="ruby-identifier">find_first</span>(<span class="ruby-value str">'child::dataProcessing'</span>).<span class="ruby-identifier">find_first</span>(<span class="ruby-value str">'child::software'</span>)
+      <span class="ruby-identifier">name</span> = <span class="ruby-identifier">software_node</span>.<span class="ruby-identifier">find_first</span>(<span class="ruby-value str">'child::name'</span>).<span class="ruby-identifier">content</span> 
+      <span class="ruby-identifier">version</span> = <span class="ruby-identifier">software_node</span>.<span class="ruby-identifier">find_first</span>(<span class="ruby-value str">'child::version'</span>).<span class="ruby-identifier">content</span> 
+      ((<span class="ruby-identifier">name</span> <span class="ruby-operator">==</span> <span class="ruby-value str">'Bioworks Browser'</span>) <span class="ruby-keyword kw">and</span> (<span class="ruby-identifier">version</span> <span class="ruby-operator">==</span> <span class="ruby-value str">'3.3'</span>))
+    <span class="ruby-keyword kw">rescue</span>
+      <span class="ruby-keyword kw">false</span>
+    <span class="ruby-keyword kw">end</span>
+  <span class="ruby-keyword kw">end</span></pre>
+</body>
+</html>

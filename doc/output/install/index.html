@@ -1,0 +1,106 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.1//EN" "http://www.w3.org/TR/xhtml11/DTD/xhtml11.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en">
+  <head>
+    <title>Install</title>
+    <link href="../default.css" rel="stylesheet" />
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+  </head>
+  <body>
+    <div id="logo">
+        <a href=../index.html><img src=../images/mspire_logo.png border="0" alt="mspire - mass spectrometry proteomics in ruby"/></a>
+  </div>
+    <div id="header">
+      <h1>Install</h1>
+    </div>
+
+    <div id="headerbar" class="bar">
+        <!-- <span class="left">Location: <a href="../index.html" title="mspire">mspire</a> / <a href="./index.html" title="Install">Install</a> / <a href="./index.html" title="Install">Install</a></span> -->
+      <!--<span class="right">Language: <a href="./index.html" title="en">en</a></span>-->
+      <div style="clear:both"></div>
+    </div>
+
+    <div id="menu">
+        <div class="webgen-menu-vert "><ul><li ><a href="../index.html" title="Home">Home</a></li><li class="webgen-menu-submenu webgen-menu-submenu-inhierarchy webgen-menu-item-selected"><a href="./index.html" title="Install">Install</a><ul><li ><a href="./cygwin.html" title="Cygwin">Cygwin</a></li></ul></li><li class="webgen-menu-submenu"><a href="../ms/index.html" title="MS">MS</a></li><li class="webgen-menu-submenu"><a href="../spec_id/index.html" title="SpecID">SpecID</a></li><li class="webgen-menu-submenu"><a href="../tutorial/index.html" title="Tutorials">Tutorials</a></li></ul></div>
+        <a style="font-size:130%; padding-left:20px" href="rdoc/index.html">rdoc</a>
+        <br/>
+        <a style="font-size:85%; padding-left:20px" href="http://rubyforge.org/projects/mspire/">Rubyforge Project Page</a>
+        <br/>
+        <br/>
+        <br/>
+        <br/>
+        <a href="http://www.ruby-lang.org/en/"><img style="padding-left:20px" src=../images/ruby_logo_small.png border="0" alt="Ruby Programming Language"/></a>
+    </div>
+
+    <div id="body">
+      <h2>Prerequisites</h2>
+
+<p>Much of the package will work without any prerequisites at all.  Some functionality may require addition ruby packages or other converters.</p>
+
+<ul>
+<li>libjtp - generic library installed automatically if you install mspire with rubygems (or 'gem install libjtp')</li>
+</ul>
+
+<h3>XML parsing:</h3>
+
+<ul>
+<li><a href="http://www.yoshidam.net/Ruby.html">xmlparser</a> (comes with one-click Windows; on Ubuntu: 'sudo apt-get libxml-parser-ruby1.8')</li>
+<li><a href="http://axml.rubyforge.org/">axml</a> dom wrapper for xmlparser. ('gem install axml')</li>
+</ul>
+
+<h3>Optional:</h3>
+
+<ul>
+<li><a href="archive/t2x">'t2x'</a> linux executable to convert .RAW files (Xcalibur 1.x) to version 1 mzXML files</li>
+<li><a href="http://libxml.rubyforge.org/">libxml</a> can use instead of xmlparser.  In Ubuntu: sudo apt-get install libxml2 libxml2-dev ; sudo gem install libxml-ruby --remote</li>
+<li><a href="http://rgplot.rubyforge.org/">gnuplot</a> ('gem install gnuplot').  For some plotting.  Of course, you'll need <a href="http://www.gnuplot.info/">gnuplot</a> before this package will work.  Under one-click installer for windows this package requires a little configuration.  It works with no configuration on cygwin (or linux).</li>
+</ul>
+
+<h2>Installation</h2>
+
+<pre><code>gem install mspire
+</code></pre>
+
+<p>See <a href="cygwin.html">installation under cygwin</a> if you're on Windows.</p>
+
+<h2>Development</h2>
+
+<p>NOTE: If you are interested in becoming a developer on this project (i.e., write access to the repository) please <a href="http://rubyforge.org/users/jtprince/">contact me</a></p>
+
+<p>anonymous svn checkout:</p>
+
+<pre><code>svn checkout svn://rubyforge.org/var/svn/mspire
+</code></pre>
+
+<p>prerequisites: </p>
+
+<ul>
+<li><a href="http://rake.rubyforge.org/">rake</a> (with rubygems: 'gem install rake --remote')</li>
+<li><a href="http://rspec.info/">rspec</a> (with rubygems: 'gem install rspec --remote')</li>
+</ul>
+
+<p>Use rake:</p>
+
+<pre><code>% rake -T
+rake clean              # Remove any temporary products.
+rake html_docs          # creates docs in doc/html
+rake package            # Build all the packages
+rake test               # Run tests
+rake test_ind           # Run unit tests individual on each test
+rake upload_docs        # create and upload docs to server
+...etc...
+
+run tests: rake spec
+     (or): rake specl
+
+run tests with large files: rake spec SPEC_LARGE=t
+
+run test on one file: rake spec SPEC=specs/{path_to_spec_file}
+</code></pre>
+    </div>
+
+    <div id="footer" class="bar">
+      Last update: <i>Monday, August 18 10:50:23 MDT 2008</i>
+    </div>
+  </body>
+</html>

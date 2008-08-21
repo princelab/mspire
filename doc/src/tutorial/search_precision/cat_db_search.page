@@ -1,0 +1,92 @@
+---
+inMenu: true
+directoryName: DB searching
+---
+Cat-DB: Concatenated Database Search
+====================================
+## 1. Run Sequest with a Concatenated Inverse Database
+
+If you don't already have one, here's how to make one:
+    
+    fasta_shaker.rb reverse -c -p INVERSE_ <yourfile>.fasta
+
+This will create a file that looks like this:
+`<yourfile>_cat_reverse_prefix_INVERSE_.fasta`.  Each inverted protein name will
+be prefixed with 'INVERSE_'.  Type `fasta_shaker.rb` for more details.  Alternatively, use BioworksBrowser to create a reversed concatenated database.
+
+Then run sequest using the concatenated database file.  ** NOTE ** To set
+protein identifications properly, run sequest with 'report duplicate
+references' set to >= 40
+
+## 2. Group .srf files  OR  Export a Bioworks XML File 
+
+### Group .srf files
+
+To indicate that certain .srf files are meant to be analyzed as one group,
+create a .srg file:
+
+    srf_group.rb <file1>.srf <file2>.srf ... 
+    
+This will output a 'bioworks.srg' file. A '.srg' file is simply a text file
+with a list of the full pathnames for each srf file in the group.  Type
+`srf_group.rb` for more details.
+
+### Or Export Bioworks XML
+
+Alternatively, you can use BioworksBrowser to group runs and then export an xml file:
+
+    1. Load your sequest results in MultiConsensus results (even if you only have one run) 
+        File -> 'Load MultiConsensus Results'
+    2. Click 'yes' to calculate peptide probabilities (optional)
+    3. Click 'yes' to view results without filtering
+    4. Right click on the data and 'Export' to XML (name the file `bioworks.xml`)
+
+** NOTE ** A `bioworks.xml` file and a `bioworks.srg` file are essentially
+interchangeable for the following steps.  Whenever you see a `bioworks.srg`
+file, a `bioworks.xml` file would work, too.
+
+## 3. Filtering
+
+You can filter your search results and see the false positive rate: 
+
+    filter.rb bioworks.srg -f INVERSE_ --prefix -1 1.5 -2 2.5 -3 3.0 --deltacn 0.2 --ppm 8.5
+
+If you use Bioworks to reverse your database, the `-f` should be followed by
+`BIOWORKS` and no `--prefix` flag should be used:
+
+    filter.rb bioworks.srg -f REVERSE -1 1.5 -2 2.5 -3 3.0 --deltacn 0.2 --ppm 8.5
+
+You can also filter the results interactively to try to increase the number of
+identifications at a given false identification rate with the '-i' flag:
+
+    filter.rb bioworks.srg -f INVERSE_ --prefix -i
+
+Interactive filtering instructions are provided when the session begins.  Type
+`filter.rb` for other options.  
+
+For a more detailed protein list, filter the protein list according to the
+above selected parameters in the BioworksBrowser MultiConsensus View.  Decoy
+proteins can be filtered with the filter (shown for the `REVERSE` flag):
+
+    Type: 'Protein', Field: 'Exclude this reference', Parameter: REVERSE
+
+## 4. Classification Analysis
+
+One can use Bioworks probability scores with concatenated DB searches by
+counting the number of true hits (proteins from normal database hits) compared
+with false hits (proteins from inverted db hits).  Since the probabilities are
+more or less continuous, you can select any desired false identification rate.
+
+    protein_summary.rb bioworks_cat_inv.xml -f INVERSE_ --precision
+
+Type `protein_summary.rb` for more details.
+
+We can also view the false identification rates without the protein summary:
+
+    precision.rb -f INVERSE_ bioworks.srg
+
+Type `precision.rb` for more details.
+
+This analysis will only work with Bioworks xml export where probabilities have
+been updated.
+

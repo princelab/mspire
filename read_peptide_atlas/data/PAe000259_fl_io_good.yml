@@ -1,0 +1,729 @@
+--- 
+- time_to_access: 0.015824
+  first_scan: 
+    last_peak: 
+    - 1491.41870117188
+    - 2.0
+    num: 1
+    first_peak: 
+    - 351.923950195312
+    - 2.0
+  scan_count: 5184
+  file_size: 119111964
+  last_scan: 
+    last_peak: 
+    - 742.1142578125
+    - 2.0
+    num: 5184
+    first_peak: 
+    - 350.20556640625
+    - 2.0
+  scans_to_read: fl
+  total_time_to_read_and_access: 3.371505
+  time_to_read: 3.355663
+  lazy_type: :io_good
+  end_time: 5404.83203125
+  start_time: 1.00100004673004
+  file: Halo12_itraq10_1.mzXML
+--- 
+- time_to_access: 0.066782
+  first_scan: 
+    last_peak: 
+    - 803.881042480469
+    - 2.0
+    num: 1
+    first_peak: 
+    - 354.979034423828
+    - 2.0
+  scan_count: 4077
+  file_size: 286052754
+  last_scan: 
+    last_peak: 
+    - 816.133728027344
+    - 3.0
+    num: 4077
+    first_peak: 
+    - 355.012573242188
+    - 3.0
+  scans_to_read: fl
+  total_time_to_read_and_access: 10.223015
+  time_to_read: 10.156219
+  lazy_type: :io_good
+  end_time: 5404.15185546875
+  start_time: 0.999000012874603
+  file: Halo12_itraq11_1.mzXML
+--- 
+- time_to_access: 0.020118
+  first_scan: 
+    last_peak: 
+    - 818.068176269531
+    - 2.0
+    num: 1
+    first_peak: 
+    - 350.180572509766
+    - 2.0
+  scan_count: 4045
+  file_size: 356737994
+  last_scan: 
+    last_peak: 
+    - 742.090026855469
+    - 2.0
+    num: 4045
+    first_peak: 
+    - 354.249633789062
+    - 2.0
+  scans_to_read: fl
+  total_time_to_read_and_access: 11.139661
+  time_to_read: 11.119526
+  lazy_type: :io_good
+  end_time: 5404.875
+  start_time: 1.0
+  file: Halo12_itraq12_1.mzXML
+--- 
+- time_to_access: 0.01849
+  first_scan: 
+    last_peak: 
+    - 1318.88720703125
+    - 2.0
+    num: 1
+    first_peak: 
+    - 354.995819091797
+    - 2.0
+  scan_count: 4063
+  file_size: 262172382
+  last_scan: 
+    last_peak: 
+    - 816.146484375
+    - 2.0
+    num: 4063
+    first_peak: 
+    - 350.213897705078
+    - 2.0
+  scans_to_read: fl
+  total_time_to_read_and_access: 7.827649
+  time_to_read: 7.809143
+  lazy_type: :io_good
+  end_time: 5404.10986328125
+  start_time: 1.00100004673004
+  file: Halo12_itraq13_1.mzXML
+--- 
+- time_to_access: 0.017317
+  first_scan: 
+    last_peak: 
+    - 759.129699707031
+    - 2.0
+    num: 1
+    first_peak: 
+    - 351.949005126953
+    - 2.0
+  scan_count: 4134
+  file_size: 203739259
+  last_scan: 
+    last_peak: 
+    - 816.121032714844
+    - 2.0
+    num: 4134
+    first_peak: 
+    - 355.029357910156
+    - 6.0
+  scans_to_read: fl
+  total_time_to_read_and_access: 6.569882
+  time_to_read: 6.552548
+  lazy_type: :io_good
+  end_time: 5403.9248046875
+  start_time: 0.999000012874603
+  file: Halo12_itraq14_1.mzXML
+--- 
+- time_to_access: 0.008849
+  first_scan: 
+    last_peak: 
+    - 744.930725097656
+    - 2.0
+    num: 1
+    first_peak: 
+    - 351.840454101562
+    - 2.0
+  scan_count: 4117
+  file_size: 205381041
+  last_scan: 
+    last_peak: 
+    - 669.111450195312
+    - 2.0
+    num: 4117
+    first_peak: 
+    - 353.34521484375
+    - 2.0
+  scans_to_read: fl
+  total_time_to_read_and_access: 6.368562
+  time_to_read: 6.359697
+  lazy_type: :io_good
+  end_time: 5404.28076171875
+  start_time: 1.00100004673004
+  file: Halo12_itraq14_2.mzXML
+--- 
+- time_to_access: 0.019109
+  first_scan: 
+    last_peak: 
+    - 817.113403320312
+    - 3.0
+    num: 1
+    first_peak: 
+    - 350.980804443359
+    - 2.0
+  scan_count: 4065
+  file_size: 210825608
+  last_scan: 
+    last_peak: 
+    - 815.116577148438
+    - 2.0
+    num: 4065
+    first_peak: 
+    - 350.188903808594
+    - 2.0
+  scans_to_read: fl
+  total_time_to_read_and_access: 6.830071
+  time_to_read: 6.810946
+  lazy_type: :io_good
+  end_time: 5404.59716796875
+  start_time: 1.0
+  file: Halo12_itraq15_1.mzXML
+--- 
+- time_to_access: 0.046799
+  first_scan: 
+    last_peak: 
+    - 877.112121582031
+    - 2.0
+    num: 1
+    first_peak: 
+    - 350.972473144531
+    - 2.0
+  scan_count: 4016
+  file_size: 225175399
+  last_scan: 
+    last_peak: 
+    - 743.096984863281
+    - 2.0
+    num: 4016
+    first_peak: 
+    - 355.054534912109
+    - 3.0
+  scans_to_read: fl
+  total_time_to_read_and_access: 8.132748
+  time_to_read: 8.085932
+  lazy_type: :io_good
+  end_time: 5404.2529296875
+  start_time: 0.999000012874603
+  file: Halo12_itraq15_2.mzXML
+--- 
+- time_to_access: 0.010763
+  first_scan: 
+    last_peak: 
+    - 1424.109375
+    - 2.0
+    num: 1
+    first_peak: 
+    - 353.34521484375
+    - 2.0
+  scan_count: 3941
+  file_size: 426428457
+  last_scan: 
+    last_peak: 
+    - 670.125305175781
+    - 2.0
+    num: 3941
+    first_peak: 
+    - 350.213897705078
+    - 2.0
+  scans_to_read: fl
+  total_time_to_read_and_access: 16.750502
+  time_to_read: 16.739723
+  lazy_type: :io_good
+  end_time: 5404.7490234375
+  start_time: 0.999000012874603
+  file: Halo12_itraq16_1.mzXML
+--- 
+- time_to_access: 0.01534
+  first_scan: 
+    last_peak: 
+    - 1546.77026367188
+    - 2.0
+    num: 1
+    first_peak: 
+    - 350.197235107422
+    - 2.0
+  scan_count: 3970
+  file_size: 458829967
+  last_scan: 
+    last_peak: 
+    - 816.108337402344
+    - 2.0
+    num: 3970
+    first_peak: 
+    - 350.213897705078
+    - 2.0
+  scans_to_read: fl
+  total_time_to_read_and_access: 18.40332
+  time_to_read: 18.387964
+  lazy_type: :io_good
+  end_time: 5404.2509765625
+  start_time: 1.0
+  file: Halo12_itraq17_1.mzXML
+--- 
+- time_to_access: 0.02678
+  first_scan: 
+    last_peak: 
+    - 975.588806152344
+    - 2.0
+    num: 1
+    first_peak: 
+    - 350.197235107422
+    - 2.0
+  scan_count: 3945
+  file_size: 567056221
+  last_scan: 
+    last_peak: 
+    - 743.084838867188
+    - 2.0
+    num: 3945
+    first_peak: 
+    - 350.20556640625
+    - 2.0
+  scans_to_read: fl
+  total_time_to_read_and_access: 22.387929
+  time_to_read: 22.36113
+  lazy_type: :io_good
+  end_time: 5404.9169921875
+  start_time: 0.999000012874603
+  file: Halo12_itraq18_1.mzXML
+--- 
+- time_to_access: 0.012144
+  first_scan: 
+    last_peak: 
+    - 815.129272460938
+    - 2.0
+    num: 1
+    first_peak: 
+    - 354.995819091797
+    - 2.0
+  scan_count: 3921
+  file_size: 506308065
+  last_scan: 
+    last_peak: 
+    - 818.093627929688
+    - 2.0
+    num: 3921
+    first_peak: 
+    - 352.216339111328
+    - 2.0
+  scans_to_read: fl
+  total_time_to_read_and_access: 18.907779
+  time_to_read: 18.89562
+  lazy_type: :io_good
+  end_time: 5403.97314453125
+  start_time: 1.0
+  file: Halo12_itraq19_1.mzXML
+--- 
+- time_to_access: 0.01191
+  first_scan: 
+    last_peak: 
+    - 1598.16076660156
+    - 2.0
+    num: 1
+    first_peak: 
+    - 351.990783691406
+    - 2.0
+  scan_count: 3916
+  file_size: 493985433
+  last_scan: 
+    last_peak: 
+    - 742.223449707031
+    - 2.0
+    num: 3916
+    first_peak: 
+    - 352.224700927734
+    - 2.0
+  scans_to_read: fl
+  total_time_to_read_and_access: 18.793907
+  time_to_read: 18.781981
+  lazy_type: :io_good
+  end_time: 5404.42919921875
+  start_time: 1.00100004673004
+  file: Halo12_itraq20_1.mzXML
+--- 
+- time_to_access: 0.071125
+  first_scan: 
+    last_peak: 
+    - 1463.814453125
+    - 2.0
+    num: 1
+    first_peak: 
+    - 350.20556640625
+    - 2.0
+  scan_count: 3866
+  file_size: 507267582
+  last_scan: 
+    last_peak: 
+    - 816.1591796875
+    - 2.0
+    num: 3866
+    first_peak: 
+    - 353.353607177734
+    - 2.0
+  scans_to_read: fl
+  total_time_to_read_and_access: 18.159052
+  time_to_read: 18.087912
+  lazy_type: :io_good
+  end_time: 5404.88623046875
+  start_time: 1.0
+  file: Halo12_itraq21_1.mzXML
+--- 
+- time_to_access: 0.01083
+  first_scan: 
+    last_peak: 
+    - 1002.99237060547
+    - 2.0
+    num: 1
+    first_peak: 
+    - 350.188903808594
+    - 2.0
+  scan_count: 3837
+  file_size: 555385513
+  last_scan: 
+    last_peak: 
+    - 743.109130859375
+    - 2.0
+    num: 3837
+    first_peak: 
+    - 352.391815185547
+    - 2.0
+  scans_to_read: fl
+  total_time_to_read_and_access: 20.893468
+  time_to_read: 20.882624
+  lazy_type: :io_good
+  end_time: 5404.7919921875
+  start_time: 1.0
+  file: Halo12_itraq22_1.mzXML
+--- 
+- time_to_access: 0.009048
+  first_scan: 
+    last_peak: 
+    - 817.0751953125
+    - 2.0
+    num: 1
+    first_peak: 
+    - 350.247222900391
+    - 3.0
+  scan_count: 3960
+  file_size: 290034537
+  last_scan: 
+    last_peak: 
+    - 742.1142578125
+    - 2.0
+    num: 3960
+    first_peak: 
+    - 355.020965576172
+    - 3.0
+  scans_to_read: fl
+  total_time_to_read_and_access: 9.898543
+  time_to_read: 9.889479
+  lazy_type: :io_good
+  end_time: 5404.05078125
+  start_time: 1.00100004673004
+  file: Halo12_itraq23_2.mzXML
+--- 
+- time_to_access: 0.004638
+  first_scan: 
+    last_peak: 
+    - 0.0
+    - 0.0
+    num: 1
+    first_peak: 
+    - 0.0
+    - 0.0
+  scan_count: 6304
+  file_size: 886008068
+  last_scan: 
+    last_peak: 
+    - 815.447082519531
+    - 2.0
+    num: 6304
+    first_peak: 
+    - 355.020965576172
+    - 2.0
+  scans_to_read: fl
+  total_time_to_read_and_access: 33.938608
+  time_to_read: 33.933954
+  lazy_type: :io_good
+  end_time: 5404.69287109375
+  start_time: 1.0
+  file: Halo12_itraq24_1.mzXML
+--- 
+- time_to_access: 0.0112
+  first_scan: 
+    last_peak: 
+    - 779.044616699219
+    - 2.0
+    num: 1
+    first_peak: 
+    - 350.030609130859
+    - 3.0
+  scan_count: 3951
+  file_size: 547622723
+  last_scan: 
+    last_peak: 
+    - 742.126403808594
+    - 2.0
+    num: 3951
+    first_peak: 
+    - 350.163909912109
+    - 2.0
+  scans_to_read: fl
+  total_time_to_read_and_access: 20.625862
+  time_to_read: 20.614646
+  lazy_type: :io_good
+  end_time: 5404.35302734375
+  start_time: 0.999000012874603
+  file: Halo12_itraq25_1.mzXML
+--- 
+- time_to_access: 0.009653
+  first_scan: 
+    last_peak: 
+    - 1584.48559570312
+    - 2.0
+    num: 1
+    first_peak: 
+    - 350.047271728516
+    - 2.0
+  scan_count: 3921
+  file_size: 622106437
+  last_scan: 
+    last_peak: 
+    - 816.082885742188
+    - 2.0
+    num: 3921
+    first_peak: 
+    - 350.247222900391
+    - 2.0
+  scans_to_read: fl
+  total_time_to_read_and_access: 23.758555
+  time_to_read: 23.748886
+  lazy_type: :io_good
+  end_time: 5404.419921875
+  start_time: 1.0
+  file: Halo12_itraq26_1.mzXML
+--- 
+- time_to_access: 0.00929
+  first_scan: 
+    last_peak: 
+    - 908.15673828125
+    - 2.0
+    num: 1
+    first_peak: 
+    - 355.020965576172
+    - 2.0
+  scan_count: 3953
+  file_size: 529017089
+  last_scan: 
+    last_peak: 
+    - 744.14111328125
+    - 2.0
+    num: 3953
+    first_peak: 
+    - 350.197235107422
+    - 2.0
+  scans_to_read: fl
+  total_time_to_read_and_access: 17.432519
+  time_to_read: 17.423214
+  lazy_type: :io_good
+  end_time: 5404.630859375
+  start_time: 0.999000012874603
+  file: Halo12_itraq27_1.mzXML
+--- 
+- time_to_access: 0.004372
+  first_scan: 
+    last_peak: 
+    - 667.143615722656
+    - 2.0
+    num: 1
+    first_peak: 
+    - 355.020965576172
+    - 3.0
+  scan_count: 5173
+  file_size: 217569673
+  last_scan: 
+    last_peak: 
+    - 1326.20556640625
+    - 2.0
+    num: 5173
+    first_peak: 
+    - 355.029357910156
+    - 3.0
+  scans_to_read: fl
+  total_time_to_read_and_access: 10.021389
+  time_to_read: 10.017001
+  lazy_type: :io_good
+  end_time: 6004.0498046875
+  start_time: 1.0
+  file: Halo12_itraq28_1.mzXML
+--- 
+- time_to_access: 0.007932
+  first_scan: 
+    last_peak: 
+    - 741.083740234375
+    - 2.0
+    num: 1
+    first_peak: 
+    - 350.213897705078
+    - 3.0
+  scan_count: 4023
+  file_size: 384412742
+  last_scan: 
+    last_peak: 
+    - 816.095581054688
+    - 2.0
+    num: 4023
+    first_peak: 
+    - 355.046142578125
+    - 3.0
+  scans_to_read: fl
+  total_time_to_read_and_access: 13.177015
+  time_to_read: 13.169069
+  lazy_type: :io_good
+  end_time: 5404.2578125
+  start_time: 1.0
+  file: Halo12_itraq29_1.mzXML
+--- 
+- time_to_access: 0.007828
+  first_scan: 
+    last_peak: 
+    - 910.506164550781
+    - 2.0
+    num: 1
+    first_peak: 
+    - 350.213897705078
+    - 2.0
+  scan_count: 4699
+  file_size: 142902946
+  last_scan: 
+    last_peak: 
+    - 817.126098632812
+    - 2.0
+    num: 4699
+    first_peak: 
+    - 350.20556640625
+    - 3.0
+  scans_to_read: fl
+  total_time_to_read_and_access: 4.214078
+  time_to_read: 4.206233
+  lazy_type: :io_good
+  end_time: 5404.3310546875
+  start_time: 1.00100004673004
+  file: Halo12_itraq5_1.mzXML
+--- 
+- time_to_access: 0.010097
+  first_scan: 
+    last_peak: 
+    - 981.870422363281
+    - 2.0
+    num: 1
+    first_peak: 
+    - 352.024200439453
+    - 2.0
+  scan_count: 5128
+  file_size: 92155251
+  last_scan: 
+    last_peak: 
+    - 741.156433105469
+    - 3.0
+    num: 5128
+    first_peak: 
+    - 355.029357910156
+    - 3.0
+  scans_to_read: fl
+  total_time_to_read_and_access: 2.873264
+  time_to_read: 2.863151
+  lazy_type: :io_good
+  end_time: 5404.8251953125
+  start_time: 0.999000012874603
+  file: Halo12_itraq6_1.mzXML
+--- 
+- time_to_access: 0.00916
+  first_scan: 
+    last_peak: 
+    - 890.134521484375
+    - 2.0
+    num: 1
+    first_peak: 
+    - 351.915618896484
+    - 2.0
+  scan_count: 4415
+  file_size: 171656109
+  last_scan: 
+    last_peak: 
+    - 819.138122558594
+    - 2.0
+    num: 4415
+    first_peak: 
+    - 355.012573242188
+    - 3.0
+  scans_to_read: fl
+  total_time_to_read_and_access: 5.700776
+  time_to_read: 5.691601
+  lazy_type: :io_good
+  end_time: 5403.962890625
+  start_time: 1.0
+  file: Halo12_itraq7_1.mzXML
+--- 
+- time_to_access: 0.009373
+  first_scan: 
+    last_peak: 
+    - 856.116333007812
+    - 2.0
+    num: 1
+    first_peak: 
+    - 350.188903808594
+    - 2.0
+  scan_count: 3963
+  file_size: 328828798
+  last_scan: 
+    last_peak: 
+    - 670.148315429688
+    - 2.0
+    num: 3963
+    first_peak: 
+    - 355.020965576172
+    - 3.0
+  scans_to_read: fl
+  total_time_to_read_and_access: 15.733228
+  time_to_read: 15.723838
+  lazy_type: :io_good
+  end_time: 5404.712890625
+  start_time: 0.999000012874603
+  file: Halo12_itraq8_1.mzXML
+--- 
+- time_to_access: 0.010305
+  first_scan: 
+    last_peak: 
+    - 742.126403808594
+    - 3.0
+    num: 1
+    first_peak: 
+    - 351.030853271484
+    - 2.0
+  scan_count: 5205
+  file_size: 97252169
+  last_scan: 
+    last_peak: 
+    - 816.133728027344
+    - 2.0
+    num: 5205
+    first_peak: 
+    - 351.172668457031
+    - 2.0
+  scans_to_read: fl
+  total_time_to_read_and_access: 2.923239
+  time_to_read: 2.912918
+  lazy_type: :io_good
+  end_time: 5404.31884765625
+  start_time: 1.00100004673004
+  file: Halo12_itraq9_1.mzXML

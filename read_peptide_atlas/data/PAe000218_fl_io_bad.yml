@@ -1,0 +1,27 @@
+--- 
+- time_to_access: 0.007798
+  first_scan: 
+    last_peak: 
+    - 799.750732421875
+    - 7186.0
+    num: 1
+    first_peak: 
+    - 401.156799316406
+    - 54957.0
+  scan_count: 5793
+  file_size: 21666398
+  last_scan: 
+    last_peak: 
+    - 797.6865234375
+    - 11518.0
+    num: 5793
+    first_peak: 
+    - 400.275573730469
+    - 23885.0
+  scans_to_read: fl
+  total_time_to_read_and_access: 1.359246
+  time_to_read: 1.351432
+  lazy_type: :io_bad
+  end_time: 5879.69
+  start_time: 120.02
+  file: YAGsn2_48rpt.mzXML

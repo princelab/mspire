@@ -1,0 +1,194 @@
+<?xml version="1.0" encoding="iso-8859-1"?>
+<!DOCTYPE html 
+     PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+     "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html>
+<head>
+  <title>precision_vs_num_hits (SpecID::Precision::Prob)</title>
+  <meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1" />
+  <link rel="stylesheet" href="../../../.././rdoc-style.css" type="text/css" media="screen" />
+</head>
+<body class="standalone-code">
+  <pre><span class="ruby-comment cmt"># File lib/spec_id/precision/prob.rb, line 58</span>
+  <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">precision_vs_num_hits</span>(<span class="ruby-identifier">spec_id</span>, <span class="ruby-identifier">opts</span>={})
+   
+    <span class="ruby-identifier">opt</span> = <span class="ruby-constant">PN_DEFAULTS</span>.<span class="ruby-identifier">merge</span>(<span class="ruby-identifier">opts</span>)
+
+    <span class="ruby-identifier">out</span> = {}
+    <span class="ruby-identifier">num_pephits</span> = []  <span class="ruby-comment cmt"># NOTE!: these are aaseq/aaseq_mod + charge for Prophet </span>
+    <span class="ruby-identifier">val_hash</span> = <span class="ruby-constant">Hash</span>.<span class="ruby-identifier">new</span> {<span class="ruby-operator">|</span><span class="ruby-identifier">hash</span>,<span class="ruby-identifier">key</span><span class="ruby-operator">|</span> <span class="ruby-identifier">hash</span>[<span class="ruby-identifier">key</span>] = [] }
+    <span class="ruby-identifier">val_calc_bkg_hash</span> = <span class="ruby-constant">Hash</span>.<span class="ruby-identifier">new</span> {<span class="ruby-operator">|</span><span class="ruby-identifier">hash</span>,<span class="ruby-identifier">key</span><span class="ruby-operator">|</span> <span class="ruby-identifier">hash</span>[<span class="ruby-identifier">key</span>] = [] }
+    <span class="ruby-identifier">pepstrings</span> = []
+    <span class="ruby-identifier">modified_peptides</span> = []
+    <span class="ruby-identifier">pepcharges</span> = []
+    <span class="ruby-identifier">probabilities</span> = []
+    <span class="ruby-identifier">found_modified_peptide</span> = <span class="ruby-keyword kw">false</span>
+
+    <span class="ruby-identifier">check_precisions</span> = []
+    <span class="ruby-identifier">check_precisions_decoy</span> = []
+
+    <span class="ruby-comment cmt"># do we need to deal with decoy peptides? (true/false)</span>
+    <span class="ruby-identifier">validators</span> = <span class="ruby-identifier">opt</span>[<span class="ruby-identifier">:validators</span>].<span class="ruby-identifier">map</span>
+    <span class="ruby-identifier">decoy_vals</span> = <span class="ruby-identifier">validators</span>.<span class="ruby-identifier">select</span> {<span class="ruby-operator">|</span><span class="ruby-identifier">val</span><span class="ruby-operator">|</span> <span class="ruby-identifier">val</span>.<span class="ruby-identifier">class</span> <span class="ruby-operator">==</span> <span class="ruby-constant">Validator</span><span class="ruby-operator">::</span><span class="ruby-constant">Decoy</span> }
+    
+
+    <span class="ruby-keyword kw">if</span> <span class="ruby-identifier">decoy_vals</span>.<span class="ruby-identifier">size</span> <span class="ruby-operator">&gt;</span> <span class="ruby-value">1</span>
+      <span class="ruby-identifier">raise</span>(<span class="ruby-constant">ArgumentError</span>, <span class="ruby-value str">&quot;only one decoy validator allowed!&quot;</span>) 
+    <span class="ruby-keyword kw">else</span>
+      <span class="ruby-identifier">decoy_val</span> = <span class="ruby-identifier">decoy_vals</span>.<span class="ruby-identifier">first</span>
+      <span class="ruby-keyword kw">if</span> <span class="ruby-identifier">decoy_val</span>
+        <span class="ruby-identifier">decoy_to_target_ratio</span> = <span class="ruby-identifier">decoy_val</span>.<span class="ruby-identifier">decoy_to_target_ratio</span>
+      <span class="ruby-keyword kw">end</span>
+    <span class="ruby-keyword kw">end</span>
+
+
+
+    <span class="ruby-identifier">validators</span>.<span class="ruby-identifier">delete</span>(<span class="ruby-identifier">decoy_val</span>)
+    <span class="ruby-identifier">other_validators</span> = <span class="ruby-identifier">validators</span>
+
+    (<span class="ruby-identifier">probability_validators</span>, <span class="ruby-identifier">other_validators</span>) = <span class="ruby-identifier">other_validators</span>.<span class="ruby-identifier">partition</span> {<span class="ruby-operator">|</span><span class="ruby-identifier">val</span><span class="ruby-operator">|</span> <span class="ruby-identifier">val</span>.<span class="ruby-identifier">class</span> <span class="ruby-operator">==</span> <span class="ruby-constant">Validator</span><span class="ruby-operator">::</span><span class="ruby-constant">Probability</span> }
+    <span class="ruby-keyword kw">if</span> <span class="ruby-identifier">opt</span>[<span class="ruby-identifier">:initial_probability</span>]
+      <span class="ruby-identifier">probability_validators</span>.<span class="ruby-identifier">each</span> <span class="ruby-keyword kw">do</span> <span class="ruby-operator">|</span><span class="ruby-identifier">pv</span><span class="ruby-operator">|</span>
+        <span class="ruby-identifier">pv</span>.<span class="ruby-identifier">prob_method</span> = <span class="ruby-identifier">:initial_probability</span>
+      <span class="ruby-keyword kw">end</span>
+    <span class="ruby-keyword kw">end</span>
+
+    <span class="ruby-identifier">n_count</span> = <span class="ruby-value">0</span>
+    <span class="ruby-identifier">d_count</span> = <span class="ruby-value">0</span>
+
+    <span class="ruby-comment cmt"># this is a peptide prophet</span>
+    <span class="ruby-identifier">is_peptide_prophet</span> = 
+      <span class="ruby-keyword kw">if</span> <span class="ruby-identifier">spec_id</span>.<span class="ruby-identifier">peps</span>.<span class="ruby-identifier">first</span>.<span class="ruby-identifier">respond_to?</span>(<span class="ruby-identifier">:fval</span>) ; <span class="ruby-keyword kw">true</span>
+      <span class="ruby-keyword kw">else</span> ;<span class="ruby-keyword kw">false</span>
+      <span class="ruby-keyword kw">end</span>
+
+    <span class="ruby-identifier">use_q_value</span> = <span class="ruby-identifier">spec_id</span>.<span class="ruby-identifier">peps</span>.<span class="ruby-identifier">first</span>.<span class="ruby-identifier">respond_to?</span>(<span class="ruby-identifier">:q_value</span>)
+
+    <span class="ruby-comment cmt">## ORDER THE PEPTIDE HITS:</span>
+    <span class="ruby-identifier">ordered_peps</span> = 
+      <span class="ruby-keyword kw">if</span> <span class="ruby-identifier">use_q_value</span>
+        <span class="ruby-identifier">spec_id</span>.<span class="ruby-identifier">peps</span>.<span class="ruby-identifier">sort_by</span> {<span class="ruby-operator">|</span><span class="ruby-identifier">v</span><span class="ruby-operator">|</span> <span class="ruby-identifier">v</span>.<span class="ruby-identifier">q_value</span> }
+      <span class="ruby-keyword kw">elsif</span> <span class="ruby-identifier">is_peptide_prophet</span>
+        <span class="ruby-identifier">spec_id</span>.<span class="ruby-identifier">peps</span>.<span class="ruby-identifier">reject</span> {<span class="ruby-operator">|</span><span class="ruby-identifier">v</span><span class="ruby-operator">|</span> <span class="ruby-identifier">v</span>.<span class="ruby-identifier">probability</span> <span class="ruby-operator">==</span> <span class="ruby-value">-1.0</span>}.<span class="ruby-identifier">sort_by</span> {<span class="ruby-operator">|</span><span class="ruby-identifier">v</span><span class="ruby-operator">|</span> <span class="ruby-identifier">v</span>.<span class="ruby-identifier">probability</span> }.<span class="ruby-identifier">reverse</span>
+      <span class="ruby-keyword kw">else</span>
+        <span class="ruby-keyword kw">if</span> <span class="ruby-identifier">opt</span>[<span class="ruby-identifier">:sort_by_init</span>]
+          <span class="ruby-identifier">spec_id</span>.<span class="ruby-identifier">peps</span>.<span class="ruby-identifier">sort_by</span>{<span class="ruby-operator">|</span><span class="ruby-identifier">v</span><span class="ruby-operator">|</span> [<span class="ruby-identifier">v</span>.<span class="ruby-identifier">initial_probability</span>, <span class="ruby-identifier">v</span>.<span class="ruby-identifier">n_instances</span>,  ( <span class="ruby-identifier">v</span>.<span class="ruby-identifier">is_nondegenerate_evidence</span> <span class="ruby-value">? </span><span class="ruby-value">1</span> <span class="ruby-operator">:</span> <span class="ruby-value">0</span> ), <span class="ruby-identifier">v</span>.<span class="ruby-identifier">n_enzymatic_termini</span>, ( <span class="ruby-identifier">v</span>.<span class="ruby-identifier">is_contributing_evidence</span> <span class="ruby-value">? </span><span class="ruby-value">1</span> <span class="ruby-operator">:</span> <span class="ruby-value">0</span> ), <span class="ruby-identifier">v</span>.<span class="ruby-identifier">n_sibling_peptides</span>] }.<span class="ruby-identifier">reverse</span>
+        <span class="ruby-keyword kw">else</span>
+          <span class="ruby-identifier">spec_id</span>.<span class="ruby-identifier">peps</span>.<span class="ruby-identifier">sort_by</span>{<span class="ruby-operator">|</span><span class="ruby-identifier">v</span><span class="ruby-operator">|</span> [<span class="ruby-identifier">v</span>.<span class="ruby-identifier">nsp_adjusted_probability</span>, <span class="ruby-identifier">v</span>.<span class="ruby-identifier">initial_probability</span>, <span class="ruby-identifier">v</span>.<span class="ruby-identifier">n_instances</span>,  ( <span class="ruby-identifier">v</span>.<span class="ruby-identifier">is_nondegenerate_evidence</span> <span class="ruby-value">? </span><span class="ruby-value">1</span> <span class="ruby-operator">:</span> <span class="ruby-value">0</span> ), <span class="ruby-identifier">v</span>.<span class="ruby-identifier">n_enzymatic_termini</span>, ( <span class="ruby-identifier">v</span>.<span class="ruby-identifier">is_contributing_evidence</span> <span class="ruby-value">? </span><span class="ruby-value">1</span> <span class="ruby-operator">:</span> <span class="ruby-value">0</span> ), <span class="ruby-identifier">v</span>.<span class="ruby-identifier">n_sibling_peptides</span>] }.<span class="ruby-identifier">reverse</span>
+        <span class="ruby-keyword kw">end</span>
+      <span class="ruby-keyword kw">end</span>
+
+    <span class="ruby-comment cmt"># for probability based precision with decoy database (not using prophet's</span>
+    <span class="ruby-comment cmt"># -d flag) we do this:</span>
+    <span class="ruby-comment cmt"># foreach peptide.sorted_by_probability</span>
+    <span class="ruby-comment cmt">#   1. update the running precision of the validator REGARDLESS of</span>
+    <span class="ruby-comment cmt">#   decoy/target status of peptide. the internal hit counts are</span>
+    <span class="ruby-comment cmt">#   incremented.</span>
+    <span class="ruby-comment cmt">#   2. only increment reported HIT COUNTS on a non-decoy hit and record</span>
+    <span class="ruby-comment cmt">#   the precision as (1+R)*prec / (R*precision +1) where R is the ratio of</span>
+    <span class="ruby-comment cmt">#   decoy hits to target hits.  If it is 1:1 (R = 1) then this becomes:</span>
+    <span class="ruby-comment cmt">#   2*prec / (prec + 1)</span>
+
+    <span class="ruby-comment cmt">## WORK THROUGH EACH PEPTIDE:</span>
+    <span class="ruby-identifier">ordered_peps</span>.<span class="ruby-identifier">each_with_index</span> <span class="ruby-keyword kw">do</span> <span class="ruby-operator">|</span><span class="ruby-identifier">pep</span>,<span class="ruby-identifier">i</span><span class="ruby-operator">|</span>
+      <span class="ruby-comment cmt"># probability validators must work on the entire set of normal and decoy</span>
+
+      <span class="ruby-identifier">last_prob_values</span> = <span class="ruby-identifier">probability_validators</span>.<span class="ruby-identifier">map</span> <span class="ruby-keyword kw">do</span> <span class="ruby-operator">|</span><span class="ruby-identifier">val</span><span class="ruby-operator">|</span>
+        <span class="ruby-identifier">reply</span> = <span class="ruby-identifier">val</span>.<span class="ruby-identifier">increment_pephits_precision</span>(<span class="ruby-identifier">pep</span>)
+        <span class="ruby-identifier">check_precisions</span> <span class="ruby-operator">&lt;&lt;</span> <span class="ruby-identifier">reply</span>
+        <span class="ruby-identifier">reply</span>
+      <span class="ruby-keyword kw">end</span>
+
+      <span class="ruby-identifier">it_is_a_normal_pep</span> = 
+        <span class="ruby-keyword kw">if</span> <span class="ruby-identifier">decoy_val</span>
+          <span class="ruby-comment cmt"># get the decoy precision</span>
+          <span class="ruby-identifier">decoy_precision</span> = <span class="ruby-identifier">decoy_val</span>.<span class="ruby-identifier">increment_pephits_precision</span>(<span class="ruby-identifier">pep</span>)
+
+          <span class="ruby-comment cmt"># continue with ONLY normal peptides</span>
+          <span class="ruby-identifier">is_normal</span> = (<span class="ruby-identifier">decoy_val</span>.<span class="ruby-identifier">normal_peps_just_submitted</span>.<span class="ruby-identifier">size</span> <span class="ruby-operator">&gt;</span> <span class="ruby-value">0</span>)
+        <span class="ruby-keyword kw">else</span>
+          <span class="ruby-keyword kw">true</span>
+        <span class="ruby-keyword kw">end</span>
+
+      <span class="ruby-keyword kw">if</span> <span class="ruby-identifier">it_is_a_normal_pep</span>
+        <span class="ruby-identifier">check_precisions_decoy</span> <span class="ruby-operator">&lt;&lt;</span> <span class="ruby-keyword kw">false</span>
+      <span class="ruby-keyword kw">else</span>
+        <span class="ruby-identifier">check_precisions_decoy</span> <span class="ruby-operator">&lt;&lt;</span> <span class="ruby-keyword kw">true</span>
+      <span class="ruby-keyword kw">end</span>
+
+      <span class="ruby-keyword kw">if</span> <span class="ruby-identifier">it_is_a_normal_pep</span>
+        <span class="ruby-identifier">n_count</span> <span class="ruby-operator">+=</span> <span class="ruby-value">1</span>
+
+        <span class="ruby-comment cmt"># UPDATE validators:</span>
+        <span class="ruby-identifier">val_hash</span>[<span class="ruby-identifier">decoy_val</span>].<span class="ruby-identifier">push</span>(<span class="ruby-identifier">decoy_precision</span>) <span class="ruby-keyword kw">if</span> <span class="ruby-identifier">decoy_val</span>
+        <span class="ruby-identifier">probability_validators</span>.<span class="ruby-identifier">zip</span>(<span class="ruby-identifier">last_prob_values</span>) <span class="ruby-keyword kw">do</span> <span class="ruby-operator">|</span><span class="ruby-identifier">val</span>,<span class="ruby-identifier">prec</span><span class="ruby-operator">|</span> 
+          <span class="ruby-keyword kw">if</span> <span class="ruby-identifier">decoy_val</span>
+            <span class="ruby-identifier">val_hash</span>[<span class="ruby-identifier">val</span>].<span class="ruby-identifier">push</span>( ((<span class="ruby-identifier">decoy_to_target_ratio</span><span class="ruby-operator">+</span><span class="ruby-value">1.0</span>)<span class="ruby-operator">*</span><span class="ruby-identifier">prec</span>) <span class="ruby-operator">/</span> ((<span class="ruby-identifier">decoy_to_target_ratio</span><span class="ruby-operator">*</span><span class="ruby-identifier">prec</span>) <span class="ruby-operator">+</span> <span class="ruby-value">1.0</span>) )
+          <span class="ruby-keyword kw">else</span>
+            <span class="ruby-identifier">val_hash</span>[<span class="ruby-identifier">val</span>] <span class="ruby-operator">&lt;&lt;</span> <span class="ruby-identifier">prec</span>
+          <span class="ruby-keyword kw">end</span>
+        <span class="ruby-keyword kw">end</span>
+        <span class="ruby-identifier">other_validators</span>.<span class="ruby-identifier">each</span> <span class="ruby-keyword kw">do</span> <span class="ruby-operator">|</span><span class="ruby-identifier">val</span><span class="ruby-operator">|</span>
+          <span class="ruby-identifier">val_hash</span>[<span class="ruby-identifier">val</span>] <span class="ruby-operator">&lt;&lt;</span> <span class="ruby-identifier">val</span>.<span class="ruby-identifier">increment_pephits_precision</span>(<span class="ruby-identifier">pep</span>)
+          <span class="ruby-keyword kw">if</span> <span class="ruby-identifier">val</span>.<span class="ruby-identifier">is_a?</span> <span class="ruby-constant">Validator</span><span class="ruby-operator">::</span><span class="ruby-constant">DigestionBased</span>
+            <span class="ruby-identifier">val_calc_bkg_hash</span>[<span class="ruby-identifier">val</span>] <span class="ruby-operator">&lt;&lt;</span> <span class="ruby-identifier">val</span>.<span class="ruby-identifier">calculated_background</span>
+          <span class="ruby-keyword kw">end</span>
+        <span class="ruby-keyword kw">end</span>
+
+        <span class="ruby-comment cmt"># UPDATE other basic useful information:</span>
+        <span class="ruby-keyword kw">if</span> <span class="ruby-identifier">pep</span>.<span class="ruby-identifier">respond_to?</span>(<span class="ruby-identifier">:mod_info</span>)
+          <span class="ruby-identifier">modified_pep_string</span> =
+            <span class="ruby-keyword kw">if</span> <span class="ruby-identifier">pep</span>.<span class="ruby-identifier">mod_info</span>
+              <span class="ruby-identifier">found_modified_peptide</span> = <span class="ruby-keyword kw">true</span>
+              <span class="ruby-identifier">pep</span>.<span class="ruby-identifier">mod_info</span>.<span class="ruby-identifier">modified_peptide</span>
+            <span class="ruby-keyword kw">else</span>
+              <span class="ruby-keyword kw">nil</span>
+            <span class="ruby-keyword kw">end</span>
+          <span class="ruby-identifier">modified_peptides</span> <span class="ruby-operator">&lt;&lt;</span> <span class="ruby-identifier">modified_pep_string</span>
+        <span class="ruby-keyword kw">else</span>
+          <span class="ruby-identifier">modified_pep_string</span> =
+            <span class="ruby-keyword kw">if</span> <span class="ruby-identifier">pep</span>.<span class="ruby-identifier">sequence</span> <span class="ruby-operator">=~</span> <span class="ruby-regexp re">/[^A-Z\-\.]/</span>
+              <span class="ruby-identifier">found_modified_peptide</span> = <span class="ruby-keyword kw">true</span>
+              <span class="ruby-identifier">pep</span>.<span class="ruby-identifier">sequence</span>
+            <span class="ruby-keyword kw">else</span>
+              <span class="ruby-keyword kw">nil</span>
+            <span class="ruby-keyword kw">end</span>
+          <span class="ruby-identifier">modified_peptides</span> <span class="ruby-operator">&lt;&lt;</span> <span class="ruby-identifier">modified_pep_string</span>
+        <span class="ruby-keyword kw">end</span>
+        <span class="ruby-identifier">pepcharges</span> <span class="ruby-operator">&lt;&lt;</span> <span class="ruby-identifier">pep</span>.<span class="ruby-identifier">charge</span> 
+        <span class="ruby-identifier">pepstrings</span> <span class="ruby-operator">&lt;&lt;</span> <span class="ruby-identifier">pep</span>.<span class="ruby-identifier">aaseq</span>
+        <span class="ruby-identifier">probabilities</span> <span class="ruby-operator">&lt;&lt;</span> <span class="ruby-identifier">pep</span>.<span class="ruby-identifier">probability</span>  <span class="ruby-comment cmt"># this is the q_value if percolator</span>
+        <span class="ruby-identifier">num_pephits</span> <span class="ruby-operator">&lt;&lt;</span> (<span class="ruby-identifier">i</span><span class="ruby-operator">+</span><span class="ruby-value">1</span>)
+      <span class="ruby-keyword kw">else</span>
+        <span class="ruby-identifier">d_count</span> <span class="ruby-operator">+=</span> <span class="ruby-value">1</span>
+      <span class="ruby-keyword kw">end</span>
+    <span class="ruby-keyword kw">end</span>
+    <span class="ruby-keyword kw">if</span> <span class="ruby-identifier">found_modified_peptide</span>
+      <span class="ruby-identifier">out</span>[<span class="ruby-identifier">:modified_peptides</span>] = <span class="ruby-identifier">modified_peptides</span>
+    <span class="ruby-keyword kw">end</span>
+    <span class="ruby-keyword kw">if</span> <span class="ruby-identifier">use_q_value</span>
+      <span class="ruby-identifier">out</span>[<span class="ruby-identifier">:q_values</span>] = <span class="ruby-identifier">probabilities</span>
+    <span class="ruby-keyword kw">else</span>
+      <span class="ruby-identifier">out</span>[<span class="ruby-identifier">:probabilities</span>] = <span class="ruby-identifier">probabilities</span>
+    <span class="ruby-keyword kw">end</span>
+    <span class="ruby-identifier">out</span>[<span class="ruby-identifier">:pephits</span>] = <span class="ruby-identifier">ordered_peps</span>  <span class="ruby-comment cmt"># just in case they want to see</span>
+    <span class="ruby-identifier">out</span>[<span class="ruby-identifier">:count</span>] = <span class="ruby-identifier">num_pephits</span>
+    <span class="ruby-identifier">out</span>[<span class="ruby-identifier">:aaseqs</span>] = <span class="ruby-identifier">pepstrings</span>
+    <span class="ruby-identifier">out</span>[<span class="ruby-identifier">:charges</span>] = <span class="ruby-identifier">pepcharges</span>
+    <span class="ruby-identifier">out</span>[<span class="ruby-identifier">:pephits_precision</span>] = <span class="ruby-identifier">opt</span>[<span class="ruby-identifier">:validators</span>].<span class="ruby-identifier">map</span> <span class="ruby-keyword kw">do</span> <span class="ruby-operator">|</span><span class="ruby-identifier">val</span><span class="ruby-operator">|</span> 
+      <span class="ruby-identifier">hsh</span> = {}
+      <span class="ruby-identifier">hsh</span>[<span class="ruby-identifier">:validator</span>] = <span class="ruby-constant">Validator</span><span class="ruby-operator">::</span><span class="ruby-constant">Validator_to_string</span>[<span class="ruby-identifier">val</span>.<span class="ruby-identifier">class</span>.<span class="ruby-identifier">to_s</span>]
+      <span class="ruby-identifier">hsh</span>[<span class="ruby-identifier">:values</span>] = <span class="ruby-identifier">val_hash</span>[<span class="ruby-identifier">val</span>]
+      <span class="ruby-identifier">hsh</span>
+    <span class="ruby-keyword kw">end</span>
+    <span class="ruby-identifier">out</span>[<span class="ruby-identifier">:params</span>] = {}
+    <span class="ruby-identifier">out</span>[<span class="ruby-identifier">:params</span>][<span class="ruby-identifier">:validators</span>] = <span class="ruby-constant">Validator</span>.<span class="ruby-identifier">sensible_validator_hashes</span>(<span class="ruby-identifier">opt</span>[<span class="ruby-identifier">:validators</span>]).<span class="ruby-identifier">zip</span>(<span class="ruby-identifier">opt</span>[<span class="ruby-identifier">:validators</span>]).<span class="ruby-identifier">map</span> <span class="ruby-keyword kw">do</span> <span class="ruby-operator">|</span><span class="ruby-identifier">hash</span>,<span class="ruby-identifier">val</span><span class="ruby-operator">|</span>
+      <span class="ruby-identifier">hash</span>.<span class="ruby-identifier">delete</span>(<span class="ruby-identifier">:calculated_background</span>)
+      <span class="ruby-identifier">hash</span>[<span class="ruby-identifier">:calculated_backgrounds</span>] = <span class="ruby-identifier">val_calc_bkg_hash</span>[<span class="ruby-identifier">val</span>]
+      <span class="ruby-identifier">hash</span>
+    <span class="ruby-keyword kw">end</span>
+    <span class="ruby-identifier">out</span>
+  <span class="ruby-keyword kw">end</span></pre>
+</body>
+</html>

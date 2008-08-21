@@ -1,0 +1,63 @@
+[SEQUEST]
+first_database_name = C:\Xcalibur\database\ecoli_K12_ncbi_20060321.fasta
+second_database_name = 
+peptide_mass_tolerance = 25.0000
+peptide_mass_units = 2              ; 0=amu, 1=mmu, 2=ppm
+ion_series = 0 1 1 0.0 1.0 0.0 0.0 0.0 0.0 0.0 1.0 0.0
+fragment_ion_tolerance = 1.0000          ; for trap data leave at 1.0, for accurate mass data use values < 1.0
+fragment_ion_units = 0              ; 0=amu, 1=mmu
+num_output_lines = 10                ; # peptide results to show
+num_results = 250                     ; # results to store
+num_description_lines = 5           ; # full protein descriptions to show for top N peptides
+show_fragment_ions = 0              ; 0=no, 1=yes
+print_duplicate_references = 40      ; number of duplicate references reported
+enzyme_info = Trypsin(KR/P) 1 1 KR P
+max_num_differential_per_peptide = 3           ; max # of diff. mod in a peptide
+diff_search_options = 15.999400 M 79.979900 STY 0.000000 M 0.000000 X 0.000000 T 0.000000 Y
+term_diff_search_options = 0.000000 0.000000
+nucleotide_reading_frame = 0        ; 0=protein db, 1-6, 7 = forward three, 8-reverse three, 9=all six
+mass_type_parent = 0                ; 0=average masses, 1=monoisotopic masses
+mass_type_fragment = 0              ; 0=average masses, 1=monoisotopic masses
+normalize_xcorr = 0                 ; use normalized xcorr values in the out file 
+remove_precursor_peak = 0           ; 0=no, 1=yes
+ion_cutoff_percentage = 0.0000           ; prelim. score cutoff % as a decimal number i.e. 0.30 for 30%
+max_num_internal_cleavage_sites = 2           ; maximum value is 12
+protein_mass_filter = 0 0           ; enter protein mass min & max value ( 0 for both = unused)
+match_peak_count = 0                ; number of auto-detected peaks to try matching (max 5)
+match_peak_allowed_error = 1        ;  number of allowed errors in matching auto-detected peaks
+match_peak_tolerance = 1.0000            ; mass tolerance for matching auto-detected peaks
+partial_sequence = 
+sequence_header_filter = 
+digest_mass_range = 600.0 3500.0
+
+add_Cterm_peptide = 0.0000               ; added to each peptide C-terminus
+add_Cterm_protein = 0.0000               ; added to each protein C-terminus
+add_Nterm_peptide = 0.0000               ; added to each peptide N-terminus
+add_Nterm_protein = 0.0000               ; added to each protein N-terminus
+add_G_Glycine = 0.0000                   ; added to G 
+add_A_Alanine = 0.0000                   ; added to A
+add_S_Serine = 0.0000                    ; added to S
+add_P_Proline = 0.0000                   ; added to P
+add_V_Valine = 0.0000                    ; added to V
+add_T_Threonine = 0.0000                 ; added to T
+add_C_Cysteine = 0.0000                  ; added to C
+add_L_Leucine = 0.0000                   ; added to L
+add_I_Isoleucine = 0.0000                ; added to I
+add_X_LorI = 0.0000                      ; added to X
+add_N_Asparagine = 0.0000                ; added to N
+add_O_Ornithine = 0.0000                 ; added to O
+add_B_avg_NandD = 0.0000                 ; added to B
+add_D_Aspartic_Acid = 0.0000             ; added to D
+add_Q_Glutamine = 0.0000                 ; added to Q
+add_K_Lysine = 0.0000                    ; added to K
+add_Z_avg_QandE = 0.0000                 ; added to Z
+add_E_Glutamic_Acid = 0.0000             ; added to E
+add_M_Methionine = 0.0000                ; added to M
+add_H_Histidine = 0.0000                 ; added to H
+add_F_Phenylalanine = 0.0000             ; added to F
+add_R_Arginine = 0.0000                  ; added to R
+add_Y_Tyrosine = 0.0000                  ; added to Y
+add_W_Tryptophan = 0.0000                ; added to W
+add_J_user_amino_acid = 0.0000           ; added to J
+add_U_user_amino_acid = 0.0000           ; added to U
+

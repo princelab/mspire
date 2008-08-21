@@ -1,0 +1,158 @@
+<?xml version="1.0" encoding="iso-8859-1"?>
+<!DOCTYPE html 
+     PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+     "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+<head>
+  <title>Class: SpecID::Precision::Prob::CmdlineParser</title>
+  <meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1" />
+  <meta http-equiv="Content-Script-Type" content="text/javascript" />
+  <link rel="stylesheet" href="../../../.././rdoc-style.css" type="text/css" media="screen" />
+  <script type="text/javascript">
+  // <![CDATA[
+
+  function popupCode( url ) {
+    window.open(url, "Code", "resizable=yes,scrollbars=yes,toolbar=no,status=no,height=150,width=400")
+  }
+
+  function toggleCode( id ) {
+    if ( document.getElementById )
+      elem = document.getElementById( id );
+    else if ( document.all )
+      elem = eval( "document.all." + id );
+    else
+      return false;
+
+    elemStyle = elem.style;
+    
+    if ( elemStyle.display != "block" ) {
+      elemStyle.display = "block"
+    } else {
+      elemStyle.display = "none"
+    }
+
+    return true;
+  }
+  
+  // Make codeblocks hidden by default
+  document.writeln( "<style type=\"text/css\">div.method-source-code { display: none }</style>" )
+  
+  // ]]>
+  </script>
+
+</head>
+<body>
+
+
+
+    <div id="classHeader">
+        <table class="header-table">
+        <tr class="top-aligned-row">
+          <td><strong>Class</strong></td>
+          <td class="class-name-in-header">SpecID::Precision::Prob::CmdlineParser</td>
+        </tr>
+        <tr class="top-aligned-row">
+            <td><strong>In:</strong></td>
+            <td>
+                <a href="../../../../files/lib/spec_id/precision/prob/cmdline_rb.html">
+                lib/spec_id/precision/prob/cmdline.rb
+                </a>
+        <br />
+            </td>
+        </tr>
+
+        <tr class="top-aligned-row">
+            <td><strong>Parent:</strong></td>
+            <td>
+                Object
+            </td>
+        </tr>
+        </table>
+    </div>
+  <!-- banner header -->
+
+  <div id="bodyContent">
+
+
+
+  <div id="contextContent">
+
+
+
+   </div>
+
+    <div id="method-list">
+      <h3 class="section-bar">Methods</h3>
+
+      <div class="name-list">
+      <a href="#M000336">parse</a>&nbsp;&nbsp;
+      </div>
+    </div>
+
+  </div>
+
+
+    <!-- if includes -->
+
+    <div id="section">
+
+
+    <div id="constants-list">
+      <h3 class="section-bar">Constants</h3>
+
+      <div class="name-list">
+        <table summary="Constants">
+        <tr class="top-aligned-row context-row">
+          <td class="context-item-name">DEFAULTS</td>
+          <td>=</td>
+          <td class="context-item-value">SpecID::Precision::Prob::PN_DEFAULTS.merge( { :output =&gt; [[:csv, nil]], } )</td>
+        </tr>
+        <tr class="top-aligned-row context-row">
+          <td class="context-item-name">COMMAND_LINE</td>
+          <td>=</td>
+          <td class="context-item-value">{           :sort_by_init =&gt; ['--sort_by_init', &quot;sort the proteins based on init probability&quot;],           :qval =&gt; ['--qval', &quot;use percolator q-values to calculate precision&quot;],           :prob =&gt; ['--prob [TYPE]', &quot;use prophet probabilites to calculate precision&quot;,                                      &quot;TYPE = nsp [default] prophet nsp&quot;,                                      &quot;     (nsp also should be used for PeptideProphet results)&quot;,                                      &quot;     = init (for ProteinProphet results) use initial&quot;,                                      &quot;probability instead of nsp probability&quot;,         ],           # OUTPUT           :proteins =&gt; [&quot;--proteins&quot;, &quot;includes proteins (and validation)&quot;],           :output =&gt; [&quot;-o&quot;, &quot;--output format[:FILENAME]&quot;, &quot;format to output filtering results.&quot;,                                                        &quot;can be used multiple times&quot;,                                                         &quot;:FILENAME is the filename to use (defaults to STDOUT)&quot;,                                                        &quot;valid formats are:&quot;,                                                        &quot;    csv  (default)&quot;,                                                        &quot;    to_plot&quot;,                                                        &quot;    calc_bkg_to_plot&quot;,                                                        &quot;    yaml&quot;,                                                        #&quot;    protein_summary (need to implement)&quot;,                                                        #&quot;    html_table      (need to implement)&quot;                                                ],            # VALIDATION MODIFIERS:           :pephits =&gt; [&quot;--pephits &lt;file&gt;.srg&quot;, &quot;an srg file pointing to the srf files for&quot;,                                                &quot;the given -prot.xml run&quot;,                                                &quot;[this or --digestion must be used for applicable]&quot;,                                                &quot;validators (validators depending on a&quot;,                                                &quot;false/total ratio)]&quot;],         }.merge( Validator::Cmdline::COMMAND_LINE )</td>
+        </tr>
+        </table>
+      </div>
+    </div>
+
+
+
+      
+
+
+    <!-- if method_list -->
+    <div id="methods">
+      <h3 class="section-bar">Public Instance methods</h3>
+
+      <div id="method-M000336" class="method-detail">
+        <a name="M000336"></a>
+
+        <div class="method-heading">
+          <a href="CmdlineParser.src/M000336.html" target="Code" class="method-signature"
+            onclick="popupCode('CmdlineParser.src/M000336.html');return false;">
+          <span class="method-name">parse</span><span class="method-args">(args)</span>
+          </a>
+        </div>
+      
+        <div class="method-description">
+          <p>
+returns (spec_id_obj, options, option_parser_obj)
+</p>
+        </div>
+      </div>
+
+
+    </div>
+
+
+  </div>
+
+
+<div id="validator-badges">
+  <p><small><a href="http://validator.w3.org/check/referer">[Validate]</a></small></p>
+</div>
+
+</body>
+</html>

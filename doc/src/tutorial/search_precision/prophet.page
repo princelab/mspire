@@ -1,0 +1,68 @@
+---
+inMenu: true
+directoryName: DB searching
+---
+Running ProteinProphet
+====================================
+## 1. Convert to pepXML
+
+convert directly from the .SRF files into the pepxml files.  Just list all the
+.SRF files that should belong together:
+
+    bioworks_to_pepxml.rb <file1>.srf ... -o /cygdrive/c/Inetpub/wwwroot/ISB/data --copy_mzxml -m /cygdrive/c/Xcalibur/data/<mydata_dir>
+
+You may want to make soft links to your isb data directory and Xcalibur data directory (e.g., `ln -s /cygdrive/c/Inetpub/wwwroot/ISB/data ~/isb`).  Then your command might look like this:
+
+    bioworks_to_pepxml.rb *.srf -o ~/isb --copy_mzxml -m ~/data/<your_folder>
+
+We write files to where the webserver can get at them (-o is -outdir).  The
+last two options ensure that mzXML files are created and located where the
+webserver can access them.  Type `bioworks_to_pepxml.rb` for more details.
+
+## 2. Run Protein Prophet
+
+### For TPP versions >= 3.0
+
+If you are running TPP version 3 or greater, you can then open up a browser
+(taking you to [the default web address for
+TPP](http://localhost:1441/tpp-bin/tpp_gui.pl)).  Then:
+
+    1. Navigate: Analysis Pipeline -> Analyze Peptides
+    2. Add the pepXML files you created in step 1.
+    3. Leave the RUN PeptideProphet box checked
+    4. check the 'Run ProteinProphet afterwards' box
+    5. hit the 'Run XInteract' button at the bottom to run it
+
+After the run is completed, view the results like this:
+
+    1. Navigate: Tools -> Browse Files
+    2. Click 'view' by the file: 'interact-prot.shtml'
+
+To run Pep3D, click on a peptide sequence and click the 'Generate Pep3D image'
+button.  The images should be created automatically (parameters can be
+adjusted as desired).
+
+### For TPP versions < 3.0:
+
+Go to the webserver tpp data folder and run protein prophet:
+
+    xinteract -N<my_run>.xml -Op sequest/myfolder/pepxml/*.xml
+
+Type `xinteract` for more details.  *NOTE:* it is very important that the path
+to the pepxml files be given starting with a soft link so the server thinks
+the data is mounted under the webserver.
+
+The full protein results are written to '<my_run>-prot.xml' and can be viewed
+by following the instructions output by xinteract.
+
+## 3. Summarize the Results (Optional)
+
+While the ISB viewers are very good at giving an in-depth analysis, a simple
+summary (including the number of proteins identified at a given false ID rate) 
+
+    protein_summary.rb <my_run>-prot.xml -c 5.0
+
+This will summarize protein hits (no modifications shown) and give the number
+of proteins identified at a 5 percent false identification rate.  Type
+`protein_summary.rb` for more details.
+

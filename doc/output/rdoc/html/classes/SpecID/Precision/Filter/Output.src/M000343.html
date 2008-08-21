@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="iso-8859-1"?>
+<!DOCTYPE html 
+     PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+     "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html>
+<head>
+  <title>text_table (SpecID::Precision::Filter::Output)</title>
+  <meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1" />
+  <link rel="stylesheet" href="../../../../.././rdoc-style.css" type="text/css" media="screen" />
+</head>
+<body class="standalone-code">
+  <pre><span class="ruby-comment cmt"># File lib/spec_id/precision/filter/output.rb, line 44</span>
+  <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">text_table</span>(<span class="ruby-identifier">fh</span>, <span class="ruby-identifier">answer</span>)
+    <span class="ruby-identifier">col_headings</span> = [<span class="ruby-value str">'num'</span>]
+    <span class="ruby-keyword kw">if</span> <span class="ruby-identifier">answer</span>[<span class="ruby-identifier">:params</span>][<span class="ruby-identifier">:validators</span>]
+      <span class="ruby-identifier">val_strings</span> = <span class="ruby-identifier">answer</span>[<span class="ruby-identifier">:params</span>][<span class="ruby-identifier">:validators</span>].<span class="ruby-identifier">map</span> <span class="ruby-keyword kw">do</span> <span class="ruby-operator">|</span><span class="ruby-identifier">val</span><span class="ruby-operator">|</span>
+        <span class="ruby-constant">Validator</span><span class="ruby-operator">::</span><span class="ruby-constant">Validator_to_string</span>[<span class="ruby-identifier">val</span>.<span class="ruby-identifier">class</span>.<span class="ruby-identifier">to_s</span>]
+      <span class="ruby-keyword kw">end</span>
+      <span class="ruby-identifier">col_headings</span>.<span class="ruby-identifier">push</span>( <span class="ruby-operator">*</span><span class="ruby-identifier">val_strings</span> )
+    <span class="ruby-keyword kw">end</span>
+
+    <span class="ruby-identifier">data_rows</span> = []
+    <span class="ruby-comment cmt"># push on the peptide row</span>
+    <span class="ruby-identifier">row_headings</span> = [<span class="ruby-value str">'peps'</span>]
+    <span class="ruby-identifier">pep_row</span> = []
+    <span class="ruby-identifier">pep_row</span> <span class="ruby-operator">&lt;&lt;</span> <span class="ruby-identifier">answer</span>[<span class="ruby-identifier">:pephits</span>].<span class="ruby-identifier">size</span>
+    <span class="ruby-keyword kw">if</span> <span class="ruby-identifier">answer</span>[<span class="ruby-identifier">:params</span>][<span class="ruby-identifier">:validators</span>]
+      <span class="ruby-identifier">answer</span>[<span class="ruby-identifier">:params</span>][<span class="ruby-identifier">:validators</span>].<span class="ruby-identifier">zip</span>( <span class="ruby-identifier">answer</span>[<span class="ruby-identifier">:pephits_precision</span>] ) <span class="ruby-keyword kw">do</span> <span class="ruby-operator">|</span><span class="ruby-identifier">val</span>, <span class="ruby-identifier">precision</span><span class="ruby-operator">|</span>
+        <span class="ruby-identifier">pep_row</span> <span class="ruby-operator">&lt;&lt;</span> <span class="ruby-identifier">precision</span>
+      <span class="ruby-keyword kw">end</span>
+    <span class="ruby-keyword kw">end</span>
+    <span class="ruby-identifier">data_rows</span> <span class="ruby-operator">&lt;&lt;</span> <span class="ruby-identifier">pep_row</span>
+
+    <span class="ruby-comment cmt"># push on the protein row</span>
+    <span class="ruby-keyword kw">if</span> <span class="ruby-identifier">answer</span>[<span class="ruby-identifier">:prothits</span>]
+      [<span class="ruby-identifier">:worst</span>, <span class="ruby-identifier">:normal</span>, <span class="ruby-identifier">:normal_stdev</span>].<span class="ruby-identifier">each</span> <span class="ruby-keyword kw">do</span> <span class="ruby-operator">|</span><span class="ruby-identifier">guy</span><span class="ruby-operator">|</span>
+        <span class="ruby-identifier">prot_row</span> = []
+        <span class="ruby-identifier">row_headings</span> <span class="ruby-operator">&lt;&lt;</span> <span class="ruby-node">&quot;prots(#{ProtPrecAbbr[guy]})&quot;</span>
+        <span class="ruby-keyword kw">if</span> <span class="ruby-identifier">guy</span> <span class="ruby-operator">==</span> <span class="ruby-identifier">:worst</span>
+          <span class="ruby-identifier">prot_row</span> <span class="ruby-operator">&lt;&lt;</span> <span class="ruby-identifier">answer</span>[<span class="ruby-identifier">:prothits</span>].<span class="ruby-identifier">size</span> 
+        <span class="ruby-keyword kw">else</span>
+          <span class="ruby-identifier">prot_row</span> <span class="ruby-operator">&lt;&lt;</span> <span class="ruby-value str">'&quot;'</span>
+        <span class="ruby-keyword kw">end</span>
+        <span class="ruby-identifier">answer</span>[<span class="ruby-identifier">:prothits_precision</span>].<span class="ruby-identifier">each</span> <span class="ruby-keyword kw">do</span> <span class="ruby-operator">|</span><span class="ruby-identifier">precision</span><span class="ruby-operator">|</span>
+          <span class="ruby-identifier">prot_row</span>.<span class="ruby-identifier">push</span>(<span class="ruby-identifier">precision</span>[<span class="ruby-identifier">guy</span>])
+        <span class="ruby-keyword kw">end</span>
+        <span class="ruby-identifier">data_rows</span> <span class="ruby-operator">&lt;&lt;</span> <span class="ruby-identifier">prot_row</span>
+      <span class="ruby-keyword kw">end</span>
+    <span class="ruby-keyword kw">end</span>
+    <span class="ruby-identifier">params_string</span> = <span class="ruby-identifier">params_as_string</span>(<span class="ruby-identifier">answer</span>[<span class="ruby-identifier">:params</span>])
+    <span class="ruby-identifier">table</span> = <span class="ruby-constant">Table</span>.<span class="ruby-identifier">new</span>( <span class="ruby-identifier">data_rows</span>, <span class="ruby-identifier">row_headings</span>, <span class="ruby-identifier">col_headings</span> )
+    <span class="ruby-identifier">fh</span>.<span class="ruby-identifier">puts</span> <span class="ruby-identifier">params_string</span>
+    <span class="ruby-identifier">fh</span>.<span class="ruby-identifier">puts</span> <span class="ruby-value str">&quot;&quot;</span>
+    <span class="ruby-identifier">fh</span>.<span class="ruby-identifier">puts</span>( <span class="ruby-identifier">table</span>.<span class="ruby-identifier">to_formatted_string</span> )
+    <span class="ruby-identifier">fh</span>.<span class="ruby-identifier">puts</span> <span class="ruby-value str">&quot;&quot;</span>
+  <span class="ruby-keyword kw">end</span></pre>
+</body>
+</html>

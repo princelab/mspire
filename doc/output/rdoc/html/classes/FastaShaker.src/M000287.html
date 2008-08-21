@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="iso-8859-1"?>
+<!DOCTYPE html 
+     PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+     "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html>
+<head>
+  <title>shake_it (FastaShaker)</title>
+  <meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1" />
+  <link rel="stylesheet" href="../.././rdoc-style.css" type="text/css" media="screen" />
+</head>
+<body class="standalone-code">
+  <pre><span class="ruby-comment cmt"># File lib/fasta.rb, line 234</span>
+  <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">shake_it</span>(<span class="ruby-identifier">method</span>, <span class="ruby-identifier">fasta_file_or_obj</span>, <span class="ruby-identifier">opt</span>)
+    <span class="ruby-identifier">fasta</span> = <span class="ruby-constant">Fasta</span>.<span class="ruby-identifier">to_fasta</span>(<span class="ruby-identifier">fasta_file_or_obj</span>)
+    <span class="ruby-keyword kw">if</span> <span class="ruby-identifier">opt</span>[<span class="ruby-identifier">:cat</span>] <span class="ruby-operator">&amp;&amp;</span> <span class="ruby-operator">!</span><span class="ruby-identifier">opt</span>[<span class="ruby-identifier">:prefix</span>]
+      <span class="ruby-identifier">message</span> = <span class="ruby-value str">&quot;WARNING: concatenated proteins don't have unique headers\n[you probably wanted to use the '--prefix' option!]&quot;</span>
+      <span class="ruby-identifier">warn</span> <span class="ruby-identifier">message</span>
+    <span class="ruby-keyword kw">end</span>
+
+    <span class="ruby-keyword kw">unless</span> <span class="ruby-identifier">opt</span>[<span class="ruby-identifier">:out</span>]
+      <span class="ruby-identifier">opt</span>[<span class="ruby-identifier">:out</span>] = <span class="ruby-identifier">create_filename</span>(<span class="ruby-identifier">fasta</span>, <span class="ruby-identifier">method</span>, <span class="ruby-identifier">opt</span>)
+    <span class="ruby-keyword kw">end</span>
+
+    <span class="ruby-comment cmt">## CAT (save an original copy)</span>
+    <span class="ruby-identifier">fasta_orig</span> = <span class="ruby-identifier">fasta</span>.<span class="ruby-identifier">dup</span> <span class="ruby-keyword kw">if</span> <span class="ruby-identifier">opt</span>[<span class="ruby-identifier">:cat</span>]
+
+    <span class="ruby-comment cmt">## FRACTION the proteins</span>
+    <span class="ruby-keyword kw">if</span> <span class="ruby-identifier">f</span> = <span class="ruby-identifier">opt</span>[<span class="ruby-identifier">:fraction</span>]
+      <span class="ruby-identifier">prefix</span> = <span class="ruby-keyword kw">nil</span>
+      <span class="ruby-keyword kw">if</span> <span class="ruby-identifier">f</span> <span class="ruby-operator">&gt;</span> <span class="ruby-value">1.0</span>
+        <span class="ruby-identifier">prefix</span> = <span class="ruby-identifier">proc</span> {<span class="ruby-operator">|</span><span class="ruby-identifier">cnt</span><span class="ruby-operator">|</span> <span class="ruby-node">&quot;f#{cnt}_&quot;</span> }
+      <span class="ruby-keyword kw">end</span>
+      <span class="ruby-identifier">fasta</span> = <span class="ruby-identifier">fasta</span>.<span class="ruby-identifier">fraction_of_prots</span>(<span class="ruby-identifier">f</span>, <span class="ruby-identifier">prefix</span>)
+    <span class="ruby-keyword kw">end</span>
+
+    <span class="ruby-comment cmt">## PREFIX the proteins</span>
+    <span class="ruby-keyword kw">if</span> <span class="ruby-identifier">pre</span> = <span class="ruby-identifier">opt</span>[<span class="ruby-identifier">:prefix</span>]
+      <span class="ruby-identifier">fasta</span>.<span class="ruby-identifier">header_prefix!</span>(<span class="ruby-identifier">pre</span>)
+    <span class="ruby-keyword kw">end</span>
+
+    <span class="ruby-comment cmt">## MODIFY the proteins</span>
+    <span class="ruby-identifier">fasta</span>.<span class="ruby-identifier">aaseq!</span>((<span class="ruby-identifier">method</span>.<span class="ruby-identifier">to_s</span> <span class="ruby-operator">+</span> <span class="ruby-value str">'!'</span>).<span class="ruby-identifier">to_sym</span>, <span class="ruby-identifier">opt</span>[<span class="ruby-identifier">:tryptic_peptides</span>])
+
+    <span class="ruby-comment cmt">## CAT (finish it up)</span>
+    <span class="ruby-keyword kw">if</span> <span class="ruby-identifier">opt</span>[<span class="ruby-identifier">:cat</span>]
+      <span class="ruby-identifier">fasta_orig</span> <span class="ruby-operator">&lt;&lt;</span> <span class="ruby-identifier">fasta</span>
+      <span class="ruby-identifier">fasta</span> = <span class="ruby-identifier">fasta_orig</span>
+    <span class="ruby-keyword kw">end</span>
+
+    <span class="ruby-comment cmt">## WRITE out the file</span>
+    <span class="ruby-identifier">fasta</span>.<span class="ruby-identifier">write_file</span>(<span class="ruby-identifier">opt</span>[<span class="ruby-identifier">:out</span>])
+  <span class="ruby-keyword kw">end</span></pre>
+</body>
+</html>

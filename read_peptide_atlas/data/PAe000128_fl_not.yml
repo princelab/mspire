@@ -1,0 +1,135 @@
+--- 
+- time_to_access: 3.3e-05
+  first_scan: 
+    last_peak: 
+    - 1597.77905273438
+    - 5448.0
+    num: 1
+    first_peak: 
+    - 450.014221191406
+    - 4737.0
+  scan_count: 4436
+  file_size: 19980194
+  last_scan: 
+    last_peak: 
+    - 521.19189453125
+    - 2887.0
+    num: 4436
+    first_peak: 
+    - 208.967498779297
+    - 4129.0
+  scans_to_read: fl
+  total_time_to_read_and_access: 11.432344
+  time_to_read: 11.432295
+  lazy_type: :not
+  end_time: 5878.89
+  start_time: 120.08
+  file: JApox15.mzXML
+--- 
+- time_to_access: 3.1e-05
+  first_scan: 
+    last_peak: 
+    - 1599.6826171875
+    - 44041.0
+    num: 1
+    first_peak: 
+    - 453.656555175781
+    - 10986.0
+  scan_count: 4436
+  file_size: 19055709
+  last_scan: 
+    last_peak: 
+    - 792.584106445312
+    - 6553.0
+    num: 4436
+    first_peak: 
+    - 410.809387207031
+    - 8378.0
+  scans_to_read: fl
+  total_time_to_read_and_access: 11.306772
+  time_to_read: 11.306725
+  lazy_type: :not
+  end_time: 5880.92
+  start_time: 120.03
+  file: JApox16.mzXML
+--- 
+- time_to_access: 3.1e-05
+  first_scan: 
+    last_peak: 
+    - 1597.35400390625
+    - 8031.0
+    num: 1
+    first_peak: 
+    - 450.095642089844
+    - 4275.0
+  scan_count: 4410
+  file_size: 19588383
+  last_scan: 
+    last_peak: 
+    - 741.294311523438
+    - 5967.0
+    num: 4410
+    first_peak: 
+    - 741.294311523438
+    - 5967.0
+  scans_to_read: fl
+  total_time_to_read_and_access: 11.570873
+  time_to_read: 11.570827
+  lazy_type: :not
+  end_time: 5879.59
+  start_time: 120.09
+  file: JApox19.mzXML
+--- 
+- time_to_access: 3.1e-05
+  first_scan: 
+    last_peak: 
+    - 1598.96875
+    - 15374.0
+    num: 1
+    first_peak: 
+    - 455.089172363281
+    - 8275.0
+  scan_count: 4450
+  file_size: 19059071
+  last_scan: 
+    last_peak: 
+    - 788.115844726562
+    - 5964.0
+    num: 4450
+    first_peak: 
+    - 566.81494140625
+    - 5667.0
+  scans_to_read: fl
+  total_time_to_read_and_access: 11.426939
+  time_to_read: 11.426894
+  lazy_type: :not
+  end_time: 5880.7
+  start_time: 120.02
+  file: JApox23.mzXML
+--- 
+- time_to_access: 3.1e-05
+  first_scan: 
+    last_peak: 
+    - 1598.052734375
+    - 3999.0
+    num: 1
+    first_peak: 
+    - 449.999938964844
+    - 1.0
+  scan_count: 4418
+  file_size: 18603672
+  last_scan: 
+    last_peak: 
+    - 520.2490234375
+    - 5259.0
+    num: 4418
+    first_peak: 
+    - 356.533447265625
+    - 6282.0
+  scans_to_read: fl
+  total_time_to_read_and_access: 11.182036
+  time_to_read: 11.181991
+  lazy_type: :not
+  end_time: 5880.14
+  start_time: 120.1
+  file: JApox24.mzXML

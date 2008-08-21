@@ -1,0 +1,68 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.1//EN" "http://www.w3.org/TR/xhtml11/DTD/xhtml11.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en">
+  <head>
+    <title>Preparing files for OBI-Warp</title>
+    <link href="../default.css" rel="stylesheet" />
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+  </head>
+  <body>
+    <div id="logo">
+        <a href=../index.html><img src=../images/mspire_logo.png border="0" alt="mspire - mass spectrometry proteomics in ruby"/></a>
+  </div>
+    <div id="header">
+      <h1>Preparing files for OBI-Warp</h1>
+    </div>
+
+    <div id="headerbar" class="bar">
+        <!-- <span class="left">Location: <a href="../index.html" title="mspire">mspire</a> / <a href="./index.html" title="MS">MS</a> / <a href="./obiwarp.html" title="Preparing files for OBI-Warp">Preparing files for OBI-Warp</a></span> -->
+      <!--<span class="right">Language: <a href="./obiwarp.html" title="en">en</a></span>-->
+      <div style="clear:both"></div>
+    </div>
+
+    <div id="menu">
+        <div class="webgen-menu-vert "><ul><li ><a href="../index.html" title="Home">Home</a></li><li class="webgen-menu-submenu"><a href="../install/index.html" title="Install">Install</a></li><li class="webgen-menu-submenu webgen-menu-submenu-inhierarchy"><a href="./index.html" title="MS">MS</a><ul><li ><a href="./msrun.html" title="MSRun">MSRun</a></li><li class="webgen-menu-item-selected"><a href="./obiwarp.html" title="Preparing files for OBI-Warp">Preparing files for OBI-Warp</a></li></ul></li><li class="webgen-menu-submenu"><a href="../spec_id/index.html" title="SpecID">SpecID</a></li><li class="webgen-menu-submenu"><a href="../tutorial/index.html" title="Tutorials">Tutorials</a></li></ul></div>
+        <a style="font-size:130%; padding-left:20px" href="rdoc/index.html">rdoc</a>
+        <br/>
+        <a style="font-size:85%; padding-left:20px" href="http://rubyforge.org/projects/mspire/">Rubyforge Project Page</a>
+        <br/>
+        <br/>
+        <br/>
+        <br/>
+        <a href="http://www.ruby-lang.org/en/"><img style="padding-left:20px" src=../images/ruby_logo_small.png border="0" alt="Ruby Programming Language"/></a>
+    </div>
+
+    <div id="body">
+      <p>mspire can be used to prepare .lmat files for chromatographic alignment in OBI-Warp</p>
+
+<p>More information on the .lmat format and other possible conversion tools can
+be found on the <a href="http://obi-warp.sourceforge.net/tutorials/mass_spectrometry_alignment.html">OBI-Warp site</a></p>
+
+<p>The converter <code>ms_to_lmat.rb</code> will take mzXMl or mzData files and convert raw MS spectra into a rectilinear grid of points that can be used for alignment.  The script is run:</p>
+
+<pre><code>ms_to_lmat.rb file.mzXML
+</code></pre>
+
+<p>If the scans in the file do not have 'startMz' or 'endMz' tags (e.g., in many mzXML 2.X files), you may want to indicate the bounds on the matrix (although mspire will attempt to determine these on-the-fly):</p>
+
+<pre><code>ms_to_lmat.rb --mz_start 300 --mz_end 1500 file.mzXML
+</code></pre>
+
+<p>For high resolution data you may want to decrease the m/z step size you are using:</p>
+
+<pre><code>ms_to_lmat.rb --mz_inc 0.01 file.mzXML
+</code></pre>
+
+<p>For ascii output (an .lmata file) use the --ascii flag:</p>
+
+<pre><code>ms_to_lmat.rb --ascii file.mzXML   # =&gt; file.lmata
+</code></pre>
+
+<p>Type 'ms_to_lmat.rb' for more options.</p>
+    </div>
+
+    <div id="footer" class="bar">
+      Last update: <i>Monday, August 18 10:50:23 MDT 2008</i>
+    </div>
+  </body>
+</html>

@@ -1,0 +1,2268 @@
+--- 
+- time_to_access: 3.6e-05
+  first_scan: 
+    last_peak: 
+    - 1730.04516601562
+    - 14217.0
+    num: 1
+    first_peak: 
+    - 400.466735839844
+    - 82275.0
+  scan_count: 5693
+  file_size: 27420628
+  last_scan: 
+    last_peak: 
+    - 1795.45751953125
+    - 32476.0
+    num: 5693
+    first_peak: 
+    - 400.298461914062
+    - 135861.0
+  scans_to_read: fl
+  total_time_to_read_and_access: 19.1156
+  time_to_read: 19.11555
+  lazy_type: :not
+  end_time: 10559.34
+  start_time: 300.08
+  file: HFHs100_02_2.mzXML
+--- 
+- time_to_access: 3.3e-05
+  first_scan: 
+    last_peak: 
+    - 1622.01953125
+    - 1045.0
+    num: 1
+    first_peak: 
+    - 400.391906738281
+    - 91578.0
+  scan_count: 5828
+  file_size: 27790628
+  last_scan: 
+    last_peak: 
+    - 1789.63720703125
+    - 29135.0
+    num: 5828
+    first_peak: 
+    - 400.347351074219
+    - 209831.0
+  scans_to_read: fl
+  total_time_to_read_and_access: 20.516428
+  time_to_read: 20.516382
+  lazy_type: :not
+  end_time: 10559.15
+  start_time: 300.05
+  file: HFHs100_03_2.mzXML
+--- 
+- time_to_access: 3.1e-05
+  first_scan: 
+    last_peak: 
+    - 1799.81518554688
+    - 27417.0
+    num: 1
+    first_peak: 
+    - 400.310180664062
+    - 120721.0
+  scan_count: 5843
+  file_size: 30838919
+  last_scan: 
+    last_peak: 
+    - 1799.80981445312
+    - 12341.0
+    num: 5843
+    first_peak: 
+    - 400.4951171875
+    - 101301.0
+  scans_to_read: fl
+  total_time_to_read_and_access: 22.795844
+  time_to_read: 22.795799
+  lazy_type: :not
+  end_time: 10558.71
+  start_time: 300.06
+  file: HFHs100_04_2.mzXML
+--- 
+- time_to_access: 3.2e-05
+  first_scan: 
+    last_peak: 
+    - 1799.61547851562
+    - 33202.0
+    num: 1
+    first_peak: 
+    - 400.492370605469
+    - 116109.0
+  scan_count: 5851
+  file_size: 25764580
+  last_scan: 
+    last_peak: 
+    - 1794.7822265625
+    - 21851.0
+    num: 5851
+    first_peak: 
+    - 400.346801757812
+    - 154949.0
+  scans_to_read: fl
+  total_time_to_read_and_access: 19.332464
+  time_to_read: 19.332419
+  lazy_type: :not
+  end_time: 10559.39
+  start_time: 300.03
+  file: HFHs100_05_2.mzXML
+--- 
+- time_to_access: 3.3e-05
+  first_scan: 
+    last_peak: 
+    - 1714.23999023438
+    - 2445.0
+    num: 1
+    first_peak: 
+    - 400.273864746094
+    - 53294.0
+  scan_count: 5722
+  file_size: 23447981
+  last_scan: 
+    last_peak: 
+    - 755.051147460938
+    - 2830.0
+    num: 5722
+    first_peak: 
+    - 149.170166015625
+    - 11428.0
+  scans_to_read: fl
+  total_time_to_read_and_access: 17.374492
+  time_to_read: 17.374445
+  lazy_type: :not
+  end_time: 10564.46
+  start_time: 300.09
+  file: HFHs100_06_2.mzXML
+--- 
+- time_to_access: 3.2e-05
+  first_scan: 
+    last_peak: 
+    - 1721.4580078125
+    - 3328.0
+    num: 1
+    first_peak: 
+    - 400.430419921875
+    - 68137.0
+  scan_count: 5777
+  file_size: 32967874
+  last_scan: 
+    last_peak: 
+    - 1196.04174804688
+    - 6653.0
+    num: 5777
+    first_peak: 
+    - 379.975524902344
+    - 1412.0
+  scans_to_read: fl
+  total_time_to_read_and_access: 24.52734
+  time_to_read: 24.527294
+  lazy_type: :not
+  end_time: 10558.71
+  start_time: 300.08
+  file: HFHs100_07_2.mzXML
+--- 
+- time_to_access: 3.2e-05
+  first_scan: 
+    last_peak: 
+    - 1790.72485351562
+    - 982.0
+    num: 1
+    first_peak: 
+    - 400.438232421875
+    - 79130.0
+  scan_count: 5700
+  file_size: 32089354
+  last_scan: 
+    last_peak: 
+    - 1796.19311523438
+    - 27693.0
+    num: 5700
+    first_peak: 
+    - 400.2099609375
+    - 163595.0
+  scans_to_read: fl
+  total_time_to_read_and_access: 23.930734
+  time_to_read: 23.930687
+  lazy_type: :not
+  end_time: 10559.96
+  start_time: 300.1099
+  file: HFHs100_09_2.mzXML
+--- 
+- time_to_access: 3.2e-05
+  first_scan: 
+    last_peak: 
+    - 1390.65673828125
+    - 3507.0
+    num: 1
+    first_peak: 
+    - 400.325317382812
+    - 10732.0
+  scan_count: 5913
+  file_size: 38310313
+  last_scan: 
+    last_peak: 
+    - 1799.55541992188
+    - 46322.0
+    num: 5913
+    first_peak: 
+    - 401.090148925781
+    - 132308.0
+  scans_to_read: fl
+  total_time_to_read_and_access: 29.642663
+  time_to_read: 29.642617
+  lazy_type: :not
+  end_time: 10559.8
+  start_time: 300.06
+  file: HFHs100_11_1.mzXML
+--- 
+- time_to_access: 3.2e-05
+  first_scan: 
+    last_peak: 
+    - 1769.12866210938
+    - 2229.0
+    num: 1
+    first_peak: 
+    - 400.478271484375
+    - 51904.0
+  scan_count: 6071
+  file_size: 37618092
+  last_scan: 
+    last_peak: 
+    - 1734.72119140625
+    - 5600.0
+    num: 6071
+    first_peak: 
+    - 400.374145507812
+    - 85975.0
+  scans_to_read: fl
+  total_time_to_read_and_access: 28.332278
+  time_to_read: 28.332232
+  lazy_type: :not
+  end_time: 10559.56
+  start_time: 300.1099
+  file: HFHs100_11_2.mzXML
+--- 
+- time_to_access: 3.3e-05
+  first_scan: 
+    last_peak: 
+    - 1722.78637695312
+    - 8890.0
+    num: 1
+    first_peak: 
+    - 400.216796875
+    - 32648.0
+  scan_count: 6247
+  file_size: 39189137
+  last_scan: 
+    last_peak: 
+    - 1798.92041015625
+    - 18274.0
+    num: 6247
+    first_peak: 
+    - 400.434448242188
+    - 167362.0
+  scans_to_read: fl
+  total_time_to_read_and_access: 30.277394
+  time_to_read: 30.277347
+  lazy_type: :not
+  end_time: 10559.26
+  start_time: 300.07
+  file: HFHs100_12_1.mzXML
+--- 
+- time_to_access: 3.2e-05
+  first_scan: 
+    last_peak: 
+    - 1750.85913085938
+    - 2495.0
+    num: 1
+    first_peak: 
+    - 400.329406738281
+    - 133098.0
+  scan_count: 6189
+  file_size: 37462593
+  last_scan: 
+    last_peak: 
+    - 1797.6669921875
+    - 7462.0
+    num: 6189
+    first_peak: 
+    - 400.456298828125
+    - 126593.0
+  scans_to_read: fl
+  total_time_to_read_and_access: 28.827949
+  time_to_read: 28.827902
+  lazy_type: :not
+  end_time: 10559.59
+  start_time: 300.07
+  file: HFHs100_12_2.mzXML
+--- 
+- time_to_access: 3.3e-05
+  first_scan: 
+    last_peak: 
+    - 1722.8681640625
+    - 8502.0
+    num: 1
+    first_peak: 
+    - 400.501708984375
+    - 137257.0
+  scan_count: 5902
+  file_size: 38032466
+  last_scan: 
+    last_peak: 
+    - 1797.66333007812
+    - 26242.0
+    num: 5902
+    first_peak: 
+    - 400.241333007812
+    - 163162.0
+  scans_to_read: fl
+  total_time_to_read_and_access: 29.861026
+  time_to_read: 29.86098
+  lazy_type: :not
+  end_time: 10559.7199
+  start_time: 300.04
+  file: HFHs100_13_1.mzXML
+--- 
+- time_to_access: 3.2e-05
+  first_scan: 
+    last_peak: 
+    - 1766.12329101562
+    - 5803.0
+    num: 1
+    first_peak: 
+    - 400.469787597656
+    - 100536.0
+  scan_count: 5874
+  file_size: 38963964
+  last_scan: 
+    last_peak: 
+    - 1799.8349609375
+    - 2849.0
+    num: 5874
+    first_peak: 
+    - 400.527038574219
+    - 143018.0
+  scans_to_read: fl
+  total_time_to_read_and_access: 30.222693
+  time_to_read: 30.222647
+  lazy_type: :not
+  end_time: 10558.6
+  start_time: 300.08
+  file: HFHs100_13_2.mzXML
+--- 
+- time_to_access: 3.1e-05
+  first_scan: 
+    last_peak: 
+    - 1721.87255859375
+    - 7497.0
+    num: 1
+    first_peak: 
+    - 400.436157226562
+    - 80471.0
+  scan_count: 5823
+  file_size: 37329425
+  last_scan: 
+    last_peak: 
+    - 1798.244140625
+    - 1448.0
+    num: 5823
+    first_peak: 
+    - 400.380065917969
+    - 83740.0
+  scans_to_read: fl
+  total_time_to_read_and_access: 28.278892
+  time_to_read: 28.278845
+  lazy_type: :not
+  end_time: 10559.86
+  start_time: 300.05
+  file: HFHs100_14_1.mzXML
+--- 
+- time_to_access: 3.2e-05
+  first_scan: 
+    last_peak: 
+    - 1723.13159179688
+    - 7288.0
+    num: 1
+    first_peak: 
+    - 400.4599609375
+    - 86607.0
+  scan_count: 5912
+  file_size: 37722422
+  last_scan: 
+    last_peak: 
+    - 1795.27368164062
+    - 6835.0
+    num: 5912
+    first_peak: 
+    - 400.439025878906
+    - 108731.0
+  scans_to_read: fl
+  total_time_to_read_and_access: 28.789675
+  time_to_read: 28.789628
+  lazy_type: :not
+  end_time: 10558.94
+  start_time: 300.02
+  file: HFHs100_14_2.mzXML
+--- 
+- time_to_access: 3.2e-05
+  first_scan: 
+    last_peak: 
+    - 1621.96142578125
+    - 4363.0
+    num: 1
+    first_peak: 
+    - 400.410888671875
+    - 58477.0
+  scan_count: 5874
+  file_size: 38906061
+  last_scan: 
+    last_peak: 
+    - 1799.12280273438
+    - 2235.0
+    num: 5874
+    first_peak: 
+    - 400.436401367188
+    - 75789.0
+  scans_to_read: fl
+  total_time_to_read_and_access: 29.908183
+  time_to_read: 29.908135
+  lazy_type: :not
+  end_time: 10558.26
+  start_time: 300.04
+  file: HFHs100_15_1.mzXML
+--- 
+- time_to_access: 3.2e-05
+  first_scan: 
+    last_peak: 
+    - 1623.02319335938
+    - 3003.0
+    num: 1
+    first_peak: 
+    - 400.424255371094
+    - 72312.0
+  scan_count: 5926
+  file_size: 36550316
+  last_scan: 
+    last_peak: 
+    - 1798.1064453125
+    - 897.0
+    num: 5926
+    first_peak: 
+    - 400.512634277344
+    - 74374.0
+  scans_to_read: fl
+  total_time_to_read_and_access: 27.752786
+  time_to_read: 27.75274
+  lazy_type: :not
+  end_time: 10558.82
+  start_time: 300.06
+  file: HFHs100_15_2.mzXML
+--- 
+- time_to_access: 3.5e-05
+  first_scan: 
+    last_peak: 
+    - 1721.82202148438
+    - 2654.0
+    num: 1
+    first_peak: 
+    - 400.465270996094
+    - 37596.0
+  scan_count: 5970
+  file_size: 39123184
+  last_scan: 
+    last_peak: 
+    - 1796.85791015625
+    - 5129.0
+    num: 5970
+    first_peak: 
+    - 400.449890136719
+    - 81257.0
+  scans_to_read: fl
+  total_time_to_read_and_access: 29.979604
+  time_to_read: 29.979557
+  lazy_type: :not
+  end_time: 10558.84
+  start_time: 300.06
+  file: HFHs100_16_1.mzXML
+--- 
+- time_to_access: 3.3e-05
+  first_scan: 
+    last_peak: 
+    - 1789.93505859375
+    - 3933.0
+    num: 1
+    first_peak: 
+    - 400.375854492188
+    - 87768.0
+  scan_count: 6032
+  file_size: 37728536
+  last_scan: 
+    last_peak: 
+    - 1766.5263671875
+    - 4755.0
+    num: 6032
+    first_peak: 
+    - 400.69775390625
+    - 82915.0
+  scans_to_read: fl
+  total_time_to_read_and_access: 29.18017
+  time_to_read: 29.180123
+  lazy_type: :not
+  end_time: 10559.44
+  start_time: 300.09
+  file: HFHs100_16_2.mzXML
+--- 
+- time_to_access: 3.2e-05
+  first_scan: 
+    last_peak: 
+    - 1621.68774414062
+    - 7043.0
+    num: 1
+    first_peak: 
+    - 400.3583984375
+    - 52138.0
+  scan_count: 5936
+  file_size: 40429850
+  last_scan: 
+    last_peak: 
+    - 1798.87768554688
+    - 4406.0
+    num: 5936
+    first_peak: 
+    - 400.562072753906
+    - 87764.0
+  scans_to_read: fl
+  total_time_to_read_and_access: 31.013152
+  time_to_read: 31.013105
+  lazy_type: :not
+  end_time: 10559.32
+  start_time: 300.05
+  file: HFHs100_17_1.mzXML
+--- 
+- time_to_access: 3.2e-05
+  first_scan: 
+    last_peak: 
+    - 1686.59057617188
+    - 831.0
+    num: 1
+    first_peak: 
+    - 400.382873535156
+    - 46707.0
+  scan_count: 6028
+  file_size: 37437786
+  last_scan: 
+    last_peak: 
+    - 1797.28344726562
+    - 4443.0
+    num: 6028
+    first_peak: 
+    - 400.529174804688
+    - 79240.0
+  scans_to_read: fl
+  total_time_to_read_and_access: 28.431622
+  time_to_read: 28.431576
+  lazy_type: :not
+  end_time: 10559.17
+  start_time: 300.1099
+  file: HFHs100_17_2.mzXML
+--- 
+- time_to_access: 3.3e-05
+  first_scan: 
+    last_peak: 
+    - 1722.81030273438
+    - 4416.0
+    num: 1
+    first_peak: 
+    - 400.433471679688
+    - 74750.0
+  scan_count: 5979
+  file_size: 45465173
+  last_scan: 
+    last_peak: 
+    - 1789.62622070312
+    - 1398.0
+    num: 5979
+    first_peak: 
+    - 400.480529785156
+    - 79372.0
+  scans_to_read: fl
+  total_time_to_read_and_access: 36.751416
+  time_to_read: 36.751369
+  lazy_type: :not
+  end_time: 10559.53
+  start_time: 300.02
+  file: HFHs100_18_1.mzXML
+--- 
+- time_to_access: 3.2e-05
+  first_scan: 
+    last_peak: 
+    - 1592.306640625
+    - 3577.0
+    num: 1
+    first_peak: 
+    - 400.424255371094
+    - 53140.0
+  scan_count: 5925
+  file_size: 38077710
+  last_scan: 
+    last_peak: 
+    - 1798.35546875
+    - 3644.0
+    num: 5925
+    first_peak: 
+    - 400.309692382812
+    - 58347.0
+  scans_to_read: fl
+  total_time_to_read_and_access: 28.83551
+  time_to_read: 28.835465
+  lazy_type: :not
+  end_time: 10559.7699
+  start_time: 300.07
+  file: HFHs100_18_2.mzXML
+--- 
+- time_to_access: 3.2e-05
+  first_scan: 
+    last_peak: 
+    - 1797.36840820312
+    - 902.0
+    num: 1
+    first_peak: 
+    - 400.439147949219
+    - 138710.0
+  scan_count: 6150
+  file_size: 35381133
+  last_scan: 
+    last_peak: 
+    - 1797.27416992188
+    - 93022.0
+    num: 6150
+    first_peak: 
+    - 400.291748046875
+    - 320131.0
+  scans_to_read: fl
+  total_time_to_read_and_access: 27.286908
+  time_to_read: 27.286861
+  lazy_type: :not
+  end_time: 10558.84
+  start_time: 300.12
+  file: HFHs100_19_2.mzXML
+--- 
+- time_to_access: 3.2e-05
+  first_scan: 
+    last_peak: 
+    - 1721.55004882812
+    - 2909.0
+    num: 1
+    first_peak: 
+    - 400.622863769531
+    - 151269.0
+  scan_count: 6042
+  file_size: 36734420
+  last_scan: 
+    last_peak: 
+    - 998.40966796875
+    - 4300.0
+    num: 6042
+    first_peak: 
+    - 328.956970214844
+    - 1492.0
+  scans_to_read: fl
+  total_time_to_read_and_access: 27.586741
+  time_to_read: 27.586695
+  lazy_type: :not
+  end_time: 10563.44
+  start_time: 300.04
+  file: HFHs100_20_2.mzXML
+--- 
+- time_to_access: 3.3e-05
+  first_scan: 
+    last_peak: 
+    - 1622.1689453125
+    - 3583.0
+    num: 1
+    first_peak: 
+    - 400.474670410156
+    - 177323.0
+  scan_count: 5769
+  file_size: 36026364
+  last_scan: 
+    last_peak: 
+    - 1799.6396484375
+    - 308642.0
+    num: 5769
+    first_peak: 
+    - 400.4658203125
+    - 171936.0
+  scans_to_read: fl
+  total_time_to_read_and_access: 27.184267
+  time_to_read: 27.18422
+  lazy_type: :not
+  end_time: 10558.92
+  start_time: 300.08
+  file: HFHs100_22_2.mzXML
+--- 
+- time_to_access: 3.1e-05
+  first_scan: 
+    last_peak: 
+    - 1722.08471679688
+    - 3411.0
+    num: 1
+    first_peak: 
+    - 400.511535644531
+    - 59320.0
+  scan_count: 5635
+  file_size: 33048294
+  last_scan: 
+    last_peak: 
+    - 1982.5732421875
+    - 1602.0
+    num: 5635
+    first_peak: 
+    - 815.543579101562
+    - 6823.0
+  scans_to_read: fl
+  total_time_to_read_and_access: 25.108312
+  time_to_read: 25.108264
+  lazy_type: :not
+  end_time: 10557.96
+  start_time: 300.07
+  file: HFHs100_29_2.mzXML
+--- 
+- time_to_access: 3.2e-05
+  first_scan: 
+    last_peak: 
+    - 1799.76489257812
+    - 117946.0
+    num: 1
+    first_peak: 
+    - 400.579528808594
+    - 44241.0
+  scan_count: 5939
+  file_size: 58960452
+  last_scan: 
+    last_peak: 
+    - 1421.99560546875
+    - 3585.0
+    num: 5939
+    first_peak: 
+    - 400.216613769531
+    - 24162.0
+  scans_to_read: fl
+  total_time_to_read_and_access: 46.365274
+  time_to_read: 46.365226
+  lazy_type: :not
+  end_time: 9718.4
+  start_time: 0.04
+  file: HFHS-100-b1.mzXML
+--- 
+- time_to_access: 3.3e-05
+  first_scan: 
+    last_peak: 
+    - 1689.79809570312
+    - 1294.0
+    num: 1
+    first_peak: 
+    - 400.147521972656
+    - 5391.0
+  scan_count: 5829
+  file_size: 58068073
+  last_scan: 
+    last_peak: 
+    - 1765.35668945312
+    - 3527.0
+    num: 5829
+    first_peak: 
+    - 400.254455566406
+    - 35501.0
+  scans_to_read: fl
+  total_time_to_read_and_access: 47.197116
+  time_to_read: 47.19707
+  lazy_type: :not
+  end_time: 9719.74
+  start_time: 0.04
+  file: HFHS-100-b2.mzXML
+--- 
+- time_to_access: 3.4e-05
+  first_scan: 
+    last_peak: 
+    - 689.093505859375
+    - 4360.0
+    num: 1
+    first_peak: 
+    - 689.093505859375
+    - 4360.0
+  scan_count: 4901
+  file_size: 65067700
+  last_scan: 
+    last_peak: 
+    - 1799.6630859375
+    - 9388.0
+    num: 4901
+    first_peak: 
+    - 400.314270019531
+    - 17664.0
+  scans_to_read: fl
+  total_time_to_read_and_access: 54.190051
+  time_to_read: 54.190003
+  lazy_type: :not
+  end_time: 8039.79
+  start_time: 300.04
+  file: HFH_s100b_b1.mzXML
+--- 
+- time_to_access: 3.1e-05
+  first_scan: 
+    last_peak: 
+    - 1665.85473632812
+    - 6880.0
+    num: 1
+    first_peak: 
+    - 428.704711914062
+    - 1971.0
+  scan_count: 4346
+  file_size: 32951128
+  last_scan: 
+    last_peak: 
+    - 1796.9326171875
+    - 15746.0
+    num: 4346
+    first_peak: 
+    - 400.419555664062
+    - 96398.0
+  scans_to_read: fl
+  total_time_to_read_and_access: 26.690048
+  time_to_read: 26.690001
+  lazy_type: :not
+  end_time: 8038.55
+  start_time: 300.03
+  file: HFH_s100b_b1r.mzXML
+--- 
+- time_to_access: 3.3e-05
+  first_scan: 
+    last_peak: 
+    - 662.125244140625
+    - 2417.0
+    num: 1
+    first_peak: 
+    - 448.660217285156
+    - 7038.0
+  scan_count: 4564
+  file_size: 34650842
+  last_scan: 
+    last_peak: 
+    - 1799.5556640625
+    - 7819.0
+    num: 4564
+    first_peak: 
+    - 400.832580566406
+    - 87959.0
+  scans_to_read: fl
+  total_time_to_read_and_access: 25.509472
+  time_to_read: 25.509425
+  lazy_type: :not
+  end_time: 8039.17
+  start_time: 300.08
+  file: HFH_s100b_c1.mzXML
+--- 
+- time_to_access: 3.3e-05
+  first_scan: 
+    last_peak: 
+    - 1735.30200195312
+    - 9316.0
+    num: 1
+    first_peak: 
+    - 401.010192871094
+    - 18534.0
+  scan_count: 4728
+  file_size: 34196761
+  last_scan: 
+    last_peak: 
+    - 1797.82739257812
+    - 9218.0
+    num: 4728
+    first_peak: 
+    - 400.379699707031
+    - 76245.0
+  scans_to_read: fl
+  total_time_to_read_and_access: 25.397309
+  time_to_read: 25.397262
+  lazy_type: :not
+  end_time: 8039.34
+  start_time: 300.08
+  file: HFH_s100b_c2.mzXML
+--- 
+- time_to_access: 3.3e-05
+  first_scan: 
+    last_peak: 
+    - 1799.65869140625
+    - 326148.0
+    num: 1
+    first_peak: 
+    - 400.72265625
+    - 1441866.0
+  scan_count: 4660
+  file_size: 34601316
+  last_scan: 
+    last_peak: 
+    - 1799.6708984375
+    - 148269.0
+    num: 4660
+    first_peak: 
+    - 400.178527832031
+    - 44260.0
+  scans_to_read: fl
+  total_time_to_read_and_access: 26.597076
+  time_to_read: 26.597029
+  lazy_type: :not
+  end_time: 8039.21
+  start_time: 300.06
+  file: HFH_s100b_d1.mzXML
+--- 
+- time_to_access: 3.1e-05
+  first_scan: 
+    last_peak: 
+    - 1265.45263671875
+    - 1959.0
+    num: 1
+    first_peak: 
+    - 520.20361328125
+    - 2177.0
+  scan_count: 4792
+  file_size: 33451842
+  last_scan: 
+    last_peak: 
+    - 1798.42260742188
+    - 3003.0
+    num: 4792
+    first_peak: 
+    - 400.423095703125
+    - 62057.0
+  scans_to_read: fl
+  total_time_to_read_and_access: 25.377332
+  time_to_read: 25.377286
+  lazy_type: :not
+  end_time: 8038.61
+  start_time: 300.05
+  file: HFH_s100b_d2.mzXML
+--- 
+- time_to_access: 3.1e-05
+  first_scan: 
+    last_peak: 
+    - 1723.75024414062
+    - 3709.0
+    num: 1
+    first_peak: 
+    - 400.12158203125
+    - 4554.0
+  scan_count: 4440
+  file_size: 38938437
+  last_scan: 
+    last_peak: 
+    - 726.05419921875
+    - 1255.0
+    num: 4440
+    first_peak: 
+    - 149.393005371094
+    - 5905.0
+  scans_to_read: fl
+  total_time_to_read_and_access: 29.822093
+  time_to_read: 29.822047
+  lazy_type: :not
+  end_time: 8038.7
+  start_time: 300.06
+  file: HFH_s100b_e1.mzXML
+--- 
+- time_to_access: 3.1e-05
+  first_scan: 
+    last_peak: 
+    - 503.121276855469
+    - 1940.0
+    num: 1
+    first_peak: 
+    - 401.124084472656
+    - 2051.0
+  scan_count: 4537
+  file_size: 33175520
+  last_scan: 
+    last_peak: 
+    - 1798.14306640625
+    - 1769.0
+    num: 4537
+    first_peak: 
+    - 400.403015136719
+    - 59118.0
+  scans_to_read: fl
+  total_time_to_read_and_access: 24.325731
+  time_to_read: 24.325686
+  lazy_type: :not
+  end_time: 8038.83
+  start_time: 300.06
+  file: HFH_s100b_e2.mzXML
+--- 
+- time_to_access: 3.1e-05
+  first_scan: 
+    last_peak: 
+    - 1621.42041015625
+    - 5019.0
+    num: 1
+    first_peak: 
+    - 400.247131347656
+    - 5690.0
+  scan_count: 4417
+  file_size: 37399462
+  last_scan: 
+    last_peak: 
+    - 804.15966796875
+    - 7090.0
+    num: 4417
+    first_peak: 
+    - 116.526641845703
+    - 2892.0
+  scans_to_read: fl
+  total_time_to_read_and_access: 28.426421
+  time_to_read: 28.426376
+  lazy_type: :not
+  end_time: 8038.68
+  start_time: 300.1
+  file: HFH_s100b_f1.mzXML
+--- 
+- time_to_access: 3.3e-05
+  first_scan: 
+    last_peak: 
+    - 1722.951171875
+    - 3222.0
+    num: 1
+    first_peak: 
+    - 400.974487304688
+    - 71634.0
+  scan_count: 4418
+  file_size: 34355818
+  last_scan: 
+    last_peak: 
+    - 1788.78686523438
+    - 1147.0
+    num: 4418
+    first_peak: 
+    - 400.394348144531
+    - 64646.0
+  scans_to_read: fl
+  total_time_to_read_and_access: 25.560998
+  time_to_read: 25.560951
+  lazy_type: :not
+  end_time: 8038.67
+  start_time: 300.05
+  file: HFH_s100b_f2.mzXML
+--- 
+- time_to_access: 3.7e-05
+  first_scan: 
+    last_peak: 
+    - 1670.95239257812
+    - 1807.0
+    num: 1
+    first_peak: 
+    - 400.349853515625
+    - 13145.0
+  scan_count: 4363
+  file_size: 34363043
+  last_scan: 
+    last_peak: 
+    - 1799.44116210938
+    - 1885.0
+    num: 4363
+    first_peak: 
+    - 400.4453125
+    - 70460.0
+  scans_to_read: fl
+  total_time_to_read_and_access: 25.483233
+  time_to_read: 25.483182
+  lazy_type: :not
+  end_time: 8038.58
+  start_time: 300.04
+  file: HFH_s100b_g1.mzXML
+--- 
+- time_to_access: 3.2e-05
+  first_scan: 
+    last_peak: 
+    - 1721.93359375
+    - 4552.0
+    num: 1
+    first_peak: 
+    - 401.137573242188
+    - 73091.0
+  scan_count: 4384
+  file_size: 33346097
+  last_scan: 
+    last_peak: 
+    - 1798.341796875
+    - 228646.0
+    num: 4384
+    first_peak: 
+    - 401.219177246094
+    - 160456.0
+  scans_to_read: fl
+  total_time_to_read_and_access: 25.268953
+  time_to_read: 25.268907
+  lazy_type: :not
+  end_time: 8039.94
+  start_time: 300.08
+  file: HFH_s100b_g2.mzXML
+--- 
+- time_to_access: 3.2e-05
+  first_scan: 
+    last_peak: 
+    - 1689.72290039062
+    - 3279.0
+    num: 1
+    first_peak: 
+    - 400.204284667969
+    - 8044.0
+  scan_count: 4350
+  file_size: 36837432
+  last_scan: 
+    last_peak: 
+    - 1791.68041992188
+    - 6399.0
+    num: 4350
+    first_peak: 
+    - 400.163696289062
+    - 16847.0
+  scans_to_read: fl
+  total_time_to_read_and_access: 27.252939
+  time_to_read: 27.252892
+  lazy_type: :not
+  end_time: 8038.86
+  start_time: 300.05
+  file: HFH_s100b_h1.mzXML
+--- 
+- time_to_access: 3.2e-05
+  first_scan: 
+    last_peak: 
+    - 1707.88354492188
+    - 2662.0
+    num: 1
+    first_peak: 
+    - 400.524230957031
+    - 28814.0
+  scan_count: 4336
+  file_size: 35020873
+  last_scan: 
+    last_peak: 
+    - 1756.458984375
+    - 7225.0
+    num: 4336
+    first_peak: 
+    - 400.467224121094
+    - 44543.0
+  scans_to_read: fl
+  total_time_to_read_and_access: 26.90815
+  time_to_read: 26.908105
+  lazy_type: :not
+  end_time: 8038.63
+  start_time: 300.1099
+  file: HFH_s100b_h2.mzXML
+--- 
+- time_to_access: 3.3e-05
+  first_scan: 
+    last_peak: 
+    - 0.0
+    - 0.0
+    num: 1
+    first_peak: 
+    - 0.0
+    - 0.0
+  scan_count: 4371
+  file_size: 38634657
+  last_scan: 
+    last_peak: 
+    - 1799.85546875
+    - 2239.0
+    num: 4371
+    first_peak: 
+    - 400.527526855469
+    - 31576.0
+  scans_to_read: fl
+  total_time_to_read_and_access: 29.394861
+  time_to_read: 29.394812
+  lazy_type: :not
+  end_time: 8039.75
+  start_time: 300.05
+  file: HFH_s100b_i1.mzXML
+--- 
+- time_to_access: 3.3e-05
+  first_scan: 
+    last_peak: 
+    - 1722.93798828125
+    - 7720.0
+    num: 1
+    first_peak: 
+    - 401.084533691406
+    - 110960.0
+  scan_count: 4329
+  file_size: 36364105
+  last_scan: 
+    last_peak: 
+    - 1797.83959960938
+    - 4200.0
+    num: 4329
+    first_peak: 
+    - 400.5859375
+    - 120193.0
+  scans_to_read: fl
+  total_time_to_read_and_access: 27.544906
+  time_to_read: 27.544859
+  lazy_type: :not
+  end_time: 8038.74
+  start_time: 300.02
+  file: HFH_s100b_i2.mzXML
+--- 
+- time_to_access: 3.2e-05
+  first_scan: 
+    last_peak: 
+    - 1294.66333007812
+    - 5284.0
+    num: 1
+    first_peak: 
+    - 1236.69921875
+    - 3472.0
+  scan_count: 4442
+  file_size: 43540727
+  last_scan: 
+    last_peak: 
+    - 1799.76806640625
+    - 5912.0
+    num: 4442
+    first_peak: 
+    - 400.351257324219
+    - 32239.0
+  scans_to_read: fl
+  total_time_to_read_and_access: 32.570065
+  time_to_read: 32.570018
+  lazy_type: :not
+  end_time: 8038.36
+  start_time: 300.09
+  file: HFH_s100b_j1.mzXML
+--- 
+- time_to_access: 3.4e-05
+  first_scan: 
+    last_peak: 
+    - 1681.67822265625
+    - 2343.0
+    num: 1
+    first_peak: 
+    - 400.001770019531
+    - 361.0
+  scan_count: 4369
+  file_size: 39403267
+  last_scan: 
+    last_peak: 
+    - 1799.78735351562
+    - 7491.0
+    num: 4369
+    first_peak: 
+    - 400.295654296875
+    - 50373.0
+  scans_to_read: fl
+  total_time_to_read_and_access: 30.835667
+  time_to_read: 30.835618
+  lazy_type: :not
+  end_time: 8039.0499
+  start_time: 300.03
+  file: HFH_s100b_j2.mzXML
+--- 
+- time_to_access: 3.2e-05
+  first_scan: 
+    last_peak: 
+    - 0.0
+    - 0.0
+    num: 1
+    first_peak: 
+    - 0.0
+    - 0.0
+  scan_count: 4506
+  file_size: 44963723
+  last_scan: 
+    last_peak: 
+    - 1799.73315429688
+    - 1.0
+    num: 4506
+    first_peak: 
+    - 400.273620605469
+    - 32550.0
+  scans_to_read: fl
+  total_time_to_read_and_access: 34.625559
+  time_to_read: 34.625515
+  lazy_type: :not
+  end_time: 8038.43
+  start_time: 300.02
+  file: HFH_s100b_k1.mzXML
+--- 
+- time_to_access: 3.2e-05
+  first_scan: 
+    last_peak: 
+    - 1723.22729492188
+    - 6025.0
+    num: 1
+    first_peak: 
+    - 400.199401855469
+    - 10571.0
+  scan_count: 4359
+  file_size: 40534367
+  last_scan: 
+    last_peak: 
+    - 1789.83813476562
+    - 10511.0
+    num: 4359
+    first_peak: 
+    - 400.158874511719
+    - 57055.0
+  scans_to_read: fl
+  total_time_to_read_and_access: 30.832242
+  time_to_read: 30.832197
+  lazy_type: :not
+  end_time: 8039.26
+  start_time: 300.04
+  file: HFH_s100b_k2.mzXML
+--- 
+- time_to_access: 3.1e-05
+  first_scan: 
+    last_peak: 
+    - 849.77685546875
+    - 2620.0
+    num: 1
+    first_peak: 
+    - 849.77685546875
+    - 2620.0
+  scan_count: 4763
+  file_size: 54495744
+  last_scan: 
+    last_peak: 
+    - 1799.49731445312
+    - 57778.0
+    num: 4763
+    first_peak: 
+    - 400.470275878906
+    - 86274.0
+  scans_to_read: fl
+  total_time_to_read_and_access: 41.62144
+  time_to_read: 41.621396
+  lazy_type: :not
+  end_time: 8039.93
+  start_time: 300.05
+  file: HFH_s100b_l1.mzXML
+--- 
+- time_to_access: 3.1e-05
+  first_scan: 
+    last_peak: 
+    - 1622.8349609375
+    - 3556.0
+    num: 1
+    first_peak: 
+    - 401.052856445312
+    - 78553.0
+  scan_count: 4407
+  file_size: 42621122
+  last_scan: 
+    last_peak: 
+    - 1798.21850585938
+    - 3411.0
+    num: 4407
+    first_peak: 
+    - 400.385131835938
+    - 53641.0
+  scans_to_read: fl
+  total_time_to_read_and_access: 33.3233
+  time_to_read: 33.323255
+  lazy_type: :not
+  end_time: 8038.36
+  start_time: 300.04
+  file: HFH_s100b_l2.mzXML
+--- 
+- time_to_access: 3.1e-05
+  first_scan: 
+    last_peak: 
+    - 1720.236328125
+    - 7517.0
+    num: 1
+    first_peak: 
+    - 400.13671875
+    - 8155.0
+  scan_count: 4491
+  file_size: 43442678
+  last_scan: 
+    last_peak: 
+    - 1799.65600585938
+    - 1646.0
+    num: 4491
+    first_peak: 
+    - 400.324340820312
+    - 86606.0
+  scans_to_read: fl
+  total_time_to_read_and_access: 32.816089
+  time_to_read: 32.816044
+  lazy_type: :not
+  end_time: 8038.37
+  start_time: 300.08
+  file: HFH_s100b_m1.mzXML
+--- 
+- time_to_access: 3.3e-05
+  first_scan: 
+    last_peak: 
+    - 1622.51440429688
+    - 2843.0
+    num: 1
+    first_peak: 
+    - 400.652404785156
+    - 35711.0
+  scan_count: 4265
+  file_size: 33042981
+  last_scan: 
+    last_peak: 
+    - 1791.0146484375
+    - 16080.0
+    num: 4265
+    first_peak: 
+    - 400.357482910156
+    - 68782.0
+  scans_to_read: fl
+  total_time_to_read_and_access: 25.198888
+  time_to_read: 25.19884
+  lazy_type: :not
+  end_time: 8038.61
+  start_time: 300.07
+  file: HFH_s100b_m2.mzXML
+--- 
+- time_to_access: 3.1e-05
+  first_scan: 
+    last_peak: 
+    - 1741.62768554688
+    - 3589.0
+    num: 1
+    first_peak: 
+    - 401.078735351562
+    - 43305.0
+  scan_count: 4446
+  file_size: 34222534
+  last_scan: 
+    last_peak: 
+    - 0.0
+    - 0.0
+    num: 4446
+    first_peak: 
+    - 0.0
+    - 0.0
+  scans_to_read: fl
+  total_time_to_read_and_access: 25.320558
+  time_to_read: 25.320513
+  lazy_type: :not
+  end_time: 8047.19
+  start_time: 300.05
+  file: HFH_s100b_n1.mzXML
+--- 
+- time_to_access: 3.2e-05
+  first_scan: 
+    last_peak: 
+    - 1722.2353515625
+    - 6947.0
+    num: 1
+    first_peak: 
+    - 401.028747558594
+    - 84470.0
+  scan_count: 4356
+  file_size: 31092060
+  last_scan: 
+    last_peak: 
+    - 1797.525390625
+    - 6533.0
+    num: 4356
+    first_peak: 
+    - 400.436889648438
+    - 96497.0
+  scans_to_read: fl
+  total_time_to_read_and_access: 23.003342
+  time_to_read: 23.003296
+  lazy_type: :not
+  end_time: 8039.09
+  start_time: 300.1099
+  file: HFH_s100b_n2.mzXML
+--- 
+- time_to_access: 3.2e-05
+  first_scan: 
+    last_peak: 
+    - 1707.90795898438
+    - 4049.0
+    num: 1
+    first_peak: 
+    - 401.015441894531
+    - 79363.0
+  scan_count: 4957
+  file_size: 62785717
+  last_scan: 
+    last_peak: 
+    - 1798.8076171875
+    - 6385.0
+    num: 4957
+    first_peak: 
+    - 400.463745117188
+    - 125222.0
+  scans_to_read: fl
+  total_time_to_read_and_access: 46.811902
+  time_to_read: 46.811857
+  lazy_type: :not
+  end_time: 8038.44
+  start_time: 300.04
+  file: HFH_s100b_o1.mzXML
+--- 
+- time_to_access: 3.3e-05
+  first_scan: 
+    last_peak: 
+    - 1721.552734375
+    - 1310.0
+    num: 1
+    first_peak: 
+    - 401.045043945312
+    - 46939.0
+  scan_count: 4169
+  file_size: 28525540
+  last_scan: 
+    last_peak: 
+    - 1799.79052734375
+    - 8632.0
+    num: 4169
+    first_peak: 
+    - 400.961364746094
+    - 66158.0
+  scans_to_read: fl
+  total_time_to_read_and_access: 23.123439
+  time_to_read: 23.123392
+  lazy_type: :not
+  end_time: 8039.16
+  start_time: 300.05
+  file: HFH_s100b_o2.mzXML
+--- 
+- time_to_access: 3.2e-05
+  first_scan: 
+    last_peak: 
+    - 1669.60595703125
+    - 1732.0
+    num: 1
+    first_peak: 
+    - 400.407409667969
+    - 28739.0
+  scan_count: 5671
+  file_size: 42774558
+  last_scan: 
+    last_peak: 
+    - 966.13134765625
+    - 2225.0
+    num: 5671
+    first_peak: 
+    - 409.924255371094
+    - 1442.0
+  scans_to_read: fl
+  total_time_to_read_and_access: 30.75239
+  time_to_read: 30.752343
+  lazy_type: :not
+  end_time: 9719.07
+  start_time: 0.04
+  file: HFHS-100-c1.mzXML
+--- 
+- time_to_access: 3.1e-05
+  first_scan: 
+    last_peak: 
+    - 1799.2548828125
+    - 254558.0
+    num: 1
+    first_peak: 
+    - 400.415649414062
+    - 379460.0
+  scan_count: 5663
+  file_size: 37442906
+  last_scan: 
+    last_peak: 
+    - 1775.34887695312
+    - 2644.0
+    num: 5663
+    first_peak: 
+    - 400.488098144531
+    - 58498.0
+  scans_to_read: fl
+  total_time_to_read_and_access: 28.243096
+  time_to_read: 28.243052
+  lazy_type: :not
+  end_time: 9719.8
+  start_time: 0.0499
+  file: HFHS-100-c2.mzXML
+--- 
+- time_to_access: 3.3e-05
+  first_scan: 
+    last_peak: 
+    - 1799.66162109375
+    - 416369.0
+    num: 1
+    first_peak: 
+    - 400.290832519531
+    - 78342.0
+  scan_count: 5649
+  file_size: 43905820
+  last_scan: 
+    last_peak: 
+    - 486.942565917969
+    - 3191.0
+    num: 5649
+    first_peak: 
+    - 429.917358398438
+    - 4006.0
+  scans_to_read: fl
+  total_time_to_read_and_access: 33.784747
+  time_to_read: 33.7847
+  lazy_type: :not
+  end_time: 9719.11
+  start_time: 0.04
+  file: HFHS-100-d1.mzXML
+--- 
+- time_to_access: 3.3e-05
+  first_scan: 
+    last_peak: 
+    - 1622.05908203125
+    - 2287.0
+    num: 1
+    first_peak: 
+    - 400.384704589844
+    - 31097.0
+  scan_count: 5660
+  file_size: 34545168
+  last_scan: 
+    last_peak: 
+    - 1799.724609375
+    - 40066.0
+    num: 5660
+    first_peak: 
+    - 400.289367675781
+    - 25913.0
+  scans_to_read: fl
+  total_time_to_read_and_access: 25.977426
+  time_to_read: 25.977379
+  lazy_type: :not
+  end_time: 9716.83
+  start_time: 0.04
+  file: HFHS-100-d2.mzXML
+--- 
+- time_to_access: 3.3e-05
+  first_scan: 
+    last_peak: 
+    - 1799.76293945312
+    - 428098.0
+    num: 1
+    first_peak: 
+    - 401.039306640625
+    - 198922.0
+  scan_count: 5704
+  file_size: 42579819
+  last_scan: 
+    last_peak: 
+    - 1722.11206054688
+    - 2277.0
+    num: 5704
+    first_peak: 
+    - 400.554382324219
+    - 23654.0
+  scans_to_read: fl
+  total_time_to_read_and_access: 31.183117
+  time_to_read: 31.183071
+  lazy_type: :not
+  end_time: 9719.43
+  start_time: 0.04
+  file: HFHS-100-e1.mzXML
+--- 
+- time_to_access: 3.3e-05
+  first_scan: 
+    last_peak: 
+    - 1708.46484375
+    - 1633.0
+    num: 1
+    first_peak: 
+    - 401.086181640625
+    - 1265.0
+  scan_count: 5736
+  file_size: 35272194
+  last_scan: 
+    last_peak: 
+    - 1721.54418945312
+    - 6817.0
+    num: 5736
+    first_peak: 
+    - 400.290283203125
+    - 67225.0
+  scans_to_read: fl
+  total_time_to_read_and_access: 27.662126
+  time_to_read: 27.662079
+  lazy_type: :not
+  end_time: 9719.31
+  start_time: 0.04
+  file: HFHS-100-e2.mzXML
+--- 
+- time_to_access: 3.2e-05
+  first_scan: 
+    last_peak: 
+    - 1799.12817382812
+    - 217700.0
+    num: 1
+    first_peak: 
+    - 400.210021972656
+    - 107038.0
+  scan_count: 5725
+  file_size: 42791259
+  last_scan: 
+    last_peak: 
+    - 1623.578125
+    - 3539.0
+    num: 5725
+    first_peak: 
+    - 400.486145019531
+    - 17458.0
+  scans_to_read: fl
+  total_time_to_read_and_access: 32.01453
+  time_to_read: 32.014484
+  lazy_type: :not
+  end_time: 9718.35
+  start_time: 0.04
+  file: HFHS-100-f1.mzXML
+--- 
+- time_to_access: 3.2e-05
+  first_scan: 
+    last_peak: 
+    - 1799.5556640625
+    - 2595860.0
+    num: 1
+    first_peak: 
+    - 401.32080078125
+    - 259909.0
+  scan_count: 5686
+  file_size: 34103157
+  last_scan: 
+    last_peak: 
+    - 1633.30493164062
+    - 1608.0
+    num: 5686
+    first_peak: 
+    - 400.275085449219
+    - 86410.0
+  scans_to_read: fl
+  total_time_to_read_and_access: 25.91489
+  time_to_read: 25.914844
+  lazy_type: :not
+  end_time: 9719.08
+  start_time: 0.04
+  file: HFHS-100-f2.mzXML
+--- 
+- time_to_access: 3.2e-05
+  first_scan: 
+    last_peak: 
+    - 1799.72875976562
+    - 5311.0
+    num: 1
+    first_peak: 
+    - 400.546936035156
+    - 17367.0
+  scan_count: 5751
+  file_size: 41554380
+  last_scan: 
+    last_peak: 
+    - 1621.67797851562
+    - 1704.0
+    num: 5751
+    first_peak: 
+    - 400.266540527344
+    - 11458.0
+  scans_to_read: fl
+  total_time_to_read_and_access: 30.851708
+  time_to_read: 30.851662
+  lazy_type: :not
+  end_time: 9719.1
+  start_time: 0.36
+  file: HFHS-100-g1.mzXML
+--- 
+- time_to_access: 3.4e-05
+  first_scan: 
+    last_peak: 
+    - 1786.45166015625
+    - 1193.0
+    num: 1
+    first_peak: 
+    - 400.251892089844
+    - 13655.0
+  scan_count: 5652
+  file_size: 35329503
+  last_scan: 
+    last_peak: 
+    - 580.630126953125
+    - 2803.0
+    num: 5652
+    first_peak: 
+    - 409.945190429688
+    - 3583.0
+  scans_to_read: fl
+  total_time_to_read_and_access: 28.091093
+  time_to_read: 28.091044
+  lazy_type: :not
+  end_time: 9718.5
+  start_time: 0.04
+  file: HFHS-100-g2.mzXML
+--- 
+- time_to_access: 3.5e-05
+  first_scan: 
+    last_peak: 
+    - 1571.79321289062
+    - 8496.0
+    num: 1
+    first_peak: 
+    - 400.198852539062
+    - 12286.0
+  scan_count: 5847
+  file_size: 42563581
+  last_scan: 
+    last_peak: 
+    - 1780.21728515625
+    - 4399.0
+    num: 5847
+    first_peak: 
+    - 400.285461425781
+    - 31552.0
+  scans_to_read: fl
+  total_time_to_read_and_access: 31.838882
+  time_to_read: 31.838833
+  lazy_type: :not
+  end_time: 9720.01
+  start_time: 0.04
+  file: HFHS-100-h1.mzXML
+--- 
+- time_to_access: 3.1e-05
+  first_scan: 
+    last_peak: 
+    - 1799.712890625
+    - 129728.0
+    num: 1
+    first_peak: 
+    - 400.291259765625
+    - 279631.0
+  scan_count: 5720
+  file_size: 36828123
+  last_scan: 
+    last_peak: 
+    - 1794.68188476562
+    - 5597.0
+    num: 5720
+    first_peak: 
+    - 400.27001953125
+    - 15252.0
+  scans_to_read: fl
+  total_time_to_read_and_access: 28.540444
+  time_to_read: 28.540398
+  lazy_type: :not
+  end_time: 9718.92
+  start_time: 0.04
+  file: HFHS-100-h2.mzXML
+--- 
+- time_to_access: 3.3e-05
+  first_scan: 
+    last_peak: 
+    - 1724.13208007812
+    - 1580.0
+    num: 1
+    first_peak: 
+    - 400.264770507812
+    - 14132.0
+  scan_count: 5767
+  file_size: 40878319
+  last_scan: 
+    last_peak: 
+    - 1756.6591796875
+    - 1308.0
+    num: 5767
+    first_peak: 
+    - 400.504211425781
+    - 23333.0
+  scans_to_read: fl
+  total_time_to_read_and_access: 31.025521
+  time_to_read: 31.025474
+  lazy_type: :not
+  end_time: 9718.81
+  start_time: 0.04
+  file: HFHS-100-i1.mzXML
+--- 
+- time_to_access: 3.2e-05
+  first_scan: 
+    last_peak: 
+    - 1799.25561523438
+    - 411454.0
+    num: 1
+    first_peak: 
+    - 401.122619628906
+    - 80389.0
+  scan_count: 5568
+  file_size: 34224917
+  last_scan: 
+    last_peak: 
+    - 741.071411132812
+    - 8766.0
+    num: 5568
+    first_peak: 
+    - 402.8359375
+    - 1528.0
+  scans_to_read: fl
+  total_time_to_read_and_access: 26.17691
+  time_to_read: 26.176864
+  lazy_type: :not
+  end_time: 9718.83
+  start_time: 0.04
+  file: HFHS-100-i2.mzXML
+--- 
+- time_to_access: 3.1e-05
+  first_scan: 
+    last_peak: 
+    - 1799.64306640625
+    - 30535.0
+    num: 1
+    first_peak: 
+    - 400.423645019531
+    - 31258.0
+  scan_count: 5764
+  file_size: 40860977
+  last_scan: 
+    last_peak: 
+    - 1622.71704101562
+    - 10766.0
+    num: 5764
+    first_peak: 
+    - 400.259155273438
+    - 28068.0
+  scans_to_read: fl
+  total_time_to_read_and_access: 30.621493
+  time_to_read: 30.621447
+  lazy_type: :not
+  end_time: 9719.81
+  start_time: 0.04
+  file: HFHS-100-j1.mzXML
+--- 
+- time_to_access: 3.2e-05
+  first_scan: 
+    last_peak: 
+    - 1799.603515625
+    - 173982.0
+    num: 1
+    first_peak: 
+    - 400.305725097656
+    - 226700.0
+  scan_count: 5594
+  file_size: 33537924
+  last_scan: 
+    last_peak: 
+    - 1792.5458984375
+    - 5134.0
+    num: 5594
+    first_peak: 
+    - 400.448181152344
+    - 8179.0
+  scans_to_read: fl
+  total_time_to_read_and_access: 24.74341
+  time_to_read: 24.743363
+  lazy_type: :not
+  end_time: 9719.4599
+  start_time: 0.04
+  file: HFHS-100-j2.mzXML
+--- 
+- time_to_access: 3.3e-05
+  first_scan: 
+    last_peak: 
+    - 1530.18310546875
+    - 1475.0
+    num: 1
+    first_peak: 
+    - 404.947021484375
+    - 1512.0
+  scan_count: 5541
+  file_size: 32356853
+  last_scan: 
+    last_peak: 
+    - 1723.75854492188
+    - 4142.0
+    num: 5541
+    first_peak: 
+    - 400.364929199219
+    - 8621.0
+  scans_to_read: fl
+  total_time_to_read_and_access: 25.080392
+  time_to_read: 25.080345
+  lazy_type: :not
+  end_time: 9719.27
+  start_time: 0.04
+  file: HFHS-100-k2.mzXML
+--- 
+- time_to_access: 3.2e-05
+  first_scan: 
+    last_peak: 
+    - 1799.34155273438
+    - 65815.0
+    num: 1
+    first_peak: 
+    - 400.434509277344
+    - 6748.0
+  scan_count: 5698
+  file_size: 39890725
+  last_scan: 
+    last_peak: 
+    - 1621.85400390625
+    - 1258.0
+    num: 5698
+    first_peak: 
+    - 400.934387207031
+    - 68526.0
+  scans_to_read: fl
+  total_time_to_read_and_access: 29.003884
+  time_to_read: 29.003838
+  lazy_type: :not
+  end_time: 9718.39
+  start_time: 0.0499
+  file: HFHS-100-k1.mzXML
+--- 
+- time_to_access: 3.3e-05
+  first_scan: 
+    last_peak: 
+    - 1796.02709960938
+    - 1432.0
+    num: 1
+    first_peak: 
+    - 400.215698242188
+    - 11937.0
+  scan_count: 5692
+  file_size: 40643534
+  last_scan: 
+    last_peak: 
+    - 1635.7275390625
+    - 1693.0
+    num: 5692
+    first_peak: 
+    - 400.123474121094
+    - 4248.0
+  scans_to_read: fl
+  total_time_to_read_and_access: 30.785399
+  time_to_read: 30.785352
+  lazy_type: :not
+  end_time: 9719.02
+  start_time: 0.08
+  file: HFHS-100-l1.mzXML
+--- 
+- time_to_access: 3.1e-05
+  first_scan: 
+    last_peak: 
+    - 1523.890625
+    - 6249.0
+    num: 1
+    first_peak: 
+    - 402.848815917969
+    - 2726.0
+  scan_count: 5536
+  file_size: 34860491
+  last_scan: 
+    last_peak: 
+    - 1595.21899414062
+    - 8339.0
+    num: 5536
+    first_peak: 
+    - 400.358825683594
+    - 24719.0
+  scans_to_read: fl
+  total_time_to_read_and_access: 26.356092
+  time_to_read: 26.356045
+  lazy_type: :not
+  end_time: 9719.75
+  start_time: 0.04
+  file: HFHS-100-l2.mzXML
+--- 
+- time_to_access: 3.2e-05
+  first_scan: 
+    last_peak: 
+    - 1799.4658203125
+    - 180897.0
+    num: 1
+    first_peak: 
+    - 400.577758789062
+    - 21394.0
+  scan_count: 5533
+  file_size: 36373782
+  last_scan: 
+    last_peak: 
+    - 1782.23901367188
+    - 3075.0
+    num: 5533
+    first_peak: 
+    - 400.302673339844
+    - 16093.0
+  scans_to_read: fl
+  total_time_to_read_and_access: 27.488044
+  time_to_read: 27.487998
+  lazy_type: :not
+  end_time: 9719.55
+  start_time: 0.04
+  file: HFHS-100-m1.mzXML
+--- 
+- time_to_access: 4.6e-05
+  first_scan: 
+    last_peak: 
+    - 1799.51806640625
+    - 801493.0
+    num: 1
+    first_peak: 
+    - 401.287902832031
+    - 391591.0
+  scan_count: 5474
+  file_size: 34210606
+  last_scan: 
+    last_peak: 
+    - 1622.12890625
+    - 9672.0
+    num: 5474
+    first_peak: 
+    - 401.020263671875
+    - 42583.0
+  scans_to_read: fl
+  total_time_to_read_and_access: 24.588257
+  time_to_read: 24.588193
+  lazy_type: :not
+  end_time: 9719.29
+  start_time: 0.07
+  file: HFHS-100-m2.mzXML
+--- 
+- time_to_access: 3.3e-05
+  first_scan: 
+    last_peak: 
+    - 1402.625
+    - 4505.0
+    num: 1
+    first_peak: 
+    - 405.277038574219
+    - 2491.0
+  scan_count: 5556
+  file_size: 38895008
+  last_scan: 
+    last_peak: 
+    - 1648.39990234375
+    - 5737.0
+    num: 5556
+    first_peak: 
+    - 400.186462402344
+    - 3504.0
+  scans_to_read: fl
+  total_time_to_read_and_access: 29.409245
+  time_to_read: 29.409198
+  lazy_type: :not
+  end_time: 9719.8199
+  start_time: 0.04
+  file: HFHS-100-n1.mzXML
+--- 
+- time_to_access: 3.2e-05
+  first_scan: 
+    last_peak: 
+    - 1799.68969726562
+    - 94767.0
+    num: 1
+    first_peak: 
+    - 400.199951171875
+    - 2.0
+  scan_count: 5373
+  file_size: 34097621
+  last_scan: 
+    last_peak: 
+    - 1721.76318359375
+    - 1700.0
+    num: 5373
+    first_peak: 
+    - 400.86328125
+    - 39976.0
+  scans_to_read: fl
+  total_time_to_read_and_access: 24.963997
+  time_to_read: 24.963951
+  lazy_type: :not
+  end_time: 9718.92
+  start_time: 0.0499
+  file: HFHS-100-n2.mzXML
+--- 
+- time_to_access: 3.2e-05
+  first_scan: 
+    last_peak: 
+    - 1788.98974609375
+    - 773.0
+    num: 1
+    first_peak: 
+    - 400.22607421875
+    - 21145.0
+  scan_count: 5671
+  file_size: 43426934
+  last_scan: 
+    last_peak: 
+    - 1796.86059570312
+    - 5914.0
+    num: 5671
+    first_peak: 
+    - 400.329345703125
+    - 26146.0
+  scans_to_read: fl
+  total_time_to_read_and_access: 32.579233
+  time_to_read: 32.579187
+  lazy_type: :not
+  end_time: 9718.6899
+  start_time: 0.04
+  file: HFHS-100-o1.mzXML
+--- 
+- time_to_access: 3.3e-05
+  first_scan: 
+    last_peak: 
+    - 1722.572265625
+    - 5069.0
+    num: 1
+    first_peak: 
+    - 400.087585449219
+    - 1399.0
+  scan_count: 6019
+  file_size: 62397669
+  last_scan: 
+    last_peak: 
+    - 1799.45727539062
+    - 42554.0
+    num: 6019
+    first_peak: 
+    - 400.523193359375
+    - 10445.0
+  scans_to_read: fl
+  total_time_to_read_and_access: 48.871058
+  time_to_read: 48.871012
+  lazy_type: :not
+  end_time: 9718.73
+  start_time: 0.04
+  file: HFHS-100-p1.mzXML
+--- 
+- time_to_access: 3.1e-05
+  first_scan: 
+    last_peak: 
+    - 1799.82885742188
+    - 25432.0
+    num: 1
+    first_peak: 
+    - 400.516723632812
+    - 35769.0
+  scan_count: 4644
+  file_size: 47019842
+  last_scan: 
+    last_peak: 
+    - 1799.67016601562
+    - 129570.0
+    num: 4644
+    first_peak: 
+    - 400.551452636719
+    - 165802.0
+  scans_to_read: fl
+  total_time_to_read_and_access: 37.017493
+  time_to_read: 37.017448
+  lazy_type: :not
+  end_time: 7539.43
+  start_time: 0.04
+  file: HFHS-100-q1.mzXML

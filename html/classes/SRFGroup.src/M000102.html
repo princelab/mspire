@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="iso-8859-1"?>
+<!DOCTYPE html 
+     PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+     "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html>
+<head>
+  <title>new (SRFGroup)</title>
+  <meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1" />
+  <link rel="stylesheet" href="../.././rdoc-style.css" type="text/css" media="screen" />
+</head>
+<body class="standalone-code">
+  <pre><span class="ruby-comment cmt"># File lib/spec_id/srf.rb, line 38</span>
+  <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">initialize</span>(<span class="ruby-identifier">filenames</span>=<span class="ruby-keyword kw">nil</span>, <span class="ruby-identifier">filter_hits_by_params</span>=<span class="ruby-keyword kw">true</span>)
+    <span class="ruby-ivar">@filenames</span> = <span class="ruby-identifier">filenames</span>
+    <span class="ruby-ivar">@peps</span> = []
+    <span class="ruby-ivar">@prots</span> = []
+    <span class="ruby-ivar">@srfs</span> = []
+
+    <span class="ruby-comment cmt"># This is essentially duplicated in SQTGroup (should refactor eventually)</span>
+    <span class="ruby-identifier">global_ref_hash</span> = {}
+    <span class="ruby-keyword kw">if</span> <span class="ruby-identifier">filenames</span>
+      <span class="ruby-keyword kw">if</span> <span class="ruby-identifier">filenames</span>.<span class="ruby-identifier">is_a?</span>(<span class="ruby-constant">String</span>) <span class="ruby-operator">&amp;&amp;</span> <span class="ruby-identifier">filenames</span> <span class="ruby-operator">=~</span> <span class="ruby-regexp re">/\.srg$/</span>
+        <span class="ruby-identifier">srg_filename</span> = <span class="ruby-identifier">filenames</span>.<span class="ruby-identifier">dup</span>
+        <span class="ruby-ivar">@filename</span> = <span class="ruby-identifier">srg_filename</span>
+        <span class="ruby-identifier">filenames</span> = <span class="ruby-constant">SRFGroup</span>.<span class="ruby-identifier">srg_to_paths</span>(<span class="ruby-identifier">filenames</span>) 
+        <span class="ruby-identifier">filenames</span>.<span class="ruby-identifier">each</span> <span class="ruby-keyword kw">do</span> <span class="ruby-operator">|</span><span class="ruby-identifier">file</span><span class="ruby-operator">|</span>
+          <span class="ruby-keyword kw">if</span> <span class="ruby-operator">!</span><span class="ruby-constant">File</span>.<span class="ruby-identifier">exist?</span> <span class="ruby-identifier">file</span>
+            <span class="ruby-identifier">puts</span> <span class="ruby-node">&quot;File: #{file} in #{srg_filename} does not exist!&quot;</span>
+            <span class="ruby-identifier">puts</span> <span class="ruby-node">&quot;Please modify #{srg_filename} to point to existing files.&quot;</span>
+            <span class="ruby-identifier">abort</span>
+          <span class="ruby-keyword kw">end</span>
+        <span class="ruby-keyword kw">end</span>
+      <span class="ruby-keyword kw">end</span>
+      <span class="ruby-identifier">filenames</span>.<span class="ruby-identifier">each</span> <span class="ruby-keyword kw">do</span> <span class="ruby-operator">|</span><span class="ruby-identifier">file</span><span class="ruby-operator">|</span>
+        <span class="ruby-ivar">@srfs</span> <span class="ruby-operator">&lt;&lt;</span> <span class="ruby-constant">SRF</span>.<span class="ruby-identifier">new</span>(<span class="ruby-identifier">file</span>, <span class="ruby-ivar">@peps</span>, <span class="ruby-identifier">global_ref_hash</span>)
+      <span class="ruby-keyword kw">end</span>
+      <span class="ruby-ivar">@prots</span> = <span class="ruby-identifier">global_ref_hash</span>.<span class="ruby-identifier">values</span>
+      <span class="ruby-keyword kw">if</span> <span class="ruby-identifier">filter_hits_by_params</span>
+        <span class="ruby-identifier">filter_by_peptide_mass_tolerance</span>
+      <span class="ruby-keyword kw">end</span>
+    <span class="ruby-keyword kw">end</span>
+  <span class="ruby-keyword kw">end</span></pre>
+</body>
+</html>

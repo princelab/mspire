@@ -1,0 +1,594 @@
+--- 
+- time_to_access: 6.8e-05
+  first_scan: 
+    last_peak: 
+    - 0.0
+    - 0.0
+    num: 1
+    first_peak: 
+    - 0.0
+    - 0.0
+  scan_count: 3905
+  file_size: 50719265
+  last_scan: 
+    last_peak: 
+    - 447.306335449219
+    - 2413.0
+    num: 3905
+    first_peak: 
+    - 341.001220703125
+    - 11043.0
+  scans_to_read: fl
+  total_time_to_read_and_access: 31.458763
+  time_to_read: 31.45868
+  lazy_type: :string
+  end_time: 12002.01
+  start_time: 300.08
+  file: Wei_A1.mzXML
+--- 
+- time_to_access: 0.000309
+  first_scan: 
+    last_peak: 
+    - 1321.904296875
+    - 634.0
+    num: 1
+    first_peak: 
+    - 407.890930175781
+    - 1428.0
+  scan_count: 4708
+  file_size: 39700398
+  last_scan: 
+    last_peak: 
+    - 1771.30517578125
+    - 390.0
+    num: 4708
+    first_peak: 
+    - 400.137939453125
+    - 1266.0
+  scans_to_read: fl
+  total_time_to_read_and_access: 25.477443
+  time_to_read: 25.477119
+  lazy_type: :string
+  end_time: 11999.64
+  start_time: 300.09
+  file: Wei_B1.mzXML
+--- 
+- time_to_access: 0.000346
+  first_scan: 
+    last_peak: 
+    - 1322.02661132812
+    - 954.0
+    num: 1
+    first_peak: 
+    - 400.854675292969
+    - 937.0
+  scan_count: 5078
+  file_size: 35481465
+  last_scan: 
+    last_peak: 
+    - 1756.23120117188
+    - 1439.0
+    num: 5078
+    first_peak: 
+    - 400.348876953125
+    - 4427.0
+  scans_to_read: fl
+  total_time_to_read_and_access: 23.492829
+  time_to_read: 23.492467
+  lazy_type: :string
+  end_time: 11999.4
+  start_time: 300.06
+  file: Wei_C1.mzXML
+--- 
+- time_to_access: 0.000208
+  first_scan: 
+    last_peak: 
+    - 1422.193359375
+    - 1611.0
+    num: 1
+    first_peak: 
+    - 411.057189941406
+    - 1021.0
+  scan_count: 5011
+  file_size: 34626008
+  last_scan: 
+    last_peak: 
+    - 1746.53784179688
+    - 864.0
+    num: 5011
+    first_peak: 
+    - 400.226745605469
+    - 3518.0
+  scans_to_read: fl
+  total_time_to_read_and_access: 22.480255
+  time_to_read: 22.480031
+  lazy_type: :string
+  end_time: 11999.7
+  start_time: 300.06
+  file: Wei_D1.mzXML
+--- 
+- time_to_access: 0.000293
+  first_scan: 
+    last_peak: 
+    - 0.0
+    - 0.0
+    num: 1
+    first_peak: 
+    - 0.0
+    - 0.0
+  scan_count: 4965
+  file_size: 38167805
+  last_scan: 
+    last_peak: 
+    - 1728.59545898438
+    - 467.0
+    num: 4965
+    first_peak: 
+    - 400.5302734375
+    - 2369.0
+  scans_to_read: fl
+  total_time_to_read_and_access: 24.638602
+  time_to_read: 24.638294
+  lazy_type: :string
+  end_time: 11997.88
+  start_time: 300.07
+  file: wei_E1.mzXML
+--- 
+- time_to_access: 0.000207
+  first_scan: 
+    last_peak: 
+    - 1554.94213867188
+    - 668.0
+    num: 1
+    first_peak: 
+    - 402.692993164062
+    - 1465.0
+  scan_count: 5093
+  file_size: 36162020
+  last_scan: 
+    last_peak: 
+    - 1642.23413085938
+    - 596.0
+    num: 5093
+    first_peak: 
+    - 400.930114746094
+    - 3334.0
+  scans_to_read: fl
+  total_time_to_read_and_access: 23.716376
+  time_to_read: 23.716153
+  lazy_type: :string
+  end_time: 11999.84
+  start_time: 300.08
+  file: wei_F1.mzXML
+--- 
+- time_to_access: 0.000178
+  first_scan: 
+    last_peak: 
+    - 1409.08276367188
+    - 811.0
+    num: 1
+    first_peak: 
+    - 400.304138183594
+    - 839.0
+  scan_count: 5041
+  file_size: 37093366
+  last_scan: 
+    last_peak: 
+    - 1770.58203125
+    - 562.0
+    num: 5041
+    first_peak: 
+    - 400.163024902344
+    - 1700.0
+  scans_to_read: fl
+  total_time_to_read_and_access: 24.454412
+  time_to_read: 24.45422
+  lazy_type: :string
+  end_time: 11997.85
+  start_time: 300.1
+  file: wei_G1.mzXML
+--- 
+- time_to_access: 0.000262
+  first_scan: 
+    last_peak: 
+    - 1554.7490234375
+    - 2083.0
+    num: 1
+    first_peak: 
+    - 400.318176269531
+    - 442.0
+  scan_count: 5038
+  file_size: 35510341
+  last_scan: 
+    last_peak: 
+    - 1765.6533203125
+    - 2754.0
+    num: 5038
+    first_peak: 
+    - 400.225952148438
+    - 551.0
+  scans_to_read: fl
+  total_time_to_read_and_access: 22.994365
+  time_to_read: 22.994088
+  lazy_type: :string
+  end_time: 11998.63
+  start_time: 300.1099
+  file: wei_H1.mzXML
+--- 
+- time_to_access: 0.000216
+  first_scan: 
+    last_peak: 
+    - 1781.72241210938
+    - 360.0
+    num: 1
+    first_peak: 
+    - 401.163513183594
+    - 2226.0
+  scan_count: 4887
+  file_size: 36012530
+  last_scan: 
+    last_peak: 
+    - 1767.66967773438
+    - 949.0
+    num: 4887
+    first_peak: 
+    - 400.425598144531
+    - 2640.0
+  scans_to_read: fl
+  total_time_to_read_and_access: 23.034611
+  time_to_read: 23.034381
+  lazy_type: :string
+  end_time: 11998.5899
+  start_time: 300.08
+  file: wei_I1.mzXML
+--- 
+- time_to_access: 0.000199
+  first_scan: 
+    last_peak: 
+    - 503.527099609375
+    - 823.0
+    num: 1
+    first_peak: 
+    - 503.527099609375
+    - 823.0
+  scan_count: 4179
+  file_size: 40491883
+  last_scan: 
+    last_peak: 
+    - 1723.00634765625
+    - 428.0
+    num: 4179
+    first_peak: 
+    - 401.142700195312
+    - 2889.0
+  scans_to_read: fl
+  total_time_to_read_and_access: 25.442325
+  time_to_read: 25.442111
+  lazy_type: :string
+  end_time: 11998.36
+  start_time: 300.02
+  file: wei_J1.mzXML
+--- 
+- time_to_access: 0.000431
+  first_scan: 
+    last_peak: 
+    - 579.697509765625
+    - 667.0
+    num: 1
+    first_peak: 
+    - 415.831420898438
+    - 598.0
+  scan_count: 4970
+  file_size: 35204074
+  last_scan: 
+    last_peak: 
+    - 1779.6015625
+    - 350.0
+    num: 4970
+    first_peak: 
+    - 400.281188964844
+    - 2813.0
+  scans_to_read: fl
+  total_time_to_read_and_access: 22.443633
+  time_to_read: 22.443185
+  lazy_type: :string
+  end_time: 11997.1999
+  start_time: 300.09
+  file: wei_J1r.mzXML
+--- 
+- time_to_access: 0.000243
+  first_scan: 
+    last_peak: 
+    - 1117.84228515625
+    - 1113.0
+    num: 1
+    first_peak: 
+    - 400.95751953125
+    - 1417.0
+  scan_count: 5109
+  file_size: 36353918
+  last_scan: 
+    last_peak: 
+    - 1778.87377929688
+    - 757.0
+    num: 5109
+    first_peak: 
+    - 400.872192382812
+    - 5019.0
+  scans_to_read: fl
+  total_time_to_read_and_access: 23.473752
+  time_to_read: 23.473494
+  lazy_type: :string
+  end_time: 11999.35
+  start_time: 300.09
+  file: wei_K1.mzXML
+--- 
+- time_to_access: 0.000323
+  first_scan: 
+    last_peak: 
+    - 1322.0810546875
+    - 1055.0
+    num: 1
+    first_peak: 
+    - 401.004516601562
+    - 2505.0
+  scan_count: 5076
+  file_size: 36794440
+  last_scan: 
+    last_peak: 
+    - 1787.48461914062
+    - 459.0
+    num: 5076
+    first_peak: 
+    - 400.727600097656
+    - 4373.0
+  scans_to_read: fl
+  total_time_to_read_and_access: 23.783264
+  time_to_read: 23.782926
+  lazy_type: :string
+  end_time: 11998.01
+  start_time: 300.07
+  file: wei_L1.mzXML
+--- 
+- time_to_access: 0.000291
+  first_scan: 
+    last_peak: 
+    - 1261.04663085938
+    - 681.0
+    num: 1
+    first_peak: 
+    - 400.299560546875
+    - 708.0
+  scan_count: 4936
+  file_size: 36704709
+  last_scan: 
+    last_peak: 
+    - 1745.53173828125
+    - 515.0
+    num: 4936
+    first_peak: 
+    - 400.7412109375
+    - 5296.0
+  scans_to_read: fl
+  total_time_to_read_and_access: 23.591311
+  time_to_read: 23.591005
+  lazy_type: :string
+  end_time: 11998.5899
+  start_time: 300.1099
+  file: wei_M1.mzXML
+--- 
+- time_to_access: 0.000272
+  first_scan: 
+    last_peak: 
+    - 1521.6826171875
+    - 1713.0
+    num: 1
+    first_peak: 
+    - 414.945861816406
+    - 4066.0
+  scan_count: 4891
+  file_size: 35838716
+  last_scan: 
+    last_peak: 
+    - 1705.78125
+    - 547.0
+    num: 4891
+    first_peak: 
+    - 400.354614257812
+    - 2344.0
+  scans_to_read: fl
+  total_time_to_read_and_access: 23.052612
+  time_to_read: 23.052326
+  lazy_type: :string
+  end_time: 11997.11
+  start_time: 300.08
+  file: wei_N1.mzXML
+--- 
+- time_to_access: 0.000344
+  first_scan: 
+    last_peak: 
+    - 0.0
+    - 0.0
+    num: 1
+    first_peak: 
+    - 0.0
+    - 0.0
+  scan_count: 4862
+  file_size: 36939665
+  last_scan: 
+    last_peak: 
+    - 1790.57470703125
+    - 772.0
+    num: 4862
+    first_peak: 
+    - 400.148620605469
+    - 522.0
+  scans_to_read: fl
+  total_time_to_read_and_access: 23.740727
+  time_to_read: 23.740368
+  lazy_type: :string
+  end_time: 11997.63
+  start_time: 300.1099
+  file: wei_O1.mzXML
+--- 
+- time_to_access: 0.000275
+  first_scan: 
+    last_peak: 
+    - 1721.94848632812
+    - 802.0
+    num: 1
+    first_peak: 
+    - 401.0244140625
+    - 4448.0
+  scan_count: 4871
+  file_size: 36585045
+  last_scan: 
+    last_peak: 
+    - 1755.41259765625
+    - 774.0
+    num: 4871
+    first_peak: 
+    - 400.317077636719
+    - 1450.0
+  scans_to_read: fl
+  total_time_to_read_and_access: 23.390578
+  time_to_read: 23.390287
+  lazy_type: :string
+  end_time: 11999.19
+  start_time: 300.08
+  file: wei_P1.mzXML
+--- 
+- time_to_access: 0.000299
+  first_scan: 
+    last_peak: 
+    - 891.4658203125
+    - 596.0
+    num: 1
+    first_peak: 
+    - 401.057434082031
+    - 931.0
+  scan_count: 4550
+  file_size: 38449581
+  last_scan: 
+    last_peak: 
+    - 1753.06640625
+    - 616.0
+    num: 4550
+    first_peak: 
+    - 400.97412109375
+    - 940.0
+  scans_to_read: fl
+  total_time_to_read_and_access: 24.403224
+  time_to_read: 24.40291
+  lazy_type: :string
+  end_time: 11997.53
+  start_time: 300.09
+  file: wei_Q1.mzXML
+--- 
+- time_to_access: 0.00017
+  first_scan: 
+    last_peak: 
+    - 1555.66650390625
+    - 684.0
+    num: 1
+    first_peak: 
+    - 414.872497558594
+    - 3312.0
+  scan_count: 4790
+  file_size: 37405613
+  last_scan: 
+    last_peak: 
+    - 1506.57885742188
+    - 758.0
+    num: 4790
+    first_peak: 
+    - 400.694213867188
+    - 2486.0
+  scans_to_read: fl
+  total_time_to_read_and_access: 23.759573
+  time_to_read: 23.759389
+  lazy_type: :string
+  end_time: 11999.5
+  start_time: 300.08
+  file: wei_R1.mzXML
+--- 
+- time_to_access: 0.000302
+  first_scan: 
+    last_peak: 
+    - 1777.14624023438
+    - 578.0
+    num: 1
+    first_peak: 
+    - 403.099182128906
+    - 694.0
+  scan_count: 4651
+  file_size: 37944860
+  last_scan: 
+    last_peak: 
+    - 1678.7412109375
+    - 1073.0
+    num: 4651
+    first_peak: 
+    - 400.268737792969
+    - 1470.0
+  scans_to_read: fl
+  total_time_to_read_and_access: 24.11667
+  time_to_read: 24.116354
+  lazy_type: :string
+  end_time: 11999.12
+  start_time: 300.06
+  file: wei_S1.mzXML
+--- 
+- time_to_access: 0.000372
+  first_scan: 
+    last_peak: 
+    - 0.0
+    - 0.0
+    num: 1
+    first_peak: 
+    - 0.0
+    - 0.0
+  scan_count: 4787
+  file_size: 38084105
+  last_scan: 
+    last_peak: 
+    - 1744.84936523438
+    - 454.0
+    num: 4787
+    first_peak: 
+    - 400.20703125
+    - 1919.0
+  scans_to_read: fl
+  total_time_to_read_and_access: 24.228387
+  time_to_read: 24.228001
+  lazy_type: :string
+  end_time: 11999.52
+  start_time: 300.08
+  file: wei_T1_021101102423.mzXML
+--- 
+- time_to_access: 0.000474
+  first_scan: 
+    last_peak: 
+    - 1521.9638671875
+    - 564.0
+    num: 1
+    first_peak: 
+    - 401.039428710938
+    - 2949.0
+  scan_count: 4525
+  file_size: 43166029
+  last_scan: 
+    last_peak: 
+    - 1797.77075195312
+    - 816.0
+    num: 4525
+    first_peak: 
+    - 400.957702636719
+    - 14387.0
+  scans_to_read: fl
+  total_time_to_read_and_access: 27.441171
+  time_to_read: 27.440683
+  lazy_type: :string
+  end_time: 11998.81
+  start_time: 300.08
+  file: Wei_U1.mzXML

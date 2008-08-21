@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="iso-8859-1"?>
+<!DOCTYPE html 
+     PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+     "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html>
+<head>
+  <title>character (MS::Parser::MzXML::XMLParser::Spectrum)</title>
+  <meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1" />
+  <link rel="stylesheet" href="../../../../../.././rdoc-style.css" type="text/css" media="screen" />
+</head>
+<body class="standalone-code">
+  <pre><span class="ruby-comment cmt"># File lib/ms/parser/mzxml/xmlparser.rb, line 109</span>
+  <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">character</span>(<span class="ruby-identifier">data</span>)
+    <span class="ruby-keyword kw">if</span> <span class="ruby-ivar">@get_peaks</span>
+      <span class="ruby-ivar">@current_peaks_string</span> <span class="ruby-operator">&lt;&lt;</span> <span class="ruby-identifier">data</span> 
+    <span class="ruby-keyword kw">elsif</span> <span class="ruby-ivar">@get_precursor_mz</span>
+      <span class="ruby-ivar">@current_scan</span>[<span class="ruby-value">5</span>] <span class="ruby-operator">&lt;&lt;</span> <span class="ruby-identifier">data</span>
+    <span class="ruby-keyword kw">end</span>
+  <span class="ruby-keyword kw">end</span></pre>
+</body>
+</html>

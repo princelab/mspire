@@ -1,0 +1,27 @@
+--- 
+- time_to_access: 0.002781
+  first_scan: 
+    last_peak: 
+    - 1381.19091796875
+    - 3891.0
+    num: 1
+    first_peak: 
+    - 417.340881347656
+    - 4688.0
+  scan_count: 4316
+  file_size: 20258324
+  last_scan: 
+    last_peak: 
+    - 1941.50317382812
+    - 7884.0
+    num: 4316
+    first_peak: 
+    - 413.769714355469
+    - 3995.0
+  scans_to_read: fl
+  total_time_to_read_and_access: 1.410195
+  time_to_read: 1.407396
+  lazy_type: :io_good
+  end_time: 5880.15
+  start_time: 120.07
+  file: yagpm.mzXML

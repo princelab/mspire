@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="iso-8859-1"?>
+<!DOCTYPE html 
+     PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+     "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html>
+<head>
+  <title>add_parent_scan (MS::MSRun)</title>
+  <meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1" />
+  <link rel="stylesheet" href="../../.././rdoc-style.css" type="text/css" media="screen" />
+</head>
+<body class="standalone-code">
+  <pre><span class="ruby-comment cmt"># File lib/ms/msrun.rb, line 211</span>
+  <span class="ruby-keyword kw">def</span> <span class="ruby-keyword kw">self</span>.<span class="ruby-identifier">add_parent_scan</span>(<span class="ruby-identifier">scans</span>, <span class="ruby-identifier">add_intensities</span>=<span class="ruby-keyword kw">false</span>)
+    <span class="ruby-comment cmt">#start = Time.now</span>
+    <span class="ruby-identifier">prev_scan</span> = <span class="ruby-keyword kw">nil</span>
+    <span class="ruby-identifier">parent_stack</span> = [<span class="ruby-keyword kw">nil</span>]
+    <span class="ruby-comment cmt">## we want to set the level to be the first mslevel we come to</span>
+    <span class="ruby-identifier">prev_level</span> = <span class="ruby-identifier">scans</span>.<span class="ruby-identifier">first</span>.<span class="ruby-identifier">ms_level</span>
+    <span class="ruby-identifier">scans</span>.<span class="ruby-identifier">each</span> <span class="ruby-keyword kw">do</span> <span class="ruby-operator">|</span><span class="ruby-identifier">scan</span><span class="ruby-operator">|</span>
+      <span class="ruby-comment cmt">#next unless scan  ## the first one is nil, (others?)</span>
+      <span class="ruby-identifier">level</span> = <span class="ruby-identifier">scan</span>.<span class="ruby-identifier">ms_level</span>
+      <span class="ruby-keyword kw">if</span> <span class="ruby-identifier">prev_level</span> <span class="ruby-operator">&lt;</span> <span class="ruby-identifier">level</span>
+        <span class="ruby-identifier">parent_stack</span>.<span class="ruby-identifier">unshift</span> <span class="ruby-identifier">prev_scan</span>
+      <span class="ruby-keyword kw">end</span>
+      <span class="ruby-keyword kw">if</span> <span class="ruby-identifier">prev_level</span> <span class="ruby-operator">&gt;</span> <span class="ruby-identifier">level</span>
+        (<span class="ruby-identifier">prev_level</span> <span class="ruby-operator">-</span> <span class="ruby-identifier">level</span>).<span class="ruby-identifier">times</span> <span class="ruby-keyword kw">do</span> <span class="ruby-identifier">parent_stack</span>.<span class="ruby-identifier">shift</span> <span class="ruby-keyword kw">end</span>
+      <span class="ruby-keyword kw">end</span>
+      <span class="ruby-keyword kw">if</span> <span class="ruby-identifier">scan</span>.<span class="ruby-identifier">ms_level</span> <span class="ruby-operator">&gt;</span> <span class="ruby-value">1</span>
+        <span class="ruby-identifier">precursor</span> = <span class="ruby-identifier">scan</span>.<span class="ruby-identifier">precursor</span>
+        <span class="ruby-comment cmt">#precursor.parent = parent_stack.first  # that's the next line's</span>
+        <span class="ruby-identifier">precursor</span>[<span class="ruby-value">2</span>] = <span class="ruby-identifier">parent_stack</span>.<span class="ruby-identifier">first</span> <span class="ruby-keyword kw">unless</span> <span class="ruby-identifier">precursor</span>[<span class="ruby-value">2</span>]
+        <span class="ruby-comment cmt">#precursor.intensity</span>
+        <span class="ruby-keyword kw">if</span> <span class="ruby-identifier">add_intensities</span>
+          <span class="ruby-identifier">precursor</span>[<span class="ruby-value">1</span>] = <span class="ruby-identifier">precursor</span>[<span class="ruby-value">2</span>].<span class="ruby-identifier">spectrum</span>.<span class="ruby-identifier">intensity_at_mz</span>(<span class="ruby-identifier">precursor</span>[<span class="ruby-value">0</span>])
+        <span class="ruby-keyword kw">end</span>
+      <span class="ruby-keyword kw">end</span>
+      <span class="ruby-identifier">prev_level</span> = <span class="ruby-identifier">level</span>
+      <span class="ruby-identifier">prev_scan</span> = <span class="ruby-identifier">scan</span>
+    <span class="ruby-keyword kw">end</span>
+    <span class="ruby-comment cmt">#puts &quot;TOOK #{Time.now - start} secs&quot;</span>
+  <span class="ruby-keyword kw">end</span></pre>
+</body>
+</html>

@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="iso-8859-1"?>
+<!DOCTYPE html 
+     PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+     "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html>
+<head>
+  <title>new (Sequest::PepXML::SearchHit)</title>
+  <meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1" />
+  <link rel="stylesheet" href="../../../.././rdoc-style.css" type="text/css" media="screen" />
+</head>
+<body class="standalone-code">
+  <pre><span class="ruby-comment cmt"># File lib/spec_id/sequest/pepxml.rb, line 1314</span>
+  <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">initialize</span>(<span class="ruby-identifier">hash</span>=<span class="ruby-keyword kw">nil</span>)
+    <span class="ruby-keyword kw">super</span>(<span class="ruby-keyword kw">self</span>.<span class="ruby-identifier">class</span>.<span class="ruby-identifier">size</span>)
+    <span class="ruby-keyword kw">if</span> <span class="ruby-identifier">hash</span>
+      <span class="ruby-keyword kw">self</span>[<span class="ruby-value">0</span>,<span class="ruby-value">20</span>] = [<span class="ruby-identifier">hash</span>[<span class="ruby-identifier">:hit_rank</span>], <span class="ruby-identifier">hash</span>[<span class="ruby-identifier">:peptide</span>], <span class="ruby-identifier">hash</span>[<span class="ruby-identifier">:peptide_prev_aa</span>], <span class="ruby-identifier">hash</span>[<span class="ruby-identifier">:peptide_next_aa</span>], <span class="ruby-identifier">hash</span>[<span class="ruby-identifier">:protein</span>], <span class="ruby-identifier">hash</span>[<span class="ruby-identifier">:num_tot_proteins</span>], <span class="ruby-identifier">hash</span>[<span class="ruby-identifier">:num_matched_ions</span>], <span class="ruby-identifier">hash</span>[<span class="ruby-identifier">:tot_num_ions</span>], <span class="ruby-identifier">hash</span>[<span class="ruby-identifier">:calc_neutral_pep_mass</span>], <span class="ruby-identifier">hash</span>[<span class="ruby-identifier">:massdiff</span>], <span class="ruby-identifier">hash</span>[<span class="ruby-identifier">:num_tol_term</span>], <span class="ruby-identifier">hash</span>[<span class="ruby-identifier">:num_missed_cleavages</span>], <span class="ruby-identifier">hash</span>[<span class="ruby-identifier">:is_rejected</span>], <span class="ruby-identifier">hash</span>[<span class="ruby-identifier">:deltacnstar</span>], <span class="ruby-identifier">hash</span>[<span class="ruby-identifier">:xcorr</span>], <span class="ruby-identifier">hash</span>[<span class="ruby-identifier">:deltacn</span>], <span class="ruby-identifier">hash</span>[<span class="ruby-identifier">:spscore</span>], <span class="ruby-identifier">hash</span>[<span class="ruby-identifier">:sprank</span>], <span class="ruby-identifier">hash</span>[<span class="ruby-identifier">:modification_info</span>], <span class="ruby-identifier">hash</span>[<span class="ruby-identifier">:spectrum_query</span>]]
+    <span class="ruby-keyword kw">end</span>
+    <span class="ruby-keyword kw">self</span>
+  <span class="ruby-keyword kw">end</span></pre>
+</body>
+</html>

@@ -1,0 +1,27 @@
+--- 
+- time_to_access: 0.029325
+  first_scan: 
+    last_peak: 
+    - 705.26513671875
+    - 5318.0
+    num: 1
+    first_peak: 
+    - 705.26513671875
+    - 5318.0
+  scan_count: 5384
+  file_size: 19936099
+  last_scan: 
+    last_peak: 
+    - 1349.41674804688
+    - 12406.0
+    num: 5384
+    first_peak: 
+    - 210.299713134766
+    - 7426.0
+  scans_to_read: fl
+  total_time_to_read_and_access: 2.057585
+  time_to_read: 2.028243
+  lazy_type: :io_good
+  end_time: 5879.8599
+  start_time: 120.1
+  file: YAGmem48.mzXML

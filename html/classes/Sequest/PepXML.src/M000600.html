@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="iso-8859-1"?>
+<!DOCTYPE html 
+     PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+     "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html>
+<head>
+  <title>set_from_bioworks (Sequest::PepXML)</title>
+  <meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1" />
+  <link rel="stylesheet" href="../../.././rdoc-style.css" type="text/css" media="screen" />
+</head>
+<body class="standalone-code">
+  <pre><span class="ruby-comment cmt"># File lib/spec_id/sequest/pepxml.rb, line 488</span>
+  <span class="ruby-keyword kw">def</span> <span class="ruby-keyword kw">self</span>.<span class="ruby-identifier">set_from_bioworks</span>(<span class="ruby-identifier">bioworks_file</span>, <span class="ruby-identifier">opts</span>={})
+    <span class="ruby-identifier">opts</span> = <span class="ruby-constant">Default_Options</span>.<span class="ruby-identifier">merge</span>(<span class="ruby-identifier">opts</span>)
+    <span class="ruby-comment cmt">## Create the out_path directory if necessary</span>
+
+      <span class="ruby-keyword kw">unless</span> <span class="ruby-constant">File</span>.<span class="ruby-identifier">exist?</span> <span class="ruby-identifier">opts</span>[<span class="ruby-identifier">:out_path</span>]
+        <span class="ruby-constant">FileUtils</span>.<span class="ruby-identifier">mkpath</span>(<span class="ruby-identifier">opts</span>[<span class="ruby-identifier">:out_path</span>])
+      <span class="ruby-keyword kw">end</span>
+      <span class="ruby-keyword kw">unless</span> <span class="ruby-constant">File</span>.<span class="ruby-identifier">directory?</span> <span class="ruby-identifier">opts</span>[<span class="ruby-identifier">:out_path</span>]
+        <span class="ruby-identifier">abort</span> <span class="ruby-node">&quot;#{opts[:out_path]} must be a directory!&quot;</span>
+      <span class="ruby-keyword kw">end</span>
+
+      <span class="ruby-identifier">spec_id</span> = <span class="ruby-constant">SpecID</span>.<span class="ruby-identifier">new</span>(<span class="ruby-identifier">bioworks_file</span>)
+      <span class="ruby-identifier">pepxml_objs</span> = 
+        <span class="ruby-keyword kw">if</span> <span class="ruby-identifier">spec_id</span>.<span class="ruby-identifier">is_a?</span> <span class="ruby-constant">Bioworks</span>
+          <span class="ruby-identifier">abort</span>(<span class="ruby-value str">&quot;must have opts[:params] set!&quot;</span>) <span class="ruby-keyword kw">unless</span> <span class="ruby-identifier">opts</span>[<span class="ruby-identifier">:params</span>]
+          <span class="ruby-identifier">set_from_bioworks_xml</span>(<span class="ruby-identifier">bioworks_file</span>, <span class="ruby-identifier">opts</span>[<span class="ruby-identifier">:params</span>], <span class="ruby-identifier">opts</span>)
+        <span class="ruby-keyword kw">elsif</span> <span class="ruby-identifier">spec_id</span>.<span class="ruby-identifier">is_a?</span> <span class="ruby-constant">SRFGroup</span>
+          <span class="ruby-identifier">spec_id</span>.<span class="ruby-identifier">srfs</span>.<span class="ruby-identifier">map</span> <span class="ruby-keyword kw">do</span> <span class="ruby-operator">|</span><span class="ruby-identifier">srf</span><span class="ruby-operator">|</span>
+            <span class="ruby-identifier">new_from_srf</span>(<span class="ruby-identifier">srf</span>, <span class="ruby-identifier">opts</span>) 
+          <span class="ruby-keyword kw">end</span>
+        <span class="ruby-keyword kw">else</span>
+          <span class="ruby-identifier">abort</span> <span class="ruby-value str">&quot;invalid object&quot;</span>
+        <span class="ruby-keyword kw">end</span>
+
+      <span class="ruby-keyword kw">if</span> <span class="ruby-identifier">opts</span>[<span class="ruby-identifier">:print</span>]
+        <span class="ruby-identifier">pepxml_objs</span>.<span class="ruby-identifier">each</span> <span class="ruby-keyword kw">do</span> <span class="ruby-operator">|</span><span class="ruby-identifier">obj</span><span class="ruby-operator">|</span>
+          <span class="ruby-identifier">obj</span>.<span class="ruby-identifier">to_pepxml</span>(<span class="ruby-identifier">obj</span>.<span class="ruby-identifier">base_name</span> <span class="ruby-operator">+</span> <span class="ruby-value str">&quot;.xml&quot;</span>)
+        <span class="ruby-keyword kw">end</span>
+      <span class="ruby-keyword kw">end</span>
+      <span class="ruby-identifier">pepxml_objs</span>
+    <span class="ruby-keyword kw">end</span></pre>
+</body>
+</html>

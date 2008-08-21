@@ -1,0 +1,72 @@
+<?xml version="1.0" encoding="iso-8859-1"?>
+<!DOCTYPE html 
+     PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+     "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html>
+<head>
+  <title>normal_prothit_precision (Validator::ProtFromPep)</title>
+  <meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1" />
+  <link rel="stylesheet" href="../../.././rdoc-style.css" type="text/css" media="screen" />
+</head>
+<body class="standalone-code">
+  <pre><span class="ruby-comment cmt"># File lib/validator/prot_from_pep.rb, line 176</span>
+  <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">normal_prothit_precision</span>( <span class="ruby-identifier">peps</span>, <span class="ruby-identifier">num_false_pephits</span>, <span class="ruby-identifier">opts</span>={})
+    <span class="ruby-identifier">num_iterations</span> = <span class="ruby-identifier">opts</span>[<span class="ruby-identifier">:num_its</span>] <span class="ruby-operator">||</span> <span class="ruby-value">10</span>
+    <span class="ruby-identifier">srand</span>( <span class="ruby-value">38272</span> )
+
+    <span class="ruby-comment cmt">##############################################</span>
+    <span class="ruby-comment cmt"># The END Cases (can be dealt with quickly)</span>
+    <span class="ruby-comment cmt">##############################################</span>
+    <span class="ruby-keyword kw">if</span> <span class="ruby-identifier">num_false_pephits</span> <span class="ruby-operator">==</span> <span class="ruby-value">0</span>
+      <span class="ruby-keyword kw">if</span> <span class="ruby-identifier">num_iterations</span> <span class="ruby-operator">==</span> <span class="ruby-value">1</span>
+        <span class="ruby-keyword kw">return</span> <span class="ruby-value">1.0</span>
+      <span class="ruby-keyword kw">else</span>
+        <span class="ruby-keyword kw">return</span> [<span class="ruby-value">1.0</span>, <span class="ruby-value">0</span><span class="ruby-value">.0</span>] 
+      <span class="ruby-keyword kw">end</span>
+    <span class="ruby-keyword kw">elsif</span> <span class="ruby-identifier">num_false_pephits</span> <span class="ruby-operator">&gt;=</span>  <span class="ruby-identifier">peps</span>.<span class="ruby-identifier">size</span>
+      <span class="ruby-keyword kw">if</span> <span class="ruby-identifier">num_iterations</span> <span class="ruby-operator">==</span> <span class="ruby-value">1</span>
+        <span class="ruby-keyword kw">return</span> <span class="ruby-value">0</span><span class="ruby-value">.0</span>
+      <span class="ruby-keyword kw">else</span>
+        <span class="ruby-keyword kw">return</span> [<span class="ruby-value">0</span><span class="ruby-value">.0</span>, <span class="ruby-value">0</span><span class="ruby-value">.0</span>]
+      <span class="ruby-keyword kw">end</span>
+    <span class="ruby-keyword kw">end</span>
+
+    <span class="ruby-comment cmt">##############################################</span>
+    <span class="ruby-comment cmt"># Everything else:</span>
+    <span class="ruby-comment cmt">##############################################</span>
+
+    <span class="ruby-identifier">sample</span> = <span class="ruby-constant">Array</span>.<span class="ruby-identifier">new</span>(<span class="ruby-identifier">num_iterations</span>)
+    <span class="ruby-identifier">base_indices</span> = (<span class="ruby-value">0</span><span class="ruby-operator">...</span>(<span class="ruby-identifier">peps</span>.<span class="ruby-identifier">size</span>)).<span class="ruby-identifier">to_a</span>
+    <span class="ruby-comment cmt">### ACUTALLY, I THINK WE WANT TO CREATE AND MERGE!!!!</span>
+    <span class="ruby-comment cmt"># This would mean that only a single hit would validate the protein</span>
+    <span class="ruby-comment cmt"># if we are subtracting, then we lose the protein on a single peptide!!!!</span>
+    <span class="ruby-identifier">prot_id_set</span> = <span class="ruby-identifier">peps</span>.<span class="ruby-identifier">inject</span>(<span class="ruby-constant">Set</span>.<span class="ruby-identifier">new</span>) <span class="ruby-keyword kw">do</span> <span class="ruby-operator">|</span><span class="ruby-identifier">prtset</span>, <span class="ruby-identifier">pep</span><span class="ruby-operator">|</span>
+      <span class="ruby-identifier">prtset</span>.<span class="ruby-identifier">merge</span>( <span class="ruby-identifier">pep</span>.<span class="ruby-identifier">prots</span>.<span class="ruby-identifier">map</span> {<span class="ruby-operator">|</span><span class="ruby-identifier">prot</span><span class="ruby-operator">|</span> <span class="ruby-identifier">prot</span> } )
+    <span class="ruby-keyword kw">end</span>
+
+    <span class="ruby-identifier">tot_num_prots</span> = <span class="ruby-identifier">prot_id_set</span>.<span class="ruby-identifier">size</span>
+    <span class="ruby-comment cmt"># could also merge off the good indices</span>
+    <span class="ruby-comment cmt"># TODO: we should optimize based on how many false pephits given...</span>
+    
+    <span class="ruby-identifier">precision_sample</span> = (<span class="ruby-value">0</span><span class="ruby-operator">...</span><span class="ruby-identifier">num_iterations</span>).<span class="ruby-identifier">to_a</span>.<span class="ruby-identifier">map</span> <span class="ruby-keyword kw">do</span>
+      <span class="ruby-identifier">shuffled_indices</span> = <span class="ruby-identifier">base_indices</span>.<span class="ruby-identifier">map</span>
+      <span class="ruby-identifier">shuffled_indices</span>.<span class="ruby-identifier">shuffle!</span>
+      <span class="ruby-identifier">good_indices</span> = <span class="ruby-identifier">shuffled_indices</span>[<span class="ruby-identifier">num_false_pephits</span><span class="ruby-operator">..</span><span class="ruby-value">-1</span>] 
+      <span class="ruby-identifier">still_remaining</span> = <span class="ruby-constant">Set</span>.<span class="ruby-identifier">new</span>
+      
+      <span class="ruby-identifier">peps</span>.<span class="ruby-identifier">values_at</span>(<span class="ruby-operator">*</span><span class="ruby-identifier">good_indices</span>).<span class="ruby-identifier">each</span> <span class="ruby-keyword kw">do</span> <span class="ruby-operator">|</span><span class="ruby-identifier">pep</span><span class="ruby-operator">|</span> 
+        <span class="ruby-identifier">still_remaining</span>.<span class="ruby-identifier">merge</span>(<span class="ruby-identifier">pep</span>.<span class="ruby-identifier">prots</span>.<span class="ruby-identifier">map</span> {<span class="ruby-operator">|</span><span class="ruby-identifier">prot</span><span class="ruby-operator">|</span> <span class="ruby-identifier">prot</span> })
+      <span class="ruby-keyword kw">end</span>
+      <span class="ruby-identifier">still_remaining</span>.<span class="ruby-identifier">size</span>.<span class="ruby-identifier">to_f</span> <span class="ruby-operator">/</span> <span class="ruby-identifier">tot_num_prots</span>
+    <span class="ruby-keyword kw">end</span>
+    <span class="ruby-keyword kw">if</span> <span class="ruby-identifier">num_iterations</span> <span class="ruby-operator">==</span> <span class="ruby-value">1</span>
+      <span class="ruby-identifier">precision_sample</span>.<span class="ruby-identifier">shift</span>
+    <span class="ruby-keyword kw">else</span>
+      <span class="ruby-comment cmt">#puts &quot;PRECISION GROUP: &quot;</span>
+      <span class="ruby-comment cmt">#p precision_sample</span>
+      <span class="ruby-identifier">sample_stats</span>(<span class="ruby-identifier">precision_sample</span>)
+    <span class="ruby-keyword kw">end</span>
+  <span class="ruby-keyword kw">end</span></pre>
+</body>
+</html>

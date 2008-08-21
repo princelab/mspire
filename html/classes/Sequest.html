@@ -1,0 +1,177 @@
+<?xml version="1.0" encoding="iso-8859-1"?>
+<!DOCTYPE html 
+     PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+     "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+<head>
+  <title>Module: Sequest</title>
+  <meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1" />
+  <meta http-equiv="Content-Script-Type" content="text/javascript" />
+  <link rel="stylesheet" href=".././rdoc-style.css" type="text/css" media="screen" />
+  <script type="text/javascript">
+  // <![CDATA[
+
+  function popupCode( url ) {
+    window.open(url, "Code", "resizable=yes,scrollbars=yes,toolbar=no,status=no,height=150,width=400")
+  }
+
+  function toggleCode( id ) {
+    if ( document.getElementById )
+      elem = document.getElementById( id );
+    else if ( document.all )
+      elem = eval( "document.all." + id );
+    else
+      return false;
+
+    elemStyle = elem.style;
+    
+    if ( elemStyle.display != "block" ) {
+      elemStyle.display = "block"
+    } else {
+      elemStyle.display = "none"
+    }
+
+    return true;
+  }
+  
+  // Make codeblocks hidden by default
+  document.writeln( "<style type=\"text/css\">div.method-source-code { display: none }</style>" )
+  
+  // ]]>
+  </script>
+
+</head>
+<body>
+
+
+
+    <div id="classHeader">
+        <table class="header-table">
+        <tr class="top-aligned-row">
+          <td><strong>Module</strong></td>
+          <td class="class-name-in-header">Sequest</td>
+        </tr>
+        <tr class="top-aligned-row">
+            <td><strong>In:</strong></td>
+            <td>
+                <a href="../files/lib/spec_id/sequest_rb.html">
+                lib/spec_id/sequest.rb
+                </a>
+        <br />
+                <a href="../files/lib/spec_id/sequest/params_rb.html">
+                lib/spec_id/sequest/params.rb
+                </a>
+        <br />
+                <a href="../files/lib/spec_id/sequest/pepxml_rb.html">
+                lib/spec_id/sequest/pepxml.rb
+                </a>
+        <br />
+                <a href="../files/lib/spec_id/proph/pep_summary_rb.html">
+                lib/spec_id/proph/pep_summary.rb
+                </a>
+        <br />
+            </td>
+        </tr>
+
+        </table>
+    </div>
+  <!-- banner header -->
+
+  <div id="bodyContent">
+
+
+
+  <div id="contextContent">
+
+    <div id="description">
+      <p>
+In the future, this guy should accept any version of bioworks params file
+and spit out any param queried.
+</p>
+
+    </div>
+
+
+   </div>
+
+    <div id="method-list">
+      <h3 class="section-bar">Methods</h3>
+
+      <div class="name-list">
+      <a href="#M000588">other_hits</a>&nbsp;&nbsp;
+      <a href="#M000589">other_hits_sorted_by_xcorr</a>&nbsp;&nbsp;
+      </div>
+    </div>
+
+  </div>
+
+
+    <!-- if includes -->
+
+    <div id="section">
+
+    <div id="class-list">
+      <h3 class="section-bar">Classes and Modules</h3>
+
+      Class <a href="Sequest/Params.html" class="link">Sequest::Params</a><br />
+Class <a href="Sequest/PepXML.html" class="link">Sequest::PepXML</a><br />
+
+    </div>
+
+
+
+
+      
+
+
+    <!-- if method_list -->
+    <div id="methods">
+      <h3 class="section-bar">Public Class methods</h3>
+
+      <div id="method-M000588" class="method-detail">
+        <a name="M000588"></a>
+
+        <div class="method-heading">
+          <a href="Sequest.src/M000588.html" target="Code" class="method-signature"
+            onclick="popupCode('Sequest.src/M000588.html');return false;">
+          <span class="method-name">other_hits</span><span class="method-args">(peps, first_index=1, last_index=9, index_by=[:base_name, :first_scan, :charge], sort_by=[:xcorr, {:down =&gt; :xcorr}])</span>
+          </a>
+        </div>
+      
+        <div class="method-description">
+          <p>
+returns one array of peptide hits: indexes hits based on index_by, takes
+the uniq ones and then sorts the group by sort_by (compatible with
+sort_by_attributes) then slices from first_index to last_index (inclusive).
+</p>
+        </div>
+      </div>
+
+      <div id="method-M000589" class="method-detail">
+        <a name="M000589"></a>
+
+        <div class="method-heading">
+          <a href="Sequest.src/M000589.html" target="Code" class="method-signature"
+            onclick="popupCode('Sequest.src/M000589.html');return false;">
+          <span class="method-name">other_hits_sorted_by_xcorr</span><span class="method-args">(peps, first_index, last_index, index_by=[:base_name, :first_scan, :charge])</span>
+          </a>
+        </div>
+      
+        <div class="method-description">
+        </div>
+      </div>
+
+
+    </div>
+
+
+  </div>
+
+
+<div id="validator-badges">
+  <p><small><a href="http://validator.w3.org/check/referer">[Validate]</a></small></p>
+</div>
+
+</body>
+</html>

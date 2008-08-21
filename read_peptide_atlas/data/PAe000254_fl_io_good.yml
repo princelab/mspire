@@ -1,0 +1,27 @@
+--- 
+- time_to_access: 0.081872
+  first_scan: 
+    last_peak: 
+    - 1903.36499023438
+    - 4970.0
+    num: 1
+    first_peak: 
+    - 1134.267578125
+    - 11507.0
+  scan_count: 4975
+  file_size: 34999858
+  last_scan: 
+    last_peak: 
+    - 1996.63598632812
+    - 26093.0
+    num: 4975
+    first_peak: 
+    - 1101.04321289062
+    - 100319.0
+  scans_to_read: fl
+  total_time_to_read_and_access: 2.369144
+  time_to_read: 2.287258
+  lazy_type: :io_good
+  end_time: 5879.37
+  start_time: 120.09
+  file: yagwall_1120rpt.mzXML

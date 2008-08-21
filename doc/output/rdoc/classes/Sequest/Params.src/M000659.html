@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="iso-8859-1"?>
+<!DOCTYPE html 
+     PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+     "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html>
+<head>
+  <title>version (Sequest::Params)</title>
+  <meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1" />
+  <link rel="stylesheet" href="../../.././rdoc-style.css" type="text/css" media="screen" />
+</head>
+<body class="standalone-code">
+  <pre><span class="ruby-comment cmt"># File lib/spec_id/sequest/params.rb, line 142</span>
+  <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">version</span>
+    <span class="ruby-keyword kw">if</span> <span class="ruby-ivar">@opts</span>[<span class="ruby-value str">'fragment_ion_units'</span>] ; <span class="ruby-keyword kw">return</span> <span class="ruby-value str">'3.3'</span>
+    <span class="ruby-keyword kw">elsif</span> <span class="ruby-ivar">@opts</span>[<span class="ruby-value str">'enzyme_info'</span>] ; <span class="ruby-keyword kw">return</span> <span class="ruby-value str">'3.2'</span>
+    <span class="ruby-keyword kw">elsif</span> <span class="ruby-ivar">@opts</span>[<span class="ruby-value str">'enzyme_number'</span>] ; <span class="ruby-keyword kw">return</span> <span class="ruby-value str">'3.1'</span>
+    <span class="ruby-keyword kw">end</span>
+  <span class="ruby-keyword kw">end</span></pre>
+</body>
+</html>

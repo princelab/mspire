@@ -1,0 +1,27 @@
+--- 
+- time_to_access: 3.3e-05
+  first_scan: 
+    last_peak: 
+    - 0.0
+    - 0.0
+    num: 1
+    first_peak: 
+    - 0.0
+    - 0.0
+  scan_count: 4757
+  file_size: 13181583
+  last_scan: 
+    last_peak: 
+    - 1997.21752929688
+    - 1898.0
+    num: 4757
+    first_peak: 
+    - 581.011962890625
+    - 1892.0
+  scans_to_read: fl
+  total_time_to_read_and_access: 8.105231
+  time_to_read: 8.105183
+  lazy_type: :not
+  end_time: 9003.05
+  start_time: 0.05
+  file: JNA-and-JGP-AAS-27Aug03_HUPO.mzXML

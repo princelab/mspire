@@ -1,0 +1,88 @@
+--- 
+- time_to_access: 27.608642
+  scan_count: 5899
+  file_size: 33175093
+  scans_to_read: all
+  total_time_to_read_and_access: 32.935401
+  time_to_read: 5.326736
+  lazy_type: :io_good
+  end_time: 11999.81
+  start_time: 300.06
+  file: B30_1ms_4msms.mzXML
+--- 
+- time_to_access: 27.691946
+  scan_count: 5946
+  file_size: 32103277
+  scans_to_read: all
+  total_time_to_read_and_access: 33.15467
+  time_to_read: 5.4627
+  lazy_type: :io_good
+  end_time: 11998.09
+  start_time: 300.02
+  file: B29_1ms_4msms.mzXML
+--- 
+- time_to_access: 30.738691
+  scan_count: 5777
+  file_size: 35804337
+  scans_to_read: all
+  total_time_to_read_and_access: 36.141652
+  time_to_read: 5.402937
+  lazy_type: :io_good
+  end_time: 12002.81
+  start_time: 300.06
+  file: B30_1ms_3msms.mzXML
+--- 
+- time_to_access: 42.424411
+  scan_count: 5584
+  file_size: 48122330
+  scans_to_read: all
+  total_time_to_read_and_access: 49.453121
+  time_to_read: 7.028686
+  lazy_type: :io_good
+  end_time: 11999.54
+  start_time: 300.08
+  file: B29_1ms_1msms.mzXML
+--- 
+- time_to_access: 35.535805
+  scan_count: 5556
+  file_size: 40471018
+  scans_to_read: all
+  total_time_to_read_and_access: 41.583494
+  time_to_read: 6.047664
+  lazy_type: :io_good
+  end_time: 12004.33
+  start_time: 300.1099
+  file: B30_1ms_2msms.mzXML
+--- 
+- time_to_access: 42.680592
+  scan_count: 5241
+  file_size: 48250213
+  scans_to_read: all
+  total_time_to_read_and_access: 48.565842
+  time_to_read: 5.885216
+  lazy_type: :io_good
+  end_time: 11998.32
+  start_time: 300.1
+  file: B30_1ms_1msms.mzXML
+--- 
+- time_to_access: 33.700321
+  scan_count: 5822
+  file_size: 39448692
+  scans_to_read: all
+  total_time_to_read_and_access: 39.965842
+  time_to_read: 6.265495
+  lazy_type: :io_good
+  end_time: 11999.52
+  start_time: 300.07
+  file: B29_1ms_2msms.mzXML
+--- 
+- time_to_access: 30.182762
+  scan_count: 5896
+  file_size: 35060935
+  scans_to_read: all
+  total_time_to_read_and_access: 36.548613
+  time_to_read: 6.365822
+  lazy_type: :io_good
+  end_time: 11999.45
+  start_time: 300.08
+  file: B29_1ms_3msms.mzXML

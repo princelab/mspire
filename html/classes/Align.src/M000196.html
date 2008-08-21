@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="iso-8859-1"?>
+<!DOCTYPE html 
+     PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+     "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html>
+<head>
+  <title>peps_with_scans (Align)</title>
+  <meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1" />
+  <link rel="stylesheet" href="../.././rdoc-style.css" type="text/css" media="screen" />
+</head>
+<body class="standalone-code">
+  <pre><span class="ruby-comment cmt"># File lib/align.rb, line 18</span>
+  <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">peps_with_scans</span>(<span class="ruby-identifier">mztimes</span>, <span class="ruby-identifier">prot_xml</span>, <span class="ruby-identifier">pep_proph_xml</span>, <span class="ruby-identifier">prot_prob</span>=<span class="ruby-value">1.0</span>, <span class="ruby-identifier">pep_init_prob</span>=<span class="ruby-value">1.0</span>, <span class="ruby-identifier">pep_nsp_prob</span>=<span class="ruby-value">1.0</span>)
+
+    <span class="ruby-comment cmt">## Create scan indices on msrun name</span>
+    <span class="ruby-keyword kw">if</span> <span class="ruby-identifier">mztimes</span>.<span class="ruby-identifier">class</span> <span class="ruby-operator">!=</span> <span class="ruby-constant">Array</span> ; <span class="ruby-identifier">mztimes</span> = [<span class="ruby-identifier">mztimes</span>] <span class="ruby-keyword kw">end</span>
+    <span class="ruby-identifier">msrun_indices</span> = <span class="ruby-identifier">mztimes</span>.<span class="ruby-identifier">collect</span> <span class="ruby-keyword kw">do</span> <span class="ruby-operator">|</span><span class="ruby-identifier">file</span><span class="ruby-operator">|</span> <span class="ruby-constant">MS</span><span class="ruby-operator">::</span><span class="ruby-constant">MSRunIndex</span>.<span class="ruby-identifier">new</span>(<span class="ruby-identifier">file</span>) <span class="ruby-keyword kw">end</span>
+    <span class="ruby-identifier">scanindex_by_basename_noext</span> = {}
+    <span class="ruby-identifier">msrun_indices</span>.<span class="ruby-identifier">each</span> <span class="ruby-keyword kw">do</span> <span class="ruby-operator">|</span><span class="ruby-identifier">runindex</span><span class="ruby-operator">|</span>
+      <span class="ruby-identifier">scanindex_by_basename_noext</span>[<span class="ruby-identifier">runindex</span>.<span class="ruby-identifier">basename_noext</span>] = <span class="ruby-identifier">runindex</span>.<span class="ruby-identifier">scans_by_num</span>
+    <span class="ruby-keyword kw">end</span>
+
+    <span class="ruby-identifier">dta_filenames</span> = <span class="ruby-constant">Proph</span><span class="ruby-operator">::</span><span class="ruby-constant">Pep</span><span class="ruby-operator">::</span><span class="ruby-constant">Parser</span>.<span class="ruby-identifier">new</span>.<span class="ruby-identifier">dta_filenames_by_seq_charge</span>(<span class="ruby-identifier">pep_proph_xml</span>, <span class="ruby-value str">&quot;regex&quot;</span>)
+
+    <span class="ruby-identifier">parser</span> = <span class="ruby-constant">Proph</span><span class="ruby-operator">::</span><span class="ruby-constant">Prot</span><span class="ruby-operator">::</span><span class="ruby-constant">Parser</span>.<span class="ruby-identifier">new</span>
+    <span class="ruby-identifier">parser</span>.<span class="ruby-identifier">get_prots_and_peps</span>(<span class="ruby-identifier">prot_xml</span>, <span class="ruby-identifier">prot_prob</span>, <span class="ruby-identifier">pep_init_prob</span>, <span class="ruby-identifier">pep_nsp_prob</span>, <span class="ruby-value str">&quot;regex&quot;</span>)
+    <span class="ruby-identifier">peptides</span> = <span class="ruby-identifier">parser</span>.<span class="ruby-identifier">peps</span>
+    <span class="ruby-identifier">peptides</span> = <span class="ruby-constant">Proph</span><span class="ruby-operator">::</span><span class="ruby-constant">Pep</span>.<span class="ruby-identifier">uniq_by_seqcharge</span>(<span class="ruby-identifier">peptides</span>)
+    <span class="ruby-comment cmt">## we update each peptide with a list of dtafilenames</span>
+    <span class="ruby-comment cmt">## then we update with a parallel list of scans (one for each dtafn...</span>
+    <span class="ruby-comment cmt">## unless there are multiple scans associated with each filename</span>
+    <span class="ruby-comment cmt">## in which case it will be an array</span>
+    <span class="ruby-identifier">_update_filenames</span>(<span class="ruby-identifier">peptides</span>, <span class="ruby-identifier">dta_filenames</span>)
+    <span class="ruby-identifier">peptides</span> = <span class="ruby-identifier">_update_and_filter_by_scans</span>(<span class="ruby-identifier">peptides</span>, <span class="ruby-identifier">scanindex_by_basename_noext</span>)
+    <span class="ruby-keyword kw">return</span> <span class="ruby-identifier">peptides</span>
+  <span class="ruby-keyword kw">end</span></pre>
+</body>
+</html>

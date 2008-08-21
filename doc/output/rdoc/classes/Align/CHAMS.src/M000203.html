@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="iso-8859-1"?>
+<!DOCTYPE html 
+     PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+     "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html>
+<head>
+  <title>new (Align::CHAMS)</title>
+  <meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1" />
+  <link rel="stylesheet" href="../../.././rdoc-style.css" type="text/css" media="screen" />
+</head>
+<body class="standalone-code">
+  <pre><span class="ruby-comment cmt"># File lib/align/chams.rb, line 13</span>
+  <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">initialize</span>(<span class="ruby-identifier">chams_file</span>, <span class="ruby-identifier">time_by_scan_num1</span>, <span class="ruby-identifier">time_by_scan_num2</span>)
+    <span class="ruby-ivar">@time_mscans</span> = []
+    <span class="ruby-ivar">@time_nscans</span> = []
+    <span class="ruby-ivar">@mscans</span> = []
+    <span class="ruby-ivar">@nscans</span> = []
+    <span class="ruby-ivar">@edge_costs</span> = []
+    <span class="ruby-ivar">@path_costs</span> = []
+    <span class="ruby-ivar">@directions</span> = []
+    <span class="ruby-identifier">read_chams_file</span>(<span class="ruby-identifier">chams_file</span>)
+    <span class="ruby-ivar">@mscans</span>.<span class="ruby-identifier">each_with_index</span> <span class="ruby-keyword kw">do</span> <span class="ruby-operator">|</span><span class="ruby-identifier">scan</span>,<span class="ruby-identifier">i</span><span class="ruby-operator">|</span>
+      <span class="ruby-ivar">@time_mscans</span>[<span class="ruby-identifier">i</span>] = <span class="ruby-identifier">time_by_scan_num1</span>[<span class="ruby-identifier">scan</span>]
+    <span class="ruby-keyword kw">end</span>
+    <span class="ruby-ivar">@nscans</span>.<span class="ruby-identifier">each_with_index</span> <span class="ruby-keyword kw">do</span> <span class="ruby-operator">|</span><span class="ruby-identifier">scan</span>,<span class="ruby-identifier">i</span><span class="ruby-operator">|</span>
+      <span class="ruby-ivar">@time_nscans</span>[<span class="ruby-identifier">i</span>] = <span class="ruby-identifier">time_by_scan_num2</span>[<span class="ruby-identifier">scan</span>]
+    <span class="ruby-keyword kw">end</span>
+  <span class="ruby-keyword kw">end</span></pre>
+</body>
+</html>

@@ -1,0 +1,416 @@
+<?xml version="1.0" encoding="iso-8859-1"?>
+<!DOCTYPE html 
+     PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+     "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+<head>
+  <title>Class: SRF</title>
+  <meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1" />
+  <meta http-equiv="Content-Script-Type" content="text/javascript" />
+  <link rel="stylesheet" href=".././rdoc-style.css" type="text/css" media="screen" />
+  <script type="text/javascript">
+  // <![CDATA[
+
+  function popupCode( url ) {
+    window.open(url, "Code", "resizable=yes,scrollbars=yes,toolbar=no,status=no,height=150,width=400")
+  }
+
+  function toggleCode( id ) {
+    if ( document.getElementById )
+      elem = document.getElementById( id );
+    else if ( document.all )
+      elem = eval( "document.all." + id );
+    else
+      return false;
+
+    elemStyle = elem.style;
+    
+    if ( elemStyle.display != "block" ) {
+      elemStyle.display = "block"
+    } else {
+      elemStyle.display = "none"
+    }
+
+    return true;
+  }
+  
+  // Make codeblocks hidden by default
+  document.writeln( "<style type=\"text/css\">div.method-source-code { display: none }</style>" )
+  
+  // ]]>
+  </script>
+
+</head>
+<body>
+
+
+
+    <div id="classHeader">
+        <table class="header-table">
+        <tr class="top-aligned-row">
+          <td><strong>Class</strong></td>
+          <td class="class-name-in-header">SRF</td>
+        </tr>
+        <tr class="top-aligned-row">
+            <td><strong>In:</strong></td>
+            <td>
+                <a href="../files/lib/spec_id/srf_rb.html">
+                lib/spec_id/srf.rb
+                </a>
+        <br />
+            </td>
+        </tr>
+
+        <tr class="top-aligned-row">
+            <td><strong>Parent:</strong></td>
+            <td>
+                Object
+            </td>
+        </tr>
+        </table>
+    </div>
+  <!-- banner header -->
+
+  <div id="bodyContent">
+
+
+
+  <div id="contextContent">
+
+
+
+   </div>
+
+    <div id="method-list">
+      <h3 class="section-bar">Methods</h3>
+
+      <div class="name-list">
+      <a href="#M000253">dta_start_byte</a>&nbsp;&nbsp;
+      <a href="#M000260">from_file</a>&nbsp;&nbsp;
+      <a href="#M000259">get_db_info_for_sqt</a>&nbsp;&nbsp;
+      <a href="#M000254">new</a>&nbsp;&nbsp;
+      <a href="#M000262">read_dta_files</a>&nbsp;&nbsp;
+      <a href="#M000263">read_out_files</a>&nbsp;&nbsp;
+      <a href="#M000261">read_scan_index</a>&nbsp;&nbsp;
+      <a href="#M000255">round</a>&nbsp;&nbsp;
+      <a href="#M000257">to_dta_files</a>&nbsp;&nbsp;
+      <a href="#M000256">to_mgf_file</a>&nbsp;&nbsp;
+      <a href="#M000258">to_sqt</a>&nbsp;&nbsp;
+      </div>
+    </div>
+
+  </div>
+
+
+    <!-- if includes -->
+
+    <div id="section">
+
+    <div id="class-list">
+      <h3 class="section-bar">Classes and Modules</h3>
+
+      Class <a href="SRF/DTA.html" class="link">SRF::DTA</a><br />
+Class <a href="SRF/DTAGen.html" class="link">SRF::DTAGen</a><br />
+Class <a href="SRF/Header.html" class="link">SRF::Header</a><br />
+Class <a href="SRF/OUT.html" class="link">SRF::OUT</a><br />
+
+    </div>
+
+    <div id="constants-list">
+      <h3 class="section-bar">Constants</h3>
+
+      <div class="name-list">
+        <table summary="Constants">
+        <tr class="top-aligned-row context-row">
+          <td class="context-item-name">MASCOT_HYDROGEN_MASS</td>
+          <td>=</td>
+          <td class="context-item-value">1.007276</td>
+        </tr>
+        </table>
+      </div>
+    </div>
+
+
+
+    <div id="attribute-list">
+      <h3 class="section-bar">Attributes</h3>
+
+      <div class="name-list">
+        <table>
+        <tr class="top-aligned-row context-row">
+          <td class="context-item-name">base_name</td>
+          <td class="context-item-value">&nbsp;[RW]&nbsp;</td>
+          <td class="context-item-desc"></td>
+        </tr>
+        <tr class="top-aligned-row context-row">
+          <td class="context-item-name">dta_files</td>
+          <td class="context-item-value">&nbsp;[RW]&nbsp;</td>
+          <td class="context-item-desc"></td>
+        </tr>
+        <tr class="top-aligned-row context-row">
+          <td class="context-item-name">filtered_by_precursor_mass_tolerance</td>
+          <td class="context-item-value">&nbsp;[RW]&nbsp;</td>
+          <td class="context-item-desc"></td>
+        </tr>
+        <tr class="top-aligned-row context-row">
+          <td class="context-item-name">header</td>
+          <td class="context-item-value">&nbsp;[RW]&nbsp;</td>
+          <td class="context-item-desc"></td>
+        </tr>
+        <tr class="top-aligned-row context-row">
+          <td class="context-item-name">index</td>
+          <td class="context-item-value">&nbsp;[RW]&nbsp;</td>
+          <td class="context-item-desc">
+a parallel array to dta_files and out_files where each entry is:
+[first_scan, last_scan, charge]
+
+</td>
+        </tr>
+        <tr class="top-aligned-row context-row">
+          <td class="context-item-name">out_files</td>
+          <td class="context-item-value">&nbsp;[RW]&nbsp;</td>
+          <td class="context-item-desc"></td>
+        </tr>
+        <tr class="top-aligned-row context-row">
+          <td class="context-item-name">params</td>
+          <td class="context-item-value">&nbsp;[RW]&nbsp;</td>
+          <td class="context-item-desc"></td>
+        </tr>
+        <tr class="top-aligned-row context-row">
+          <td class="context-item-name">peps</td>
+          <td class="context-item-value">&nbsp;[RW]&nbsp;</td>
+          <td class="context-item-desc">
+this is the global peptides array
+
+</td>
+        </tr>
+        <tr class="top-aligned-row context-row">
+          <td class="context-item-name">version</td>
+          <td class="context-item-value">&nbsp;[RW]&nbsp;</td>
+          <td class="context-item-desc">
+a string 3.5, 3.3 or 3.2
+
+</td>
+        </tr>
+        </table>
+      </div>
+    </div>
+      
+
+
+    <!-- if method_list -->
+    <div id="methods">
+      <h3 class="section-bar">Public Class methods</h3>
+
+      <div id="method-M000254" class="method-detail">
+        <a name="M000254"></a>
+
+        <div class="method-heading">
+          <a href="SRF.src/M000254.html" target="Code" class="method-signature"
+            onclick="popupCode('SRF.src/M000254.html');return false;">
+          <span class="method-name">new</span><span class="method-args">(filename=nil, peps=[], global_ref_hash={})</span>
+          </a>
+        </div>
+      
+        <div class="method-description">
+          <p>
+peps and global_ref_hash are created as the srf files is read. If the file
+is read as part of a group, then these should be passed in. NOTE: if you
+want the hits filtered by precursor tolerance (the way they might be
+displayed in .out files) you should probably use <a
+href="SRFGroup.html">SRFGroup</a> (which does this by default) <a
+href="SRF.html">SRF</a> is meant to be a low level read of the file.
+</p>
+        </div>
+      </div>
+
+      <h3 class="section-bar">Public Instance methods</h3>
+
+      <div id="method-M000253" class="method-detail">
+        <a name="M000253"></a>
+
+        <div class="method-heading">
+          <a href="SRF.src/M000253.html" target="Code" class="method-signature"
+            onclick="popupCode('SRF.src/M000253.html');return false;">
+          <span class="method-name">dta_start_byte</span><span class="method-args">()</span>
+          </a>
+        </div>
+      
+        <div class="method-description">
+        </div>
+      </div>
+
+      <div id="method-M000260" class="method-detail">
+        <a name="M000260"></a>
+
+        <div class="method-heading">
+          <a href="SRF.src/M000260.html" target="Code" class="method-signature"
+            onclick="popupCode('SRF.src/M000260.html');return false;">
+          <span class="method-name">from_file</span><span class="method-args">(filename, peps, global_ref_hash)</span>
+          </a>
+        </div>
+      
+        <div class="method-description">
+          <p>
+returns self
+</p>
+        </div>
+      </div>
+
+      <div id="method-M000259" class="method-detail">
+        <a name="M000259"></a>
+
+        <div class="method-heading">
+          <a href="SRF.src/M000259.html" target="Code" class="method-signature"
+            onclick="popupCode('SRF.src/M000259.html');return false;">
+          <span class="method-name">get_db_info_for_sqt</span><span class="method-args">(dbfile)</span>
+          </a>
+        </div>
+      
+        <div class="method-description">
+          <p>
+assumes the file exists and is readable returns [DBSeqLength, DBLocusCount,
+DBMD5Sum] or nil if no file
+</p>
+        </div>
+      </div>
+
+      <div id="method-M000262" class="method-detail">
+        <a name="M000262"></a>
+
+        <div class="method-heading">
+          <a href="SRF.src/M000262.html" target="Code" class="method-signature"
+            onclick="popupCode('SRF.src/M000262.html');return false;">
+          <span class="method-name">read_dta_files</span><span class="method-args">(fh, num_files, unpack_35)</span>
+          </a>
+        </div>
+      
+        <div class="method-description">
+          <p>
+returns an array of dta_files
+</p>
+        </div>
+      </div>
+
+      <div id="method-M000263" class="method-detail">
+        <a name="M000263"></a>
+
+        <div class="method-heading">
+          <a href="SRF.src/M000263.html" target="Code" class="method-signature"
+            onclick="popupCode('SRF.src/M000263.html');return false;">
+          <span class="method-name">read_out_files</span><span class="method-args">(fh,number_files, global_ref_hash, measured_mhs, unpack_35)</span>
+          </a>
+        </div>
+      
+        <div class="method-description">
+          <p>
+filehandle (fh) must be at the start of the outfiles. &#8216;<a
+href="SRF.html#M000262">read_dta_files</a>&#8217; will put the fh there.
+</p>
+        </div>
+      </div>
+
+      <div id="method-M000261" class="method-detail">
+        <a name="M000261"></a>
+
+        <div class="method-heading">
+          <a href="SRF.src/M000261.html" target="Code" class="method-signature"
+            onclick="popupCode('SRF.src/M000261.html');return false;">
+          <span class="method-name">read_scan_index</span><span class="method-args">(fh, num)</span>
+          </a>
+        </div>
+      
+        <div class="method-description">
+          <p>
+returns an index where each entry is [first_scan, last_scan, charge]
+</p>
+        </div>
+      </div>
+
+      <div id="method-M000255" class="method-detail">
+        <a name="M000255"></a>
+
+        <div class="method-heading">
+          <a href="SRF.src/M000255.html" target="Code" class="method-signature"
+            onclick="popupCode('SRF.src/M000255.html');return false;">
+          <span class="method-name">round</span><span class="method-args">(float, decimal_places)</span>
+          </a>
+        </div>
+      
+        <div class="method-description">
+        </div>
+      </div>
+
+      <div id="method-M000257" class="method-detail">
+        <a name="M000257"></a>
+
+        <div class="method-heading">
+          <a href="SRF.src/M000257.html" target="Code" class="method-signature"
+            onclick="popupCode('SRF.src/M000257.html');return false;">
+          <span class="method-name">to_dta_files</span><span class="method-args">(out_folder=nil)</span>
+          </a>
+        </div>
+      
+        <div class="method-description">
+          <p>
+not given an out_folder, will make one with the basename
+</p>
+        </div>
+      </div>
+
+      <div id="method-M000256" class="method-detail">
+        <a name="M000256"></a>
+
+        <div class="method-heading">
+          <a href="SRF.src/M000256.html" target="Code" class="method-signature"
+            onclick="popupCode('SRF.src/M000256.html');return false;">
+          <span class="method-name">to_mgf_file</span><span class="method-args">(filename=nil)</span>
+          </a>
+        </div>
+      
+        <div class="method-description">
+          <p>
+this mimicks the output of merge.pl from mascot The only difference is that
+this does not include the &quot;\r\n&quot; that is found after the peak
+lists, instead, it uses &quot;\n&quot; throughout the file (thinking that
+this is preferable to mixing newline styles!) note that <a
+href="Mass.html">Mass</a> if no filename is given, will use base_name +
+&#8217;.mgf&#8216;
+</p>
+        </div>
+      </div>
+
+      <div id="method-M000258" class="method-detail">
+        <a name="M000258"></a>
+
+        <div class="method-heading">
+          <a href="SRF.src/M000258.html" target="Code" class="method-signature"
+            onclick="popupCode('SRF.src/M000258.html');return false;">
+          <span class="method-name">to_sqt</span><span class="method-args">(out_filename=nil, opts={})</span>
+          </a>
+        </div>
+      
+        <div class="method-description">
+          <p>
+the out_filename will be the base_name + .sqt unless
+&#8216;out_filename&#8217; is defined :<a href="SRF.html#M000255">round</a>
+=&gt; <a href="SRF.html#M000255">round</a> floating point numbers
+etc&#8230;
+</p>
+        </div>
+      </div>
+
+
+    </div>
+
+
+  </div>
+
+
+<div id="validator-badges">
+  <p><small><a href="http://validator.w3.org/check/referer">[Validate]</a></small></p>
+</div>
+
+</body>
+</html>

@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="iso-8859-1"?>
+<!DOCTYPE html 
+     PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+     "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html>
+<head>
+  <title>mass_accuracy (SpecID::Pep)</title>
+  <meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1" />
+  <link rel="stylesheet" href="../../.././rdoc-style.css" type="text/css" media="screen" />
+</head>
+<body class="standalone-code">
+  <pre><span class="ruby-comment cmt"># File lib/spec_id.rb, line 735</span>
+  <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">mass_accuracy</span>(<span class="ruby-identifier">pep</span>, <span class="ruby-identifier">unit</span>=<span class="ruby-identifier">:ppm</span>, <span class="ruby-identifier">mono</span>=<span class="ruby-keyword kw">true</span>)
+    <span class="ruby-comment cmt"># 10^6 * deltam accuracy/ m[measured]</span>
+    <span class="ruby-comment cmt"># i.e., theoretical mass 1000, measured 999.9: 100ppm</span>
+    <span class="ruby-comment cmt"># http://www.waters.com/WatersDivision/ContentD.asp?watersit=EGOO-66LRQD</span>
+    <span class="ruby-comment cmt"># pep.mass is the theoretical M+H of the peptide</span>
+    <span class="ruby-comment cmt"># this assumes that the deltacn value we're being told is correct, but I</span>
+    <span class="ruby-comment cmt"># have my suspicions (since the &lt;mass&gt; value is not accurate...)</span>
+
+    <span class="ruby-comment cmt">######## TO COMPLETE (and add to spec_id..?)</span>
+    <span class="ruby-keyword kw">case</span> <span class="ruby-identifier">unit</span>
+    <span class="ruby-keyword kw">when</span> <span class="ruby-identifier">:ppm</span>
+    <span class="ruby-keyword kw">when</span> <span class="ruby-identifier">:amu</span>
+    <span class="ruby-keyword kw">when</span> <span class="ruby-identifier">:mmu</span>
+    <span class="ruby-keyword kw">end</span>
+  <span class="ruby-keyword kw">end</span></pre>
+</body>
+</html>

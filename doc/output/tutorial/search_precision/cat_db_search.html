@@ -1,0 +1,138 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.1//EN" "http://www.w3.org/TR/xhtml11/DTD/xhtml11.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en">
+  <head>
+    <title>Cat db search</title>
+    <link href="../../default.css" rel="stylesheet" />
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+  </head>
+  <body>
+    <div id="logo">
+        <a href=../../index.html><img src=../../images/mspire_logo.png border="0" alt="mspire - mass spectrometry proteomics in ruby"/></a>
+  </div>
+    <div id="header">
+      <h1>Cat db search</h1>
+    </div>
+
+    <div id="headerbar" class="bar">
+        <!-- <span class="left">Location: <a href="../../index.html" title="mspire">mspire</a> / <a href="../index.html" title="Tutorials">Tutorials</a> / <a href="./index.html" title="Search Precision">Search Precision</a> / <a href="./cat_db_search.html" title="Cat db search">Cat db search</a></span> -->
+      <!--<span class="right">Language: <a href="./cat_db_search.html" title="en">en</a></span>-->
+      <div style="clear:both"></div>
+    </div>
+
+    <div id="menu">
+        <div class="webgen-menu-vert "><ul><li ><a href="../../index.html" title="Home">Home</a></li><li class="webgen-menu-submenu"><a href="../../install/index.html" title="Install">Install</a></li><li class="webgen-menu-submenu"><a href="../../ms/index.html" title="MS">MS</a></li><li class="webgen-menu-submenu"><a href="../../spec_id/index.html" title="SpecID">SpecID</a></li><li class="webgen-menu-submenu webgen-menu-submenu-inhierarchy"><a href="../index.html" title="Tutorials">Tutorials</a><ul><li class="webgen-menu-submenu webgen-menu-submenu-inhierarchy"><a href="./index.html" title="Search Precision">Search Precision</a><ul><li class="webgen-menu-item-selected"><a href="./cat_db_search.html" title="Cat db search">Cat db search</a></li><li ><a href="./prophet.html" title="Prophet">Prophet</a></li></ul></li></ul></li></ul></div>
+        <a style="font-size:130%; padding-left:20px" href="rdoc/index.html">rdoc</a>
+        <br/>
+        <a style="font-size:85%; padding-left:20px" href="http://rubyforge.org/projects/mspire/">Rubyforge Project Page</a>
+        <br/>
+        <br/>
+        <br/>
+        <br/>
+        <a href="http://www.ruby-lang.org/en/"><img style="padding-left:20px" src=../../images/ruby_logo_small.png border="0" alt="Ruby Programming Language"/></a>
+    </div>
+
+    <div id="body">
+      <h1>Cat-DB: Concatenated Database Search</h1>
+
+<h2>1. Run Sequest with a Concatenated Inverse Database</h2>
+
+<p>If you don't already have one, here's how to make one:</p>
+
+<pre><code>fasta_shaker.rb reverse -c -p INVERSE_ &lt;yourfile&gt;.fasta
+</code></pre>
+
+<p>This will create a file that looks like this:
+<code>&lt;yourfile&gt;_cat_reverse_prefix_INVERSE_.fasta</code>.  Each inverted protein name will
+be prefixed with 'INVERSE_'.  Type <code>fasta_shaker.rb</code> for more details.  Alternatively, use BioworksBrowser to create a reversed concatenated database.</p>
+
+<p>Then run sequest using the concatenated database file.  <em>* NOTE *</em> To set
+protein identifications properly, run sequest with 'report duplicate
+references' set to >= 40</p>
+
+<h2>2. Group .srf files  OR  Export a Bioworks XML File</h2>
+
+<h3>Group .srf files</h3>
+
+<p>To indicate that certain .srf files are meant to be analyzed as one group,
+create a .srg file:</p>
+
+<pre><code>srf_group.rb &lt;file1&gt;.srf &lt;file2&gt;.srf ...
+</code></pre>
+
+<p>This will output a 'bioworks.srg' file. A '.srg' file is simply a text file
+with a list of the full pathnames for each srf file in the group.  Type
+<code>srf_group.rb</code> for more details.</p>
+
+<h3>Or Export Bioworks XML</h3>
+
+<p>Alternatively, you can use BioworksBrowser to group runs and then export an xml file:</p>
+
+<pre><code>1. Load your sequest results in MultiConsensus results (even if you only have one run) 
+    File -&gt; 'Load MultiConsensus Results'
+2. Click 'yes' to calculate peptide probabilities (optional)
+3. Click 'yes' to view results without filtering
+4. Right click on the data and 'Export' to XML (name the file `bioworks.xml`)
+</code></pre>
+
+<p><em>* NOTE *</em> A <code>bioworks.xml</code> file and a <code>bioworks.srg</code> file are essentially
+interchangeable for the following steps.  Whenever you see a <code>bioworks.srg</code>
+file, a <code>bioworks.xml</code> file would work, too.</p>
+
+<h2>3. Filtering</h2>
+
+<p>You can filter your search results and see the false positive rate: </p>
+
+<pre><code>filter.rb bioworks.srg -f INVERSE_ --prefix -1 1.5 -2 2.5 -3 3.0 --deltacn 0.2 --ppm 8.5
+</code></pre>
+
+<p>If you use Bioworks to reverse your database, the <code>-f</code> should be followed by
+<code>BIOWORKS</code> and no <code>--prefix</code> flag should be used:</p>
+
+<pre><code>filter.rb bioworks.srg -f REVERSE -1 1.5 -2 2.5 -3 3.0 --deltacn 0.2 --ppm 8.5
+</code></pre>
+
+<p>You can also filter the results interactively to try to increase the number of
+identifications at a given false identification rate with the '-i' flag:</p>
+
+<pre><code>filter.rb bioworks.srg -f INVERSE_ --prefix -i
+</code></pre>
+
+<p>Interactive filtering instructions are provided when the session begins.  Type
+<code>filter.rb</code> for other options.  </p>
+
+<p>For a more detailed protein list, filter the protein list according to the
+above selected parameters in the BioworksBrowser MultiConsensus View.  Decoy
+proteins can be filtered with the filter (shown for the <code>REVERSE</code> flag):</p>
+
+<pre><code>Type: 'Protein', Field: 'Exclude this reference', Parameter: REVERSE
+</code></pre>
+
+<h2>4. Classification Analysis</h2>
+
+<p>One can use Bioworks probability scores with concatenated DB searches by
+counting the number of true hits (proteins from normal database hits) compared
+with false hits (proteins from inverted db hits).  Since the probabilities are
+more or less continuous, you can select any desired false identification rate.</p>
+
+<pre><code>protein_summary.rb bioworks_cat_inv.xml -f INVERSE_ --precision
+</code></pre>
+
+<p>Type <code>protein_summary.rb</code> for more details.</p>
+
+<p>We can also view the false identification rates without the protein summary:</p>
+
+<pre><code>precision.rb -f INVERSE_ bioworks.srg
+</code></pre>
+
+<p>Type <code>precision.rb</code> for more details.</p>
+
+<p>This analysis will only work with Bioworks xml export where probabilities have
+been updated.</p>
+    </div>
+
+    <div id="footer" class="bar">
+      Last update: <i>Monday, August 18 10:50:22 MDT 2008</i>
+    </div>
+  </body>
+</html>

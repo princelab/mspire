@@ -1,0 +1,44 @@
+--- 
+- time_to_access: 32.298979
+  scan_count: 6114
+  file_size: 36108684
+  scans_to_read: all
+  total_time_to_read_and_access: 38.494205
+  time_to_read: 6.195203
+  lazy_type: :io_good
+  end_time: 11998.94
+  start_time: 300.1099
+  file: 1940_1ul02_030331162830.mzXML
+--- 
+- time_to_access: 4.655718
+  scan_count: 4255
+  file_size: 6746277
+  scans_to_read: all
+  total_time_to_read_and_access: 7.14206
+  time_to_read: 2.486317
+  lazy_type: :io_good
+  end_time: 11998.42
+  start_time: 300.1
+  file: 1940_7ul.mzXML
+--- 
+- time_to_access: 32.232101
+  scan_count: 6180
+  file_size: 36022695
+  scans_to_read: all
+  total_time_to_read_and_access: 38.389548
+  time_to_read: 6.157422
+  lazy_type: :io_good
+  end_time: 11999.69
+  start_time: 300.1
+  file: 970_7ul.mzXML
+--- 
+- time_to_access: 30.648206
+  scan_count: 5548
+  file_size: 33666284
+  scans_to_read: all
+  total_time_to_read_and_access: 36.587019
+  time_to_read: 5.93879
+  lazy_type: :io_good
+  end_time: 12003.14
+  start_time: 300.09
+  file: 970_1ul.mzXML

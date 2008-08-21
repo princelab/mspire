@@ -1,0 +1,54 @@
+--- 
+- time_to_access: 3.5e-05
+  first_scan: 
+    last_peak: 
+    - 1776.7041015625
+    - 5552.0
+    num: 1
+    first_peak: 
+    - 428.917907714844
+    - 7602.0
+  scan_count: 6228
+  file_size: 32688212
+  last_scan: 
+    last_peak: 
+    - 1350.9326171875
+    - 5120.0
+    num: 6228
+    first_peak: 
+    - 881.7900390625
+    - 7003.0
+  scans_to_read: fl
+  total_time_to_read_and_access: 20.265927
+  time_to_read: 20.265878
+  lazy_type: :not
+  end_time: 12005.07
+  start_time: 300.09
+  file: 4aE.mzXML
+--- 
+- time_to_access: 3.1e-05
+  first_scan: 
+    last_peak: 
+    - 554.574584960938
+    - 3562.0
+    num: 1
+    first_peak: 
+    - 554.574584960938
+    - 3562.0
+  scan_count: 5963
+  file_size: 32080466
+  last_scan: 
+    last_peak: 
+    - 1799.17016601562
+    - 8009.0
+    num: 5963
+    first_peak: 
+    - 400.482299804688
+    - 58748.0
+  scans_to_read: fl
+  total_time_to_read_and_access: 21.194745
+  time_to_read: 21.194699
+  lazy_type: :not
+  end_time: 11997.85
+  start_time: 300.04
+  file: 4aF_030325142640.mzXML

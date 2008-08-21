@@ -1,0 +1,157 @@
+<?xml version="1.0" encoding="iso-8859-1"?>
+<!DOCTYPE html 
+     PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+     "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html>
+<head>
+  <title>parse (SpecID::Precision::Filter::CmdlineParser)</title>
+  <meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1" />
+  <link rel="stylesheet" href="../../../../.././rdoc-style.css" type="text/css" media="screen" />
+</head>
+<body class="standalone-code">
+  <pre><span class="ruby-comment cmt"># File lib/spec_id/precision/filter/cmdline.rb, line 68</span>
+        <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">parse</span>(<span class="ruby-identifier">args</span>)
+          <span class="ruby-identifier">opts</span> = {}
+          <span class="ruby-identifier">opts</span>[<span class="ruby-identifier">:output</span>] = []
+          <span class="ruby-ivar">@out_used</span> = <span class="ruby-keyword kw">false</span>
+          <span class="ruby-identifier">opts</span>[<span class="ruby-identifier">:sequest</span>] = {}
+          <span class="ruby-identifier">opts</span>[<span class="ruby-identifier">:validators</span>] = []
+          <span class="ruby-comment cmt"># defaults</span>
+
+          <span class="ruby-identifier">option_parser</span> = <span class="ruby-constant">OptionParser</span>.<span class="ruby-identifier">new</span> <span class="ruby-keyword kw">do</span> <span class="ruby-operator">|</span><span class="ruby-identifier">op</span><span class="ruby-operator">|</span>
+            <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">op</span>.<span class="ruby-identifier">opt</span>(<span class="ruby-identifier">arg</span>, <span class="ruby-operator">&amp;</span><span class="ruby-identifier">block</span>)
+              <span class="ruby-identifier">on</span>(<span class="ruby-operator">*</span><span class="ruby-constant">COMMAND_LINE</span>[<span class="ruby-identifier">arg</span>], <span class="ruby-operator">&amp;</span><span class="ruby-identifier">block</span>)
+            <span class="ruby-keyword kw">end</span>
+
+            <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">op</span>.<span class="ruby-identifier">val_opt</span>(<span class="ruby-identifier">arg</span>, <span class="ruby-identifier">opts</span>)
+              <span class="ruby-identifier">on</span>(<span class="ruby-operator">*</span><span class="ruby-constant">COMMAND_LINE</span>[<span class="ruby-identifier">arg</span>]) {<span class="ruby-operator">|</span><span class="ruby-identifier">ar</span><span class="ruby-operator">|</span> <span class="ruby-constant">Validator</span><span class="ruby-operator">::</span><span class="ruby-constant">Cmdline</span><span class="ruby-operator">::</span><span class="ruby-constant">PrepArgs</span>[<span class="ruby-identifier">arg</span>].<span class="ruby-identifier">call</span>(<span class="ruby-identifier">ar</span>, <span class="ruby-identifier">opts</span>) }
+            <span class="ruby-keyword kw">end</span>
+
+            <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">op</span>.<span class="ruby-identifier">exact_opt</span>(<span class="ruby-identifier">opts</span>, <span class="ruby-identifier">arg</span>)
+              <span class="ruby-identifier">on</span>(<span class="ruby-operator">*</span><span class="ruby-constant">COMMAND_LINE</span>[<span class="ruby-identifier">arg</span>]) {<span class="ruby-operator">|</span><span class="ruby-identifier">v</span><span class="ruby-operator">|</span> <span class="ruby-identifier">opts</span>[<span class="ruby-identifier">arg</span>] = <span class="ruby-identifier">v</span>}
+            <span class="ruby-keyword kw">end</span>
+
+            <span class="ruby-identifier">op</span>.<span class="ruby-identifier">banner</span> = <span class="ruby-node">&quot;USAGE: #{File.basename($0)} [OPTS] &lt;bioworks.xml | bioworks.srg | .srf ....srf&gt;&quot;</span>
+            <span class="ruby-identifier">op</span>.<span class="ruby-identifier">separator</span> <span class="ruby-value str">&quot;&quot;</span>
+            <span class="ruby-identifier">op</span>.<span class="ruby-identifier">separator</span> <span class="ruby-value str">&quot;    EXPECTS: the multiconsensus XML export of Bioworks 3.X (bioworks.xml) -or- *.srf files&quot;</span>
+            <span class="ruby-identifier">op</span>.<span class="ruby-identifier">separator</span> <span class="ruby-value str">&quot;             grouped together (bioworks.srg) [type 'srf_group.rb' at the cmd line]&quot;</span>
+
+            <span class="ruby-identifier">op</span>.<span class="ruby-identifier">separator</span> <span class="ruby-value str">&quot;             multiple .srf files may also be entered.&quot;</span>
+            <span class="ruby-identifier">op</span>.<span class="ruby-identifier">separator</span> <span class="ruby-value str">&quot;    RETURNS: the number of peptides/proteins ID'd at given thresholds with&quot;</span>
+            <span class="ruby-identifier">op</span>.<span class="ruby-identifier">separator</span> <span class="ruby-value str">&quot;             (optional) validation of the results.&quot;</span>
+            <span class="ruby-identifier">op</span>.<span class="ruby-identifier">separator</span> <span class="ruby-value str">&quot;&quot;</span>
+
+            <span class="ruby-comment cmt">#op.separator(&quot;** 'dcn*' is the number of peptides with deltacn == 1.1&quot;)</span>
+            <span class="ruby-comment cmt">#op.separator(&quot;   (these are peptides who are the only hit with xcorr &gt; 0)&quot;)</span>
+            <span class="ruby-identifier">op</span>.<span class="ruby-identifier">separator</span> <span class="ruby-value str">&quot;SEQUEST OPTIONS: &quot;</span>
+            <span class="ruby-identifier">op</span>.<span class="ruby-identifier">exact_opt</span>(<span class="ruby-identifier">opts</span>[<span class="ruby-identifier">:sequest</span>], <span class="ruby-identifier">:xcorr1</span>)
+            <span class="ruby-identifier">op</span>.<span class="ruby-identifier">exact_opt</span>(<span class="ruby-identifier">opts</span>[<span class="ruby-identifier">:sequest</span>], <span class="ruby-identifier">:xcorr2</span>)
+            <span class="ruby-identifier">op</span>.<span class="ruby-identifier">exact_opt</span>(<span class="ruby-identifier">opts</span>[<span class="ruby-identifier">:sequest</span>], <span class="ruby-identifier">:xcorr3</span>)
+            <span class="ruby-identifier">op</span>.<span class="ruby-identifier">exact_opt</span>(<span class="ruby-identifier">opts</span>[<span class="ruby-identifier">:sequest</span>], <span class="ruby-identifier">:deltacn</span>)
+            <span class="ruby-identifier">op</span>.<span class="ruby-identifier">exact_opt</span>(<span class="ruby-identifier">opts</span>[<span class="ruby-identifier">:sequest</span>], <span class="ruby-identifier">:ppm</span>)
+            <span class="ruby-identifier">op</span>.<span class="ruby-identifier">opt</span>(<span class="ruby-identifier">:no_deltacnstar</span>)     {<span class="ruby-operator">|</span><span class="ruby-identifier">v</span><span class="ruby-operator">|</span> <span class="ruby-identifier">opts</span>[<span class="ruby-identifier">:sequest</span>][<span class="ruby-identifier">:include_deltacnstar</span>] = <span class="ruby-keyword kw">false</span>} 
+            <span class="ruby-identifier">op</span>.<span class="ruby-identifier">separator</span> <span class="ruby-value str">&quot;&quot;</span>
+            <span class="ruby-identifier">op</span>.<span class="ruby-identifier">separator</span> <span class="ruby-value str">&quot;OUTPUT OPTIONS: &quot;</span>
+            <span class="ruby-identifier">op</span>.<span class="ruby-identifier">opt</span>(<span class="ruby-identifier">:proteins</span>) {<span class="ruby-operator">|</span><span class="ruby-identifier">v</span><span class="ruby-operator">|</span> <span class="ruby-identifier">opts</span>[<span class="ruby-identifier">:proteins</span>] = <span class="ruby-keyword kw">true</span> }
+            <span class="ruby-identifier">op</span>.<span class="ruby-identifier">opt</span>(<span class="ruby-identifier">:output</span>) <span class="ruby-keyword kw">do</span> <span class="ruby-operator">|</span><span class="ruby-identifier">output</span><span class="ruby-operator">|</span>
+              <span class="ruby-comment cmt"># copied from rspec:</span>
+              <span class="ruby-comment cmt"># This funky regexp checks whether we have a FILE_NAME or not</span>
+              <span class="ruby-identifier">where</span> = <span class="ruby-keyword kw">nil</span>
+              <span class="ruby-keyword kw">if</span> (<span class="ruby-identifier">output</span> <span class="ruby-operator">=~</span> <span class="ruby-regexp re">/([a-zA-Z_]+(?:::[a-zA-Z_]+)*):?(.*)/</span>) <span class="ruby-operator">&amp;&amp;</span> (<span class="ruby-identifier">$2</span> <span class="ruby-operator">!=</span> <span class="ruby-value str">''</span>)
+                <span class="ruby-identifier">output</span> = <span class="ruby-identifier">$1</span>
+                <span class="ruby-identifier">where</span> = <span class="ruby-identifier">$2</span>
+              <span class="ruby-keyword kw">else</span>
+                <span class="ruby-identifier">raise</span> <span class="ruby-value str">&quot;When using several --output options only one of them can be without a file&quot;</span> <span class="ruby-keyword kw">if</span> <span class="ruby-ivar">@out_used</span>
+                <span class="ruby-ivar">@out_used</span> = <span class="ruby-keyword kw">true</span>
+              <span class="ruby-keyword kw">end</span>
+              <span class="ruby-identifier">opts</span>[<span class="ruby-identifier">:output</span>] <span class="ruby-operator">&lt;&lt;</span> [<span class="ruby-identifier">output</span>, <span class="ruby-identifier">where</span>]
+            <span class="ruby-keyword kw">end</span>
+
+            <span class="ruby-identifier">op</span>.<span class="ruby-identifier">separator</span> <span class="ruby-value str">&quot;&quot;</span>
+            <span class="ruby-identifier">op</span>.<span class="ruby-identifier">separator</span> <span class="ruby-value str">&quot;VALIDATION OPTIONS: &quot;</span>
+            <span class="ruby-identifier">op</span>.<span class="ruby-identifier">separator</span> <span class="ruby-value str">&quot;   each option will calculate the precision&quot;</span>
+            <span class="ruby-identifier">op</span>.<span class="ruby-identifier">separator</span> <span class="ruby-value str">&quot;&quot;</span>
+
+            <span class="ruby-identifier">op</span>.<span class="ruby-identifier">val_opt</span>(<span class="ruby-identifier">:decoy</span>, <span class="ruby-identifier">opts</span>)
+            <span class="ruby-identifier">op</span>.<span class="ruby-identifier">val_opt</span>(<span class="ruby-identifier">:digestion</span>, <span class="ruby-identifier">opts</span>)
+            <span class="ruby-identifier">op</span>.<span class="ruby-identifier">val_opt</span>(<span class="ruby-identifier">:bias</span>, <span class="ruby-identifier">opts</span>)
+            <span class="ruby-identifier">op</span>.<span class="ruby-identifier">val_opt</span>(<span class="ruby-identifier">:bad_aa</span>, <span class="ruby-identifier">opts</span>)
+            <span class="ruby-identifier">op</span>.<span class="ruby-identifier">val_opt</span>(<span class="ruby-identifier">:bad_aa_est</span>, <span class="ruby-identifier">opts</span>)
+
+            <span class="ruby-identifier">op</span>.<span class="ruby-identifier">val_opt</span>(<span class="ruby-identifier">:tmm</span>, <span class="ruby-identifier">opts</span>)
+            <span class="ruby-identifier">op</span>.<span class="ruby-identifier">val_opt</span>(<span class="ruby-identifier">:fasta</span>, <span class="ruby-identifier">opts</span>)
+            <span class="ruby-identifier">op</span>.<span class="ruby-identifier">val_opt</span>(<span class="ruby-identifier">:tps</span>, <span class="ruby-identifier">opts</span>)
+
+            <span class="ruby-identifier">op</span>.<span class="ruby-identifier">separator</span> <span class="ruby-value str">&quot;&quot;</span>
+            <span class="ruby-identifier">op</span>.<span class="ruby-identifier">separator</span> <span class="ruby-value str">&quot;VALIDATION MODIFIERS: &quot;</span>
+            <span class="ruby-identifier">op</span>.<span class="ruby-identifier">val_opt</span>(<span class="ruby-identifier">:false_on_tie</span>, <span class="ruby-identifier">opts</span>)  <span class="ruby-comment cmt"># sets opts[:ties] = false</span>
+
+            <span class="ruby-identifier">op</span>.<span class="ruby-identifier">opt</span>(<span class="ruby-identifier">:hits_separate</span>) { <span class="ruby-identifier">opts</span>[<span class="ruby-identifier">:hits_together</span>] = <span class="ruby-keyword kw">false</span> } <span class="ruby-comment cmt"># :top_hits_together</span>
+
+            <span class="ruby-identifier">op</span>.<span class="ruby-identifier">separator</span> <span class="ruby-value str">&quot;&quot;</span>
+            <span class="ruby-identifier">op</span>.<span class="ruby-identifier">separator</span> <span class="ruby-value str">&quot;OTHER OPTIONS: &quot;</span>
+            <span class="ruby-identifier">op</span>.<span class="ruby-identifier">opt</span>(<span class="ruby-identifier">:interactive</span>) <span class="ruby-keyword kw">do</span> <span class="ruby-operator">|</span><span class="ruby-identifier">v</span><span class="ruby-operator">|</span> 
+              <span class="ruby-identifier">opts</span>[<span class="ruby-identifier">:interactive</span>] = 
+                <span class="ruby-keyword kw">if</span> <span class="ruby-identifier">v</span>
+                  <span class="ruby-identifier">v</span> 
+                <span class="ruby-keyword kw">else</span>
+                  <span class="ruby-keyword kw">true</span>
+                <span class="ruby-keyword kw">end</span>
+            <span class="ruby-keyword kw">end</span>
+            <span class="ruby-identifier">op</span>.<span class="ruby-identifier">opt</span>(<span class="ruby-identifier">:interactive_verbose</span>) {<span class="ruby-operator">|</span><span class="ruby-identifier">v</span><span class="ruby-operator">|</span> <span class="ruby-identifier">opts</span>[<span class="ruby-identifier">:interactive_verbose</span>] = <span class="ruby-identifier">v</span> }
+            
+            <span class="ruby-identifier">op</span>.<span class="ruby-identifier">opt</span>(<span class="ruby-identifier">:top_hit_by</span>) {<span class="ruby-operator">|</span><span class="ruby-identifier">v</span><span class="ruby-operator">|</span> <span class="ruby-identifier">opts</span>[<span class="ruby-identifier">:top_hit_by</span>] = <span class="ruby-identifier">v</span>.<span class="ruby-identifier">to_sym</span>}
+            <span class="ruby-identifier">op</span>.<span class="ruby-identifier">opt</span>(<span class="ruby-identifier">:postfilter</span>) {<span class="ruby-operator">|</span><span class="ruby-identifier">v</span><span class="ruby-operator">|</span> <span class="ruby-identifier">opts</span>[<span class="ruby-identifier">:postfilter</span>] = <span class="ruby-identifier">v</span>.<span class="ruby-identifier">to_sym</span>}
+            <span class="ruby-identifier">op</span>.<span class="ruby-identifier">opt</span>(<span class="ruby-identifier">:prefilter</span>) {<span class="ruby-operator">|</span><span class="ruby-identifier">v</span><span class="ruby-operator">|</span> <span class="ruby-identifier">opts</span>[<span class="ruby-identifier">:prefilter</span>] = <span class="ruby-keyword kw">true</span> }
+
+
+            <span class="ruby-comment cmt">#op.on(&quot;--yaml&quot;, &quot;spits out yaml-ized data&quot;) {|v| opts[:tabulate = v }</span>
+            <span class="ruby-comment cmt">#op.on(&quot;--combined_score&quot;, &quot;shows the combined score&quot;) {|v| opts[:combined_score = v }</span>
+            <span class="ruby-comment cmt">#op.on(&quot;--marshal&quot;, &quot;will write marshaled data or read existing&quot;) {|v| opts[:marshal = v }</span>
+            <span class="ruby-comment cmt">#op.on(&quot;--log &lt;file&gt;&quot;, &quot;also writes all output to file&quot;) {|v| opts[:log = v }</span>
+            <span class="ruby-comment cmt">### NEED TO IMPLEMENT THIS:</span>
+            <span class="ruby-comment cmt">##op.on(&quot;--protein_summary&quot;, &quot;writes passing proteins to .summary.html files&quot;) {|v| opts[:protein_summary = v }</span>
+            <span class="ruby-comment cmt">#op.on(&quot;-z&quot;, &quot;--occams_razor&quot;, &quot;will show minimal set of proteins&quot;) {|v| opts[:occams_razor = v }</span>
+
+          <span class="ruby-keyword kw">end</span>
+          <span class="ruby-identifier">option_parser</span>.<span class="ruby-identifier">parse!</span>(<span class="ruby-identifier">args</span>)
+
+          <span class="ruby-comment cmt"># prepare interactive object if necessary:</span>
+          <span class="ruby-keyword kw">if</span> <span class="ruby-identifier">v</span> = <span class="ruby-identifier">opts</span>[<span class="ruby-identifier">:interactive</span>]
+            <span class="ruby-identifier">klass</span> = <span class="ruby-constant">SpecID</span><span class="ruby-operator">::</span><span class="ruby-constant">Precision</span><span class="ruby-operator">::</span><span class="ruby-constant">Filter</span><span class="ruby-operator">::</span><span class="ruby-constant">Interactive</span>
+            <span class="ruby-keyword kw">if</span> <span class="ruby-identifier">v</span>.<span class="ruby-identifier">is_a?</span> <span class="ruby-constant">String</span>
+              <span class="ruby-identifier">opts</span>[<span class="ruby-identifier">:interactive</span>] = <span class="ruby-identifier">klass</span>.<span class="ruby-identifier">new</span>(<span class="ruby-identifier">v</span>, <span class="ruby-identifier">opts</span>[<span class="ruby-identifier">:interactive_verbose</span>])
+            <span class="ruby-keyword kw">else</span>
+              <span class="ruby-identifier">opts</span>[<span class="ruby-identifier">:interactive</span>] = <span class="ruby-identifier">klass</span>.<span class="ruby-identifier">new</span>(<span class="ruby-keyword kw">nil</span>, <span class="ruby-identifier">opts</span>[<span class="ruby-identifier">:interactive_verbose</span>])
+            <span class="ruby-keyword kw">end</span>
+          <span class="ruby-keyword kw">end</span>
+
+
+          <span class="ruby-identifier">opts</span>[<span class="ruby-identifier">:sequest</span>] = <span class="ruby-constant">DEFAULTS</span>[<span class="ruby-identifier">:sequest</span>].<span class="ruby-identifier">merge</span>(<span class="ruby-identifier">opts</span>[<span class="ruby-identifier">:sequest</span>])
+
+          <span class="ruby-comment cmt"># prepare validators</span>
+
+          <span class="ruby-keyword kw">if</span> <span class="ruby-identifier">args</span>.<span class="ruby-identifier">size</span> <span class="ruby-operator">&gt;</span> <span class="ruby-value">0</span>
+            <span class="ruby-identifier">spec_id_obj</span> = 
+              <span class="ruby-keyword kw">if</span> <span class="ruby-identifier">args</span>[<span class="ruby-value">0</span>] <span class="ruby-operator">=~</span> <span class="ruby-regexp re">/\.srf$/i</span>
+                <span class="ruby-operator">::</span><span class="ruby-constant">SpecID</span>.<span class="ruby-identifier">new</span>(<span class="ruby-identifier">args</span>)
+              <span class="ruby-keyword kw">else</span>
+                <span class="ruby-operator">::</span><span class="ruby-constant">SpecID</span>.<span class="ruby-identifier">new</span>(<span class="ruby-identifier">args</span>[<span class="ruby-value">0</span>])
+              <span class="ruby-keyword kw">end</span>
+            <span class="ruby-keyword kw">if</span> <span class="ruby-identifier">opts</span>[<span class="ruby-identifier">:ties</span>] <span class="ruby-operator">==</span> <span class="ruby-keyword kw">nil</span>   <span class="ruby-comment cmt"># will be nil or false</span>
+              <span class="ruby-identifier">opts</span>[<span class="ruby-identifier">:ties</span>] = <span class="ruby-constant">Validator</span><span class="ruby-operator">::</span><span class="ruby-constant">Cmdline</span><span class="ruby-operator">::</span><span class="ruby-constant">DEFAULTS</span>[<span class="ruby-identifier">:ties</span>]
+            <span class="ruby-keyword kw">end</span>
+            <span class="ruby-identifier">opts</span>[<span class="ruby-identifier">:validators</span>] = <span class="ruby-constant">Validator</span><span class="ruby-operator">::</span><span class="ruby-constant">Cmdline</span>.<span class="ruby-identifier">prepare_validators</span>(<span class="ruby-identifier">opts</span>, <span class="ruby-operator">!</span><span class="ruby-identifier">opts</span>[<span class="ruby-identifier">:ties</span>], <span class="ruby-identifier">opts</span>[<span class="ruby-identifier">:interactive</span>], <span class="ruby-identifier">opts</span>[<span class="ruby-identifier">:postfilter</span>], <span class="ruby-identifier">spec_id_obj</span>)
+
+            <span class="ruby-keyword kw">if</span> <span class="ruby-identifier">opts</span>[<span class="ruby-identifier">:output</span>].<span class="ruby-identifier">size</span> <span class="ruby-operator">==</span> <span class="ruby-value">0</span>
+              <span class="ruby-identifier">opts</span>[<span class="ruby-identifier">:output</span>] = <span class="ruby-constant">DEFAULTS</span>[<span class="ruby-identifier">:output</span>]
+            <span class="ruby-keyword kw">end</span>
+          <span class="ruby-keyword kw">else</span>
+            <span class="ruby-identifier">spec_id_obj</span> = <span class="ruby-keyword kw">nil</span>
+          <span class="ruby-keyword kw">end</span>
+
+          [<span class="ruby-identifier">spec_id_obj</span>, <span class="ruby-identifier">opts</span>, <span class="ruby-identifier">option_parser</span>]
+        <span class="ruby-keyword kw">end</span></pre>
+</body>
+</html>

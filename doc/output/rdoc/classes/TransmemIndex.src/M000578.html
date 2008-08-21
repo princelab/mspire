@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="iso-8859-1"?>
+<!DOCTYPE html 
+     PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+     "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html>
+<head>
+  <title>filetype (TransmemIndex)</title>
+  <meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1" />
+  <link rel="stylesheet" href="../.././rdoc-style.css" type="text/css" media="screen" />
+</head>
+<body class="standalone-code">
+  <pre><span class="ruby-comment cmt"># File lib/transmem.rb, line 7</span>
+  <span class="ruby-keyword kw">def</span> <span class="ruby-keyword kw">self</span>.<span class="ruby-identifier">filetype</span>(<span class="ruby-identifier">file</span>)
+    <span class="ruby-identifier">tp</span> = <span class="ruby-keyword kw">nil</span>
+    <span class="ruby-constant">File</span>.<span class="ruby-identifier">open</span>(<span class="ruby-identifier">file</span>) <span class="ruby-keyword kw">do</span> <span class="ruby-operator">|</span><span class="ruby-identifier">fh</span><span class="ruby-operator">|</span>
+      <span class="ruby-keyword kw">while</span> (<span class="ruby-identifier">line</span> = <span class="ruby-identifier">fh</span>.<span class="ruby-identifier">gets</span>)
+        <span class="ruby-keyword kw">case</span> <span class="ruby-identifier">line</span>
+        <span class="ruby-keyword kw">when</span> <span class="ruby-regexp re">/SEQENCE/</span>
+          <span class="ruby-identifier">tp</span> = <span class="ruby-identifier">:phobius</span> 
+          <span class="ruby-keyword kw">break</span>
+        <span class="ruby-keyword kw">when</span> <span class="ruby-regexp re">/    0  0 i/</span>
+          <span class="ruby-identifier">tp</span> = <span class="ruby-identifier">:phobius</span>  <span class="ruby-comment cmt"># if they don't have the headers, </span>
+                         <span class="ruby-comment cmt"># this will pick it up if they have a </span>
+                         <span class="ruby-comment cmt"># single prot without tm or signal peptide.</span>
+          <span class="ruby-keyword kw">break</span>
+        <span class="ruby-keyword kw">when</span> <span class="ruby-regexp re">/Algorithm specific parameters/</span>
+          <span class="ruby-identifier">tp</span> = <span class="ruby-identifier">:toppred</span>  <span class="ruby-comment cmt"># New text</span>
+          <span class="ruby-keyword kw">break</span>
+        <span class="ruby-keyword kw">when</span> <span class="ruby-regexp re">/&lt;parameters&gt;/</span>
+          <span class="ruby-identifier">tp</span> = <span class="ruby-identifier">:toppred</span>  <span class="ruby-comment cmt"># XML</span>
+          <span class="ruby-keyword kw">break</span>
+        <span class="ruby-keyword kw">end</span>
+      <span class="ruby-keyword kw">end</span>
+    <span class="ruby-keyword kw">end</span>
+    <span class="ruby-identifier">tp</span>
+  <span class="ruby-keyword kw">end</span></pre>
+</body>
+</html>

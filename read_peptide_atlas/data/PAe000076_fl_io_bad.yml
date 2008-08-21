@@ -1,0 +1,2133 @@
+--- 
+- time_to_access: 0.026429
+  first_scan: 
+    last_peak: 
+    - 1799.42065429688
+    - 14013.0
+    num: 1
+    first_peak: 
+    - 400.417541503906
+    - 177526.0
+  scan_count: 3864
+  file_size: 33761656
+  last_scan: 
+    last_peak: 
+    - 0.0
+    - 0.0
+    num: 3864
+    first_peak: 
+    - 0.0
+    - 0.0
+  scans_to_read: fl
+  total_time_to_read_and_access: 3.150049
+  time_to_read: 3.123603
+  lazy_type: :io_bad
+  end_time: 6599.08
+  start_time: 0.04
+  file: ysticat2_1012_1.mzXML
+--- 
+- time_to_access: 0.034726
+  first_scan: 
+    last_peak: 
+    - 1799.89135742188
+    - 2320.0
+    num: 1
+    first_peak: 
+    - 400.530212402344
+    - 76970.0
+  scan_count: 5669
+  file_size: 48862273
+  last_scan: 
+    last_peak: 
+    - 821.411987304688
+    - 1322.0
+    num: 5669
+    first_peak: 
+    - 417.72265625
+    - 1358.0
+  scans_to_read: fl
+  total_time_to_read_and_access: 4.36926
+  time_to_read: 4.334516
+  lazy_type: :io_bad
+  end_time: 9959.29
+  start_time: 0.34
+  file: ysticat2_1012_2.mzXML
+--- 
+- time_to_access: 0.028158
+  first_scan: 
+    last_peak: 
+    - 1799.58349609375
+    - 31145.0
+    num: 1
+    first_peak: 
+    - 400.540466308594
+    - 15983.0
+  scan_count: 3970
+  file_size: 32804671
+  last_scan: 
+    last_peak: 
+    - 0.0
+    - 0.0
+    num: 3970
+    first_peak: 
+    - 0.0
+    - 0.0
+  scans_to_read: fl
+  total_time_to_read_and_access: 2.871926
+  time_to_read: 2.843751
+  lazy_type: :io_bad
+  end_time: 6599.1
+  start_time: 0.04
+  file: ysticat2_1314_1.mzXML
+--- 
+- time_to_access: 0.029049
+  first_scan: 
+    last_peak: 
+    - 1799.65502929688
+    - 28148.0
+    num: 1
+    first_peak: 
+    - 400.620544433594
+    - 66802.0
+  scan_count: 5912
+  file_size: 47677743
+  last_scan: 
+    last_peak: 
+    - 443.390991210938
+    - 1763.0
+    num: 5912
+    first_peak: 
+    - 408.988342285156
+    - 1625.0
+  scans_to_read: fl
+  total_time_to_read_and_access: 4.258439
+  time_to_read: 4.229374
+  lazy_type: :io_bad
+  end_time: 9959.22
+  start_time: 0.34
+  file: ysticat2_1314_2.mzXML
+--- 
+- time_to_access: 0.028412
+  first_scan: 
+    last_peak: 
+    - 1798.04052734375
+    - 2752.0
+    num: 1
+    first_peak: 
+    - 400.623229980469
+    - 20224.0
+  scan_count: 4917
+  file_size: 39458502
+  last_scan: 
+    last_peak: 
+    - 1258.369140625
+    - 589.0
+    num: 4917
+    first_peak: 
+    - 400.4208984375
+    - 3274.0
+  scans_to_read: fl
+  total_time_to_read_and_access: 3.633496
+  time_to_read: 3.605067
+  lazy_type: :io_bad
+  end_time: 8399.12
+  start_time: 0.04
+  file: ysticat2_15_1.mzXML
+--- 
+- time_to_access: 0.030133
+  first_scan: 
+    last_peak: 
+    - 1799.54077148438
+    - 35231.0
+    num: 1
+    first_peak: 
+    - 400.573486328125
+    - 15531.0
+  scan_count: 3844
+  file_size: 32488946
+  last_scan: 
+    last_peak: 
+    - 520.755249023438
+    - 2290.0
+    num: 3844
+    first_peak: 
+    - 430.77685546875
+    - 2561.0
+  scans_to_read: fl
+  total_time_to_read_and_access: 2.57869
+  time_to_read: 2.548541
+  lazy_type: :io_bad
+  end_time: 6598.62
+  start_time: 0.0499
+  file: ysticat2_15_2.mzXML
+--- 
+- time_to_access: 0.02868
+  first_scan: 
+    last_peak: 
+    - 1799.79418945312
+    - 14390.0
+    num: 1
+    first_peak: 
+    - 400.954345703125
+    - 65375.0
+  scan_count: 5832
+  file_size: 48714504
+  last_scan: 
+    last_peak: 
+    - 727.40185546875
+    - 886.0
+    num: 5832
+    first_peak: 
+    - 444.520629882812
+    - 1176.0
+  scans_to_read: fl
+  total_time_to_read_and_access: 4.179915
+  time_to_read: 4.151218
+  lazy_type: :io_bad
+  end_time: 9959.31
+  start_time: 0.34
+  file: ysticat2_15_3.mzXML
+--- 
+- time_to_access: 0.030574
+  first_scan: 
+    last_peak: 
+    - 1799.14916992188
+    - 7674.0
+    num: 1
+    first_peak: 
+    - 400.217407226562
+    - 26025.0
+  scan_count: 4858
+  file_size: 40748794
+  last_scan: 
+    last_peak: 
+    - 1071.57080078125
+    - 1019.0
+    num: 4858
+    first_peak: 
+    - 400.312316894531
+    - 2819.0
+  scans_to_read: fl
+  total_time_to_read_and_access: 4.140821
+  time_to_read: 4.11023
+  lazy_type: :io_bad
+  end_time: 8399.53
+  start_time: 0.04
+  file: ysticat2_16_1.mzXML
+--- 
+- time_to_access: 0.028002
+  first_scan: 
+    last_peak: 
+    - 1799.88305664062
+    - 7274.0
+    num: 1
+    first_peak: 
+    - 400.294860839844
+    - 14150.0
+  scan_count: 3831
+  file_size: 32648796
+  last_scan: 
+    last_peak: 
+    - 593.46923828125
+    - 1691.0
+    num: 3831
+    first_peak: 
+    - 444.204650878906
+    - 1437.0
+  scans_to_read: fl
+  total_time_to_read_and_access: 2.622026
+  time_to_read: 2.594008
+  lazy_type: :io_bad
+  end_time: 6599.75
+  start_time: 0.04
+  file: ysticat2_16_2.mzXML
+--- 
+- time_to_access: 0.028702
+  first_scan: 
+    last_peak: 
+    - 1799.41821289062
+    - 124120.0
+    num: 1
+    first_peak: 
+    - 400.573974609375
+    - 17056.0
+  scan_count: 5633
+  file_size: 48991659
+  last_scan: 
+    last_peak: 
+    - 0.0
+    - 0.0
+    num: 5633
+    first_peak: 
+    - 0.0
+    - 0.0
+  scans_to_read: fl
+  total_time_to_read_and_access: 4.458211
+  time_to_read: 4.42949
+  lazy_type: :io_bad
+  end_time: 9959.84
+  start_time: 0.35
+  file: ysticat2_16_3.mzXML
+--- 
+- time_to_access: 0.031704
+  first_scan: 
+    last_peak: 
+    - 1799.7431640625
+    - 7528.0
+    num: 1
+    first_peak: 
+    - 400.545288085938
+    - 12556.0
+  scan_count: 4919
+  file_size: 39876536
+  last_scan: 
+    last_peak: 
+    - 1291.2158203125
+    - 982.0
+    num: 4919
+    first_peak: 
+    - 400.346374511719
+    - 5559.0
+  scans_to_read: fl
+  total_time_to_read_and_access: 3.504868
+  time_to_read: 3.473147
+  lazy_type: :io_bad
+  end_time: 8399.19
+  start_time: 0.04
+  file: ysticat2_17_1.mzXML
+--- 
+- time_to_access: 0.000732
+  first_scan: 
+    last_peak: 
+    - 1061.9873046875
+    - 1449.0
+    num: 1
+    first_peak: 
+    - 423.756713867188
+    - 2955.0
+  scan_count: 3792
+  file_size: 33202468
+  last_scan: 
+    last_peak: 
+    - 0.0
+    - 0.0
+    num: 3792
+    first_peak: 
+    - 0.0
+    - 0.0
+  scans_to_read: fl
+  total_time_to_read_and_access: 2.912519
+  time_to_read: 2.91177
+  lazy_type: :io_bad
+  end_time: 6599.2
+  start_time: 0.04
+  file: ysticat2_17_2.mzXML
+--- 
+- time_to_access: 0.000269
+  first_scan: 
+    last_peak: 
+    - 1305.06323242188
+    - 2059.0
+    num: 1
+    first_peak: 
+    - 1305.06323242188
+    - 2059.0
+  scan_count: 5639
+  file_size: 53518594
+  last_scan: 
+    last_peak: 
+    - 0.0
+    - 0.0
+    num: 5639
+    first_peak: 
+    - 0.0
+    - 0.0
+  scans_to_read: fl
+  total_time_to_read_and_access: 4.532565
+  time_to_read: 4.532278
+  lazy_type: :io_bad
+  end_time: 9959.22
+  start_time: 0.34
+  file: ysticat2_17_3.mzXML
+--- 
+- time_to_access: 0.027066
+  first_scan: 
+    last_peak: 
+    - 1798.97338867188
+    - 11016.0
+    num: 1
+    first_peak: 
+    - 400.241760253906
+    - 26448.0
+  scan_count: 4828
+  file_size: 41339533
+  last_scan: 
+    last_peak: 
+    - 653.718017578125
+    - 644.0
+    num: 4828
+    first_peak: 
+    - 413.065185546875
+    - 2237.0
+  scans_to_read: fl
+  total_time_to_read_and_access: 3.515484
+  time_to_read: 3.488402
+  lazy_type: :io_bad
+  end_time: 8398.75
+  start_time: 0.36
+  file: ysticat2_18_1.mzXML
+--- 
+- time_to_access: 0.02331
+  first_scan: 
+    last_peak: 
+    - 1798.07666015625
+    - 1147.0
+    num: 1
+    first_peak: 
+    - 401.043212890625
+    - 3421.0
+  scan_count: 3794
+  file_size: 33045667
+  last_scan: 
+    last_peak: 
+    - 742.379638671875
+    - 468.0
+    num: 3794
+    first_peak: 
+    - 404.313415527344
+    - 1400.0
+  scans_to_read: fl
+  total_time_to_read_and_access: 3.024029
+  time_to_read: 3.000704
+  lazy_type: :io_bad
+  end_time: 6598.84
+  start_time: 0.04
+  file: ysticat2_18_2.mzXML
+--- 
+- time_to_access: 0.029115
+  first_scan: 
+    last_peak: 
+    - 1799.7275390625
+    - 60605.0
+    num: 1
+    first_peak: 
+    - 400.095397949219
+    - 17870.0
+  scan_count: 5691
+  file_size: 47399049
+  last_scan: 
+    last_peak: 
+    - 0.0
+    - 0.0
+    num: 5691
+    first_peak: 
+    - 0.0
+    - 0.0
+  scans_to_read: fl
+  total_time_to_read_and_access: 4.501775
+  time_to_read: 4.472644
+  lazy_type: :io_bad
+  end_time: 9958.52
+  start_time: 0.24
+  file: ysticat2_18_3.mzXML
+--- 
+- time_to_access: 0.029736
+  first_scan: 
+    last_peak: 
+    - 1792.6953125
+    - 22859.0
+    num: 1
+    first_peak: 
+    - 400.453735351562
+    - 457670.0
+  scan_count: 6825
+  file_size: 62604071
+  last_scan: 
+    last_peak: 
+    - 966.394897460938
+    - 1116.0
+    num: 6825
+    first_peak: 
+    - 403.223571777344
+    - 4519.0
+  scans_to_read: fl
+  total_time_to_read_and_access: 5.246474
+  time_to_read: 5.216722
+  lazy_type: :io_bad
+  end_time: 11999.44
+  start_time: 0.34
+  file: ysticat2_19_1.mzXML
+--- 
+- time_to_access: 0.004426
+  first_scan: 
+    last_peak: 
+    - 1585.99047851562
+    - 1549.0
+    num: 1
+    first_peak: 
+    - 400.294067382812
+    - 4293.0
+  scan_count: 4910
+  file_size: 40692681
+  last_scan: 
+    last_peak: 
+    - 503.744995117188
+    - 2707.0
+    num: 4910
+    first_peak: 
+    - 446.885192871094
+    - 2274.0
+  scans_to_read: fl
+  total_time_to_read_and_access: 3.722537
+  time_to_read: 3.718094
+  lazy_type: :io_bad
+  end_time: 8399.03
+  start_time: 0.0499
+  file: ysticat2_19_2.mzXML
+--- 
+- time_to_access: 0.029151
+  first_scan: 
+    last_peak: 
+    - 1799.68286132812
+    - 9726.0
+    num: 1
+    first_peak: 
+    - 400.336181640625
+    - 13463.0
+  scan_count: 3812
+  file_size: 32670998
+  last_scan: 
+    last_peak: 
+    - 446.696533203125
+    - 1118.0
+    num: 3812
+    first_peak: 
+    - 446.696533203125
+    - 1118.0
+  scans_to_read: fl
+  total_time_to_read_and_access: 2.496636
+  time_to_read: 2.467469
+  lazy_type: :io_bad
+  end_time: 6599.58
+  start_time: 0.34
+  file: ysticat2_19_3.mzXML
+--- 
+- time_to_access: 0.028032
+  first_scan: 
+    last_peak: 
+    - 1799.7451171875
+    - 3972.0
+    num: 1
+    first_peak: 
+    - 400.370666503906
+    - 37110.0
+  scan_count: 5730
+  file_size: 47883839
+  last_scan: 
+    last_peak: 
+    - 984.682373046875
+    - 1965.0
+    num: 5730
+    first_peak: 
+    - 984.682373046875
+    - 1965.0
+  scans_to_read: fl
+  total_time_to_read_and_access: 4.270322
+  time_to_read: 4.242274
+  lazy_type: :io_bad
+  end_time: 9959.29
+  start_time: 0.34
+  file: ysticat2_19_4.mzXML
+--- 
+- time_to_access: 0.029417
+  first_scan: 
+    last_peak: 
+    - 1799.84643554688
+    - 6758.0
+    num: 1
+    first_peak: 
+    - 400.288818359375
+    - 3.0
+  scan_count: 5469
+  file_size: 50647039
+  last_scan: 
+    last_peak: 
+    - 1921.83984375
+    - 600.0
+    num: 5469
+    first_peak: 
+    - 362.973205566406
+    - 1644.0
+  scans_to_read: fl
+  total_time_to_read_and_access: 4.512566
+  time_to_read: 4.483133
+  lazy_type: :io_bad
+  end_time: 9380.35
+  start_time: 0.04
+  file: ysticat2_20_1.mzXML
+--- 
+- time_to_access: 0.029102
+  first_scan: 
+    last_peak: 
+    - 1792.17553710938
+    - 5095.0
+    num: 1
+    first_peak: 
+    - 400.47509765625
+    - 36209.0
+  scan_count: 4883
+  file_size: 40307907
+  last_scan: 
+    last_peak: 
+    - 1054.74487304688
+    - 858.0
+    num: 4883
+    first_peak: 
+    - 400.273376464844
+    - 2953.0
+  scans_to_read: fl
+  total_time_to_read_and_access: 3.590988
+  time_to_read: 3.561869
+  lazy_type: :io_bad
+  end_time: 8399.73
+  start_time: 0.04
+  file: ysticat2_20_2.mzXML
+--- 
+- time_to_access: 0.030683
+  first_scan: 
+    last_peak: 
+    - 1799.68481445312
+    - 1360.0
+    num: 1
+    first_peak: 
+    - 400.561584472656
+    - 14826.0
+  scan_count: 3789
+  file_size: 30945883
+  last_scan: 
+    last_peak: 
+    - 1008.57482910156
+    - 946.0
+    num: 3789
+    first_peak: 
+    - 401.420288085938
+    - 2372.0
+  scans_to_read: fl
+  total_time_to_read_and_access: 3.205633
+  time_to_read: 3.174935
+  lazy_type: :io_bad
+  end_time: 6599.27
+  start_time: 0.04
+  file: ysticat2_20_3.mzXML
+--- 
+- time_to_access: 0.034128
+  first_scan: 
+    last_peak: 
+    - 1799.40673828125
+    - 142459.0
+    num: 1
+    first_peak: 
+    - 401.18408203125
+    - 26164.0
+  scan_count: 5715
+  file_size: 48399183
+  last_scan: 
+    last_peak: 
+    - 0.0
+    - 0.0
+    num: 5715
+    first_peak: 
+    - 0.0
+    - 0.0
+  scans_to_read: fl
+  total_time_to_read_and_access: 4.437587
+  time_to_read: 4.403441
+  lazy_type: :io_bad
+  end_time: 9958.62
+  start_time: 0.34
+  file: ysticat2_20_4.mzXML
+--- 
+- time_to_access: 0.029561
+  first_scan: 
+    last_peak: 
+    - 1799.73754882812
+    - 23016.0
+    num: 1
+    first_peak: 
+    - 400.152770996094
+    - 28609.0
+  scan_count: 5090
+  file_size: 48891106
+  last_scan: 
+    last_peak: 
+    - 889.91943359375
+    - 3633.0
+    num: 5090
+    first_peak: 
+    - 415.204040527344
+    - 5942.0
+  scans_to_read: fl
+  total_time_to_read_and_access: 3.6889
+  time_to_read: 3.659322
+  lazy_type: :io_bad
+  end_time: 8398.92
+  start_time: 0.0499
+  file: ysticat2_21_1.mzXML
+--- 
+- time_to_access: 0.02966
+  first_scan: 
+    last_peak: 
+    - 1799.84765625
+    - 2959.0
+    num: 1
+    first_peak: 
+    - 400.836364746094
+    - 14459.0
+  scan_count: 3809
+  file_size: 32512973
+  last_scan: 
+    last_peak: 
+    - 1035.97265625
+    - 1778.0
+    num: 3809
+    first_peak: 
+    - 429.057067871094
+    - 1855.0
+  scans_to_read: fl
+  total_time_to_read_and_access: 3.131773
+  time_to_read: 3.102097
+  lazy_type: :io_bad
+  end_time: 6599.8599
+  start_time: 0.04
+  file: ysticat2_21_2.mzXML
+--- 
+- time_to_access: 0.030809
+  first_scan: 
+    last_peak: 
+    - 1799.751953125
+    - 38271.0
+    num: 1
+    first_peak: 
+    - 400.501037597656
+    - 27931.0
+  scan_count: 5856
+  file_size: 48259301
+  last_scan: 
+    last_peak: 
+    - 1174.2119140625
+    - 1825.0
+    num: 5856
+    first_peak: 
+    - 445.0361328125
+    - 1319.0
+  scans_to_read: fl
+  total_time_to_read_and_access: 4.112461
+  time_to_read: 4.081633
+  lazy_type: :io_bad
+  end_time: 9957.52
+  start_time: 0.34
+  file: ysticat2_21_3.mzXML
+--- 
+- time_to_access: 0.028316
+  first_scan: 
+    last_peak: 
+    - 1799.8037109375
+    - 8330.0
+    num: 1
+    first_peak: 
+    - 400.367858886719
+    - 18619.0
+  scan_count: 4953
+  file_size: 43023849
+  last_scan: 
+    last_peak: 
+    - 670.062377929688
+    - 2241.0
+    num: 4953
+    first_peak: 
+    - 429.005432128906
+    - 2060.0
+  scans_to_read: fl
+  total_time_to_read_and_access: 3.546435
+  time_to_read: 3.518102
+  lazy_type: :io_bad
+  end_time: 8399.86
+  start_time: 0.04
+  file: ysticat2_22_1.mzXML
+--- 
+- time_to_access: 0.031138
+  first_scan: 
+    last_peak: 
+    - 1799.70288085938
+    - 34199.0
+    num: 1
+    first_peak: 
+    - 400.016174316406
+    - 915.0
+  scan_count: 3827
+  file_size: 30757412
+  last_scan: 
+    last_peak: 
+    - 1584.9091796875
+    - 1978.0
+    num: 3827
+    first_peak: 
+    - 402.929748535156
+    - 6660.0
+  scans_to_read: fl
+  total_time_to_read_and_access: 2.85797
+  time_to_read: 2.826816
+  lazy_type: :io_bad
+  end_time: 6599.39
+  start_time: 0.04
+  file: ysticat2_22_2.mzXML
+--- 
+- time_to_access: 0.028433
+  first_scan: 
+    last_peak: 
+    - 1799.55541992188
+    - 13991.0
+    num: 1
+    first_peak: 
+    - 400.846008300781
+    - 66796.0
+  scan_count: 5804
+  file_size: 49880580
+  last_scan: 
+    last_peak: 
+    - 746.24609375
+    - 726.0
+    num: 5804
+    first_peak: 
+    - 429.045166015625
+    - 1686.0
+  scans_to_read: fl
+  total_time_to_read_and_access: 4.65507
+  time_to_read: 4.626622
+  lazy_type: :io_bad
+  end_time: 9959.23
+  start_time: 0.34
+  file: ysticat2_22_3.mzXML
+--- 
+- time_to_access: 0.036201
+  first_scan: 
+    last_peak: 
+    - 1799.84008789062
+    - 10571.0
+    num: 1
+    first_peak: 
+    - 400.099487304688
+    - 14244.0
+  scan_count: 4966
+  file_size: 41835882
+  last_scan: 
+    last_peak: 
+    - 1410.41259765625
+    - 2042.0
+    num: 4966
+    first_peak: 
+    - 400.338317871094
+    - 1874.0
+  scans_to_read: fl
+  total_time_to_read_and_access: 4.107419
+  time_to_read: 4.071201
+  lazy_type: :io_bad
+  end_time: 8399.89
+  start_time: 0.04
+  file: ysticat2_23_1.mzXML
+--- 
+- time_to_access: 0.029018
+  first_scan: 
+    last_peak: 
+    - 1799.43334960938
+    - 10585.0
+    num: 1
+    first_peak: 
+    - 400.495910644531
+    - 37197.0
+  scan_count: 3838
+  file_size: 31298719
+  last_scan: 
+    last_peak: 
+    - 655.456787109375
+    - 950.0
+    num: 3838
+    first_peak: 
+    - 401.060302734375
+    - 2090.0
+  scans_to_read: fl
+  total_time_to_read_and_access: 2.540089
+  time_to_read: 2.511054
+  lazy_type: :io_bad
+  end_time: 6599.42
+  start_time: 0.04
+  file: ysticat2_23_2.mzXML
+--- 
+- time_to_access: 0.028099
+  first_scan: 
+    last_peak: 
+    - 1799.43823242188
+    - 83818.0
+    num: 1
+    first_peak: 
+    - 400.153625488281
+    - 2735.0
+  scan_count: 5834
+  file_size: 49402331
+  last_scan: 
+    last_peak: 
+    - 0.0
+    - 0.0
+    num: 5834
+    first_peak: 
+    - 0.0
+    - 0.0
+  scans_to_read: fl
+  total_time_to_read_and_access: 4.243264
+  time_to_read: 4.215148
+  lazy_type: :io_bad
+  end_time: 9958.38
+  start_time: 0.36
+  file: ysticat2_23_3.mzXML
+--- 
+- time_to_access: 0.031987
+  first_scan: 
+    last_peak: 
+    - 1799.70361328125
+    - 7264.0
+    num: 1
+    first_peak: 
+    - 400.166564941406
+    - 11560.0
+  scan_count: 4970
+  file_size: 41020907
+  last_scan: 
+    last_peak: 
+    - 1333.01733398438
+    - 1508.0
+    num: 4970
+    first_peak: 
+    - 400.452819824219
+    - 10276.0
+  scans_to_read: fl
+  total_time_to_read_and_access: 3.417751
+  time_to_read: 3.385746
+  lazy_type: :io_bad
+  end_time: 8399.1
+  start_time: 0.04
+  file: ysticat2_24_1.mzXML
+--- 
+- time_to_access: 0.036533
+  first_scan: 
+    last_peak: 
+    - 1799.75561523438
+    - 9255.0
+    num: 1
+    first_peak: 
+    - 400.432067871094
+    - 15214.0
+  scan_count: 3912
+  file_size: 33568185
+  last_scan: 
+    last_peak: 
+    - 742.497436523438
+    - 990.0
+    num: 3912
+    first_peak: 
+    - 444.893798828125
+    - 3312.0
+  scans_to_read: fl
+  total_time_to_read_and_access: 3.573067
+  time_to_read: 3.536516
+  lazy_type: :io_bad
+  end_time: 6599.4
+  start_time: 0.34
+  file: ysticat2_24_2.mzXML
+--- 
+- time_to_access: 0.003847
+  first_scan: 
+    last_peak: 
+    - 1041.22265625
+    - 1641.0
+    num: 1
+    first_peak: 
+    - 400.895446777344
+    - 7687.0
+  scan_count: 5882
+  file_size: 49826250
+  last_scan: 
+    last_peak: 
+    - 525.44287109375
+    - 1417.0
+    num: 5882
+    first_peak: 
+    - 525.44287109375
+    - 1417.0
+  scans_to_read: fl
+  total_time_to_read_and_access: 4.277072
+  time_to_read: 4.27321
+  lazy_type: :io_bad
+  end_time: 9959.66
+  start_time: 0.34
+  file: ysticat2_24_3.mzXML
+--- 
+- time_to_access: 0.004294
+  first_scan: 
+    last_peak: 
+    - 888.371337890625
+    - 652.0
+    num: 1
+    first_peak: 
+    - 430.910278320312
+    - 2785.0
+  scan_count: 4870
+  file_size: 42272289
+  last_scan: 
+    last_peak: 
+    - 1110.86669921875
+    - 1414.0
+    num: 4870
+    first_peak: 
+    - 400.150695800781
+    - 1688.0
+  scans_to_read: fl
+  total_time_to_read_and_access: 4.07255
+  time_to_read: 4.06824
+  lazy_type: :io_bad
+  end_time: 8399.8
+  start_time: 0.04
+  file: ysticat2_25_1.mzXML
+--- 
+- time_to_access: 0.027769
+  first_scan: 
+    last_peak: 
+    - 1799.68188476562
+    - 1551.0
+    num: 1
+    first_peak: 
+    - 400.458312988281
+    - 15426.0
+  scan_count: 3843
+  file_size: 33346920
+  last_scan: 
+    last_peak: 
+    - 1780.90600585938
+    - 1532.0
+    num: 3843
+    first_peak: 
+    - 446.043640136719
+    - 4074.0
+  scans_to_read: fl
+  total_time_to_read_and_access: 2.799076
+  time_to_read: 2.771292
+  lazy_type: :io_bad
+  end_time: 6598.29
+  start_time: 0.04
+  file: ysticat2_25_2.mzXML
+--- 
+- time_to_access: 0.002282
+  first_scan: 
+    last_peak: 
+    - 1189.50732421875
+    - 1175.0
+    num: 1
+    first_peak: 
+    - 400.357788085938
+    - 1208.0
+  scan_count: 5769
+  file_size: 51239049
+  last_scan: 
+    last_peak: 
+    - 705.85791015625
+    - 721.0
+    num: 5769
+    first_peak: 
+    - 402.839294433594
+    - 1299.0
+  scans_to_read: fl
+  total_time_to_read_and_access: 4.338281
+  time_to_read: 4.335984
+  lazy_type: :io_bad
+  end_time: 9958.49
+  start_time: 0.34
+  file: ysticat2_25_3.mzXML
+--- 
+- time_to_access: 0.007606
+  first_scan: 
+    last_peak: 
+    - 1234.88330078125
+    - 1253.0
+    num: 1
+    first_peak: 
+    - 400.378295898438
+    - 2430.0
+  scan_count: 4914
+  file_size: 41872865
+  last_scan: 
+    last_peak: 
+    - 1234.5283203125
+    - 939.0
+    num: 4914
+    first_peak: 
+    - 400.850524902344
+    - 4253.0
+  scans_to_read: fl
+  total_time_to_read_and_access: 3.875067
+  time_to_read: 3.867445
+  lazy_type: :io_bad
+  end_time: 8398.74
+  start_time: 0.04
+  file: ysticat2_26_1.mzXML
+--- 
+- time_to_access: 0.004182
+  first_scan: 
+    last_peak: 
+    - 1701.84057617188
+    - 1344.0
+    num: 1
+    first_peak: 
+    - 400.411804199219
+    - 7351.0
+  scan_count: 3847
+  file_size: 31734559
+  last_scan: 
+    last_peak: 
+    - 1571.06494140625
+    - 1076.0
+    num: 3847
+    first_peak: 
+    - 402.704223632812
+    - 1270.0
+  scans_to_read: fl
+  total_time_to_read_and_access: 2.585427
+  time_to_read: 2.581229
+  lazy_type: :io_bad
+  end_time: 6599.36
+  start_time: 0.04
+  file: ysticat2_26_2.mzXML
+--- 
+- time_to_access: 0.028656
+  first_scan: 
+    last_peak: 
+    - 1799.18823242188
+    - 58602.0
+    num: 1
+    first_peak: 
+    - 400.368774414062
+    - 3825.0
+  scan_count: 5833
+  file_size: 48777938
+  last_scan: 
+    last_peak: 
+    - 1073.06127929688
+    - 725.0
+    num: 5833
+    first_peak: 
+    - 405.200012207031
+    - 1600.0
+  scans_to_read: fl
+  total_time_to_read_and_access: 4.32263
+  time_to_read: 4.293957
+  lazy_type: :io_bad
+  end_time: 9959.75
+  start_time: 0.34
+  file: ysticat2_26_3.mzXML
+--- 
+- time_to_access: 0.025966
+  first_scan: 
+    last_peak: 
+    - 1793.76293945312
+    - 5386.0
+    num: 1
+    first_peak: 
+    - 401.015258789062
+    - 9622.0
+  scan_count: 4825
+  file_size: 42296103
+  last_scan: 
+    last_peak: 
+    - 948.387939453125
+    - 427.0
+    num: 4825
+    first_peak: 
+    - 414.89501953125
+    - 2421.0
+  scans_to_read: fl
+  total_time_to_read_and_access: 3.53269
+  time_to_read: 3.506708
+  lazy_type: :io_bad
+  end_time: 8399.44
+  start_time: 0.04
+  file: ysticat2_27_1.mzXML
+--- 
+- time_to_access: 0.026911
+  first_scan: 
+    last_peak: 
+    - 1799.85571289062
+    - 903.0
+    num: 1
+    first_peak: 
+    - 401.094787597656
+    - 3129.0
+  scan_count: 3830
+  file_size: 31320751
+  last_scan: 
+    last_peak: 
+    - 1051.74072265625
+    - 958.0
+    num: 3830
+    first_peak: 
+    - 400.28515625
+    - 1754.0
+  scans_to_read: fl
+  total_time_to_read_and_access: 3.463748
+  time_to_read: 3.43682
+  lazy_type: :io_bad
+  end_time: 6599.7299
+  start_time: 0.04
+  file: ysticat2_27_2.mzXML
+--- 
+- time_to_access: 0.000777
+  first_scan: 
+    last_peak: 
+    - 814.33203125
+    - 1183.0
+    num: 1
+    first_peak: 
+    - 429.106567382812
+    - 1599.0
+  scan_count: 5727
+  file_size: 52439721
+  last_scan: 
+    last_peak: 
+    - 921.914794921875
+    - 828.0
+    num: 5727
+    first_peak: 
+    - 402.988220214844
+    - 1622.0
+  scans_to_read: fl
+  total_time_to_read_and_access: 4.377179
+  time_to_read: 4.376388
+  lazy_type: :io_bad
+  end_time: 9959.09
+  start_time: 0.34
+  file: ysticat2_27_3.mzXML
+--- 
+- time_to_access: 0.025681
+  first_scan: 
+    last_peak: 
+    - 1794.9130859375
+    - 5751.0
+    num: 1
+    first_peak: 
+    - 400.644287109375
+    - 49172.0
+  scan_count: 4845
+  file_size: 43139811
+  last_scan: 
+    last_peak: 
+    - 1484.82006835938
+    - 1561.0
+    num: 4845
+    first_peak: 
+    - 444.932373046875
+    - 2564.0
+  scans_to_read: fl
+  total_time_to_read_and_access: 3.740073
+  time_to_read: 3.714374
+  lazy_type: :io_bad
+  end_time: 8398.4
+  start_time: 0.34
+  file: ysticat2_28_1.mzXML
+--- 
+- time_to_access: 0.051549
+  first_scan: 
+    last_peak: 
+    - 1799.85595703125
+    - 11017.0
+    num: 1
+    first_peak: 
+    - 400.338317871094
+    - 14212.0
+  scan_count: 3832
+  file_size: 32084409
+  last_scan: 
+    last_peak: 
+    - 1797.12548828125
+    - 2235.0
+    num: 3832
+    first_peak: 
+    - 400.407592773438
+    - 5552.0
+  scans_to_read: fl
+  total_time_to_read_and_access: 3.099796
+  time_to_read: 3.04823
+  lazy_type: :io_bad
+  end_time: 6598.9
+  start_time: 0.07
+  file: ysticat2_28_2.mzXML
+--- 
+- time_to_access: 0.029024
+  first_scan: 
+    last_peak: 
+    - 1799.60595703125
+    - 9813.0
+    num: 1
+    first_peak: 
+    - 400.416442871094
+    - 35695.0
+  scan_count: 5686
+  file_size: 49545037
+  last_scan: 
+    last_peak: 
+    - 577.794189453125
+    - 2357.0
+    num: 5686
+    first_peak: 
+    - 402.682373046875
+    - 1556.0
+  scans_to_read: fl
+  total_time_to_read_and_access: 4.417079
+  time_to_read: 4.388039
+  lazy_type: :io_bad
+  end_time: 9959.08
+  start_time: 0.34
+  file: ysticat2_28_3.mzXML
+--- 
+- time_to_access: 0.026976
+  first_scan: 
+    last_peak: 
+    - 1798.77514648438
+    - 16995.0
+    num: 1
+    first_peak: 
+    - 400.461242675781
+    - 27764.0
+  scan_count: 4819
+  file_size: 39429157
+  last_scan: 
+    last_peak: 
+    - 502.796325683594
+    - 20835.0
+    num: 4819
+    first_peak: 
+    - 280.964233398438
+    - 29999.0
+  scans_to_read: fl
+  total_time_to_read_and_access: 3.548132
+  time_to_read: 3.521138
+  lazy_type: :io_bad
+  end_time: 8400.05
+  start_time: 0.06
+  file: ysticat2_29_1.mzXML
+--- 
+- time_to_access: 0.029259
+  first_scan: 
+    last_peak: 
+    - 1799.73608398438
+    - 22297.0
+    num: 1
+    first_peak: 
+    - 400.472229003906
+    - 22023.0
+  scan_count: 3775
+  file_size: 30444002
+  last_scan: 
+    last_peak: 
+    - 950.104858398438
+    - 778.0
+    num: 3775
+    first_peak: 
+    - 402.496826171875
+    - 896.0
+  scans_to_read: fl
+  total_time_to_read_and_access: 2.546366
+  time_to_read: 2.51709
+  lazy_type: :io_bad
+  end_time: 6599.62
+  start_time: 0.04
+  file: ysticat2_29_2.mzXML
+--- 
+- time_to_access: 0.100693
+  first_scan: 
+    last_peak: 
+    - 1799.7666015625
+    - 2.0
+    num: 1
+    first_peak: 
+    - 400.486328125
+    - 85157.0
+  scan_count: 5822
+  file_size: 39750299
+  last_scan: 
+    last_peak: 
+    - 895.423950195312
+    - 1814.0
+    num: 5822
+    first_peak: 
+    - 414.931762695312
+    - 1873.0
+  scans_to_read: fl
+  total_time_to_read_and_access: 4.490728
+  time_to_read: 4.390017
+  lazy_type: :io_bad
+  end_time: 9959.79
+  start_time: 0.34
+  file: ysticat2_29_3.mzXML
+--- 
+- time_to_access: 0.029164
+  first_scan: 
+    last_peak: 
+    - 1799.505859375
+    - 8440.0
+    num: 1
+    first_peak: 
+    - 400.166381835938
+    - 6467.0
+  scan_count: 4817
+  file_size: 40031860
+  last_scan: 
+    last_peak: 
+    - 521.250366210938
+    - 579.0
+    num: 4817
+    first_peak: 
+    - 248.936767578125
+    - 3552.0
+  scans_to_read: fl
+  total_time_to_read_and_access: 3.390422
+  time_to_read: 3.361242
+  lazy_type: :io_bad
+  end_time: 8400.11
+  start_time: 0.34
+  file: ysticat2_30_1.mzXML
+--- 
+- time_to_access: 0.029568
+  first_scan: 
+    last_peak: 
+    - 1799.66333007812
+    - 5001.0
+    num: 1
+    first_peak: 
+    - 400.308654785156
+    - 15819.0
+  scan_count: 3790
+  file_size: 37774135
+  last_scan: 
+    last_peak: 
+    - 592.059326171875
+    - 1651.0
+    num: 3790
+    first_peak: 
+    - 592.059326171875
+    - 1651.0
+  scans_to_read: fl
+  total_time_to_read_and_access: 3.354478
+  time_to_read: 3.324893
+  lazy_type: :io_bad
+  end_time: 6599.49
+  start_time: 0.04
+  file: ysticat2_30_2.mzXML
+--- 
+- time_to_access: 0.028909
+  first_scan: 
+    last_peak: 
+    - 1799.66528320312
+    - 31950.0
+    num: 1
+    first_peak: 
+    - 400.297790527344
+    - 28772.0
+  scan_count: 5735
+  file_size: 51872007
+  last_scan: 
+    last_peak: 
+    - 667.295776367188
+    - 2337.0
+    num: 5735
+    first_peak: 
+    - 402.779296875
+    - 1273.0
+  scans_to_read: fl
+  total_time_to_read_and_access: 4.452932
+  time_to_read: 4.424006
+  lazy_type: :io_bad
+  end_time: 9959.81
+  start_time: 0.34
+  file: ysticat2_30_3.mzXML
+--- 
+- time_to_access: 0.027331
+  first_scan: 
+    last_peak: 
+    - 1798.64819335938
+    - 1394.0
+    num: 1
+    first_peak: 
+    - 400.518615722656
+    - 46183.0
+  scan_count: 4813
+  file_size: 42759566
+  last_scan: 
+    last_peak: 
+    - 1461.0673828125
+    - 1046.0
+    num: 4813
+    first_peak: 
+    - 402.156188964844
+    - 3562.0
+  scans_to_read: fl
+  total_time_to_read_and_access: 3.614239
+  time_to_read: 3.586893
+  lazy_type: :io_bad
+  end_time: 8398.71
+  start_time: 0.04
+  file: ysticat2_31_1.mzXML
+--- 
+- time_to_access: 0.042113
+  first_scan: 
+    last_peak: 
+    - 1798.30151367188
+    - 5039.0
+    num: 1
+    first_peak: 
+    - 400.357666015625
+    - 14087.0
+  scan_count: 3784
+  file_size: 33400278
+  last_scan: 
+    last_peak: 
+    - 1799.5458984375
+    - 2998.0
+    num: 3784
+    first_peak: 
+    - 400.207275390625
+    - 6858.0
+  scans_to_read: fl
+  total_time_to_read_and_access: 3.155636
+  time_to_read: 3.113505
+  lazy_type: :io_bad
+  end_time: 6599.95
+  start_time: 0.04
+  file: ysticat2_31_2.mzXML
+--- 
+- time_to_access: 0.004898
+  first_scan: 
+    last_peak: 
+    - 1056.28125
+    - 1043.0
+    num: 1
+    first_peak: 
+    - 400.220764160156
+    - 1185.0
+  scan_count: 5581
+  file_size: 50194144
+  last_scan: 
+    last_peak: 
+    - 1039.6103515625
+    - 1300.0
+    num: 5581
+    first_peak: 
+    - 401.200866699219
+    - 1815.0
+  scans_to_read: fl
+  total_time_to_read_and_access: 4.202843
+  time_to_read: 4.19793
+  lazy_type: :io_bad
+  end_time: 9958.67
+  start_time: 0.34
+  file: ysticat2_31_3.mzXML
+--- 
+- time_to_access: 0.001778
+  first_scan: 
+    last_peak: 
+    - 1111.888671875
+    - 1951.0
+    num: 1
+    first_peak: 
+    - 403.821838378906
+    - 1425.0
+  scan_count: 5594
+  file_size: 51340714
+  last_scan: 
+    last_peak: 
+    - 816.044677734375
+    - 674.0
+    num: 5594
+    first_peak: 
+    - 412.914306640625
+    - 1342.0
+  scans_to_read: fl
+  total_time_to_read_and_access: 4.588574
+  time_to_read: 4.58678
+  lazy_type: :io_bad
+  end_time: 9958.77
+  start_time: 0.34
+  file: ysticat2_3536_2.mzXML
+--- 
+- time_to_access: 0.030013
+  first_scan: 
+    last_peak: 
+    - 1795.17895507812
+    - 6147.0
+    num: 1
+    first_peak: 
+    - 400.523559570312
+    - 33768.0
+  scan_count: 4803
+  file_size: 49778677
+  last_scan: 
+    last_peak: 
+    - 1662.5634765625
+    - 1793.0
+    num: 4803
+    first_peak: 
+    - 400.411376953125
+    - 7295.0
+  scans_to_read: fl
+  total_time_to_read_and_access: 4.091311
+  time_to_read: 4.061282
+  lazy_type: :io_bad
+  end_time: 8399.39
+  start_time: 0.04
+  file: ysticat2_32_1.mzXML
+--- 
+- time_to_access: 0.029778
+  first_scan: 
+    last_peak: 
+    - 1799.76049804688
+    - 52418.0
+    num: 1
+    first_peak: 
+    - 400.112976074219
+    - 17167.0
+  scan_count: 3773
+  file_size: 31867477
+  last_scan: 
+    last_peak: 
+    - 861.625
+    - 1392.0
+    num: 3773
+    first_peak: 
+    - 401.370666503906
+    - 1542.0
+  scans_to_read: fl
+  total_time_to_read_and_access: 3.098354
+  time_to_read: 3.06856
+  lazy_type: :io_bad
+  end_time: 6598.51
+  start_time: 0.04
+  file: ysticat2_32_2.mzXML
+--- 
+- time_to_access: 0.030405
+  first_scan: 
+    last_peak: 
+    - 1799.33081054688
+    - 512953.0
+    num: 1
+    first_peak: 
+    - 400.463562011719
+    - 186206.0
+  scan_count: 5462
+  file_size: 55214840
+  last_scan: 
+    last_peak: 
+    - 891.504638671875
+    - 1545.0
+    num: 5462
+    first_peak: 
+    - 400.661987304688
+    - 1310.0
+  scans_to_read: fl
+  total_time_to_read_and_access: 4.409101
+  time_to_read: 4.378677
+  lazy_type: :io_bad
+  end_time: 9959.15
+  start_time: 0.34
+  file: ysticat2_32_3.mzXML
+--- 
+- time_to_access: 0.060463
+  first_scan: 
+    last_peak: 
+    - 1799.84594726562
+    - 3856.0
+    num: 1
+    first_peak: 
+    - 401.067687988281
+    - 5767.0
+  scan_count: 3858
+  file_size: 42715786
+  last_scan: 
+    last_peak: 
+    - 1577.412109375
+    - 1960.0
+    num: 3858
+    first_peak: 
+    - 400.469665527344
+    - 594.0
+  scans_to_read: fl
+  total_time_to_read_and_access: 3.886591
+  time_to_read: 3.826111
+  lazy_type: :io_bad
+  end_time: 6598.52
+  start_time: 0.34
+  file: ysticat2_33_1.mzXML
+--- 
+- time_to_access: 0.045505
+  first_scan: 
+    last_peak: 
+    - 1797.6494140625
+    - 3857.0
+    num: 1
+    first_peak: 
+    - 400.169372558594
+    - 15908.0
+  scan_count: 3834
+  file_size: 37168608
+  last_scan: 
+    last_peak: 
+    - 1412.15795898438
+    - 961.0
+    num: 3834
+    first_peak: 
+    - 401.132263183594
+    - 1328.0
+  scans_to_read: fl
+  total_time_to_read_and_access: 3.137489
+  time_to_read: 3.091966
+  lazy_type: :io_bad
+  end_time: 6598.54
+  start_time: 0.04
+  file: ysticat2_33_2.mzXML
+--- 
+- time_to_access: 0.028543
+  first_scan: 
+    last_peak: 
+    - 1799.68505859375
+    - 64195.0
+    num: 1
+    first_peak: 
+    - 401.092163085938
+    - 30462.0
+  scan_count: 3773
+  file_size: 31648068
+  last_scan: 
+    last_peak: 
+    - 594.323852539062
+    - 1830.0
+    num: 3773
+    first_peak: 
+    - 594.323852539062
+    - 1830.0
+  scans_to_read: fl
+  total_time_to_read_and_access: 2.516871
+  time_to_read: 2.488312
+  lazy_type: :io_bad
+  end_time: 6598.5999
+  start_time: 0.08
+  file: ysticat2_33_3.mzXML
+--- 
+- time_to_access: 0.030638
+  first_scan: 
+    last_peak: 
+    - 1799.43383789062
+    - 74516.0
+    num: 1
+    first_peak: 
+    - 400.130615234375
+    - 8281.0
+  scan_count: 5451
+  file_size: 58256368
+  last_scan: 
+    last_peak: 
+    - 764.209594726562
+    - 809.0
+    num: 5451
+    first_peak: 
+    - 410.791137695312
+    - 1524.0
+  scans_to_read: fl
+  total_time_to_read_and_access: 4.875648
+  time_to_read: 4.844994
+  lazy_type: :io_bad
+  end_time: 9958.82
+  start_time: 0.34
+  file: ysticat2_33_4.mzXML
+--- 
+- time_to_access: 0.028027
+  first_scan: 
+    last_peak: 
+    - 1799.04663085938
+    - 4971.0
+    num: 1
+    first_peak: 
+    - 400.357849121094
+    - 44045.0
+  scan_count: 3815
+  file_size: 36799769
+  last_scan: 
+    last_peak: 
+    - 891.598999023438
+    - 763.0
+    num: 3815
+    first_peak: 
+    - 418.57666015625
+    - 919.0
+  scans_to_read: fl
+  total_time_to_read_and_access: 3.263476
+  time_to_read: 3.235433
+  lazy_type: :io_bad
+  end_time: 6598.51
+  start_time: 0.04
+  file: ysticat2_34_1.mzXML
+--- 
+- time_to_access: 0.037218
+  first_scan: 
+    last_peak: 
+    - 1790.03271484375
+    - 1493.0
+    num: 1
+    first_peak: 
+    - 400.088745117188
+    - 892.0
+  scan_count: 3779
+  file_size: 34694696
+  last_scan: 
+    last_peak: 
+    - 1256.80200195312
+    - 1748.0
+    num: 3779
+    first_peak: 
+    - 1256.80200195312
+    - 1748.0
+  scans_to_read: fl
+  total_time_to_read_and_access: 3.134631
+  time_to_read: 3.097397
+  lazy_type: :io_bad
+  end_time: 6598.87
+  start_time: 0.04
+  file: ysticat2_34_2.mzXML
+--- 
+- time_to_access: 0.029185
+  first_scan: 
+    last_peak: 
+    - 1799.5908203125
+    - 12365.0
+    num: 1
+    first_peak: 
+    - 400.4765625
+    - 45135.0
+  scan_count: 5482
+  file_size: 59123783
+  last_scan: 
+    last_peak: 
+    - 448.300354003906
+    - 1846.0
+    num: 5482
+    first_peak: 
+    - 222.780334472656
+    - 1473.0
+  scans_to_read: fl
+  total_time_to_read_and_access: 4.676275
+  time_to_read: 4.647074
+  lazy_type: :io_bad
+  end_time: 9958.83
+  start_time: 0.34
+  file: ysticat2_34_3.mzXML
+--- 
+- time_to_access: 0.028775
+  first_scan: 
+    last_peak: 
+    - 1799.71362304688
+    - 17511.0
+    num: 1
+    first_peak: 
+    - 400.496704101562
+    - 10068.0
+  scan_count: 3798
+  file_size: 32844529
+  last_scan: 
+    last_peak: 
+    - 507.438903808594
+    - 1500.0
+    num: 3798
+    first_peak: 
+    - 507.438903808594
+    - 1500.0
+  scans_to_read: fl
+  total_time_to_read_and_access: 3.268992
+  time_to_read: 3.2402
+  lazy_type: :io_bad
+  end_time: 6599.96
+  start_time: 0.04
+  file: ysticat2_3536_1.mzXML
+--- 
+- time_to_access: 0.727628
+  first_scan: 
+    last_peak: 
+    - 1799.845703125
+    - 4720.0
+    num: 1
+    first_peak: 
+    - 400.752258300781
+    - 5632.0
+  scan_count: 3842
+  file_size: 33263326
+  last_scan: 
+    last_peak: 
+    - 983.097534179688
+    - 2340.0
+    num: 3842
+    first_peak: 
+    - 400.131225585938
+    - 1436.0
+  scans_to_read: fl
+  total_time_to_read_and_access: 3.279016
+  time_to_read: 2.551372
+  lazy_type: :io_bad
+  end_time: 6598.77
+  start_time: 0.34
+  file: ysticat2_3738_1.mzXML
+--- 
+- time_to_access: 0.030444
+  first_scan: 
+    last_peak: 
+    - 1799.6533203125
+    - 12464.0
+    num: 1
+    first_peak: 
+    - 400.343017578125
+    - 26314.0
+  scan_count: 5690
+  file_size: 49729734
+  last_scan: 
+    last_peak: 
+    - 891.065185546875
+    - 663.0
+    num: 5690
+    first_peak: 
+    - 406.178405761719
+    - 1236.0
+  scans_to_read: fl
+  total_time_to_read_and_access: 3.983192
+  time_to_read: 3.952732
+  lazy_type: :io_bad
+  end_time: 9958.63
+  start_time: 0.34
+  file: ysticat2_3738_2.mzXML
+--- 
+- time_to_access: 0.027918
+  first_scan: 
+    last_peak: 
+    - 1799.72021484375
+    - 6500.0
+    num: 1
+    first_peak: 
+    - 400.315124511719
+    - 15929.0
+  scan_count: 3795
+  file_size: 33520824
+  last_scan: 
+    last_peak: 
+    - 0.0
+    - 0.0
+    num: 3795
+    first_peak: 
+    - 0.0
+    - 0.0
+  scans_to_read: fl
+  total_time_to_read_and_access: 3.015769
+  time_to_read: 2.987834
+  lazy_type: :io_bad
+  end_time: 6599.05
+  start_time: 0.04
+  file: ysticat2_3940_1.mzXML
+--- 
+- time_to_access: 0.030973
+  first_scan: 
+    last_peak: 
+    - 1799.72094726562
+    - 7619.0
+    num: 1
+    first_peak: 
+    - 400.5234375
+    - 4107.0
+  scan_count: 5663
+  file_size: 51759904
+  last_scan: 
+    last_peak: 
+    - 1503.40405273438
+    - 1245.0
+    num: 5663
+    first_peak: 
+    - 400.596740722656
+    - 2115.0
+  scans_to_read: fl
+  total_time_to_read_and_access: 4.57551
+  time_to_read: 4.54452
+  lazy_type: :io_bad
+  end_time: 9959.03
+  start_time: 0.34
+  file: ysticat2_3940_2.mzXML
+--- 
+- time_to_access: 0.005763
+  first_scan: 
+    last_peak: 
+    - 1751.47338867188
+    - 968.0
+    num: 1
+    first_peak: 
+    - 400.47265625
+    - 5555.0
+  scan_count: 3641
+  file_size: 37605726
+  last_scan: 
+    last_peak: 
+    - 0.0
+    - 0.0
+    num: 3641
+    first_peak: 
+    - 0.0
+    - 0.0
+  scans_to_read: fl
+  total_time_to_read_and_access: 3.25923
+  time_to_read: 3.253451
+  lazy_type: :io_bad
+  end_time: 6600.0
+  start_time: 0.04
+  file: ysticat2_4142_1.mzXML
+--- 
+- time_to_access: 0.031724
+  first_scan: 
+    last_peak: 
+    - 1799.40771484375
+    - 377924.0
+    num: 1
+    first_peak: 
+    - 400.3525390625
+    - 220387.0
+  scan_count: 5608
+  file_size: 51818094
+  last_scan: 
+    last_peak: 
+    - 1318.98583984375
+    - 1668.0
+    num: 5608
+    first_peak: 
+    - 400.335571289062
+    - 3828.0
+  scans_to_read: fl
+  total_time_to_read_and_access: 4.638921
+  time_to_read: 4.607182
+  lazy_type: :io_bad
+  end_time: 9959.18
+  start_time: 0.34
+  file: ysticat2_4142_2.mzXML
+--- 
+- time_to_access: 0.028075
+  first_scan: 
+    last_peak: 
+    - 1798.94677734375
+    - 28130.0
+    num: 1
+    first_peak: 
+    - 400.529235839844
+    - 25962.0
+  scan_count: 3727
+  file_size: 35451652
+  last_scan: 
+    last_peak: 
+    - 1520.98559570312
+    - 1732.0
+    num: 3727
+    first_peak: 
+    - 1520.98559570312
+    - 1732.0
+  scans_to_read: fl
+  total_time_to_read_and_access: 3.233791
+  time_to_read: 3.2057
+  lazy_type: :io_bad
+  end_time: 6599.37
+  start_time: 0.04
+  file: ysticat2_4345_1.mzXML
+--- 
+- time_to_access: 0.013643
+  first_scan: 
+    last_peak: 
+    - 1798.5947265625
+    - 1044.0
+    num: 1
+    first_peak: 
+    - 400.352355957031
+    - 6515.0
+  scan_count: 5478
+  file_size: 55332396
+  last_scan: 
+    last_peak: 
+    - 1532.40795898438
+    - 783.0
+    num: 5478
+    first_peak: 
+    - 404.112731933594
+    - 1693.0
+  scans_to_read: fl
+  total_time_to_read_and_access: 5.061217
+  time_to_read: 5.047558
+  lazy_type: :io_bad
+  end_time: 9958.83
+  start_time: 0.34
+  file: ysticat2_4345_2.mzXML
+--- 
+- time_to_access: 0.031757
+  first_scan: 
+    last_peak: 
+    - 1799.85913085938
+    - 8797.0
+    num: 1
+    first_peak: 
+    - 400.271179199219
+    - 20218.0
+  scan_count: 3737
+  file_size: 39028461
+  last_scan: 
+    last_peak: 
+    - 1351.9462890625
+    - 1265.0
+    num: 3737
+    first_peak: 
+    - 400.389099121094
+    - 2492.0
+  scans_to_read: fl
+  total_time_to_read_and_access: 3.280832
+  time_to_read: 3.249058
+  lazy_type: :io_bad
+  end_time: 6599.71
+  start_time: 0.04
+  file: ysticat2_4648_1.mzXML
+--- 
+- time_to_access: 0.032302
+  first_scan: 
+    last_peak: 
+    - 1788.6513671875
+    - 696.0
+    num: 1
+    first_peak: 
+    - 400.425476074219
+    - 4326.0
+  scan_count: 3794
+  file_size: 47205772
+  last_scan: 
+    last_peak: 
+    - 1781.84912109375
+    - 681.0
+    num: 3794
+    first_peak: 
+    - 401.043212890625
+    - 2295.0
+  scans_to_read: fl
+  total_time_to_read_and_access: 4.334754
+  time_to_read: 4.302436
+  lazy_type: :io_bad
+  end_time: 6599.7
+  start_time: 0.04
+  file: ysticat2_4951_1.mzXML

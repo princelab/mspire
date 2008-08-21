@@ -1,0 +1,5651 @@
+<?xml version="1.0"?>
+<sequestresults xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="schema1.xsd">
+<bioworksinfo>3.2 EF1</bioworksinfo>
+<protein>
+	<reference>gi|90111193|ref|NP_415466.4| hypothetical protein b0946 [Escherichia coli K12]</reference>
+	<protein_probability>1.00</protein_probability>
+	<consensus_score>8.0</consensus_score>
+	<Sf>0.00</Sf>
+	<unified_score>0</unified_score>
+	<coverage>0.0</coverage>
+	<pI>0.0</pI>
+	<weight>20588.7</weight>
+	<accession>90111193</accession>
+	<peptide>
+		<file>000, 447</file>
+		<sequence>K.IMNDR.L</sequence>
+		<mass>648.76</mass>
+		<deltamass>1.35</deltamass>
+		<charge>1</charge>
+		<peptide_probability>1.00</peptide_probability>
+		<xcorr>0.491</xcorr>
+		<deltacn>0.462</deltacn>
+		<sp>68.6</sp>
+		<rsp>12</rsp>
+		<ions>3/8</ions>
+		<count>0</count>
+		<tic>4196</tic>
+	</peptide>
+	<peptide>
+		<file>020, 464</file>
+		<sequence>R.DFNLSK.E</sequence>
+		<mass>723.80</mass>
+		<deltamass>1.40</deltamass>
+		<charge>2</charge>
+		<peptide_probability>1.00</peptide_probability>
+		<xcorr>0.853</xcorr>
+		<deltacn>0.097</deltacn>
+		<sp>78.0</sp>
+		<rsp>64</rsp>
+		<ions>5/10</ions>
+		<count>0</count>
+		<tic>6221</tic>
+	</peptide>
+</protein>
+<protein>
+	<reference>DECOY_gi|90111193|ref|NP_415466.4| hypothetical protein b0946 [Escherichia coli K12]</reference>
+	<protein_probability>1.00</protein_probability>
+	<consensus_score>8.0</consensus_score>
+	<Sf>0.00</Sf>
+	<unified_score>0</unified_score>
+	<coverage>0.0</coverage>
+	<pI>0.0</pI>
+	<weight>20588.7</weight>
+	<accession>90111193</accession>
+	<peptide>
+		<file>000, 447</file>
+		<sequence>K.LEPTIDE.L</sequence>
+		<mass>648.76</mass>
+		<deltamass>1.35</deltamass>
+		<charge>1</charge>
+		<peptide_probability>1.00</peptide_probability>
+		<xcorr>1.491</xcorr>
+		<deltacn>0.862</deltacn>
+		<sp>68.6</sp>
+		<rsp>12</rsp>
+		<ions>3/8</ions>
+		<count>0</count>
+		<tic>4196</tic>
+	</peptide>
+	<peptide>
+		<file>020, 464</file>
+		<sequence>R.EDITPEL.E</sequence>
+		<mass>723.80</mass>
+		<deltamass>1.40</deltamass>
+		<charge>2</charge>
+		<peptide_probability>1.00</peptide_probability>
+		<xcorr>1.853</xcorr>
+		<deltacn>0.197</deltacn>
+		<sp>78.0</sp>
+		<rsp>64</rsp>
+		<ions>5/10</ions>
+		<count>0</count>
+		<tic>6221</tic>
+	</peptide>
+</protein>
+<protein>
+	<reference>gi|16130905|ref|NP_417480.1| unknown CDS [Escherichia coli K12]</reference>
+	<protein_probability>1.00</protein_probability>
+	<consensus_score>8.0</consensus_score>
+	<Sf>0.00</Sf>
+	<unified_score>0</unified_score>
+	<coverage>0.0</coverage>
+	<pI>0.0</pI>
+	<weight>5961.0</weight>
+	<accession>16130905</accession>
+	<peptide>
+		<file>000, 15</file>
+		<sequence>-.MLVTFLLRK.R</sequence>
+		<mass>1121.46</mass>
+		<deltamass>0.58</deltamass>
+		<charge>1</charge>
+		<peptide_probability>1.00</peptide_probability>
+		<xcorr>0.786</xcorr>
+		<deltacn>0.027</deltacn>
+		<sp>116.8</sp>
+		<rsp>1</rsp>
+		<ions>6/16</ions>
+		<count>0</count>
+		<tic>2960</tic>
+	</peptide>
+	<peptide>
+		<file>000, 1667</file>
+		<sequence>-.MLVTFLLRK.R</sequence>
+		<mass>1121.46</mass>
+		<deltamass>0.33</deltamass>
+		<charge>1</charge>
+		<peptide_probability>1.00</peptide_probability>
+		<xcorr>0.648</xcorr>
+		<deltacn>0.049</deltacn>
+		<sp>82.1</sp>
+		<rsp>3</rsp>
+		<ions>5/16</ions>
+		<count>0</count>
+		<tic>4263</tic>
+	</peptide>
+	<peptide>
+		<file>000, 1878</file>
+		<sequence>-.MLVTFLLRK.R</sequence>
+		<mass>1121.46</mass>
+		<deltamass>0.47</deltamass>
+		<charge>1</charge>
+		<peptide_probability>1.00</peptide_probability>
+		<xcorr>0.808</xcorr>
+		<deltacn>0.300</deltacn>
+		<sp>172.1</sp>
+		<rsp>1</rsp>
+		<ions>8/16</ions>
+		<count>0</count>
+		<tic>4308</tic>
+	</peptide>
+	<peptide>
+		<file>020, 534</file>
+		<sequence>-.MLVTFLLRK.R</sequence>
+		<mass>1121.46</mass>
+		<deltamass>0.51</deltamass>
+		<charge>1</charge>
+		<peptide_probability>1.00</peptide_probability>
+		<xcorr>0.773</xcorr>
+		<deltacn>0.099</deltacn>
+		<sp>136.3</sp>
+		<rsp>1</rsp>
+		<ions>6/16</ions>
+		<count>0</count>
+		<tic>4177</tic>
+	</peptide>
+	<peptide>
+		<file>020, 1542</file>
+		<sequence>-.MLVTFLLRK.R</sequence>
+		<mass>1121.46</mass>
+		<deltamass>0.37</deltamass>
+		<charge>1</charge>
+		<peptide_probability>1.00</peptide_probability>
+		<xcorr>0.770</xcorr>
+		<deltacn>0.220</deltacn>
+		<sp>84.2</sp>
+		<rsp>6</rsp>
+		<ions>5/16</ions>
+		<count>0</count>
+		<tic>3682</tic>
+	</peptide>
+	<peptide>
+		<file>020, 1711</file>
+		<sequence>-.MLVTFLLRK.R</sequence>
+		<mass>1121.46</mass>
+		<deltamass>0.44</deltamass>
+		<charge>1</charge>
+		<peptide_probability>1.00</peptide_probability>
+		<xcorr>0.847</xcorr>
+		<deltacn>0.075</deltacn>
+		<sp>180.8</sp>
+		<rsp>1</rsp>
+		<ions>8/16</ions>
+		<count>0</count>
+		<tic>3985</tic>
+	</peptide>
+	<peptide>
+		<file>020, 2123</file>
+		<sequence>-.MLVTFLLRK.R</sequence>
+		<mass>1121.46</mass>
+		<deltamass>0.69</deltamass>
+		<charge>1</charge>
+		<peptide_probability>1.00</peptide_probability>
+		<xcorr>0.720</xcorr>
+		<deltacn>0.283</deltacn>
+		<sp>84.4</sp>
+		<rsp>3</rsp>
+		<ions>5/16</ions>
+		<count>0</count>
+		<tic>3405</tic>
+	</peptide>
+	<peptide>
+		<file>000, 11</file>
+		<sequence>-.MLVTFLLRK.R</sequence>
+		<mass>1121.46</mass>
+		<deltamass>0.65</deltamass>
+		<charge>1</charge>
+		<peptide_probability>1.00</peptide_probability>
+		<xcorr>0.656</xcorr>
+		<deltacn>0.162</deltacn>
+		<sp>97.0</sp>
+		<rsp>3</rsp>
+		<ions>5/16</ions>
+		<count>0</count>
+		<tic>3143</tic>
+	</peptide>
+	<peptide>
+		<file>000, 568</file>
+		<sequence>-.MLVTFLLRK.R</sequence>
+		<mass>1121.46</mass>
+		<deltamass>0.49</deltamass>
+		<charge>1</charge>
+		<peptide_probability>1.00</peptide_probability>
+		<xcorr>0.779</xcorr>
+		<deltacn>0.295</deltacn>
+		<sp>107.0</sp>
+		<rsp>5</rsp>
+		<ions>6/16</ions>
+		<count>0</count>
+		<tic>4267</tic>
+	</peptide>
+	<peptide>
+		<file>000, 1696</file>
+		<sequence>-.MLVTFLLRK.R</sequence>
+		<mass>1121.46</mass>
+		<deltamass>0.47</deltamass>
+		<charge>1</charge>
+		<peptide_probability>1.00</peptide_probability>
+		<xcorr>0.607</xcorr>
+		<deltacn>0.239</deltacn>
+		<sp>67.4</sp>
+		<rsp>11</rsp>
+		<ions>4/16</ions>
+		<count>0</count>
+		<tic>4216</tic>
+	</peptide>
+	<peptide>
+		<file>000, 1888</file>
+		<sequence>-.MLVTFLLRK.R</sequence>
+		<mass>1121.46</mass>
+		<deltamass>0.37</deltamass>
+		<charge>1</charge>
+		<peptide_probability>1.00</peptide_probability>
+		<xcorr>0.633</xcorr>
+		<deltacn>0.434</deltacn>
+		<sp>67.4</sp>
+		<rsp>5</rsp>
+		<ions>4/16</ions>
+		<count>0</count>
+		<tic>3971</tic>
+	</peptide>
+	<peptide>
+		<file>020, 135</file>
+		<sequence>-.MLVTFLLRK.R</sequence>
+		<mass>1121.46</mass>
+		<deltamass>0.55</deltamass>
+		<charge>1</charge>
+		<peptide_probability>1.00</peptide_probability>
+		<xcorr>0.740</xcorr>
+		<deltacn>0.180</deltacn>
+		<sp>136.5</sp>
+		<rsp>1</rsp>
+		<ions>7/16</ions>
+		<count>0</count>
+		<tic>3223</tic>
+	</peptide>
+	<peptide>
+		<file>020, 930</file>
+		<sequence>-.MLVTFLLRK.R</sequence>
+		<mass>1121.46</mass>
+		<deltamass>0.67</deltamass>
+		<charge>1</charge>
+		<peptide_probability>1.00</peptide_probability>
+		<xcorr>0.642</xcorr>
+		<deltacn>0.075</deltacn>
+		<sp>81.8</sp>
+		<rsp>4</rsp>
+		<ions>5/16</ions>
+		<count>0</count>
+		<tic>3665</tic>
+	</peptide>
+	<peptide>
+		<file>020, 1155</file>
+		<sequence>-.MLVTFLLRK.R</sequence>
+		<mass>1121.46</mass>
+		<deltamass>1.20</deltamass>
+		<charge>1</charge>
+		<peptide_probability>1.00</peptide_probability>
+		<xcorr>0.625</xcorr>
+		<deltacn>0.089</deltacn>
+		<sp>143.8</sp>
+		<rsp>1</rsp>
+		<ions>7/16</ions>
+		<count>0</count>
+		<tic>5390</tic>
+	</peptide>
+	<peptide>
+		<file>020, 1234</file>
+		<sequence>-.MLVTFLLRK.R</sequence>
+		<mass>1121.46</mass>
+		<deltamass>0.70</deltamass>
+		<charge>1</charge>
+		<peptide_probability>1.00</peptide_probability>
+		<xcorr>0.797</xcorr>
+		<deltacn>0.178</deltacn>
+		<sp>171.8</sp>
+		<rsp>1</rsp>
+		<ions>7/16</ions>
+		<count>0</count>
+		<tic>4996</tic>
+	</peptide>
+	<peptide>
+		<file>020, 3046</file>
+		<sequence>-.MLVTFLLRK.R</sequence>
+		<mass>1121.46</mass>
+		<deltamass>0.50</deltamass>
+		<charge>1</charge>
+		<peptide_probability>1.00</peptide_probability>
+		<xcorr>0.738</xcorr>
+		<deltacn>0.124</deltacn>
+		<sp>161.7</sp>
+		<rsp>1</rsp>
+		<ions>7/16</ions>
+		<count>0</count>
+		<tic>4227</tic>
+	</peptide>
+	<peptide>
+		<file>000, 2024</file>
+		<sequence>-.MLVTFLLRK.R</sequence>
+		<mass>1121.46</mass>
+		<deltamass>0.62</deltamass>
+		<charge>1</charge>
+		<peptide_probability>1.00</peptide_probability>
+		<xcorr>0.736</xcorr>
+		<deltacn>0.061</deltacn>
+		<sp>89.3</sp>
+		<rsp>9</rsp>
+		<ions>5/16</ions>
+		<count>0</count>
+		<tic>3853</tic>
+	</peptide>
+	<peptide>
+		<file>000, 2047</file>
+		<sequence>-.MLVTFLLRK.R</sequence>
+		<mass>1121.46</mass>
+		<deltamass>0.73</deltamass>
+		<charge>1</charge>
+		<peptide_probability>1.00</peptide_probability>
+		<xcorr>0.661</xcorr>
+		<deltacn>0.257</deltacn>
+		<sp>78.9</sp>
+		<rsp>9</rsp>
+		<ions>5/16</ions>
+		<count>0</count>
+		<tic>3700</tic>
+	</peptide>
+	<peptide>
+		<file>000, 2811</file>
+		<sequence>-.MLVTFLLRK.R</sequence>
+		<mass>1121.46</mass>
+		<deltamass>0.42</deltamass>
+		<charge>1</charge>
+		<peptide_probability>1.00</peptide_probability>
+		<xcorr>0.643</xcorr>
+		<deltacn>0.451</deltacn>
+		<sp>83.8</sp>
+		<rsp>2</rsp>
+		<ions>5/16</ions>
+		<count>0</count>
+		<tic>4469</tic>
+	</peptide>
+	<peptide>
+		<file>020, 10</file>
+		<sequence>-.MLVTFLLRK.R</sequence>
+		<mass>1121.46</mass>
+		<deltamass>0.45</deltamass>
+		<charge>1</charge>
+		<peptide_probability>1.00</peptide_probability>
+		<xcorr>0.709</xcorr>
+		<deltacn>0.356</deltacn>
+		<sp>84.7</sp>
+		<rsp>7</rsp>
+		<ions>5/16</ions>
+		<count>0</count>
+		<tic>3107</tic>
+	</peptide>
+	<peptide>
+		<file>020, 398</file>
+		<sequence>-.MLVTFLLRK.R</sequence>
+		<mass>1121.46</mass>
+		<deltamass>0.60</deltamass>
+		<charge>1</charge>
+		<peptide_probability>1.00</peptide_probability>
+		<xcorr>0.673</xcorr>
+		<deltacn>0.217</deltacn>
+		<sp>65.9</sp>
+		<rsp>15</rsp>
+		<ions>4/16</ions>
+		<count>0</count>
+		<tic>3370</tic>
+	</peptide>
+	<peptide>
+		<file>020, 1492</file>
+		<sequence>-.MLVTFLLRKR.K</sequence>
+		<mass>1277.65</mass>
+		<deltamass>0.91</deltamass>
+		<charge>1</charge>
+		<peptide_probability>1.00</peptide_probability>
+		<xcorr>0.801</xcorr>
+		<deltacn>0.361</deltacn>
+		<sp>64.1</sp>
+		<rsp>15</rsp>
+		<ions>7/18</ions>
+		<count>0</count>
+		<tic>5406</tic>
+	</peptide>
+	<peptide>
+		<file>020, 1850</file>
+		<sequence>-.MLVTFLLRK.R</sequence>
+		<mass>1121.46</mass>
+		<deltamass>0.41</deltamass>
+		<charge>1</charge>
+		<peptide_probability>1.00</peptide_probability>
+		<xcorr>0.668</xcorr>
+		<deltacn>0.293</deltacn>
+		<sp>115.6</sp>
+		<rsp>3</rsp>
+		<ions>6/16</ions>
+		<count>0</count>
+		<tic>3887</tic>
+	</peptide>
+	<peptide>
+		<file>020, 2000 - 2002</file>
+		<sequence>-.MLVTFLLRK.R</sequence>
+		<mass>1121.46</mass>
+		<deltamass>0.68</deltamass>
+		<charge>1</charge>
+		<peptide_probability>1.00</peptide_probability>
+		<xcorr>0.787</xcorr>
+		<deltacn>0.315</deltacn>
+		<sp>83.5</sp>
+		<rsp>7</rsp>
+		<ions>5/16</ions>
+		<count>0</count>
+		<tic>3222</tic>
+	</peptide>
+	<peptide>
+		<file>020, 2407</file>
+		<sequence>-.MLVTFLLRK.R</sequence>
+		<mass>1121.46</mass>
+		<deltamass>0.37</deltamass>
+		<charge>1</charge>
+		<peptide_probability>1.00</peptide_probability>
+		<xcorr>0.538</xcorr>
+		<deltacn>0.498</deltacn>
+		<sp>86.2</sp>
+		<rsp>2</rsp>
+		<ions>5/16</ions>
+		<count>0</count>
+		<tic>3343</tic>
+	</peptide>
+	<peptide>
+		<file>020, 2543</file>
+		<sequence>-.MLVTFLLRK.R</sequence>
+		<mass>1121.46</mass>
+		<deltamass>0.43</deltamass>
+		<charge>1</charge>
+		<peptide_probability>1.00</peptide_probability>
+		<xcorr>0.541</xcorr>
+		<deltacn>0.358</deltacn>
+		<sp>81.6</sp>
+		<rsp>4</rsp>
+		<ions>5/16</ions>
+		<count>0</count>
+		<tic>3433</tic>
+	</peptide>
+	<peptide>
+		<file>020, 2546</file>
+		<sequence>-.MLVTFLLRK.R</sequence>
+		<mass>1121.46</mass>
+		<deltamass>0.59</deltamass>
+		<charge>1</charge>
+		<peptide_probability>1.00</peptide_probability>
+		<xcorr>0.660</xcorr>
+		<deltacn>0.294</deltacn>
+		<sp>70.6</sp>
+		<rsp>8</rsp>
+		<ions>4/16</ions>
+		<count>0</count>
+		<tic>3791</tic>
+	</peptide>
+	<peptide>
+		<file>020, 3175</file>
+		<sequence>-.MLVTFLLRK.R</sequence>
+		<mass>1121.46</mass>
+		<deltamass>0.39</deltamass>
+		<charge>1</charge>
+		<peptide_probability>1.00</peptide_probability>
+		<xcorr>0.656</xcorr>
+		<deltacn>0.294</deltacn>
+		<sp>99.8</sp>
+		<rsp>2</rsp>
+		<ions>5/16</ions>
+		<count>0</count>
+		<tic>2969</tic>
+	</peptide>
+	<peptide>
+		<file>020, 3298</file>
+		<sequence>-.MLVTFLLRK.R</sequence>
+		<mass>1121.46</mass>
+		<deltamass>0.44</deltamass>
+		<charge>1</charge>
+		<peptide_probability>1.00</peptide_probability>
+		<xcorr>0.640</xcorr>
+		<deltacn>0.372</deltacn>
+		<sp>64.3</sp>
+		<rsp>9</rsp>
+		<ions>4/16</ions>
+		<count>0</count>
+		<tic>3059</tic>
+	</peptide>
+	<peptide>
+		<file>020, 3426</file>
+		<sequence>-.MLVTFLLRK.R</sequence>
+		<mass>1121.46</mass>
+		<deltamass>0.60</deltamass>
+		<charge>1</charge>
+		<peptide_probability>1.00</peptide_probability>
+		<xcorr>0.635</xcorr>
+		<deltacn>0.342</deltacn>
+		<sp>61.6</sp>
+		<rsp>18</rsp>
+		<ions>4/16</ions>
+		<count>0</count>
+		<tic>3058</tic>
+	</peptide>
+	<peptide>
+		<file>020, 3546</file>
+		<sequence>-.MLVTFLLRK.R</sequence>
+		<mass>1121.46</mass>
+		<deltamass>0.56</deltamass>
+		<charge>1</charge>
+		<peptide_probability>1.00</peptide_probability>
+		<xcorr>0.647</xcorr>
+		<deltacn>0.360</deltacn>
+		<sp>67.2</sp>
+		<rsp>8</rsp>
+		<ions>4/16</ions>
+		<count>0</count>
+		<tic>2675</tic>
+	</peptide>
+	<peptide>
+		<file>000, 1776</file>
+		<sequence>-.MLVTFLLRK.R</sequence>
+		<mass>1121.46</mass>
+		<deltamass>0.43</deltamass>
+		<charge>1</charge>
+		<peptide_probability>1.00</peptide_probability>
+		<xcorr>0.524</xcorr>
+		<deltacn>1.100</deltacn>
+		<sp>67.8</sp>
+		<rsp>6</rsp>
+		<ions>4/16</ions>
+		<count>0</count>
+		<tic>4061</tic>
+	</peptide>
+	<peptide>
+		<file>000, 1852</file>
+		<sequence>-.MLVTFLLRK.R</sequence>
+		<mass>1121.46</mass>
+		<deltamass>0.51</deltamass>
+		<charge>1</charge>
+		<peptide_probability>1.00</peptide_probability>
+		<xcorr>0.602</xcorr>
+		<deltacn>1.100</deltacn>
+		<sp>72.5</sp>
+		<rsp>10</rsp>
+		<ions>4/16</ions>
+		<count>0</count>
+		<tic>4097</tic>
+	</peptide>
+	<peptide>
+		<file>000, 2236</file>
+		<sequence>-.MLVTFLLRK.R</sequence>
+		<mass>1121.46</mass>
+		<deltamass>0.73</deltamass>
+		<charge>1</charge>
+		<peptide_probability>1.00</peptide_probability>
+		<xcorr>0.632</xcorr>
+		<deltacn>1.100</deltacn>
+		<sp>107.7</sp>
+		<rsp>2</rsp>
+		<ions>6/16</ions>
+		<count>0</count>
+		<tic>3673</tic>
+	</peptide>
+	<peptide>
+		<file>000, 2391</file>
+		<sequence>-.MLVTFLLRK.R</sequence>
+		<mass>1121.46</mass>
+		<deltamass>0.43</deltamass>
+		<charge>1</charge>
+		<peptide_probability>1.00</peptide_probability>
+		<xcorr>0.627</xcorr>
+		<deltacn>1.100</deltacn>
+		<sp>67.9</sp>
+		<rsp>9</rsp>
+		<ions>4/16</ions>
+		<count>0</count>
+		<tic>3917</tic>
+	</peptide>
+	<peptide>
+		<file>000, 2407</file>
+		<sequence>-.MLVTFLLRK.R</sequence>
+		<mass>1121.46</mass>
+		<deltamass>0.55</deltamass>
+		<charge>1</charge>
+		<peptide_probability>1.00</peptide_probability>
+		<xcorr>0.577</xcorr>
+		<deltacn>1.100</deltacn>
+		<sp>89.8</sp>
+		<rsp>3</rsp>
+		<ions>5/16</ions>
+		<count>0</count>
+		<tic>3926</tic>
+	</peptide>
+	<peptide>
+		<file>000, 3218</file>
+		<sequence>-.MLVTFLLRK.R</sequence>
+		<mass>1121.46</mass>
+		<deltamass>0.54</deltamass>
+		<charge>1</charge>
+		<peptide_probability>1.00</peptide_probability>
+		<xcorr>0.634</xcorr>
+		<deltacn>1.100</deltacn>
+		<sp>96.4</sp>
+		<rsp>5</rsp>
+		<ions>5/16</ions>
+		<count>0</count>
+		<tic>3566</tic>
+	</peptide>
+	<peptide>
+		<file>000, 3342</file>
+		<sequence>-.MLVTFLLRK.R</sequence>
+		<mass>1121.46</mass>
+		<deltamass>0.62</deltamass>
+		<charge>1</charge>
+		<peptide_probability>1.00</peptide_probability>
+		<xcorr>0.653</xcorr>
+		<deltacn>1.100</deltacn>
+		<sp>99.8</sp>
+		<rsp>1</rsp>
+		<ions>6/16</ions>
+		<count>0</count>
+		<tic>2954</tic>
+	</peptide>
+	<peptide>
+		<file>020, 260</file>
+		<sequence>-.MLVTFLLRK.R</sequence>
+		<mass>1121.46</mass>
+		<deltamass>0.50</deltamass>
+		<charge>1</charge>
+		<peptide_probability>1.00</peptide_probability>
+		<xcorr>0.648</xcorr>
+		<deltacn>1.100</deltacn>
+		<sp>89.0</sp>
+		<rsp>2</rsp>
+		<ions>5/16</ions>
+		<count>0</count>
+		<tic>3007</tic>
+	</peptide>
+	<peptide>
+		<file>020, 610</file>
+		<sequence>-.MLVTFLLRK.R</sequence>
+		<mass>1121.46</mass>
+		<deltamass>0.50</deltamass>
+		<charge>1</charge>
+		<peptide_probability>1.00</peptide_probability>
+		<xcorr>0.658</xcorr>
+		<deltacn>1.100</deltacn>
+		<sp>91.0</sp>
+		<rsp>4</rsp>
+		<ions>5/16</ions>
+		<count>0</count>
+		<tic>4092</tic>
+	</peptide>
+	<peptide>
+		<file>020, 2678</file>
+		<sequence>-.MLVTFLLRK.R</sequence>
+		<mass>1121.46</mass>
+		<deltamass>0.48</deltamass>
+		<charge>1</charge>
+		<peptide_probability>1.00</peptide_probability>
+		<xcorr>0.658</xcorr>
+		<deltacn>1.100</deltacn>
+		<sp>82.7</sp>
+		<rsp>4</rsp>
+		<ions>5/16</ions>
+		<count>0</count>
+		<tic>3780</tic>
+	</peptide>
+	<peptide>
+		<file>020, 3178</file>
+		<sequence>-.MLVTFLLRK.R</sequence>
+		<mass>1121.46</mass>
+		<deltamass>0.59</deltamass>
+		<charge>1</charge>
+		<peptide_probability>1.00</peptide_probability>
+		<xcorr>0.634</xcorr>
+		<deltacn>1.100</deltacn>
+		<sp>88.6</sp>
+		<rsp>6</rsp>
+		<ions>5/16</ions>
+		<count>0</count>
+		<tic>3478</tic>
+	</peptide>
+	<peptide>
+		<file>020, 3422</file>
+		<sequence>-.MLVTFLLRK.R</sequence>
+		<mass>1121.46</mass>
+		<deltamass>0.48</deltamass>
+		<charge>1</charge>
+		<peptide_probability>1.00</peptide_probability>
+		<xcorr>0.673</xcorr>
+		<deltacn>1.100</deltacn>
+		<sp>86.1</sp>
+		<rsp>2</rsp>
+		<ions>5/16</ions>
+		<count>0</count>
+		<tic>3053</tic>
+	</peptide>
+</protein>
+<protein>
+	<reference>gi|16130902|ref|NP_417477.1| unknown CDS [Escherichia coli K12]</reference>
+	<protein_probability>1.00</protein_probability>
+	<consensus_score>8.0</consensus_score>
+	<Sf>0.00</Sf>
+	<unified_score>0</unified_score>
+	<coverage>0.0</coverage>
+	<pI>0.0</pI>
+	<weight>9189.3</weight>
+	<accession>16130902</accession>
+	<peptide>
+		<file>020, 752 - 754</file>
+		<sequence>R.LVIDGFVRSEEDGGVFLAFG</sequence>
+		<mass>2128.37</mass>
+		<deltamass>0.46</deltamass>
+		<charge>3</charge>
+		<peptide_probability>1.00</peptide_probability>
+		<xcorr>0.837</xcorr>
+		<deltacn>0.189</deltacn>
+		<sp>105.9</sp>
+		<rsp>17</rsp>
+		<ions>16/76</ions>
+		<count>0</count>
+		<tic>4725</tic>
+	</peptide>
+	<peptide>
+		<file>020, 3407</file>
+		<sequence>R.FCRPDER.S</sequence>
+		<mass>923.03</mass>
+		<deltamass>1.35</deltamass>
+		<charge>3</charge>
+		<peptide_probability>1.00</peptide_probability>
+		<xcorr>0.806</xcorr>
+		<deltacn>0.376</deltacn>
+		<sp>72.1</sp>
+		<rsp>9</rsp>
+		<ions>6/24</ions>
+		<count>0</count>
+		<tic>2418</tic>
+	</peptide>
+</protein>
+<protein>
+	<reference>gi|16131888|ref|NP_418486.1| regulation of superoxide response regulon [Escherichia coli K12]</reference>
+	<protein_probability>1.00</protein_probability>
+	<consensus_score>8.0</consensus_score>
+	<Sf>0.00</Sf>
+	<unified_score>0</unified_score>
+	<coverage>0.0</coverage>
+	<pI>0.0</pI>
+	<weight>12910.7</weight>
+	<accession>16131888</accession>
+	<peptide>
+		<file>000, 1259</file>
+		<sequence>R.QRRLLLAAVELR.T</sequence>
+		<mass>1438.75</mass>
+		<deltamass>0.41</deltamass>
+		<charge>2</charge>
+		<peptide_probability>1.00</peptide_probability>
+		<xcorr>0.836</xcorr>
+		<deltacn>0.272</deltacn>
+		<sp>82.2</sp>
+		<rsp>4</rsp>
+		<ions>8/22</ions>
+		<count>0</count>
+		<tic>5452</tic>
+	</peptide>
+</protein>
+<protein>
+	<reference>gi|16128018|ref|NP_414565.1| unknown CDS [Escherichia coli K12]</reference>
+	<protein_probability>1.00</protein_probability>
+	<consensus_score>8.0</consensus_score>
+	<Sf>0.00</Sf>
+	<unified_score>0</unified_score>
+	<coverage>0.0</coverage>
+	<pI>0.0</pI>
+	<weight>7890.3</weight>
+	<accession>16128018</accession>
+	<peptide>
+		<file>020, 1446</file>
+		<sequence>K.SHFFLISVLNR.R</sequence>
+		<mass>1333.56</mass>
+		<deltamass>1.36</deltamass>
+		<charge>1</charge>
+		<peptide_probability>1.00</peptide_probability>
+		<xcorr>0.834</xcorr>
+		<deltacn>0.196</deltacn>
+		<sp>89.7</sp>
+		<rsp>4</rsp>
+		<ions>8/20</ions>
+		<count>0</count>
+		<tic>5280</tic>
+	</peptide>
+</protein>
+<protein>
+	<reference>gi|90111376|ref|NP_416555.2| GDP-mannose mannosyl hydrolase [Escherichia coli K12]</reference>
+	<protein_probability>1.00</protein_probability>
+	<consensus_score>8.0</consensus_score>
+	<Sf>0.00</Sf>
+	<unified_score>0</unified_score>
+	<coverage>0.0</coverage>
+	<pI>0.0</pI>
+	<weight>18273.3</weight>
+	<accession>90111376</accession>
+	<peptide>
+		<file>020, 2448</file>
+		<sequence>R.TNRPAQGYWFVPGGRVQKDETLEAAFER.L</sequence>
+		<mass>3224.53</mass>
+		<deltamass>1.08</deltamass>
+		<charge>3</charge>
+		<peptide_probability>1.00</peptide_probability>
+		<xcorr>0.818</xcorr>
+		<deltacn>0.150</deltacn>
+		<sp>142.3</sp>
+		<rsp>3</rsp>
+		<ions>16/108</ions>
+		<count>0</count>
+		<tic>7691</tic>
+	</peptide>
+</protein>
+<protein>
+	<reference>gi|16130806|ref|NP_417380.1| glycine cleavage system protein H [Escherichia coli K12]</reference>
+	<protein_probability>1.00</protein_probability>
+	<consensus_score>8.0</consensus_score>
+	<Sf>0.00</Sf>
+	<unified_score>0</unified_score>
+	<coverage>0.0</coverage>
+	<pI>0.0</pI>
+	<weight>13811.1</weight>
+	<accession>16130806</accession>
+	<peptide>
+		<file>000, 1132</file>
+		<sequence>-.MSNVPAELKYSK.E</sequence>
+		<mass>1367.60</mass>
+		<deltamass>0.03</deltamass>
+		<charge>1</charge>
+		<peptide_probability>1.00</peptide_probability>
+		<xcorr>0.815</xcorr>
+		<deltacn>0.094</deltacn>
+		<sp>157.4</sp>
+		<rsp>1</rsp>
+		<ions>9/22</ions>
+		<count>0</count>
+		<tic>6578</tic>
+	</peptide>
+</protein>
+<protein>
+	<reference>gi|90111097|ref|NP_414731.2| modulator of Rho-dependent transcription termination [Escherichia coli</reference>
+	<protein_probability>1.00</protein_probability>
+	<consensus_score>8.0</consensus_score>
+	<Sf>0.00</Sf>
+	<unified_score>0</unified_score>
+	<coverage>0.0</coverage>
+	<pI>0.0</pI>
+	<weight>9479.6</weight>
+	<accession>90111097</accession>
+	<peptide>
+		<file>020, 2736</file>
+		<sequence>R.KNVEYLVVEAAGETRELR.L</sequence>
+		<mass>2077.33</mass>
+		<deltamass>0.01</deltamass>
+		<charge>3</charge>
+		<peptide_probability>1.00</peptide_probability>
+		<xcorr>0.813</xcorr>
+		<deltacn>0.157</deltacn>
+		<sp>90.3</sp>
+		<rsp>34</rsp>
+		<ions>14/68</ions>
+		<count>0</count>
+		<tic>5832</tic>
+	</peptide>
+	<peptide>
+		<file>020, 1058</file>
+		<sequence>K.NVEYLVVEAAGETRELR.L</sequence>
+		<mass>1949.15</mass>
+		<deltamass>0.22</deltamass>
+		<charge>2</charge>
+		<peptide_probability>1.00</peptide_probability>
+		<xcorr>0.709</xcorr>
+		<deltacn>1.100</deltacn>
+		<sp>115.8</sp>
+		<rsp>1</rsp>
+		<ions>9/32</ions>
+		<count>0</count>
+		<tic>7223</tic>
+	</peptide>
+	<peptide>
+		<file>020, 3492</file>
+		<sequence>K.LQAKASDLVSRK.N</sequence>
+		<mass>1316.53</mass>
+		<deltamass>0.89</deltamass>
+		<charge>3</charge>
+		<peptide_probability>1.00</peptide_probability>
+		<xcorr>0.778</xcorr>
+		<deltacn>1.100</deltacn>
+		<sp>288.3</sp>
+		<rsp>2</rsp>
+		<ions>14/44</ions>
+		<count>0</count>
+		<tic>4614</tic>
+	</peptide>
+</protein>
+<protein>
+	<reference>gi|16128537|ref|NP_415086.1| DLP12 prophage; putative lysis protein S, homolog of Rz of phage PA-2</reference>
+	<protein_probability>1.00</protein_probability>
+	<consensus_score>8.0</consensus_score>
+	<Sf>0.00</Sf>
+	<unified_score>0</unified_score>
+	<coverage>0.0</coverage>
+	<pI>0.0</pI>
+	<weight>7778.0</weight>
+	<accession>16128537</accession>
+	<peptide>
+		<file>000, 532</file>
+		<sequence>R.KAAR.G</sequence>
+		<mass>445.54</mass>
+		<deltamass>0.82</deltamass>
+		<charge>1</charge>
+		<peptide_probability>1.00</peptide_probability>
+		<xcorr>0.813</xcorr>
+		<deltacn>0.055</deltacn>
+		<sp>56.9</sp>
+		<rsp>2</rsp>
+		<ions>5/6</ions>
+		<count>4</count>
+		<tic>0</tic>
+	</peptide>
+	<peptide>
+		<file>000, 2208</file>
+		<sequence>R.KAAR.G</sequence>
+		<mass>445.54</mass>
+		<deltamass>0.41</deltamass>
+		<charge>1</charge>
+		<peptide_probability>1.00</peptide_probability>
+		<xcorr>0.479</xcorr>
+		<deltacn>0.166</deltacn>
+		<sp>13.8</sp>
+		<rsp>6</rsp>
+		<ions>3/6</ions>
+		<count>4</count>
+		<tic>0</tic>
+	</peptide>
+</protein>
+<protein>
+	<reference>gi|90111295|ref|NP_416074.4| Qin prophage [Escherichia coli K12]</reference>
+	<protein_probability>1.00</protein_probability>
+	<consensus_score>8.0</consensus_score>
+	<Sf>0.00</Sf>
+	<unified_score>0</unified_score>
+	<coverage>0.0</coverage>
+	<pI>0.0</pI>
+	<weight>7740.9</weight>
+	<accession>90111295</accession>
+	<peptide>
+		<file>000, 532</file>
+		<sequence>R.KAAR.G</sequence>
+		<mass>445.54</mass>
+		<deltamass>0.82</deltamass>
+		<charge>1</charge>
+		<peptide_probability>1.00</peptide_probability>
+		<xcorr>0.813</xcorr>
+		<deltacn>0.055</deltacn>
+		<sp>56.9</sp>
+		<rsp>2</rsp>
+		<ions>5/6</ions>
+		<count>4</count>
+		<tic>0</tic>
+	</peptide>
+	<peptide>
+		<file>000, 2208</file>
+		<sequence>R.KAAR.G</sequence>
+		<mass>445.54</mass>
+		<deltamass>0.41</deltamass>
+		<charge>1</charge>
+		<peptide_probability>1.00</peptide_probability>
+		<xcorr>0.479</xcorr>
+		<deltacn>0.166</deltacn>
+		<sp>13.8</sp>
+		<rsp>6</rsp>
+		<ions>3/6</ions>
+		<count>4</count>
+		<tic>0</tic>
+	</peptide>
+</protein>
+<protein>
+	<reference>gi|90111300|ref|NP_416103.2| hypothetical protein b1586 [Escherichia coli K12]</reference>
+	<protein_probability>1.00</protein_probability>
+	<consensus_score>8.0</consensus_score>
+	<Sf>0.00</Sf>
+	<unified_score>0</unified_score>
+	<coverage>0.0</coverage>
+	<pI>0.0</pI>
+	<weight>10476.6</weight>
+	<accession>90111300</accession>
+	<peptide>
+		<file>000, 2643</file>
+		<sequence>K.LSTCCAALLLALASPAVLAAPGSCER.I</sequence>
+		<mass>2503.00</mass>
+		<deltamass>1.30</deltamass>
+		<charge>3</charge>
+		<peptide_probability>1.00</peptide_probability>
+		<xcorr>0.803</xcorr>
+		<deltacn>0.256</deltacn>
+		<sp>181.5</sp>
+		<rsp>3</rsp>
+		<ions>18/100</ions>
+		<count>0</count>
+		<tic>7930</tic>
+	</peptide>
+</protein>
+<protein>
+	<reference>gi|16131343|ref|NP_417928.1| putative integral membrane protein [Escherichia coli K12]</reference>
+	<protein_probability>1.00</protein_probability>
+	<consensus_score>8.0</consensus_score>
+	<Sf>0.00</Sf>
+	<unified_score>0</unified_score>
+	<coverage>0.0</coverage>
+	<pI>0.0</pI>
+	<weight>25268.7</weight>
+	<accession>16131343</accession>
+	<peptide>
+		<file>020, 2911</file>
+		<sequence>-.MNVFSQTQR.Y</sequence>
+		<mass>1111.26</mass>
+		<deltamass>0.53</deltamass>
+		<charge>1</charge>
+		<peptide_probability>1.00</peptide_probability>
+		<xcorr>0.794</xcorr>
+		<deltacn>0.225</deltacn>
+		<sp>44.2</sp>
+		<rsp>23</rsp>
+		<ions>5/16</ions>
+		<count>0</count>
+		<tic>5882</tic>
+	</peptide>
+</protein>
+<protein>
+	<reference>gi|16128058|ref|NP_414606.1| transcriptional regulator for ara operon [Escherichia coli K12]</reference>
+	<protein_probability>1.00</protein_probability>
+	<consensus_score>8.0</consensus_score>
+	<Sf>0.00</Sf>
+	<unified_score>0</unified_score>
+	<coverage>0.0</coverage>
+	<pI>0.0</pI>
+	<weight>33383.7</weight>
+	<accession>16128058</accession>
+	<peptide>
+		<file>000, 2242</file>
+		<sequence>R.GQGVVKNQGREFVCRPGDILLFPPGEIHHYGR.H</sequence>
+		<mass>3578.07</mass>
+		<deltamass>0.67</deltamass>
+		<charge>3</charge>
+		<peptide_probability>1.00</peptide_probability>
+		<xcorr>0.745</xcorr>
+		<deltacn>0.187</deltacn>
+		<sp>80.3</sp>
+		<rsp>15</rsp>
+		<ions>16/124</ions>
+		<count>0</count>
+		<tic>6955</tic>
+	</peptide>
+	<peptide>
+		<file>020, 1280</file>
+		<sequence>R.MPIATVGR.N</sequence>
+		<mass>845.05</mass>
+		<deltamass>1.00</deltamass>
+		<charge>2</charge>
+		<peptide_probability>1.00</peptide_probability>
+		<xcorr>0.785</xcorr>
+		<deltacn>0.260</deltacn>
+		<sp>171.0</sp>
+		<rsp>10</rsp>
+		<ions>8/14</ions>
+		<count>0</count>
+		<tic>6111</tic>
+	</peptide>
+</protein>
+<protein>
+	<reference>gi|90111557|ref|NP_417676.2| sigma cross-reacting protein 27A (SCRP-27A) [Escherichia coli K12]</reference>
+	<protein_probability>1.00</protein_probability>
+	<consensus_score>8.0</consensus_score>
+	<Sf>0.00</Sf>
+	<unified_score>0</unified_score>
+	<coverage>0.0</coverage>
+	<pI>0.0</pI>
+	<weight>22981.4</weight>
+	<accession>90111557</accession>
+	<peptide>
+		<file>000, 2342</file>
+		<sequence>R.NVLIEAAR.I</sequence>
+		<mass>886.03</mass>
+		<deltamass>0.81</deltamass>
+		<charge>2</charge>
+		<peptide_probability>1.00</peptide_probability>
+		<xcorr>0.774</xcorr>
+		<deltacn>0.126</deltacn>
+		<sp>85.3</sp>
+		<rsp>16</rsp>
+		<ions>5/14</ions>
+		<count>0</count>
+		<tic>3524</tic>
+	</peptide>
+</protein>
+<protein>
+	<reference>gi|90111601|ref|NP_417948.2| putative transport protein [Escherichia coli K12]</reference>
+	<protein_probability>1.00</protein_probability>
+	<consensus_score>8.0</consensus_score>
+	<Sf>0.00</Sf>
+	<unified_score>0</unified_score>
+	<coverage>0.0</coverage>
+	<pI>0.0</pI>
+	<weight>37656.9</weight>
+	<accession>90111601</accession>
+	<peptide>
+		<file>020, 962</file>
+		<sequence>K.VWLLALVWRR.T</sequence>
+		<mass>1312.63</mass>
+		<deltamass>1.18</deltamass>
+		<charge>2</charge>
+		<peptide_probability>1.00</peptide_probability>
+		<xcorr>0.773</xcorr>
+		<deltacn>0.087</deltacn>
+		<sp>209.9</sp>
+		<rsp>1</rsp>
+		<ions>7/18</ions>
+		<count>0</count>
+		<tic>5415</tic>
+	</peptide>
+	<peptide>
+		<file>020, 1663</file>
+		<sequence>R.VLVGLGAVCFTLFSIVSILEAGSAKK</sequence>
+		<mass>2624.18</mass>
+		<deltamass>0.86</deltamass>
+		<charge>3</charge>
+		<peptide_probability>1.00</peptide_probability>
+		<xcorr>0.714</xcorr>
+		<deltacn>1.100</deltacn>
+		<sp>84.9</sp>
+		<rsp>63</rsp>
+		<ions>12/100</ions>
+		<count>0</count>
+		<tic>9719</tic>
+	</peptide>
+</protein>
+<protein>
+	<reference>gi|16128092|ref|NP_414641.1| 7,8-dihydro-8-oxoguanine-triphosphatase, prefers dGTP [Escherichia col</reference>
+	<protein_probability>1.00</protein_probability>
+	<consensus_score>8.0</consensus_score>
+	<Sf>0.00</Sf>
+	<unified_score>0</unified_score>
+	<coverage>0.0</coverage>
+	<pI>0.0</pI>
+	<weight>14927.0</weight>
+	<accession>16128092</accession>
+	<peptide>
+		<file>000, 2530</file>
+		<sequence>K.EGQPGEWMSLVGLNADDFPPANEPVIAK.L</sequence>
+		<mass>2983.30</mass>
+		<deltamass>1.28</deltamass>
+		<charge>3</charge>
+		<peptide_probability>1.00</peptide_probability>
+		<xcorr>0.745</xcorr>
+		<deltacn>0.274</deltacn>
+		<sp>60.0</sp>
+		<rsp>42</rsp>
+		<ions>12/108</ions>
+		<count>0</count>
+		<tic>7565</tic>
+	</peptide>
+	<peptide>
+		<file>020, 2003</file>
+		<sequence>K.LEYEFPDR.H</sequence>
+		<mass>1069.15</mass>
+		<deltamass>0.57</deltamass>
+		<charge>1</charge>
+		<peptide_probability>1.00</peptide_probability>
+		<xcorr>0.431</xcorr>
+		<deltacn>0.224</deltacn>
+		<sp>40.2</sp>
+		<rsp>43</rsp>
+		<ions>5/14</ions>
+		<count>0</count>
+		<tic>7433</tic>
+	</peptide>
+	<peptide>
+		<file>000, 1984</file>
+		<sequence>K.EGQPGEWMSLVGLNADDFPPANEPVIAK.L</sequence>
+		<mass>2983.30</mass>
+		<deltamass>1.01</deltamass>
+		<charge>3</charge>
+		<peptide_probability>1.00</peptide_probability>
+		<xcorr>0.771</xcorr>
+		<deltacn>1.100</deltacn>
+		<sp>103.0</sp>
+		<rsp>5</rsp>
+		<ions>17/108</ions>
+		<count>0</count>
+		<tic>5745</tic>
+	</peptide>
+</protein>
+<protein>
+	<reference>gi|49175991|ref|YP_025292.1| small toxic membrane polypeptide [Escherichia coli K12]</reference>
+	<protein_probability>1.00</protein_probability>
+	<consensus_score>8.0</consensus_score>
+	<Sf>0.00</Sf>
+	<unified_score>0</unified_score>
+	<coverage>0.0</coverage>
+	<pI>0.0</pI>
+	<weight>5501.5</weight>
+	<accession>49175991</accession>
+	<peptide>
+		<file>000, 2231</file>
+		<sequence>R.KDLCEVHIR.T</sequence>
+		<mass>1113.32</mass>
+		<deltamass>0.81</deltamass>
+		<charge>1</charge>
+		<peptide_probability>1.00</peptide_probability>
+		<xcorr>0.770</xcorr>
+		<deltacn>0.346</deltacn>
+		<sp>221.4</sp>
+		<rsp>2</rsp>
+		<ions>9/16</ions>
+		<count>1</count>
+		<tic>0</tic>
+	</peptide>
+</protein>
+<protein>
+	<reference>gi|90111262|ref|NP_415894.4| conserved hypothetical protein, adenine nucleotide-binding domain [Esc</reference>
+	<protein_probability>1.00</protein_probability>
+	<consensus_score>8.0</consensus_score>
+	<Sf>0.00</Sf>
+	<unified_score>0</unified_score>
+	<coverage>0.0</coverage>
+	<pI>0.0</pI>
+	<weight>16016.4</weight>
+	<accession>90111262</accession>
+	<peptide>
+		<file>000, 2244</file>
+		<sequence>R.VHVHVEEGSPK.D</sequence>
+		<mass>1218.34</mass>
+		<deltamass>0.93</deltamass>
+		<charge>2</charge>
+		<peptide_probability>1.00</peptide_probability>
+		<xcorr>0.552</xcorr>
+		<deltacn>0.285</deltacn>
+		<sp>35.7</sp>
+		<rsp>54</rsp>
+		<ions>6/20</ions>
+		<count>0</count>
+		<tic>5319</tic>
+	</peptide>
+	<peptide>
+		<file>020, 1300</file>
+		<sequence>R.TILVPIDISDSELTQR.V</sequence>
+		<mass>1801.03</mass>
+		<deltamass>0.74</deltamass>
+		<charge>3</charge>
+		<peptide_probability>1.00</peptide_probability>
+		<xcorr>0.768</xcorr>
+		<deltacn>0.185</deltacn>
+		<sp>218.4</sp>
+		<rsp>3</rsp>
+		<ions>16/60</ions>
+		<count>0</count>
+		<tic>7362</tic>
+	</peptide>
+</protein>
+<protein>
+	<reference>gi|16131340|ref|NP_417925.1| putative enzyme [Escherichia coli K12]</reference>
+	<protein_probability>1.00</protein_probability>
+	<consensus_score>8.0</consensus_score>
+	<Sf>0.00</Sf>
+	<unified_score>0</unified_score>
+	<coverage>0.0</coverage>
+	<pI>0.0</pI>
+	<weight>23790.4</weight>
+	<accession>16131340</accession>
+	<peptide>
+		<file>000, 2282</file>
+		<sequence>R.LEEYR.W</sequence>
+		<mass>709.77</mass>
+		<deltamass>0.70</deltamass>
+		<charge>2</charge>
+		<peptide_probability>1.00</peptide_probability>
+		<xcorr>0.738</xcorr>
+		<deltacn>0.340</deltacn>
+		<sp>104.9</sp>
+		<rsp>2</rsp>
+		<ions>4/8</ions>
+		<count>0</count>
+		<tic>2641</tic>
+	</peptide>
+	<peptide>
+		<file>000, 2566</file>
+		<sequence>R.LEEYR.W</sequence>
+		<mass>709.77</mass>
+		<deltamass>0.47</deltamass>
+		<charge>2</charge>
+		<peptide_probability>1.00</peptide_probability>
+		<xcorr>0.574</xcorr>
+		<deltacn>0.058</deltacn>
+		<sp>57.2</sp>
+		<rsp>4</rsp>
+		<ions>3/8</ions>
+		<count>0</count>
+		<tic>2925</tic>
+	</peptide>
+	<peptide>
+		<file>020, 2032</file>
+		<sequence>R.LEEYR.W</sequence>
+		<mass>709.77</mass>
+		<deltamass>1.30</deltamass>
+		<charge>2</charge>
+		<peptide_probability>1.00</peptide_probability>
+		<xcorr>0.715</xcorr>
+		<deltacn>0.123</deltacn>
+		<sp>197.4</sp>
+		<rsp>1</rsp>
+		<ions>5/8</ions>
+		<count>0</count>
+		<tic>3101</tic>
+	</peptide>
+	<peptide>
+		<file>000, 1922</file>
+		<sequence>R.LEEYR.W</sequence>
+		<mass>709.77</mass>
+		<deltamass>0.70</deltamass>
+		<charge>2</charge>
+		<peptide_probability>1.00</peptide_probability>
+		<xcorr>0.767</xcorr>
+		<deltacn>0.073</deltacn>
+		<sp>63.5</sp>
+		<rsp>2</rsp>
+		<ions>3/8</ions>
+		<count>0</count>
+		<tic>2999</tic>
+	</peptide>
+	<peptide>
+		<file>020, 2270</file>
+		<sequence>R.LEEYR.W</sequence>
+		<mass>709.77</mass>
+		<deltamass>0.96</deltamass>
+		<charge>2</charge>
+		<peptide_probability>1.00</peptide_probability>
+		<xcorr>0.342</xcorr>
+		<deltacn>1.100</deltacn>
+		<sp>63.6</sp>
+		<rsp>5</rsp>
+		<ions>3/8</ions>
+		<count>0</count>
+		<tic>4367</tic>
+	</peptide>
+	<peptide>
+		<file>020, 3526</file>
+		<sequence>R.LEEYR.W</sequence>
+		<mass>709.77</mass>
+		<deltamass>0.75</deltamass>
+		<charge>2</charge>
+		<peptide_probability>1.00</peptide_probability>
+		<xcorr>0.438</xcorr>
+		<deltacn>1.100</deltacn>
+		<sp>94.2</sp>
+		<rsp>1</rsp>
+		<ions>4/8</ions>
+		<count>0</count>
+		<tic>3250</tic>
+	</peptide>
+</protein>
+<protein>
+	<reference>gi|16131155|ref|NP_417733.1| unknown CDS [Escherichia coli K12]</reference>
+	<protein_probability>1.00</protein_probability>
+	<consensus_score>8.0</consensus_score>
+	<Sf>0.00</Sf>
+	<unified_score>0</unified_score>
+	<coverage>0.0</coverage>
+	<pI>0.0</pI>
+	<weight>7451.7</weight>
+	<accession>16131155</accession>
+	<peptide>
+		<file>020, 832</file>
+		<sequence>K.GTTQDNWETAGAIAGGAAAVAGLTMGIIALSK</sequence>
+		<mass>3018.39</mass>
+		<deltamass>1.34</deltamass>
+		<charge>3</charge>
+		<peptide_probability>1.00</peptide_probability>
+		<xcorr>0.760</xcorr>
+		<deltacn>0.258</deltacn>
+		<sp>97.7</sp>
+		<rsp>4</rsp>
+		<ions>19/124</ions>
+		<count>0</count>
+		<tic>5428</tic>
+	</peptide>
+</protein>
+<protein>
+	<reference>gi|16130443|ref|NP_417013.1| nucleoside diphosphate kinase [Escherichia coli K12]</reference>
+	<protein_probability>1.00</protein_probability>
+	<consensus_score>8.0</consensus_score>
+	<Sf>0.00</Sf>
+	<unified_score>0</unified_score>
+	<coverage>0.0</coverage>
+	<pI>0.0</pI>
+	<weight>15463.3</weight>
+	<accession>16130443</accession>
+	<peptide>
+		<file>000, 1051</file>
+		<sequence>R.TFSIIKPNAVAK.N</sequence>
+		<mass>1289.55</mass>
+		<deltamass>1.34</deltamass>
+		<charge>1</charge>
+		<peptide_probability>1.00</peptide_probability>
+		<xcorr>0.756</xcorr>
+		<deltacn>0.388</deltacn>
+		<sp>31.6</sp>
+		<rsp>8</rsp>
+		<ions>7/22</ions>
+		<count>0</count>
+		<tic>3795</tic>
+	</peptide>
+	<peptide>
+		<file>020, 1955</file>
+		<sequence>R.DLLGATNPANALAGTLR.A</sequence>
+		<mass>1668.88</mass>
+		<deltamass>0.94</deltamass>
+		<charge>2</charge>
+		<peptide_probability>1.00</peptide_probability>
+		<xcorr>0.740</xcorr>
+		<deltacn>0.331</deltacn>
+		<sp>61.6</sp>
+		<rsp>12</rsp>
+		<ions>7/32</ions>
+		<count>0</count>
+		<tic>6530</tic>
+	</peptide>
+</protein>
+<protein>
+	<reference>gi|16129015|ref|NP_415570.1| unknown CDS [Escherichia coli K12]</reference>
+	<protein_probability>1.00</protein_probability>
+	<consensus_score>8.0</consensus_score>
+	<Sf>0.00</Sf>
+	<unified_score>0</unified_score>
+	<coverage>0.0</coverage>
+	<pI>0.0</pI>
+	<weight>3747.3</weight>
+	<accession>16129015</accession>
+	<peptide>
+		<file>000, 624</file>
+		<sequence>R.LSYLQKR.R</sequence>
+		<mass>908.08</mass>
+		<deltamass>0.69</deltamass>
+		<charge>1</charge>
+		<peptide_probability>1.00</peptide_probability>
+		<xcorr>0.748</xcorr>
+		<deltacn>0.119</deltacn>
+		<sp>41.9</sp>
+		<rsp>8</rsp>
+		<ions>6/12</ions>
+		<count>0</count>
+		<tic>2810</tic>
+	</peptide>
+</protein>
+<protein>
+	<reference>gi|16131894|ref|NP_418492.1| hypothetical protein b4068 [Escherichia coli K12]</reference>
+	<protein_probability>1.00</protein_probability>
+	<consensus_score>8.0</consensus_score>
+	<Sf>0.00</Sf>
+	<unified_score>0</unified_score>
+	<coverage>0.0</coverage>
+	<pI>0.0</pI>
+	<weight>11671.5</weight>
+	<accession>16131894</accession>
+	<peptide>
+		<file>020, 923</file>
+		<sequence>R.IEDNAHFR.E</sequence>
+		<mass>1002.07</mass>
+		<deltamass>0.23</deltamass>
+		<charge>1</charge>
+		<peptide_probability>1.00</peptide_probability>
+		<xcorr>0.748</xcorr>
+		<deltacn>0.123</deltacn>
+		<sp>61.6</sp>
+		<rsp>6</rsp>
+		<ions>7/14</ions>
+		<count>0</count>
+		<tic>3849</tic>
+	</peptide>
+</protein>
+<protein>
+	<reference>gi|16129855|ref|NP_416418.1| cytoplasmic ferritin (an iron storage protein) [Escherichia coli K12]</reference>
+	<protein_probability>1.00</protein_probability>
+	<consensus_score>8.0</consensus_score>
+	<Sf>0.00</Sf>
+	<unified_score>0</unified_score>
+	<coverage>0.0</coverage>
+	<pI>0.0</pI>
+	<weight>19423.7</weight>
+	<accession>16129855</accession>
+	<peptide>
+		<file>020, 1048</file>
+		<sequence>K.ELSTLDTQN</sequence>
+		<mass>1021.06</mass>
+		<deltamass>1.02</deltamass>
+		<charge>1</charge>
+		<peptide_probability>1.00</peptide_probability>
+		<xcorr>0.676</xcorr>
+		<deltacn>0.062</deltacn>
+		<sp>173.6</sp>
+		<rsp>2</rsp>
+		<ions>7/16</ions>
+		<count>0</count>
+		<tic>5212</tic>
+	</peptide>
+	<peptide>
+		<file>000, 3682</file>
+		<sequence>K.ELSTLDTQN</sequence>
+		<mass>1021.06</mass>
+		<deltamass>0.84</deltamass>
+		<charge>1</charge>
+		<peptide_probability>1.00</peptide_probability>
+		<xcorr>0.583</xcorr>
+		<deltacn>0.110</deltacn>
+		<sp>106.2</sp>
+		<rsp>4</rsp>
+		<ions>5/16</ions>
+		<count>0</count>
+		<tic>2797</tic>
+	</peptide>
+	<peptide>
+		<file>020, 323</file>
+		<sequence>K.ELSTLDTQN</sequence>
+		<mass>1021.06</mass>
+		<deltamass>0.85</deltamass>
+		<charge>1</charge>
+		<peptide_probability>1.00</peptide_probability>
+		<xcorr>0.734</xcorr>
+		<deltacn>0.151</deltacn>
+		<sp>114.2</sp>
+		<rsp>4</rsp>
+		<ions>5/16</ions>
+		<count>0</count>
+		<tic>3375</tic>
+	</peptide>
+	<peptide>
+		<file>020, 1634</file>
+		<sequence>K.ELSTLDTQN</sequence>
+		<mass>1021.06</mass>
+		<deltamass>1.29</deltamass>
+		<charge>1</charge>
+		<peptide_probability>1.00</peptide_probability>
+		<xcorr>0.582</xcorr>
+		<deltacn>0.174</deltacn>
+		<sp>124.8</sp>
+		<rsp>2</rsp>
+		<ions>6/16</ions>
+		<count>0</count>
+		<tic>4134</tic>
+	</peptide>
+	<peptide>
+		<file>020, 2435</file>
+		<sequence>K.ELSTLDTQN</sequence>
+		<mass>1021.06</mass>
+		<deltamass>1.20</deltamass>
+		<charge>1</charge>
+		<peptide_probability>1.00</peptide_probability>
+		<xcorr>0.598</xcorr>
+		<deltacn>0.157</deltacn>
+		<sp>187.2</sp>
+		<rsp>1</rsp>
+		<ions>8/16</ions>
+		<count>0</count>
+		<tic>3318</tic>
+	</peptide>
+	<peptide>
+		<file>020, 2755</file>
+		<sequence>K.ELSTLDTQN</sequence>
+		<mass>1021.06</mass>
+		<deltamass>0.95</deltamass>
+		<charge>1</charge>
+		<peptide_probability>1.00</peptide_probability>
+		<xcorr>0.622</xcorr>
+		<deltacn>0.109</deltacn>
+		<sp>154.3</sp>
+		<rsp>2</rsp>
+		<ions>7/16</ions>
+		<count>0</count>
+		<tic>3398</tic>
+	</peptide>
+	<peptide>
+		<file>020, 3352</file>
+		<sequence>K.ELSTLDTQN</sequence>
+		<mass>1021.06</mass>
+		<deltamass>0.88</deltamass>
+		<charge>1</charge>
+		<peptide_probability>1.00</peptide_probability>
+		<xcorr>0.594</xcorr>
+		<deltacn>0.211</deltacn>
+		<sp>120.0</sp>
+		<rsp>1</rsp>
+		<ions>6/16</ions>
+		<count>0</count>
+		<tic>2487</tic>
+	</peptide>
+	<peptide>
+		<file>000, 1750</file>
+		<sequence>K.ELSTLDTQN</sequence>
+		<mass>1021.06</mass>
+		<deltamass>1.39</deltamass>
+		<charge>1</charge>
+		<peptide_probability>1.00</peptide_probability>
+		<xcorr>0.609</xcorr>
+		<deltacn>0.225</deltacn>
+		<sp>173.1</sp>
+		<rsp>2</rsp>
+		<ions>7/16</ions>
+		<count>0</count>
+		<tic>4734</tic>
+	</peptide>
+	<peptide>
+		<file>020, 172</file>
+		<sequence>K.ELSTLDTQN</sequence>
+		<mass>1021.06</mass>
+		<deltamass>0.99</deltamass>
+		<charge>1</charge>
+		<peptide_probability>1.00</peptide_probability>
+		<xcorr>0.532</xcorr>
+		<deltacn>0.260</deltacn>
+		<sp>90.4</sp>
+		<rsp>2</rsp>
+		<ions>5/16</ions>
+		<count>0</count>
+		<tic>2712</tic>
+	</peptide>
+	<peptide>
+		<file>020, 3212</file>
+		<sequence>K.ELSTLDTQN</sequence>
+		<mass>1021.06</mass>
+		<deltamass>0.97</deltamass>
+		<charge>1</charge>
+		<peptide_probability>1.00</peptide_probability>
+		<xcorr>0.557</xcorr>
+		<deltacn>0.150</deltacn>
+		<sp>136.2</sp>
+		<rsp>3</rsp>
+		<ions>6/16</ions>
+		<count>0</count>
+		<tic>3126</tic>
+	</peptide>
+	<peptide>
+		<file>020, 3610</file>
+		<sequence>K.ELSTLDTQN</sequence>
+		<mass>1021.06</mass>
+		<deltamass>1.01</deltamass>
+		<charge>1</charge>
+		<peptide_probability>1.00</peptide_probability>
+		<xcorr>0.688</xcorr>
+		<deltacn>0.127</deltacn>
+		<sp>129.9</sp>
+		<rsp>2</rsp>
+		<ions>6/16</ions>
+		<count>0</count>
+		<tic>2893</tic>
+	</peptide>
+	<peptide>
+		<file>020, 2563</file>
+		<sequence>K.ELSTLDTQN</sequence>
+		<mass>1021.06</mass>
+		<deltamass>0.91</deltamass>
+		<charge>1</charge>
+		<peptide_probability>1.00</peptide_probability>
+		<xcorr>0.723</xcorr>
+		<deltacn>1.100</deltacn>
+		<sp>159.0</sp>
+		<rsp>1</rsp>
+		<ions>7/16</ions>
+		<count>0</count>
+		<tic>3328</tic>
+	</peptide>
+	<peptide>
+		<file>020, 3606</file>
+		<sequence>K.ELSTLDTQN</sequence>
+		<mass>1021.06</mass>
+		<deltamass>0.93</deltamass>
+		<charge>1</charge>
+		<peptide_probability>1.00</peptide_probability>
+		<xcorr>0.594</xcorr>
+		<deltacn>1.100</deltacn>
+		<sp>138.7</sp>
+		<rsp>3</rsp>
+		<ions>6/16</ions>
+		<count>0</count>
+		<tic>2754</tic>
+	</peptide>
+</protein>
+<protein>
+	<reference>gi|90111445|ref|NP_416978.4| hydrogenase 4 membrane subunit [Escherichia coli K12]</reference>
+	<protein_probability>1.00</protein_probability>
+	<consensus_score>8.0</consensus_score>
+	<Sf>0.00</Sf>
+	<unified_score>0</unified_score>
+	<coverage>0.0</coverage>
+	<pI>0.0</pI>
+	<weight>34359.0</weight>
+	<accession>90111445</accession>
+	<peptide>
+		<file>020, 2711</file>
+		<sequence>R.DIHKLFKR.Q</sequence>
+		<mass>1057.27</mass>
+		<deltamass>0.40</deltamass>
+		<charge>2</charge>
+		<peptide_probability>1.00</peptide_probability>
+		<xcorr>0.663</xcorr>
+		<deltacn>0.173</deltacn>
+		<sp>178.0</sp>
+		<rsp>1</rsp>
+		<ions>8/14</ions>
+		<count>0</count>
+		<tic>5136</tic>
+	</peptide>
+	<peptide>
+		<file>000, 1436</file>
+		<sequence>K.WGLGLKQVVMASLFVALFLPFGR.A</sequence>
+		<mass>2551.13</mass>
+		<deltamass>0.10</deltamass>
+		<charge>3</charge>
+		<peptide_probability>1.00</peptide_probability>
+		<xcorr>0.624</xcorr>
+		<deltacn>1.100</deltacn>
+		<sp>154.8</sp>
+		<rsp>3</rsp>
+		<ions>15/88</ions>
+		<count>0</count>
+		<tic>6518</tic>
+	</peptide>
+	<peptide>
+		<file>000, 2156</file>
+		<sequence>R.RGPGIWQDYRDIHK.L</sequence>
+		<mass>1741.93</mass>
+		<deltamass>0.96</deltamass>
+		<charge>3</charge>
+		<peptide_probability>1.00</peptide_probability>
+		<xcorr>0.731</xcorr>
+		<deltacn>1.100</deltacn>
+		<sp>158.3</sp>
+		<rsp>12</rsp>
+		<ions>14/52</ions>
+		<count>0</count>
+		<tic>7231</tic>
+	</peptide>
+</protein>
+<protein>
+	<reference>gi|16128621|ref|NP_415171.1| homolog of Salmonella cobC, a phosphohistidine protein [Escherichia co</reference>
+	<protein_probability>1.00</protein_probability>
+	<consensus_score>8.0</consensus_score>
+	<Sf>0.00</Sf>
+	<unified_score>0</unified_score>
+	<coverage>0.0</coverage>
+	<pI>0.0</pI>
+	<weight>23308.3</weight>
+	<accession>16128621</accession>
+	<peptide>
+		<file>020, 372</file>
+		<sequence>R.AQHTARLVLSDR.Q</sequence>
+		<mass>1367.54</mass>
+		<deltamass>0.33</deltamass>
+		<charge>1</charge>
+		<peptide_probability>1.00</peptide_probability>
+		<xcorr>0.266</xcorr>
+		<deltacn>0.426</deltacn>
+		<sp>31.3</sp>
+		<rsp>2</rsp>
+		<ions>3/22</ions>
+		<count>0</count>
+		<tic>4136</tic>
+	</peptide>
+	<peptide>
+		<file>020, 2471</file>
+		<sequence>R.LSEFQHYQNILVVSHQGVLSLLIARLIGMPAEAMWHFR.V</sequence>
+		<mass>4407.17</mass>
+		<deltamass>1.00</deltamass>
+		<charge>3</charge>
+		<peptide_probability>1.00</peptide_probability>
+		<xcorr>0.726</xcorr>
+		<deltacn>0.332</deltacn>
+		<sp>145.8</sp>
+		<rsp>1</rsp>
+		<ions>18/148</ions>
+		<count>0</count>
+		<tic>7880</tic>
+	</peptide>
+</protein>
+<protein>
+	<reference>gi|16130817|ref|NP_417391.1| chromosome replication initiation inhibitor protein [Escherichia coli</reference>
+	<protein_probability>1.00</protein_probability>
+	<consensus_score>8.0</consensus_score>
+	<Sf>0.00</Sf>
+	<unified_score>0</unified_score>
+	<coverage>0.0</coverage>
+	<pI>0.0</pI>
+	<weight>33471.4</weight>
+	<accession>16130817</accession>
+	<peptide>
+		<file>020, 2448</file>
+		<sequence>R.GEVVGAVSIQHQALPSCLVDK.L</sequence>
+		<mass>2151.47</mass>
+		<deltamass>0.73</deltamass>
+		<charge>2</charge>
+		<peptide_probability>1.00</peptide_probability>
+		<xcorr>0.718</xcorr>
+		<deltacn>0.281</deltacn>
+		<sp>52.5</sp>
+		<rsp>12</rsp>
+		<ions>6/40</ions>
+		<count>0</count>
+		<tic>7691</tic>
+	</peptide>
+	<peptide>
+		<file>020, 3526</file>
+		<sequence>R.RMLYWHR.F</sequence>
+		<mass>1062.28</mass>
+		<deltamass>0.75</deltamass>
+		<charge>3</charge>
+		<peptide_probability>1.00</peptide_probability>
+		<xcorr>0.589</xcorr>
+		<deltacn>1.100</deltacn>
+		<sp>70.7</sp>
+		<rsp>20</rsp>
+		<ions>5/24</ions>
+		<count>0</count>
+		<tic>3250</tic>
+	</peptide>
+</protein>
+<protein>
+	<reference>gi|16130625|ref|NP_417198.1| processing of HycE (part of the FHL complex) [Escherichia coli K12]</reference>
+	<protein_probability>1.00</protein_probability>
+	<consensus_score>8.0</consensus_score>
+	<Sf>0.00</Sf>
+	<unified_score>0</unified_score>
+	<coverage>0.0</coverage>
+	<pI>0.0</pI>
+	<weight>15464.6</weight>
+	<accession>16130625</accession>
+	<peptide>
+		<file>000, 827</file>
+		<sequence>K.MEGVPK.Y</sequence>
+		<mass>660.81</mass>
+		<deltamass>1.38</deltamass>
+		<charge>1</charge>
+		<peptide_probability>1.00</peptide_probability>
+		<xcorr>0.714</xcorr>
+		<deltacn>0.451</deltacn>
+		<sp>82.9</sp>
+		<rsp>10</rsp>
+		<ions>5/10</ions>
+		<count>0</count>
+		<tic>3271</tic>
+	</peptide>
+	<peptide>
+		<file>020, 366</file>
+		<sequence>K.MEGVPKYGEIVIDINHVPMLANAFDK.A</sequence>
+		<mass>2902.38</mass>
+		<deltamass>0.99</deltamass>
+		<charge>2</charge>
+		<peptide_probability>1.00</peptide_probability>
+		<xcorr>0.406</xcorr>
+		<deltacn>1.100</deltacn>
+		<sp>15.0</sp>
+		<rsp>8</rsp>
+		<ions>3/50</ions>
+		<count>0</count>
+		<tic>4337</tic>
+	</peptide>
+</protein>
+<protein>
+	<reference>gi|16132032|ref|NP_418631.1| putative cationic amino acid transport protein [Escherichia coli K12]</reference>
+	<protein_probability>1.00</protein_probability>
+	<consensus_score>8.0</consensus_score>
+	<Sf>0.00</Sf>
+	<unified_score>0</unified_score>
+	<coverage>0.0</coverage>
+	<pI>0.0</pI>
+	<weight>35535.7</weight>
+	<accession>16132032</accession>
+	<peptide>
+		<file>020, 1086</file>
+		<sequence>R.VRLRQLAR.R</sequence>
+		<mass>1012.24</mass>
+		<deltamass>0.18</deltamass>
+		<charge>1</charge>
+		<peptide_probability>1.00</peptide_probability>
+		<xcorr>0.712</xcorr>
+		<deltacn>0.297</deltacn>
+		<sp>41.6</sp>
+		<rsp>3</rsp>
+		<ions>6/14</ions>
+		<count>0</count>
+		<tic>3324</tic>
+	</peptide>
+	<peptide>
+		<file>020, 3146</file>
+		<sequence>R.TGAPVSTMIIGTLPVVIPVFANLLYSQRDGK.L</sequence>
+		<mass>3259.85</mass>
+		<deltamass>0.23</deltamass>
+		<charge>3</charge>
+		<peptide_probability>1.00</peptide_probability>
+		<xcorr>0.518</xcorr>
+		<deltacn>0.320</deltacn>
+		<sp>30.1</sp>
+		<rsp>30</rsp>
+		<ions>7/120</ions>
+		<count>0</count>
+		<tic>5785</tic>
+	</peptide>
+</protein>
+<protein>
+	<reference>gi|67005950|ref|NP_418228.2| thioredoxin [Escherichia coli K12]</reference>
+	<protein_probability>1.00</protein_probability>
+	<consensus_score>8.0</consensus_score>
+	<Sf>0.00</Sf>
+	<unified_score>0</unified_score>
+	<coverage>0.0</coverage>
+	<pI>0.0</pI>
+	<weight>11806.5</weight>
+	<accession>67005950</accession>
+	<peptide>
+		<file>000, 2484</file>
+		<sequence>K.MIAPILDEIADEYQGK.L</sequence>
+		<mass>1807.06</mass>
+		<deltamass>0.39</deltamass>
+		<charge>2</charge>
+		<peptide_probability>1.00</peptide_probability>
+		<xcorr>0.710</xcorr>
+		<deltacn>0.069</deltacn>
+		<sp>83.1</sp>
+		<rsp>12</rsp>
+		<ions>7/30</ions>
+		<count>0</count>
+		<tic>8375</tic>
+	</peptide>
+</protein>
+<protein>
+	<reference>gi|16131011|ref|NP_417588.1| transcriptional activator for amino acids degradation (LysR family) [E</reference>
+	<protein_probability>1.00</protein_probability>
+	<consensus_score>8.0</consensus_score>
+	<Sf>0.00</Sf>
+	<unified_score>0</unified_score>
+	<coverage>0.0</coverage>
+	<pI>0.0</pI>
+	<weight>34538.6</weight>
+	<accession>16131011</accession>
+	<peptide>
+		<file>020, 2996</file>
+		<sequence>R.SGSIGSAAKELGLTQPAVSK.I</sequence>
+		<mass>1902.14</mass>
+		<deltamass>1.30</deltamass>
+		<charge>3</charge>
+		<peptide_probability>1.00</peptide_probability>
+		<xcorr>0.642</xcorr>
+		<deltacn>0.108</deltacn>
+		<sp>125.0</sp>
+		<rsp>4</rsp>
+		<ions>12/76</ions>
+		<count>0</count>
+		<tic>5490</tic>
+	</peptide>
+	<peptide>
+		<file>000, 1164</file>
+		<sequence>K.AASVLVELAK.E</sequence>
+		<mass>1001.20</mass>
+		<deltamass>0.14</deltamass>
+		<charge>1</charge>
+		<peptide_probability>1.00</peptide_probability>
+		<xcorr>0.678</xcorr>
+		<deltacn>1.100</deltacn>
+		<sp>53.1</sp>
+		<rsp>24</rsp>
+		<ions>7/18</ions>
+		<count>0</count>
+		<tic>4071</tic>
+	</peptide>
+	<peptide>
+		<file>000, 3634</file>
+		<sequence>R.QLIEVG</sequence>
+		<mass>658.77</mass>
+		<deltamass>1.08</deltamass>
+		<charge>2</charge>
+		<peptide_probability>1.00</peptide_probability>
+		<xcorr>0.472</xcorr>
+		<deltacn>1.100</deltacn>
+		<sp>78.8</sp>
+		<rsp>8</rsp>
+		<ions>4/10</ions>
+		<count>0</count>
+		<tic>2675</tic>
+	</peptide>
+</protein>
+<protein>
+	<reference>gi|16131230|ref|NP_417810.1| glutathione-regulated potassium-efflux system ancillary protein [Esche</reference>
+	<protein_probability>1.00</protein_probability>
+	<consensus_score>8.0</consensus_score>
+	<Sf>0.00</Sf>
+	<unified_score>0</unified_score>
+	<coverage>0.0</coverage>
+	<pI>0.0</pI>
+	<weight>20957.8</weight>
+	<accession>16131230</accession>
+	<peptide>
+		<file>000, 1743</file>
+		<sequence>R.SVITTGEPESAYR.Y</sequence>
+		<mass>1410.51</mass>
+		<deltamass>1.36</deltamass>
+		<charge>2</charge>
+		<peptide_probability>1.00</peptide_probability>
+		<xcorr>0.604</xcorr>
+		<deltacn>0.288</deltacn>
+		<sp>52.5</sp>
+		<rsp>21</rsp>
+		<ions>5/24</ions>
+		<count>0</count>
+		<tic>5491</tic>
+	</peptide>
+	<peptide>
+		<file>020, 1223</file>
+		<sequence>R.GFASGPGGNQLAGK.Y</sequence>
+		<mass>1261.37</mass>
+		<deltamass>1.09</deltamass>
+		<charge>2</charge>
+		<peptide_probability>1.00</peptide_probability>
+		<xcorr>0.575</xcorr>
+		<deltacn>0.344</deltacn>
+		<sp>215.8</sp>
+		<rsp>3</rsp>
+		<ions>10/26</ions>
+		<count>0</count>
+		<tic>8987</tic>
+	</peptide>
+	<peptide>
+		<file>000, 1688</file>
+		<sequence>R.SVITTGEPESAYR.Y</sequence>
+		<mass>1410.51</mass>
+		<deltamass>0.94</deltamass>
+		<charge>2</charge>
+		<peptide_probability>1.00</peptide_probability>
+		<xcorr>0.674</xcorr>
+		<deltacn>1.100</deltacn>
+		<sp>161.7</sp>
+		<rsp>2</rsp>
+		<ions>8/24</ions>
+		<count>0</count>
+		<tic>7817</tic>
+	</peptide>
+</protein>
+<protein>
+	<reference>gi|16130429|ref|NP_416999.1| unknown CDS [Escherichia coli K12]</reference>
+	<protein_probability>1.00</protein_probability>
+	<consensus_score>8.0</consensus_score>
+	<Sf>0.00</Sf>
+	<unified_score>0</unified_score>
+	<coverage>0.0</coverage>
+	<pI>0.0</pI>
+	<weight>7461.6</weight>
+	<accession>16130429</accession>
+	<peptide>
+		<file>020, 520</file>
+		<sequence>R.KRHR.F</sequence>
+		<mass>596.71</mass>
+		<deltamass>1.39</deltamass>
+		<charge>1</charge>
+		<peptide_probability>1.00</peptide_probability>
+		<xcorr>0.668</xcorr>
+		<deltacn>0.024</deltacn>
+		<sp>45.2</sp>
+		<rsp>5</rsp>
+		<ions>4/6</ions>
+		<count>1</count>
+		<tic>2470</tic>
+	</peptide>
+</protein>
+<protein>
+	<reference>gi|16128403|ref|NP_414952.1| phosphatidylglycerophosphatase [Escherichia coli K12]</reference>
+	<protein_probability>1.00</protein_probability>
+	<consensus_score>8.0</consensus_score>
+	<Sf>0.00</Sf>
+	<unified_score>0</unified_score>
+	<coverage>0.0</coverage>
+	<pI>0.0</pI>
+	<weight>19418.0</weight>
+	<accession>16128403</accession>
+	<peptide>
+		<file>020, 1863</file>
+		<sequence>K.SRLK.M</sequence>
+		<mass>503.62</mass>
+		<deltamass>1.36</deltamass>
+		<charge>1</charge>
+		<peptide_probability>1.00</peptide_probability>
+		<xcorr>0.664</xcorr>
+		<deltacn>0.017</deltacn>
+		<sp>76.7</sp>
+		<rsp>13</rsp>
+		<ions>4/6</ions>
+		<count>2</count>
+		<tic>3840</tic>
+	</peptide>
+</protein>
+<protein>
+	<reference>gi|16129388|ref|NP_415946.1| K+-tellurite ethidium and proflavin transport protein (TDT family) [Es</reference>
+	<protein_probability>1.00</protein_probability>
+	<consensus_score>8.0</consensus_score>
+	<Sf>0.00</Sf>
+	<unified_score>0</unified_score>
+	<coverage>0.0</coverage>
+	<pI>0.0</pI>
+	<weight>35932.1</weight>
+	<accession>16129388</accession>
+	<peptide>
+		<file>000, 1954</file>
+		<sequence>R.LRSSGELPTALRTSLGIQLAPALVACSAWLSVNGGEGDTLAK.M</sequence>
+		<mass>4225.82</mass>
+		<deltamass>0.51</deltamass>
+		<charge>3</charge>
+		<peptide_probability>1.00</peptide_probability>
+		<xcorr>0.663</xcorr>
+		<deltacn>0.389</deltacn>
+		<sp>42.1</sp>
+		<rsp>27</rsp>
+		<ions>13/164</ions>
+		<count>0</count>
+		<tic>8936</tic>
+	</peptide>
+	<peptide>
+		<file>020, 1835</file>
+		<sequence>R.FPHSVLAEVR.H</sequence>
+		<mass>1155.33</mass>
+		<deltamass>1.38</deltamass>
+		<charge>1</charge>
+		<peptide_probability>1.00</peptide_probability>
+		<xcorr>0.363</xcorr>
+		<deltacn>1.100</deltacn>
+		<sp>59.2</sp>
+		<rsp>25</rsp>
+		<ions>5/18</ions>
+		<count>0</count>
+		<tic>11195</tic>
+	</peptide>
+</protein>
+<protein>
+	<reference>gi|16131606|ref|NP_418194.1| ATP synthase subunit A [Escherichia coli K12]</reference>
+	<protein_probability>1.00</protein_probability>
+	<consensus_score>8.0</consensus_score>
+	<Sf>0.00</Sf>
+	<unified_score>0</unified_score>
+	<coverage>0.0</coverage>
+	<pI>0.0</pI>
+	<weight>30303.0</weight>
+	<accession>16131606</accession>
+	<peptide>
+		<file>000, 2127</file>
+		<sequence>K.DMYHGKSK.L</sequence>
+		<mass>966.10</mass>
+		<deltamass>0.48</deltamass>
+		<charge>3</charge>
+		<peptide_probability>1.00</peptide_probability>
+		<xcorr>0.652</xcorr>
+		<deltacn>0.198</deltacn>
+		<sp>108.1</sp>
+		<rsp>16</rsp>
+		<ions>7/28</ions>
+		<count>0</count>
+		<tic>4006</tic>
+	</peptide>
+	<peptide>
+		<file>020, 3463</file>
+		<sequence>K.GIGGFTK.E</sequence>
+		<mass>679.79</mass>
+		<deltamass>1.37</deltamass>
+		<charge>2</charge>
+		<peptide_probability>1.00</peptide_probability>
+		<xcorr>0.340</xcorr>
+		<deltacn>1.100</deltacn>
+		<sp>9.0</sp>
+		<rsp>37</rsp>
+		<ions>2/12</ions>
+		<count>0</count>
+		<tic>3792</tic>
+	</peptide>
+</protein>
+<protein>
+	<reference>gi|16129267|ref|NP_415822.1| phage shock protein: activates phage shock-protein expression [Escheri</reference>
+	<protein_probability>1.00</protein_probability>
+	<consensus_score>8.0</consensus_score>
+	<Sf>0.00</Sf>
+	<unified_score>0</unified_score>
+	<coverage>0.0</coverage>
+	<pI>0.0</pI>
+	<weight>13516.8</weight>
+	<accession>16129267</accession>
+	<peptide>
+		<file>020, 144</file>
+		<sequence>R.LREMER.Y</sequence>
+		<mass>833.98</mass>
+		<deltamass>0.54</deltamass>
+		<charge>2</charge>
+		<peptide_probability>1.00</peptide_probability>
+		<xcorr>0.651</xcorr>
+		<deltacn>0.077</deltacn>
+		<sp>53.8</sp>
+		<rsp>40</rsp>
+		<ions>3/10</ions>
+		<count>0</count>
+		<tic>5081</tic>
+	</peptide>
+	<peptide>
+		<file>000, 1859</file>
+		<sequence>R.YVTSDTFTLRSR.F</sequence>
+		<mass>1446.59</mass>
+		<deltamass>1.35</deltamass>
+		<charge>2</charge>
+		<peptide_probability>1.00</peptide_probability>
+		<xcorr>0.494</xcorr>
+		<deltacn>1.100</deltacn>
+		<sp>36.1</sp>
+		<rsp>45</rsp>
+		<ions>5/22</ions>
+		<count>0</count>
+		<tic>6502</tic>
+	</peptide>
+</protein>
+<protein>
+	<reference>gi|16128374|ref|NP_414923.1| unknown CDS [Escherichia coli K12]</reference>
+	<protein_probability>1.00</protein_probability>
+	<consensus_score>8.0</consensus_score>
+	<Sf>0.00</Sf>
+	<unified_score>0</unified_score>
+	<coverage>0.0</coverage>
+	<pI>0.0</pI>
+	<weight>7281.1</weight>
+	<accession>16128374</accession>
+	<peptide>
+		<file>000, 232</file>
+		<sequence>K.RYEDPDK.E</sequence>
+		<mass>922.96</mass>
+		<deltamass>0.31</deltamass>
+		<charge>3</charge>
+		<peptide_probability>1.00</peptide_probability>
+		<xcorr>0.641</xcorr>
+		<deltacn>0.168</deltacn>
+		<sp>152.7</sp>
+		<rsp>2</rsp>
+		<ions>9/24</ions>
+		<count>0</count>
+		<tic>3754</tic>
+	</peptide>
+</protein>
+<protein>
+	<reference>gi|16131427|ref|NP_418012.1| cold shock protein 7.4, transcriptional activator of hns [Escherichia</reference>
+	<protein_probability>1.00</protein_probability>
+	<consensus_score>8.0</consensus_score>
+	<Sf>0.00</Sf>
+	<unified_score>0</unified_score>
+	<coverage>0.0</coverage>
+	<pI>0.0</pI>
+	<weight>7403.2</weight>
+	<accession>16131427</accession>
+	<peptide>
+		<file>020, 2816</file>
+		<sequence>-.MSGKMTGIVKWFNADK.G</sequence>
+		<mass>1814.17</mass>
+		<deltamass>1.24</deltamass>
+		<charge>2</charge>
+		<peptide_probability>1.00</peptide_probability>
+		<xcorr>0.637</xcorr>
+		<deltacn>0.300</deltacn>
+		<sp>53.1</sp>
+		<rsp>10</rsp>
+		<ions>6/30</ions>
+		<count>0</count>
+		<tic>4081</tic>
+	</peptide>
+	<peptide>
+		<file>000, 3200</file>
+		<sequence>K.GPAAGNVTSL</sequence>
+		<mass>886.97</mass>
+		<deltamass>0.34</deltamass>
+		<charge>2</charge>
+		<peptide_probability>1.00</peptide_probability>
+		<xcorr>0.544</xcorr>
+		<deltacn>1.100</deltacn>
+		<sp>56.6</sp>
+		<rsp>19</rsp>
+		<ions>6/18</ions>
+		<count>0</count>
+		<tic>4174</tic>
+	</peptide>
+	<peptide>
+		<file>020, 3007</file>
+		<sequence>K.WFNADKGFGFITPDDGSK.D</sequence>
+		<mass>2003.16</mass>
+		<deltamass>1.03</deltamass>
+		<charge>2</charge>
+		<peptide_probability>1.00</peptide_probability>
+		<xcorr>0.501</xcorr>
+		<deltacn>1.100</deltacn>
+		<sp>50.9</sp>
+		<rsp>11</rsp>
+		<ions>7/34</ions>
+		<count>1</count>
+		<tic>0</tic>
+	</peptide>
+</protein>
+<protein>
+	<reference>gi|16132087|ref|NP_418686.1| L-idonate transport protein (GntP family) [Escherichia coli K12]</reference>
+	<protein_probability>1.00</protein_probability>
+	<consensus_score>8.0</consensus_score>
+	<Sf>0.00</Sf>
+	<unified_score>0</unified_score>
+	<coverage>0.0</coverage>
+	<pI>0.0</pI>
+	<weight>46041.0</weight>
+	<accession>16132087</accession>
+	<peptide>
+		<file>020, 1792</file>
+		<sequence>K.LISDTGAAQR.I</sequence>
+		<mass>1032.13</mass>
+		<deltamass>0.60</deltamass>
+		<charge>1</charge>
+		<peptide_probability>1.00</peptide_probability>
+		<xcorr>0.635</xcorr>
+		<deltacn>0.197</deltacn>
+		<sp>86.7</sp>
+		<rsp>7</rsp>
+		<ions>6/18</ions>
+		<count>0</count>
+		<tic>7564</tic>
+	</peptide>
+</protein>
+<protein>
+	<reference>gi|90111352|ref|NP_416389.4| hypothetical protein b1875 [Escherichia coli K12]</reference>
+	<protein_probability>1.00</protein_probability>
+	<consensus_score>8.0</consensus_score>
+	<Sf>0.00</Sf>
+	<unified_score>0</unified_score>
+	<coverage>0.0</coverage>
+	<pI>0.0</pI>
+	<weight>21204.9</weight>
+	<accession>90111352</accession>
+	<peptide>
+		<file>020, 2043</file>
+		<sequence>K.FHPWSIEEIVASEQSA</sequence>
+		<mass>1830.97</mass>
+		<deltamass>0.88</deltamass>
+		<charge>2</charge>
+		<peptide_probability>1.00</peptide_probability>
+		<xcorr>0.607</xcorr>
+		<deltacn>0.155</deltacn>
+		<sp>56.8</sp>
+		<rsp>17</rsp>
+		<ions>5/30</ions>
+		<count>0</count>
+		<tic>9689</tic>
+	</peptide>
+	<peptide>
+		<file>000, 820</file>
+		<sequence>R.FIHALDELSR.R</sequence>
+		<mass>1201.36</mass>
+		<deltamass>1.40</deltamass>
+		<charge>1</charge>
+		<peptide_probability>1.00</peptide_probability>
+		<xcorr>0.634</xcorr>
+		<deltacn>1.100</deltacn>
+		<sp>51.5</sp>
+		<rsp>5</rsp>
+		<ions>7/18</ions>
+		<count>0</count>
+		<tic>4566</tic>
+	</peptide>
+</protein>
+<protein>
+	<reference>gi|16128499|ref|NP_415048.1| hypothetical protein b0515 [Escherichia coli K12]</reference>
+	<protein_probability>1.00</protein_probability>
+	<consensus_score>8.0</consensus_score>
+	<Sf>0.00</Sf>
+	<unified_score>0</unified_score>
+	<coverage>0.0</coverage>
+	<pI>0.0</pI>
+	<weight>28730.2</weight>
+	<accession>16128499</accession>
+	<peptide>
+		<file>020, 3276</file>
+		<sequence>R.AIVK.H</sequence>
+		<mass>430.56</mass>
+		<deltamass>1.21</deltamass>
+		<charge>1</charge>
+		<peptide_probability>1.00</peptide_probability>
+		<xcorr>0.628</xcorr>
+		<deltacn>0.143</deltacn>
+		<sp>99.7</sp>
+		<rsp>1</rsp>
+		<ions>4/6</ions>
+		<count>4</count>
+		<tic>2359</tic>
+	</peptide>
+	<peptide>
+		<file>020, 143</file>
+		<sequence>R.AIVK.H</sequence>
+		<mass>430.56</mass>
+		<deltamass>1.32</deltamass>
+		<charge>1</charge>
+		<peptide_probability>1.00</peptide_probability>
+		<xcorr>0.356</xcorr>
+		<deltacn>0.159</deltacn>
+		<sp>61.2</sp>
+		<rsp>1</rsp>
+		<ions>3/6</ions>
+		<count>4</count>
+		<tic>1628</tic>
+	</peptide>
+</protein>
+<protein>
+	<reference>gi|16129266|ref|NP_415821.1| phage shock protein B [Escherichia coli K12]</reference>
+	<protein_probability>1.00</protein_probability>
+	<consensus_score>8.0</consensus_score>
+	<Sf>0.00</Sf>
+	<unified_score>0</unified_score>
+	<coverage>0.0</coverage>
+	<pI>0.0</pI>
+	<weight>8763.0</weight>
+	<accession>16129266</accession>
+	<peptide>
+		<file>000, 3608</file>
+		<sequence>R.SELSQSEQQR.L</sequence>
+		<mass>1192.22</mass>
+		<deltamass>0.82</deltamass>
+		<charge>3</charge>
+		<peptide_probability>1.00</peptide_probability>
+		<xcorr>0.620</xcorr>
+		<deltacn>0.112</deltacn>
+		<sp>98.4</sp>
+		<rsp>4</rsp>
+		<ions>9/36</ions>
+		<count>0</count>
+		<tic>4051</tic>
+	</peptide>
+</protein>
+<protein>
+	<reference>gi|90111171|ref|NP_415327.2| hypothetical protein b0806 [Escherichia coli K12]</reference>
+	<protein_probability>1.00</protein_probability>
+	<consensus_score>8.0</consensus_score>
+	<Sf>0.00</Sf>
+	<unified_score>0</unified_score>
+	<coverage>0.0</coverage>
+	<pI>0.0</pI>
+	<weight>8896.1</weight>
+	<accession>90111171</accession>
+	<peptide>
+		<file>000, 1816</file>
+		<sequence>K.LAEKAREQGAK.G</sequence>
+		<mass>1201.36</mass>
+		<deltamass>0.69</deltamass>
+		<charge>1</charge>
+		<peptide_probability>1.00</peptide_probability>
+		<xcorr>0.609</xcorr>
+		<deltacn>0.227</deltacn>
+		<sp>55.6</sp>
+		<rsp>25</rsp>
+		<ions>7/20</ions>
+		<count>0</count>
+		<tic>6968</tic>
+	</peptide>
+</protein>
+<protein>
+	<reference>gi|16130646|ref|NP_417219.1| putative epimerase/isomerase [Escherichia coli K12]</reference>
+	<protein_probability>1.00</protein_probability>
+	<consensus_score>8.0</consensus_score>
+	<Sf>0.00</Sf>
+	<unified_score>0</unified_score>
+	<coverage>0.0</coverage>
+	<pI>0.0</pI>
+	<weight>29216.7</weight>
+	<accession>16130646</accession>
+	<peptide>
+		<file>000, 1447</file>
+		<sequence>K.VDGNLTHLIR.D</sequence>
+		<mass>1138.30</mass>
+		<deltamass>1.31</deltamass>
+		<charge>1</charge>
+		<peptide_probability>1.00</peptide_probability>
+		<xcorr>0.608</xcorr>
+		<deltacn>0.128</deltacn>
+		<sp>20.8</sp>
+		<rsp>14</rsp>
+		<ions>6/18</ions>
+		<count>0</count>
+		<tic>2668</tic>
+	</peptide>
+	<peptide>
+		<file>020, 2286</file>
+		<sequence>R.FAAARK.A</sequence>
+		<mass>663.79</mass>
+		<deltamass>0.32</deltamass>
+		<charge>1</charge>
+		<peptide_probability>1.00</peptide_probability>
+		<xcorr>0.552</xcorr>
+		<deltacn>0.232</deltacn>
+		<sp>39.8</sp>
+		<rsp>13</rsp>
+		<ions>5/10</ions>
+		<count>0</count>
+		<tic>3259</tic>
+	</peptide>
+	<peptide>
+		<file>000, 3426</file>
+		<sequence>R.FAANLSMMFTEVPFIERFAAARK.A</sequence>
+		<mass>2649.13</mass>
+		<deltamass>0.36</deltamass>
+		<charge>3</charge>
+		<peptide_probability>1.00</peptide_probability>
+		<xcorr>0.474</xcorr>
+		<deltacn>1.100</deltacn>
+		<sp>24.6</sp>
+		<rsp>36</rsp>
+		<ions>6/88</ions>
+		<count>0</count>
+		<tic>4736</tic>
+	</peptide>
+	<peptide>
+		<file>020, 3607</file>
+		<sequence>R.FAAARK.A</sequence>
+		<mass>663.79</mass>
+		<deltamass>0.71</deltamass>
+		<charge>2</charge>
+		<peptide_probability>1.00</peptide_probability>
+		<xcorr>0.378</xcorr>
+		<deltacn>1.100</deltacn>
+		<sp>57.3</sp>
+		<rsp>10</rsp>
+		<ions>3/10</ions>
+		<count>0</count>
+		<tic>3341</tic>
+	</peptide>
+</protein>
+<protein>
+	<reference>gi|16130761|ref|NP_417334.1| unknown CDS [Escherichia coli K12]</reference>
+	<protein_probability>1.00</protein_probability>
+	<consensus_score>8.0</consensus_score>
+	<Sf>0.00</Sf>
+	<unified_score>0</unified_score>
+	<coverage>0.0</coverage>
+	<pI>0.0</pI>
+	<weight>16750.9</weight>
+	<accession>16130761</accession>
+	<peptide>
+		<file>000, 2300</file>
+		<sequence>K.SLEVESYFVDKSIWNVHITFHDDK.R</sequence>
+		<mass>2910.19</mass>
+		<deltamass>0.97</deltamass>
+		<charge>2</charge>
+		<peptide_probability>1.00</peptide_probability>
+		<xcorr>0.595</xcorr>
+		<deltacn>0.109</deltacn>
+		<sp>43.1</sp>
+		<rsp>12</rsp>
+		<ions>6/46</ions>
+		<count>0</count>
+		<tic>10411</tic>
+	</peptide>
+</protein>
+<protein>
+	<reference>gi|16131585|ref|NP_418173.1| hypothetical protein b3717 [Escherichia coli K12]</reference>
+	<protein_probability>1.00</protein_probability>
+	<consensus_score>8.0</consensus_score>
+	<Sf>0.00</Sf>
+	<unified_score>0</unified_score>
+	<coverage>0.0</coverage>
+	<pI>0.0</pI>
+	<weight>22484.9</weight>
+	<accession>16131585</accession>
+	<peptide>
+		<file>000, 3595</file>
+		<sequence>K.ELVER.T</sequence>
+		<mass>645.73</mass>
+		<deltamass>1.02</deltamass>
+		<charge>2</charge>
+		<peptide_probability>1.00</peptide_probability>
+		<xcorr>0.555</xcorr>
+		<deltacn>0.106</deltacn>
+		<sp>48.4</sp>
+		<rsp>14</rsp>
+		<ions>2/8</ions>
+		<count>0</count>
+		<tic>2930</tic>
+	</peptide>
+	<peptide>
+		<file>000, 3687</file>
+		<sequence>K.ELVER.T</sequence>
+		<mass>645.73</mass>
+		<deltamass>0.55</deltamass>
+		<charge>2</charge>
+		<peptide_probability>1.00</peptide_probability>
+		<xcorr>0.482</xcorr>
+		<deltacn>0.182</deltacn>
+		<sp>37.2</sp>
+		<rsp>9</rsp>
+		<ions>2/8</ions>
+		<count>0</count>
+		<tic>2863</tic>
+	</peptide>
+	<peptide>
+		<file>000, 2227</file>
+		<sequence>K.LRLWGDFS</sequence>
+		<mass>994.13</mass>
+		<deltamass>0.99</deltamass>
+		<charge>2</charge>
+		<peptide_probability>1.00</peptide_probability>
+		<xcorr>0.578</xcorr>
+		<deltacn>1.100</deltacn>
+		<sp>58.2</sp>
+		<rsp>17</rsp>
+		<ions>5/14</ions>
+		<count>0</count>
+		<tic>3835</tic>
+	</peptide>
+</protein>
+<protein>
+	<reference>gi|16128024|ref|NP_414571.1| nucleoside hydrolase [Escherichia coli K12]</reference>
+	<protein_probability>1.00</protein_probability>
+	<consensus_score>8.0</consensus_score>
+	<Sf>0.00</Sf>
+	<unified_score>0</unified_score>
+	<coverage>0.0</coverage>
+	<pI>0.0</pI>
+	<weight>32560.6</weight>
+	<accession>16128024</accession>
+	<peptide>
+		<file>020, 3207</file>
+		<sequence>R.LVIMGGSAGR.G</sequence>
+		<mass>961.16</mass>
+		<deltamass>0.77</deltamass>
+		<charge>3</charge>
+		<peptide_probability>1.00</peptide_probability>
+		<xcorr>0.570</xcorr>
+		<deltacn>0.279</deltacn>
+		<sp>55.5</sp>
+		<rsp>77</rsp>
+		<ions>6/36</ions>
+		<count>0</count>
+		<tic>4735</tic>
+	</peptide>
+	<peptide>
+		<file>020, 1880</file>
+		<sequence>K.MLHALFSHYR.S</sequence>
+		<mass>1275.51</mass>
+		<deltamass>1.09</deltamass>
+		<charge>1</charge>
+		<peptide_probability>1.00</peptide_probability>
+		<xcorr>0.502</xcorr>
+		<deltacn>1.100</deltacn>
+		<sp>38.8</sp>
+		<rsp>23</rsp>
+		<ions>4/18</ions>
+		<count>0</count>
+		<tic>5834</tic>
+	</peptide>
+</protein>
+<protein>
+	<reference>gi|16131722|ref|NP_418318.1| putative dehydrogenase [Escherichia coli K12]</reference>
+	<protein_probability>1.00</protein_probability>
+	<consensus_score>8.0</consensus_score>
+	<Sf>0.00</Sf>
+	<unified_score>0</unified_score>
+	<coverage>0.0</coverage>
+	<pI>0.0</pI>
+	<weight>31158.0</weight>
+	<accession>16131722</accession>
+	<peptide>
+		<file>000, 876 - 878</file>
+		<sequence>R.AAGR.Q</sequence>
+		<mass>374.42</mass>
+		<deltamass>0.68</deltamass>
+		<charge>1</charge>
+		<peptide_probability>1.00</peptide_probability>
+		<xcorr>0.553</xcorr>
+		<deltacn>0.169</deltacn>
+		<sp>6.6</sp>
+		<rsp>9</rsp>
+		<ions>2/6</ions>
+		<count>2</count>
+		<tic>0</tic>
+	</peptide>
+	<peptide>
+		<file>000, 1340</file>
+		<sequence>R.AAGR.Q</sequence>
+		<mass>374.42</mass>
+		<deltamass>0.34</deltamass>
+		<charge>1</charge>
+		<peptide_probability>1.00</peptide_probability>
+		<xcorr>0.413</xcorr>
+		<deltacn>0.196</deltacn>
+		<sp>14.2</sp>
+		<rsp>8</rsp>
+		<ions>2/6</ions>
+		<count>2</count>
+		<tic>0</tic>
+	</peptide>
+</protein>
+<protein>
+	<reference>gi|49176035|ref|YP_025295.1| small toxic membrane polypeptide [Escherichia coli K12]</reference>
+	<protein_probability>1.00</protein_probability>
+	<consensus_score>8.0</consensus_score>
+	<Sf>0.00</Sf>
+	<unified_score>0</unified_score>
+	<coverage>0.0</coverage>
+	<pI>0.0</pI>
+	<weight>5563.7</weight>
+	<accession>49176035</accession>
+	<peptide>
+		<file>000, 3256</file>
+		<sequence>K.AVLAYEPKK</sequence>
+		<mass>1019.22</mass>
+		<deltamass>0.46</deltamass>
+		<charge>2</charge>
+		<peptide_probability>1.00</peptide_probability>
+		<xcorr>0.532</xcorr>
+		<deltacn>0.373</deltacn>
+		<sp>109.7</sp>
+		<rsp>6</rsp>
+		<ions>6/16</ions>
+		<count>0</count>
+		<tic>6211</tic>
+	</peptide>
+</protein>
+<protein>
+	<reference>gi|90111191|ref|NP_415463.2| putative fimbrial-like protein [Escherichia coli K12]</reference>
+	<protein_probability>1.00</protein_probability>
+	<consensus_score>8.0</consensus_score>
+	<Sf>0.00</Sf>
+	<unified_score>0</unified_score>
+	<coverage>0.0</coverage>
+	<pI>0.0</pI>
+	<weight>18511.8</weight>
+	<accession>90111191</accession>
+	<peptide>
+		<file>000, 1732</file>
+		<sequence>R.NTCVLAQDSK.Q</sequence>
+		<mass>1079.21</mass>
+		<deltamass>0.00</deltamass>
+		<charge>1</charge>
+		<peptide_probability>1.00</peptide_probability>
+		<xcorr>0.523</xcorr>
+		<deltacn>0.386</deltacn>
+		<sp>25.4</sp>
+		<rsp>95</rsp>
+		<ions>4/18</ions>
+		<count>0</count>
+		<tic>7181</tic>
+	</peptide>
+</protein>
+<protein>
+	<reference>gi|90111117|ref|NP_414887.2| putative 3-hydroxyphenylpropionic transport protein (MFS family) [Esch</reference>
+	<protein_probability>1.00</protein_probability>
+	<consensus_score>8.0</consensus_score>
+	<Sf>0.00</Sf>
+	<unified_score>0</unified_score>
+	<coverage>0.0</coverage>
+	<pI>0.0</pI>
+	<weight>41550.5</weight>
+	<accession>90111117</accession>
+	<peptide>
+		<file>020, 2704</file>
+		<sequence>K.QSAPPLR.A</sequence>
+		<mass>768.88</mass>
+		<deltamass>0.46</deltamass>
+		<charge>2</charge>
+		<peptide_probability>1.00</peptide_probability>
+		<xcorr>0.523</xcorr>
+		<deltacn>0.384</deltacn>
+		<sp>157.5</sp>
+		<rsp>1</rsp>
+		<ions>6/12</ions>
+		<count>0</count>
+		<tic>4754</tic>
+	</peptide>
+</protein>
+<protein>
+	<reference>gi|90111596|ref|NP_417930.2| hypothetical protein b3473 [Escherichia coli K12]</reference>
+	<protein_probability>1.00</protein_probability>
+	<consensus_score>8.0</consensus_score>
+	<Sf>0.00</Sf>
+	<unified_score>0</unified_score>
+	<coverage>0.0</coverage>
+	<pI>0.0</pI>
+	<weight>42155.3</weight>
+	<accession>90111596</accession>
+	<peptide>
+		<file>000, 491</file>
+		<sequence>R.YADSLGPKK.I</sequence>
+		<mass>979.11</mass>
+		<deltamass>0.58</deltamass>
+		<charge>1</charge>
+		<peptide_probability>1.00</peptide_probability>
+		<xcorr>0.520</xcorr>
+		<deltacn>0.107</deltacn>
+		<sp>37.1</sp>
+		<rsp>38</rsp>
+		<ions>5/16</ions>
+		<count>0</count>
+		<tic>5405</tic>
+	</peptide>
+</protein>
+<protein>
+	<reference>gi|16128248|ref|NP_414797.1| CP4-6 prophage; putative membrane component of ferric transport system</reference>
+	<protein_probability>1.00</protein_probability>
+	<consensus_score>8.0</consensus_score>
+	<Sf>0.00</Sf>
+	<unified_score>0</unified_score>
+	<coverage>0.0</coverage>
+	<pI>0.0</pI>
+	<weight>13093.3</weight>
+	<accession>16128248</accession>
+	<peptide>
+		<file>020, 2135</file>
+		<sequence>K.SLDEASLSLR.A</sequence>
+		<mass>1091.20</mass>
+		<deltamass>0.42</deltamass>
+		<charge>1</charge>
+		<peptide_probability>1.00</peptide_probability>
+		<xcorr>0.511</xcorr>
+		<deltacn>0.330</deltacn>
+		<sp>65.9</sp>
+		<rsp>5</rsp>
+		<ions>6/18</ions>
+		<count>0</count>
+		<tic>6791</tic>
+	</peptide>
+</protein>
+<protein>
+	<reference>gi|16129623|ref|NP_416182.1| protein ofunknown function [Escherichia coli K12]</reference>
+	<protein_probability>1.00</protein_probability>
+	<consensus_score>8.0</consensus_score>
+	<Sf>0.00</Sf>
+	<unified_score>0</unified_score>
+	<coverage>0.0</coverage>
+	<pI>0.0</pI>
+	<weight>11287.8</weight>
+	<accession>16129623</accession>
+	<peptide>
+		<file>000, 1835</file>
+		<sequence>R.LKNLGVEEVVAK.V</sequence>
+		<mass>1299.54</mass>
+		<deltamass>1.33</deltamass>
+		<charge>1</charge>
+		<peptide_probability>1.00</peptide_probability>
+		<xcorr>0.507</xcorr>
+		<deltacn>0.075</deltacn>
+		<sp>55.6</sp>
+		<rsp>7</rsp>
+		<ions>6/22</ions>
+		<count>0</count>
+		<tic>6936</tic>
+	</peptide>
+</protein>
+<protein>
+	<reference>gi|16129463|ref|NP_416021.1| putative fimbrial-like protein [Escherichia coli K12]</reference>
+	<protein_probability>1.00</protein_probability>
+	<consensus_score>8.0</consensus_score>
+	<Sf>0.00</Sf>
+	<unified_score>0</unified_score>
+	<coverage>0.0</coverage>
+	<pI>0.0</pI>
+	<weight>18948.4</weight>
+	<accession>16129463</accession>
+	<peptide>
+		<file>000, 1820</file>
+		<sequence>R.ISGR.Y</sequence>
+		<mass>432.50</mass>
+		<deltamass>0.64</deltamass>
+		<charge>1</charge>
+		<peptide_probability>1.00</peptide_probability>
+		<xcorr>0.484</xcorr>
+		<deltacn>0.000</deltacn>
+		<sp>29.2</sp>
+		<rsp>2</rsp>
+		<ions>2/6</ions>
+		<count>3</count>
+		<tic>0</tic>
+	</peptide>
+	<peptide>
+		<file>020, 748</file>
+		<sequence>R.ISGR.Y</sequence>
+		<mass>432.50</mass>
+		<deltamass>0.50</deltamass>
+		<charge>1</charge>
+		<peptide_probability>1.00</peptide_probability>
+		<xcorr>0.438</xcorr>
+		<deltacn>0.093</deltacn>
+		<sp>37.4</sp>
+		<rsp>7</rsp>
+		<ions>2/6</ions>
+		<count>3</count>
+		<tic>0</tic>
+	</peptide>
+</protein>
+<protein>
+	<reference>gi|16128191|ref|NP_414740.1| D- and L-methionine transport protein (ABC superfamily, membrane) [Esc</reference>
+	<protein_probability>1.00</protein_probability>
+	<consensus_score>8.0</consensus_score>
+	<Sf>0.00</Sf>
+	<unified_score>0</unified_score>
+	<coverage>0.0</coverage>
+	<pI>0.0</pI>
+	<weight>23255.9</weight>
+	<accession>16128191</accession>
+	<peptide>
+		<file>020, 2418</file>
+		<sequence>R.SIPFIILLVWMIPFTRVIVGTSIGLQAAIVPLTVGAAPFIAR.M</sequence>
+		<mass>4464.49</mass>
+		<deltamass>0.25</deltamass>
+		<charge>3</charge>
+		<peptide_probability>1.00</peptide_probability>
+		<xcorr>0.435</xcorr>
+		<deltacn>0.388</deltacn>
+		<sp>63.7</sp>
+		<rsp>1</rsp>
+		<ions>15/164</ions>
+		<count>0</count>
+		<tic>6100</tic>
+	</peptide>
+</protein>
+<protein>
+	<reference>gi|16128232|ref|NP_414781.1| CP4-6 prophage; putative DNA repair protein [Escherichia coli K12]</reference>
+	<protein_probability>1.00</protein_probability>
+	<consensus_score>8.0</consensus_score>
+	<Sf>0.00</Sf>
+	<unified_score>0</unified_score>
+	<coverage>0.0</coverage>
+	<pI>0.0</pI>
+	<weight>18098.6</weight>
+	<accession>16128232</accession>
+	<peptide>
+		<file>000, 3334</file>
+		<sequence>R.EWLRLHMAALEREEFR.V</sequence>
+		<mass>2087.39</mass>
+		<deltamass>1.16</deltamass>
+		<charge>2</charge>
+		<peptide_probability>1.00</peptide_probability>
+		<xcorr>0.412</xcorr>
+		<deltacn>0.188</deltacn>
+		<sp>39.0</sp>
+		<rsp>6</rsp>
+		<ions>4/30</ions>
+		<count>0</count>
+		<tic>6759</tic>
+	</peptide>
+</protein>
+<protein>
+	<reference>gi|16129250|ref|NP_415805.1| hypothetical protein b1289 [Escherichia coli K12]</reference>
+	<protein_probability>1.00</protein_probability>
+	<consensus_score>8.0</consensus_score>
+	<Sf>0.00</Sf>
+	<unified_score>0</unified_score>
+	<coverage>0.0</coverage>
+	<pI>0.0</pI>
+	<weight>13988.7</weight>
+	<accession>16129250</accession>
+	<peptide>
+		<file>000, 3699</file>
+		<sequence>K.SNARDLRR.N</sequence>
+		<mass>988.09</mass>
+		<deltamass>1.39</deltamass>
+		<charge>1</charge>
+		<peptide_probability>1.00</peptide_probability>
+		<xcorr>0.398</xcorr>
+		<deltacn>0.337</deltacn>
+		<sp>20.3</sp>
+		<rsp>9</rsp>
+		<ions>2/14</ions>
+		<count>0</count>
+		<tic>3078</tic>
+	</peptide>
+	<peptide>
+		<file>020, 76</file>
+		<sequence>R.SPSP</sequence>
+		<mass>387.41</mass>
+		<deltamass>0.60</deltamass>
+		<charge>1</charge>
+		<peptide_probability>1.00</peptide_probability>
+		<xcorr>0.021</xcorr>
+		<deltacn>1.100</deltacn>
+		<sp>2.0</sp>
+		<rsp>6</rsp>
+		<ions>1/6</ions>
+		<count>0</count>
+		<tic>2726</tic>
+	</peptide>
+</protein>
+<protein>
+	<reference>gi|16131350|ref|NP_417935.1| nickel transport proein (ABC superfamily, membrane) [Escherichia coli</reference>
+	<protein_probability>1.00</protein_probability>
+	<consensus_score>8.0</consensus_score>
+	<Sf>0.00</Sf>
+	<unified_score>0</unified_score>
+	<coverage>0.0</coverage>
+	<pI>0.0</pI>
+	<weight>30361.7</weight>
+	<accession>16131350</accession>
+	<peptide>
+		<file>020, 432</file>
+		<sequence>R.EFVLASR.L</sequence>
+		<mass>821.94</mass>
+		<deltamass>1.08</deltamass>
+		<charge>2</charge>
+		<peptide_probability>1.00</peptide_probability>
+		<xcorr>0.377</xcorr>
+		<deltacn>0.407</deltacn>
+		<sp>35.8</sp>
+		<rsp>35</rsp>
+		<ions>4/12</ions>
+		<count>0</count>
+		<tic>4583</tic>
+	</peptide>
+	<peptide>
+		<file>000, 124</file>
+		<sequence>-.MNFFLSSR.W</sequence>
+		<mass>1002.17</mass>
+		<deltamass>0.29</deltamass>
+		<charge>1</charge>
+		<peptide_probability>1.00</peptide_probability>
+		<xcorr>0.346</xcorr>
+		<deltacn>1.100</deltacn>
+		<sp>67.7</sp>
+		<rsp>2</rsp>
+		<ions>5/14</ions>
+		<count>0</count>
+		<tic>5130</tic>
+	</peptide>
+</protein>
+<protein>
+	<reference>gi|16128121|ref|NP_414670.1| putative transport protein (ABC superfamily, membrane) [Escherichia co</reference>
+	<protein_probability>1.00</protein_probability>
+	<consensus_score>8.0</consensus_score>
+	<Sf>0.00</Sf>
+	<unified_score>0</unified_score>
+	<coverage>0.0</coverage>
+	<pI>0.0</pI>
+	<weight>28515.9</weight>
+	<accession>16128121</accession>
+	<peptide>
+		<file>020, 2523</file>
+		<sequence>K.EIHR.F</sequence>
+		<mass>554.62</mass>
+		<deltamass>0.41</deltamass>
+		<charge>1</charge>
+		<peptide_probability>1.00</peptide_probability>
+		<xcorr>0.341</xcorr>
+		<deltacn>0.010</deltacn>
+		<sp>43.5</sp>
+		<rsp>3</rsp>
+		<ions>3/6</ions>
+		<count>1</count>
+		<tic>3396</tic>
+	</peptide>
+</protein>
+<protein>
+	<reference>gi|16128614|ref|NP_415164.1| hypothetical protein b0631 [Escherichia coli K12]</reference>
+	<protein_probability>1.00</protein_probability>
+	<consensus_score>8.0</consensus_score>
+	<Sf>0.00</Sf>
+	<unified_score>0</unified_score>
+	<coverage>0.0</coverage>
+	<pI>0.0</pI>
+	<weight>9827.3</weight>
+	<accession>16128614</accession>
+	<peptide>
+		<file>020, 268</file>
+		<sequence>K.IDIVRMVL</sequence>
+		<mass>959.23</mass>
+		<deltamass>0.28</deltamass>
+		<charge>1</charge>
+		<peptide_probability>1.00</peptide_probability>
+		<xcorr>0.213</xcorr>
+		<deltacn>0.141</deltacn>
+		<sp>6.5</sp>
+		<rsp>12</rsp>
+		<ions>1/14</ions>
+		<count>0</count>
+		<tic>4268</tic>
+	</peptide>
+</protein>
+<protein>
+	<reference>gi|16129357|ref|NP_415914.1| phenylacetic acid degradation protein [Escherichia coli K12]</reference>
+	<protein_probability>1.00</protein_probability>
+	<consensus_score>8.0</consensus_score>
+	<Sf>0.00</Sf>
+	<unified_score>0</unified_score>
+	<coverage>0.0</coverage>
+	<pI>0.0</pI>
+	<weight>14850.7</weight>
+	<accession>16129357</accession>
+	<peptide>
+		<file>000, 2119</file>
+		<sequence>R.HQGK.Q</sequence>
+		<mass>469.52</mass>
+		<deltamass>0.43</deltamass>
+		<charge>1</charge>
+		<peptide_probability>1.00</peptide_probability>
+		<xcorr>0.082</xcorr>
+		<deltacn>0.247</deltacn>
+		<sp>12.0</sp>
+		<rsp>1</rsp>
+		<ions>2/6</ions>
+		<count>0</count>
+		<tic>1876</tic>
+	</peptide>
+</protein>
+<protein>
+	<reference>gi|16131065|ref|NP_417642.1| protein-export membrane protein [Escherichia coli K12]</reference>
+	<protein_probability>1.00</protein_probability>
+	<consensus_score>6.1</consensus_score>
+	<Sf>0.00</Sf>
+	<unified_score>0</unified_score>
+	<coverage>0.0</coverage>
+	<pI>0.0</pI>
+	<weight>11365.1</weight>
+	<accession>16131065</accession>
+	<peptide>
+		<file>020, 1094</file>
+		<sequence>-.MYEALLVVFLIVAIGLVGLIMLQQGK.G</sequence>
+		<mass>2833.57</mass>
+		<deltamass>0.27</deltamass>
+		<charge>3</charge>
+		<peptide_probability>1.00</peptide_probability>
+		<xcorr>1.988</xcorr>
+		<deltacn>0.107</deltacn>
+		<sp>273.7</sp>
+		<rsp>1</rsp>
+		<ions>22/100</ions>
+		<count>0</count>
+		<tic>6822</tic>
+	</peptide>
+	<peptide>
+		<file>020, 1091</file>
+		<sequence>-.MYEALLVVFLIVAIGLVGLIMLQQGK.G</sequence>
+		<mass>2833.57</mass>
+		<deltamass>0.81</deltamass>
+		<charge>3</charge>
+		<peptide_probability>1.00</peptide_probability>
+		<xcorr>1.589</xcorr>
+		<deltacn>0.064</deltacn>
+		<sp>185.4</sp>
+		<rsp>7</rsp>
+		<ions>19/100</ions>
+		<count>0</count>
+		<tic>7168</tic>
+	</peptide>
+</protein>
+<protein>
+	<reference>gi|16130900|ref|NP_417475.1| hypothetical protein b3002 [Escherichia coli K12]</reference>
+	<protein_probability>1.00</protein_probability>
+	<consensus_score>6.1</consensus_score>
+	<Sf>0.00</Sf>
+	<unified_score>0</unified_score>
+	<coverage>0.0</coverage>
+	<pI>0.0</pI>
+	<weight>18641.1</weight>
+	<accession>16130900</accession>
+	<peptide>
+		<file>000, 1655</file>
+		<sequence>K.VAASIVAISSIHLLR.V</sequence>
+		<mass>1550.87</mass>
+		<deltamass>1.27</deltamass>
+		<charge>2</charge>
+		<peptide_probability>1.00</peptide_probability>
+		<xcorr>1.240</xcorr>
+		<deltacn>1.100</deltacn>
+		<sp>82.0</sp>
+		<rsp>27</rsp>
+		<ions>6/28</ions>
+		<count>0</count>
+		<tic>8643</tic>
+	</peptide>
+	<peptide>
+		<file>020, 1218</file>
+		<sequence>R.VFMDAKNVPDNK.L</sequence>
+		<mass>1378.58</mass>
+		<deltamass>1.38</deltamass>
+		<charge>2</charge>
+		<peptide_probability>1.00</peptide_probability>
+		<xcorr>0.796</xcorr>
+		<deltacn>1.100</deltacn>
+		<sp>45.5</sp>
+		<rsp>55</rsp>
+		<ions>5/22</ions>
+		<count>0</count>
+		<tic>7828</tic>
+	</peptide>
+	<peptide>
+		<file>020, 1298</file>
+		<sequence>K.LNWLGKMDATSLKNK.V</sequence>
+		<mass>1720.03</mass>
+		<deltamass>0.26</deltamass>
+		<charge>2</charge>
+		<peptide_probability>1.00</peptide_probability>
+		<xcorr>0.991</xcorr>
+		<deltacn>1.100</deltacn>
+		<sp>178.2</sp>
+		<rsp>6</rsp>
+		<ions>10/28</ions>
+		<count>0</count>
+		<tic>8479</tic>
+	</peptide>
+</protein>
+<protein>
+	<reference>gi|16128811|ref|NP_415364.1| unknown CDS [Escherichia coli K12]</reference>
+	<protein_probability>1.00</protein_probability>
+	<consensus_score>6.1</consensus_score>
+	<Sf>0.00</Sf>
+	<unified_score>0</unified_score>
+	<coverage>0.0</coverage>
+	<pI>0.0</pI>
+	<weight>9970.6</weight>
+	<accession>16128811</accession>
+	<peptide>
+		<file>020, 1111</file>
+		<sequence>R.HLASVGEGMVIEHQIDDHHH</sequence>
+		<mass>2262.45</mass>
+		<deltamass>0.29</deltamass>
+		<charge>3</charge>
+		<peptide_probability>1.00</peptide_probability>
+		<xcorr>1.226</xcorr>
+		<deltacn>0.289</deltacn>
+		<sp>243.6</sp>
+		<rsp>11</rsp>
+		<ions>15/76</ions>
+		<count>0</count>
+		<tic>11678</tic>
+	</peptide>
+	<peptide>
+		<file>020, 2780</file>
+		<sequence>K.NCLLLGALLMGFTGVAMAQSVTVDVPSGYK.V</sequence>
+		<mass>3057.64</mass>
+		<deltamass>0.49</deltamass>
+		<charge>3</charge>
+		<peptide_probability>1.00</peptide_probability>
+		<xcorr>0.788</xcorr>
+		<deltacn>1.100</deltacn>
+		<sp>78.3</sp>
+		<rsp>13</rsp>
+		<ions>15/116</ions>
+		<count>0</count>
+		<tic>5378</tic>
+	</peptide>
+</protein>
+<protein>
+	<reference>gi|16129318|ref|NP_415875.1| Rac prophage; repressor protein [Escherichia coli K12]</reference>
+	<protein_probability>1.00</protein_probability>
+	<consensus_score>6.1</consensus_score>
+	<Sf>0.00</Sf>
+	<unified_score>0</unified_score>
+	<coverage>0.0</coverage>
+	<pI>0.0</pI>
+	<weight>10975.5</weight>
+	<accession>16129318</accession>
+	<peptide>
+		<file>020, 2639</file>
+		<sequence>K.QACAVVGGQSAMAR.L</sequence>
+		<mass>1349.57</mass>
+		<deltamass>0.88</deltamass>
+		<charge>3</charge>
+		<peptide_probability>1.00</peptide_probability>
+		<xcorr>1.190</xcorr>
+		<deltacn>0.193</deltacn>
+		<sp>83.5</sp>
+		<rsp>10</rsp>
+		<ions>10/52</ions>
+		<count>0</count>
+		<tic>3947</tic>
+	</peptide>
+	<peptide>
+		<file>020, 408</file>
+		<sequence>K.QACAVVGGQSAMAR.L</sequence>
+		<mass>1349.57</mass>
+		<deltamass>0.30</deltamass>
+		<charge>1</charge>
+		<peptide_probability>1.00</peptide_probability>
+		<xcorr>0.328</xcorr>
+		<deltacn>0.413</deltacn>
+		<sp>8.8</sp>
+		<rsp>36</rsp>
+		<ions>2/26</ions>
+		<count>0</count>
+		<tic>4855</tic>
+	</peptide>
+	<peptide>
+		<file>000, 2500</file>
+		<sequence>R.LLGVSPPSVNQWIK.G</sequence>
+		<mass>1538.82</mass>
+		<deltamass>1.05</deltamass>
+		<charge>2</charge>
+		<peptide_probability>1.00</peptide_probability>
+		<xcorr>0.662</xcorr>
+		<deltacn>1.100</deltacn>
+		<sp>74.4</sp>
+		<rsp>14</rsp>
+		<ions>7/26</ions>
+		<count>0</count>
+		<tic>6611</tic>
+	</peptide>
+</protein>
+<protein>
+	<reference>gi|16131149|ref|NP_417727.1| DNA-binding protein Fis [Escherichia coli K12]</reference>
+	<protein_probability>1.00</protein_probability>
+	<consensus_score>6.1</consensus_score>
+	<Sf>0.00</Sf>
+	<unified_score>0</unified_score>
+	<coverage>0.0</coverage>
+	<pI>0.0</pI>
+	<weight>11239.9</weight>
+	<accession>16131149</accession>
+	<peptide>
+		<file>000, 1524</file>
+		<sequence>R.VNSDVLTVSTVNSQDQVTQKPLR.D</sequence>
+		<mass>2529.79</mass>
+		<deltamass>0.84</deltamass>
+		<charge>3</charge>
+		<peptide_probability>1.00</peptide_probability>
+		<xcorr>1.172</xcorr>
+		<deltacn>0.141</deltacn>
+		<sp>173.4</sp>
+		<rsp>5</rsp>
+		<ions>19/88</ions>
+		<count>0</count>
+		<tic>7037</tic>
+	</peptide>
+	<peptide>
+		<file>020, 287</file>
+		<sequence>R.QALK.L</sequence>
+		<mass>459.56</mass>
+		<deltamass>0.59</deltamass>
+		<charge>1</charge>
+		<peptide_probability>1.00</peptide_probability>
+		<xcorr>0.206</xcorr>
+		<deltacn>1.100</deltacn>
+		<sp>6.4</sp>
+		<rsp>11</rsp>
+		<ions>1/6</ions>
+		<count>8</count>
+		<tic>0</tic>
+	</peptide>
+</protein>
+<protein>
+	<reference>gi|16130299|ref|NP_416868.1| multidrug resistance protein Y [Escherichia coli K12]</reference>
+	<protein_probability>1.00</protein_probability>
+	<consensus_score>6.1</consensus_score>
+	<Sf>0.00</Sf>
+	<unified_score>0</unified_score>
+	<coverage>0.0</coverage>
+	<pI>0.0</pI>
+	<weight>56000.9</weight>
+	<accession>16130299</accession>
+	<peptide>
+		<file>000, 3519</file>
+		<sequence>R.YGNKIDMR.L</sequence>
+		<mass>997.15</mass>
+		<deltamass>0.64</deltamass>
+		<charge>3</charge>
+		<peptide_probability>1.00</peptide_probability>
+		<xcorr>1.054</xcorr>
+		<deltacn>0.006</deltacn>
+		<sp>184.1</sp>
+		<rsp>4</rsp>
+		<ions>9/28</ions>
+		<count>0</count>
+		<tic>4448</tic>
+	</peptide>
+	<peptide>
+		<file>000, 3460</file>
+		<sequence>R.YGNKIDMR.L</sequence>
+		<mass>997.15</mass>
+		<deltamass>1.24</deltamass>
+		<charge>2</charge>
+		<peptide_probability>1.00</peptide_probability>
+		<xcorr>0.629</xcorr>
+		<deltacn>0.327</deltacn>
+		<sp>28.6</sp>
+		<rsp>43</rsp>
+		<ions>3/14</ions>
+		<count>0</count>
+		<tic>4419</tic>
+	</peptide>
+</protein>
+<protein>
+	<reference>gi|90111436|ref|NP_416933.4| putative carboxysome structural protein, ethanolamine utilization [Esc</reference>
+	<protein_probability>1.00</protein_probability>
+	<consensus_score>6.1</consensus_score>
+	<Sf>0.00</Sf>
+	<unified_score>0</unified_score>
+	<coverage>0.0</coverage>
+	<pI>0.0</pI>
+	<weight>17892.5</weight>
+	<accession>90111436</accession>
+	<peptide>
+		<file>000, 2559</file>
+		<sequence>R.QPKQPVREPDAPVIVAESADELLALLTSVR.Q</sequence>
+		<mass>3243.70</mass>
+		<deltamass>1.34</deltamass>
+		<charge>3</charge>
+		<peptide_probability>1.00</peptide_probability>
+		<xcorr>1.048</xcorr>
+		<deltacn>0.078</deltacn>
+		<sp>78.0</sp>
+		<rsp>13</rsp>
+		<ions>15/116</ions>
+		<count>0</count>
+		<tic>6364</tic>
+	</peptide>
+	<peptide>
+		<file>000, 2248</file>
+		<sequence>R.LLSHEVLDPGR.L</sequence>
+		<mass>1236.40</mass>
+		<deltamass>0.03</deltamass>
+		<charge>2</charge>
+		<peptide_probability>1.00</peptide_probability>
+		<xcorr>0.540</xcorr>
+		<deltacn>0.233</deltacn>
+		<sp>30.1</sp>
+		<rsp>103</rsp>
+		<ions>4/20</ions>
+		<count>0</count>
+		<tic>7824</tic>
+	</peptide>
+	<peptide>
+		<file>020, 1866</file>
+		<sequence>R.QPKQPVREPDAPVIVAESADELLALLTSVR.Q</sequence>
+		<mass>3243.70</mass>
+		<deltamass>0.77</deltamass>
+		<charge>3</charge>
+		<peptide_probability>1.00</peptide_probability>
+		<xcorr>0.872</xcorr>
+		<deltacn>1.100</deltacn>
+		<sp>118.5</sp>
+		<rsp>7</rsp>
+		<ions>15/116</ions>
+		<count>0</count>
+		<tic>7781</tic>
+	</peptide>
+</protein>
+<protein>
+	<reference>gi|90111440|ref|NP_416957.4| putative carboxysome structural protein, ethanol utilization [Escheric</reference>
+	<protein_probability>1.00</protein_probability>
+	<consensus_score>6.0</consensus_score>
+	<Sf>0.00</Sf>
+	<unified_score>0</unified_score>
+	<coverage>0.0</coverage>
+	<pI>0.0</pI>
+	<weight>11649.5</weight>
+	<accession>90111440</accession>
+	<peptide>
+		<file>020, 994</file>
+		<sequence>K.QVTLAHLIAHPGEELAKK.I</sequence>
+		<mass>1956.28</mass>
+		<deltamass>0.86</deltamass>
+		<charge>2</charge>
+		<peptide_probability>1.00</peptide_probability>
+		<xcorr>0.835</xcorr>
+		<deltacn>0.233</deltacn>
+		<sp>35.7</sp>
+		<rsp>20</rsp>
+		<ions>8/34</ions>
+		<count>0</count>
+		<tic>4279</tic>
+	</peptide>
+	<peptide>
+		<file>020, 2734</file>
+		<sequence>K.IGVPDAGAIGIMTLTPGETAMIAGDLALK.A</sequence>
+		<mass>2798.31</mass>
+		<deltamass>0.58</deltamass>
+		<charge>3</charge>
+		<peptide_probability>1.00</peptide_probability>
+		<xcorr>0.928</xcorr>
+		<deltacn>1.100</deltacn>
+		<sp>98.2</sp>
+		<rsp>31</rsp>
+		<ions>15/112</ions>
+		<count>0</count>
+		<tic>7904</tic>
+	</peptide>
+	<peptide>
+		<file>020, 3010</file>
+		<sequence>K.IGVPDAGAIGIMTLTPGETAMIAGDLALK.A</sequence>
+		<mass>2798.31</mass>
+		<deltamass>1.37</deltamass>
+		<charge>3</charge>
+		<peptide_probability>1.00</peptide_probability>
+		<xcorr>0.934</xcorr>
+		<deltacn>1.100</deltacn>
+		<sp>69.3</sp>
+		<rsp>20</rsp>
+		<ions>14/112</ions>
+		<count>0</count>
+		<tic>5020</tic>
+	</peptide>
+</protein>
+<protein>
+	<reference>gi|16131928|ref|NP_418526.1| putative transcriptional regulator [Escherichia coli K12]</reference>
+	<protein_probability>1.00</protein_probability>
+	<consensus_score>6.0</consensus_score>
+	<Sf>0.00</Sf>
+	<unified_score>0</unified_score>
+	<coverage>0.0</coverage>
+	<pI>0.0</pI>
+	<weight>27621.2</weight>
+	<accession>16131928</accession>
+	<peptide>
+		<file>000, 3582</file>
+		<sequence>R.RSQTRISAR.R</sequence>
+		<mass>1075.21</mass>
+		<deltamass>0.49</deltamass>
+		<charge>3</charge>
+		<peptide_probability>1.00</peptide_probability>
+		<xcorr>0.922</xcorr>
+		<deltacn>0.051</deltacn>
+		<sp>240.2</sp>
+		<rsp>1</rsp>
+		<ions>11/32</ions>
+		<count>0</count>
+		<tic>3701</tic>
+	</peptide>
+	<peptide>
+		<file>000, 3034</file>
+		<sequence>R.TLNHR.D</sequence>
+		<mass>640.71</mass>
+		<deltamass>0.11</deltamass>
+		<charge>1</charge>
+		<peptide_probability>1.00</peptide_probability>
+		<xcorr>0.457</xcorr>
+		<deltacn>1.100</deltacn>
+		<sp>18.3</sp>
+		<rsp>9</rsp>
+		<ions>3/8</ions>
+		<count>0</count>
+		<tic>1741</tic>
+	</peptide>
+</protein>
+<protein>
+	<reference>gi|16128443|ref|NP_414992.1| maltose O-acetyltransferase [Escherichia coli K12]</reference>
+	<protein_probability>1.00</protein_probability>
+	<consensus_score>6.0</consensus_score>
+	<Sf>0.00</Sf>
+	<unified_score>0</unified_score>
+	<coverage>0.0</coverage>
+	<pI>0.0</pI>
+	<weight>20095.9</weight>
+	<accession>16128443</accession>
+	<peptide>
+		<file>000, 3132</file>
+		<sequence>R.QLIHR.Y</sequence>
+		<mass>666.80</mass>
+		<deltamass>0.37</deltamass>
+		<charge>1</charge>
+		<peptide_probability>1.00</peptide_probability>
+		<xcorr>0.843</xcorr>
+		<deltacn>0.162</deltacn>
+		<sp>70.8</sp>
+		<rsp>1</rsp>
+		<ions>5/8</ions>
+		<count>0</count>
+		<tic>2048</tic>
+	</peptide>
+	<peptide>
+		<file>020, 2847</file>
+		<sequence>R.QLIHR.Y</sequence>
+		<mass>666.80</mass>
+		<deltamass>1.19</deltamass>
+		<charge>1</charge>
+		<peptide_probability>1.00</peptide_probability>
+		<xcorr>0.580</xcorr>
+		<deltacn>0.330</deltacn>
+		<sp>48.0</sp>
+		<rsp>6</rsp>
+		<ions>4/8</ions>
+		<count>0</count>
+		<tic>2514</tic>
+	</peptide>
+	<peptide>
+		<file>020, 579</file>
+		<sequence>R.ARQLIHRYNHSLAEEHTLR.Q</sequence>
+		<mass>2345.61</mass>
+		<deltamass>1.00</deltamass>
+		<charge>2</charge>
+		<peptide_probability>1.00</peptide_probability>
+		<xcorr>0.467</xcorr>
+		<deltacn>1.100</deltacn>
+		<sp>28.6</sp>
+		<rsp>38</rsp>
+		<ions>4/36</ions>
+		<count>0</count>
+		<tic>8328</tic>
+	</peptide>
+</protein>
+<protein>
+	<reference>gi|16130511|ref|NP_417081.1| hypothetical protein b2586 [Escherichia coli K12]</reference>
+	<protein_probability>1.00</protein_probability>
+	<consensus_score>6.0</consensus_score>
+	<Sf>0.00</Sf>
+	<unified_score>0</unified_score>
+	<coverage>0.0</coverage>
+	<pI>0.0</pI>
+	<weight>9930.9</weight>
+	<accession>16130511</accession>
+	<peptide>
+		<file>000, 2571</file>
+		<sequence>K.DLAWDVAGASTGYTVWQLTR.H</sequence>
+		<mass>2211.42</mass>
+		<deltamass>1.14</deltamass>
+		<charge>3</charge>
+		<peptide_probability>1.00</peptide_probability>
+		<xcorr>0.839</xcorr>
+		<deltacn>0.310</deltacn>
+		<sp>100.7</sp>
+		<rsp>39</rsp>
+		<ions>12/76</ions>
+		<count>0</count>
+		<tic>8121</tic>
+	</peptide>
+	<peptide>
+		<file>020, 2536</file>
+		<sequence>-.MANDSWSGQDK.A</sequence>
+		<mass>1239.30</mass>
+		<deltamass>0.36</deltamass>
+		<charge>3</charge>
+		<peptide_probability>1.00</peptide_probability>
+		<xcorr>0.739</xcorr>
+		<deltacn>1.100</deltacn>
+		<sp>84.5</sp>
+		<rsp>21</rsp>
+		<ions>8/40</ions>
+		<count>0</count>
+		<tic>3921</tic>
+	</peptide>
+</protein>
+<protein>
+	<reference>gi|16130867|ref|NP_417441.1| putative transport protein [Escherichia coli K12]</reference>
+	<protein_probability>1.00</protein_probability>
+	<consensus_score>6.0</consensus_score>
+	<Sf>0.00</Sf>
+	<unified_score>0</unified_score>
+	<coverage>0.0</coverage>
+	<pI>0.0</pI>
+	<weight>24613.8</weight>
+	<accession>16130867</accession>
+	<peptide>
+		<file>000, 639</file>
+		<sequence>K.GVNTAVAKAQNLFRHSR.K</sequence>
+		<mass>1870.11</mass>
+		<deltamass>0.28</deltamass>
+		<charge>3</charge>
+		<peptide_probability>1.00</peptide_probability>
+		<xcorr>0.829</xcorr>
+		<deltacn>0.422</deltacn>
+		<sp>112.4</sp>
+		<rsp>7</rsp>
+		<ions>15/64</ions>
+		<count>0</count>
+		<tic>3709</tic>
+	</peptide>
+	<peptide>
+		<file>020, 1020</file>
+		<sequence>K.AQNLFRHSRK.K</sequence>
+		<mass>1257.43</mass>
+		<deltamass>0.54</deltamass>
+		<charge>3</charge>
+		<peptide_probability>1.00</peptide_probability>
+		<xcorr>0.619</xcorr>
+		<deltacn>1.100</deltacn>
+		<sp>53.6</sp>
+		<rsp>13</rsp>
+		<ions>9/36</ions>
+		<count>0</count>
+		<tic>2747</tic>
+	</peptide>
+</protein>
+<protein>
+	<reference>gi|16130863|ref|NP_417437.1| hypothetical protein b2962 [Escherichia coli K12]</reference>
+	<protein_probability>1.00</protein_probability>
+	<consensus_score>6.0</consensus_score>
+	<Sf>0.00</Sf>
+	<unified_score>0</unified_score>
+	<coverage>0.0</coverage>
+	<pI>0.0</pI>
+	<weight>10952.5</weight>
+	<accession>16130863</accession>
+	<peptide>
+		<file>000, 2499</file>
+		<sequence>K.RIYNEISK.E</sequence>
+		<mass>1023.17</mass>
+		<deltamass>1.23</deltamass>
+		<charge>2</charge>
+		<peptide_probability>1.00</peptide_probability>
+		<xcorr>0.718</xcorr>
+		<deltacn>0.081</deltacn>
+		<sp>124.7</sp>
+		<rsp>10</rsp>
+		<ions>6/14</ions>
+		<count>0</count>
+		<tic>6425</tic>
+	</peptide>
+	<peptide>
+		<file>020, 1704</file>
+		<sequence>K.EAWAQWQHKQTMLINEK.K</sequence>
+		<mass>2142.43</mass>
+		<deltamass>0.82</deltamass>
+		<charge>3</charge>
+		<peptide_probability>1.00</peptide_probability>
+		<xcorr>0.800</xcorr>
+		<deltacn>0.149</deltacn>
+		<sp>179.3</sp>
+		<rsp>5</rsp>
+		<ions>15/64</ions>
+		<count>0</count>
+		<tic>6879</tic>
+	</peptide>
+	<peptide>
+		<file>000, 3402</file>
+		<sequence>K.RIYNEISK.E</sequence>
+		<mass>1023.17</mass>
+		<deltamass>1.32</deltamass>
+		<charge>1</charge>
+		<peptide_probability>1.00</peptide_probability>
+		<xcorr>0.594</xcorr>
+		<deltacn>1.100</deltacn>
+		<sp>26.9</sp>
+		<rsp>31</rsp>
+		<ions>4/14</ions>
+		<count>0</count>
+		<tic>2475</tic>
+	</peptide>
+	<peptide>
+		<file>020, 3478</file>
+		<sequence>K.RIYNEISK.E</sequence>
+		<mass>1023.17</mass>
+		<deltamass>1.22</deltamass>
+		<charge>1</charge>
+		<peptide_probability>1.00</peptide_probability>
+		<xcorr>0.545</xcorr>
+		<deltacn>1.100</deltacn>
+		<sp>18.9</sp>
+		<rsp>67</rsp>
+		<ions>3/14</ions>
+		<count>0</count>
+		<tic>2388</tic>
+	</peptide>
+</protein>
+<protein>
+	<reference>gi|90111267|ref|NP_415926.4| putative enzyme [Escherichia coli K12]</reference>
+	<protein_probability>1.00</protein_probability>
+	<consensus_score>6.0</consensus_score>
+	<Sf>0.00</Sf>
+	<unified_score>0</unified_score>
+	<coverage>0.0</coverage>
+	<pI>0.0</pI>
+	<weight>22523.9</weight>
+	<accession>90111267</accession>
+	<peptide>
+		<file>000, 2687</file>
+		<sequence>R.CRSVLLMSAEI</sequence>
+		<mass>1222.50</mass>
+		<deltamass>0.95</deltamass>
+		<charge>1</charge>
+		<peptide_probability>1.00</peptide_probability>
+		<xcorr>0.673</xcorr>
+		<deltacn>0.336</deltacn>
+		<sp>96.2</sp>
+		<rsp>4</rsp>
+		<ions>7/20</ions>
+		<count>0</count>
+		<tic>3652</tic>
+	</peptide>
+	<peptide>
+		<file>000, 3578</file>
+		<sequence>R.CRSVLLMSAEI</sequence>
+		<mass>1222.50</mass>
+		<deltamass>0.49</deltamass>
+		<charge>1</charge>
+		<peptide_probability>1.00</peptide_probability>
+		<xcorr>0.788</xcorr>
+		<deltacn>0.257</deltacn>
+		<sp>87.8</sp>
+		<rsp>9</rsp>
+		<ions>6/20</ions>
+		<count>0</count>
+		<tic>4083</tic>
+	</peptide>
+	<peptide>
+		<file>000, 3702</file>
+		<sequence>R.CRSVLLMSAEI</sequence>
+		<mass>1222.50</mass>
+		<deltamass>0.50</deltamass>
+		<charge>1</charge>
+		<peptide_probability>1.00</peptide_probability>
+		<xcorr>0.774</xcorr>
+		<deltacn>0.108</deltacn>
+		<sp>74.7</sp>
+		<rsp>3</rsp>
+		<ions>6/20</ions>
+		<count>0</count>
+		<tic>3024</tic>
+	</peptide>
+	<peptide>
+		<file>020, 931</file>
+		<sequence>R.CRSVLLMSAEI</sequence>
+		<mass>1222.50</mass>
+		<deltamass>0.51</deltamass>
+		<charge>1</charge>
+		<peptide_probability>1.00</peptide_probability>
+		<xcorr>0.688</xcorr>
+		<deltacn>0.248</deltacn>
+		<sp>88.5</sp>
+		<rsp>7</rsp>
+		<ions>6/20</ions>
+		<count>0</count>
+		<tic>4590</tic>
+	</peptide>
+	<peptide>
+		<file>020, 11</file>
+		<sequence>R.CRSVLLMSAEI</sequence>
+		<mass>1222.50</mass>
+		<deltamass>0.46</deltamass>
+		<charge>1</charge>
+		<peptide_probability>1.00</peptide_probability>
+		<xcorr>0.657</xcorr>
+		<deltacn>0.328</deltacn>
+		<sp>74.8</sp>
+		<rsp>6</rsp>
+		<ions>6/20</ions>
+		<count>0</count>
+		<tic>3506</tic>
+	</peptide>
+	<peptide>
+		<file>020, 510</file>
+		<sequence>R.CRSVLLMSAEI</sequence>
+		<mass>1222.50</mass>
+		<deltamass>0.54</deltamass>
+		<charge>1</charge>
+		<peptide_probability>1.00</peptide_probability>
+		<xcorr>0.668</xcorr>
+		<deltacn>0.233</deltacn>
+		<sp>37.2</sp>
+		<rsp>11</rsp>
+		<ions>4/20</ions>
+		<count>0</count>
+		<tic>3194</tic>
+	</peptide>
+	<peptide>
+		<file>020, 1687</file>
+		<sequence>R.CRSVLLMSAEI</sequence>
+		<mass>1222.50</mass>
+		<deltamass>0.53</deltamass>
+		<charge>1</charge>
+		<peptide_probability>1.00</peptide_probability>
+		<xcorr>0.502</xcorr>
+		<deltacn>0.433</deltacn>
+		<sp>86.1</sp>
+		<rsp>3</rsp>
+		<ions>7/20</ions>
+		<count>0</count>
+		<tic>3737</tic>
+	</peptide>
+	<peptide>
+		<file>000, 2216</file>
+		<sequence>R.CRSVLLMSAEI</sequence>
+		<mass>1222.50</mass>
+		<deltamass>0.60</deltamass>
+		<charge>1</charge>
+		<peptide_probability>1.00</peptide_probability>
+		<xcorr>0.546</xcorr>
+		<deltacn>0.496</deltacn>
+		<sp>99.1</sp>
+		<rsp>6</rsp>
+		<ions>7/20</ions>
+		<count>0</count>
+		<tic>4351</tic>
+	</peptide>
+	<peptide>
+		<file>000, 3706</file>
+		<sequence>R.CRSVLLMSAEI</sequence>
+		<mass>1222.50</mass>
+		<deltamass>0.49</deltamass>
+		<charge>1</charge>
+		<peptide_probability>1.00</peptide_probability>
+		<xcorr>0.618</xcorr>
+		<deltacn>0.254</deltacn>
+		<sp>97.7</sp>
+		<rsp>3</rsp>
+		<ions>7/20</ions>
+		<count>0</count>
+		<tic>3602</tic>
+	</peptide>
+	<peptide>
+		<file>020, 1974</file>
+		<sequence>R.CRSVLLMSAEI</sequence>
+		<mass>1222.50</mass>
+		<deltamass>0.48</deltamass>
+		<charge>1</charge>
+		<peptide_probability>1.00</peptide_probability>
+		<xcorr>0.790</xcorr>
+		<deltacn>0.162</deltacn>
+		<sp>145.3</sp>
+		<rsp>3</rsp>
+		<ions>8/20</ions>
+		<count>0</count>
+		<tic>4119</tic>
+	</peptide>
+	<peptide>
+		<file>020, 2100</file>
+		<sequence>R.CRSVLLMSAEI</sequence>
+		<mass>1222.50</mass>
+		<deltamass>0.84</deltamass>
+		<charge>1</charge>
+		<peptide_probability>1.00</peptide_probability>
+		<xcorr>0.727</xcorr>
+		<deltacn>0.163</deltacn>
+		<sp>178.0</sp>
+		<rsp>2</rsp>
+		<ions>9/20</ions>
+		<count>0</count>
+		<tic>4171</tic>
+	</peptide>
+	<peptide>
+		<file>020, 3170</file>
+		<sequence>R.CRSVLLMSAEI</sequence>
+		<mass>1222.50</mass>
+		<deltamass>0.46</deltamass>
+		<charge>1</charge>
+		<peptide_probability>1.00</peptide_probability>
+		<xcorr>0.623</xcorr>
+		<deltacn>0.265</deltacn>
+		<sp>76.8</sp>
+		<rsp>11</rsp>
+		<ions>6/20</ions>
+		<count>0</count>
+		<tic>3802</tic>
+	</peptide>
+	<peptide>
+		<file>000, 139</file>
+		<sequence>R.CRSVLLMSAEI</sequence>
+		<mass>1222.50</mass>
+		<deltamass>0.50</deltamass>
+		<charge>1</charge>
+		<peptide_probability>1.00</peptide_probability>
+		<xcorr>0.689</xcorr>
+		<deltacn>1.100</deltacn>
+		<sp>54.2</sp>
+		<rsp>16</rsp>
+		<ions>5/20</ions>
+		<count>0</count>
+		<tic>3756</tic>
+	</peptide>
+	<peptide>
+		<file>000, 607</file>
+		<sequence>R.CRSVLLMSAEI</sequence>
+		<mass>1222.50</mass>
+		<deltamass>0.35</deltamass>
+		<charge>1</charge>
+		<peptide_probability>1.00</peptide_probability>
+		<xcorr>0.669</xcorr>
+		<deltacn>1.100</deltacn>
+		<sp>67.9</sp>
+		<rsp>9</rsp>
+		<ions>6/20</ions>
+		<count>0</count>
+		<tic>5539</tic>
+	</peptide>
+	<peptide>
+		<file>000, 1747</file>
+		<sequence>R.CRSVLLMSAEI</sequence>
+		<mass>1222.50</mass>
+		<deltamass>0.43</deltamass>
+		<charge>1</charge>
+		<peptide_probability>1.00</peptide_probability>
+		<xcorr>0.678</xcorr>
+		<deltacn>1.100</deltacn>
+		<sp>48.0</sp>
+		<rsp>23</rsp>
+		<ions>5/20</ions>
+		<count>0</count>
+		<tic>3723</tic>
+	</peptide>
+	<peptide>
+		<file>000, 2082</file>
+		<sequence>R.CRSVLLMSAEI</sequence>
+		<mass>1222.50</mass>
+		<deltamass>0.42</deltamass>
+		<charge>1</charge>
+		<peptide_probability>1.00</peptide_probability>
+		<xcorr>0.556</xcorr>
+		<deltacn>1.100</deltacn>
+		<sp>35.1</sp>
+		<rsp>37</rsp>
+		<ions>4/20</ions>
+		<count>0</count>
+		<tic>4189</tic>
+	</peptide>
+	<peptide>
+		<file>000, 2683</file>
+		<sequence>R.CRSVLLMSAEI</sequence>
+		<mass>1222.50</mass>
+		<deltamass>0.59</deltamass>
+		<charge>1</charge>
+		<peptide_probability>1.00</peptide_probability>
+		<xcorr>0.632</xcorr>
+		<deltacn>1.100</deltacn>
+		<sp>79.3</sp>
+		<rsp>7</rsp>
+		<ions>6/20</ions>
+		<count>0</count>
+		<tic>4487</tic>
+	</peptide>
+	<peptide>
+		<file>020, 1104</file>
+		<sequence>R.CRSVLLMSAEI</sequence>
+		<mass>1222.50</mass>
+		<deltamass>0.33</deltamass>
+		<charge>1</charge>
+		<peptide_probability>1.00</peptide_probability>
+		<xcorr>0.651</xcorr>
+		<deltacn>1.100</deltacn>
+		<sp>64.3</sp>
+		<rsp>12</rsp>
+		<ions>6/20</ions>
+		<count>0</count>
+		<tic>4249</tic>
+	</peptide>
+</protein>
+<protein>
+	<reference>gi|16131578|ref|NP_418166.1| drug/chloramphenicol transport protein (MFS family) [Escherichia coli</reference>
+	<protein_probability>1.00</protein_probability>
+	<consensus_score>6.0</consensus_score>
+	<Sf>0.00</Sf>
+	<unified_score>0</unified_score>
+	<coverage>0.0</coverage>
+	<pI>0.0</pI>
+	<weight>41489.5</weight>
+	<accession>16131578</accession>
+	<peptide>
+		<file>020, 2551</file>
+		<sequence>R.RAKVLSLLNGITCIIPVLAPVLGHLIMLK.F</sequence>
+		<mass>3097.95</mass>
+		<deltamass>0.78</deltamass>
+		<charge>3</charge>
+		<peptide_probability>1.00</peptide_probability>
+		<xcorr>0.780</xcorr>
+		<deltacn>0.428</deltacn>
+		<sp>102.2</sp>
+		<rsp>28</rsp>
+		<ions>15/112</ions>
+		<count>0</count>
+		<tic>9864</tic>
+	</peptide>
+	<peptide>
+		<file>000, 2568</file>
+		<sequence>R.GEYATIMALTAGVSMTVSFSTPFALGIFKPR.T</sequence>
+		<mass>3265.83</mass>
+		<deltamass>0.61</deltamass>
+		<charge>3</charge>
+		<peptide_probability>1.00</peptide_probability>
+		<xcorr>0.595</xcorr>
+		<deltacn>1.100</deltacn>
+		<sp>67.5</sp>
+		<rsp>33</rsp>
+		<ions>11/120</ions>
+		<count>0</count>
+		<tic>8433</tic>
+	</peptide>
+</protein>
+<protein>
+	<reference>gi|16129891|ref|NP_416454.1| flagellar biosynthesis protein [Escherichia coli K12]</reference>
+	<protein_probability>1.00</protein_probability>
+	<consensus_score>6.0</consensus_score>
+	<Sf>0.00</Sf>
+	<unified_score>0</unified_score>
+	<coverage>0.0</coverage>
+	<pI>0.0</pI>
+	<weight>17220.8</weight>
+	<accession>16129891</accession>
+	<peptide>
+		<file>000, 824</file>
+		<sequence>R.LLLLFSR.Q</sequence>
+		<mass>862.09</mass>
+		<deltamass>1.39</deltamass>
+		<charge>1</charge>
+		<peptide_probability>1.00</peptide_probability>
+		<xcorr>0.484</xcorr>
+		<deltacn>0.124</deltacn>
+		<sp>15.1</sp>
+		<rsp>68</rsp>
+		<ions>4/12</ions>
+		<count>0</count>
+		<tic>2927</tic>
+	</peptide>
+	<peptide>
+		<file>020, 1447</file>
+		<sequence>R.QDAAVLATEEGKK.N</sequence>
+		<mass>1360.50</mass>
+		<deltamass>0.44</deltamass>
+		<charge>1</charge>
+		<peptide_probability>1.00</peptide_probability>
+		<xcorr>0.766</xcorr>
+		<deltacn>1.100</deltacn>
+		<sp>22.6</sp>
+		<rsp>43</rsp>
+		<ions>5/24</ions>
+		<count>0</count>
+		<tic>4224</tic>
+	</peptide>
+</protein>
+<protein>
+	<reference>gi|16131732|ref|NP_418328.1| formate dehydrogenase, cytochrome B556 (FDO) subunit [Escherichia coli</reference>
+	<protein_probability>1.00</protein_probability>
+	<consensus_score>6.0</consensus_score>
+	<Sf>0.00</Sf>
+	<unified_score>0</unified_score>
+	<coverage>0.0</coverage>
+	<pI>0.0</pI>
+	<weight>24606.2</weight>
+	<accession>16131732</accession>
+	<peptide>
+		<file>020, 1855</file>
+		<sequence>K.KHHPRWYR.E</sequence>
+		<mass>1180.35</mass>
+		<deltamass>0.47</deltamass>
+		<charge>1</charge>
+		<peptide_probability>1.00</peptide_probability>
+		<xcorr>0.618</xcorr>
+		<deltacn>0.317</deltacn>
+		<sp>66.8</sp>
+		<rsp>20</rsp>
+		<ions>5/14</ions>
+		<count>1</count>
+		<tic>0</tic>
+	</peptide>
+	<peptide>
+		<file>000, 563</file>
+		<sequence>K.RRDTIVR.Y</sequence>
+		<mass>916.06</mass>
+		<deltamass>0.91</deltamass>
+		<charge>1</charge>
+		<peptide_probability>1.00</peptide_probability>
+		<xcorr>0.762</xcorr>
+		<deltacn>1.100</deltacn>
+		<sp>87.2</sp>
+		<rsp>8</rsp>
+		<ions>6/12</ions>
+		<count>0</count>
+		<tic>4196</tic>
+	</peptide>
+	<peptide>
+		<file>020, 2410</file>
+		<sequence>K.KHHPRWYR.E</sequence>
+		<mass>1180.35</mass>
+		<deltamass>1.21</deltamass>
+		<charge>1</charge>
+		<peptide_probability>1.00</peptide_probability>
+		<xcorr>0.460</xcorr>
+		<deltacn>1.100</deltacn>
+		<sp>75.0</sp>
+		<rsp>13</rsp>
+		<ions>5/14</ions>
+		<count>1</count>
+		<tic>0</tic>
+	</peptide>
+</protein>
+<protein>
+	<reference>gi|90111344|ref|NP_416352.4| protein phosphatase 1 [Escherichia coli K12]</reference>
+	<protein_probability>1.00</protein_probability>
+	<consensus_score>6.0</consensus_score>
+	<Sf>0.00</Sf>
+	<unified_score>0</unified_score>
+	<coverage>0.0</coverage>
+	<pI>0.0</pI>
+	<weight>25273.7</weight>
+	<accession>90111344</accession>
+	<peptide>
+		<file>000, 975</file>
+		<sequence>R.SRLGERQK.G</sequence>
+		<mass>974.10</mass>
+		<deltamass>0.39</deltamass>
+		<charge>1</charge>
+		<peptide_probability>1.00</peptide_probability>
+		<xcorr>0.498</xcorr>
+		<deltacn>0.219</deltacn>
+		<sp>42.5</sp>
+		<rsp>34</rsp>
+		<ions>5/14</ions>
+		<count>0</count>
+		<tic>5023</tic>
+	</peptide>
+	<peptide>
+		<file>000, 298</file>
+		<sequence>R.FDPWR.D</sequence>
+		<mass>720.80</mass>
+		<deltamass>1.37</deltamass>
+		<charge>2</charge>
+		<peptide_probability>1.00</peptide_probability>
+		<xcorr>0.739</xcorr>
+		<deltacn>1.100</deltacn>
+		<sp>325.4</sp>
+		<rsp>6</rsp>
+		<ions>6/8</ions>
+		<count>0</count>
+		<tic>6758</tic>
+	</peptide>
+</protein>
+<protein>
+	<reference>gi|16130217|ref|NP_416785.1| NADH dehydrogenase subunit H [Escherichia coli K12]</reference>
+	<protein_probability>1.00</protein_probability>
+	<consensus_score>6.0</consensus_score>
+	<Sf>0.00</Sf>
+	<unified_score>0</unified_score>
+	<coverage>0.0</coverage>
+	<pI>0.0</pI>
+	<weight>36218.9</weight>
+	<accession>16130217</accession>
+	<peptide>
+		<file>020, 544</file>
+		<sequence>R.ASLPRPR.Y</sequence>
+		<mass>796.94</mass>
+		<deltamass>0.96</deltamass>
+		<charge>1</charge>
+		<peptide_probability>1.00</peptide_probability>
+		<xcorr>0.646</xcorr>
+		<deltacn>0.406</deltacn>
+		<sp>47.7</sp>
+		<rsp>10</rsp>
+		<ions>5/12</ions>
+		<count>0</count>
+		<tic>3806</tic>
+	</peptide>
+	<peptide>
+		<file>000, 2132</file>
+		<sequence>R.YGPNRVGWGGSLQLVADMIK.M</sequence>
+		<mass>2162.50</mass>
+		<deltamass>0.38</deltamass>
+		<charge>3</charge>
+		<peptide_probability>1.00</peptide_probability>
+		<xcorr>0.736</xcorr>
+		<deltacn>1.100</deltacn>
+		<sp>72.0</sp>
+		<rsp>35</rsp>
+		<ions>12/76</ions>
+		<count>0</count>
+		<tic>5498</tic>
+	</peptide>
+</protein>
+<protein>
+	<reference>gi|16130023|ref|NP_416587.1| putative phage protein (D protein) [Escherichia coli K12]</reference>
+	<protein_probability>1.00</protein_probability>
+	<consensus_score>6.0</consensus_score>
+	<Sf>0.00</Sf>
+	<unified_score>0</unified_score>
+	<coverage>0.0</coverage>
+	<pI>0.0</pI>
+	<weight>5553.0</weight>
+	<accession>16130023</accession>
+	<peptide>
+		<file>000, 2875</file>
+		<sequence>K.VTHFLNNSGFTTSLELEVR.L</sequence>
+		<mass>2165.39</mass>
+		<deltamass>0.13</deltamass>
+		<charge>2</charge>
+		<peptide_probability>1.00</peptide_probability>
+		<xcorr>0.725</xcorr>
+		<deltacn>0.255</deltacn>
+		<sp>85.9</sp>
+		<rsp>3</rsp>
+		<ions>9/36</ions>
+		<count>0</count>
+		<tic>5743</tic>
+	</peptide>
+	<peptide>
+		<file>020, 3579</file>
+		<sequence>-.MSGFKR.V</sequence>
+		<mass>725.88</mass>
+		<deltamass>0.48</deltamass>
+		<charge>1</charge>
+		<peptide_probability>1.00</peptide_probability>
+		<xcorr>0.200</xcorr>
+		<deltacn>1.100</deltacn>
+		<sp>9.5</sp>
+		<rsp>10</rsp>
+		<ions>1/10</ions>
+		<count>0</count>
+		<tic>4367</tic>
+	</peptide>
+</protein>
+<protein>
+	<reference>gi|16130584|ref|NP_417156.1| hypothetical protein b2670 [Escherichia coli K12]</reference>
+	<protein_probability>1.00</protein_probability>
+	<consensus_score>6.0</consensus_score>
+	<Sf>0.00</Sf>
+	<unified_score>0</unified_score>
+	<coverage>0.0</coverage>
+	<pI>0.0</pI>
+	<weight>16949.0</weight>
+	<accession>16130584</accession>
+	<peptide>
+		<file>000, 787</file>
+		<sequence>-.MFSPQSRLR.H</sequence>
+		<mass>1122.33</mass>
+		<deltamass>1.31</deltamass>
+		<charge>1</charge>
+		<peptide_probability>1.00</peptide_probability>
+		<xcorr>0.719</xcorr>
+		<deltacn>0.177</deltacn>
+		<sp>106.6</sp>
+		<rsp>3</rsp>
+		<ions>7/16</ions>
+		<count>0</count>
+		<tic>4540</tic>
+	</peptide>
+	<peptide>
+		<file>020, 454</file>
+		<sequence>R.AARK.M</sequence>
+		<mass>445.54</mass>
+		<deltamass>0.63</deltamass>
+		<charge>1</charge>
+		<peptide_probability>1.00</peptide_probability>
+		<xcorr>0.346</xcorr>
+		<deltacn>0.443</deltacn>
+		<sp>2.7</sp>
+		<rsp>27</rsp>
+		<ions>2/6</ions>
+		<count>4</count>
+		<tic>0</tic>
+	</peptide>
+	<peptide>
+		<file>020, 3175</file>
+		<sequence>-.MFSPQSRLR.H</sequence>
+		<mass>1122.33</mass>
+		<deltamass>0.47</deltamass>
+		<charge>1</charge>
+		<peptide_probability>1.00</peptide_probability>
+		<xcorr>0.615</xcorr>
+		<deltacn>1.100</deltacn>
+		<sp>57.6</sp>
+		<rsp>13</rsp>
+		<ions>5/16</ions>
+		<count>0</count>
+		<tic>2969</tic>
+	</peptide>
+</protein>
+<protein>
+	<reference>gi|16131829|ref|NP_418427.1| hypothetical protein b3999 [Escherichia coli K12]</reference>
+	<protein_probability>1.00</protein_probability>
+	<consensus_score>6.0</consensus_score>
+	<Sf>0.00</Sf>
+	<unified_score>0</unified_score>
+	<coverage>0.0</coverage>
+	<pI>0.0</pI>
+	<weight>22612.5</weight>
+	<accession>16131829</accession>
+	<peptide>
+		<file>000, 1667</file>
+		<sequence>-.MLQNPIHLR.L</sequence>
+		<mass>1122.37</mass>
+		<deltamass>0.58</deltamass>
+		<charge>1</charge>
+		<peptide_probability>1.00</peptide_probability>
+		<xcorr>0.536</xcorr>
+		<deltacn>0.223</deltacn>
+		<sp>63.2</sp>
+		<rsp>11</rsp>
+		<ions>5/16</ions>
+		<count>0</count>
+		<tic>4263</tic>
+	</peptide>
+	<peptide>
+		<file>000, 3323</file>
+		<sequence>K.GLRADLR.E</sequence>
+		<mass>800.93</mass>
+		<deltamass>0.76</deltamass>
+		<charge>2</charge>
+		<peptide_probability>1.00</peptide_probability>
+		<xcorr>0.686</xcorr>
+		<deltacn>1.100</deltacn>
+		<sp>102.0</sp>
+		<rsp>28</rsp>
+		<ions>5/12</ions>
+		<count>0</count>
+		<tic>5576</tic>
+	</peptide>
+	<peptide>
+		<file>020, 2414</file>
+		<sequence>-.MLQNPIHLR.L</sequence>
+		<mass>1122.37</mass>
+		<deltamass>0.44</deltamass>
+		<charge>1</charge>
+		<peptide_probability>1.00</peptide_probability>
+		<xcorr>0.645</xcorr>
+		<deltacn>1.100</deltacn>
+		<sp>33.5</sp>
+		<rsp>25</rsp>
+		<ions>3/16</ions>
+		<count>0</count>
+		<tic>3334</tic>
+	</peptide>
+	<peptide>
+		<file>020, 3595</file>
+		<sequence>K.ADLR.N</sequence>
+		<mass>474.53</mass>
+		<deltamass>0.58</deltamass>
+		<charge>1</charge>
+		<peptide_probability>1.00</peptide_probability>
+		<xcorr>0.410</xcorr>
+		<deltacn>1.100</deltacn>
+		<sp>30.8</sp>
+		<rsp>5</rsp>
+		<ions>2/6</ions>
+		<count>2</count>
+		<tic>0</tic>
+	</peptide>
+</protein>
+<protein>
+	<reference>gi|16128974|ref|NP_415528.1| hypothetical protein b1008 [Escherichia coli K12]</reference>
+	<protein_probability>1.00</protein_probability>
+	<consensus_score>6.0</consensus_score>
+	<Sf>0.00</Sf>
+	<unified_score>0</unified_score>
+	<coverage>0.0</coverage>
+	<pI>0.0</pI>
+	<weight>21570.2</weight>
+	<accession>16128974</accession>
+	<peptide>
+		<file>020, 3259</file>
+		<sequence>R.THNGWR.E</sequence>
+		<mass>770.82</mass>
+		<deltamass>0.20</deltamass>
+		<charge>2</charge>
+		<peptide_probability>1.00</peptide_probability>
+		<xcorr>0.561</xcorr>
+		<deltacn>0.127</deltacn>
+		<sp>81.7</sp>
+		<rsp>5</rsp>
+		<ions>4/10</ions>
+		<count>0</count>
+		<tic>2922</tic>
+	</peptide>
+	<peptide>
+		<file>020, 1991</file>
+		<sequence>K.SNLLINIGYGDSSK.L</sequence>
+		<mass>1481.63</mass>
+		<deltamass>0.38</deltamass>
+		<charge>2</charge>
+		<peptide_probability>1.00</peptide_probability>
+		<xcorr>0.676</xcorr>
+		<deltacn>1.100</deltacn>
+		<sp>55.3</sp>
+		<rsp>37</rsp>
+		<ions>6/26</ions>
+		<count>0</count>
+		<tic>7849</tic>
+	</peptide>
+</protein>
+<protein>
+	<reference>gi|90111313|ref|NP_416166.2| hypothetical transcriptional regulator [Escherichia coli K12]</reference>
+	<protein_probability>1.00</protein_probability>
+	<consensus_score>6.0</consensus_score>
+	<Sf>0.00</Sf>
+	<unified_score>0</unified_score>
+	<coverage>0.0</coverage>
+	<pI>0.0</pI>
+	<weight>19069.7</weight>
+	<accession>90111313</accession>
+	<peptide>
+		<file>020, 778</file>
+		<sequence>R.ENHCLTFCGEPLQQAQVLYALWLGANLQAKISR.S</sequence>
+		<mass>3717.28</mass>
+		<deltamass>0.21</deltamass>
+		<charge>3</charge>
+		<peptide_probability>1.00</peptide_probability>
+		<xcorr>0.636</xcorr>
+		<deltacn>0.206</deltacn>
+		<sp>54.4</sp>
+		<rsp>18</rsp>
+		<ions>12/128</ions>
+		<count>0</count>
+		<tic>7390</tic>
+	</peptide>
+	<peptide>
+		<file>000, 2432</file>
+		<sequence>R.SFEPLENALAHVK.N</sequence>
+		<mass>1455.64</mass>
+		<deltamass>1.15</deltamass>
+		<charge>2</charge>
+		<peptide_probability>1.00</peptide_probability>
+		<xcorr>0.660</xcorr>
+		<deltacn>1.100</deltacn>
+		<sp>49.7</sp>
+		<rsp>22</rsp>
+		<ions>6/24</ions>
+		<count>0</count>
+		<tic>5552</tic>
+	</peptide>
+</protein>
+<protein>
+	<reference>gi|16129732|ref|NP_416292.1| methionine sulfoxide reductase B [Escherichia coli K12]</reference>
+	<protein_probability>1.00</protein_probability>
+	<consensus_score>6.0</consensus_score>
+	<Sf>0.00</Sf>
+	<unified_score>0</unified_score>
+	<coverage>0.0</coverage>
+	<pI>0.0</pI>
+	<weight>15451.1</weight>
+	<accession>16129732</accession>
+	<peptide>
+		<file>020, 2011</file>
+		<sequence>R.CGNCDAHLGHVFPDGPQPTGER.Y</sequence>
+		<mass>2308.50</mass>
+		<deltamass>0.72</deltamass>
+		<charge>2</charge>
+		<peptide_probability>1.00</peptide_probability>
+		<xcorr>0.632</xcorr>
+		<deltacn>0.404</deltacn>
+		<sp>34.6</sp>
+		<rsp>47</rsp>
+		<ions>5/42</ions>
+		<count>0</count>
+		<tic>11199</tic>
+	</peptide>
+	<peptide>
+		<file>000, 2607</file>
+		<sequence>R.YIKDLSHGMQR.I</sequence>
+		<mass>1348.56</mass>
+		<deltamass>0.94</deltamass>
+		<charge>2</charge>
+		<peptide_probability>1.00</peptide_probability>
+		<xcorr>0.505</xcorr>
+		<deltacn>1.100</deltacn>
+		<sp>11.1</sp>
+		<rsp>65</rsp>
+		<ions>4/20</ions>
+		<count>0</count>
+		<tic>2246</tic>
+	</peptide>
+</protein>
+<protein>
+	<reference>gi|16130835|ref|NP_417409.1| PTS family enzyme IIA, mannitol-specific, cryptic [Escherichia coli K1</reference>
+	<protein_probability>1.00</protein_probability>
+	<consensus_score>6.0</consensus_score>
+	<Sf>0.00</Sf>
+	<unified_score>0</unified_score>
+	<coverage>0.0</coverage>
+	<pI>0.0</pI>
+	<weight>16046.1</weight>
+	<accession>16130835</accession>
+	<peptide>
+		<file>020, 2199</file>
+		<sequence>R.LSDYFPESSISVIHSAK.D</sequence>
+		<mass>1881.08</mass>
+		<deltamass>1.22</deltamass>
+		<charge>2</charge>
+		<peptide_probability>1.00</peptide_probability>
+		<xcorr>0.625</xcorr>
+		<deltacn>0.365</deltacn>
+		<sp>76.0</sp>
+		<rsp>12</rsp>
+		<ions>7/32</ions>
+		<count>0</count>
+		<tic>8942</tic>
+	</peptide>
+	<peptide>
+		<file>000, 356</file>
+		<sequence>-.MRLSDYFPESSISVIHSAKDWQEAIDFSMVSLLDK.N</sequence>
+		<mass>4047.56</mass>
+		<deltamass>0.50</deltamass>
+		<charge>3</charge>
+		<peptide_probability>1.00</peptide_probability>
+		<xcorr>0.558</xcorr>
+		<deltacn>1.100</deltacn>
+		<sp>37.0</sp>
+		<rsp>23</rsp>
+		<ions>10/136</ions>
+		<count>0</count>
+		<tic>7035</tic>
+	</peptide>
+</protein>
+<protein>
+	<reference>gi|16129862|ref|NP_416425.1| unknown CDS [Escherichia coli K12]</reference>
+	<protein_probability>1.00</protein_probability>
+	<consensus_score>6.0</consensus_score>
+	<Sf>0.00</Sf>
+	<unified_score>0</unified_score>
+	<coverage>0.0</coverage>
+	<pI>0.0</pI>
+	<weight>8238.5</weight>
+	<accession>16129862</accession>
+	<peptide>
+		<file>020, 108</file>
+		<sequence>K.QIKQAYRQ</sequence>
+		<mass>1035.18</mass>
+		<deltamass>1.30</deltamass>
+		<charge>1</charge>
+		<peptide_probability>1.00</peptide_probability>
+		<xcorr>0.338</xcorr>
+		<deltacn>0.479</deltacn>
+		<sp>7.1</sp>
+		<rsp>23</rsp>
+		<ions>1/14</ions>
+		<count>0</count>
+		<tic>4668</tic>
+	</peptide>
+	<peptide>
+		<file>020, 2899</file>
+		<sequence>R.QAYR.G</sequence>
+		<mass>537.59</mass>
+		<deltamass>0.52</deltamass>
+		<charge>1</charge>
+		<peptide_probability>1.00</peptide_probability>
+		<xcorr>0.202</xcorr>
+		<deltacn>1.100</deltacn>
+		<sp>66.4</sp>
+		<rsp>1</rsp>
+		<ions>4/6</ions>
+		<count>3</count>
+		<tic>0</tic>
+	</peptide>
+</protein>
+<protein>
+	<reference>gi|16128871|ref|NP_415424.1| formate transport protein (formate channel 1) (FNT family) [Escherichi</reference>
+	<protein_probability>1.00</protein_probability>
+	<consensus_score>6.0</consensus_score>
+	<Sf>0.00</Sf>
+	<unified_score>0</unified_score>
+	<coverage>0.0</coverage>
+	<pI>0.0</pI>
+	<weight>30990.6</weight>
+	<accession>16128871</accession>
+	<peptide>
+		<file>020, 254</file>
+		<sequence>K.ASGR.I</sequence>
+		<mass>390.42</mass>
+		<deltamass>0.57</deltamass>
+		<charge>1</charge>
+		<peptide_probability>1.00</peptide_probability>
+		<xcorr>0.133</xcorr>
+		<deltacn>0.732</deltacn>
+		<sp>8.4</sp>
+		<rsp>9</rsp>
+		<ions>2/6</ions>
+		<count>2</count>
+		<tic>2505</tic>
+	</peptide>
+	<peptide>
+		<file>000, 710</file>
+		<sequence>K.ASGR.I</sequence>
+		<mass>390.42</mass>
+		<deltamass>0.69</deltamass>
+		<charge>1</charge>
+		<peptide_probability>1.00</peptide_probability>
+		<xcorr>0.049</xcorr>
+		<deltacn>0.694</deltacn>
+		<sp>2.2</sp>
+		<rsp>12</rsp>
+		<ions>1/6</ions>
+		<count>2</count>
+		<tic>3316</tic>
+	</peptide>
+	<peptide>
+		<file>000, 235</file>
+		<sequence>K.ASGR.I</sequence>
+		<mass>390.42</mass>
+		<deltamass>1.26</deltamass>
+		<charge>1</charge>
+		<peptide_probability>1.00</peptide_probability>
+		<xcorr>0.149</xcorr>
+		<deltacn>0.354</deltacn>
+		<sp>2.9</sp>
+		<rsp>12</rsp>
+		<ions>1/6</ions>
+		<count>2</count>
+		<tic>3755</tic>
+	</peptide>
+	<peptide>
+		<file>000, 1646</file>
+		<sequence>K.ASGR.I</sequence>
+		<mass>390.42</mass>
+		<deltamass>0.58</deltamass>
+		<charge>1</charge>
+		<peptide_probability>1.00</peptide_probability>
+		<xcorr>0.074</xcorr>
+		<deltacn>0.712</deltacn>
+		<sp>1.8</sp>
+		<rsp>8</rsp>
+		<ions>1/6</ions>
+		<count>2</count>
+		<tic>2559</tic>
+	</peptide>
+	<peptide>
+		<file>020, 1918</file>
+		<sequence>K.ASGR.I</sequence>
+		<mass>390.42</mass>
+		<deltamass>0.49</deltamass>
+		<charge>1</charge>
+		<peptide_probability>1.00</peptide_probability>
+		<xcorr>0.128</xcorr>
+		<deltacn>0.446</deltacn>
+		<sp>6.6</sp>
+		<rsp>10</rsp>
+		<ions>2/6</ions>
+		<count>2</count>
+		<tic>2749</tic>
+	</peptide>
+	<peptide>
+		<file>020, 3138</file>
+		<sequence>K.ASGR.I</sequence>
+		<mass>390.42</mass>
+		<deltamass>0.55</deltamass>
+		<charge>1</charge>
+		<peptide_probability>1.00</peptide_probability>
+		<xcorr>0.169</xcorr>
+		<deltacn>0.389</deltacn>
+		<sp>0.8</sp>
+		<rsp>11</rsp>
+		<ions>1/6</ions>
+		<count>2</count>
+		<tic>2720</tic>
+	</peptide>
+	<peptide>
+		<file>020, 759</file>
+		<sequence>K.ASGR.I</sequence>
+		<mass>390.42</mass>
+		<deltamass>0.45</deltamass>
+		<charge>1</charge>
+		<peptide_probability>1.00</peptide_probability>
+		<xcorr>0.120</xcorr>
+		<deltacn>0.647</deltacn>
+		<sp>9.1</sp>
+		<rsp>18</rsp>
+		<ions>2/6</ions>
+		<count>2</count>
+		<tic>3325</tic>
+	</peptide>
+</protein>
+<protein>
+	<reference>gi|16130042|ref|NP_416607.1| hydroxyethylthiazole kinase [Escherichia coli K12]</reference>
+	<protein_probability>1.00</protein_probability>
+	<consensus_score>4.1</consensus_score>
+	<Sf>0.00</Sf>
+	<unified_score>0</unified_score>
+	<coverage>0.0</coverage>
+	<pI>0.0</pI>
+	<weight>27339.0</weight>
+	<accession>16130042</accession>
+	<peptide>
+		<file>020, 3067</file>
+		<sequence>R.IIGIHGGDPLMTK.V</sequence>
+		<mass>1352.63</mass>
+		<deltamass>0.58</deltamass>
+		<charge>3</charge>
+		<peptide_probability>1.00</peptide_probability>
+		<xcorr>1.393</xcorr>
+		<deltacn>0.065</deltacn>
+		<sp>195.9</sp>
+		<rsp>5</rsp>
+		<ions>13/48</ions>
+		<count>0</count>
+		<tic>5973</tic>
+	</peptide>
+	<peptide>
+		<file>000, 2294</file>
+		<sequence>R.AVAR.S</sequence>
+		<mass>416.50</mass>
+		<deltamass>1.37</deltamass>
+		<charge>1</charge>
+		<peptide_probability>1.00</peptide_probability>
+		<xcorr>0.481</xcorr>
+		<deltacn>0.260</deltacn>
+		<sp>101.1</sp>
+		<rsp>3</rsp>
+		<ions>4/6</ions>
+		<count>1</count>
+		<tic>4882</tic>
+	</peptide>
+	<peptide>
+		<file>000, 1818</file>
+		<sequence>R.AVAR.S</sequence>
+		<mass>416.50</mass>
+		<deltamass>1.28</deltamass>
+		<charge>1</charge>
+		<peptide_probability>1.00</peptide_probability>
+		<xcorr>0.259</xcorr>
+		<deltacn>1.100</deltacn>
+		<sp>16.3</sp>
+		<rsp>4</rsp>
+		<ions>3/6</ions>
+		<count>1</count>
+		<tic>1600</tic>
+	</peptide>
+	<peptide>
+		<file>020, 2610</file>
+		<sequence>R.IIGIHGGDPLMTK.V</sequence>
+		<mass>1352.63</mass>
+		<deltamass>0.85</deltamass>
+		<charge>1</charge>
+		<peptide_probability>1.00</peptide_probability>
+		<xcorr>0.522</xcorr>
+		<deltacn>1.100</deltacn>
+		<sp>77.7</sp>
+		<rsp>6</rsp>
+		<ions>6/24</ions>
+		<count>0</count>
+		<tic>7304</tic>
+	</peptide>
+</protein>
+<protein>
+	<reference>gi|16130984|ref|NP_417560.1| Na+:serine/threonine symporter (DAACS family) [Escherichia coli K12]</reference>
+	<protein_probability>1.00</protein_probability>
+	<consensus_score>4.1</consensus_score>
+	<Sf>0.00</Sf>
+	<unified_score>0</unified_score>
+	<coverage>0.0</coverage>
+	<pI>0.0</pI>
+	<weight>43477.4</weight>
+	<accession>16130984</accession>
+	<peptide>
+		<file>020, 366</file>
+		<sequence>R.LAHGSLVKQILVGLVLGILLAWISKPAAEAVGLLGTLFVGALK.A</sequence>
+		<mass>4352.34</mass>
+		<deltamass>0.76</deltamass>
+		<charge>3</charge>
+		<peptide_probability>1.00</peptide_probability>
+		<xcorr>0.333</xcorr>
+		<deltacn>1.100</deltacn>
+		<sp>29.1</sp>
+		<rsp>3</rsp>
+		<ions>8/168</ions>
+		<count>0</count>
+		<tic>4337</tic>
+	</peptide>
+	<peptide>
+		<file>020, 1214</file>
+		<sequence>-.MTTQRSPGLFR.R</sequence>
+		<mass>1294.51</mass>
+		<deltamass>0.17</deltamass>
+		<charge>2</charge>
+		<peptide_probability>1.00</peptide_probability>
+		<xcorr>1.375</xcorr>
+		<deltacn>1.100</deltacn>
+		<sp>150.5</sp>
+		<rsp>30</rsp>
+		<ions>8/20</ions>
+		<count>0</count>
+		<tic>9112</tic>
+	</peptide>
+</protein>
+<protein>
+	<reference>gi|90111709|ref|NP_418651.2| putative sugar transport protein (ABC superfamily, membrane) [Escheric</reference>
+	<protein_probability>1.00</protein_probability>
+	<consensus_score>4.1</consensus_score>
+	<Sf>0.00</Sf>
+	<unified_score>0</unified_score>
+	<coverage>0.0</coverage>
+	<pI>0.0</pI>
+	<weight>35527.5</weight>
+	<accession>90111709</accession>
+	<peptide>
+		<file>000, 380</file>
+		<sequence>R.KTALGMFIEAVGINIRAAK.N</sequence>
+		<mass>2004.43</mass>
+		<deltamass>0.42</deltamass>
+		<charge>2</charge>
+		<peptide_probability>1.00</peptide_probability>
+		<xcorr>0.485</xcorr>
+		<deltacn>1.100</deltacn>
+		<sp>90.0</sp>
+		<rsp>3</rsp>
+		<ions>7/36</ions>
+		<count>0</count>
+		<tic>7563</tic>
+	</peptide>
+	<peptide>
+		<file>020, 950</file>
+		<sequence>K.TALGMFIEAVGINIR.A</sequence>
+		<mass>1605.93</mass>
+		<deltamass>0.16</deltamass>
+		<charge>3</charge>
+		<peptide_probability>1.00</peptide_probability>
+		<xcorr>1.098</xcorr>
+		<deltacn>1.100</deltacn>
+		<sp>260.4</sp>
+		<rsp>1</rsp>
+		<ions>14/56</ions>
+		<count>0</count>
+		<tic>5407</tic>
+	</peptide>
+</protein>
+<protein>
+	<reference>gi|16131049|ref|NP_417626.1| hypothetical protein b3157 [Escherichia coli K12]</reference>
+	<protein_probability>1.00</protein_probability>
+	<consensus_score>4.1</consensus_score>
+	<Sf>0.00</Sf>
+	<unified_score>0</unified_score>
+	<coverage>0.0</coverage>
+	<pI>0.0</pI>
+	<weight>19671.7</weight>
+	<accession>16131049</accession>
+	<peptide>
+		<file>000, 3006</file>
+		<sequence>R.QALDDGELEFLEGRWLSIHVR.D</sequence>
+		<mass>2484.75</mass>
+		<deltamass>1.09</deltamass>
+		<charge>2</charge>
+		<peptide_probability>1.00</peptide_probability>
+		<xcorr>0.574</xcorr>
+		<deltacn>1.100</deltacn>
+		<sp>24.8</sp>
+		<rsp>21</rsp>
+		<ions>7/40</ions>
+		<count>0</count>
+		<tic>3543</tic>
+	</peptide>
+	<peptide>
+		<file>020, 1235</file>
+		<sequence>K.LRSRIVHLGPSLLSVPVK.L</sequence>
+		<mass>1972.41</mass>
+		<deltamass>1.26</deltamass>
+		<charge>2</charge>
+		<peptide_probability>1.00</peptide_probability>
+		<xcorr>1.022</xcorr>
+		<deltacn>1.100</deltacn>
+		<sp>54.0</sp>
+		<rsp>24</rsp>
+		<ions>7/34</ions>
+		<count>0</count>
+		<tic>7089</tic>
+	</peptide>
+</protein>
+<protein>
+	<reference>gi|16129540|ref|NP_416099.1| hypothetical protein b1582 [Escherichia coli K12]</reference>
+	<protein_probability>1.00</protein_probability>
+	<consensus_score>4.0</consensus_score>
+	<Sf>0.00</Sf>
+	<unified_score>0</unified_score>
+	<coverage>0.0</coverage>
+	<pI>0.0</pI>
+	<weight>11919.4</weight>
+	<accession>16129540</accession>
+	<peptide>
+		<file>020, 3011</file>
+		<sequence>R.VYAAYGGVYVCTALMWLRVVDGVK.L</sequence>
+		<mass>2635.14</mass>
+		<deltamass>0.06</deltamass>
+		<charge>2</charge>
+		<peptide_probability>1.00</peptide_probability>
+		<xcorr>0.849</xcorr>
+		<deltacn>0.304</deltacn>
+		<sp>58.3</sp>
+		<rsp>6</rsp>
+		<ions>7/46</ions>
+		<count>0</count>
+		<tic>6491</tic>
+	</peptide>
+	<peptide>
+		<file>000, 3115</file>
+		<sequence>R.VYAAYGGVYVCTALMWLRVVDGVK.L</sequence>
+		<mass>2635.14</mass>
+		<deltamass>0.12</deltamass>
+		<charge>2</charge>
+		<peptide_probability>1.00</peptide_probability>
+		<xcorr>0.788</xcorr>
+		<deltacn>0.387</deltacn>
+		<sp>25.7</sp>
+		<rsp>12</rsp>
+		<ions>5/46</ions>
+		<count>0</count>
+		<tic>2989</tic>
+	</peptide>
+</protein>
+<protein>
+	<reference>gi|90111309|ref|NP_416156.4| hypothetical protein b1639 [Escherichia coli K12]</reference>
+	<protein_probability>1.00</protein_probability>
+	<consensus_score>4.0</consensus_score>
+	<Sf>0.00</Sf>
+	<unified_score>0</unified_score>
+	<coverage>0.0</coverage>
+	<pI>0.0</pI>
+	<weight>12567.4</weight>
+	<accession>90111309</accession>
+	<peptide>
+		<file>000, 652</file>
+		<sequence>K.LNNPR.Q</sequence>
+		<mass>613.69</mass>
+		<deltamass>0.55</deltamass>
+		<charge>1</charge>
+		<peptide_probability>1.00</peptide_probability>
+		<xcorr>0.820</xcorr>
+		<deltacn>1.100</deltacn>
+		<sp>97.9</sp>
+		<rsp>5</rsp>
+		<ions>6/8</ions>
+		<count>0</count>
+		<tic>3254</tic>
+	</peptide>
+	<peptide>
+		<file>000, 872</file>
+		<sequence>R.MQTDTLEYQCDEKPLTVK.L</sequence>
+		<mass>2143.42</mass>
+		<deltamass>0.70</deltamass>
+		<charge>3</charge>
+		<peptide_probability>1.00</peptide_probability>
+		<xcorr>0.742</xcorr>
+		<deltacn>1.100</deltacn>
+		<sp>96.5</sp>
+		<rsp>37</rsp>
+		<ions>13/68</ions>
+		<count>0</count>
+		<tic>6904</tic>
+	</peptide>
+</protein>
+<protein>
+	<reference>gi|90111586|ref|NP_417860.2| Hsp33-like chaperonin [Escherichia coli K12]</reference>
+	<protein_probability>1.00</protein_probability>
+	<consensus_score>4.0</consensus_score>
+	<Sf>0.00</Sf>
+	<unified_score>0</unified_score>
+	<coverage>0.0</coverage>
+	<pI>0.0</pI>
+	<weight>32534.3</weight>
+	<accession>90111586</accession>
+	<peptide>
+		<file>000, 1103</file>
+		<sequence>-.MPQHDQLHR.Y</sequence>
+		<mass>1162.31</mass>
+		<deltamass>1.14</deltamass>
+		<charge>1</charge>
+		<peptide_probability>1.00</peptide_probability>
+		<xcorr>0.688</xcorr>
+		<deltacn>1.100</deltacn>
+		<sp>108.1</sp>
+		<rsp>4</rsp>
+		<ions>7/16</ions>
+		<count>0</count>
+		<tic>5765</tic>
+	</peptide>
+	<peptide>
+		<file>020, 2427</file>
+		<sequence>R.VQGEIPENADLKTLVGNGYVVITITPSEGER.Y</sequence>
+		<mass>3300.66</mass>
+		<deltamass>0.47</deltamass>
+		<charge>3</charge>
+		<peptide_probability>1.00</peptide_probability>
+		<xcorr>0.697</xcorr>
+		<deltacn>1.100</deltacn>
+		<sp>176.8</sp>
+		<rsp>8</rsp>
+		<ions>17/120</ions>
+		<count>0</count>
+		<tic>10256</tic>
+	</peptide>
+</protein>
+<protein>
+	<reference>gi|16130268|ref|NP_416836.1| putative fimbrial-like protein [Escherichia coli K12]</reference>
+	<protein_probability>1.00</protein_probability>
+	<consensus_score>4.0</consensus_score>
+	<Sf>0.00</Sf>
+	<unified_score>0</unified_score>
+	<coverage>0.0</coverage>
+	<pI>0.0</pI>
+	<weight>18951.4</weight>
+	<accession>16130268</accession>
+	<peptide>
+		<file>000, 1910</file>
+		<sequence>K.DCKGPAGYNVK.V</sequence>
+		<mass>1152.31</mass>
+		<deltamass>0.06</deltamass>
+		<charge>1</charge>
+		<peptide_probability>1.00</peptide_probability>
+		<xcorr>0.594</xcorr>
+		<deltacn>0.306</deltacn>
+		<sp>52.2</sp>
+		<rsp>31</rsp>
+		<ions>5/20</ions>
+		<count>0</count>
+		<tic>9830</tic>
+	</peptide>
+	<peptide>
+		<file>020, 714</file>
+		<sequence>K.GPAGYNVK.V</sequence>
+		<mass>805.90</mass>
+		<deltamass>0.16</deltamass>
+		<charge>1</charge>
+		<peptide_probability>1.00</peptide_probability>
+		<xcorr>0.686</xcorr>
+		<deltacn>1.100</deltacn>
+		<sp>78.6</sp>
+		<rsp>2</rsp>
+		<ions>7/14</ions>
+		<count>0</count>
+		<tic>3333</tic>
+	</peptide>
+	<peptide>
+		<file>020, 3380</file>
+		<sequence>K.DCKGPAGYNVK.V</sequence>
+		<mass>1152.31</mass>
+		<deltamass>0.54</deltamass>
+		<charge>3</charge>
+		<peptide_probability>1.00</peptide_probability>
+		<xcorr>0.551</xcorr>
+		<deltacn>1.100</deltacn>
+		<sp>207.5</sp>
+		<rsp>2</rsp>
+		<ions>11/40</ions>
+		<count>0</count>
+		<tic>4915</tic>
+	</peptide>
+</protein>
+<protein>
+	<reference>gi|16130699|ref|NP_417272.1| hypothetical protein b2792 [Escherichia coli K12]</reference>
+	<protein_probability>1.00</protein_probability>
+	<consensus_score>4.0</consensus_score>
+	<Sf>0.00</Sf>
+	<unified_score>0</unified_score>
+	<coverage>0.0</coverage>
+	<pI>0.0</pI>
+	<weight>12786.5</weight>
+	<accession>16130699</accession>
+	<peptide>
+		<file>020, 2506</file>
+		<sequence>R.MHDLLDNKQPLPGAFAVAPYYEMALATDHPQR.A</sequence>
+		<mass>3612.09</mass>
+		<deltamass>0.65</deltamass>
+		<charge>3</charge>
+		<peptide_probability>1.00</peptide_probability>
+		<xcorr>0.652</xcorr>
+		<deltacn>1.100</deltacn>
+		<sp>64.6</sp>
+		<rsp>21</rsp>
+		<ions>14/124</ions>
+		<count>0</count>
+		<tic>8641</tic>
+	</peptide>
+	<peptide>
+		<file>020, 3147</file>
+		<sequence>R.EHQHWR.N</sequence>
+		<mass>892.94</mass>
+		<deltamass>0.25</deltamass>
+		<charge>1</charge>
+		<peptide_probability>1.00</peptide_probability>
+		<xcorr>0.325</xcorr>
+		<deltacn>1.100</deltacn>
+		<sp>10.0</sp>
+		<rsp>58</rsp>
+		<ions>1/10</ions>
+		<count>0</count>
+		<tic>4107</tic>
+	</peptide>
+</protein>
+<protein>
+	<reference>gi|16131530|ref|NP_418116.1| putative membrane protein, transport [Escherichia coli K12]</reference>
+	<protein_probability>1.00</protein_probability>
+	<consensus_score>4.0</consensus_score>
+	<Sf>0.00</Sf>
+	<unified_score>0</unified_score>
+	<coverage>0.0</coverage>
+	<pI>0.0</pI>
+	<weight>33112.2</weight>
+	<accession>16131530</accession>
+	<peptide>
+		<file>000, 1634</file>
+		<sequence>R.KINRPARHK</sequence>
+		<mass>1120.34</mass>
+		<deltamass>0.36</deltamass>
+		<charge>1</charge>
+		<peptide_probability>1.00</peptide_probability>
+		<xcorr>0.595</xcorr>
+		<deltacn>1.100</deltacn>
+		<sp>149.2</sp>
+		<rsp>3</rsp>
+		<ions>6/16</ions>
+		<count>0</count>
+		<tic>6459</tic>
+	</peptide>
+	<peptide>
+		<file>000, 2384</file>
+		<sequence>K.IFSIINNHK.D</sequence>
+		<mass>1086.27</mass>
+		<deltamass>1.27</deltamass>
+		<charge>2</charge>
+		<peptide_probability>1.00</peptide_probability>
+		<xcorr>0.542</xcorr>
+		<deltacn>1.100</deltacn>
+		<sp>43.2</sp>
+		<rsp>39</rsp>
+		<ions>4/16</ions>
+		<count>0</count>
+		<tic>5091</tic>
+	</peptide>
+</protein>
+<protein>
+	<reference>gi|16128710|ref|NP_415263.1| hypothetical protein b0735 [Escherichia coli K12]</reference>
+	<protein_probability>1.00</protein_probability>
+	<consensus_score>4.0</consensus_score>
+	<Sf>0.00</Sf>
+	<unified_score>0</unified_score>
+	<coverage>0.0</coverage>
+	<pI>0.0</pI>
+	<weight>10932.3</weight>
+	<accession>16128710</accession>
+	<peptide>
+		<file>000, 74</file>
+		<sequence>R.FAAK.L</sequence>
+		<mass>436.53</mass>
+		<deltamass>1.14</deltamass>
+		<charge>1</charge>
+		<peptide_probability>1.00</peptide_probability>
+		<xcorr>0.185</xcorr>
+		<deltacn>0.042</deltacn>
+		<sp>28.6</sp>
+		<rsp>5</rsp>
+		<ions>3/6</ions>
+		<count>7</count>
+		<tic>0</tic>
+	</peptide>
+	<peptide>
+		<file>000, 3491</file>
+		<sequence>R.FAAK.L</sequence>
+		<mass>436.53</mass>
+		<deltamass>0.01</deltamass>
+		<charge>1</charge>
+		<peptide_probability>1.00</peptide_probability>
+		<xcorr>0.224</xcorr>
+		<deltacn>0.656</deltacn>
+		<sp>55.8</sp>
+		<rsp>1</rsp>
+		<ions>4/6</ions>
+		<count>7</count>
+		<tic>0</tic>
+	</peptide>
+	<peptide>
+		<file>000, 3502</file>
+		<sequence>R.FAAK.L</sequence>
+		<mass>436.53</mass>
+		<deltamass>0.52</deltamass>
+		<charge>1</charge>
+		<peptide_probability>1.00</peptide_probability>
+		<xcorr>0.411</xcorr>
+		<deltacn>0.133</deltacn>
+		<sp>53.0</sp>
+		<rsp>4</rsp>
+		<ions>4/6</ions>
+		<count>7</count>
+		<tic>0</tic>
+	</peptide>
+	<peptide>
+		<file>020, 3200</file>
+		<sequence>R.FAAK.L</sequence>
+		<mass>436.53</mass>
+		<deltamass>0.53</deltamass>
+		<charge>1</charge>
+		<peptide_probability>1.00</peptide_probability>
+		<xcorr>0.095</xcorr>
+		<deltacn>0.701</deltacn>
+		<sp>40.2</sp>
+		<rsp>3</rsp>
+		<ions>4/6</ions>
+		<count>7</count>
+		<tic>0</tic>
+	</peptide>
+</protein>
+<protein>
+	<reference>gi|16129146|ref|NP_415701.1| SOS mutagenesis; error-prone repair; processed to UmuD'; forms complex</reference>
+	<protein_probability>1.00</protein_probability>
+	<consensus_score>2.1</consensus_score>
+	<Sf>0.00</Sf>
+	<unified_score>0</unified_score>
+	<coverage>0.0</coverage>
+	<pI>0.0</pI>
+	<weight>15063.3</weight>
+	<accession>16129146</accession>
+	<peptide>
+		<file>000, 1102</file>
+		<sequence>-.MLFIKPADLR.E</sequence>
+		<mass>1204.51</mass>
+		<deltamass>0.97</deltamass>
+		<charge>1</charge>
+		<peptide_probability>1.00</peptide_probability>
+		<xcorr>1.144</xcorr>
+		<deltacn>0.021</deltacn>
+		<sp>57.7</sp>
+		<rsp>2</rsp>
+		<ions>8/18</ions>
+		<count>0</count>
+		<tic>3266</tic>
+	</peptide>
+	<peptide>
+		<file>020, 1215</file>
+		<sequence>-.MLFIKPADLR.E</sequence>
+		<mass>1204.51</mass>
+		<deltamass>0.80</deltamass>
+		<charge>2</charge>
+		<peptide_probability>1.00</peptide_probability>
+		<xcorr>0.829</xcorr>
+		<deltacn>1.100</deltacn>
+		<sp>210.7</sp>
+		<rsp>9</rsp>
+		<ions>7/18</ions>
+		<count>0</count>
+		<tic>10005</tic>
+	</peptide>
+</protein>
+<protein>
+	<reference>gi|16128957|ref|NP_415511.1| suppresses fabA and ts growth mutation [Escherichia coli K12]</reference>
+	<protein_probability>1.00</protein_probability>
+	<consensus_score>2.0</consensus_score>
+	<Sf>0.00</Sf>
+	<unified_score>0</unified_score>
+	<coverage>0.0</coverage>
+	<pI>0.0</pI>
+	<weight>8727.1</weight>
+	<accession>16128957</accession>
+	<peptide>
+		<file>000, 2164</file>
+		<sequence>R.WISQNNIR.L</sequence>
+		<mass>1031.15</mass>
+		<deltamass>0.68</deltamass>
+		<charge>2</charge>
+		<peptide_probability>1.00</peptide_probability>
+		<xcorr>0.668</xcorr>
+		<deltacn>0.255</deltacn>
+		<sp>163.6</sp>
+		<rsp>2</rsp>
+		<ions>7/14</ions>
+		<count>0</count>
+		<tic>5402</tic>
+	</peptide>
+	<peptide>
+		<file>000, 736</file>
+		<sequence>R.WISQNNIR.L</sequence>
+		<mass>1031.15</mass>
+		<deltamass>0.27</deltamass>
+		<charge>1</charge>
+		<peptide_probability>1.00</peptide_probability>
+		<xcorr>0.975</xcorr>
+		<deltacn>1.100</deltacn>
+		<sp>113.0</sp>
+		<rsp>6</rsp>
+		<ions>9/14</ions>
+		<count>0</count>
+		<tic>3806</tic>
+	</peptide>
+</protein>
+<protein>
+	<reference>gi|16129488|ref|NP_416046.1| multiple antibiotic resistance protein [Escherichia coli K12]</reference>
+	<protein_probability>1.00</protein_probability>
+	<consensus_score>2.0</consensus_score>
+	<Sf>0.00</Sf>
+	<unified_score>0</unified_score>
+	<coverage>0.0</coverage>
+	<pI>0.0</pI>
+	<weight>23617.1</weight>
+	<accession>16129488</accession>
+	<peptide>
+		<file>000, 3323</file>
+		<sequence>R.LVGKGGIEAISR.L</sequence>
+		<mass>1200.41</mass>
+		<deltamass>0.67</deltamass>
+		<charge>3</charge>
+		<peptide_probability>1.00</peptide_probability>
+		<xcorr>0.942</xcorr>
+		<deltacn>0.093</deltacn>
+		<sp>239.8</sp>
+		<rsp>10</rsp>
+		<ions>12/44</ions>
+		<count>0</count>
+		<tic>5576</tic>
+	</peptide>
+	<peptide>
+		<file>020, 2014</file>
+		<sequence>R.LVGKGGIEAISR.L</sequence>
+		<mass>1200.41</mass>
+		<deltamass>0.03</deltamass>
+		<charge>3</charge>
+		<peptide_probability>1.00</peptide_probability>
+		<xcorr>0.842</xcorr>
+		<deltacn>1.100</deltacn>
+		<sp>134.7</sp>
+		<rsp>5</rsp>
+		<ions>9/44</ions>
+		<count>0</count>
+		<tic>4541</tic>
+	</peptide>
+</protein>
+<protein>
+	<reference>gi|49176253|ref|YP_026176.1| CP4-57 prophage [Escherichia coli K12]</reference>
+	<protein_probability>1.00</protein_probability>
+	<consensus_score>2.0</consensus_score>
+	<Sf>0.00</Sf>
+	<unified_score>0</unified_score>
+	<coverage>0.0</coverage>
+	<pI>0.0</pI>
+	<weight>7035.3</weight>
+	<accession>49176253</accession>
+	<peptide>
+		<file>000, 2830</file>
+		<sequence>R.VIPATY</sequence>
+		<mass>663.78</mass>
+		<deltamass>1.22</deltamass>
+		<charge>1</charge>
+		<peptide_probability>1.00</peptide_probability>
+		<xcorr>0.650</xcorr>
+		<deltacn>0.524</deltacn>
+		<sp>91.3</sp>
+		<rsp>1</rsp>
+		<ions>5/10</ions>
+		<count>0</count>
+		<tic>2778</tic>
+	</peptide>
+	<peptide>
+		<file>000, 3070</file>
+		<sequence>R.VIPATY</sequence>
+		<mass>663.78</mass>
+		<deltamass>0.98</deltamass>
+		<charge>1</charge>
+		<peptide_probability>1.00</peptide_probability>
+		<xcorr>0.691</xcorr>
+		<deltacn>0.002</deltacn>
+		<sp>96.2</sp>
+		<rsp>1</rsp>
+		<ions>6/10</ions>
+		<count>0</count>
+		<tic>2476</tic>
+	</peptide>
+	<peptide>
+		<file>000, 3074</file>
+		<sequence>R.VIPATY</sequence>
+		<mass>663.78</mass>
+		<deltamass>0.16</deltamass>
+		<charge>1</charge>
+		<peptide_probability>1.00</peptide_probability>
+		<xcorr>0.633</xcorr>
+		<deltacn>0.115</deltacn>
+		<sp>58.7</sp>
+		<rsp>2</rsp>
+		<ions>4/10</ions>
+		<count>0</count>
+		<tic>2669</tic>
+	</peptide>
+	<peptide>
+		<file>020, 2632</file>
+		<sequence>R.VIPATY</sequence>
+		<mass>663.78</mass>
+		<deltamass>0.75</deltamass>
+		<charge>1</charge>
+		<peptide_probability>1.00</peptide_probability>
+		<xcorr>0.655</xcorr>
+		<deltacn>0.138</deltacn>
+		<sp>67.6</sp>
+		<rsp>2</rsp>
+		<ions>5/10</ions>
+		<count>0</count>
+		<tic>2249</tic>
+	</peptide>
+	<peptide>
+		<file>020, 2984</file>
+		<sequence>R.VIPATY</sequence>
+		<mass>663.78</mass>
+		<deltamass>0.88</deltamass>
+		<charge>1</charge>
+		<peptide_probability>1.00</peptide_probability>
+		<xcorr>0.820</xcorr>
+		<deltacn>0.052</deltacn>
+		<sp>112.8</sp>
+		<rsp>1</rsp>
+		<ions>5/10</ions>
+		<count>0</count>
+		<tic>4196</tic>
+	</peptide>
+	<peptide>
+		<file>000, 2487</file>
+		<sequence>R.VIPATY</sequence>
+		<mass>663.78</mass>
+		<deltamass>0.19</deltamass>
+		<charge>1</charge>
+		<peptide_probability>1.00</peptide_probability>
+		<xcorr>0.389</xcorr>
+		<deltacn>0.385</deltacn>
+		<sp>61.1</sp>
+		<rsp>1</rsp>
+		<ions>4/10</ions>
+		<count>0</count>
+		<tic>2713</tic>
+	</peptide>
+	<peptide>
+		<file>000, 2715</file>
+		<sequence>R.VIPATY</sequence>
+		<mass>663.78</mass>
+		<deltamass>0.79</deltamass>
+		<charge>1</charge>
+		<peptide_probability>1.00</peptide_probability>
+		<xcorr>0.426</xcorr>
+		<deltacn>0.195</deltacn>
+		<sp>36.7</sp>
+		<rsp>5</rsp>
+		<ions>4/10</ions>
+		<count>0</count>
+		<tic>2010</tic>
+	</peptide>
+	<peptide>
+		<file>000, 2834</file>
+		<sequence>R.VIPATY</sequence>
+		<mass>663.78</mass>
+		<deltamass>1.11</deltamass>
+		<charge>1</charge>
+		<peptide_probability>1.00</peptide_probability>
+		<xcorr>0.340</xcorr>
+		<deltacn>0.213</deltacn>
+		<sp>48.8</sp>
+		<rsp>6</rsp>
+		<ions>3/10</ions>
+		<count>0</count>
+		<tic>2673</tic>
+	</peptide>
+	<peptide>
+		<file>000, 2847</file>
+		<sequence>R.VIPATY</sequence>
+		<mass>663.78</mass>
+		<deltamass>0.93</deltamass>
+		<charge>1</charge>
+		<peptide_probability>1.00</peptide_probability>
+		<xcorr>0.707</xcorr>
+		<deltacn>0.161</deltacn>
+		<sp>37.4</sp>
+		<rsp>4</rsp>
+		<ions>4/10</ions>
+		<count>0</count>
+		<tic>1818</tic>
+	</peptide>
+	<peptide>
+		<file>000, 2886</file>
+		<sequence>R.VIPATY</sequence>
+		<mass>663.78</mass>
+		<deltamass>0.80</deltamass>
+		<charge>1</charge>
+		<peptide_probability>1.00</peptide_probability>
+		<xcorr>0.577</xcorr>
+		<deltacn>0.418</deltacn>
+		<sp>28.6</sp>
+		<rsp>6</rsp>
+		<ions>3/10</ions>
+		<count>0</count>
+		<tic>1964</tic>
+	</peptide>
+	<peptide>
+		<file>000, 2982</file>
+		<sequence>R.VIPATY</sequence>
+		<mass>663.78</mass>
+		<deltamass>1.29</deltamass>
+		<charge>1</charge>
+		<peptide_probability>1.00</peptide_probability>
+		<xcorr>0.466</xcorr>
+		<deltacn>0.285</deltacn>
+		<sp>45.2</sp>
+		<rsp>7</rsp>
+		<ions>3/10</ions>
+		<count>0</count>
+		<tic>2804</tic>
+	</peptide>
+	<peptide>
+		<file>020, 2966</file>
+		<sequence>R.VIPATY</sequence>
+		<mass>663.78</mass>
+		<deltamass>0.93</deltamass>
+		<charge>1</charge>
+		<peptide_probability>1.00</peptide_probability>
+		<xcorr>0.668</xcorr>
+		<deltacn>0.040</deltacn>
+		<sp>154.9</sp>
+		<rsp>2</rsp>
+		<ions>6/10</ions>
+		<count>0</count>
+		<tic>4342</tic>
+	</peptide>
+	<peptide>
+		<file>000, 2651</file>
+		<sequence>R.VIPATY</sequence>
+		<mass>663.78</mass>
+		<deltamass>1.12</deltamass>
+		<charge>1</charge>
+		<peptide_probability>1.00</peptide_probability>
+		<xcorr>0.743</xcorr>
+		<deltacn>0.270</deltacn>
+		<sp>56.5</sp>
+		<rsp>1</rsp>
+		<ions>5/10</ions>
+		<count>0</count>
+		<tic>2269</tic>
+	</peptide>
+	<peptide>
+		<file>000, 2376</file>
+		<sequence>R.VIPATY</sequence>
+		<mass>663.78</mass>
+		<deltamass>0.47</deltamass>
+		<charge>1</charge>
+		<peptide_probability>1.00</peptide_probability>
+		<xcorr>0.521</xcorr>
+		<deltacn>1.100</deltacn>
+		<sp>86.5</sp>
+		<rsp>1</rsp>
+		<ions>5/10</ions>
+		<count>0</count>
+		<tic>3070</tic>
+	</peptide>
+</protein>
+</sequestresults>

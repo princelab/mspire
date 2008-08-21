@@ -1,0 +1,243 @@
+<?xml version="1.0" encoding="iso-8859-1"?>
+<!DOCTYPE html 
+     PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+     "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+<head>
+  <title>Class: SpecID::Precision::Filter::Interactive</title>
+  <meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1" />
+  <meta http-equiv="Content-Script-Type" content="text/javascript" />
+  <link rel="stylesheet" href="../../../.././rdoc-style.css" type="text/css" media="screen" />
+  <script type="text/javascript">
+  // <![CDATA[
+
+  function popupCode( url ) {
+    window.open(url, "Code", "resizable=yes,scrollbars=yes,toolbar=no,status=no,height=150,width=400")
+  }
+
+  function toggleCode( id ) {
+    if ( document.getElementById )
+      elem = document.getElementById( id );
+    else if ( document.all )
+      elem = eval( "document.all." + id );
+    else
+      return false;
+
+    elemStyle = elem.style;
+    
+    if ( elemStyle.display != "block" ) {
+      elemStyle.display = "block"
+    } else {
+      elemStyle.display = "none"
+    }
+
+    return true;
+  }
+  
+  // Make codeblocks hidden by default
+  document.writeln( "<style type=\"text/css\">div.method-source-code { display: none }</style>" )
+  
+  // ]]>
+  </script>
+
+</head>
+<body>
+
+
+
+    <div id="classHeader">
+        <table class="header-table">
+        <tr class="top-aligned-row">
+          <td><strong>Class</strong></td>
+          <td class="class-name-in-header">SpecID::Precision::Filter::Interactive</td>
+        </tr>
+        <tr class="top-aligned-row">
+            <td><strong>In:</strong></td>
+            <td>
+                <a href="../../../../files/lib/spec_id/precision/filter/interactive_rb.html">
+                lib/spec_id/precision/filter/interactive.rb
+                </a>
+        <br />
+            </td>
+        </tr>
+
+        <tr class="top-aligned-row">
+            <td><strong>Parent:</strong></td>
+            <td>
+                Object
+            </td>
+        </tr>
+        </table>
+    </div>
+  <!-- banner header -->
+
+  <div id="bodyContent">
+
+
+
+  <div id="contextContent">
+
+
+
+   </div>
+
+    <div id="method-list">
+      <h3 class="section-bar">Methods</h3>
+
+      <div class="name-list">
+      <a href="#M000352">filter_args</a>&nbsp;&nbsp;
+      <a href="#M000354">interactive_help</a>&nbsp;&nbsp;
+      <a href="#M000350">new</a>&nbsp;&nbsp;
+      <a href="#M000353">out</a>&nbsp;&nbsp;
+      <a href="#M000351">passing</a>&nbsp;&nbsp;
+      <a href="#M000355">prep_reply</a>&nbsp;&nbsp;
+      </div>
+    </div>
+
+  </div>
+
+
+    <!-- if includes -->
+
+    <div id="section">
+
+
+
+
+
+    <div id="attribute-list">
+      <h3 class="section-bar">Attributes</h3>
+
+      <div class="name-list">
+        <table>
+        <tr class="top-aligned-row context-row">
+          <td class="context-item-name">file</td>
+          <td class="context-item-value">&nbsp;[RW]&nbsp;</td>
+          <td class="context-item-desc"></td>
+        </tr>
+        <tr class="top-aligned-row context-row">
+          <td class="context-item-name">verbose</td>
+          <td class="context-item-value">&nbsp;[RW]&nbsp;</td>
+          <td class="context-item-desc"></td>
+        </tr>
+        </table>
+      </div>
+    </div>
+      
+
+
+    <!-- if method_list -->
+    <div id="methods">
+      <h3 class="section-bar">Public Class methods</h3>
+
+      <div id="method-M000350" class="method-detail">
+        <a name="M000350"></a>
+
+        <div class="method-heading">
+          <a href="Interactive.src/M000350.html" target="Code" class="method-signature"
+            onclick="popupCode('Interactive.src/M000350.html');return false;">
+          <span class="method-name">new</span><span class="method-args">(file=nil, verbose=false)</span>
+          </a>
+        </div>
+      
+        <div class="method-description">
+          <p>
+the file contains the interactive commands
+</p>
+        </div>
+      </div>
+
+      <h3 class="section-bar">Public Instance methods</h3>
+
+      <div id="method-M000352" class="method-detail">
+        <a name="M000352"></a>
+
+        <div class="method-heading">
+          <a href="Interactive.src/M000352.html" target="Code" class="method-signature"
+            onclick="popupCode('Interactive.src/M000352.html');return false;">
+          <span class="method-name">filter_args</span><span class="method-args">(opts_to_change, changing_keys, shortcut_map, casting_map)</span>
+          </a>
+        </div>
+      
+        <div class="method-description">
+          <p>
+takes opts and modifies the keys in question, or returns nil shortcut map
+takes each proper key and designates a shortcut (if any)
+</p>
+        </div>
+      </div>
+
+      <div id="method-M000354" class="method-detail">
+        <a name="M000354"></a>
+
+        <div class="method-heading">
+          <a href="Interactive.src/M000354.html" target="Code" class="method-signature"
+            onclick="popupCode('Interactive.src/M000354.html');return false;">
+          <span class="method-name">interactive_help</span><span class="method-args">(changing_keys, shortcut_map)</span>
+          </a>
+        </div>
+      
+        <div class="method-description">
+        </div>
+      </div>
+
+      <div id="method-M000353" class="method-detail">
+        <a name="M000353"></a>
+
+        <div class="method-heading">
+          <a href="Interactive.src/M000353.html" target="Code" class="method-signature"
+            onclick="popupCode('Interactive.src/M000353.html');return false;">
+          <span class="method-name">out</span><span class="method-args">(string)</span>
+          </a>
+        </div>
+      
+        <div class="method-description">
+        </div>
+      </div>
+
+      <div id="method-M000351" class="method-detail">
+        <a name="M000351"></a>
+
+        <div class="method-heading">
+          <a href="Interactive.src/M000351.html" target="Code" class="method-signature"
+            onclick="popupCode('Interactive.src/M000351.html');return false;">
+          <span class="method-name">passing</span><span class="method-args">(opts, answer)</span>
+          </a>
+        </div>
+      
+        <div class="method-description">
+        </div>
+      </div>
+
+      <div id="method-M000355" class="method-detail">
+        <a name="M000355"></a>
+
+        <div class="method-heading">
+          <a href="Interactive.src/M000355.html" target="Code" class="method-signature"
+            onclick="popupCode('Interactive.src/M000355.html');return false;">
+          <span class="method-name">prep_reply</span><span class="method-args">(reply, base, shortcut_order, casting_array)</span>
+          </a>
+        </div>
+      
+        <div class="method-description">
+          <p>
+assumes its already chomped updates the 5 globals returns nil if
+&#8216;q&#8216;
+</p>
+        </div>
+      </div>
+
+
+    </div>
+
+
+  </div>
+
+
+<div id="validator-badges">
+  <p><small><a href="http://validator.w3.org/check/referer">[Validate]</a></small></p>
+</div>
+
+</body>
+</html>

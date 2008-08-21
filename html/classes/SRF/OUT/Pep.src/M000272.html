@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="iso-8859-1"?>
+<!DOCTYPE html 
+     PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+     "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html>
+<head>
+  <title>from_handle (SRF::OUT::Pep)</title>
+  <meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1" />
+  <link rel="stylesheet" href="../../../.././rdoc-style.css" type="text/css" media="screen" />
+</head>
+<body class="standalone-code">
+  <pre><span class="ruby-comment cmt"># File lib/spec_id/srf.rb, line 827</span>
+  <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">from_handle</span>(<span class="ruby-identifier">fh</span>, <span class="ruby-identifier">global_ref_hash</span>, <span class="ruby-identifier">unpack_35</span>)
+    <span class="ruby-identifier">unpack</span> = 
+      <span class="ruby-keyword kw">if</span> <span class="ruby-identifier">unpack_35</span> ; <span class="ruby-constant">Unpack_35</span>
+      <span class="ruby-keyword kw">else</span> ; <span class="ruby-constant">Unpack_32</span>
+      <span class="ruby-keyword kw">end</span>
+
+    <span class="ruby-comment cmt">## get the first part of the info</span>
+    <span class="ruby-identifier">st</span> = <span class="ruby-identifier">fh</span>.<span class="ruby-identifier">read</span>(( <span class="ruby-identifier">unpack_35</span> <span class="ruby-value">? </span><span class="ruby-constant">Read_35</span> <span class="ruby-operator">:</span> <span class="ruby-constant">Read_32</span>) ) <span class="ruby-comment cmt">## read all the hit data</span>
+
+    <span class="ruby-keyword kw">self</span>[<span class="ruby-value">0</span>,<span class="ruby-value">10</span>] = <span class="ruby-identifier">st</span>.<span class="ruby-identifier">unpack</span>(<span class="ruby-identifier">unpack</span>)
+
+    <span class="ruby-comment cmt"># set deltacn_orig_updated </span>
+    <span class="ruby-keyword kw">self</span>[<span class="ruby-value">20</span>] = <span class="ruby-keyword kw">self</span>[<span class="ruby-value">1</span>]
+
+    <span class="ruby-comment cmt"># we are slicing the reference to 38 chars to be the same length as</span>
+    <span class="ruby-comment cmt"># duplicate references</span>
+    <span class="ruby-keyword kw">self</span>[<span class="ruby-value">10</span>] = [<span class="ruby-identifier">new_protein</span>(<span class="ruby-keyword kw">self</span>[<span class="ruby-value">10</span>][<span class="ruby-value">0</span>,<span class="ruby-value">38</span>], <span class="ruby-keyword kw">self</span>, <span class="ruby-identifier">global_ref_hash</span>)]
+    
+    <span class="ruby-keyword kw">self</span>[<span class="ruby-value">13</span>] = <span class="ruby-constant">SpecID</span><span class="ruby-operator">::</span><span class="ruby-constant">Pep</span>.<span class="ruby-identifier">sequence_to_aaseq</span>(<span class="ruby-keyword kw">self</span>[<span class="ruby-value">9</span>])
+
+    <span class="ruby-identifier">fh</span>.<span class="ruby-identifier">read</span>(<span class="ruby-value">6</span>) <span class="ruby-keyword kw">if</span> <span class="ruby-identifier">unpack_35</span>
+
+    <span class="ruby-keyword kw">self</span>
+  <span class="ruby-keyword kw">end</span></pre>
+</body>
+</html>

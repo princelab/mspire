@@ -1,0 +1,187 @@
+--- 
+- time_to_access: 0.031883
+  scan_count: 5723
+  file_size: 59717646
+  scans_to_read: all
+  total_time_to_read_and_access: 68.458966
+  time_to_read: 68.427061
+  lazy_type: :not
+  end_time: 12298.22
+  start_time: 300.07
+  file: 43.mzXML
+--- 
+- time_to_access: 0.031643
+  scan_count: 5557
+  file_size: 62304078
+  scans_to_read: all
+  total_time_to_read_and_access: 82.890689
+  time_to_read: 82.859024
+  lazy_type: :not
+  end_time: 12298.39
+  start_time: 300.07
+  file: 54.mzXML
+--- 
+- time_to_access: 0.032305
+  scan_count: 5643
+  file_size: 60092329
+  scans_to_read: all
+  total_time_to_read_and_access: 80.286063
+  time_to_read: 80.253734
+  lazy_type: :not
+  end_time: 12298.8
+  start_time: 300.1
+  file: 48.mzXML
+--- 
+- time_to_access: 0.035384
+  scan_count: 6133
+  file_size: 53310923
+  scans_to_read: all
+  total_time_to_read_and_access: 70.311205
+  time_to_read: 70.275796
+  lazy_type: :not
+  end_time: 12298.87
+  start_time: 300.09
+  file: 39.mzXML
+--- 
+- time_to_access: 0.033832
+  scan_count: 5869
+  file_size: 57146580
+  scans_to_read: all
+  total_time_to_read_and_access: 73.782329
+  time_to_read: 73.748474
+  lazy_type: :not
+  end_time: 12298.21
+  start_time: 300.09
+  file: 40.mzXML
+--- 
+- time_to_access: 0.034816
+  scan_count: 6008
+  file_size: 52684495
+  scans_to_read: all
+  total_time_to_read_and_access: 69.294983
+  time_to_read: 69.260144
+  lazy_type: :not
+  end_time: 12297.57
+  start_time: 300.1
+  file: 49.mzXML
+--- 
+- time_to_access: 0.036506
+  scan_count: 5926
+  file_size: 54950793
+  scans_to_read: all
+  total_time_to_read_and_access: 70.547482
+  time_to_read: 70.510955
+  lazy_type: :not
+  end_time: 12299.3
+  start_time: 300.08
+  file: 41.mzXML
+--- 
+- time_to_access: 0.032788
+  scan_count: 5728
+  file_size: 58845902
+  scans_to_read: all
+  total_time_to_read_and_access: 77.491461
+  time_to_read: 77.458651
+  lazy_type: :not
+  end_time: 12298.68
+  start_time: 300.1
+  file: 38.mzXML
+--- 
+- time_to_access: 0.033474
+  scan_count: 5869
+  file_size: 59052323
+  scans_to_read: all
+  total_time_to_read_and_access: 77.976828
+  time_to_read: 77.943331
+  lazy_type: :not
+  end_time: 12297.81
+  start_time: 300.1
+  file: 42.mzXML
+--- 
+- time_to_access: 0.033779
+  scan_count: 5863
+  file_size: 54849017
+  scans_to_read: all
+  total_time_to_read_and_access: 71.183557
+  time_to_read: 71.149755
+  lazy_type: :not
+  end_time: 12299.7199
+  start_time: 300.07
+  file: 52.mzXML
+--- 
+- time_to_access: 0.032394
+  scan_count: 5651
+  file_size: 61873798
+  scans_to_read: all
+  total_time_to_read_and_access: 82.347564
+  time_to_read: 82.315147
+  lazy_type: :not
+  end_time: 12299.71
+  start_time: 300.06
+  file: 50.mzXML
+--- 
+- time_to_access: 0.033874
+  scan_count: 5851
+  file_size: 52327327
+  scans_to_read: all
+  total_time_to_read_and_access: 67.617429
+  time_to_read: 67.583534
+  lazy_type: :not
+  end_time: 12297.67
+  start_time: 300.1
+  file: 47.mzXML
+--- 
+- time_to_access: 0.033961
+  scan_count: 5937
+  file_size: 55703945
+  scans_to_read: all
+  total_time_to_read_and_access: 72.515389
+  time_to_read: 72.481405
+  lazy_type: :not
+  end_time: 12299.87
+  start_time: 300.08
+  file: 44.mzXML
+--- 
+- time_to_access: 0.033745
+  scan_count: 5860
+  file_size: 54080683
+  scans_to_read: all
+  total_time_to_read_and_access: 70.424293
+  time_to_read: 70.390525
+  lazy_type: :not
+  end_time: 12298.5899
+  start_time: 300.1
+  file: 46.mzXML
+--- 
+- time_to_access: 0.033983
+  scan_count: 5908
+  file_size: 54540359
+  scans_to_read: all
+  total_time_to_read_and_access: 70.19321
+  time_to_read: 70.159205
+  lazy_type: :not
+  end_time: 12298.48
+  start_time: 300.08
+  file: 51.mzXML
+--- 
+- time_to_access: 0.034219
+  scan_count: 6032
+  file_size: 54396904
+  scans_to_read: all
+  total_time_to_read_and_access: 70.394084
+  time_to_read: 70.359843
+  lazy_type: :not
+  end_time: 12299.17
+  start_time: 300.07
+  file: 37.mzXML
+--- 
+- time_to_access: 0.032438
+  scan_count: 5635
+  file_size: 59726368
+  scans_to_read: all
+  total_time_to_read_and_access: 77.216994
+  time_to_read: 77.184536
+  lazy_type: :not
+  end_time: 12299.56
+  start_time: 300.06
+  file: 53.mzXML

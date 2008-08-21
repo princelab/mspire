@@ -1,0 +1,11 @@
+--- 
+- time_to_access: 59.711851
+  scan_count: 5049
+  file_size: 33526234
+  scans_to_read: all
+  total_time_to_read_and_access: 65.418842
+  time_to_read: 5.706966
+  lazy_type: :io_bad
+  end_time: 10799.9
+  start_time: 300.1099
+  file: glypep_huimethod_2ul.mzXML

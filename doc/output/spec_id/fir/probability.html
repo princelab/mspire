@@ -1,0 +1,97 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.1//EN" "http://www.w3.org/TR/xhtml11/DTD/xhtml11.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en">
+  <head>
+    <title>Probability</title>
+    <link href="../../default.css" rel="stylesheet" />
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+  </head>
+  <body>
+    <div id="logo">
+        <a href=../../index.html><img src=../../images/mspire_logo.png border="0" alt="mspire - mass spectrometry proteomics in ruby"/></a>
+  </div>
+    <div id="header">
+      <h1>Probability</h1>
+    </div>
+
+    <div id="headerbar" class="bar">
+        <!-- <span class="left">Location: <a href="../../index.html" title="mspire">mspire</a> / <a href="../index.html" title="SpecID">SpecID</a> / <a href="./index.html" title="FIR">FIR</a> / <a href="./probability.html" title="Probability">Probability</a></span> -->
+      <!--<span class="right">Language: <a href="./probability.html" title="en">en</a></span>-->
+      <div style="clear:both"></div>
+    </div>
+
+    <div id="menu">
+        <div class="webgen-menu-vert "><ul><li ><a href="../../index.html" title="Home">Home</a></li><li class="webgen-menu-submenu"><a href="../../install/index.html" title="Install">Install</a></li><li class="webgen-menu-submenu"><a href="../../ms/index.html" title="MS">MS</a></li><li class="webgen-menu-submenu webgen-menu-submenu-inhierarchy"><a href="../index.html" title="SpecID">SpecID</a><ul><li ><a href="../srf.html" title="SRF">SRF</a></li><li ><a href="../spec_id.html" title="SpecID">SpecID</a></li><li class="webgen-menu-submenu webgen-menu-submenu-inhierarchy"><a href="./index.html" title="FIR">FIR</a><ul><li ><a href="./filtering.html" title="Filtering">Filtering</a></li><li class="webgen-menu-item-selected"><a href="./probability.html" title="Probability">Probability</a></li></ul></li></ul></li><li class="webgen-menu-submenu"><a href="../../tutorial/index.html" title="Tutorials">Tutorials</a></li></ul></div>
+        <a style="font-size:130%; padding-left:20px" href="rdoc/index.html">rdoc</a>
+        <br/>
+        <a style="font-size:85%; padding-left:20px" href="http://rubyforge.org/projects/mspire/">Rubyforge Project Page</a>
+        <br/>
+        <br/>
+        <br/>
+        <br/>
+        <a href="http://www.ruby-lang.org/en/"><img style="padding-left:20px" src=../../images/ruby_logo_small.png border="0" alt="Ruby Programming Language"/></a>
+    </div>
+
+    <div id="body">
+      <h2>False Identification Rates with Probabilistic IDs</h2>
+
+<p>mspire can be used to determine false identification rates for peptides hits associated with a probability of being correct.  Here is the basic usage (following are more detailed examples):</p>
+
+<pre><code>require 'spec_id/precision/prob'
+
+spec_id = SpecID.new("peptide_prophet.xml")  # a peptide prophet output file
+options = {
+  :validators =&gt; [val1, val2],
+}
+answer = SpecID::Precision::Prob.new.precision_vs_num_hits(spec_id, options)
+out[:count]             # the number of peptides 
+out[:pephits]           # parallel array of each peptide hit
+
+out[:pephits_precision] # =&gt; parallel to the :validators array in options
+out[:pephits_precision].each do |precision_ar|
+  # each precision_ar is a parallel to :count and :pephits
+  out[:count].zip(precision_ar) do |num, precision|
+    ## num, precision
+  end
+end
+
+# Then one can plot the pephits_precision vs. the count as an x,y series
+(see http://rgplot.rubyforge.org/ for simple plotting from ruby)
+</code></pre>
+
+<p>Different validation methods are available.  This example assumes that a concatenated decoy database search was performed and the results searched by Peptide Prophet (with no explicit -d flags used, i.e., PeptideProphet has no knowledge that some of the hits are bad)</p>
+
+<pre><code>prob_val = Validator::Probability.new
+decoy_val = Validator:: Decoy.new(:constaint =&gt; /^DECOY_/, :decoy_to_target_ratio =&gt; 1.0)
+
+options = {
+  :validators =&gt; [prob_val, decoy_val]
+}
+answer = SpecID::Precision::Prob.new.precision_vs_num_hits(spec_id, options)
+</code></pre>
+
+<p>The precision is calculated as <code>SUM(1-x)/n</code> where x is the probability of a hit
+being correct and n is the number of hits.</p>
+
+<p>When decoy hits are present, mspire adjusts the calculated precision based on
+the probability: <code>(1+R)*prec / (R*precision +1)</code> where R is the decoy_to_target
+ratio used in the decoy validator (R = 0.0 if no decoy validator).  How the
+decoy probability is determined is explained <a href="filtering.html">here</a> under the
+concatenated DB search section.</p>
+
+<h2>Commandline Interface</h2>
+
+<p>This will run the above analysis on a peptide prophet file and output the results in YAML format:</p>
+
+<pre><code>prob_validate.rb peptide_prophet.xml --decoy /^DECOY_/ --prob \
+    --output yaml:output.yml
+</code></pre>
+
+<p>Type <code>prob_validate.rb</code> for more options.</p>
+    </div>
+
+    <div id="footer" class="bar">
+      Last update: <i>Monday, August 18 10:50:22 MDT 2008</i>
+    </div>
+  </body>
+</html>

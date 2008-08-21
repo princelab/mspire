@@ -1,0 +1,810 @@
+--- 
+- time_to_access: 0.001458
+  first_scan: 
+    last_peak: 
+    - 1499.50341796875
+    - 6222.0
+    num: 1
+    first_peak: 
+    - 401.259338378906
+    - 1506.0
+  scan_count: 4462
+  file_size: 29761104
+  last_scan: 
+    last_peak: 
+    - 1042.19384765625
+    - 3353.0
+    num: 4462
+    first_peak: 
+    - 226.743011474609
+    - 28547.0
+  scans_to_read: fl
+  total_time_to_read_and_access: 1.726824
+  time_to_read: 1.725351
+  lazy_type: :io_good
+  end_time: 8038.98
+  start_time: 300.07
+  file: HUH7_s100_d2.mzXML
+--- 
+- time_to_access: 0.027406
+  first_scan: 
+    last_peak: 
+    - 1790.94750976562
+    - 1443.0
+    num: 1
+    first_peak: 
+    - 404.4560546875
+    - 6075.0
+  scan_count: 4692
+  file_size: 50873717
+  last_scan: 
+    last_peak: 
+    - 1799.32104492188
+    - 348647.0
+    num: 4692
+    first_peak: 
+    - 400.401794433594
+    - 184072.0
+  scans_to_read: fl
+  total_time_to_read_and_access: 2.251944
+  time_to_read: 2.224523
+  lazy_type: :io_good
+  end_time: 8039.02
+  start_time: 300.1
+  file: HUH7_s100_a1.mzXML
+--- 
+- time_to_access: 0.030565
+  first_scan: 
+    last_peak: 
+    - 1799.84814453125
+    - 1710.0
+    num: 1
+    first_peak: 
+    - 405.572387695312
+    - 1759.0
+  scan_count: 4508
+  file_size: 31763207
+  last_scan: 
+    last_peak: 
+    - 1798.9228515625
+    - 102619.0
+    num: 4508
+    first_peak: 
+    - 400.460998535156
+    - 31384.0
+  scans_to_read: fl
+  total_time_to_read_and_access: 1.764523
+  time_to_read: 1.733943
+  lazy_type: :io_good
+  end_time: 8039.33
+  start_time: 300.04
+  file: HUH7_s100_b1.mzXML
+--- 
+- time_to_access: 0.013811
+  first_scan: 
+    last_peak: 
+    - 1795.55688476562
+    - 4667.0
+    num: 1
+    first_peak: 
+    - 413.339477539062
+    - 3819.0
+  scan_count: 4760
+  file_size: 33804234
+  last_scan: 
+    last_peak: 
+    - 1666.3408203125
+    - 1910.0
+    num: 4760
+    first_peak: 
+    - 277.499755859375
+    - 2792.0
+  scans_to_read: fl
+  total_time_to_read_and_access: 1.918874
+  time_to_read: 1.905047
+  lazy_type: :io_good
+  end_time: 8045.6
+  start_time: 300.02
+  file: HUH7_s100_c1.mzXML
+--- 
+- time_to_access: 0.001175
+  first_scan: 
+    last_peak: 
+    - 1023.3818359375
+    - 2705.0
+    num: 1
+    first_peak: 
+    - 1023.3818359375
+    - 2705.0
+  scan_count: 4571
+  file_size: 25425810
+  last_scan: 
+    last_peak: 
+    - 1704.33471679688
+    - 17597.0
+    num: 4571
+    first_peak: 
+    - 294.931274414062
+    - 5933.0
+  scans_to_read: fl
+  total_time_to_read_and_access: 1.806188
+  time_to_read: 1.804998
+  lazy_type: :io_good
+  end_time: 8038.73
+  start_time: 300.07
+  file: HUH7_s100_c2.mzXML
+--- 
+- time_to_access: 0.002354
+  first_scan: 
+    last_peak: 
+    - 1789.31884765625
+    - 4816.0
+    num: 1
+    first_peak: 
+    - 419.057922363281
+    - 2709.0
+  scan_count: 4695
+  file_size: 32766322
+  last_scan: 
+    last_peak: 
+    - 919.343139648438
+    - 826.0
+    num: 4695
+    first_peak: 
+    - 170.997467041016
+    - 2446.0
+  scans_to_read: fl
+  total_time_to_read_and_access: 1.803933
+  time_to_read: 1.801564
+  lazy_type: :io_good
+  end_time: 8039.1
+  start_time: 300.05
+  file: HUH7_s100_d1.mzXML
+--- 
+- time_to_access: 0.032537
+  first_scan: 
+    last_peak: 
+    - 1690.04809570312
+    - 3897.0
+    num: 1
+    first_peak: 
+    - 400.332153320312
+    - 11293.0
+  scan_count: 4623
+  file_size: 33094443
+  last_scan: 
+    last_peak: 
+    - 1799.41064453125
+    - 62406.0
+    num: 4623
+    first_peak: 
+    - 400.173400878906
+    - 25113.0
+  scans_to_read: fl
+  total_time_to_read_and_access: 1.844462
+  time_to_read: 1.81191
+  lazy_type: :io_good
+  end_time: 8038.98
+  start_time: 300.09
+  file: HUH7_s100_e1.mzXML
+--- 
+- time_to_access: 0.005636
+  first_scan: 
+    last_peak: 
+    - 1770.34692382812
+    - 5923.0
+    num: 1
+    first_peak: 
+    - 401.037048339844
+    - 72603.0
+  scan_count: 4360
+  file_size: 30054691
+  last_scan: 
+    last_peak: 
+    - 1687.08813476562
+    - 2919.0
+    num: 4360
+    first_peak: 
+    - 278.750732421875
+    - 4283.0
+  scans_to_read: fl
+  total_time_to_read_and_access: 1.695463
+  time_to_read: 1.689812
+  lazy_type: :io_good
+  end_time: 8040.12
+  start_time: 300.02
+  file: HUH7_s100_e2.mzXML
+--- 
+- time_to_access: 0.028179
+  first_scan: 
+    last_peak: 
+    - 1230.54907226562
+    - 1865.0
+    num: 1
+    first_peak: 
+    - 401.0595703125
+    - 7988.0
+  scan_count: 4595
+  file_size: 34101661
+  last_scan: 
+    last_peak: 
+    - 1799.77734375
+    - 185915.0
+    num: 4595
+    first_peak: 
+    - 401.22705078125
+    - 469627.0
+  scans_to_read: fl
+  total_time_to_read_and_access: 1.813074
+  time_to_read: 1.784879
+  lazy_type: :io_good
+  end_time: 8038.91
+  start_time: 300.08
+  file: HUH7_s100_f1.mzXML
+--- 
+- time_to_access: 0.005392
+  first_scan: 
+    last_peak: 
+    - 1623.93383789062
+    - 1374.0
+    num: 1
+    first_peak: 
+    - 400.539733886719
+    - 33485.0
+  scan_count: 4318
+  file_size: 30320764
+  last_scan: 
+    last_peak: 
+    - 1523.91357421875
+    - 5056.0
+    num: 4318
+    first_peak: 
+    - 523.346923828125
+    - 5147.0
+  scans_to_read: fl
+  total_time_to_read_and_access: 1.661898
+  time_to_read: 1.65649
+  lazy_type: :io_good
+  end_time: 8043.59
+  start_time: 300.04
+  file: HUH7_s100_f2.mzXML
+--- 
+- time_to_access: 0.00302
+  first_scan: 
+    last_peak: 
+    - 1780.03735351562
+    - 12169.0
+    num: 1
+    first_peak: 
+    - 446.728271484375
+    - 2339.0
+  scan_count: 4664
+  file_size: 34229958
+  last_scan: 
+    last_peak: 
+    - 797.897338867188
+    - 1441.0
+    num: 4664
+    first_peak: 
+    - 161.132232666016
+    - 3982.0
+  scans_to_read: fl
+  total_time_to_read_and_access: 1.779772
+  time_to_read: 1.776737
+  lazy_type: :io_good
+  end_time: 8046.56
+  start_time: 300.03
+  file: HUH7_s100_g1.mzXML
+--- 
+- time_to_access: 0.005748
+  first_scan: 
+    last_peak: 
+    - 1600.9306640625
+    - 15932.0
+    num: 1
+    first_peak: 
+    - 400.220703125
+    - 18537.0
+  scan_count: 4389
+  file_size: 30235076
+  last_scan: 
+    last_peak: 
+    - 1426.3017578125
+    - 6839.0
+    num: 4389
+    first_peak: 
+    - 620.396606445312
+    - 7838.0
+  scans_to_read: fl
+  total_time_to_read_and_access: 1.640467
+  time_to_read: 1.634704
+  lazy_type: :io_good
+  end_time: 8041.08
+  start_time: 300.08
+  file: HUH7_s100_g2.mzXML
+--- 
+- time_to_access: 0.028256
+  first_scan: 
+    last_peak: 
+    - 1687.9541015625
+    - 1104.0
+    num: 1
+    first_peak: 
+    - 404.07666015625
+    - 4888.0
+  scan_count: 4573
+  file_size: 33231712
+  last_scan: 
+    last_peak: 
+    - 1799.46923828125
+    - 114303.0
+    num: 4573
+    first_peak: 
+    - 400.177062988281
+    - 21524.0
+  scans_to_read: fl
+  total_time_to_read_and_access: 1.7592
+  time_to_read: 1.730928
+  lazy_type: :io_good
+  end_time: 8038.56
+  start_time: 300.07
+  file: HUH7_s100_h1.mzXML
+--- 
+- time_to_access: 0.005489
+  first_scan: 
+    last_peak: 
+    - 1721.43994140625
+    - 5400.0
+    num: 1
+    first_peak: 
+    - 400.483459472656
+    - 20690.0
+  scan_count: 4337
+  file_size: 29474712
+  last_scan: 
+    last_peak: 
+    - 1891.9443359375
+    - 740.0
+    num: 4337
+    first_peak: 
+    - 652.388305664062
+    - 5359.0
+  scans_to_read: fl
+  total_time_to_read_and_access: 1.620571
+  time_to_read: 1.615068
+  lazy_type: :io_good
+  end_time: 8043.17
+  start_time: 300.09
+  file: HUH7_s100_h2.mzXML
+--- 
+- time_to_access: 0.053806
+  first_scan: 
+    last_peak: 
+    - 1691.08178710938
+    - 2597.0
+    num: 1
+    first_peak: 
+    - 400.436462402344
+    - 6098.0
+  scan_count: 4490
+  file_size: 32053696
+  last_scan: 
+    last_peak: 
+    - 1799.74633789062
+    - 35257.0
+    num: 4490
+    first_peak: 
+    - 400.989929199219
+    - 179231.0
+  scans_to_read: fl
+  total_time_to_read_and_access: 1.77615
+  time_to_read: 1.722329
+  lazy_type: :io_good
+  end_time: 8039.23
+  start_time: 300.09
+  file: HUH7_s100_i1.mzXML
+--- 
+- time_to_access: 0.005647
+  first_scan: 
+    last_peak: 
+    - 1757.15991210938
+    - 4777.0
+    num: 1
+    first_peak: 
+    - 401.143737792969
+    - 75849.0
+  scan_count: 4310
+  file_size: 28471195
+  last_scan: 
+    last_peak: 
+    - 1180.42993164062
+    - 1377.0
+    num: 4310
+    first_peak: 
+    - 569.224365234375
+    - 17385.0
+  scans_to_read: fl
+  total_time_to_read_and_access: 1.720548
+  time_to_read: 1.714886
+  lazy_type: :io_good
+  end_time: 8044.07
+  start_time: 300.1099
+  file: HUH7_s100_i2.mzXML
+--- 
+- time_to_access: 0.005842
+  first_scan: 
+    last_peak: 
+    - 1691.2841796875
+    - 3650.0
+    num: 1
+    first_peak: 
+    - 400.428588867188
+    - 5808.0
+  scan_count: 4443
+  file_size: 31595977
+  last_scan: 
+    last_peak: 
+    - 1369.84814453125
+    - 4533.0
+    num: 4443
+    first_peak: 
+    - 417.518798828125
+    - 1676.0
+  scans_to_read: fl
+  total_time_to_read_and_access: 1.799037
+  time_to_read: 1.793179
+  lazy_type: :io_good
+  end_time: 8040.68
+  start_time: 300.09
+  file: HUH7_s100_j1.mzXML
+--- 
+- time_to_access: 0.02823
+  first_scan: 
+    last_peak: 
+    - 1692.11572265625
+    - 1501.0
+    num: 1
+    first_peak: 
+    - 400.168762207031
+    - 15972.0
+  scan_count: 4289
+  file_size: 27627153
+  last_scan: 
+    last_peak: 
+    - 1799.68530273438
+    - 109201.0
+    num: 4289
+    first_peak: 
+    - 403.174926757812
+    - 14150.0
+  scans_to_read: fl
+  total_time_to_read_and_access: 1.650105
+  time_to_read: 1.621859
+  lazy_type: :io_good
+  end_time: 8039.35
+  start_time: 300.07
+  file: HUH7_s100_j2.mzXML
+--- 
+- time_to_access: 0.032266
+  first_scan: 
+    last_peak: 
+    - 1723.13134765625
+    - 10020.0
+    num: 1
+    first_peak: 
+    - 400.360717773438
+    - 9733.0
+  scan_count: 4335
+  file_size: 30698544
+  last_scan: 
+    last_peak: 
+    - 1799.8662109375
+    - 750.0
+    num: 4335
+    first_peak: 
+    - 400.151428222656
+    - 4396.0
+  scans_to_read: fl
+  total_time_to_read_and_access: 1.706013
+  time_to_read: 1.673731
+  lazy_type: :io_good
+  end_time: 8038.87
+  start_time: 300.07
+  file: HUH7_s100_k1.mzXML
+--- 
+- time_to_access: 0.029899
+  first_scan: 
+    last_peak: 
+    - 1751.2880859375
+    - 7942.0
+    num: 1
+    first_peak: 
+    - 400.492309570312
+    - 11879.0
+  scan_count: 4305
+  file_size: 29677942
+  last_scan: 
+    last_peak: 
+    - 1799.6552734375
+    - 183378.0
+    num: 4305
+    first_peak: 
+    - 400.199951171875
+    - 2.0
+  scans_to_read: fl
+  total_time_to_read_and_access: 1.641726
+  time_to_read: 1.61181
+  lazy_type: :io_good
+  end_time: 8039.0499
+  start_time: 300.07
+  file: HUH7_s100_k2.mzXML
+--- 
+- time_to_access: 0.003971
+  first_scan: 
+    last_peak: 
+    - 1721.68188476562
+    - 14230.0
+    num: 1
+    first_peak: 
+    - 401.056701660156
+    - 82244.0
+  scan_count: 4107
+  file_size: 29907661
+  last_scan: 
+    last_peak: 
+    - 0.0
+    - 0.0
+    num: 4107
+    first_peak: 
+    - 0.0
+    - 0.0
+  scans_to_read: fl
+  total_time_to_read_and_access: 1.562857
+  time_to_read: 1.558872
+  lazy_type: :io_good
+  end_time: 8047.31
+  start_time: 300.05
+  file: HUH7_s100_l1.mzXML
+--- 
+- time_to_access: 0.029939
+  first_scan: 
+    last_peak: 
+    - 1620.98022460938
+    - 10002.0
+    num: 1
+    first_peak: 
+    - 401.352783203125
+    - 40887.0
+  scan_count: 4250
+  file_size: 29554996
+  last_scan: 
+    last_peak: 
+    - 1799.626953125
+    - 755681.0
+    num: 4250
+    first_peak: 
+    - 400.1884765625
+    - 10690.0
+  scans_to_read: fl
+  total_time_to_read_and_access: 1.590055
+  time_to_read: 1.560101
+  lazy_type: :io_good
+  end_time: 8039.31
+  start_time: 300.06
+  file: HUH7_s100_l2.mzXML
+--- 
+- time_to_access: 0.086526
+  first_scan: 
+    last_peak: 
+    - 1723.42309570312
+    - 6840.0
+    num: 1
+    first_peak: 
+    - 401.073974609375
+    - 50746.0
+  scan_count: 4095
+  file_size: 29756386
+  last_scan: 
+    last_peak: 
+    - 1557.23510742188
+    - 1622.0
+    num: 4095
+    first_peak: 
+    - 334.727416992188
+    - 2085.0
+  scans_to_read: fl
+  total_time_to_read_and_access: 1.618116
+  time_to_read: 1.531573
+  lazy_type: :io_good
+  end_time: 8042.0
+  start_time: 300.08
+  file: HUH7_s100_m1.mzXML
+--- 
+- time_to_access: 0.001312
+  first_scan: 
+    last_peak: 
+    - 1422.31201171875
+    - 1491.0
+    num: 1
+    first_peak: 
+    - 403.261596679688
+    - 5078.0
+  scan_count: 4198
+  file_size: 30163093
+  last_scan: 
+    last_peak: 
+    - 1974.0751953125
+    - 9449.0
+    num: 4198
+    first_peak: 
+    - 560.5263671875
+    - 2257.0
+  scans_to_read: fl
+  total_time_to_read_and_access: 1.618747
+  time_to_read: 1.61742
+  lazy_type: :io_good
+  end_time: 8046.72
+  start_time: 300.03
+  file: HUH7_s100_m2.mzXML
+--- 
+- time_to_access: 0.00438600000000005
+  first_scan: 
+    last_peak: 
+    - 1521.4560546875
+    - 3584.0
+    num: 1
+    first_peak: 
+    - 400.347961425781
+    - 9866.0
+  scan_count: 4246
+  file_size: 34266704
+  last_scan: 
+    last_peak: 
+    - 1983.5537109375
+    - 813.0
+    num: 4246
+    first_peak: 
+    - 514.64599609375
+    - 4302.0
+  scans_to_read: fl
+  total_time_to_read_and_access: 1.83538
+  time_to_read: 1.830978
+  lazy_type: :io_good
+  end_time: 8043.24
+  start_time: 300.08
+  file: HUH7_s100_n1.mzXML
+--- 
+- time_to_access: 0.000384
+  first_scan: 
+    last_peak: 
+    - 576.537841796875
+    - 4102.0
+    num: 1
+    first_peak: 
+    - 414.747924804688
+    - 2300.0
+  scan_count: 4284
+  file_size: 33025950
+  last_scan: 
+    last_peak: 
+    - 0.0
+    - 0.0
+    num: 4284
+    first_peak: 
+    - 0.0
+    - 0.0
+  scans_to_read: fl
+  total_time_to_read_and_access: 1.86068
+  time_to_read: 1.860278
+  lazy_type: :io_good
+  end_time: 8047.44
+  start_time: 300.12
+  file: HUH7_s100_n2.mzXML
+--- 
+- time_to_access: 0.004561
+  first_scan: 
+    last_peak: 
+    - 1590.11181640625
+    - 3038.0
+    num: 1
+    first_peak: 
+    - 400.28466796875
+    - 13681.0
+  scan_count: 4245
+  file_size: 33766978
+  last_scan: 
+    last_peak: 
+    - 1391.48071289062
+    - 846.0
+    num: 4245
+    first_peak: 
+    - 430.653625488281
+    - 5287.0
+  scans_to_read: fl
+  total_time_to_read_and_access: 1.696651
+  time_to_read: 1.692074
+  lazy_type: :io_good
+  end_time: 8041.58
+  start_time: 300.1
+  file: HUH7_s100_o1.mzXML
+--- 
+- time_to_access: 0.025057
+  first_scan: 
+    last_peak: 
+    - 1521.94653320312
+    - 5914.0
+    num: 1
+    first_peak: 
+    - 400.494812011719
+    - 6798.0
+  scan_count: 4180
+  file_size: 28748556
+  last_scan: 
+    last_peak: 
+    - 1799.56079101562
+    - 546642.0
+    num: 4180
+    first_peak: 
+    - 401.298522949219
+    - 33766.0
+  scans_to_read: fl
+  total_time_to_read_and_access: 1.580266
+  time_to_read: 1.555191
+  lazy_type: :io_good
+  end_time: 8039.31
+  start_time: 300.1099
+  file: HUH7_s100_o2.mzXML
+--- 
+- time_to_access: 0.029496
+  first_scan: 
+    last_peak: 
+    - 1421.49560546875
+    - 6118.0
+    num: 1
+    first_peak: 
+    - 400.418273925781
+    - 10616.0
+  scan_count: 4285
+  file_size: 38078504
+  last_scan: 
+    last_peak: 
+    - 1799.64770507812
+    - 46189.0
+    num: 4285
+    first_peak: 
+    - 400.38525390625
+    - 20889.0
+  scans_to_read: fl
+  total_time_to_read_and_access: 1.730253
+  time_to_read: 1.700741
+  lazy_type: :io_good
+  end_time: 8038.74
+  start_time: 300.05
+  file: HUH7_s100_p1.mzXML
+--- 
+- time_to_access: 0.00222
+  first_scan: 
+    last_peak: 
+    - 1221.70654296875
+    - 2888.0
+    num: 1
+    first_peak: 
+    - 400.530029296875
+    - 4873.0
+  scan_count: 4288
+  file_size: 36279292
+  last_scan: 
+    last_peak: 
+    - 0.0
+    - 0.0
+    num: 4288
+    first_peak: 
+    - 0.0
+    - 0.0
+  scans_to_read: fl
+  total_time_to_read_and_access: 1.669628
+  time_to_read: 1.667393
+  lazy_type: :io_good
+  end_time: 8047.04
+  start_time: 300.07
+  file: HUH7_s100_q1.mzXML

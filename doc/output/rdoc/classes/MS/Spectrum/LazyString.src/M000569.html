@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="iso-8859-1"?>
+<!DOCTYPE html 
+     PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+     "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html>
+<head>
+  <title>from_base64_peaks (MS::Spectrum::LazyString)</title>
+  <meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1" />
+  <link rel="stylesheet" href="../../../.././rdoc-style.css" type="text/css" media="screen" />
+</head>
+<body class="standalone-code">
+  <pre><span class="ruby-comment cmt"># File lib/ms/spectrum.rb, line 237</span>
+  <span class="ruby-keyword kw">def</span> <span class="ruby-keyword kw">self</span>.<span class="ruby-identifier">from_base64_peaks</span>(<span class="ruby-identifier">b64_string</span>, <span class="ruby-identifier">precision</span>=<span class="ruby-value">32</span>, <span class="ruby-identifier">network_order</span>=<span class="ruby-keyword kw">true</span>)
+    <span class="ruby-comment cmt"># decode</span>
+    <span class="ruby-identifier">string</span> = <span class="ruby-constant">Base64</span>.<span class="ruby-identifier">decode64</span>(<span class="ruby-identifier">b64_string</span>)
+    <span class="ruby-comment cmt"># split into two strings:</span>
+    <span class="ruby-identifier">bytes_per_number</span> = <span class="ruby-identifier">precision</span> <span class="ruby-operator">/</span> <span class="ruby-value">8</span> 
+    <span class="ruby-identifier">s_size</span> = <span class="ruby-identifier">string</span>.<span class="ruby-identifier">size</span>
+    <span class="ruby-identifier">num_numbers</span> = <span class="ruby-identifier">s_size</span> <span class="ruby-operator">/</span> <span class="ruby-identifier">bytes_per_number</span>
+    <span class="ruby-identifier">mz_pieces</span> = <span class="ruby-constant">Array</span>.<span class="ruby-identifier">new</span>(<span class="ruby-identifier">num_numbers</span>)
+    <span class="ruby-identifier">intensity_pieces</span> = <span class="ruby-constant">Array</span>.<span class="ruby-identifier">new</span>(<span class="ruby-identifier">num_numbers</span>)
+    <span class="ruby-identifier">index</span> = <span class="ruby-value">0</span>
+    (<span class="ruby-value">0</span><span class="ruby-operator">...</span><span class="ruby-identifier">string</span>.<span class="ruby-identifier">size</span>).<span class="ruby-identifier">step</span>(<span class="ruby-identifier">bytes_per_number</span>) <span class="ruby-keyword kw">do</span> <span class="ruby-operator">|</span><span class="ruby-identifier">i</span><span class="ruby-operator">|</span>
+      <span class="ruby-keyword kw">if</span> <span class="ruby-identifier">index</span> <span class="ruby-operator">%</span> <span class="ruby-value">2</span> <span class="ruby-operator">==</span> <span class="ruby-value">0</span>
+        <span class="ruby-identifier">mz_pieces</span>[<span class="ruby-identifier">index</span>] = <span class="ruby-identifier">string</span>[<span class="ruby-identifier">i</span>,<span class="ruby-identifier">bytes_per_number</span>]
+      <span class="ruby-keyword kw">else</span>
+        <span class="ruby-identifier">intensity_pieces</span>[<span class="ruby-identifier">index</span>] = <span class="ruby-identifier">string</span>[<span class="ruby-identifier">i</span>,<span class="ruby-identifier">bytes_per_number</span>]
+      <span class="ruby-keyword kw">end</span>
+      <span class="ruby-identifier">index</span> <span class="ruby-operator">+=</span> <span class="ruby-value">1</span>
+    <span class="ruby-keyword kw">end</span>
+    <span class="ruby-keyword kw">self</span>.<span class="ruby-identifier">new</span>(<span class="ruby-identifier">mz_pieces</span>.<span class="ruby-identifier">join</span>, <span class="ruby-identifier">precision</span>, <span class="ruby-identifier">network_order</span>, <span class="ruby-identifier">intensity_pieces</span>.<span class="ruby-identifier">join</span>, <span class="ruby-identifier">precision</span>, <span class="ruby-identifier">network_order</span>)
+  <span class="ruby-keyword kw">end</span></pre>
+</body>
+</html>

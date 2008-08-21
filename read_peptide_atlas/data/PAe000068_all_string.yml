@@ -1,0 +1,165 @@
+--- 
+- time_to_access: 1.734348
+  scan_count: 8056
+  file_size: 15860871
+  scans_to_read: all
+  total_time_to_read_and_access: 21.445101
+  time_to_read: 19.710729
+  lazy_type: :string
+  end_time: 14402.0
+  start_time: 0.22
+  file: 2b_plasma_500mM_C1.mzXML
+--- 
+- time_to_access: 1.630548
+  scan_count: 7688
+  file_size: 15111429
+  scans_to_read: all
+  total_time_to_read_and_access: 19.907645
+  time_to_read: 18.277056
+  lazy_type: :string
+  end_time: 14401.7
+  start_time: 0.54
+  file: 2b_plasma_800mM_C2.mzXML
+--- 
+- time_to_access: 1.744635
+  scan_count: 8348
+  file_size: 16422498
+  scans_to_read: all
+  total_time_to_read_and_access: 21.234992
+  time_to_read: 19.490334
+  lazy_type: :string
+  end_time: 14397.6
+  start_time: 0.21
+  file: 2b_plasma_200mM_C1.mzXML
+--- 
+- time_to_access: 1.439566
+  scan_count: 8312
+  file_size: 16484049
+  scans_to_read: all
+  total_time_to_read_and_access: 22.353815
+  time_to_read: 20.914226
+  lazy_type: :string
+  end_time: 14404.4
+  start_time: 0.41
+  file: 2b_plasma_100mM_C1.mzXML
+--- 
+- time_to_access: 1.473285
+  scan_count: 10935
+  file_size: 22235716
+  scans_to_read: all
+  total_time_to_read_and_access: 29.186176
+  time_to_read: 27.712865
+  lazy_type: :string
+  end_time: 14402.8
+  start_time: 0.11
+  file: 2b_plasma_0mM_C1.mzXML
+--- 
+- time_to_access: 1.522782
+  scan_count: 6657
+  file_size: 15401602
+  scans_to_read: all
+  total_time_to_read_and_access: 20.773092
+  time_to_read: 19.250285
+  lazy_type: :string
+  end_time: 14396.3
+  start_time: 0.21
+  file: 2b_plasma_150mM_C2.mzXML
+--- 
+- time_to_access: 1.628523
+  scan_count: 8148
+  file_size: 16160639
+  scans_to_read: all
+  total_time_to_read_and_access: 21.153054
+  time_to_read: 19.524506
+  lazy_type: :string
+  end_time: 14402.8
+  start_time: 0.54
+  file: 2b_plasma_300mM_C1.mzXML
+--- 
+- time_to_access: 1.622079
+  scan_count: 7920
+  file_size: 15869106
+  scans_to_read: all
+  total_time_to_read_and_access: 20.661757
+  time_to_read: 19.039651
+  lazy_type: :string
+  end_time: 14397.1
+  start_time: 0.54
+  file: 2b_plasma_600mM_C2.mzXML
+--- 
+- time_to_access: 0.309634
+  scan_count: 7076
+  file_size: 13319286
+  scans_to_read: all
+  total_time_to_read_and_access: 17.117119
+  time_to_read: 16.807459
+  lazy_type: :string
+  end_time: 14398.3
+  start_time: 0.11
+  file: 2b_plasma_20mM_C2.mzXML
+--- 
+- time_to_access: 0.369083
+  scan_count: 8004
+  file_size: 15972232
+  scans_to_read: all
+  total_time_to_read_and_access: 21.072375
+  time_to_read: 20.703267
+  lazy_type: :string
+  end_time: 14407.1
+  start_time: 0.33
+  file: 2b_plasma_700mM_C1.mzXML
+--- 
+- time_to_access: 1.679525
+  scan_count: 7320
+  file_size: 14855612
+  scans_to_read: all
+  total_time_to_read_and_access: 19.875964
+  time_to_read: 18.196414
+  lazy_type: :string
+  end_time: 14399.8
+  start_time: 0.41
+  file: 2b_plasma_75mM_C2.mzXML
+--- 
+- time_to_access: 1.623186
+  scan_count: 9448
+  file_size: 18626900
+  scans_to_read: all
+  total_time_to_read_and_access: 24.353652
+  time_to_read: 22.730441
+  lazy_type: :string
+  end_time: 14402.4
+  start_time: 0.54
+  file: 2b_plasma_50mM_C1.mzXML
+--- 
+- time_to_access: 1.586398
+  scan_count: 7744
+  file_size: 15329075
+  scans_to_read: all
+  total_time_to_read_and_access: 20.111163
+  time_to_read: 18.52474
+  lazy_type: :string
+  end_time: 14403.0
+  start_time: 0.11
+  file: 2b_plasma_400mM_C2.mzXML
+--- 
+- time_to_access: 1.546958
+  scan_count: 7648
+  file_size: 15321864
+  scans_to_read: all
+  total_time_to_read_and_access: 20.260725
+  time_to_read: 18.713742
+  lazy_type: :string
+  end_time: 14399.6
+  start_time: 0.11
+  file: 2b_plasma_250mM_C2.mzXML
+--- 
+- time_to_access: 1.459419
+  scan_count: 7768
+  file_size: 15284285
+  scans_to_read: all
+  total_time_to_read_and_access: 20.149416
+  time_to_read: 18.689973
+  lazy_type: :string
+  end_time: 14404.4
+  start_time: 0.54
+  file: 2b_plasma_1000mM_C1.mzXML

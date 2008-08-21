@@ -1,0 +1,9 @@
+---
+inMenu: false
+title: SpecID
+directoryName: SpecID
+---
+SpecID is for working with spectral identifications.
+
+* [SpecID: a mixin for spectral identification formats](spec_id.html)
+* [False Identification Rate Determination](fir.html)

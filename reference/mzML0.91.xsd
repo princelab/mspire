@@ -1,0 +1,662 @@
+<?xml version="1.0" encoding="windows-1252"?>
+<!-- edited with XMLSPY v5 rel. 4 U (http://www.xmlspy.com) by Twana Johnson (Institute for Systems Biology) -->
+<xs:schema targetNamespace="http://psi.hupo.org/schema_revision/mzML_0.91" xmlns:dx="http://psi.hupo.org/schema_revision/mzML_0.91" xmlns:xs="http://www.w3.org/2001/XMLSchema" elementFormDefault="qualified" attributeFormDefault="unqualified" version="0.91">
+	<xs:element name="mzML">
+		<xs:annotation>
+			<xs:documentation>This schema can capture the use of a mass spectrometer, the data generated, and the initial processing of that data (to the level of the peak list). Peak lists are processed data from a mass spectrometry experiment. There can be multiple peak lists in an mzML file, which might be related via a separation, or just in sequence from an automated run. Any one peak list (mass spectrum) may also be composed of a number of acquisitions, which can be described individually herein.</xs:documentation>
+		</xs:annotation>
+		<xs:complexType>
+			<xs:complexContent>
+				<xs:extension base="dx:mzML">
+					<xs:attribute name="id" type="xs:string"/>
+				</xs:extension>
+			</xs:complexContent>
+		</xs:complexType>
+	</xs:element>
+	<xs:complexType name="mzML">
+		<xs:annotation>
+			<xs:documentation>This schema can capture the use of a mass spectrometer, the data generated, and the initial processing of that data (to the level of the peak list). Peak lists are processed data from a mass spectrometry experiment. There can be multiple peak lists in an mzML file, which might be related via a separation, or just in sequence from an automated run. Any one peak list (mass spectrum) may also be composed of a number of acquisitions, which can be described individually herein.</xs:documentation>
+		</xs:annotation>
+		<xs:sequence>
+			<xs:element name="admin" type="dx:Admin" minOccurs="0"/>
+			<xs:element name="cvList" type="dx:CVList" minOccurs="0"/>
+			<xs:element name="paramGroupList" type="dx:ParamGroupList" minOccurs="0"/>
+			<xs:element name="sampleList" type="dx:SampleList" minOccurs="0"/>
+			<xs:element name="instrumentList" type="dx:InstrumentList" minOccurs="0"/>
+			<xs:element name="softwareList" type="dx:SoftwareList" minOccurs="0"/>
+			<xs:element name="dataProcessingList" type="dx:DataProcessingList" minOccurs="0"/>
+			<xs:element name="runList" type="dx:RunList" minOccurs="0"/>
+		</xs:sequence>
+		<xs:attribute name="accession" type="xs:string"/>
+		<xs:attribute name="version" type="xs:string"/>
+	</xs:complexType>
+	<xs:complexType name="Admin">
+		<xs:annotation>
+			<xs:documentation>Administrative information pertaining to the entire mzML file (i.e. not specific to any part of the data set) is stored here. 'Header' information - sample description, contact details, comments</xs:documentation>
+		</xs:annotation>
+		<xs:sequence>
+			<xs:element name="sourceFileList" type="dx:SourceFileList"/>
+			<xs:element name="contact" type="dx:Contact" minOccurs="0" maxOccurs="unbounded"/>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="SourceFileList">
+		<xs:annotation>
+			<xs:documentation>List and descriptions of source files</xs:documentation>
+		</xs:annotation>
+		<xs:sequence>
+			<xs:element name="sourceFile" type="dx:SourceFile" minOccurs="0" maxOccurs="unbounded"/>
+		</xs:sequence>
+		<xs:attribute name="count" type="xs:nonNegativeInteger">
+			<xs:annotation>
+				<xs:documentation>Number of sources files used in generating the instance document.</xs:documentation>
+			</xs:annotation>
+		</xs:attribute>
+	</xs:complexType>
+	<xs:complexType name="SourceFile">
+		<xs:annotation>
+			<xs:documentation>Description of the source file, including location and type.</xs:documentation>
+		</xs:annotation>
+		<xs:sequence>
+			<xs:element name="fileChecksum" type="dx:FileChecksum">
+				<xs:annotation>
+					<xs:documentation>Checksum to verify the file</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+		</xs:sequence>
+		<xs:attribute name="id" type="xs:anyURI"/>
+		<xs:attribute name="fileName" type="xs:string">
+			<xs:annotation>
+				<xs:documentation>Name of the source file, without reference to location (either URI or local path).</xs:documentation>
+			</xs:annotation>
+		</xs:attribute>
+		<xs:attribute name="filePath" type="xs:string">
+			<xs:annotation>
+				<xs:documentation>URI-formatted full path to file, without actual file name appended.</xs:documentation>
+			</xs:annotation>
+		</xs:attribute>
+		<xs:attribute name="fileType" type="xs:string">
+			<xs:annotation>
+				<xs:documentation>Type of the file if appropriate, else a description of the software or reference resource used.</xs:documentation>
+			</xs:annotation>
+		</xs:attribute>
+	</xs:complexType>
+	<xs:complexType name="FileChecksum">
+		<xs:annotation>
+			<xs:documentation>Checksum to verify the file.</xs:documentation>
+		</xs:annotation>
+		<xs:simpleContent>
+			<xs:extension base="xs:string">
+				<xs:attribute name="type" type="xs:string"/>
+			</xs:extension>
+		</xs:simpleContent>
+	</xs:complexType>
+	<xs:complexType name="Contact">
+		<xs:annotation>
+			<xs:documentation>Audit information concerning the means by which the originator/owner of this mzML file can be identified, and contacted if necessary.</xs:documentation>
+		</xs:annotation>
+		<xs:sequence>
+			<xs:element name="name" type="xs:string">
+				<xs:annotation>
+					<xs:documentation>Contact person name, or role name (e.g. "Group leader of team 42") of the individual responsible for this dataset.</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="institution" type="xs:string">
+				<xs:annotation>
+					<xs:documentation>Academic or corporate organisation with which the contact person or role is associated.</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="URI" type="xs:anyURI"/>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="CV">
+		<xs:annotation>
+			<xs:documentation>Information about an ontology/CV source and a short 'lookup' tag to refer to.</xs:documentation>
+		</xs:annotation>
+		<xs:attribute name="cvLabel" type="xs:string">
+			<xs:annotation>
+				<xs:documentation>The short label to be used as a reference tag with which to refer to this particulart Controlled Vocabulary source description, from an instance of the cvLabel attribute, where it appears (i.e. in things of type paramType).</xs:documentation>
+			</xs:annotation>
+		</xs:attribute>
+		<xs:attribute name="fullName" type="xs:string">
+			<xs:annotation>
+				<xs:documentation>The usual name for the resource (e.g. The PSI-MS Controlled Vocabulary).</xs:documentation>
+			</xs:annotation>
+		</xs:attribute>
+		<xs:attribute name="version" type="xs:string">
+			<xs:annotation>
+				<xs:documentation>The version of the CV from which the referred-to terms are drawn.</xs:documentation>
+			</xs:annotation>
+		</xs:attribute>
+		<xs:attribute name="address" type="xs:string">
+			<xs:annotation>
+				<xs:documentation>The URI for the resource.</xs:documentation>
+			</xs:annotation>
+		</xs:attribute>
+	</xs:complexType>
+	<xs:complexType name="CVList">
+		<xs:annotation>
+			<xs:documentation>List and descriptions of CV</xs:documentation>
+		</xs:annotation>
+		<xs:sequence>
+			<xs:element name="cv" type="dx:CV" minOccurs="0" maxOccurs="unbounded"/>
+		</xs:sequence>
+		<xs:attribute name="count" type="xs:nonNegativeInteger">
+			<xs:annotation>
+				<xs:documentation>The number of CV definitionsin this mzML file.</xs:documentation>
+			</xs:annotation>
+		</xs:attribute>
+	</xs:complexType>
+	<xs:complexType name="ParamGroupList">
+		<xs:annotation>
+			<xs:documentation>List and descriptions of ParamGroups</xs:documentation>
+		</xs:annotation>
+		<xs:sequence>
+			<xs:element name="paramGroup" type="dx:ParamGroup" minOccurs="0" maxOccurs="unbounded"/>
+		</xs:sequence>
+		<xs:attribute name="count" type="xs:nonNegativeInteger">
+			<xs:annotation>
+				<xs:documentation>The number of ParamGroups defined in this mzML file.</xs:documentation>
+			</xs:annotation>
+		</xs:attribute>
+	</xs:complexType>
+	<xs:complexType name="ParamGroup">
+		<xs:annotation>
+			<xs:documentation>Structure allowing the use of a controlled (cvParam) or uncontrolled vocabulary (userParam), or a reference to a predefined set of these in this mzML file (paramGroupRef).</xs:documentation>
+		</xs:annotation>
+		<xs:sequence>
+			<xs:element name="paramGroupRef" type="dx:ParamGroupRef" minOccurs="0" maxOccurs="unbounded"/>
+			<xs:element name="cvParam" type="dx:CVParam" minOccurs="0" maxOccurs="unbounded"/>
+			<xs:element name="userParam" type="dx:UserParam" minOccurs="0" maxOccurs="unbounded"/>
+		</xs:sequence>
+		<xs:attribute name="id" type="xs:anyURI"/>
+	</xs:complexType>
+	<xs:complexType name="CVParam">
+		<xs:annotation>
+			<xs:documentation>This element holds additional data or annotation. Only controlled values are allowed here.</xs:documentation>
+		</xs:annotation>
+		<xs:sequence>
+			<xs:element name="cvParam" type="dx:CVParam" minOccurs="0" maxOccurs="unbounded"/>
+		</xs:sequence>
+		<xs:attribute name="cvLabel" type="xs:string" use="required">
+			<xs:annotation>
+				<xs:documentation>The short tag for the resource as defined in the cvList in this mzML file.</xs:documentation>
+			</xs:annotation>
+		</xs:attribute>
+		<xs:attribute name="accession" type="xs:string" use="required">
+			<xs:annotation>
+				<xs:documentation>The accession number of the referred-to term in the named resource (e.g.: PSI-MS:000012).</xs:documentation>
+			</xs:annotation>
+		</xs:attribute>
+		<xs:attribute name="value" type="xs:string" use="optional">
+			<xs:annotation>
+				<xs:documentation>The value for the parameter; may be absent if not appropriate, or a numeric or symbolic value, or may itself be CV (legal values for a parameter should be enumerated and defined in the ontology).</xs:documentation>
+			</xs:annotation>
+		</xs:attribute>
+		<xs:attribute name="name" type="xs:string" use="required">
+			<xs:annotation>
+				<xs:documentation>The actual name for the parameter, from the referred-to controlled vocabulary. This should be the preferred name associated with the specified accession number.</xs:documentation>
+			</xs:annotation>
+		</xs:attribute>
+	</xs:complexType>
+	<xs:complexType name="UserParam">
+		<xs:annotation>
+			<xs:documentation>Uncontrolled user parameters (vocabulary).</xs:documentation>
+		</xs:annotation>
+		<xs:attribute name="name" type="xs:string">
+			<xs:annotation>
+				<xs:documentation>The actual name for the parameter.</xs:documentation>
+			</xs:annotation>
+		</xs:attribute>
+		<xs:attribute name="type" type="xs:string"/>
+		<xs:attribute name="value" type="xs:string">
+			<xs:annotation>
+				<xs:documentation>The value for the parameter, where appropriate.</xs:documentation>
+			</xs:annotation>
+		</xs:attribute>
+	</xs:complexType>
+	<xs:complexType name="ParamGroupRef">
+		<xs:attribute name="ref" type="xs:anyURI"/>
+	</xs:complexType>
+	<xs:complexType name="SampleList">
+		<xs:annotation>
+			<xs:documentation>List and descriptions of samples.</xs:documentation>
+		</xs:annotation>
+		<xs:sequence>
+			<xs:element name="sample" type="dx:Sample" minOccurs="0" maxOccurs="unbounded"/>
+		</xs:sequence>
+		<xs:attribute name="count" type="xs:nonNegativeInteger">
+			<xs:annotation>
+				<xs:documentation>The number of Samples defined in this mzML file.</xs:documentation>
+			</xs:annotation>
+		</xs:attribute>
+	</xs:complexType>
+	<xs:complexType name="Sample">
+		<xs:annotation>
+			<xs:documentation>Expansible description of the sample used to generate the dataset, named in sampleName.</xs:documentation>
+		</xs:annotation>
+		<xs:complexContent>
+			<xs:extension base="dx:ParamGroup">
+				<xs:attribute name="name" type="xs:string"/>
+			</xs:extension>
+		</xs:complexContent>
+	</xs:complexType>
+	<xs:complexType name="Component" abstract="true">
+		<xs:complexContent>
+			<xs:extension base="dx:ParamGroup">
+				<xs:sequence>
+					<xs:element ref="dx:component" minOccurs="0" maxOccurs="unbounded"/>
+				</xs:sequence>
+			</xs:extension>
+		</xs:complexContent>
+	</xs:complexType>
+	<xs:element name="component" type="dx:Component" abstract="true"/>
+	<xs:complexType name="InstrumentList">
+		<xs:annotation>
+			<xs:documentation>List and descriptions of instruments.</xs:documentation>
+		</xs:annotation>
+		<xs:sequence>
+			<xs:element ref="dx:instrument" minOccurs="0" maxOccurs="unbounded"/>
+		</xs:sequence>
+		<xs:attribute name="count" type="xs:nonNegativeInteger"/>
+	</xs:complexType>
+	<xs:complexType name="Instrument">
+		<xs:annotation>
+			<xs:documentation>Description of the components of the mass spectrometer used</xs:documentation>
+		</xs:annotation>
+		<xs:complexContent>
+			<xs:extension base="dx:Component">
+				<xs:sequence>
+					<xs:element name="instrumentSoftwareRef" type="dx:InstrumentSoftwareRef"/>
+				</xs:sequence>
+			</xs:extension>
+		</xs:complexContent>
+	</xs:complexType>
+	<xs:element name="instrument" type="dx:Instrument" substitutionGroup="dx:component"/>
+	<xs:element name="source" substitutionGroup="dx:component">
+		<xs:annotation>
+			<xs:documentation>Invariant ion source (e.g. MALDI) information, as a run of name-value pairs.</xs:documentation>
+		</xs:annotation>
+		<xs:complexType>
+			<xs:complexContent>
+				<xs:extension base="dx:Component"/>
+			</xs:complexContent>
+		</xs:complexType>
+	</xs:element>
+	<xs:element name="analyzer" substitutionGroup="dx:component">
+		<xs:annotation>
+			<xs:documentation>A single component of the mass analyzer (e.g. quadrupole, collision cell), decribed with a run of name-value pairs.</xs:documentation>
+		</xs:annotation>
+		<xs:complexType>
+			<xs:complexContent>
+				<xs:extension base="dx:Component"/>
+			</xs:complexContent>
+		</xs:complexType>
+	</xs:element>
+	<xs:element name="detector" substitutionGroup="dx:component">
+		<xs:annotation>
+			<xs:documentation>Ion detector information, as a run of name-value pairs.</xs:documentation>
+		</xs:annotation>
+		<xs:complexType>
+			<xs:complexContent>
+				<xs:extension base="dx:Component"/>
+			</xs:complexContent>
+		</xs:complexType>
+	</xs:element>
+	<xs:complexType name="InstrumentSoftwareRef">
+		<xs:attribute name="ref" type="xs:anyURI"/>
+	</xs:complexType>
+	<xs:complexType name="SoftwareList">
+		<xs:annotation>
+			<xs:documentation>List and descriptions of software used to acquire and/or process the data in this mzML file.</xs:documentation>
+		</xs:annotation>
+		<xs:sequence>
+			<xs:element name="software" type="dx:Software" minOccurs="0" maxOccurs="unbounded"/>
+		</xs:sequence>
+		<xs:attribute name="count" type="xs:nonNegativeInteger">
+			<xs:annotation>
+				<xs:documentation>The number of softwares defined in this mzML file.</xs:documentation>
+			</xs:annotation>
+		</xs:attribute>
+	</xs:complexType>
+	<xs:complexType name="Software">
+		<xs:annotation>
+			<xs:documentation>Software information (the software that produced the peak list).</xs:documentation>
+		</xs:annotation>
+		<xs:complexContent>
+			<xs:extension base="dx:Component"/>
+		</xs:complexContent>
+	</xs:complexType>
+	<xs:complexType name="DataProcessingList">
+		<xs:annotation>
+			<xs:documentation>List and descriptions of data processing applied to this data.</xs:documentation>
+		</xs:annotation>
+		<xs:sequence>
+			<xs:element name="dataProcessing" type="dx:DataProcessing" minOccurs="0" maxOccurs="unbounded"/>
+		</xs:sequence>
+		<xs:attribute name="count" type="xs:nonNegativeInteger"/>
+	</xs:complexType>
+	<xs:complexType name="DataProcessing">
+		<xs:annotation>
+			<xs:documentation>Description of the software, and the way in which it was used to generate the peak list.</xs:documentation>
+		</xs:annotation>
+		<xs:sequence>
+			<xs:element name="processingMethod" maxOccurs="unbounded">
+				<xs:annotation>
+					<xs:documentation>Description of the default peak processing method. This element describes the base method used in the generation of a particular mzML file. Variable methods should be described in the appropriate acquisition section - if no acquisition-specific details are found, then this information serves as the default.</xs:documentation>
+				</xs:annotation>
+				<xs:complexType>
+					<xs:complexContent>
+						<xs:extension base="dx:ParamGroup">
+							<xs:attribute name="order" type="xs:nonNegativeInteger"/>
+						</xs:extension>
+					</xs:complexContent>
+				</xs:complexType>
+			</xs:element>
+		</xs:sequence>
+		<xs:attribute name="id" type="xs:anyURI" use="optional"/>
+		<xs:attribute name="softwareRef" type="xs:anyURI"/>
+	</xs:complexType>
+	<xs:complexType name="RunList">
+		<xs:annotation>
+			<xs:documentation>List and descriptions of Runs</xs:documentation>
+		</xs:annotation>
+		<xs:sequence>
+			<xs:element name="run" type="dx:Run" minOccurs="0" maxOccurs="unbounded"/>
+		</xs:sequence>
+		<xs:attribute name="count" type="xs:nonNegativeInteger"/>
+	</xs:complexType>
+	<xs:complexType name="Run">
+		<xs:complexContent>
+			<xs:extension base="dx:ParamGroup">
+				<xs:sequence>
+					<xs:element name="sourceFileRefList" minOccurs="0">
+						<xs:complexType>
+							<xs:sequence>
+								<xs:element name="sourceFileRef" minOccurs="0" maxOccurs="unbounded">
+									<xs:complexType>
+										<xs:attribute name="ref" type="xs:anyURI"/>
+									</xs:complexType>
+								</xs:element>
+							</xs:sequence>
+							<xs:attribute name="count" type="xs:nonNegativeInteger"/>
+						</xs:complexType>
+					</xs:element>
+					<xs:element name="spectrumList" type="dx:SpectrumList" minOccurs="0">
+						<xs:annotation>
+							<xs:documentation>All mass spectra and the acquisitions underlying them are described and attached here. Subsidiary data arrays are also both described and attached here.</xs:documentation>
+						</xs:annotation>
+					</xs:element>
+					<xs:element name="dataGroupList" type="dx:DataGroupList" minOccurs="0"/>
+				</xs:sequence>
+				<xs:attribute name="instrumentRef" type="xs:anyURI"/>
+				<xs:attribute name="sampleRef" type="xs:anyURI"/>
+			</xs:extension>
+		</xs:complexContent>
+	</xs:complexType>
+	<xs:complexType name="SpectrumList">
+		<xs:annotation>
+			<xs:documentation>List and descriptions of spectra.</xs:documentation>
+		</xs:annotation>
+		<xs:sequence>
+			<xs:element name="spectrum" type="dx:Spectrum" minOccurs="0" maxOccurs="unbounded"/>
+		</xs:sequence>
+		<xs:attribute name="count" type="xs:nonNegativeInteger">
+			<xs:annotation>
+				<xs:documentation>The number of spectra defined in this mzML file.</xs:documentation>
+			</xs:annotation>
+		</xs:attribute>
+	</xs:complexType>
+	<xs:complexType name="Spectrum">
+		<xs:annotation>
+			<xs:documentation>The structure that captures the generation of a peak list (including the underlying acquisitions)</xs:documentation>
+		</xs:annotation>
+		<xs:sequence>
+			<xs:element name="spectrumHeader" type="dx:SpectrumHeader"/>
+			<xs:element name="binaryData" type="dx:BinaryDataArray" minOccurs="0" maxOccurs="unbounded"/>
+		</xs:sequence>
+		<xs:attribute name="id" type="xs:anyURI"/>
+		<xs:attribute name="scanNumber" type="xs:int"/>
+		<xs:attribute name="dataProcessingRef" type="xs:anyURI"/>
+		<xs:attribute name="sourceFileRef"/>
+		<xs:attribute name="spectrumType" type="xs:string"/>
+	</xs:complexType>
+	<xs:complexType name="SpectrumHeader">
+		<xs:annotation>
+			<xs:documentation>Description of the parameters for the mass spectrometer for a given acquisition (or list of acquisitions).</xs:documentation>
+		</xs:annotation>
+		<xs:complexContent>
+			<xs:extension base="dx:ParamGroup">
+				<xs:sequence>
+					<xs:element name="acquisitionList" type="dx:AcquisitionList" minOccurs="0"/>
+					<xs:element name="precursorList" type="dx:PrecursorList" minOccurs="0"/>
+					<xs:element name="instrumentSettings" type="dx:InstrumentSettings" minOccurs="0"/>
+				</xs:sequence>
+			</xs:extension>
+		</xs:complexContent>
+	</xs:complexType>
+	<xs:complexType name="AcquisitionList">
+		<xs:annotation>
+			<xs:documentation>List and descriptions of acquisitions .</xs:documentation>
+		</xs:annotation>
+		<xs:sequence>
+			<xs:element name="acquisition" type="dx:Acquisition" maxOccurs="unbounded"/>
+		</xs:sequence>
+		<xs:attribute name="count" type="xs:nonNegativeInteger">
+			<xs:annotation>
+				<xs:documentation>the number of acquisitions defined in this mzML file.</xs:documentation>
+			</xs:annotation>
+		</xs:attribute>
+		<xs:attribute name="spectrumType" type="xs:string">
+			<xs:annotation>
+				<xs:documentation>Whether these are discrete or continuous spectra.</xs:documentation>
+			</xs:annotation>
+		</xs:attribute>
+		<xs:attribute name="methodOfCombination" type="xs:string">
+			<xs:annotation>
+				<xs:documentation>The method (most usually summing or some form of averaging) by which the acquisitions were combined to make the spectrum.</xs:documentation>
+			</xs:annotation>
+		</xs:attribute>
+	</xs:complexType>
+	<xs:complexType name="Acquisition">
+		<xs:annotation>
+			<xs:documentation>Scan or acquisition from original raw file used to create this peak list, as specified in sourceFile.</xs:documentation>
+		</xs:annotation>
+		<xs:complexContent>
+			<xs:extension base="dx:ParamGroup">
+				<xs:attribute name="acqNumber" type="xs:int"/>
+				<xs:attribute name="spectrumRef" type="xs:anyURI"/>
+				<xs:attribute name="sourceFileRef" type="xs:anyURI"/>
+			</xs:extension>
+		</xs:complexContent>
+	</xs:complexType>
+	<xs:complexType name="PrecursorList">
+		<xs:annotation>
+			<xs:documentation>List and descriptions of precursors to the spectrum currently being described.</xs:documentation>
+		</xs:annotation>
+		<xs:sequence>
+			<xs:element name="precursor" type="dx:Precursor" maxOccurs="unbounded"/>
+		</xs:sequence>
+		<xs:attribute name="count" type="xs:nonNegativeInteger"/>
+	</xs:complexType>
+	<xs:complexType name="Precursor">
+		<xs:annotation>
+			<xs:documentation>The method of precursor ion selection and activation</xs:documentation>
+		</xs:annotation>
+		<xs:sequence>
+			<xs:element name="ionSelection" type="dx:ParamGroup">
+				<xs:annotation>
+					<xs:documentation>This captures the type of ion selection being performed, and trigger m/z (or m/z's), neutral loss criteria etc. for tandem-MS or data dependent scans.</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="activation" type="dx:ParamGroup">
+				<xs:annotation>
+					<xs:documentation>The type and energy level used for activation.</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+		</xs:sequence>
+		<xs:attribute name="msLevel" type="xs:int">
+			<xs:annotation>
+				<xs:documentation>Reference to the id attribute of the spectrum from which the precursor was selected.</xs:documentation>
+			</xs:annotation>
+		</xs:attribute>
+		<xs:attribute name="spectrumRef" type="xs:anyURI">
+			<xs:annotation>
+				<xs:documentation>Reference to the id attribute of the spectrum from which the precursor was selected.</xs:documentation>
+			</xs:annotation>
+		</xs:attribute>
+	</xs:complexType>
+	<xs:complexType name="InstrumentSettings">
+		<xs:annotation>
+			<xs:documentation>The instrument's 'run time' parameters; common to the whole of this spectrum.</xs:documentation>
+		</xs:annotation>
+		<xs:complexContent>
+			<xs:extension base="dx:ParamGroup">
+				<xs:attribute name="instrumentRef" type="xs:anyURI"/>
+			</xs:extension>
+		</xs:complexContent>
+	</xs:complexType>
+	<xs:complexType name="DataGroup">
+		<xs:complexContent>
+			<xs:extension base="dx:ParamGroup">
+				<xs:sequence>
+					<xs:element ref="dx:dataArray" minOccurs="0" maxOccurs="unbounded"/>
+				</xs:sequence>
+				<xs:attribute name="spectrumRef"/>
+				<xs:attribute name="dataProcessingRef" type="xs:string"/>
+			</xs:extension>
+		</xs:complexContent>
+	</xs:complexType>
+	<xs:complexType name="DataGroupList">
+		<xs:sequence>
+			<xs:element name="dataGroup" type="dx:DataGroup" minOccurs="0" maxOccurs="unbounded"/>
+		</xs:sequence>
+		<xs:attribute name="count" type="xs:nonNegativeInteger"/>
+	</xs:complexType>
+	<xs:complexType name="DataArray" abstract="true">
+		<xs:complexContent>
+			<xs:extension base="dx:ParamGroup">
+				<xs:attribute name="length" type="xs:nonNegativeInteger" use="required"/>
+				<xs:attribute name="dataProcessingRef" type="xs:anyURI"/>
+			</xs:extension>
+		</xs:complexContent>
+	</xs:complexType>
+	<xs:element name="dataArray" type="dx:DataArray" abstract="true"/>
+	<xs:complexType name="BinaryDataArray">
+		<xs:annotation>
+			<xs:documentation>The structure into which encoded binary data goes.</xs:documentation>
+		</xs:annotation>
+		<xs:complexContent>
+			<xs:extension base="dx:DataArray">
+				<xs:sequence>
+					<xs:element name="binary" type="xs:base64Binary"/>
+				</xs:sequence>
+				<xs:attribute name="precision" use="required">
+					<xs:simpleType>
+						<xs:restriction base="xs:string">
+							<xs:enumeration value="32"/>
+							<xs:enumeration value="64"/>
+						</xs:restriction>
+					</xs:simpleType>
+				</xs:attribute>
+				<xs:attribute name="compressionType" type="xs:string" use="required"/>
+				<xs:attribute name="encodedLength" type="xs:nonNegativeInteger"/>
+			</xs:extension>
+		</xs:complexContent>
+	</xs:complexType>
+	<xs:element name="binaryDataArray" type="dx:BinaryDataArray" substitutionGroup="dx:dataArray"/>
+	<xs:complexType name="DelimitedDataArray" abstract="true">
+		<xs:complexContent>
+			<xs:extension base="dx:DataArray">
+				<xs:attribute name="type" type="xs:string"/>
+			</xs:extension>
+		</xs:complexContent>
+	</xs:complexType>
+	<xs:simpleType name="BooleanList">
+		<xs:list itemType="xs:boolean"/>
+	</xs:simpleType>
+	<xs:complexType name="DelimitedBooleanArray">
+		<xs:complexContent>
+			<xs:extension base="dx:DelimitedDataArray">
+				<xs:sequence>
+					<xs:element name="items" type="dx:BooleanList"/>
+				</xs:sequence>
+			</xs:extension>
+		</xs:complexContent>
+	</xs:complexType>
+	<xs:element name="delimitedBooleanArray" type="dx:DelimitedBooleanArray" substitutionGroup="dx:dataArray"/>
+	<xs:simpleType name="DoubleList">
+		<xs:list itemType="xs:double"/>
+	</xs:simpleType>
+	<xs:complexType name="DelimitedDoubleArray">
+		<xs:complexContent>
+			<xs:extension base="dx:DelimitedDataArray">
+				<xs:sequence>
+					<xs:element name="items" type="dx:DoubleList"/>
+				</xs:sequence>
+			</xs:extension>
+		</xs:complexContent>
+	</xs:complexType>
+	<xs:element name="delimitedDoubleArray" type="dx:DelimitedDoubleArray" substitutionGroup="dx:dataArray"/>
+	<xs:simpleType name="FloatList">
+		<xs:list itemType="xs:float"/>
+	</xs:simpleType>
+	<xs:complexType name="DelimitedFloatArray">
+		<xs:complexContent>
+			<xs:extension base="dx:DelimitedDataArray">
+				<xs:sequence>
+					<xs:element name="items" type="dx:FloatList"/>
+				</xs:sequence>
+			</xs:extension>
+		</xs:complexContent>
+	</xs:complexType>
+	<xs:element name="delimitedFloatArray" type="dx:DelimitedFloatArray" substitutionGroup="dx:dataArray"/>
+	<xs:simpleType name="IntList">
+		<xs:list itemType="xs:int"/>
+	</xs:simpleType>
+	<xs:complexType name="DelimitedIntArray">
+		<xs:complexContent>
+			<xs:extension base="dx:DelimitedDataArray">
+				<xs:sequence>
+					<xs:element name="items" type="dx:IntList"/>
+				</xs:sequence>
+			</xs:extension>
+		</xs:complexContent>
+	</xs:complexType>
+	<xs:element name="delimitedIntArray" type="dx:DelimitedIntArray" substitutionGroup="dx:dataArray"/>
+	<xs:simpleType name="StringList">
+		<xs:list itemType="xs:string"/>
+	</xs:simpleType>
+	<xs:complexType name="DelimitedStringArray">
+		<xs:complexContent>
+			<xs:extension base="dx:DelimitedDataArray">
+				<xs:sequence>
+					<xs:element name="items" type="dx:StringList"/>
+				</xs:sequence>
+			</xs:extension>
+		</xs:complexContent>
+	</xs:complexType>
+	<xs:element name="delimitedStringArray" type="dx:DelimitedStringArray" substitutionGroup="dx:dataArray"/>
+	<xs:simpleType name="TimeList">
+		<xs:list itemType="xs:time"/>
+	</xs:simpleType>
+	<xs:complexType name="DelimitedTimeArray">
+		<xs:complexContent>
+			<xs:extension base="dx:DelimitedDataArray">
+				<xs:sequence>
+					<xs:element name="items" type="dx:TimeList"/>
+				</xs:sequence>
+			</xs:extension>
+		</xs:complexContent>
+	</xs:complexType>
+	<xs:element name="delimitedTimeArray" type="dx:DelimitedTimeArray" substitutionGroup="dx:dataArray"/>
+	<xs:complexType name="StringArray">
+		<xs:complexContent>
+			<xs:extension base="dx:DataArray">
+				<xs:sequence>
+					<xs:element name="item" type="xs:string" minOccurs="0" maxOccurs="unbounded"/>
+				</xs:sequence>
+			</xs:extension>
+		</xs:complexContent>
+	</xs:complexType>
+	<xs:element name="stringArray" type="dx:StringArray" substitutionGroup="dx:dataArray"/>
+</xs:schema>

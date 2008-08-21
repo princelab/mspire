@@ -1,0 +1,305 @@
+<?xml version="1.0" encoding="iso-8859-1"?>
+<!DOCTYPE html 
+     PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+     "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+<head>
+  <title>Module: FastaManipulation</title>
+  <meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1" />
+  <meta http-equiv="Content-Script-Type" content="text/javascript" />
+  <link rel="stylesheet" href=".././rdoc-style.css" type="text/css" media="screen" />
+  <script type="text/javascript">
+  // <![CDATA[
+
+  function popupCode( url ) {
+    window.open(url, "Code", "resizable=yes,scrollbars=yes,toolbar=no,status=no,height=150,width=400")
+  }
+
+  function toggleCode( id ) {
+    if ( document.getElementById )
+      elem = document.getElementById( id );
+    else if ( document.all )
+      elem = eval( "document.all." + id );
+    else
+      return false;
+
+    elemStyle = elem.style;
+    
+    if ( elemStyle.display != "block" ) {
+      elemStyle.display = "block"
+    } else {
+      elemStyle.display = "none"
+    }
+
+    return true;
+  }
+  
+  // Make codeblocks hidden by default
+  document.writeln( "<style type=\"text/css\">div.method-source-code { display: none }</style>" )
+  
+  // ]]>
+  </script>
+
+</head>
+<body>
+
+
+
+    <div id="classHeader">
+        <table class="header-table">
+        <tr class="top-aligned-row">
+          <td><strong>Module</strong></td>
+          <td class="class-name-in-header">FastaManipulation</td>
+        </tr>
+        <tr class="top-aligned-row">
+            <td><strong>In:</strong></td>
+            <td>
+                <a href="../files/lib/fasta_rb.html">
+                lib/fasta.rb
+                </a>
+        <br />
+            </td>
+        </tr>
+
+        </table>
+    </div>
+  <!-- banner header -->
+
+  <div id="bodyContent">
+
+
+
+  <div id="contextContent">
+
+
+
+   </div>
+
+    <div id="method-list">
+      <h3 class="section-bar">Methods</h3>
+
+      <div class="name-list">
+      <a href="#M000385">&lt;&lt;</a>&nbsp;&nbsp;
+      <a href="#M000386">aaseq!</a>&nbsp;&nbsp;
+      <a href="#M000388">aaseq_invert!</a>&nbsp;&nbsp;
+      <a href="#M000389">aaseq_invert_tryptic_peptides!</a>&nbsp;&nbsp;
+      <a href="#M000387">aaseq_shuffle!</a>&nbsp;&nbsp;
+      <a href="#M000390">aaseq_shuffle_tryptic_peptides!</a>&nbsp;&nbsp;
+      <a href="#M000384">cat_and_prefix</a>&nbsp;&nbsp;
+      <a href="#M000382">cat_filenames</a>&nbsp;&nbsp;
+      <a href="#M000383">fraction_of_prots</a>&nbsp;&nbsp;
+      <a href="#M000391">header_prefix!</a>&nbsp;&nbsp;
+      </div>
+    </div>
+
+  </div>
+
+
+    <!-- if includes -->
+
+    <div id="section">
+
+
+
+
+
+      
+
+
+    <!-- if method_list -->
+    <div id="methods">
+      <h3 class="section-bar">Public Class methods</h3>
+
+      <div id="method-M000384" class="method-detail">
+        <a name="M000384"></a>
+
+        <div class="method-heading">
+          <a href="FastaManipulation.src/M000384.html" target="Code" class="method-signature"
+            onclick="popupCode('FastaManipulation.src/M000384.html');return false;">
+          <span class="method-name">cat_and_prefix</span><span class="method-args">(files, file_prot_header_prefixes=nil, file_connector=nil)</span>
+          </a>
+        </div>
+      
+        <div class="method-description">
+          <p>
+Convenience method to concatenate an array of fasta files. Filenames are
+concatenated according to &#8216;<a
+href="FastaManipulation.html#M000382">cat_filenames</a>&#8217;) and
+prefixes the proteins according to the values in
+&#8216;file_prot_header_prefixes&#8217; array
+</p>
+        </div>
+      </div>
+
+      <div id="method-M000382" class="method-detail">
+        <a name="M000382"></a>
+
+        <div class="method-heading">
+          <a href="FastaManipulation.src/M000382.html" target="Code" class="method-signature"
+            onclick="popupCode('FastaManipulation.src/M000382.html');return false;">
+          <span class="method-name">cat_filenames</span><span class="method-args">(filenames, connector=&quot;&quot;)</span>
+          </a>
+        </div>
+      
+        <div class="method-description">
+          <p>
+concatenates the filenames like this:
+</p>
+<pre>
+  cat_filenames('fn1.ext1', 'fn2.ext2', '__') # -&gt; 'fn1__fn2.ext1'
+  the path and extension of the first filename are kept intact.
+  other files only use the basename (with no extension)
+</pre>
+        </div>
+      </div>
+
+      <h3 class="section-bar">Public Instance methods</h3>
+
+      <div id="method-M000385" class="method-detail">
+        <a name="M000385"></a>
+
+        <div class="method-heading">
+          <a href="FastaManipulation.src/M000385.html" target="Code" class="method-signature"
+            onclick="popupCode('FastaManipulation.src/M000385.html');return false;">
+          <span class="method-name">&lt;&lt;</span><span class="method-args">(other)</span>
+          </a>
+        </div>
+      
+        <div class="method-description">
+        </div>
+      </div>
+
+      <div id="method-M000386" class="method-detail">
+        <a name="M000386"></a>
+
+        <div class="method-heading">
+          <a href="FastaManipulation.src/M000386.html" target="Code" class="method-signature"
+            onclick="popupCode('FastaManipulation.src/M000386.html');return false;">
+          <span class="method-name">aaseq!</span><span class="method-args">(method_as_symbol=:shuffle!, tryptic_peptides=false)</span>
+          </a>
+        </div>
+      
+        <div class="method-description">
+          <p>
+method = :shuffle! | :reverse!
+</p>
+        </div>
+      </div>
+
+      <div id="method-M000388" class="method-detail">
+        <a name="M000388"></a>
+
+        <div class="method-heading">
+          <a href="FastaManipulation.src/M000388.html" target="Code" class="method-signature"
+            onclick="popupCode('FastaManipulation.src/M000388.html');return false;">
+          <span class="method-name">aaseq_invert!</span><span class="method-args">()</span>
+          </a>
+        </div>
+      
+        <div class="method-description">
+          <p>
+shuffles the aa sequence of each protein (each protein within itself)
+</p>
+        </div>
+      </div>
+
+      <div id="method-M000389" class="method-detail">
+        <a name="M000389"></a>
+
+        <div class="method-heading">
+          <a href="FastaManipulation.src/M000389.html" target="Code" class="method-signature"
+            onclick="popupCode('FastaManipulation.src/M000389.html');return false;">
+          <span class="method-name">aaseq_invert_tryptic_peptides!</span><span class="method-args">()</span>
+          </a>
+        </div>
+      
+        <div class="method-description">
+        </div>
+      </div>
+
+      <div id="method-M000387" class="method-detail">
+        <a name="M000387"></a>
+
+        <div class="method-heading">
+          <a href="FastaManipulation.src/M000387.html" target="Code" class="method-signature"
+            onclick="popupCode('FastaManipulation.src/M000387.html');return false;">
+          <span class="method-name">aaseq_shuffle!</span><span class="method-args">()</span>
+          </a>
+        </div>
+      
+        <div class="method-description">
+          <p>
+shuffles the aa sequence of each protein (each protein within itself)
+</p>
+        </div>
+      </div>
+
+      <div id="method-M000390" class="method-detail">
+        <a name="M000390"></a>
+
+        <div class="method-heading">
+          <a href="FastaManipulation.src/M000390.html" target="Code" class="method-signature"
+            onclick="popupCode('FastaManipulation.src/M000390.html');return false;">
+          <span class="method-name">aaseq_shuffle_tryptic_peptides!</span><span class="method-args">()</span>
+          </a>
+        </div>
+      
+        <div class="method-description">
+        </div>
+      </div>
+
+      <div id="method-M000383" class="method-detail">
+        <a name="M000383"></a>
+
+        <div class="method-heading">
+          <a href="FastaManipulation.src/M000383.html" target="Code" class="method-signature"
+            onclick="popupCode('FastaManipulation.src/M000383.html');return false;">
+          <span class="method-name">fraction_of_prots</span><span class="method-args">(fraction=1, prefix_proc=nil)</span>
+          </a>
+        </div>
+      
+        <div class="method-description">
+          <p>
+returns a new fasta object using some fraction of proteins randomly
+selected (fraction may be &gt; 1). Always rounds up. Will not choose a
+protein twice unless all other proteins have been chosen
+</p>
+<p>
+fraction_prefix ensures that a unique header is given even if multiple
+fraction of proteins are being created fraction_cnt =
+(prot_cnt/num_prots).floor.to_i so for the first n proteins, it will be 0,
+the 2n proteins will be 1, etc. e.g. prefix_proc = proc {|frac_cnt|
+&quot;f#{frac_cnt}_&quot; } would give headers like this:
+&gt;f0_&lt;some_real_header&gt;, &gt;f1_&lt;some_real_header&gt;, &#8230;
+</p>
+        </div>
+      </div>
+
+      <div id="method-M000391" class="method-detail">
+        <a name="M000391"></a>
+
+        <div class="method-heading">
+          <a href="FastaManipulation.src/M000391.html" target="Code" class="method-signature"
+            onclick="popupCode('FastaManipulation.src/M000391.html');return false;">
+          <span class="method-name">header_prefix!</span><span class="method-args">(prefix)</span>
+          </a>
+        </div>
+      
+        <div class="method-description">
+        </div>
+      </div>
+
+
+    </div>
+
+
+  </div>
+
+
+<div id="validator-badges">
+  <p><small><a href="http://validator.w3.org/check/referer">[Validate]</a></small></p>
+</div>
+
+</body>
+</html>

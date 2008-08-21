@@ -1,0 +1,88 @@
+--- 
+- time_to_access: 2.731623
+  scan_count: 5899
+  file_size: 33175093
+  scans_to_read: all
+  total_time_to_read_and_access: 47.882796
+  time_to_read: 45.151147
+  lazy_type: :string
+  end_time: 11999.81
+  start_time: 300.06
+  file: B30_1ms_4msms.mzXML
+--- 
+- time_to_access: 1.539753
+  scan_count: 5946
+  file_size: 32103277
+  scans_to_read: all
+  total_time_to_read_and_access: 44.072852
+  time_to_read: 42.533072
+  lazy_type: :string
+  end_time: 11998.09
+  start_time: 300.02
+  file: B29_1ms_4msms.mzXML
+--- 
+- time_to_access: 2.545951
+  scan_count: 5777
+  file_size: 35804337
+  scans_to_read: all
+  total_time_to_read_and_access: 49.812494
+  time_to_read: 47.266516
+  lazy_type: :string
+  end_time: 12002.81
+  start_time: 300.06
+  file: B30_1ms_3msms.mzXML
+--- 
+- time_to_access: 3.544428
+  scan_count: 5584
+  file_size: 48122330
+  scans_to_read: all
+  total_time_to_read_and_access: 67.374778
+  time_to_read: 63.830323
+  lazy_type: :string
+  end_time: 11999.54
+  start_time: 300.08
+  file: B29_1ms_1msms.mzXML
+--- 
+- time_to_access: 2.5348
+  scan_count: 5556
+  file_size: 40471018
+  scans_to_read: all
+  total_time_to_read_and_access: 56.32001
+  time_to_read: 53.785185
+  lazy_type: :string
+  end_time: 12004.33
+  start_time: 300.1099
+  file: B30_1ms_2msms.mzXML
+--- 
+- time_to_access: 3.720007
+  scan_count: 5241
+  file_size: 48250213
+  scans_to_read: all
+  total_time_to_read_and_access: 67.625397
+  time_to_read: 63.905365
+  lazy_type: :string
+  end_time: 11998.32
+  start_time: 300.1
+  file: B30_1ms_1msms.mzXML
+--- 
+- time_to_access: 2.480163
+  scan_count: 5822
+  file_size: 39448692
+  scans_to_read: all
+  total_time_to_read_and_access: 55.009857
+  time_to_read: 52.529665
+  lazy_type: :string
+  end_time: 11999.52
+  start_time: 300.07
+  file: B29_1ms_2msms.mzXML
+--- 
+- time_to_access: 2.744345
+  scan_count: 5896
+  file_size: 35060935
+  scans_to_read: all
+  total_time_to_read_and_access: 48.337448
+  time_to_read: 45.593078
+  lazy_type: :string
+  end_time: 11999.45
+  start_time: 300.08
+  file: B29_1ms_3msms.mzXML

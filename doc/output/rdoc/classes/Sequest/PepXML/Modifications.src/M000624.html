@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="iso-8859-1"?>
+<!DOCTYPE html 
+     PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+     "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html>
+<head>
+  <title>modification_info (Sequest::PepXML::Modifications)</title>
+  <meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1" />
+  <link rel="stylesheet" href="../../../.././rdoc-style.css" type="text/css" media="screen" />
+</head>
+<body class="standalone-code">
+  <pre><span class="ruby-comment cmt"># File lib/spec_id/sequest/pepxml.rb, line 930</span>
+  <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">modification_info</span>(<span class="ruby-identifier">peptide</span>)
+    <span class="ruby-keyword kw">if</span> <span class="ruby-ivar">@masses_by_diff_mod</span>.<span class="ruby-identifier">size</span> <span class="ruby-operator">==</span> <span class="ruby-value">0</span>
+      <span class="ruby-keyword kw">return</span> <span class="ruby-keyword kw">nil</span>
+    <span class="ruby-keyword kw">end</span>
+    <span class="ruby-identifier">hash</span> = {}
+    <span class="ruby-identifier">hash</span>[<span class="ruby-identifier">:modified_peptide</span>] = <span class="ruby-identifier">peptide</span>.<span class="ruby-identifier">dup</span>
+    <span class="ruby-identifier">hsh</span> = <span class="ruby-ivar">@masses_by_diff_mod</span>  
+    <span class="ruby-identifier">table</span> = <span class="ruby-ivar">@params</span>.<span class="ruby-identifier">mass_table</span>
+    <span class="ruby-identifier">h</span> = <span class="ruby-identifier">table</span>[<span class="ruby-identifier">:h</span>]  <span class="ruby-comment cmt"># this? or h_plus ??</span>
+    <span class="ruby-identifier">oh</span> = <span class="ruby-identifier">table</span>[<span class="ruby-identifier">:o</span>] <span class="ruby-operator">+</span> <span class="ruby-identifier">h</span>
+    <span class="ruby-comment cmt">## only the termini can match a single char</span>
+    <span class="ruby-keyword kw">if</span> <span class="ruby-identifier">hsh</span>.<span class="ruby-identifier">key?</span> <span class="ruby-identifier">peptide</span>[<span class="ruby-value">0</span>,<span class="ruby-value">1</span>]
+      <span class="ruby-comment cmt"># AA + H + differential_mod</span>
+      <span class="ruby-identifier">hash</span>[<span class="ruby-identifier">:mod_nterm_mass</span>] = <span class="ruby-identifier">table</span>[<span class="ruby-identifier">peptide</span>[<span class="ruby-value">1</span>,<span class="ruby-value">1</span>].<span class="ruby-identifier">to_sym</span>] <span class="ruby-operator">+</span> <span class="ruby-identifier">h</span> <span class="ruby-operator">+</span> <span class="ruby-identifier">hsh</span>[<span class="ruby-identifier">peptide</span>[<span class="ruby-value">0</span>,<span class="ruby-value">1</span>]]
+      <span class="ruby-identifier">peptide</span> = <span class="ruby-identifier">peptide</span>[<span class="ruby-value">1</span><span class="ruby-operator">...</span>(<span class="ruby-identifier">peptide</span>.<span class="ruby-identifier">size</span>)]
+    <span class="ruby-keyword kw">end</span>
+    <span class="ruby-keyword kw">if</span> <span class="ruby-identifier">hsh</span>.<span class="ruby-identifier">key?</span> <span class="ruby-identifier">peptide</span>[(<span class="ruby-identifier">peptide</span>.<span class="ruby-identifier">size</span><span class="ruby-operator">-</span><span class="ruby-value">1</span>),<span class="ruby-value">1</span>]
+      <span class="ruby-comment cmt"># AA + OH + differential_mod</span>
+      <span class="ruby-identifier">hash</span>[<span class="ruby-identifier">:mod_cterm_mass</span>] = <span class="ruby-identifier">table</span>[<span class="ruby-identifier">peptide</span>[(<span class="ruby-identifier">peptide</span>.<span class="ruby-identifier">size</span><span class="ruby-operator">-</span><span class="ruby-value">2</span>),<span class="ruby-value">1</span>].<span class="ruby-identifier">to_sym</span>] <span class="ruby-operator">+</span> <span class="ruby-identifier">oh</span> <span class="ruby-operator">+</span> <span class="ruby-identifier">hsh</span>[<span class="ruby-identifier">peptide</span>[<span class="ruby-value">-1</span>,<span class="ruby-value">1</span>]]
+      <span class="ruby-identifier">peptide</span>.<span class="ruby-identifier">slice!</span>( <span class="ruby-value">0</span><span class="ruby-operator">..</span><span class="ruby-value">-2</span> )
+      <span class="ruby-identifier">peptide</span> = <span class="ruby-identifier">peptide</span>[<span class="ruby-value">0</span><span class="ruby-operator">...</span>(<span class="ruby-identifier">peptide</span>.<span class="ruby-identifier">size</span><span class="ruby-operator">-</span><span class="ruby-value">1</span>)]
+    <span class="ruby-keyword kw">end</span>
+    <span class="ruby-identifier">mod_array</span> = []
+    (<span class="ruby-value">0</span><span class="ruby-operator">...</span><span class="ruby-identifier">peptide</span>.<span class="ruby-identifier">size</span>).<span class="ruby-identifier">each</span> <span class="ruby-keyword kw">do</span> <span class="ruby-operator">|</span><span class="ruby-identifier">i</span><span class="ruby-operator">|</span>
+      <span class="ruby-keyword kw">if</span> <span class="ruby-identifier">hsh</span>.<span class="ruby-identifier">key?</span> <span class="ruby-identifier">peptide</span>[<span class="ruby-identifier">i</span>,<span class="ruby-value">2</span>]
+        <span class="ruby-identifier">mod_array</span> <span class="ruby-operator">&lt;&lt;</span> <span class="ruby-constant">Sequest</span><span class="ruby-operator">::</span><span class="ruby-constant">PepXML</span><span class="ruby-operator">::</span><span class="ruby-constant">SearchHit</span><span class="ruby-operator">::</span><span class="ruby-constant">ModificationInfo</span><span class="ruby-operator">::</span><span class="ruby-constant">ModAminoacidMass</span>.<span class="ruby-identifier">new</span>([ <span class="ruby-identifier">i</span><span class="ruby-operator">+</span><span class="ruby-value">1</span> , <span class="ruby-identifier">hsh</span>[<span class="ruby-identifier">peptide</span>[<span class="ruby-identifier">i</span>,<span class="ruby-value">2</span>]] ])
+      <span class="ruby-keyword kw">end</span>
+    <span class="ruby-keyword kw">end</span>
+    <span class="ruby-keyword kw">if</span> <span class="ruby-identifier">mod_array</span>.<span class="ruby-identifier">size</span> <span class="ruby-operator">&gt;</span> <span class="ruby-value">0</span>
+      <span class="ruby-identifier">hash</span>[<span class="ruby-identifier">:mod_aminoacid_masses</span>] = <span class="ruby-identifier">mod_array</span>
+    <span class="ruby-keyword kw">end</span>
+    <span class="ruby-keyword kw">if</span> <span class="ruby-identifier">hash</span>.<span class="ruby-identifier">size</span> <span class="ruby-operator">&gt;</span> <span class="ruby-value">1</span>  <span class="ruby-comment cmt"># if there is more than just the modified peptide there</span>
+      <span class="ruby-constant">Sequest</span><span class="ruby-operator">::</span><span class="ruby-constant">PepXML</span><span class="ruby-operator">::</span><span class="ruby-constant">SearchHit</span><span class="ruby-operator">::</span><span class="ruby-constant">ModificationInfo</span>.<span class="ruby-identifier">new</span>(<span class="ruby-identifier">hash</span>)
+      <span class="ruby-comment cmt">#Sequest::PepXML::SearchHit::ModificationInfo.new(hash.values_at(:modified_peptide, :mod_aminoacid_masses, :mod_nterm_mass, :mod_cterm_mass)</span>
+    <span class="ruby-keyword kw">else</span>
+      <span class="ruby-keyword kw">nil</span>
+    <span class="ruby-keyword kw">end</span>
+  <span class="ruby-keyword kw">end</span></pre>
+</body>
+</html>

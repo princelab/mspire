@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="iso-8859-1"?>
+<!DOCTYPE html 
+     PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+     "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html>
+<head>
+  <title>peptide_mass_tol (Sequest::Params)</title>
+  <meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1" />
+  <link rel="stylesheet" href="../../.././rdoc-style.css" type="text/css" media="screen" />
+</head>
+<body class="standalone-code">
+  <pre><span class="ruby-comment cmt"># File lib/spec_id/sequest/params.rb, line 282</span>
+  <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">peptide_mass_tol</span>
+    <span class="ruby-keyword kw">if</span> <span class="ruby-ivar">@opts</span>[<span class="ruby-value str">&quot;peptide_mass_units&quot;</span>] <span class="ruby-operator">!=</span> <span class="ruby-value str">&quot;0&quot;</span>
+      <span class="ruby-identifier">puts</span> <span class="ruby-value str">&quot;WARNING: peptide_mass_tol units need to be adjusted!&quot;</span>
+    <span class="ruby-keyword kw">end</span>
+    <span class="ruby-ivar">@opts</span>[<span class="ruby-value str">&quot;peptide_mass_tolerance&quot;</span>]
+  <span class="ruby-keyword kw">end</span></pre>
+</body>
+</html>

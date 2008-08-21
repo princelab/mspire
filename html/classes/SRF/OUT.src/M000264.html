@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="iso-8859-1"?>
+<!DOCTYPE html 
+     PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+     "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html>
+<head>
+  <title>inspect (SRF::OUT)</title>
+  <meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1" />
+  <link rel="stylesheet" href="../../.././rdoc-style.css" type="text/css" media="screen" />
+</head>
+<body class="standalone-code">
+  <pre><span class="ruby-comment cmt"># File lib/spec_id/srf.rb, line 680</span>
+  <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">inspect</span>
+    <span class="ruby-identifier">hits_s</span> = 
+      <span class="ruby-keyword kw">if</span> <span class="ruby-keyword kw">self</span>[<span class="ruby-value">6</span>]
+        <span class="ruby-node">&quot;, @hits(#)=#{hits.size}&quot;</span>
+      <span class="ruby-keyword kw">else</span>
+        <span class="ruby-value str">''</span>
+      <span class="ruby-keyword kw">end</span>
+    <span class="ruby-node">&quot;&lt;SRF::OUT  first_scan=#{first_scan}, last_scan=#{last_scan}, charge=#{charge}, num_hits=#{num_hits}, computer=#{computer}, date_time=#{date_time}#{hits_s}&gt;&quot;</span>
+  <span class="ruby-keyword kw">end</span></pre>
+</body>
+</html>

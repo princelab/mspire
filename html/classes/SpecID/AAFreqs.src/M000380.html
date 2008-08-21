@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="iso-8859-1"?>
+<!DOCTYPE html 
+     PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+     "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html>
+<head>
+  <title>actual_and_expected_number (SpecID::AAFreqs)</title>
+  <meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1" />
+  <link rel="stylesheet" href="../../.././rdoc-style.css" type="text/css" media="screen" />
+</head>
+<body class="standalone-code">
+  <pre><span class="ruby-comment cmt"># File lib/spec_id/aa_freqs.rb, line 64</span>
+  <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">actual_and_expected_number</span>(<span class="ruby-identifier">peptide_aaseqs</span>, <span class="ruby-identifier">amino_acid</span>=<span class="ruby-identifier">:C</span>, <span class="ruby-identifier">at_least</span>=<span class="ruby-value">1</span>)
+    <span class="ruby-keyword kw">if</span> <span class="ruby-identifier">at_least</span> <span class="ruby-operator">&gt;</span> <span class="ruby-value">1</span>
+      <span class="ruby-identifier">raise</span> <span class="ruby-constant">NotImplementedError</span>, <span class="ruby-value str">&quot;can only do at_least=1 right now!&quot;</span>
+    <span class="ruby-keyword kw">end</span>
+    <span class="ruby-identifier">one_minus_freq</span> = <span class="ruby-value">1.0</span> <span class="ruby-operator">-</span> <span class="ruby-ivar">@aafreqs</span>[<span class="ruby-identifier">amino_acid</span>.<span class="ruby-identifier">to_sym</span>]
+    <span class="ruby-identifier">amino_acid_as_st</span> = <span class="ruby-identifier">amino_acid</span>.<span class="ruby-identifier">to_s</span>
+    <span class="ruby-identifier">probs</span> = []
+    <span class="ruby-identifier">actual</span> = <span class="ruby-value">0</span>
+    <span class="ruby-identifier">expected</span> = <span class="ruby-value">0</span><span class="ruby-value">.0</span>
+    <span class="ruby-identifier">peptide_aaseqs</span>.<span class="ruby-identifier">each</span> <span class="ruby-keyword kw">do</span> <span class="ruby-operator">|</span><span class="ruby-identifier">pep</span><span class="ruby-operator">|</span>
+      <span class="ruby-identifier">expected</span> <span class="ruby-operator">+=</span> (<span class="ruby-value">1.0</span> <span class="ruby-operator">-</span> (<span class="ruby-identifier">one_minus_freq</span><span class="ruby-operator">**</span><span class="ruby-identifier">pep</span>.<span class="ruby-identifier">size</span>))
+      <span class="ruby-keyword kw">if</span> <span class="ruby-identifier">pep</span>.<span class="ruby-identifier">include?</span>(<span class="ruby-identifier">amino_acid_as_st</span>)
+        <span class="ruby-identifier">actual</span> <span class="ruby-operator">+=</span> <span class="ruby-value">1</span>
+      <span class="ruby-keyword kw">end</span>
+    <span class="ruby-keyword kw">end</span>
+    [<span class="ruby-identifier">actual</span>, <span class="ruby-identifier">expected</span>] 
+  <span class="ruby-keyword kw">end</span></pre>
+</body>
+</html>

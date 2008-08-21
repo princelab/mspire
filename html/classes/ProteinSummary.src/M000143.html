@@ -1,0 +1,78 @@
+<?xml version="1.0" encoding="iso-8859-1"?>
+<!DOCTYPE html 
+     PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+     "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html>
+<head>
+  <title>create_from_command_line_args (ProteinSummary)</title>
+  <meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1" />
+  <link rel="stylesheet" href="../.././rdoc-style.css" type="text/css" media="screen" />
+</head>
+<body class="standalone-code">
+  <pre><span class="ruby-comment cmt"># File lib/spec_id/protein_summary.rb, line 410</span>
+  <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">create_from_command_line_args</span>(<span class="ruby-identifier">argv</span>)
+    <span class="ruby-ivar">@orig_argv</span> = <span class="ruby-identifier">argv</span>.<span class="ruby-identifier">dup</span>
+
+    <span class="ruby-identifier">opt</span> = <span class="ruby-constant">OpenStruct</span>.<span class="ruby-identifier">new</span>
+    <span class="ruby-identifier">opt</span>.<span class="ruby-identifier">f</span> = <span class="ruby-constant">DEF_PREFIX</span>
+    <span class="ruby-identifier">opts</span> = <span class="ruby-constant">OptionParser</span>.<span class="ruby-identifier">new</span> <span class="ruby-keyword kw">do</span> <span class="ruby-operator">|</span><span class="ruby-identifier">op</span><span class="ruby-operator">|</span>
+      <span class="ruby-identifier">op</span>.<span class="ruby-identifier">banner</span> = <span class="ruby-node">&quot;usage: #{File.basename(__FILE__)} [options] &lt;file&gt;.xml ...&quot;</span>
+      <span class="ruby-identifier">op</span>.<span class="ruby-identifier">separator</span> <span class="ruby-value str">&quot;    where file = bioworks -or- &lt;run&gt;-prot (prophet output)&quot;</span>
+      <span class="ruby-identifier">op</span>.<span class="ruby-identifier">separator</span> <span class="ruby-value str">&quot;    outputs: &lt;file&gt;.summary.html&quot;</span>
+      <span class="ruby-identifier">op</span>.<span class="ruby-identifier">separator</span> <span class="ruby-value str">&quot;&quot;</span>
+      <span class="ruby-identifier">op</span>.<span class="ruby-identifier">on</span>(<span class="ruby-value str">&quot;-f&quot;</span>, <span class="ruby-value str">&quot;--false &lt;prefix&gt;&quot;</span>, <span class="ruby-node">&quot;ignore proteins with flag (def: #{DEF_PREFIX})&quot;</span>) {<span class="ruby-operator">|</span><span class="ruby-identifier">v</span><span class="ruby-operator">|</span> <span class="ruby-identifier">opt</span>.<span class="ruby-identifier">f</span> = <span class="ruby-identifier">v</span> }
+      <span class="ruby-identifier">op</span>.<span class="ruby-identifier">on</span>(<span class="ruby-value str">&quot;--prefix&quot;</span>, <span class="ruby-value str">&quot;false flag for prefixes only&quot;</span>) {<span class="ruby-operator">|</span><span class="ruby-identifier">v</span><span class="ruby-operator">|</span> <span class="ruby-identifier">opt</span>.<span class="ruby-identifier">prefix</span> = <span class="ruby-identifier">v</span> }
+      <span class="ruby-identifier">op</span>.<span class="ruby-identifier">on</span>(<span class="ruby-value str">&quot;-p&quot;</span>, <span class="ruby-value str">&quot;--precision&quot;</span>, <span class="ruby-value str">&quot;include the output from precision.rb&quot;</span>) {<span class="ruby-operator">|</span><span class="ruby-identifier">v</span><span class="ruby-operator">|</span> <span class="ruby-identifier">opt</span>.<span class="ruby-identifier">p</span> = <span class="ruby-identifier">v</span> }
+      <span class="ruby-identifier">op</span>.<span class="ruby-identifier">separator</span>(<span class="ruby-value str">&quot;             if --precision then -f is used to specify a file or prefix&quot;</span>)
+      <span class="ruby-identifier">op</span>.<span class="ruby-identifier">separator</span>(<span class="ruby-value str">&quot;             that indicates the false positives.&quot;</span>)
+      <span class="ruby-identifier">op</span>.<span class="ruby-identifier">on</span>(<span class="ruby-value str">&quot;--peptide_count &lt;filename&gt;&quot;</span>, <span class="ruby-value str">&quot;outputs text file with # peptides per protein&quot;</span>) {<span class="ruby-operator">|</span><span class="ruby-identifier">v</span><span class="ruby-operator">|</span> <span class="ruby-identifier">opt</span>.<span class="ruby-identifier">peptide_count</span> = <span class="ruby-identifier">v</span>}
+      <span class="ruby-identifier">op</span>.<span class="ruby-identifier">separator</span> <span class="ruby-value str">&quot;&quot;</span>
+      <span class="ruby-identifier">op</span>.<span class="ruby-identifier">separator</span> <span class="ruby-node">&quot;Options for #{PRECISION_PROGRAM_BASE}.rb :&quot;</span>
+      <span class="ruby-identifier">op</span>.<span class="ruby-identifier">on</span>(<span class="ruby-node">&quot;--#{PRECISION_PROGRAM_BASE}&quot;</span>, <span class="ruby-node">&quot;include output of #{PRECISION_PROGRAM_BASE}.rb,&quot;</span>) {<span class="ruby-operator">|</span><span class="ruby-identifier">v</span><span class="ruby-operator">|</span> <span class="ruby-identifier">opt</span>.<span class="ruby-identifier">precision</span> = <span class="ruby-identifier">v</span>}
+      <span class="ruby-identifier">op</span>.<span class="ruby-identifier">separator</span>(<span class="ruby-node">&quot;                                     type '#{PRECISION_PROGRAM_BASE}.rb' for details&quot;</span>)
+      <span class="ruby-identifier">op</span>.<span class="ruby-identifier">separator</span> <span class="ruby-value str">&quot;&quot;</span>
+      <span class="ruby-identifier">op</span>.<span class="ruby-identifier">separator</span> <span class="ruby-value str">&quot;specific to ProteinProphet (with no concatenated DB):&quot;</span>
+      <span class="ruby-identifier">op</span>.<span class="ruby-identifier">on</span>(<span class="ruby-value str">&quot;-c&quot;</span>, <span class="ruby-value str">&quot;--cutoff percent&quot;</span>, <span class="ruby-value str">&quot;false positive predictive rate (FPPR)% for given cutoff&quot;</span>) {<span class="ruby-operator">|</span><span class="ruby-identifier">v</span><span class="ruby-operator">|</span> <span class="ruby-identifier">opt</span>.<span class="ruby-identifier">c</span> = <span class="ruby-identifier">v</span> }
+      <span class="ruby-identifier">op</span>.<span class="ruby-identifier">on</span>(<span class="ruby-value str">&quot;--cut_at percent&quot;</span>, <span class="ruby-value str">&quot;only reports proteins within FPPR %&quot;</span>) {<span class="ruby-operator">|</span><span class="ruby-identifier">v</span><span class="ruby-operator">|</span> <span class="ruby-identifier">opt</span>.<span class="ruby-identifier">cut_at</span> = <span class="ruby-identifier">v</span> }
+      <span class="ruby-identifier">op</span>.<span class="ruby-identifier">on</span>(<span class="ruby-value str">&quot;--get_annotation&quot;</span>, <span class="ruby-value str">&quot;retrieves annotation by gi code&quot;</span>) {<span class="ruby-operator">|</span><span class="ruby-identifier">v</span><span class="ruby-operator">|</span> <span class="ruby-identifier">opt</span>.<span class="ruby-identifier">get_annotation</span> = <span class="ruby-identifier">v</span>}
+      <span class="ruby-identifier">op</span>.<span class="ruby-identifier">separator</span> <span class="ruby-value str">&quot;             (use if your proteins have gi's but no annotation) &quot;</span>
+    <span class="ruby-keyword kw">end</span>
+
+    <span class="ruby-identifier">opts</span>.<span class="ruby-identifier">parse!</span>(<span class="ruby-identifier">argv</span>)
+
+    <span class="ruby-keyword kw">if</span> <span class="ruby-identifier">argv</span>.<span class="ruby-identifier">size</span> <span class="ruby-operator">&lt;</span> <span class="ruby-value">1</span>
+      <span class="ruby-identifier">puts</span> <span class="ruby-identifier">opts</span>
+      <span class="ruby-keyword kw">return</span>
+    <span class="ruby-keyword kw">end</span>
+
+    <span class="ruby-identifier">fppr_output_as_html</span> = <span class="ruby-value str">''</span>
+    <span class="ruby-identifier">files</span> = <span class="ruby-identifier">argv</span>.<span class="ruby-identifier">to_a</span>
+    <span class="ruby-identifier">files</span>.<span class="ruby-identifier">each</span> <span class="ruby-keyword kw">do</span> <span class="ruby-operator">|</span><span class="ruby-identifier">file</span><span class="ruby-operator">|</span> 
+      <span class="ruby-identifier">outfn</span> = <span class="ruby-identifier">file</span>.<span class="ruby-identifier">sub</span>(<span class="ruby-regexp re">/\.xml$/</span>, <span class="ruby-value str">'.summary.html'</span>)
+      <span class="ruby-identifier">outfn</span> = <span class="ruby-identifier">outfn</span>.<span class="ruby-identifier">sub</span>(<span class="ruby-regexp re">/\.srg$/</span>, <span class="ruby-value str">'.summary.html'</span>)
+      <span class="ruby-comment cmt">## False Positive Rate Calculation:</span>
+      <span class="ruby-keyword kw">if</span> <span class="ruby-identifier">opt</span>.<span class="ruby-identifier">precision</span>
+        <span class="ruby-identifier">opt</span>.<span class="ruby-identifier">o</span> = <span class="ruby-identifier">outfn</span> <span class="ruby-comment cmt"># won't actually be written over, but used</span>
+        <span class="ruby-identifier">to_use_argv</span> = <span class="ruby-identifier">create_precision_argv</span>(<span class="ruby-identifier">file</span>, <span class="ruby-identifier">opt</span>)
+        (<span class="ruby-identifier">out_string</span>, <span class="ruby-identifier">opt</span>) = <span class="ruby-constant">Prec</span>.<span class="ruby-identifier">new</span>.<span class="ruby-identifier">precision</span>(<span class="ruby-identifier">to_use_argv</span>)
+        <span class="ruby-identifier">fppr_output_as_html</span> = <span class="ruby-identifier">prefix_as_decoy_to_html</span>(<span class="ruby-identifier">out_string</span>)
+      <span class="ruby-keyword kw">end</span>
+
+      <span class="ruby-keyword kw">case</span> <span class="ruby-constant">SpecID</span>.<span class="ruby-identifier">file_type</span>(<span class="ruby-identifier">file</span>)
+      <span class="ruby-keyword kw">when</span> <span class="ruby-value str">&quot;protproph&quot;</span>
+        <span class="ruby-comment cmt">#spec_id = SpecID.new(file)</span>
+        <span class="ruby-identifier">proph_output</span>(<span class="ruby-identifier">file</span>, <span class="ruby-identifier">outfn</span>, <span class="ruby-identifier">opt</span>, <span class="ruby-identifier">fppr_output_as_html</span>)
+      <span class="ruby-keyword kw">when</span> <span class="ruby-value str">&quot;bioworks&quot;</span>
+        <span class="ruby-identifier">spec_id</span> = <span class="ruby-constant">SpecID</span>.<span class="ruby-identifier">new</span>(<span class="ruby-identifier">file</span>)
+
+        <span class="ruby-identifier">false_regex</span> = <span class="ruby-identifier">flag_to_regex</span>(<span class="ruby-identifier">opt</span>.<span class="ruby-identifier">f</span>, <span class="ruby-identifier">opt</span>.<span class="ruby-identifier">prefix</span>)
+        <span class="ruby-identifier">bioworks_output</span>(<span class="ruby-identifier">spec_id</span>, <span class="ruby-identifier">outfn</span>, <span class="ruby-identifier">file</span>, <span class="ruby-identifier">false_regex</span>, <span class="ruby-identifier">fppr_output_as_html</span>)
+      <span class="ruby-keyword kw">else</span> 
+        <span class="ruby-identifier">abort</span> <span class="ruby-node">&quot;filetype for #{file} not recognized!&quot;</span>
+      <span class="ruby-keyword kw">end</span>
+    <span class="ruby-keyword kw">end</span>
+
+  <span class="ruby-keyword kw">end</span></pre>
+</body>
+</html>

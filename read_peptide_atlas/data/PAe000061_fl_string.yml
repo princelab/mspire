@@ -1,0 +1,135 @@
+--- 
+- time_to_access: 7.0e-05
+  first_scan: 
+    last_peak: 
+    - 0.0
+    - 0.0
+    num: 1
+    first_peak: 
+    - 0.0
+    - 0.0
+  scan_count: 4717
+  file_size: 13092323
+  last_scan: 
+    last_peak: 
+    - 1750.19653320312
+    - 548.0
+    num: 4717
+    first_peak: 
+    - 600.070068359375
+    - 2514.0
+  scans_to_read: fl
+  total_time_to_read_and_access: 7.943968
+  time_to_read: 7.943882
+  lazy_type: :string
+  end_time: 9002.23
+  start_time: 0.24
+  file: JNA-and-JGP-AFS-27Aug03_HUPO.mzXML
+--- 
+- time_to_access: 6.7e-05
+  first_scan: 
+    last_peak: 
+    - 0.0
+    - 0.0
+    num: 1
+    first_peak: 
+    - 0.0
+    - 0.0
+  scan_count: 3051
+  file_size: 13609100
+  last_scan: 
+    last_peak: 
+    - 0.0
+    - 0.0
+    num: 3051
+    first_peak: 
+    - 0.0
+    - 0.0
+  scans_to_read: fl
+  total_time_to_read_and_access: 8.55284
+  time_to_read: 8.552759
+  lazy_type: :string
+  end_time: 5997.95
+  start_time: 0.44
+  file: JNA-and-JGP-AFSx1_30March04_HUPO.mzXML
+--- 
+- time_to_access: 6.7e-05
+  first_scan: 
+    last_peak: 
+    - 0.0
+    - 0.0
+    num: 1
+    first_peak: 
+    - 0.0
+    - 0.0
+  scan_count: 3049
+  file_size: 13537413
+  last_scan: 
+    last_peak: 
+    - 0.0
+    - 0.0
+    num: 3049
+    first_peak: 
+    - 0.0
+    - 0.0
+  scans_to_read: fl
+  total_time_to_read_and_access: 8.325453
+  time_to_read: 8.325371
+  lazy_type: :string
+  end_time: 5999.46
+  start_time: 0.43
+  file: JNA-and-JGP-AFSx2_30March04_HUPO.mzXML
+--- 
+- time_to_access: 6.5e-05
+  first_scan: 
+    last_peak: 
+    - 0.0
+    - 0.0
+    num: 1
+    first_peak: 
+    - 0.0
+    - 0.0
+  scan_count: 3051
+  file_size: 13658086
+  last_scan: 
+    last_peak: 
+    - 0.0
+    - 0.0
+    num: 3051
+    first_peak: 
+    - 0.0
+    - 0.0
+  scans_to_read: fl
+  total_time_to_read_and_access: 8.398759
+  time_to_read: 8.398679
+  lazy_type: :string
+  end_time: 5999.62
+  start_time: 0.5
+  file: JNA-and-JGP-AFSx3_30March04_HUPO.mzXML
+--- 
+- time_to_access: 6.4e-05
+  first_scan: 
+    last_peak: 
+    - 0.0
+    - 0.0
+    num: 1
+    first_peak: 
+    - 0.0
+    - 0.0
+  scan_count: 3027
+  file_size: 13358443
+  last_scan: 
+    last_peak: 
+    - 0.0
+    - 0.0
+    num: 3027
+    first_peak: 
+    - 0.0
+    - 0.0
+  scans_to_read: fl
+  total_time_to_read_and_access: 8.167523
+  time_to_read: 8.167443
+  lazy_type: :string
+  end_time: 5999.04
+  start_time: 0.14
+  file: JNA-and-JGP-AFSx4_30March04_HUPO.mzXML

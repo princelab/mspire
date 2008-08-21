@@ -1,0 +1,82 @@
+---
+inMenu: true
+directoryName: under cygwin
+---
+Installing (and updating) mspire under cygwin
+=============================================
+
+## 1. Download and run cygwin setup
+
+Download and run setup.exe from [the main cygwin site](http://www.cygwin.com/)
+and make sure to select the following specific packages. 
+
+## 2. Install specific packages
+
+Select to install a few packages from the main cygwin setup:
+
+    Devel -> gcc
+    Devel -> make
+    Interpreters -> ruby
+    Text -> expat
+    Text -> libexpat
+
+    # optional:
+    Devel -> libxml2
+    Devel -> libxml2-devel
+
+Make sure that you *DO NOT* have the native windows ruby installed if you are running the cygwin ruby.
+
+## 3. Download and install [ruby's xmlparser wrapper](http://www.yoshidam.net/Ruby.html)
+
+In a cygwin terminal, unzip the package (`tar -xzvf xmlparser-0.6.8.tar.gz`)
+and cd into the xmlparser directory.  Then type:
+
+    ruby extconf.rb --with-expat-lib=/usr/lib --with-expat-include=/usr/include
+    make
+    make site-install
+
+## 4. Download and install [rubygems](http://rubyforge.org/frs/?group_id=126)
+
+You want the latest `.tgz` package.  After downloading, in a cygwin terminal,
+unzip the package (`tar -xzvf rubygems*.tar.gz`), cd into the rubygems
+directory and type:
+
+    ruby setup.rb
+
+You'll need to specify that you want to use gems.  There are [multiple ways to
+do this](http://rubygems.org/read/chapter/3#page70).  One way is to cut and
+paste this into your terminal:
+
+    echo "export RUBYOPT='rubygems'" >> ~/.bashrc
+    source ~/.bashrc
+
+From then on, every time you open a cygwin terminal (since it always reads
+your .bashrc file), rubygems will be turned on.
+
+## 5. Install libxml-ruby (optional)
+
+    gem install libxml-ruby
+
+## 6. Install axml
+
+    gem install axml
+
+## 7. Install mspire
+
+In the cygwin terminal type:
+
+    gem install mspire
+
+This installs the mspire package in `/usr/lib/ruby/gems/1.8/`.  The
+executables work from the cygwin command line. (e.g., type `fasta_shaker.rb`)
+    
+## 8. Update mspire
+
+If you want to ensure you have the latest version, open a terminal and type:
+
+    gem update mspire
+
+You can also check to see if you have the latest version by comparing version numbers:
+
+    gem list mspire --remote
+    gem list mspire --local

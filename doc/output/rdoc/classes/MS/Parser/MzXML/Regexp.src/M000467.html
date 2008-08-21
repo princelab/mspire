@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="iso-8859-1"?>
+<!DOCTYPE html 
+     PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+     "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html>
+<head>
+  <title>precursor_mz_by_scan (MS::Parser::MzXML::Regexp)</title>
+  <meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1" />
+  <link rel="stylesheet" href="../../../../.././rdoc-style.css" type="text/css" media="screen" />
+</head>
+<body class="standalone-code">
+  <pre><span class="ruby-comment cmt"># File lib/ms/parser/mzxml/regexp.rb, line 55</span>
+  <span class="ruby-keyword kw">def</span> <span class="ruby-keyword kw">self</span>.<span class="ruby-identifier">precursor_mz_by_scan</span>(<span class="ruby-identifier">file</span>)
+    <span class="ruby-identifier">prec_re</span> = <span class="ruby-regexp re">/msLevel=&quot;2&quot;.*?&lt;precursorMz.*?&gt;([\d\.]+)&lt;\/precursorMz&gt;/</span><span class="ruby-identifier">mo</span>
+    <span class="ruby-keyword kw">self</span>.<span class="ruby-identifier">by_scan_num</span>(<span class="ruby-identifier">file</span>, <span class="ruby-identifier">prec_re</span>) {<span class="ruby-operator">|</span><span class="ruby-identifier">match_obj</span><span class="ruby-operator">|</span> <span class="ruby-identifier">match_obj</span>.<span class="ruby-identifier">captures</span>[<span class="ruby-value">0</span>]}
+  <span class="ruby-keyword kw">end</span></pre>
+</body>
+</html>

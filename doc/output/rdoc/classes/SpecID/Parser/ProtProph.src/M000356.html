@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="iso-8859-1"?>
+<!DOCTYPE html 
+     PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+     "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html>
+<head>
+  <title>new (SpecID::Parser::ProtProph)</title>
+  <meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1" />
+  <link rel="stylesheet" href="../../../.././rdoc-style.css" type="text/css" media="screen" />
+</head>
+<body class="standalone-code">
+  <pre><span class="ruby-comment cmt"># File lib/spec_id/parser/proph.rb, line 152</span>
+  <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">initialize</span>(<span class="ruby-identifier">parse_type</span>=<span class="ruby-identifier">:spec_id</span>, <span class="ruby-identifier">version</span>=<span class="ruby-value str">'4'</span>)
+    <span class="ruby-ivar">@method</span> = <span class="ruby-identifier">parse_type</span> 
+    <span class="ruby-ivar">@version</span> = <span class="ruby-identifier">version</span>
+    
+    <span class="ruby-identifier">implemented</span> = <span class="ruby-node">%w(AXML LibXML)</span>
+    <span class="ruby-identifier">klass_s</span> = <span class="ruby-constant">XMLStyleParser</span>.<span class="ruby-identifier">available_xml_parsers</span>.<span class="ruby-identifier">select</span> {<span class="ruby-operator">|</span><span class="ruby-identifier">v</span><span class="ruby-operator">|</span> <span class="ruby-identifier">implemented</span>.<span class="ruby-identifier">include?</span>(<span class="ruby-identifier">v</span>) }.<span class="ruby-identifier">first</span>
+    <span class="ruby-keyword kw">case</span> <span class="ruby-identifier">klass_s</span>
+    <span class="ruby-keyword kw">when</span> <span class="ruby-value str">'AXML'</span>
+      <span class="ruby-comment cmt">#puts &quot;parsing with AXML (XMLParser based)&quot; if $VERBOSE</span>
+      <span class="ruby-ivar">@get_root_node_from_file</span> = <span class="ruby-constant">Proc</span>.<span class="ruby-identifier">new</span> <span class="ruby-keyword kw">do</span> <span class="ruby-operator">|</span><span class="ruby-identifier">file</span><span class="ruby-operator">|</span>
+        <span class="ruby-constant">AXML</span>.<span class="ruby-identifier">parse_file</span>(<span class="ruby-identifier">file</span>)
+      <span class="ruby-keyword kw">end</span>
+    <span class="ruby-keyword kw">when</span> <span class="ruby-value str">'LibXML'</span>  <span class="ruby-comment cmt"># LibXML is buggy on some machines...</span>
+      <span class="ruby-comment cmt">#puts &quot;parsing with LibXML&quot; if $VERBOSE</span>
+      <span class="ruby-ivar">@get_root_node_from_file</span> = <span class="ruby-constant">Proc</span>.<span class="ruby-identifier">new</span> <span class="ruby-keyword kw">do</span> <span class="ruby-operator">|</span><span class="ruby-identifier">file</span><span class="ruby-operator">|</span> 
+        <span class="ruby-identifier">doc</span> = <span class="ruby-constant">XML</span><span class="ruby-operator">::</span><span class="ruby-constant">Document</span>.<span class="ruby-identifier">file</span>(<span class="ruby-identifier">file</span>)
+        <span class="ruby-identifier">doc</span>.<span class="ruby-identifier">root</span>
+      <span class="ruby-keyword kw">end</span>
+    <span class="ruby-keyword kw">else</span>
+      <span class="ruby-identifier">raise</span> <span class="ruby-constant">NotImplementedError</span>, <span class="ruby-node">&quot;Can only parse with #{implemented.join(', ')} right now&quot;</span>
+    <span class="ruby-keyword kw">end</span>
+  <span class="ruby-keyword kw">end</span></pre>
+</body>
+</html>

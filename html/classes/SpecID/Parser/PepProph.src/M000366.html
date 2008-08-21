@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="iso-8859-1"?>
+<!DOCTYPE html 
+     PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+     "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html>
+<head>
+  <title>spec_id (SpecID::Parser::PepProph)</title>
+  <meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1" />
+  <link rel="stylesheet" href="../../../.././rdoc-style.css" type="text/css" media="screen" />
+</head>
+<body class="standalone-code">
+  <pre><span class="ruby-comment cmt"># File lib/spec_id/parser/proph.rb, line 48</span>
+  <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">spec_id</span>(<span class="ruby-identifier">file</span>, <span class="ruby-identifier">opts</span>={})
+    
+    <span class="ruby-identifier">raise</span> <span class="ruby-constant">NotImplementedError</span>, <span class="ruby-node">&quot;cannot do #{@version} yet&quot;</span> <span class="ruby-keyword kw">if</span> <span class="ruby-ivar">@version</span>.<span class="ruby-identifier">nil?</span> <span class="ruby-keyword kw">or</span> <span class="ruby-ivar">@version</span> <span class="ruby-operator">&lt;</span> <span class="ruby-value str">'3.0'</span>
+    <span class="ruby-identifier">spec_id_obj</span> = 
+      <span class="ruby-keyword kw">if</span> <span class="ruby-identifier">x</span> = <span class="ruby-identifier">opts</span>[<span class="ruby-identifier">:spec_id</span>]
+        <span class="ruby-identifier">x</span> 
+      <span class="ruby-keyword kw">else</span>
+        <span class="ruby-constant">Proph</span><span class="ruby-operator">::</span><span class="ruby-constant">PepSummary</span>.<span class="ruby-identifier">new</span>
+      <span class="ruby-keyword kw">end</span>
+    <span class="ruby-identifier">global_prot_hash</span> = 
+      <span class="ruby-keyword kw">if</span> <span class="ruby-identifier">y</span> = <span class="ruby-identifier">opts</span>[<span class="ruby-identifier">:global_prot_hash</span>]
+        <span class="ruby-identifier">y</span>
+      <span class="ruby-keyword kw">else</span>
+        {}
+      <span class="ruby-keyword kw">end</span>
+    <span class="ruby-identifier">msms_pipeline_analysis_n</span> = <span class="ruby-ivar">@get_root_node_from_file</span>.<span class="ruby-identifier">call</span>(<span class="ruby-identifier">file</span>)
+    <span class="ruby-identifier">spec_id_obj</span>.<span class="ruby-identifier">peptideprophet_summary</span> = <span class="ruby-identifier">msms_pipeline_analysis_n</span>.<span class="ruby-identifier">find_first</span>(<span class="ruby-value str">&quot;descendant::peptideprophet_summary&quot;</span>)
+
+
+    <span class="ruby-identifier">spec_id_obj</span>.<span class="ruby-identifier">msms_run_summaries</span> = <span class="ruby-identifier">msms_pipeline_analysis_n</span>.<span class="ruby-identifier">find</span>(<span class="ruby-value str">'child::msms_run_summary'</span>).<span class="ruby-identifier">map</span> <span class="ruby-keyword kw">do</span> <span class="ruby-operator">|</span><span class="ruby-identifier">msms_run_summary_n</span><span class="ruby-operator">|</span>
+      <span class="ruby-identifier">parse_msms_run_summary</span>(<span class="ruby-identifier">msms_run_summary_n</span>, <span class="ruby-identifier">global_prot_hash</span>)
+    <span class="ruby-keyword kw">end</span>
+
+    <span class="ruby-identifier">peps</span> = [] 
+    <span class="ruby-identifier">spec_id_obj</span>.<span class="ruby-identifier">msms_run_summaries</span>.<span class="ruby-identifier">each</span> <span class="ruby-keyword kw">do</span> <span class="ruby-operator">|</span><span class="ruby-identifier">mrs</span><span class="ruby-operator">|</span>
+      <span class="ruby-identifier">mrs</span>.<span class="ruby-identifier">spectrum_queries</span>.<span class="ruby-identifier">each</span> <span class="ruby-keyword kw">do</span> <span class="ruby-operator">|</span><span class="ruby-identifier">sq</span><span class="ruby-operator">|</span>
+        <span class="ruby-identifier">sq</span>.<span class="ruby-identifier">search_results</span>.<span class="ruby-identifier">each</span> <span class="ruby-keyword kw">do</span> <span class="ruby-operator">|</span><span class="ruby-identifier">sr</span><span class="ruby-operator">|</span>
+          <span class="ruby-identifier">peps</span>.<span class="ruby-identifier">push</span>( <span class="ruby-operator">*</span>(<span class="ruby-identifier">sr</span>.<span class="ruby-identifier">search_hits</span>) )
+        <span class="ruby-keyword kw">end</span>
+      <span class="ruby-keyword kw">end</span>
+    <span class="ruby-keyword kw">end</span>
+    <span class="ruby-identifier">spec_id_obj</span>.<span class="ruby-identifier">peps</span> = <span class="ruby-identifier">peps</span>
+    <span class="ruby-identifier">spec_id_obj</span>.<span class="ruby-identifier">prots</span> = <span class="ruby-identifier">global_prot_hash</span>.<span class="ruby-identifier">values</span>
+    <span class="ruby-identifier">spec_id_obj</span>
+  <span class="ruby-keyword kw">end</span></pre>
+</body>
+</html>

@@ -1,0 +1,432 @@
+--- 
+- time_to_access: 0.047781
+  first_scan: 
+    last_peak: 
+    - 1651.216796875
+    - 25117.0
+    num: 1
+    first_peak: 
+    - 404.597900390625
+    - 29804.0
+  scan_count: 4294
+  file_size: 12765550
+  last_scan: 
+    last_peak: 
+    - 1222.63916015625
+    - 5469.0
+    num: 4294
+    first_peak: 
+    - 687.626708984375
+    - 8191.0
+  scans_to_read: fl
+  total_time_to_read_and_access: 1.763202
+  time_to_read: 1.715404
+  lazy_type: :io_bad
+  end_time: 6598.84
+  start_time: 120.11
+  file: raft_kv17.mzXML
+--- 
+- time_to_access: 0.054915
+  first_scan: 
+    last_peak: 
+    - 1604.37109375
+    - 6425.0
+    num: 1
+    first_peak: 
+    - 404.448913574219
+    - 13570.0
+  scan_count: 4266
+  file_size: 11633326
+  last_scan: 
+    last_peak: 
+    - 600.935302734375
+    - 2.0
+    num: 4266
+    first_peak: 
+    - 221.030639648438
+    - 4628.0
+  scans_to_read: fl
+  total_time_to_read_and_access: 1.485981
+  time_to_read: 1.431048
+  lazy_type: :io_bad
+  end_time: 6601.21
+  start_time: 120.11
+  file: raft_kv18.mzXML
+--- 
+- time_to_access: 0.015758
+  first_scan: 
+    last_peak: 
+    - 1695.56323242188
+    - 11046.0
+    num: 1
+    first_peak: 
+    - 400.166625976562
+    - 2.0
+  scan_count: 4199
+  file_size: 13173181
+  last_scan: 
+    last_peak: 
+    - 1282.53125
+    - 6959.0
+    num: 4199
+    first_peak: 
+    - 1282.53125
+    - 6959.0
+  scans_to_read: fl
+  total_time_to_read_and_access: 1.485403
+  time_to_read: 1.469629
+  lazy_type: :io_bad
+  end_time: 6598.74
+  start_time: 120.11
+  file: raft_kv19.mzXML
+--- 
+- time_to_access: 0.005775
+  first_scan: 
+    last_peak: 
+    - 1573.74462890625
+    - 3043.0
+    num: 1
+    first_peak: 
+    - 490.944702148438
+    - 3066.0
+  scan_count: 3956
+  file_size: 15978254
+  last_scan: 
+    last_peak: 
+    - 0.0
+    - 0.0
+    num: 3956
+    first_peak: 
+    - 0.0
+    - 0.0
+  scans_to_read: fl
+  total_time_to_read_and_access: 1.527402
+  time_to_read: 1.521611
+  lazy_type: :io_bad
+  end_time: 5881.36
+  start_time: 120.1
+  file: raft_kv20.mzXML
+--- 
+- time_to_access: 0.01677
+  first_scan: 
+    last_peak: 
+    - 1662.56079101562
+    - 3405.0
+    num: 1
+    first_peak: 
+    - 406.147277832031
+    - 8359.0
+  scan_count: 4337
+  file_size: 14670535
+  last_scan: 
+    last_peak: 
+    - 461.170837402344
+    - 6960.0
+    num: 4337
+    first_peak: 
+    - 360.937438964844
+    - 87675.0
+  scans_to_read: fl
+  total_time_to_read_and_access: 1.572294
+  time_to_read: 1.555506
+  lazy_type: :io_bad
+  end_time: 6601.48
+  start_time: 120.02
+  file: raft_kv22.mzXML
+--- 
+- time_to_access: 0.012195
+  first_scan: 
+    last_peak: 
+    - 1684.35620117188
+    - 4442.0
+    num: 1
+    first_peak: 
+    - 403.996520996094
+    - 18813.0
+  scan_count: 4387
+  file_size: 15204875
+  last_scan: 
+    last_peak: 
+    - 466.776184082031
+    - 4975.0
+    num: 4387
+    first_peak: 
+    - 243.280853271484
+    - 8101.0
+  scans_to_read: fl
+  total_time_to_read_and_access: 1.563652
+  time_to_read: 1.55144
+  lazy_type: :io_bad
+  end_time: 6599.56
+  start_time: 120.1199
+  file: raft_kv23.mzXML
+--- 
+- time_to_access: 0.277203
+  first_scan: 
+    last_peak: 
+    - 1681.2763671875
+    - 27716.0
+    num: 1
+    first_peak: 
+    - 400.921081542969
+    - 8987.0
+  scan_count: 4403
+  file_size: 14544051
+  last_scan: 
+    last_peak: 
+    - 433.579467773438
+    - 5668.0
+    num: 4403
+    first_peak: 
+    - 424.116333007812
+    - 892884.0
+  scans_to_read: fl
+  total_time_to_read_and_access: 1.837872
+  time_to_read: 1.560652
+  lazy_type: :io_bad
+  end_time: 6600.22
+  start_time: 120.1
+  file: raft_kv24.mzXML
+--- 
+- time_to_access: 0.014957
+  first_scan: 
+    last_peak: 
+    - 1670.61450195312
+    - 3318.0
+    num: 1
+    first_peak: 
+    - 401.441650390625
+    - 8494.0
+  scan_count: 4376
+  file_size: 13746608
+  last_scan: 
+    last_peak: 
+    - 440.207275390625
+    - 3550.0
+    num: 4376
+    first_peak: 
+    - 229.160217285156
+    - 10651.0
+  scans_to_read: fl
+  total_time_to_read_and_access: 1.515136
+  time_to_read: 1.500164
+  lazy_type: :io_bad
+  end_time: 6600.12
+  start_time: 120.1
+  file: raft_kv25.mzXML
+--- 
+- time_to_access: 0.005511
+  first_scan: 
+    last_peak: 
+    - 1614.7763671875
+    - 2853.0
+    num: 1
+    first_peak: 
+    - 414.971984863281
+    - 7383.0
+  scan_count: 4283
+  file_size: 14322414
+  last_scan: 
+    last_peak: 
+    - 599.437377929688
+    - 5945.0
+    num: 4283
+    first_peak: 
+    - 177.150939941406
+    - 27423.0
+  scans_to_read: fl
+  total_time_to_read_and_access: 1.491178
+  time_to_read: 1.485651
+  lazy_type: :io_bad
+  end_time: 6599.9099
+  start_time: 120.1
+  file: raft_kv26.mzXML
+--- 
+- time_to_access: 0.019729
+  first_scan: 
+    last_peak: 
+    - 1660.45922851562
+    - 7038.0
+    num: 1
+    first_peak: 
+    - 400.125183105469
+    - 12344.0
+  scan_count: 4274
+  file_size: 15412304
+  last_scan: 
+    last_peak: 
+    - 1548.31372070312
+    - 5059.0
+    num: 4274
+    first_peak: 
+    - 444.86279296875
+    - 49644.0
+  scans_to_read: fl
+  total_time_to_read_and_access: 1.606681
+  time_to_read: 1.586933
+  lazy_type: :io_bad
+  end_time: 6599.1399
+  start_time: 120.04
+  file: raft_kv27.mzXML
+--- 
+- time_to_access: 0.008344
+  first_scan: 
+    last_peak: 
+    - 1684.365234375
+    - 25827.0
+    num: 1
+    first_peak: 
+    - 400.127685546875
+    - 44605.0
+  scan_count: 4231
+  file_size: 14398128
+  last_scan: 
+    last_peak: 
+    - 593.957885742188
+    - 5585.0
+    num: 4231
+    first_peak: 
+    - 444.842712402344
+    - 5750.0
+  scans_to_read: fl
+  total_time_to_read_and_access: 1.53812
+  time_to_read: 1.52976
+  lazy_type: :io_bad
+  end_time: 6599.25
+  start_time: 120.11
+  file: raft_kv28.mzXML
+--- 
+- time_to_access: 0.000914
+  first_scan: 
+    last_peak: 
+    - 1621.86328125
+    - 4226.0
+    num: 1
+    first_peak: 
+    - 429.005249023438
+    - 61878.0
+  scan_count: 4194
+  file_size: 15606343
+  last_scan: 
+    last_peak: 
+    - 726.575439453125
+    - 3585.0
+    num: 4194
+    first_peak: 
+    - 428.860412597656
+    - 4824.0
+  scans_to_read: fl
+  total_time_to_read_and_access: 1.619828
+  time_to_read: 1.618871
+  lazy_type: :io_bad
+  end_time: 6599.09
+  start_time: 120.02
+  file: raft_kv29.mzXML
+--- 
+- time_to_access: 0.013956
+  first_scan: 
+    last_peak: 
+    - 1676.18603515625
+    - 1863.0
+    num: 1
+    first_peak: 
+    - 400.672546386719
+    - 11336.0
+  scan_count: 4368
+  file_size: 16344623
+  last_scan: 
+    last_peak: 
+    - 445.571228027344
+    - 5155.0
+    num: 4368
+    first_peak: 
+    - 358.693969726562
+    - 195042.0
+  scans_to_read: fl
+  total_time_to_read_and_access: 1.546201
+  time_to_read: 1.532227
+  lazy_type: :io_bad
+  end_time: 6601.24
+  start_time: 60.02
+  file: raft_kv32.mzXML
+--- 
+- time_to_access: 0.017615
+  first_scan: 
+    last_peak: 
+    - 1682.99462890625
+    - 3552.0
+    num: 1
+    first_peak: 
+    - 400.910949707031
+    - 11833.0
+  scan_count: 4415
+  file_size: 16767107
+  last_scan: 
+    last_peak: 
+    - 540.335815429688
+    - 3245.0
+    num: 4415
+    first_peak: 
+    - 329.422790527344
+    - 6895.0
+  scans_to_read: fl
+  total_time_to_read_and_access: 1.661597
+  time_to_read: 1.643966
+  lazy_type: :io_bad
+  end_time: 6601.72
+  start_time: 60.07
+  file: raft_kv33.mzXML
+--- 
+- time_to_access: 0.013889
+  first_scan: 
+    last_peak: 
+    - 1678.0419921875
+    - 4052.0
+    num: 1
+    first_peak: 
+    - 403.358276367188
+    - 14144.0
+  scan_count: 4386
+  file_size: 15596290
+  last_scan: 
+    last_peak: 
+    - 537.789672851562
+    - 6717.0
+    num: 4386
+    first_peak: 
+    - 537.789672851562
+    - 6717.0
+  scans_to_read: fl
+  total_time_to_read_and_access: 1.499155
+  time_to_read: 1.485248
+  lazy_type: :io_bad
+  end_time: 6601.03
+  start_time: 60.09
+  file: raft_kv34.mzXML
+--- 
+- time_to_access: 0.013991
+  first_scan: 
+    last_peak: 
+    - 1685.28540039062
+    - 4285.0
+    num: 1
+    first_peak: 
+    - 403.512878417969
+    - 4424.0
+  scan_count: 4354
+  file_size: 15883377
+  last_scan: 
+    last_peak: 
+    - 425.163513183594
+    - 163403.0
+    num: 4354
+    first_peak: 
+    - 425.163513183594
+    - 163403.0
+  scans_to_read: fl
+  total_time_to_read_and_access: 1.609219
+  time_to_read: 1.595213
+  lazy_type: :io_bad
+  end_time: 6599.72
+  start_time: 60.07
+  file: raft_kv37.mzXML

@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="iso-8859-1"?>
+<!DOCTYPE html 
+     PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+     "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html>
+<head>
+  <title>file_type (SpecID)</title>
+  <meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1" />
+  <link rel="stylesheet" href="../.././rdoc-style.css" type="text/css" media="screen" />
+</head>
+<body class="standalone-code">
+  <pre><span class="ruby-comment cmt"># File lib/spec_id.rb, line 457</span>
+  <span class="ruby-keyword kw">def</span> <span class="ruby-keyword kw">self</span>.<span class="ruby-identifier">file_type</span>(<span class="ruby-identifier">file</span>)
+    <span class="ruby-keyword kw">if</span> <span class="ruby-identifier">file</span> <span class="ruby-operator">=~</span> <span class="ruby-regexp re">/\.srg$/</span>
+      <span class="ruby-keyword kw">return</span> <span class="ruby-value str">'srg'</span>
+    <span class="ruby-keyword kw">elsif</span> <span class="ruby-identifier">file</span> <span class="ruby-operator">=~</span> <span class="ruby-regexp re">/\.sqg$/</span>
+      <span class="ruby-keyword kw">return</span> <span class="ruby-value str">'sqg'</span>
+    <span class="ruby-keyword kw">end</span>
+    <span class="ruby-keyword kw">if</span> <span class="ruby-constant">IO</span>.<span class="ruby-identifier">read</span>(<span class="ruby-identifier">file</span>, <span class="ruby-value">7</span>,<span class="ruby-value">438</span>) <span class="ruby-operator">==</span> <span class="ruby-value str">'Enzyme:'</span>
+      <span class="ruby-keyword kw">return</span> <span class="ruby-value str">'srf'</span>
+    <span class="ruby-keyword kw">end</span>
+    <span class="ruby-constant">File</span>.<span class="ruby-identifier">open</span>(<span class="ruby-identifier">file</span>) <span class="ruby-keyword kw">do</span> <span class="ruby-operator">|</span><span class="ruby-identifier">fh</span><span class="ruby-operator">|</span>
+      <span class="ruby-identifier">lines</span> = <span class="ruby-value str">&quot;&quot;</span>
+      <span class="ruby-value">8</span>.<span class="ruby-identifier">times</span> { <span class="ruby-identifier">lines</span> <span class="ruby-operator">&lt;&lt;</span> <span class="ruby-identifier">fh</span>.<span class="ruby-identifier">readline</span> }
+      <span class="ruby-keyword kw">if</span> <span class="ruby-identifier">lines</span> <span class="ruby-operator">=~</span> <span class="ruby-regexp re">/&lt;bioworksinfo&gt;/</span>
+        <span class="ruby-keyword kw">return</span> <span class="ruby-value str">'bioworks'</span>
+      <span class="ruby-keyword kw">elsif</span> ((<span class="ruby-identifier">lines</span> <span class="ruby-operator">=~</span> <span class="ruby-regexp re">/&lt;protein_summary/</span>) <span class="ruby-keyword kw">and</span> ((<span class="ruby-identifier">lines</span> <span class="ruby-operator">=~</span> <span class="ruby-constant">Proph</span><span class="ruby-operator">::</span><span class="ruby-constant">ProtSummary</span><span class="ruby-operator">::</span><span class="ruby-constant">Filetype_and_version_re_old</span>) <span class="ruby-keyword kw">or</span> (<span class="ruby-identifier">lines</span> <span class="ruby-operator">=~</span> <span class="ruby-constant">Proph</span><span class="ruby-operator">::</span><span class="ruby-constant">ProtSummary</span><span class="ruby-operator">::</span><span class="ruby-constant">Filetype_and_version_re_new</span>)))
+        <span class="ruby-keyword kw">return</span> <span class="ruby-value str">'protproph'</span>
+      <span class="ruby-keyword kw">elsif</span> <span class="ruby-identifier">lines</span> <span class="ruby-operator">=~</span> <span class="ruby-regexp re">/&lt;msms_pipeline_analysis.*&lt;peptideprophet_summary/</span><span class="ruby-identifier">m</span>
+        <span class="ruby-keyword kw">return</span> <span class="ruby-value str">'pepproph'</span>
+      <span class="ruby-keyword kw">end</span>
+      <span class="ruby-comment cmt"># assumes the header of a sqt file is less than 200 lines ...</span>
+      <span class="ruby-value">200</span>.<span class="ruby-identifier">times</span> <span class="ruby-keyword kw">do</span> 
+        <span class="ruby-identifier">line</span> = <span class="ruby-identifier">fh</span>.<span class="ruby-identifier">gets</span>
+        <span class="ruby-keyword kw">if</span> <span class="ruby-identifier">line</span>
+          <span class="ruby-identifier">lines</span> <span class="ruby-operator">&lt;&lt;</span> <span class="ruby-identifier">line</span>
+        <span class="ruby-keyword kw">else</span> ; <span class="ruby-keyword kw">break</span>
+        <span class="ruby-keyword kw">end</span>
+      <span class="ruby-keyword kw">end</span>
+      <span class="ruby-keyword kw">if</span> <span class="ruby-identifier">lines</span> <span class="ruby-operator">=~</span> <span class="ruby-regexp re">/^H\tDatabase/</span> <span class="ruby-keyword kw">and</span> <span class="ruby-identifier">lines</span> <span class="ruby-operator">=~</span> <span class="ruby-regexp re">/^H\tSQTGenerator/</span>
+        <span class="ruby-keyword kw">return</span> <span class="ruby-value str">'sqt'</span>
+      <span class="ruby-keyword kw">end</span>
+    <span class="ruby-keyword kw">end</span>
+  <span class="ruby-keyword kw">end</span></pre>
+</body>
+</html>

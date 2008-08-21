@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="iso-8859-1"?>
+<!DOCTYPE html 
+     PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+     "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html>
+<head>
+  <title>script_info (ProteinSummary)</title>
+  <meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1" />
+  <link rel="stylesheet" href="../.././rdoc-style.css" type="text/css" media="screen" />
+</head>
+<body class="standalone-code">
+  <pre><span class="ruby-comment cmt"># File lib/spec_id/protein_summary.rb, line 286</span>
+  <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">script_info</span>
+    <span class="ruby-node">&quot;&lt;div class=\&quot;software\&quot;&gt;&lt;h3&gt;Software Information&lt;/h3&gt;#{yield}&lt;br/&gt;Ruby package: #{mspire_version}&lt;br/&gt;Command: #{[File.basename(__FILE__), *@orig_argv].join(&quot; &quot;)}&lt;/div&gt;&quot;</span>
+  <span class="ruby-keyword kw">end</span></pre>
+</body>
+</html>

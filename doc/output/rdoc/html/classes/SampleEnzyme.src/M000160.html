@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="iso-8859-1"?>
+<!DOCTYPE html 
+     PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+     "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html>
+<head>
+  <title>digest (SampleEnzyme)</title>
+  <meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1" />
+  <link rel="stylesheet" href="../.././rdoc-style.css" type="text/css" media="screen" />
+</head>
+<body class="standalone-code">
+  <pre><span class="ruby-comment cmt"># File lib/sample_enzyme.rb, line 108</span>
+  <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">digest</span>(<span class="ruby-identifier">string</span>, <span class="ruby-identifier">missed_cleavages</span>=<span class="ruby-value">0</span>, <span class="ruby-identifier">options</span>={})
+    <span class="ruby-identifier">raise</span> <span class="ruby-constant">NotImplementedError</span> <span class="ruby-keyword kw">if</span> <span class="ruby-ivar">@sense</span> <span class="ruby-operator">==</span> <span class="ruby-value str">'N'</span>
+    <span class="ruby-identifier">s</span> = <span class="ruby-constant">StringScanner</span>.<span class="ruby-identifier">new</span>(<span class="ruby-identifier">string</span>)
+    <span class="ruby-identifier">no_cut_regex</span> = <span class="ruby-constant">Regexp</span>.<span class="ruby-identifier">new</span>(<span class="ruby-node">&quot;[#{@no_cut}]&quot;</span>)
+    <span class="ruby-identifier">regex</span> = <span class="ruby-constant">Regexp</span>.<span class="ruby-identifier">new</span>(<span class="ruby-node">&quot;[#{@cut}]&quot;</span>)
+    <span class="ruby-identifier">peps</span> = []
+    <span class="ruby-identifier">last_pos</span> = <span class="ruby-value">0</span>
+    <span class="ruby-identifier">current_pep</span> = <span class="ruby-value str">''</span>
+    <span class="ruby-identifier">loop</span> <span class="ruby-keyword kw">do</span>
+      <span class="ruby-keyword kw">if</span> <span class="ruby-identifier">s</span>.<span class="ruby-identifier">eos?</span>
+        <span class="ruby-keyword kw">break</span>
+      <span class="ruby-keyword kw">end</span>
+      <span class="ruby-identifier">m</span> = <span class="ruby-identifier">s</span>.<span class="ruby-identifier">scan_until</span>(<span class="ruby-identifier">regex</span>)
+      <span class="ruby-keyword kw">if</span> <span class="ruby-identifier">m</span>  <span class="ruby-comment cmt">## found a cut point</span>
+        <span class="ruby-identifier">last_pos</span> = <span class="ruby-identifier">s</span>.<span class="ruby-identifier">pos</span>
+        <span class="ruby-comment cmt"># is the next amino acid a no_cut?</span>
+        <span class="ruby-keyword kw">if</span> <span class="ruby-identifier">string</span>[<span class="ruby-identifier">s</span>.<span class="ruby-identifier">pos</span>,<span class="ruby-value">1</span>] <span class="ruby-operator">=~</span> <span class="ruby-identifier">no_cut_regex</span> 
+          <span class="ruby-identifier">current_pep</span> <span class="ruby-operator">&lt;&lt;</span> <span class="ruby-identifier">m</span>
+        <span class="ruby-keyword kw">else</span>
+          <span class="ruby-comment cmt"># cut it </span>
+          <span class="ruby-identifier">current_pep</span> <span class="ruby-operator">&lt;&lt;</span> <span class="ruby-identifier">m</span>
+          <span class="ruby-identifier">peps</span> <span class="ruby-operator">&lt;&lt;</span> <span class="ruby-identifier">current_pep</span>
+          <span class="ruby-identifier">current_pep</span> = <span class="ruby-value str">''</span>
+        <span class="ruby-keyword kw">end</span>
+      <span class="ruby-keyword kw">else</span>  <span class="ruby-comment cmt">## didn't find a cut point</span>
+        <span class="ruby-identifier">current_pep</span> <span class="ruby-operator">&lt;&lt;</span> <span class="ruby-identifier">string</span>[<span class="ruby-identifier">last_pos</span><span class="ruby-operator">..</span><span class="ruby-value">-1</span>]
+        <span class="ruby-identifier">peps</span> <span class="ruby-operator">&lt;&lt;</span> <span class="ruby-identifier">current_pep</span> 
+        <span class="ruby-keyword kw">break</span>
+      <span class="ruby-keyword kw">end</span>
+    <span class="ruby-keyword kw">end</span>
+    <span class="ruby-comment cmt">## LOOP through and grab each set of missed cleavages from num down to 0</span>
+    <span class="ruby-identifier">all_sets_of_peps</span> = []
+    (<span class="ruby-value">0</span><span class="ruby-operator">..</span><span class="ruby-identifier">missed_cleavages</span>).<span class="ruby-identifier">to_a</span>.<span class="ruby-identifier">reverse</span>.<span class="ruby-identifier">each</span> <span class="ruby-keyword kw">do</span> <span class="ruby-operator">|</span><span class="ruby-identifier">num_mc</span><span class="ruby-operator">|</span>
+      <span class="ruby-identifier">all_sets_of_peps</span>.<span class="ruby-identifier">push</span>( <span class="ruby-operator">*</span>(<span class="ruby-identifier">get_missed_cleavages</span>(<span class="ruby-identifier">peps</span>, <span class="ruby-identifier">num_mc</span>)) )
+    <span class="ruby-keyword kw">end</span>
+    <span class="ruby-identifier">all_sets_of_peps</span> 
+  <span class="ruby-keyword kw">end</span></pre>
+</body>
+</html>

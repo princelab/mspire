@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="iso-8859-1"?>
+<!DOCTYPE html 
+     PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+     "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html>
+<head>
+  <title>table_rows (ProteinSummary)</title>
+  <meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1" />
+  <link rel="stylesheet" href="../.././rdoc-style.css" type="text/css" media="screen" />
+</head>
+<body class="standalone-code">
+  <pre><span class="ruby-comment cmt"># File lib/spec_id/protein_summary.rb, line 214</span>
+  <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">table_rows</span>(<span class="ruby-identifier">uniq_prots</span>, <span class="ruby-identifier">prefix</span>, <span class="ruby-identifier">false_positive_rate_percent</span>, <span class="ruby-identifier">num_cols</span>, <span class="ruby-identifier">desired_fppr</span>, <span class="ruby-identifier">actual_percent_fp</span>, <span class="ruby-identifier">annotations</span>=<span class="ruby-keyword kw">nil</span>, <span class="ruby-identifier">peptide_count_filename</span>=<span class="ruby-keyword kw">nil</span>)
+    <span class="ruby-identifier">prot_cnt</span> = <span class="ruby-value">0</span>
+    <span class="ruby-identifier">an_cnt</span> = <span class="ruby-value">0</span>
+ 
+    <span class="ruby-identifier">uniq_prots</span>.<span class="ruby-identifier">map</span> <span class="ruby-keyword kw">do</span> <span class="ruby-operator">|</span><span class="ruby-identifier">prot</span><span class="ruby-operator">|</span> 
+      <span class="ruby-identifier">tr</span> <span class="ruby-keyword kw">do</span>
+        <span class="ruby-identifier">prot_cnt</span> <span class="ruby-operator">+=</span> <span class="ruby-value">1</span>
+        <span class="ruby-identifier">gi</span> = <span class="ruby-identifier">accession</span>(<span class="ruby-identifier">prot</span>.<span class="ruby-identifier">_protein_name</span>)
+
+        <span class="ruby-keyword kw">if</span> <span class="ruby-identifier">annotations</span>
+          <span class="ruby-identifier">protein_description</span> = <span class="ruby-identifier">annotations</span>[<span class="ruby-identifier">an_cnt</span>]
+          <span class="ruby-identifier">an_cnt</span> <span class="ruby-operator">+=</span> <span class="ruby-value">1</span>
+        <span class="ruby-keyword kw">else</span>
+          <span class="ruby-keyword kw">if</span> <span class="ruby-identifier">prot</span>.<span class="ruby-identifier">annotation</span>.<span class="ruby-identifier">size</span> <span class="ruby-operator">&gt;</span> <span class="ruby-value">0</span>
+            <span class="ruby-identifier">protein_description</span> = <span class="ruby-identifier">prot</span>.<span class="ruby-identifier">annotation</span>.<span class="ruby-identifier">first</span>.<span class="ruby-identifier">_protein_description</span>
+          <span class="ruby-keyword kw">else</span>
+            <span class="ruby-identifier">protein_description</span> = <span class="ruby-value str">'NA'</span>
+          <span class="ruby-keyword kw">end</span>
+        <span class="ruby-keyword kw">end</span>
+        <span class="ruby-identifier">tds</span>([<span class="ruby-identifier">prot_cnt</span>, <span class="ruby-identifier">prot</span>.<span class="ruby-identifier">_probability</span>, <span class="ruby-identifier">ref_html</span>(<span class="ruby-identifier">gi</span>, <span class="ruby-identifier">prot</span>.<span class="ruby-identifier">_protein_name</span>), <span class="ruby-identifier">protein_description</span>, <span class="ruby-identifier">prot</span>.<span class="ruby-identifier">_percent_coverage</span>, <span class="ruby-identifier">peptide_cell</span>(<span class="ruby-identifier">prot_cnt</span>, <span class="ruby-identifier">prot</span>.<span class="ruby-identifier">_unique_stripped_peptides</span>.<span class="ruby-identifier">split</span>(<span class="ruby-value str">'+'</span>)), <span class="ruby-identifier">prot</span>.<span class="ruby-identifier">_total_number_peptides</span>, <span class="ruby-identifier">prot</span>.<span class="ruby-identifier">_pct_spectrum_ids</span>])
+      <span class="ruby-keyword kw">end</span>
+    <span class="ruby-keyword kw">end</span>.<span class="ruby-identifier">join</span>
+  <span class="ruby-keyword kw">end</span></pre>
+</body>
+</html>

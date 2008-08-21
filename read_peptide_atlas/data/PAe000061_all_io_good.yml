@@ -1,0 +1,55 @@
+--- 
+- time_to_access: 11.483121
+  scan_count: 3051
+  file_size: 13609100
+  scans_to_read: all
+  total_time_to_read_and_access: 13.751663
+  time_to_read: 2.268519
+  lazy_type: :io_good
+  end_time: 5997.95
+  start_time: 0.44
+  file: JNA-and-JGP-AFSx1_30March04_HUPO.mzXML
+--- 
+- time_to_access: 11.19953
+  scan_count: 3027
+  file_size: 13358443
+  scans_to_read: all
+  total_time_to_read_and_access: 14.413885
+  time_to_read: 3.214331
+  lazy_type: :io_good
+  end_time: 5999.04
+  start_time: 0.14
+  file: JNA-and-JGP-AFSx4_30March04_HUPO.mzXML
+--- 
+- time_to_access: 11.35101
+  scan_count: 3051
+  file_size: 13658086
+  scans_to_read: all
+  total_time_to_read_and_access: 13.618893
+  time_to_read: 2.267857
+  lazy_type: :io_good
+  end_time: 5999.62
+  start_time: 0.5
+  file: JNA-and-JGP-AFSx3_30March04_HUPO.mzXML
+--- 
+- time_to_access: 11.366874
+  scan_count: 3049
+  file_size: 13537413
+  scans_to_read: all
+  total_time_to_read_and_access: 14.540055
+  time_to_read: 3.173154
+  lazy_type: :io_good
+  end_time: 5999.46
+  start_time: 0.43
+  file: JNA-and-JGP-AFSx2_30March04_HUPO.mzXML
+--- 
+- time_to_access: 10.427222
+  scan_count: 4717
+  file_size: 13092323
+  scans_to_read: all
+  total_time_to_read_and_access: 13.258679
+  time_to_read: 2.831435
+  lazy_type: :io_good
+  end_time: 9002.23
+  start_time: 0.24
+  file: JNA-and-JGP-AFS-27Aug03_HUPO.mzXML

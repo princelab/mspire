@@ -1,0 +1,154 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.1//EN" "http://www.w3.org/TR/xhtml11/DTD/xhtml11.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en">
+  <head>
+    <title>Filter</title>
+    <link href="../../default.css" rel="stylesheet" />
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+  </head>
+  <body>
+    <div id="logo">
+        <a href=../../index.html><img src=../../images/mspire_logo.png border="0" alt="mspire - mass spectrometry proteomics in ruby"/></a>
+  </div>
+    <div id="header">
+      <h1>Filter</h1>
+    </div>
+
+    <div id="headerbar" class="bar">
+        <!-- <span class="left">Location: <a href="../../index.html" title="mspire">mspire</a> / <a href="../index.html" title="SpecID">SpecID</a> / <a href="./index.html" title="fir">fir</a> / <a href="./filter.html" title="Filter">Filter</a></span> -->
+      <!--<span class="right">Language: <a href="./filter.html" title="en">en</a></span>-->
+      <div style="clear:both"></div>
+    </div>
+
+    <div id="menu">
+        <div class="webgen-menu-vert "><ul><li ><a href="../../index.html" title="Home">Home</a></li><li class="webgen-menu-submenu"><a href="../../install/index.html" title="Install">Install</a></li><li class="webgen-menu-submenu"><a href="../../ms/index.html" title="MS">MS</a></li><li class="webgen-menu-submenu webgen-menu-submenu-inhierarchy"><a href="../index.html" title="SpecID">SpecID</a><ul><li ><a href="../spec_id.html" title="SpecID">SpecID</a></li><li class="webgen-menu-submenu webgen-menu-submenu-inhierarchy"><a href="./index.html" title="fir">fir</a><ul><li ><a href="./index.html" title="FIR">FIR</a></li></ul></li></ul></li><li class="webgen-menu-submenu"><a href="../../tutorial/index.html" title="Tutorials">Tutorials</a></li></ul></div>
+        <a style="font-size:85%; padding-left:20px" href="http://rubyforge.org/projects/mspire/">Rubyforge Project Page</a>
+        <br/>
+        <br/>
+        <br/>
+        <br/>
+        <a href="http://www.ruby-lang.org/en/"><img style="padding-left:20px" src=../../images/ruby_logo_small.png border="0" alt="Ruby Programming Language"/></a>
+    </div>
+
+    <div id="body">
+      <h2>Filtering SEQUEST hits</h2>
+
+<p>mspire can be used for classical filtering of SEQUEST hits based on varying hit parameters.  Here is the basic usage (following are more detailed examples):</p>
+
+<pre><code>require 'spec_id/precision/filter'
+
+specid = SpecID.new( %w(file1.srf file2.srf) )  # create a specID object
+fir_finder = SpecID::Precision.Filter.new
+options = {...}  # lots of options to consider :)
+answer = fir_finder.filter_and_validate(specid, options)
+answer[:pephits]            # =&gt; SpecID::Pep objects passing the filter
+answer[:pephits_precision]  # =&gt; fraction of correct hits
+</code></pre>
+
+<h3>Separate DB search</h3>
+
+<p>We first start out by creating some validators that will be used to judge the accuracy of our peptide hits.  Assuming we had done two separate DB searches, we would make a Decoy validator like this:</p>
+
+<pre><code>val = Validator::Decoy.new(
+      :decoy_to_target_ratio =&gt; 1.0,  # usually 1.0
+      :constraint =&gt; "filename.srg",  # the meta-file pointing to decoy runs
+    )
+</code></pre>
+
+<p>Make some options:</p>
+
+<pre><code>options = {
+    :top_hit_by =&gt; :xcorr,        # top hit by XCorr
+    :postfilter =&gt; :top_per_scan, # after filtering, report top hit per scan
+    :output =&gt; [:yaml,nil]        # format output as YAML and send to STDOUT
+    :sequest =&gt; {
+      :xcorr1 =&gt; 1.5,   #  &gt;= xcorr +1 charge state
+      :xcorr2 =&gt; 2.5,   #  &gt;= xcorr +2 charge state
+      :xcorr3 =&gt; 3.5,   #  &gt;= xcorr +3 (or higher) charge state
+      :deltacn =&gt; 0.25, # minimum deltacn required
+      :ppm =&gt; 12.0,      # parts per million (~10 for Orbi, ~1200 for LCQ)
+      :include_deltacnstar =&gt; true  # top hit with no 2nd hit included
+    }
+
+    :validators =&gt; [val]
+    }
+</code></pre>
+
+<p>Run it:</p>
+
+<pre><code>fir_finder = SpecID::Precision.Filter.new
+answer = fir_finder.filter_and_validate(specid, options) # specid of normal hits
+answer[:pephits]            # =&gt; SpecID::Pep objects passing the filter
+answer[:pephits_precision]  # =&gt; fraction of correct hits
+</code></pre>
+
+<h4>Method of calculation</h4>
+
+<p>The FIR is calculated: foreach decoy peptide passing the filtering threshold, a target peptide is incorrect.  The final precision is given only in terms of the target peptides.</p>
+
+<h4>On the commandline:</h4>
+
+<p>A command line interface is also provided:</p>
+
+<pre><code>filter_and_validate.rb    # to get usage information
+
+# this command will calculate precision exactly as described above:
+filter_and_validate.rb -1 1.5 -2 2.5 -3 3.5 -d 0.25 -p 12.0 \
+     --decoy filename.srg --post_filter top_per_scan \
+     file1.srf file2.srf
+
+# the interactive switch is handy for playing around with data
+# (make sure to include --interactive_verbose first few times
+ filter_and_validate.rb ... -i --interactive_verbose ...
+
+# you can give the interactive switch a filename with filters
+ filter_and_validate.rb ... -i list_of_filters.txt ...
+
+&lt; inside list_of_filters.txt &gt;
+ x1:1.5 x2:2.5 x3:3.5 dcn:0.25 ppm:12.0
+ x1:1.8 x2:2.8 x3:3.9 dcn:0.30 ppm:15.0
+ # or just a list of numbers in the same order:
+ 1.8 2.8 3.9 0.30 15.0
+</code></pre>
+
+<h3>Concatenated DB search</h3>
+
+<p>Many folks like to search with a concatenated DB.  This is run exactly the
+same as above with one exception: the constraint should be a <em>Regexp</em> (that
+matches the fasta header line after the leading '>':</p>
+
+<pre><code> val = Validator::Decoy.new(
+      :constraint =&gt; /^DECOY_/,
+      # to match proteins from a header like this:
+      # &gt;DECOY_gi|125432345|323455 "Acetyl Co..."
+    )
+# everything else is the same...
+</code></pre>
+
+<h4>Method of calculation</h4>
+
+<p>The FIR is calculated for the <em>target</em> peptides in the same manner as in the
+separate search: foreach decoy peptide hit passing the filters, a target
+peptide hit is considered incorrect.  Again, the precision of the target hits
+is reported independent of the decoy hits (except as they inform the target
+hits of their accuracy).</p>
+
+<h4>Commandline</h4>
+
+<p>Again, everything is the same as the separate search, only we give a regular expression on the commandline instead of a filename:</p>
+
+<pre><code>filter_and_validate.rb -1 1.5 -2 2.5 -3 3.5 -d 0.25 -p 12.0 \
+     --decoy '/^DECOY/' --post_filter top_per_scan \
+     file1.srf file2.srf
+
+# note that the relevant bit is after the --decoy flag 
+# the regular expression must be between slashes so it is interpreted as 
+# a regular expression and not a filename!
+</code></pre>
+    </div>
+
+    <div id="footer" class="bar">
+      Last update: <i>Tuesday, July 15 12:21:09 MDT 2008</i>
+    </div>
+  </body>
+</html>

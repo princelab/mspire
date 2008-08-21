@@ -1,0 +1,810 @@
+--- 
+- time_to_access: 3.6e-05
+  first_scan: 
+    last_peak: 
+    - 1522.15649414062
+    - 1768.0
+    num: 1
+    first_peak: 
+    - 400.904846191406
+    - 822.0
+  scan_count: 3108
+  file_size: 34407351
+  last_scan: 
+    last_peak: 
+    - 482.44287109375
+    - 1381.0
+    num: 3108
+    first_peak: 
+    - 208.873962402344
+    - 1726.0
+  scans_to_read: fl
+  total_time_to_read_and_access: 20.15487
+  time_to_read: 20.154819
+  lazy_type: :not
+  end_time: 7801.52
+  start_time: 300.09
+  file: MM_porox1519.mzXML
+--- 
+- time_to_access: 3.2e-05
+  first_scan: 
+    last_peak: 
+    - 1522.10327148438
+    - 1324.0
+    num: 1
+    first_peak: 
+    - 401.138854980469
+    - 1174.0
+  scan_count: 3197
+  file_size: 34927379
+  last_scan: 
+    last_peak: 
+    - 1799.82104492188
+    - 634.0
+    num: 3197
+    first_peak: 
+    - 400.453979492188
+    - 7288.0
+  scans_to_read: fl
+  total_time_to_read_and_access: 21.269783
+  time_to_read: 21.269736
+  lazy_type: :not
+  end_time: 7799.03
+  start_time: 300.1
+  file: MM_porox1519r.mzXML
+--- 
+- time_to_access: 3.2e-05
+  first_scan: 
+    last_peak: 
+    - 1422.2451171875
+    - 2361.0
+    num: 1
+    first_peak: 
+    - 400.198913574219
+    - 1074.0
+  scan_count: 3265
+  file_size: 35607019
+  last_scan: 
+    last_peak: 
+    - 1750.3203125
+    - 1256.0
+    num: 3265
+    first_peak: 
+    - 400.247497558594
+    - 4488.0
+  scans_to_read: fl
+  total_time_to_read_and_access: 20.60846
+  time_to_read: 20.608415
+  lazy_type: :not
+  end_time: 7799.59
+  start_time: 300.1
+  file: MM_porox2024.mzXML
+--- 
+- time_to_access: 3.1e-05
+  first_scan: 
+    last_peak: 
+    - 1782.0927734375
+    - 452.0
+    num: 1
+    first_peak: 
+    - 401.007019042969
+    - 985.0
+  scan_count: 3344
+  file_size: 35540405
+  last_scan: 
+    last_peak: 
+    - 1799.59887695312
+    - 2846.0
+    num: 3344
+    first_peak: 
+    - 400.366333007812
+    - 10227.0
+  scans_to_read: fl
+  total_time_to_read_and_access: 21.356294
+  time_to_read: 21.356249
+  lazy_type: :not
+  end_time: 7798.03
+  start_time: 300.1
+  file: MM_porox2024r.mzXML
+--- 
+- time_to_access: 3.1e-05
+  first_scan: 
+    last_peak: 
+    - 1521.32568359375
+    - 620.0
+    num: 1
+    first_peak: 
+    - 403.010803222656
+    - 7536.0
+  scan_count: 3092
+  file_size: 35999927
+  last_scan: 
+    last_peak: 
+    - 1799.8251953125
+    - 2121.0
+    num: 3092
+    first_peak: 
+    - 400.459594726562
+    - 12839.0
+  scans_to_read: fl
+  total_time_to_read_and_access: 21.61625
+  time_to_read: 21.616205
+  lazy_type: :not
+  end_time: 7797.7
+  start_time: 300.09
+  file: MM_porox2529r.mzXML
+--- 
+- time_to_access: 3.3e-05
+  first_scan: 
+    last_peak: 
+    - 1623.16186523438
+    - 1668.0
+    num: 1
+    first_peak: 
+    - 400.989624023438
+    - 1204.0
+  scan_count: 3070
+  file_size: 35629605
+  last_scan: 
+    last_peak: 
+    - 1799.51611328125
+    - 5976.0
+    num: 3070
+    first_peak: 
+    - 400.4794921875
+    - 15371.0
+  scans_to_read: fl
+  total_time_to_read_and_access: 21.603495
+  time_to_read: 21.603449
+  lazy_type: :not
+  end_time: 7797.4
+  start_time: 300.06
+  file: MM_porox2529rrr.mzXML
+--- 
+- time_to_access: 3.4e-05
+  first_scan: 
+    last_peak: 
+    - 1790.92407226562
+    - 2041.0
+    num: 1
+    first_peak: 
+    - 401.484191894531
+    - 644.0
+  scan_count: 2862
+  file_size: 33348677
+  last_scan: 
+    last_peak: 
+    - 1796.7333984375
+    - 2901.0
+    num: 2862
+    first_peak: 
+    - 400.57568359375
+    - 10929.0
+  scans_to_read: fl
+  total_time_to_read_and_access: 20.539922
+  time_to_read: 20.539875
+  lazy_type: :not
+  end_time: 7798.34
+  start_time: 300.06
+  file: MM_porox3031.mzXML
+--- 
+- time_to_access: 3.1e-05
+  first_scan: 
+    last_peak: 
+    - 1622.0615234375
+    - 1972.0
+    num: 1
+    first_peak: 
+    - 400.143371582031
+    - 1350.0
+  scan_count: 3180
+  file_size: 32594432
+  last_scan: 
+    last_peak: 
+    - 1796.3095703125
+    - 809.0
+    num: 3180
+    first_peak: 
+    - 400.113647460938
+    - 669.0
+  scans_to_read: fl
+  total_time_to_read_and_access: 19.16035
+  time_to_read: 19.160303
+  lazy_type: :not
+  end_time: 7794.69
+  start_time: 300.09
+  file: MM_porox3031r.mzXML
+--- 
+- time_to_access: 3.2e-05
+  first_scan: 
+    last_peak: 
+    - 1752.54028320312
+    - 1888.0
+    num: 1
+    first_peak: 
+    - 400.174438476562
+    - 1506.0
+  scan_count: 2870
+  file_size: 32375089
+  last_scan: 
+    last_peak: 
+    - 1799.34228515625
+    - 721.0
+    num: 2870
+    first_peak: 
+    - 400.52099609375
+    - 16051.0
+  scans_to_read: fl
+  total_time_to_read_and_access: 20.254397
+  time_to_read: 20.254349
+  lazy_type: :not
+  end_time: 7799.29
+  start_time: 300.07
+  file: MM_porox3233.mzXML
+--- 
+- time_to_access: 3.2e-05
+  first_scan: 
+    last_peak: 
+    - 1622.263671875
+    - 821.0
+    num: 1
+    first_peak: 
+    - 402.798583984375
+    - 4698.0
+  scan_count: 3083
+  file_size: 31832725
+  last_scan: 
+    last_peak: 
+    - 1794.11328125
+    - 1902.0
+    num: 3083
+    first_peak: 
+    - 400.593933105469
+    - 5463.0
+  scans_to_read: fl
+  total_time_to_read_and_access: 18.859495
+  time_to_read: 18.859448
+  lazy_type: :not
+  end_time: 7799.7699
+  start_time: 300.08
+  file: MM_porox3233r.mzXML
+--- 
+- time_to_access: 3.2e-05
+  first_scan: 
+    last_peak: 
+    - 1422.04321289062
+    - 798.0
+    num: 1
+    first_peak: 
+    - 418.560913085938
+    - 2207.0
+  scan_count: 2726
+  file_size: 33238078
+  last_scan: 
+    last_peak: 
+    - 1798.06298828125
+    - 492.0
+    num: 2726
+    first_peak: 
+    - 400.475708007812
+    - 17422.0
+  scans_to_read: fl
+  total_time_to_read_and_access: 20.004606
+  time_to_read: 20.004559
+  lazy_type: :not
+  end_time: 7797.39
+  start_time: 300.07
+  file: MM_porox3435.mzXML
+--- 
+- time_to_access: 3.2e-05
+  first_scan: 
+    last_peak: 
+    - 1423.11669921875
+    - 943.0
+    num: 1
+    first_peak: 
+    - 400.269592285156
+    - 1912.0
+  scan_count: 3053
+  file_size: 32925126
+  last_scan: 
+    last_peak: 
+    - 453.092041015625
+    - 1577.0
+    num: 3053
+    first_peak: 
+    - 222.967468261719
+    - 3101.0
+  scans_to_read: fl
+  total_time_to_read_and_access: 19.124244
+  time_to_read: 19.124199
+  lazy_type: :not
+  end_time: 7798.86
+  start_time: 300.07
+  file: MM_porox3435r.mzXML
+--- 
+- time_to_access: 3.1e-05
+  first_scan: 
+    last_peak: 
+    - 1622.6943359375
+    - 829.0
+    num: 1
+    first_peak: 
+    - 400.924865722656
+    - 1093.0
+  scan_count: 2995
+  file_size: 35310504
+  last_scan: 
+    last_peak: 
+    - 1799.58227539062
+    - 618.0
+    num: 2995
+    first_peak: 
+    - 400.517395019531
+    - 13193.0
+  scans_to_read: fl
+  total_time_to_read_and_access: 21.275012
+  time_to_read: 21.274967
+  lazy_type: :not
+  end_time: 7798.81
+  start_time: 300.07
+  file: MM_porox3639.mzXML
+--- 
+- time_to_access: 3.2e-05
+  first_scan: 
+    last_peak: 
+    - 1785.45556640625
+    - 1080.0
+    num: 1
+    first_peak: 
+    - 402.080627441406
+    - 1841.0
+  scan_count: 3040
+  file_size: 34871619
+  last_scan: 
+    last_peak: 
+    - 1699.91845703125
+    - 1622.0
+    num: 3040
+    first_peak: 
+    - 400.63037109375
+    - 976.0
+  scans_to_read: fl
+  total_time_to_read_and_access: 21.001756
+  time_to_read: 21.001711
+  lazy_type: :not
+  end_time: 7799.85
+  start_time: 300.08
+  file: MM_porox3639r.mzXML
+--- 
+- time_to_access: 3.2e-05
+  first_scan: 
+    last_peak: 
+    - 1479.94409179688
+    - 1688.0
+    num: 1
+    first_peak: 
+    - 401.213623046875
+    - 2332.0
+  scan_count: 2958
+  file_size: 35886126
+  last_scan: 
+    last_peak: 
+    - 429.740539550781
+    - 8.0
+    num: 2958
+    first_peak: 
+    - 222.730285644531
+    - 1116.0
+  scans_to_read: fl
+  total_time_to_read_and_access: 21.869915
+  time_to_read: 21.869868
+  lazy_type: :not
+  end_time: 7802.85
+  start_time: 300.04
+  file: MM_porox3839.mzXML
+--- 
+- time_to_access: 4.0e-05
+  first_scan: 
+    last_peak: 
+    - 1790.47924804688
+    - 966.0
+    num: 1
+    first_peak: 
+    - 400.712036132812
+    - 4072.0
+  scan_count: 3050
+  file_size: 34259757
+  last_scan: 
+    last_peak: 
+    - 1798.943359375
+    - 629.0
+    num: 3050
+    first_peak: 
+    - 400.460144042969
+    - 18361.0
+  scans_to_read: fl
+  total_time_to_read_and_access: 19.915226
+  time_to_read: 19.915166
+  lazy_type: :not
+  end_time: 7797.12
+  start_time: 300.06
+  file: MM_porox3839r.mzXML
+--- 
+- time_to_access: 3.1e-05
+  first_scan: 
+    last_peak: 
+    - 1558.107421875
+    - 989.0
+    num: 1
+    first_peak: 
+    - 400.948547363281
+    - 2493.0
+  scan_count: 2990
+  file_size: 35242692
+  last_scan: 
+    last_peak: 
+    - 1797.095703125
+    - 1795.0
+    num: 2990
+    first_peak: 
+    - 400.458862304688
+    - 4093.0
+  scans_to_read: fl
+  total_time_to_read_and_access: 21.068729
+  time_to_read: 21.068684
+  lazy_type: :not
+  end_time: 7797.1499
+  start_time: 300.08
+  file: MM_porox3839rr.mzXML
+--- 
+- time_to_access: 3.2e-05
+  first_scan: 
+    last_peak: 
+    - 1516.36059570312
+    - 281.0
+    num: 1
+    first_peak: 
+    - 400.090087890625
+    - 1715.0
+  scan_count: 3023
+  file_size: 34366420
+  last_scan: 
+    last_peak: 
+    - 1795.220703125
+    - 1021.0
+    num: 3023
+    first_peak: 
+    - 400.553771972656
+    - 8944.0
+  scans_to_read: fl
+  total_time_to_read_and_access: 20.773784
+  time_to_read: 20.773739
+  lazy_type: :not
+  end_time: 7797.9199
+  start_time: 300.1
+  file: MM_porox4041.mzXML
+--- 
+- time_to_access: 3.1e-05
+  first_scan: 
+    last_peak: 
+    - 1522.19116210938
+    - 748.0
+    num: 1
+    first_peak: 
+    - 400.336791992188
+    - 4446.0
+  scan_count: 3080
+  file_size: 35443829
+  last_scan: 
+    last_peak: 
+    - 1775.875
+    - 1100.0
+    num: 3080
+    first_peak: 
+    - 400.421691894531
+    - 6385.0
+  scans_to_read: fl
+  total_time_to_read_and_access: 21.293002
+  time_to_read: 21.292956
+  lazy_type: :not
+  end_time: 7799.42
+  start_time: 300.06
+  file: MM_porox4041r.mzXML
+--- 
+- time_to_access: 3.1e-05
+  first_scan: 
+    last_peak: 
+    - 1421.94116210938
+    - 1437.0
+    num: 1
+    first_peak: 
+    - 401.911254882812
+    - 2163.0
+  scan_count: 3095
+  file_size: 35479893
+  last_scan: 
+    last_peak: 
+    - 479.956420898438
+    - 1546.0
+    num: 3095
+    first_peak: 
+    - 255.970062255859
+    - 965.0
+  scans_to_read: fl
+  total_time_to_read_and_access: 20.098721
+  time_to_read: 20.098677
+  lazy_type: :not
+  end_time: 7800.21
+  start_time: 300.09
+  file: MM_porox4243r.mzXML
+--- 
+- time_to_access: 3.1e-05
+  first_scan: 
+    last_peak: 
+    - 0.0
+    - 0.0
+    num: 1
+    first_peak: 
+    - 0.0
+    - 0.0
+  scan_count: 3004
+  file_size: 33454170
+  last_scan: 
+    last_peak: 
+    - 1792.3623046875
+    - 1102.0
+    num: 3004
+    first_peak: 
+    - 400.25439453125
+    - 5039.0
+  scans_to_read: fl
+  total_time_to_read_and_access: 19.949701
+  time_to_read: 19.949656
+  lazy_type: :not
+  end_time: 7797.94
+  start_time: 300.1
+  file: MM_porox4243rr.mzXML
+--- 
+- time_to_access: 3.3e-05
+  first_scan: 
+    last_peak: 
+    - 1422.04443359375
+    - 3550.0
+    num: 1
+    first_peak: 
+    - 400.213073730469
+    - 1313.0
+  scan_count: 2926
+  file_size: 34814678
+  last_scan: 
+    last_peak: 
+    - 1796.79052734375
+    - 1600.0
+    num: 2926
+    first_peak: 
+    - 400.41357421875
+    - 10991.0
+  scans_to_read: fl
+  total_time_to_read_and_access: 20.45602
+  time_to_read: 20.455974
+  lazy_type: :not
+  end_time: 7799.33
+  start_time: 300.09
+  file: MM_porox4446.mzXML
+--- 
+- time_to_access: 3.1e-05
+  first_scan: 
+    last_peak: 
+    - 1524.484375
+    - 818.0
+    num: 1
+    first_peak: 
+    - 401.052124023438
+    - 3067.0
+  scan_count: 3141
+  file_size: 35286090
+  last_scan: 
+    last_peak: 
+    - 446.513305664062
+    - 5860.0
+    num: 3141
+    first_peak: 
+    - 207.106018066406
+    - 4228.0
+  scans_to_read: fl
+  total_time_to_read_and_access: 20.802951
+  time_to_read: 20.802906
+  lazy_type: :not
+  end_time: 7802.65
+  start_time: 300.1099
+  file: MM_porox4446r.mzXML
+--- 
+- time_to_access: 3.2e-05
+  first_scan: 
+    last_peak: 
+    - 1222.25732421875
+    - 623.0
+    num: 1
+    first_peak: 
+    - 415.100219726562
+    - 2276.0
+  scan_count: 2787
+  file_size: 34149937
+  last_scan: 
+    last_peak: 
+    - 1799.13525390625
+    - 1973.0
+    num: 2787
+    first_peak: 
+    - 400.550903320312
+    - 16617.0
+  scans_to_read: fl
+  total_time_to_read_and_access: 19.197257
+  time_to_read: 19.197212
+  lazy_type: :not
+  end_time: 7797.34
+  start_time: 300.07
+  file: MM_porox4749.mzXML
+--- 
+- time_to_access: 3.0e-05
+  first_scan: 
+    last_peak: 
+    - 1721.94799804688
+    - 3945.0
+    num: 1
+    first_peak: 
+    - 400.013488769531
+    - 639.0
+  scan_count: 2970
+  file_size: 34226818
+  last_scan: 
+    last_peak: 
+    - 1799.17553710938
+    - 2022.0
+    num: 2970
+    first_peak: 
+    - 400.208679199219
+    - 2818.0
+  scans_to_read: fl
+  total_time_to_read_and_access: 20.271199
+  time_to_read: 20.271154
+  lazy_type: :not
+  end_time: 7799.16
+  start_time: 300.1
+  file: MM_porox4749r.mzXML
+--- 
+- time_to_access: 3.2e-05
+  first_scan: 
+    last_peak: 
+    - 1575.30297851562
+    - 828.0
+    num: 1
+    first_peak: 
+    - 401.044067382812
+    - 2615.0
+  scan_count: 2691
+  file_size: 33927238
+  last_scan: 
+    last_peak: 
+    - 447.027465820312
+    - 339.0
+    num: 2691
+    first_peak: 
+    - 222.79638671875
+    - 4648.0
+  scans_to_read: fl
+  total_time_to_read_and_access: 19.89069
+  time_to_read: 19.890645
+  lazy_type: :not
+  end_time: 7802.81
+  start_time: 300.09
+  file: MM_porox5052.mzXML
+--- 
+- time_to_access: 3.2e-05
+  first_scan: 
+    last_peak: 
+    - 1570.06420898438
+    - 716.0
+    num: 1
+    first_peak: 
+    - 400.172973632812
+    - 2020.0
+  scan_count: 2829
+  file_size: 33522049
+  last_scan: 
+    last_peak: 
+    - 1793.9716796875
+    - 323.0
+    num: 2829
+    first_peak: 
+    - 400.887390136719
+    - 3528.0
+  scans_to_read: fl
+  total_time_to_read_and_access: 18.823572
+  time_to_read: 18.823527
+  lazy_type: :not
+  end_time: 7799.79
+  start_time: 300.08
+  file: MM_porox5052r.mzXML
+--- 
+- time_to_access: 3.1e-05
+  first_scan: 
+    last_peak: 
+    - 1623.05322265625
+    - 348.0
+    num: 1
+    first_peak: 
+    - 401.261413574219
+    - 1054.0
+  scan_count: 2649
+  file_size: 34263757
+  last_scan: 
+    last_peak: 
+    - 446.597290039062
+    - 3232.0
+    num: 2649
+    first_peak: 
+    - 222.887634277344
+    - 1668.0
+  scans_to_read: fl
+  total_time_to_read_and_access: 19.957652
+  time_to_read: 19.957606
+  lazy_type: :not
+  end_time: 7802.93
+  start_time: 300.07
+  file: MM_porox5355.mzXML
+--- 
+- time_to_access: 3.2e-05
+  first_scan: 
+    last_peak: 
+    - 1522.35424804688
+    - 790.0
+    num: 1
+    first_peak: 
+    - 403.111022949219
+    - 2042.0
+  scan_count: 2544
+  file_size: 34906373
+  last_scan: 
+    last_peak: 
+    - 1799.74291992188
+    - 4134.0
+    num: 2544
+    first_peak: 
+    - 400.302612304688
+    - 2826.0
+  scans_to_read: fl
+  total_time_to_read_and_access: 20.71948
+  time_to_read: 20.719436
+  lazy_type: :not
+  end_time: 7797.16
+  start_time: 300.1
+  file: MM_porox5657.mzXML
+--- 
+- time_to_access: 3.1e-05
+  first_scan: 
+    last_peak: 
+    - 1569.95751953125
+    - 1114.0
+    num: 1
+    first_peak: 
+    - 401.215942382812
+    - 2507.0
+  scan_count: 2590
+  file_size: 33834481
+  last_scan: 
+    last_peak: 
+    - 1794.2041015625
+    - 563.0
+    num: 2590
+    first_peak: 
+    - 400.445129394531
+    - 2674.0
+  scans_to_read: fl
+  total_time_to_read_and_access: 19.927002
+  time_to_read: 19.926957
+  lazy_type: :not
+  end_time: 7798.5899
+  start_time: 300.07
+  file: MM_porox5657r.mzXML

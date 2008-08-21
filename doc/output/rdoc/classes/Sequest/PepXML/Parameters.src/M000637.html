@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="iso-8859-1"?>
+<!DOCTYPE html 
+     PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+     "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html>
+<head>
+  <title>to_pepxml (Sequest::PepXML::Parameters)</title>
+  <meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1" />
+  <link rel="stylesheet" href="../../../.././rdoc-style.css" type="text/css" media="screen" />
+</head>
+<body class="standalone-code">
+  <pre><span class="ruby-comment cmt"># File lib/spec_id/sequest/pepxml.rb, line 857</span>
+  <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">to_pepxml</span>
+    <span class="ruby-identifier">keys_as_symbols</span> = <span class="ruby-ivar">@params</span>.<span class="ruby-identifier">opts</span>.<span class="ruby-identifier">sort</span>.<span class="ruby-identifier">map</span> <span class="ruby-keyword kw">do</span> <span class="ruby-operator">|</span><span class="ruby-identifier">k</span>,<span class="ruby-identifier">v</span><span class="ruby-operator">|</span> <span class="ruby-identifier">k</span>.<span class="ruby-identifier">to_s</span> <span class="ruby-keyword kw">end</span>
+    <span class="ruby-identifier">params_xml</span>(<span class="ruby-ivar">@params</span>, <span class="ruby-operator">*</span><span class="ruby-identifier">keys_as_symbols</span>)
+    <span class="ruby-comment cmt"># (:peptide_mass_tol, :peptide_mass_units, :fragment_ion_tol, :ion_series, :max_num_differential_AA_per_mod, :nucleotide_reading_frame, :num_output_lines, :remove_precursor_peak, :ion_cutoff_percentage, :match_peak_count, :match_peak_allowed_error, :match_peak_tolerance, :protein_mass_filter, :sequence_header_filter)</span>
+  <span class="ruby-keyword kw">end</span></pre>
+</body>
+</html>

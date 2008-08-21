@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="iso-8859-1"?>
+<!DOCTYPE html 
+     PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+     "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html>
+<head>
+  <title>from_pepxml_node (Proph::PepSummary::Pep)</title>
+  <meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1" />
+  <link rel="stylesheet" href="../../../.././rdoc-style.css" type="text/css" media="screen" />
+</head>
+<body class="standalone-code">
+  <pre><span class="ruby-comment cmt"># File lib/spec_id/proph/pep_summary.rb, line 71</span>
+    <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">from_pepxml_node</span>(<span class="ruby-identifier">node</span>)
+      <span class="ruby-keyword kw">super</span>(<span class="ruby-identifier">node</span>)
+
+      <span class="ruby-identifier">an_res</span> = <span class="ruby-identifier">node</span>.<span class="ruby-identifier">find_first</span>(<span class="ruby-value str">'child::analysis_result'</span>)
+      <span class="ruby-identifier">pp_n</span> = <span class="ruby-identifier">an_res</span>.<span class="ruby-identifier">find_first</span>(<span class="ruby-value str">'child::peptideprophet_result'</span>)
+      <span class="ruby-keyword kw">self</span>.<span class="ruby-identifier">probability</span> = <span class="ruby-identifier">pp_n</span>[<span class="ruby-value str">'probability'</span>].<span class="ruby-identifier">to_f</span>
+      <span class="ruby-identifier">pp_n</span>.<span class="ruby-identifier">find</span>(<span class="ruby-value str">'descendant::parameter'</span>).<span class="ruby-identifier">each</span> <span class="ruby-keyword kw">do</span> <span class="ruby-operator">|</span><span class="ruby-identifier">par_n</span><span class="ruby-operator">|</span>
+        <span class="ruby-keyword kw">case</span> <span class="ruby-identifier">par_n</span>[<span class="ruby-value str">'name'</span>]
+        <span class="ruby-keyword kw">when</span> <span class="ruby-value str">'fval'</span>
+          <span class="ruby-keyword kw">self</span>.<span class="ruby-identifier">fval</span> = <span class="ruby-identifier">par_n</span>[<span class="ruby-value str">'value'</span>].<span class="ruby-identifier">to_f</span>
+        <span class="ruby-keyword kw">when</span> <span class="ruby-value str">'ntt'</span>
+          <span class="ruby-keyword kw">self</span>.<span class="ruby-identifier">ntt</span> = <span class="ruby-identifier">par_n</span>[<span class="ruby-value str">'value'</span>].<span class="ruby-identifier">to_i</span>
+        <span class="ruby-keyword kw">when</span> <span class="ruby-value str">'nmc'</span>
+          <span class="ruby-keyword kw">self</span>.<span class="ruby-identifier">nmc</span> = <span class="ruby-identifier">par_n</span>[<span class="ruby-value str">'value'</span>].<span class="ruby-identifier">to_i</span>
+        <span class="ruby-keyword kw">when</span> <span class="ruby-value str">'massd'</span>
+          <span class="ruby-keyword kw">self</span>.<span class="ruby-identifier">massd</span> = <span class="ruby-identifier">par_n</span>[<span class="ruby-value str">'value'</span>].<span class="ruby-identifier">to_f</span>
+        <span class="ruby-keyword kw">end</span>
+      <span class="ruby-keyword kw">end</span>
+      <span class="ruby-keyword kw">self</span>
+    <span class="ruby-keyword kw">end</span></pre>
+</body>
+</html>

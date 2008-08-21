@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="iso-8859-1"?>
+<!DOCTYPE html 
+     PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+     "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html>
+<head>
+  <title>file_info (ProteinSummary)</title>
+  <meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1" />
+  <link rel="stylesheet" href="../.././rdoc-style.css" type="text/css" media="screen" />
+</head>
+<body class="standalone-code">
+  <pre><span class="ruby-comment cmt"># File lib/spec_id/protein_summary.rb, line 246</span>
+  <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">file_info</span>(<span class="ruby-identifier">file</span>)
+    <span class="ruby-node">&quot;&lt;div class=\&quot;file_info\&quot;&gt;&lt;h3&gt;Source File Information&lt;/h3&gt;File: #{File.expand_path(file)}
+    &lt;br/&gt;Last Modified: #{File.mtime(file)}
+    &lt;br/&gt;Size: #{File.size(file)/1000} KB
+    &lt;/div&gt;&quot;</span>
+  <span class="ruby-keyword kw">end</span></pre>
+</body>
+</html>

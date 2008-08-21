@@ -1,0 +1,394 @@
+<?xml version="1.0" encoding="iso-8859-1"?>
+<!DOCTYPE html 
+     PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+     "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+<head>
+  <title>Class: Validator::Transmem::Protein</title>
+  <meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1" />
+  <meta http-equiv="Content-Script-Type" content="text/javascript" />
+  <link rel="stylesheet" href="../../.././rdoc-style.css" type="text/css" media="screen" />
+  <script type="text/javascript">
+  // <![CDATA[
+
+  function popupCode( url ) {
+    window.open(url, "Code", "resizable=yes,scrollbars=yes,toolbar=no,status=no,height=150,width=400")
+  }
+
+  function toggleCode( id ) {
+    if ( document.getElementById )
+      elem = document.getElementById( id );
+    else if ( document.all )
+      elem = eval( "document.all." + id );
+    else
+      return false;
+
+    elemStyle = elem.style;
+    
+    if ( elemStyle.display != "block" ) {
+      elemStyle.display = "block"
+    } else {
+      elemStyle.display = "none"
+    }
+
+    return true;
+  }
+  
+  // Make codeblocks hidden by default
+  document.writeln( "<style type=\"text/css\">div.method-source-code { display: none }</style>" )
+  
+  // ]]>
+  </script>
+
+</head>
+<body>
+
+
+
+    <div id="classHeader">
+        <table class="header-table">
+        <tr class="top-aligned-row">
+          <td><strong>Class</strong></td>
+          <td class="class-name-in-header">Validator::Transmem::Protein</td>
+        </tr>
+        <tr class="top-aligned-row">
+            <td><strong>In:</strong></td>
+            <td>
+                <a href="../../../files/lib/validator/transmem_rb.html">
+                lib/validator/transmem.rb
+                </a>
+        <br />
+            </td>
+        </tr>
+
+        <tr class="top-aligned-row">
+            <td><strong>Parent:</strong></td>
+            <td>
+                <a href="../DigestionBased.html">
+                Validator::DigestionBased
+               </a>
+            </td>
+        </tr>
+        </table>
+    </div>
+  <!-- banner header -->
+
+  <div id="bodyContent">
+
+
+
+  <div id="contextContent">
+
+    <div id="description">
+      <p>
+objects of this class can calculate <a
+href="Protein.html#M000013">pephit_precision</a> given an array of <a
+href="../../SpecID/Pep.html">SpecID::Pep</a> objects using the <a
+href="Protein.html#M000013">pephit_precision</a> method.
+</p>
+
+    </div>
+
+
+   </div>
+
+    <div id="method-list">
+      <h3 class="section-bar">Methods</h3>
+
+      <div class="name-list">
+      <a href="#M000010">create_transmem_by_ti_key_hash</a>&nbsp;&nbsp;
+      <a href="#M000011">create_transmem_status_hash</a>&nbsp;&nbsp;
+      <a href="#M000009">new</a>&nbsp;&nbsp;
+      <a href="#M000015">partition</a>&nbsp;&nbsp;
+      <a href="#M000014">pep_is_transmem?</a>&nbsp;&nbsp;
+      <a href="#M000013">pephit_precision</a>&nbsp;&nbsp;
+      <a href="#M000012">set_false_to_total_ratio</a>&nbsp;&nbsp;
+      </div>
+    </div>
+
+  </div>
+
+
+    <!-- if includes -->
+    <div id="includes">
+      <h3 class="section-bar">Included Modules</h3>
+
+      <div id="includes-list">
+        <span class="include-name"><a href="../../Precision/Calculator.html">Precision::Calculator</a></span>
+      </div>
+    </div>
+
+    <div id="section">
+
+
+    <div id="constants-list">
+      <h3 class="section-bar">Constants</h3>
+
+      <div class="name-list">
+        <table summary="Constants">
+        <tr class="top-aligned-row context-row">
+          <td class="context-item-name">DEFAULTS</td>
+          <td>=</td>
+          <td class="context-item-value">Validator::DigestionBased::DEFAULTS.merge( { :min_num_tms =&gt; 1, :soluble_fraction  =&gt;  true, :correct_wins  =&gt;  true, :no_include_tm_peps =&gt; false, :transmem_status_hash =&gt; nil} )</td>
+        </tr>
+        </table>
+      </div>
+    </div>
+
+
+
+    <div id="attribute-list">
+      <h3 class="section-bar">Attributes</h3>
+
+      <div class="name-list">
+        <table>
+        <tr class="top-aligned-row context-row">
+          <td class="context-item-name">correct_wins</td>
+          <td class="context-item-value">&nbsp;[RW]&nbsp;</td>
+          <td class="context-item-desc">
+correct_wins: *true/false,
+
+<pre>
+  if the peptide is found in some proteins that are transmembrane and some
+  that are not, then if soluble_fraction==true, this peptide will be
+  considered non-transmembrane.  If soluble_fraction==false, then this
+  will be considered transmembrane.
+</pre>
+</td>
+        </tr>
+        <tr class="top-aligned-row context-row">
+          <td class="context-item-name">min_num_tms</td>
+          <td class="context-item-value">&nbsp;[R]&nbsp;</td>
+          <td class="context-item-desc">
+min_num_tms: Integer (1&#8230;), the min # certain transmembrane segments
+to consider the protein a transmembrane protein
+
+</td>
+        </tr>
+        <tr class="top-aligned-row context-row">
+          <td class="context-item-name">no_include_tm_peps</td>
+          <td class="context-item-value">&nbsp;[RW]&nbsp;</td>
+          <td class="context-item-desc">
+no_include_tm_peps: false or Float (0.0-1.0), peptides that have a
+
+<pre>
+  fraction of amino acids that fall inside transmembrane sequences greater
+  than or equal to the value of the argument will not be considered in the final
+  calculation of peptide hit precision.  (A transmembrane segment is
+  likely to have very different properties than the rest of the peptides,
+  so the assumption of equally flyable peptides is broken unless these are
+  removed)  nil or false will skip this filter.  A reasonable value is
+  probably 0.7.
+</pre>
+</td>
+        </tr>
+        <tr class="top-aligned-row context-row">
+          <td class="context-item-name">soluble_fraction</td>
+          <td class="context-item-value">&nbsp;[RW]&nbsp;</td>
+          <td class="context-item-desc">
+soluble_fraction: *true/false
+
+</td>
+        </tr>
+        <tr class="top-aligned-row context-row">
+          <td class="context-item-name">transmem_by_ti_key</td>
+          <td class="context-item-value">&nbsp;[RW]&nbsp;</td>
+          <td class="context-item-desc">
+a hash keyed by index reference which is true if &gt;= min_num_tms
+
+</td>
+        </tr>
+        <tr class="top-aligned-row context-row">
+          <td class="context-item-name">transmem_file</td>
+          <td class="context-item-value">&nbsp;[RW]&nbsp;</td>
+          <td class="context-item-desc">
+the file used (toppred or phobius file)
+
+</td>
+        </tr>
+        <tr class="top-aligned-row context-row">
+          <td class="context-item-name">transmem_index</td>
+          <td class="context-item-value">&nbsp;[RW]&nbsp;</td>
+          <td class="context-item-desc"></td>
+        </tr>
+        <tr class="top-aligned-row context-row">
+          <td class="context-item-name">transmem_status_hash</td>
+          <td class="context-item-value">&nbsp;[RW]&nbsp;</td>
+          <td class="context-item-desc">
+if nil, then this will be calculated whe <a
+href="Protein.html#M000013">pephit_precision</a> is called.
+
+</td>
+        </tr>
+        </table>
+      </div>
+    </div>
+      
+
+
+    <!-- if method_list -->
+    <div id="methods">
+      <h3 class="section-bar">Public Class methods</h3>
+
+      <div id="method-M000009" class="method-detail">
+        <a name="M000009"></a>
+
+        <div class="method-heading">
+          <a href="Protein.src/M000009.html" target="Code" class="method-signature"
+            onclick="popupCode('Protein.src/M000009.html');return false;">
+          <span class="method-name">new</span><span class="method-args">(a_transmem_file, options={})</span>
+          </a>
+        </div>
+      
+        <div class="method-description">
+          <p>
+expects a toppred.out file (see transmem/toppred) other types of
+transmembrane predictions) fasta_obj is a <a
+href="../../Fasta.html">Fasta</a> object. sequest_params_obj is a <a
+href="../../Sequest/Params.html">Sequest::Params</a> object. OPTIONS:
+</p>
+<pre>
+  (see Validator::Transmem::Protein::DEFAULTS for defaults)
+
+  no_include_tm_peps: *false
+</pre>
+<p>
+NOTE: if fasta_obj and sequest_params_obj are not passed in then
+</p>
+<pre>
+  'false_to_total_ratio' must be set later.
+</pre>
+        </div>
+      </div>
+
+      <h3 class="section-bar">Public Instance methods</h3>
+
+      <div id="method-M000010" class="method-detail">
+        <a name="M000010"></a>
+
+        <div class="method-heading">
+          <a href="Protein.src/M000010.html" target="Code" class="method-signature"
+            onclick="popupCode('Protein.src/M000010.html');return false;">
+          <span class="method-name">create_transmem_by_ti_key_hash</span><span class="method-args">(transmem_index, min_num_tms)</span>
+          </a>
+        </div>
+      
+        <div class="method-description">
+          <p>
+Designates each protein as transmembrane or not depending on :min_num_tms
+The hash is keyed by the <a
+href="../../TransmemIndex.html">TransmemIndex</a> key.
+</p>
+        </div>
+      </div>
+
+      <div id="method-M000011" class="method-detail">
+        <a name="M000011"></a>
+
+        <div class="method-heading">
+          <a href="Protein.src/M000011.html" target="Code" class="method-signature"
+            onclick="popupCode('Protein.src/M000011.html');return false;">
+          <span class="method-name">create_transmem_status_hash</span><span class="method-args">(peps)</span>
+          </a>
+        </div>
+      
+        <div class="method-description">
+          <p>
+returns a hash where each protein (and peptide if given peps) is indexed
+with itself with true/false/nil depending on transmembrane status. If given
+peptides, and :no_include_tm_peps is not false, will also set the attribute
+for peptides. the attribute (:no_include_tm_peps) NOTE: if given a list of
+peptides, this implementation will not overwrite a protein if it already
+has a true/false for transmem. This is so that a lookup does not have to be
+performed if the value is already defined as the assumption is that many
+peptides will point to the same protein.
+</p>
+        </div>
+      </div>
+
+      <div id="method-M000015" class="method-detail">
+        <a name="M000015"></a>
+
+        <div class="method-heading">
+          <a href="Protein.src/M000015.html" target="Code" class="method-signature"
+            onclick="popupCode('Protein.src/M000015.html');return false;">
+          <span class="method-name">partition</span><span class="method-args">(peps, transmem_status_hash=nil)</span>
+          </a>
+        </div>
+      
+        <div class="method-description">
+          <p>
+each peptide must have prots and the prots must respond true/false to the
+&#8216;transmem&#8217; method if given a hash, it will override the
+@transmem_status_hash
+</p>
+        </div>
+      </div>
+
+      <div id="method-M000014" class="method-detail">
+        <a name="M000014"></a>
+
+        <div class="method-heading">
+          <a href="Protein.src/M000014.html" target="Code" class="method-signature"
+            onclick="popupCode('Protein.src/M000014.html');return false;">
+          <span class="method-name">pep_is_transmem?</span><span class="method-args">(pep)</span>
+          </a>
+        </div>
+      
+        <div class="method-description">
+          <p>
+regardless of transmembrane status of proteins peptide belongs to, asks
+what the avg overlap is with transmembrane sequences.
+</p>
+        </div>
+      </div>
+
+      <div id="method-M000013" class="method-detail">
+        <a name="M000013"></a>
+
+        <div class="method-heading">
+          <a href="Protein.src/M000013.html" target="Code" class="method-signature"
+            onclick="popupCode('Protein.src/M000013.html');return false;">
+          <span class="method-name">pephit_precision</span><span class="method-args">(peps)</span>
+          </a>
+        </div>
+      
+        <div class="method-description">
+        </div>
+      </div>
+
+      <div id="method-M000012" class="method-detail">
+        <a name="M000012"></a>
+
+        <div class="method-heading">
+          <a href="Protein.src/M000012.html" target="Code" class="method-signature"
+            onclick="popupCode('Protein.src/M000012.html');return false;">
+          <span class="method-name">set_false_to_total_ratio</span><span class="method-args">(peps)</span>
+          </a>
+        </div>
+      
+        <div class="method-description">
+          <p>
+sets the false_to_total_ratio and returns self for chaining. peps will
+usually be the peptides created by calling:
+</p>
+<pre>
+    peps = Digestor.digest( fasta_obj, sequest_params_obj )
+</pre>
+        </div>
+      </div>
+
+
+    </div>
+
+
+  </div>
+
+
+<div id="validator-badges">
+  <p><small><a href="http://validator.w3.org/check/referer">[Validate]</a></small></p>
+</div>
+
+</body>
+</html>

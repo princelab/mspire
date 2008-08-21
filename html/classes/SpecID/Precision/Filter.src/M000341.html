@@ -1,0 +1,341 @@
+<?xml version="1.0" encoding="iso-8859-1"?>
+<!DOCTYPE html 
+     PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+     "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html>
+<head>
+  <title>filter_and_validate (SpecID::Precision::Filter)</title>
+  <meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1" />
+  <link rel="stylesheet" href="../../../.././rdoc-style.css" type="text/css" media="screen" />
+</head>
+<body class="standalone-code">
+  <pre><span class="ruby-comment cmt"># File lib/spec_id/precision/filter.rb, line 152</span>
+  <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">filter_and_validate</span>(<span class="ruby-identifier">spec_id_obj</span>, <span class="ruby-identifier">options</span>={})
+    <span class="ruby-comment cmt"># NOTE:</span>
+    <span class="ruby-comment cmt"># This is a fairly complicated method.  The complication comes in doing</span>
+    <span class="ruby-comment cmt"># top hit filters on separate/cat searches wanted them to be either</span>
+    <span class="ruby-comment cmt"># together or separate.  I opt for fewer conversions between the two, but</span>
+    <span class="ruby-comment cmt"># that means keeping track of more things...</span>
+    
+    <span class="ruby-identifier">opts</span> = <span class="ruby-constant">FV_DEFAULTS</span>.<span class="ruby-identifier">merge_deep</span>(<span class="ruby-identifier">options</span>)
+
+    <span class="ruby-identifier">spec_id</span> = <span class="ruby-identifier">spec_id_obj</span>
+
+    <span class="ruby-identifier">peps</span> = <span class="ruby-identifier">spec_id</span>.<span class="ruby-identifier">peps</span>
+    <span class="ruby-identifier">filename</span> = <span class="ruby-identifier">spec_id</span>.<span class="ruby-identifier">filename</span>
+
+    <span class="ruby-comment cmt">#######################################</span>
+    <span class="ruby-comment cmt"># DEFAULTS:</span>
+    <span class="ruby-identifier">interactive_changing_keys</span> = [<span class="ruby-identifier">:xcorr1</span>, <span class="ruby-identifier">:xcorr2</span>, <span class="ruby-identifier">:xcorr3</span>, <span class="ruby-identifier">:deltacn</span>, <span class="ruby-identifier">:ppm</span>, <span class="ruby-identifier">:include_deltacnstar</span>, <span class="ruby-identifier">:postfilter</span>]
+    <span class="ruby-identifier">interactive_shortcut_map</span> = {
+      <span class="ruby-identifier">:xcorr1</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-value str">'x1'</span>,
+      <span class="ruby-identifier">:xcorr2</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-value str">'x2'</span>,
+      <span class="ruby-identifier">:xcorr3</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-value str">'x3'</span>,
+      <span class="ruby-identifier">:deltacn</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-value str">'dcn'</span>,
+      <span class="ruby-identifier">:ppm</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-value str">'ppm'</span>,
+      <span class="ruby-identifier">:include_deltacnstar</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-value str">'dcns'</span>,
+      <span class="ruby-identifier">:postfilter</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-value str">'pf'</span>,
+    }
+    <span class="ruby-identifier">to_float</span> = <span class="ruby-identifier">proc</span> {<span class="ruby-operator">|</span><span class="ruby-identifier">x</span><span class="ruby-operator">|</span> <span class="ruby-identifier">x</span>.<span class="ruby-identifier">to_f</span>}
+    <span class="ruby-identifier">to_bool</span> = <span class="ruby-identifier">proc</span> <span class="ruby-keyword kw">do</span> <span class="ruby-operator">|</span><span class="ruby-identifier">x</span><span class="ruby-operator">|</span>
+      <span class="ruby-keyword kw">case</span> <span class="ruby-identifier">x</span>
+      <span class="ruby-keyword kw">when</span> <span class="ruby-regexp re">/^t/i</span><span class="ruby-identifier">o</span>
+        <span class="ruby-keyword kw">true</span>
+      <span class="ruby-keyword kw">when</span> <span class="ruby-regexp re">/^f/i</span><span class="ruby-identifier">o</span>
+        <span class="ruby-keyword kw">false</span>
+      <span class="ruby-keyword kw">when</span> <span class="ruby-keyword kw">true</span>
+        <span class="ruby-keyword kw">true</span>
+      <span class="ruby-keyword kw">when</span> <span class="ruby-keyword kw">false</span>
+        <span class="ruby-keyword kw">false</span>
+      <span class="ruby-keyword kw">else</span>
+        <span class="ruby-keyword kw">nil</span>
+      <span class="ruby-keyword kw">end</span>
+    <span class="ruby-keyword kw">end</span>
+    <span class="ruby-identifier">to_postfilter</span> = <span class="ruby-identifier">proc</span> <span class="ruby-keyword kw">do</span> <span class="ruby-operator">|</span><span class="ruby-identifier">x</span><span class="ruby-operator">|</span>
+      <span class="ruby-keyword kw">case</span> <span class="ruby-identifier">x</span>
+      <span class="ruby-keyword kw">when</span> <span class="ruby-value str">'s'</span>
+        <span class="ruby-identifier">:top_per_scan</span>
+      <span class="ruby-keyword kw">when</span> <span class="ruby-value str">'a'</span>
+        <span class="ruby-identifier">:top_per_aaseq</span>
+      <span class="ruby-keyword kw">when</span> <span class="ruby-value str">'ac'</span>
+        <span class="ruby-identifier">:top_per_aaseq_charge</span>
+      <span class="ruby-keyword kw">when</span> <span class="ruby-constant">Symbol</span>
+        <span class="ruby-identifier">x</span>
+      <span class="ruby-keyword kw">end</span>
+    <span class="ruby-keyword kw">end</span>
+    <span class="ruby-identifier">casting_map</span> = {
+      <span class="ruby-identifier">:xcorr1</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-identifier">to_float</span>,
+      <span class="ruby-identifier">:xcorr2</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-identifier">to_float</span>,
+      <span class="ruby-identifier">:xcorr3</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-identifier">to_float</span>,
+      <span class="ruby-identifier">:deltacn</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-identifier">to_float</span>,
+      <span class="ruby-identifier">:ppm</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-identifier">to_float</span>,
+      <span class="ruby-identifier">:include_deltacnstar</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-identifier">to_bool</span>,
+      <span class="ruby-identifier">:postfilter</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-identifier">to_postfilter</span>,
+    }
+   
+    <span class="ruby-comment cmt"># output:  </span>
+    <span class="ruby-comment cmt"># NOTE: BOOLEANS that are by default false do not need a default!!</span>
+    <span class="ruby-comment cmt"># They will yield false on key lookup if no key or false!</span>
+    <span class="ruby-comment cmt"># BOOLEANS that by default are true should be queried like this</span>
+    <span class="ruby-comment cmt"># !(opts[:&lt;option&gt;] == false)</span>
+
+    <span class="ruby-comment cmt"># open up each of the files for writing</span>
+    <span class="ruby-keyword kw">if</span> <span class="ruby-identifier">opts</span>[<span class="ruby-identifier">:output</span>]
+      <span class="ruby-identifier">outputs</span> = <span class="ruby-identifier">opts</span>[<span class="ruby-identifier">:output</span>].<span class="ruby-identifier">map</span> <span class="ruby-keyword kw">do</span> <span class="ruby-operator">|</span><span class="ruby-identifier">format</span>, <span class="ruby-identifier">where</span><span class="ruby-operator">|</span>
+        <span class="ruby-keyword kw">if</span> <span class="ruby-identifier">where</span> <span class="ruby-operator">==</span> <span class="ruby-keyword kw">nil</span>
+          <span class="ruby-identifier">where</span> = <span class="ruby-identifier">$stdout</span>
+        <span class="ruby-keyword kw">end</span>
+        <span class="ruby-constant">SpecID</span><span class="ruby-operator">::</span><span class="ruby-constant">Precision</span><span class="ruby-operator">::</span><span class="ruby-constant">Filter</span><span class="ruby-operator">::</span><span class="ruby-constant">Output</span>.<span class="ruby-identifier">new</span>(<span class="ruby-identifier">format</span>, <span class="ruby-identifier">where</span>)
+      <span class="ruby-keyword kw">end</span>
+    <span class="ruby-keyword kw">end</span>
+
+    <span class="ruby-identifier">postfilters_per_hash</span> = {
+      <span class="ruby-identifier">:top_per_scan</span> =<span class="ruby-operator">&gt;</span> [<span class="ruby-identifier">:base_name</span>, <span class="ruby-identifier">:first_scan</span>],
+      <span class="ruby-identifier">:top_per_aaseq</span> =<span class="ruby-operator">&gt;</span> [<span class="ruby-identifier">:aaseq</span>],  <span class="ruby-comment cmt"># first by top_per_scan, then this guy</span>
+      <span class="ruby-identifier">:top_per_aaseq_charge</span> =<span class="ruby-operator">&gt;</span> [<span class="ruby-identifier">:aaseq</span>, <span class="ruby-identifier">:charge</span>], <span class="ruby-comment cmt"># first by top_per_scan, then this one</span>
+    }
+
+    <span class="ruby-identifier">top_hit_by__to_sort_by</span> = {
+      <span class="ruby-identifier">:xcorr</span> =<span class="ruby-operator">&gt;</span> [<span class="ruby-identifier">:xcorr</span>, {<span class="ruby-identifier">:down=</span><span class="ruby-operator">&gt;</span> [<span class="ruby-identifier">:xcorr</span>]}],
+      <span class="ruby-identifier">:probability</span> =<span class="ruby-operator">&gt;</span> [<span class="ruby-identifier">:probability</span>, (<span class="ruby-identifier">spec_id</span>.<span class="ruby-identifier">hi_prob_best</span> <span class="ruby-value">? </span>{<span class="ruby-identifier">:down=</span><span class="ruby-operator">&gt;</span> [<span class="ruby-identifier">:probability</span>]} <span class="ruby-operator">:</span> {})],
+    }
+    <span class="ruby-identifier">sort_by_att_opts</span> = <span class="ruby-identifier">top_hit_by__to_sort_by</span>[<span class="ruby-identifier">opts</span>[<span class="ruby-identifier">:top_hit_by</span>]]
+    <span class="ruby-identifier">opts_for_top_hit_prefilter</span> = {
+      <span class="ruby-identifier">:per</span> =<span class="ruby-operator">&gt;</span> [<span class="ruby-identifier">:base_name</span>, <span class="ruby-identifier">:first_scan</span>, <span class="ruby-identifier">:charge</span>], 
+      <span class="ruby-identifier">:by</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-identifier">sort_by_att_opts</span>, 
+      <span class="ruby-identifier">:include_ties</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-identifier">opts</span>[<span class="ruby-identifier">:include_ties_in_top_hit_prefilter</span>]
+    }
+    <span class="ruby-comment cmt"># PRIVATE DEFAULTS:</span>
+    <span class="ruby-identifier">merge_prefix</span> = <span class="ruby-value str">'DECOY_'</span>
+    <span class="ruby-identifier">unmerge_regexp</span> = <span class="ruby-regexp re">/^DECOY_/</span>
+
+    <span class="ruby-comment cmt">#######################################</span>
+
+
+    <span class="ruby-comment cmt"># opts_decoy = opts[:decoy]</span>
+
+
+    
+    <span class="ruby-comment cmt"># if we have a Validator::Decoy object, we will use its defaults to split</span>
+    <span class="ruby-comment cmt"># peptides.</span>
+    <span class="ruby-identifier">decoy_validator</span> = 
+      <span class="ruby-keyword kw">if</span> <span class="ruby-identifier">opts</span>[<span class="ruby-identifier">:validators</span>]
+        <span class="ruby-identifier">decoy_vals</span> = <span class="ruby-identifier">opts</span>[<span class="ruby-identifier">:validators</span>].<span class="ruby-identifier">select</span> {<span class="ruby-operator">|</span><span class="ruby-identifier">v</span><span class="ruby-operator">|</span> <span class="ruby-identifier">v</span>.<span class="ruby-identifier">class</span> <span class="ruby-operator">==</span> <span class="ruby-constant">Validator</span><span class="ruby-operator">::</span><span class="ruby-constant">Decoy</span> }
+        <span class="ruby-keyword kw">if</span> <span class="ruby-identifier">decoy_vals</span>.<span class="ruby-identifier">size</span> <span class="ruby-operator">==</span> <span class="ruby-value">0</span>
+          <span class="ruby-keyword kw">nil</span>
+        <span class="ruby-keyword kw">elsif</span> <span class="ruby-identifier">decoy_vals</span>.<span class="ruby-identifier">size</span> <span class="ruby-operator">==</span> <span class="ruby-value">1</span>
+          <span class="ruby-identifier">decoy_vals</span>.<span class="ruby-identifier">first</span>
+        <span class="ruby-keyword kw">else</span>
+          <span class="ruby-identifier">raise</span> <span class="ruby-constant">ArgumentError</span>, <span class="ruby-value str">&quot;can only have one Validator::Decoy object&quot;</span>
+        <span class="ruby-keyword kw">end</span>
+
+        <span class="ruby-comment cmt">### suck out the relevant parameters</span>
+        <span class="ruby-comment cmt">#sep_params = [:decoy_on_match, :correct_wins].inject({}) do |hash,k|</span>
+        <span class="ruby-comment cmt">#  hash[k] = decoy_validator.send(k)</span>
+        <span class="ruby-comment cmt">#  hash</span>
+        <span class="ruby-comment cmt">#end</span>
+      <span class="ruby-keyword kw">else</span>
+        <span class="ruby-keyword kw">nil</span>
+      <span class="ruby-keyword kw">end</span>
+
+    <span class="ruby-identifier">decoy_validator_to_split_with</span> = <span class="ruby-keyword kw">nil</span>
+
+    <span class="ruby-identifier">pep_sets</span> = 
+      <span class="ruby-keyword kw">if</span> <span class="ruby-identifier">decoy_validator</span>
+        <span class="ruby-keyword kw">if</span> <span class="ruby-identifier">decoy_validator</span>.<span class="ruby-identifier">constraint</span>.<span class="ruby-identifier">is_a?</span>(<span class="ruby-constant">Regexp</span>)
+          <span class="ruby-keyword kw">if</span> <span class="ruby-identifier">opts</span>[<span class="ruby-identifier">:hits_together</span>]
+            <span class="ruby-identifier">decoy_validator_to_split_with</span> = <span class="ruby-identifier">decoy_validator</span>
+            [<span class="ruby-identifier">peps</span>]
+          <span class="ruby-keyword kw">else</span>
+            (<span class="ruby-identifier">target</span>, <span class="ruby-identifier">decoy</span>) = <span class="ruby-identifier">decoy_validator</span>.<span class="ruby-identifier">partition</span>(<span class="ruby-identifier">peps</span>)
+            <span class="ruby-comment cmt">#(target, decoy) = SpecID.classify_by_prot(peps, opts_decoy, sep_params[:decoy_on_match], sep_params[:correct_wins])</span>
+            [<span class="ruby-identifier">target</span>, <span class="ruby-identifier">decoy</span>]
+          <span class="ruby-keyword kw">end</span>
+        <span class="ruby-keyword kw">elsif</span> <span class="ruby-identifier">decoy_validator</span>.<span class="ruby-identifier">constraint</span>.<span class="ruby-identifier">is_a?</span>(<span class="ruby-constant">String</span>)  <span class="ruby-comment cmt">## a Filename </span>
+          <span class="ruby-identifier">decoy_peps</span> = <span class="ruby-constant">SpecID</span>.<span class="ruby-identifier">new</span>(<span class="ruby-identifier">decoy_validator</span>.<span class="ruby-identifier">constraint</span>).<span class="ruby-identifier">peps</span>
+          
+          <span class="ruby-keyword kw">if</span> <span class="ruby-identifier">opts</span>[<span class="ruby-identifier">:hits_together</span>]
+            <span class="ruby-comment cmt"># we fake that the protein sets are together</span>
+            <span class="ruby-identifier">decoy_validator_to_split_with</span> = <span class="ruby-constant">Validator</span><span class="ruby-operator">::</span><span class="ruby-constant">Decoy</span>.<span class="ruby-identifier">new</span>(<span class="ruby-identifier">:constraint</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-identifier">unmerge_regexp</span>)
+            <span class="ruby-identifier">decoy_peps</span>.<span class="ruby-identifier">each</span> <span class="ruby-keyword kw">do</span> <span class="ruby-operator">|</span><span class="ruby-identifier">pep</span><span class="ruby-operator">|</span>
+              <span class="ruby-identifier">pep</span>.<span class="ruby-identifier">prots</span>.<span class="ruby-identifier">each</span> {<span class="ruby-operator">|</span><span class="ruby-identifier">prt</span><span class="ruby-operator">|</span> <span class="ruby-identifier">prt</span>.<span class="ruby-identifier">reference</span> = <span class="ruby-identifier">merge_prefix</span> <span class="ruby-operator">+</span> <span class="ruby-identifier">prt</span>.<span class="ruby-identifier">reference</span> }
+            <span class="ruby-keyword kw">end</span>
+            [<span class="ruby-identifier">peps</span> <span class="ruby-operator">+</span> <span class="ruby-identifier">decoy_peps</span>] <span class="ruby-comment cmt"># wrap them so we get the target out</span>
+          <span class="ruby-keyword kw">else</span>
+            [<span class="ruby-identifier">peps</span>, <span class="ruby-identifier">decoy_peps</span>]
+          <span class="ruby-keyword kw">end</span>
+        <span class="ruby-keyword kw">else</span> 
+          <span class="ruby-identifier">raise</span> <span class="ruby-constant">ArgumentError</span>, <span class="ruby-value str">&quot;Decoy::Validator#constraint must be a Regexp or valid SpecID file&quot;</span>
+        <span class="ruby-keyword kw">end</span>
+      <span class="ruby-keyword kw">else</span>
+        [<span class="ruby-identifier">peps</span>]  <span class="ruby-comment cmt"># no decoy</span>
+      <span class="ruby-keyword kw">end</span>
+
+    <span class="ruby-keyword kw">if</span> <span class="ruby-identifier">opts</span>[<span class="ruby-identifier">:proteins</span>]
+      <span class="ruby-identifier">protein_validator</span> = <span class="ruby-constant">Validator</span><span class="ruby-operator">::</span><span class="ruby-constant">ProtFromPep</span>.<span class="ruby-identifier">new</span>
+    <span class="ruby-keyword kw">end</span>
+
+    <span class="ruby-comment cmt">### TOP HITS PREFILTER &lt; &lt; TOP_HITS_TOGETHER &gt; &gt;</span>
+    <span class="ruby-comment cmt">###########################</span>
+    <span class="ruby-comment cmt"># TOP HITS FILTER:</span>
+    <span class="ruby-comment cmt">###########################</span>
+    <span class="ruby-comment cmt"># REALLY, this guy only exists for speed and memory consumption</span>
+    <span class="ruby-comment cmt"># If we prefilter, we don't have to filter as many hits in every</span>
+    <span class="ruby-comment cmt"># interactive round.  I'd leave this guy out if I were doing only a</span>
+    <span class="ruby-comment cmt"># sequest filter.  (I should compare results with this filter and w/o)</span>
+    <span class="ruby-comment cmt"># This guy is very tricky since we need to consider whether they are to be</span>
+    <span class="ruby-comment cmt"># run together or separately and not do more work than we need</span>
+    <span class="ruby-comment cmt"># get passed_target for any case (and passed_decoy if opts[:decoy])</span>
+
+    
+    <span class="ruby-identifier">top_hit_prefilter</span> = <span class="ruby-constant">SpecID</span><span class="ruby-operator">::</span><span class="ruby-constant">Precision</span><span class="ruby-operator">::</span><span class="ruby-constant">Filter</span><span class="ruby-operator">::</span><span class="ruby-constant">Peps</span>.<span class="ruby-identifier">new</span>(<span class="ruby-identifier">:top_hit</span>, <span class="ruby-identifier">opts_for_top_hit_prefilter</span>)  <span class="ruby-keyword kw">if</span> <span class="ruby-identifier">opts</span>[<span class="ruby-identifier">:prefilter</span>]
+
+    <span class="ruby-keyword kw">if</span> <span class="ruby-identifier">top_hit_prefilter</span>
+      <span class="ruby-identifier">pep_sets</span>.<span class="ruby-identifier">map!</span> <span class="ruby-keyword kw">do</span> <span class="ruby-operator">|</span><span class="ruby-identifier">pep_set</span><span class="ruby-operator">|</span>
+        <span class="ruby-identifier">top_hit_prefilter</span>.<span class="ruby-identifier">filter</span>(<span class="ruby-identifier">pep_set</span>)
+      <span class="ruby-keyword kw">end</span>
+    <span class="ruby-keyword kw">end</span>
+
+    <span class="ruby-comment cmt"># prepare our top hit filter:</span>
+    <span class="ruby-comment cmt"># since we are now modulating this guy, we need to create it fresh every</span>
+    <span class="ruby-comment cmt"># time</span>
+    <span class="ruby-identifier">top_per_scan_postfilter</span> = <span class="ruby-constant">SpecID</span><span class="ruby-operator">::</span><span class="ruby-constant">Precision</span><span class="ruby-operator">::</span><span class="ruby-constant">Filter</span><span class="ruby-operator">::</span><span class="ruby-constant">Peps</span>.<span class="ruby-identifier">new</span>(<span class="ruby-identifier">:top_hit</span>, 
+                                                  <span class="ruby-identifier">:per</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-identifier">postfilters_per_hash</span>[<span class="ruby-identifier">:top_per_scan</span>],
+                                                  <span class="ruby-identifier">:by</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-identifier">sort_by_att_opts</span>, 
+                                                  <span class="ruby-identifier">:include_ties</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-identifier">opts</span>[<span class="ruby-identifier">:include_ties_in_top_hit_postfilter</span>])
+
+
+
+    <span class="ruby-comment cmt"># Prepare to loop</span>
+    <span class="ruby-comment cmt"># Give interactive help once here if necessary</span>
+    <span class="ruby-identifier">interactive</span> = <span class="ruby-identifier">opts</span>[<span class="ruby-identifier">:interactive</span>]
+    <span class="ruby-keyword kw">if</span> <span class="ruby-identifier">interactive</span>
+      <span class="ruby-constant">ARGV</span>.<span class="ruby-identifier">clear</span>
+      <span class="ruby-identifier">interactive</span>.<span class="ruby-identifier">out</span>(<span class="ruby-identifier">interactive</span>.<span class="ruby-identifier">interactive_help</span>(<span class="ruby-identifier">interactive_changing_keys</span>, <span class="ruby-identifier">interactive_shortcut_map</span>)) <span class="ruby-keyword kw">if</span> <span class="ruby-identifier">interactive</span>.<span class="ruby-identifier">verbose</span>
+    <span class="ruby-keyword kw">end</span>
+
+    <span class="ruby-comment cmt"># the loop is for if we are interactive</span>
+    <span class="ruby-identifier">final_answer</span> = <span class="ruby-keyword kw">nil</span>
+    <span class="ruby-identifier">loop</span> <span class="ruby-keyword kw">do</span>  
+
+      <span class="ruby-keyword kw">if</span> <span class="ruby-identifier">interactive</span> <span class="ruby-comment cmt">#interactive</span>
+        <span class="ruby-comment cmt"># a bit of a hack, but we shove on the postfilter param to modulate</span>
+        <span class="ruby-identifier">opts</span>[<span class="ruby-identifier">:sequest</span>][<span class="ruby-identifier">:postfilter</span>] = <span class="ruby-identifier">opts</span>[<span class="ruby-identifier">:postfilter</span>]
+        <span class="ruby-identifier">response</span> = <span class="ruby-identifier">interactive</span>.<span class="ruby-identifier">filter_args</span>(<span class="ruby-identifier">opts</span>[<span class="ruby-identifier">:sequest</span>], <span class="ruby-identifier">interactive_changing_keys</span>, <span class="ruby-identifier">interactive_shortcut_map</span>, <span class="ruby-identifier">casting_map</span>)
+        <span class="ruby-identifier">opts</span>[<span class="ruby-identifier">:postfilter</span>] = <span class="ruby-identifier">opts</span>[<span class="ruby-identifier">:sequest</span>].<span class="ruby-identifier">delete</span>(<span class="ruby-identifier">:postfilter</span>)
+        <span class="ruby-keyword kw">break</span> <span class="ruby-keyword kw">if</span> <span class="ruby-identifier">response</span> <span class="ruby-operator">==</span> <span class="ruby-keyword kw">nil</span>
+      <span class="ruby-keyword kw">end</span>
+
+      <span class="ruby-comment cmt"># prepare our top hit filter:</span>
+      <span class="ruby-comment cmt"># since we are now modulating this guy, we need to create it fresh every</span>
+      <span class="ruby-comment cmt"># time</span>
+      
+      <span class="ruby-identifier">sub_postfilter</span> = 
+        <span class="ruby-keyword kw">if</span> <span class="ruby-identifier">opts</span>[<span class="ruby-identifier">:postfilter</span>] <span class="ruby-operator">==</span> <span class="ruby-identifier">:top_per_scan</span>
+          <span class="ruby-keyword kw">nil</span>
+        <span class="ruby-keyword kw">else</span>
+          <span class="ruby-identifier">postfilter_per_args</span> = <span class="ruby-identifier">postfilters_per_hash</span>[<span class="ruby-identifier">opts</span>[<span class="ruby-identifier">:postfilter</span>]]
+          <span class="ruby-constant">SpecID</span><span class="ruby-operator">::</span><span class="ruby-constant">Precision</span><span class="ruby-operator">::</span><span class="ruby-constant">Filter</span><span class="ruby-operator">::</span><span class="ruby-constant">Peps</span>.<span class="ruby-identifier">new</span>(<span class="ruby-identifier">:top_hit</span>, 
+                                   <span class="ruby-identifier">:per</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-identifier">postfilter_per_args</span>,
+                                   <span class="ruby-identifier">:by</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-identifier">sort_by_att_opts</span>, 
+                                   <span class="ruby-identifier">:include_ties</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-identifier">opts</span>[<span class="ruby-identifier">:include_ties_in_top_hit_postfilter</span>]
+                                  )
+        <span class="ruby-keyword kw">end</span>
+
+      <span class="ruby-identifier">pep_sets_to_be_filtered</span> = <span class="ruby-identifier">pep_sets</span>.<span class="ruby-identifier">map</span> 
+
+      <span class="ruby-comment cmt">### SEQUEST &lt; EITHER &gt;</span>
+      <span class="ruby-comment cmt">###########################</span>
+      <span class="ruby-comment cmt"># SEQUEST FILTER:</span>
+      <span class="ruby-comment cmt">###########################</span>
+      <span class="ruby-comment cmt"># This guy is immune to the trickiness of top hits, so we just filter</span>
+      <span class="ruby-comment cmt"># separately since validation is best done without decoys (except decoy)</span>
+      <span class="ruby-identifier">sequest_args</span> = <span class="ruby-identifier">opts</span>[<span class="ruby-identifier">:sequest</span>].<span class="ruby-identifier">values_at</span>( <span class="ruby-identifier">:xcorr1</span>, <span class="ruby-identifier">:xcorr2</span>, <span class="ruby-identifier">:xcorr3</span>, <span class="ruby-identifier">:deltacn</span>, <span class="ruby-identifier">:ppm</span>, <span class="ruby-identifier">:include_deltacnstar</span> )
+      <span class="ruby-identifier">sequest_filter</span> = <span class="ruby-constant">SpecID</span><span class="ruby-operator">::</span><span class="ruby-constant">Precision</span><span class="ruby-operator">::</span><span class="ruby-constant">Filter</span><span class="ruby-operator">::</span><span class="ruby-constant">Peps</span>.<span class="ruby-identifier">new</span>(<span class="ruby-identifier">:standard_sequest_filter</span>, <span class="ruby-operator">*</span><span class="ruby-identifier">sequest_args</span>)
+
+      <span class="ruby-identifier">pep_sets_filtered</span> = <span class="ruby-identifier">pep_sets_to_be_filtered</span>.<span class="ruby-identifier">map</span> <span class="ruby-keyword kw">do</span> <span class="ruby-operator">|</span><span class="ruby-identifier">pep_set</span><span class="ruby-operator">|</span>
+        <span class="ruby-identifier">sequest_filter</span>.<span class="ruby-identifier">filter</span>(<span class="ruby-identifier">pep_set</span>)
+      <span class="ruby-keyword kw">end</span>
+
+      <span class="ruby-comment cmt">### FINAL HIT PER SCAN &lt; &lt; TOP_HITS_TOGETHER &gt; &gt;</span>
+      <span class="ruby-comment cmt">##########################</span>
+      <span class="ruby-comment cmt"># FINAL HIT PER SCAN</span>
+      <span class="ruby-comment cmt">##########################</span>
+      <span class="ruby-comment cmt"># Why not just do the top hit filter in the top hits pre filter before?</span>
+      <span class="ruby-comment cmt"># Good question.  Answer: We may have instances when the top hit (by</span>
+      <span class="ruby-comment cmt"># xcorr) has some other poorer attribute than the hit at the other charge.</span>
+      <span class="ruby-comment cmt"># In this case, we'd end up with no passing peptide. </span>
+      <span class="ruby-comment cmt"># Also, the xcorr filter is per charge, so we may filter out the higher</span>
+      <span class="ruby-comment cmt"># scoring peptide hit even though the other would pass based on its charge</span>
+      <span class="ruby-comment cmt"># state, etc., etc....</span>
+      <span class="ruby-comment cmt"># ###################################################</span>
+      <span class="ruby-comment cmt"># NOTE THIS WELL:</span>
+      <span class="ruby-comment cmt"># IF IT IS SUPPOSE TO be separate it's *ALREADY* separate, if together its</span>
+      <span class="ruby-comment cmt"># *ALREADY* together!!!!</span>
+      <span class="ruby-comment cmt"># the implication is that we don't need to do any merging or</span>
+      <span class="ruby-comment cmt"># separating before we do this last filter!!!!</span>
+      <span class="ruby-comment cmt"># ###################################################</span>
+
+      <span class="ruby-comment cmt"># TODO: We need to add this guy in!</span>
+      <span class="ruby-comment cmt">#if opts[:uniq_aa]</span>
+      <span class="ruby-comment cmt">#  pep_sets_filtered.map do |pep_set|</span>
+      <span class="ruby-comment cmt">#  end</span>
+      <span class="ruby-comment cmt">#end</span>
+
+      <span class="ruby-identifier">pep_sets_filtered</span>.<span class="ruby-identifier">map!</span> <span class="ruby-keyword kw">do</span> <span class="ruby-operator">|</span><span class="ruby-identifier">pep_set</span><span class="ruby-operator">|</span>
+        <span class="ruby-identifier">top_per_scan_postfilter</span>.<span class="ruby-identifier">filter!</span>(<span class="ruby-identifier">pep_set</span>)
+        <span class="ruby-keyword kw">if</span> <span class="ruby-identifier">sub_postfilter</span>
+          <span class="ruby-identifier">sub_postfilter</span>.<span class="ruby-identifier">filter!</span>(<span class="ruby-identifier">pep_set</span>) 
+        <span class="ruby-keyword kw">else</span>
+          <span class="ruby-identifier">pep_set</span>
+        <span class="ruby-keyword kw">end</span>
+      <span class="ruby-keyword kw">end</span>
+
+      <span class="ruby-identifier">normal_post_filtered_peps</span> = <span class="ruby-identifier">pep_sets_filtered</span>.<span class="ruby-identifier">first</span>
+
+      <span class="ruby-comment cmt"># separate the decoy's out if they are together</span>
+      <span class="ruby-keyword kw">if</span> <span class="ruby-identifier">decoy_validator_to_split_with</span>  <span class="ruby-comment cmt"># only set if opts[:hits_together]!!</span>
+        (<span class="ruby-identifier">target</span>, <span class="ruby-identifier">decoy</span>) = <span class="ruby-identifier">decoy_validator_to_split_with</span>.<span class="ruby-identifier">partition</span>(<span class="ruby-identifier">normal_post_filtered_peps</span>)
+        <span class="ruby-identifier">pep_sets_filtered</span> = [<span class="ruby-identifier">target</span>, <span class="ruby-identifier">decoy</span>]
+      <span class="ruby-keyword kw">end</span>
+
+      <span class="ruby-comment cmt">### VALIDATION &lt; SEPARATE &gt;</span>
+      <span class="ruby-identifier">pephit_precision_array</span> = <span class="ruby-identifier">get_pephit_precision</span>(<span class="ruby-identifier">opts</span>[<span class="ruby-identifier">:validators</span>], <span class="ruby-operator">*</span><span class="ruby-identifier">pep_sets_filtered</span>) <span class="ruby-keyword kw">if</span> <span class="ruby-identifier">opts</span>[<span class="ruby-identifier">:validators</span>]
+
+      <span class="ruby-identifier">final_answer</span> = {
+        <span class="ruby-identifier">:params</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-identifier">opts</span>,
+        <span class="ruby-identifier">:pephits</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-identifier">pep_sets_filtered</span>.<span class="ruby-identifier">first</span>, 
+      }
+      <span class="ruby-keyword kw">if</span> <span class="ruby-identifier">pephit_precision_array</span>
+        <span class="ruby-identifier">final_answer</span>[<span class="ruby-identifier">:pephits_precision</span>] = <span class="ruby-identifier">pephit_precision_array</span>
+      <span class="ruby-keyword kw">end</span>
+
+      <span class="ruby-keyword kw">if</span> <span class="ruby-identifier">opts</span>[<span class="ruby-identifier">:proteins</span>]       
+        <span class="ruby-identifier">protein_precision_array</span> = <span class="ruby-identifier">peptide_precision_to_protein_precision</span>(<span class="ruby-identifier">protein_validator</span>, <span class="ruby-identifier">normal_post_filtered_peps</span>, <span class="ruby-identifier">pephit_precision_array</span>)
+        <span class="ruby-comment cmt"># this could be factored out (since we do it in protein_precision)</span>
+
+        <span class="ruby-comment cmt"># merge the final prots into a unique set:</span>
+        <span class="ruby-identifier">final_answer</span>[<span class="ruby-identifier">:prothits</span>] = <span class="ruby-identifier">normal_post_filtered_peps</span>.<span class="ruby-identifier">inject</span>(<span class="ruby-constant">Set</span>.<span class="ruby-identifier">new</span>) <span class="ruby-keyword kw">do</span> <span class="ruby-operator">|</span><span class="ruby-identifier">protset</span>, <span class="ruby-identifier">pep</span><span class="ruby-operator">|</span>
+          <span class="ruby-identifier">protset</span>.<span class="ruby-identifier">merge</span>(<span class="ruby-identifier">pep</span>.<span class="ruby-identifier">prots</span>)
+        <span class="ruby-keyword kw">end</span>
+        <span class="ruby-identifier">final_answer</span>[<span class="ruby-identifier">:prothits_precision</span>] = <span class="ruby-identifier">protein_precision_array</span>
+      <span class="ruby-keyword kw">end</span>
+
+      <span class="ruby-comment cmt">## output the output</span>
+      <span class="ruby-identifier">outputs</span>.<span class="ruby-identifier">each</span> {<span class="ruby-operator">|</span><span class="ruby-identifier">output</span><span class="ruby-operator">|</span> <span class="ruby-identifier">output</span>.<span class="ruby-identifier">print</span>(<span class="ruby-identifier">final_answer</span>) }
+
+      <span class="ruby-keyword kw">if</span> <span class="ruby-identifier">interactive</span>
+        <span class="ruby-identifier">interactive</span>.<span class="ruby-identifier">passing</span>(<span class="ruby-identifier">opts</span>, <span class="ruby-identifier">final_answer</span>)
+      <span class="ruby-keyword kw">end</span>
+
+      <span class="ruby-keyword kw">if</span> <span class="ruby-operator">!</span><span class="ruby-identifier">interactive</span>
+        <span class="ruby-keyword kw">break</span>
+      <span class="ruby-keyword kw">end</span>
+    <span class="ruby-keyword kw">end</span>
+    <span class="ruby-comment cmt"># Close the filehandles</span>
+    <span class="ruby-identifier">outputs</span>.<span class="ruby-identifier">each</span> { <span class="ruby-operator">|</span><span class="ruby-identifier">output</span><span class="ruby-operator">|</span> <span class="ruby-identifier">output</span>.<span class="ruby-identifier">close</span> } <span class="ruby-keyword kw">if</span> <span class="ruby-identifier">opts</span>[<span class="ruby-identifier">:output</span>]
+    <span class="ruby-identifier">final_answer</span>
+  <span class="ruby-keyword kw">end</span></pre>
+</body>
+</html>

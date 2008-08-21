@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="iso-8859-1"?>
+<!DOCTYPE html 
+     PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+     "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html>
+<head>
+  <title>to_pepxml (Sequest::PepXML::SearchSummary)</title>
+  <meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1" />
+  <link rel="stylesheet" href="../../../.././rdoc-style.css" type="text/css" media="screen" />
+</head>
+<body class="standalone-code">
+  <pre><span class="ruby-comment cmt"># File lib/spec_id/sequest/pepxml.rb, line 823</span>
+  <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">to_pepxml</span>
+    <span class="ruby-identifier">element_xml</span>(<span class="ruby-identifier">:search_summary</span>, [<span class="ruby-identifier">:base_name</span>, <span class="ruby-identifier">:search_engine</span>, <span class="ruby-identifier">:precursor_mass_type</span>, <span class="ruby-identifier">:fragment_mass_type</span>, <span class="ruby-identifier">:out_data_type</span>, <span class="ruby-identifier">:out_data</span>, <span class="ruby-identifier">:search_id</span>]) <span class="ruby-keyword kw">do</span>
+      <span class="ruby-identifier">search_database</span>.<span class="ruby-identifier">to_pepxml</span> <span class="ruby-operator">+</span>
+        <span class="ruby-keyword kw">if</span> <span class="ruby-ivar">@params</span>.<span class="ruby-identifier">enzyme</span> <span class="ruby-operator">=~</span> <span class="ruby-regexp re">/^No_Enzyme/</span>
+          <span class="ruby-value str">''</span>
+        <span class="ruby-keyword kw">else</span>
+          <span class="ruby-identifier">short_element_xml</span>(<span class="ruby-identifier">:enzymatic_search_constraint</span>, [<span class="ruby-identifier">:enzyme</span>, <span class="ruby-identifier">:max_num_internal_cleavages</span>, <span class="ruby-identifier">:min_number_termini</span>])
+        <span class="ruby-keyword kw">end</span> <span class="ruby-operator">+</span>
+        <span class="ruby-ivar">@modifications</span>.<span class="ruby-identifier">to_pepxml</span> <span class="ruby-operator">+</span>
+        <span class="ruby-constant">Sequest</span><span class="ruby-operator">::</span><span class="ruby-constant">PepXML</span><span class="ruby-operator">::</span><span class="ruby-constant">Parameters</span>.<span class="ruby-identifier">new</span>(<span class="ruby-ivar">@params</span>).<span class="ruby-identifier">to_pepxml</span>
+    <span class="ruby-keyword kw">end</span>
+  <span class="ruby-keyword kw">end</span></pre>
+</body>
+</html>

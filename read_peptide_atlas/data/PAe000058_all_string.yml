@@ -1,0 +1,11 @@
+--- 
+- time_to_access: 0.899235
+  scan_count: 4789
+  file_size: 13722884
+  scans_to_read: all
+  total_time_to_read_and_access: 18.978515
+  time_to_read: 18.079256
+  lazy_type: :string
+  end_time: 8998.55
+  start_time: 0.35
+  file: JNA-and-JGP-CAP-27Aug03_HUPO.mzXML

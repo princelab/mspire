@@ -1,0 +1,66 @@
+<?xml version="1.0" encoding="iso-8859-1"?>
+<!DOCTYPE html 
+     PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+     "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html>
+<head>
+  <title>protein_list (SpecID)</title>
+  <meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1" />
+  <link rel="stylesheet" href="../.././rdoc-style.css" type="text/css" media="screen" />
+</head>
+<body class="standalone-code">
+  <pre><span class="ruby-comment cmt"># File lib/spec_id.rb, line 107</span>
+  <span class="ruby-keyword kw">def</span> <span class="ruby-keyword kw">self</span>.<span class="ruby-identifier">protein_list</span>(<span class="ruby-identifier">pephits</span>, <span class="ruby-identifier">kind</span>=<span class="ruby-identifier">:no_update</span>)
+
+    <span class="ruby-identifier">orig_pephits_prts</span> = []
+    <span class="ruby-keyword kw">if</span> <span class="ruby-identifier">kind</span> <span class="ruby-operator">==</span> <span class="ruby-identifier">:new</span>
+      <span class="ruby-identifier">new_prots</span> = {}
+      <span class="ruby-identifier">pephits</span>.<span class="ruby-identifier">each_with_index</span> <span class="ruby-keyword kw">do</span> <span class="ruby-operator">|</span><span class="ruby-identifier">pep</span>,<span class="ruby-identifier">i</span><span class="ruby-operator">|</span>
+        <span class="ruby-identifier">orig_pephits_prts</span>[<span class="ruby-identifier">i</span>] = <span class="ruby-identifier">pep</span>.<span class="ruby-identifier">prots</span>
+        <span class="ruby-identifier">peps_new_prts</span> = <span class="ruby-identifier">pep</span>.<span class="ruby-identifier">prots</span>.<span class="ruby-identifier">map</span> <span class="ruby-keyword kw">do</span> <span class="ruby-operator">|</span><span class="ruby-identifier">prt</span><span class="ruby-operator">|</span>
+          <span class="ruby-keyword kw">if</span> <span class="ruby-identifier">new_prots</span>.<span class="ruby-identifier">key?</span> <span class="ruby-identifier">prt</span>.<span class="ruby-identifier">reference</span>
+            <span class="ruby-identifier">already_exists</span> = <span class="ruby-identifier">new_prots</span>[<span class="ruby-identifier">prt</span>.<span class="ruby-identifier">reference</span>]
+          <span class="ruby-keyword kw">else</span>
+            <span class="ruby-identifier">np</span> = <span class="ruby-identifier">prt</span>.<span class="ruby-identifier">dup</span>
+            <span class="ruby-identifier">np</span>.<span class="ruby-identifier">peps</span> = []
+            <span class="ruby-identifier">new_prots</span>[<span class="ruby-identifier">np</span>.<span class="ruby-identifier">reference</span>] = <span class="ruby-identifier">np</span>
+            <span class="ruby-identifier">np</span>
+          <span class="ruby-keyword kw">end</span>
+        <span class="ruby-keyword kw">end</span>
+        <span class="ruby-identifier">pep</span>.<span class="ruby-identifier">prots</span> = <span class="ruby-identifier">peps_new_prts</span>
+      <span class="ruby-keyword kw">end</span>
+    <span class="ruby-keyword kw">end</span>
+
+    <span class="ruby-keyword kw">if</span> <span class="ruby-identifier">kind</span> <span class="ruby-operator">==</span> <span class="ruby-identifier">:update</span>
+      <span class="ruby-identifier">pephits</span>.<span class="ruby-identifier">each</span> <span class="ruby-keyword kw">do</span> <span class="ruby-operator">|</span><span class="ruby-identifier">pep</span><span class="ruby-operator">|</span>
+        <span class="ruby-identifier">pep</span>.<span class="ruby-identifier">prots</span>.<span class="ruby-identifier">each</span> <span class="ruby-keyword kw">do</span> <span class="ruby-operator">|</span><span class="ruby-identifier">prt</span><span class="ruby-operator">|</span>
+          <span class="ruby-identifier">prt</span>.<span class="ruby-identifier">peps</span> = []
+        <span class="ruby-keyword kw">end</span>
+      <span class="ruby-keyword kw">end</span>
+    <span class="ruby-keyword kw">end</span>
+
+    <span class="ruby-identifier">prot_set</span> = {}
+    <span class="ruby-identifier">pephits</span>.<span class="ruby-identifier">each</span> <span class="ruby-keyword kw">do</span> <span class="ruby-operator">|</span><span class="ruby-identifier">pep</span><span class="ruby-operator">|</span>
+      <span class="ruby-identifier">prts</span> = <span class="ruby-identifier">pep</span>.<span class="ruby-identifier">prots</span>
+      <span class="ruby-identifier">prts</span>.<span class="ruby-identifier">each</span> <span class="ruby-keyword kw">do</span> <span class="ruby-operator">|</span><span class="ruby-identifier">prt</span><span class="ruby-operator">|</span>
+        <span class="ruby-identifier">prot_set</span>[ <span class="ruby-identifier">prt</span>.<span class="ruby-identifier">reference</span> ] = <span class="ruby-identifier">prt</span> 
+      <span class="ruby-keyword kw">end</span>
+      <span class="ruby-keyword kw">if</span> (<span class="ruby-identifier">kind</span> <span class="ruby-operator">==</span> <span class="ruby-identifier">:update</span> <span class="ruby-operator">||</span> <span class="ruby-identifier">kind</span> <span class="ruby-operator">==</span> <span class="ruby-identifier">:new</span>)
+        <span class="ruby-identifier">prts</span>.<span class="ruby-identifier">each</span> <span class="ruby-keyword kw">do</span> <span class="ruby-operator">|</span><span class="ruby-identifier">prt</span><span class="ruby-operator">|</span>
+          <span class="ruby-identifier">prt</span>.<span class="ruby-identifier">peps</span> <span class="ruby-operator">&lt;&lt;</span> <span class="ruby-identifier">pep</span>
+        <span class="ruby-keyword kw">end</span>
+      <span class="ruby-keyword kw">end</span>
+    <span class="ruby-keyword kw">end</span>
+
+    <span class="ruby-comment cmt">## Reset the original protein hits</span>
+    <span class="ruby-keyword kw">if</span> <span class="ruby-identifier">kind</span> <span class="ruby-operator">==</span> <span class="ruby-identifier">:new</span>
+      <span class="ruby-identifier">pephits</span>.<span class="ruby-identifier">each_with_index</span> <span class="ruby-keyword kw">do</span> <span class="ruby-operator">|</span><span class="ruby-identifier">pep</span>,<span class="ruby-identifier">i</span><span class="ruby-operator">|</span>
+        <span class="ruby-identifier">pep</span>.<span class="ruby-identifier">prots</span> = <span class="ruby-identifier">orig_pephits_prts</span>[<span class="ruby-identifier">i</span>]
+      <span class="ruby-keyword kw">end</span>
+    <span class="ruby-keyword kw">end</span>
+
+    <span class="ruby-identifier">prot_set</span>.<span class="ruby-identifier">values</span>
+  <span class="ruby-keyword kw">end</span></pre>
+</body>
+</html>

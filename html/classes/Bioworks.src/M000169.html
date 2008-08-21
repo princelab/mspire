@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="iso-8859-1"?>
+<!DOCTYPE html 
+     PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+     "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html>
+<head>
+  <title>to_excel (Bioworks)</title>
+  <meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1" />
+  <link rel="stylesheet" href="../.././rdoc-style.css" type="text/css" media="screen" />
+</head>
+<body class="standalone-code">
+  <pre><span class="ruby-comment cmt"># File lib/spec_id/bioworks.rb, line 70</span>
+  <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">to_excel</span>(<span class="ruby-identifier">file</span>)
+    <span class="ruby-identifier">update_peptide_hit_counts</span>
+    <span class="ruby-identifier">arr</span> = []
+    <span class="ruby-identifier">arr</span> <span class="ruby-operator">&lt;&lt;</span> [<span class="ruby-value str">''</span>, <span class="ruby-value str">'Reference'</span>, <span class="ruby-value str">''</span>, <span class="ruby-value str">''</span>, <span class="ruby-value str">''</span>, <span class="ruby-value str">'Score'</span>, <span class="ruby-value str">'Coverage'</span>, <span class="ruby-value str">'MW'</span>, <span class="ruby-value str">'Accession'</span>, <span class="ruby-value str">'Peptide (Hits)'</span>, <span class="ruby-value str">''</span>, <span class="ruby-value str">' '</span>]
+    <span class="ruby-identifier">arr</span> <span class="ruby-operator">&lt;&lt;</span> [<span class="ruby-value str">''</span>, <span class="ruby-value str">'&quot;File, Scan(s)&quot;'</span>, <span class="ruby-value str">'Peptide'</span>, <span class="ruby-value str">'MH+'</span>, <span class="ruby-value str">'z'</span>, <span class="ruby-value str">'XC'</span>, <span class="ruby-value str">'DeltaCn'</span>, <span class="ruby-value str">'Sp'</span>, <span class="ruby-value str">'RSp'</span>, <span class="ruby-value str">'Ions'</span>, <span class="ruby-value str">'Count'</span>, <span class="ruby-value str">' '</span>]
+    <span class="ruby-ivar">@prots</span>.<span class="ruby-identifier">each_with_index</span> <span class="ruby-keyword kw">do</span> <span class="ruby-operator">|</span><span class="ruby-identifier">prot</span>,<span class="ruby-identifier">index</span><span class="ruby-operator">|</span>
+      <span class="ruby-identifier">line_arr</span> = <span class="ruby-identifier">prot</span>.<span class="ruby-identifier">get</span>(<span class="ruby-identifier">:consensus_score</span>, <span class="ruby-identifier">:coverage</span>, <span class="ruby-identifier">:weight</span>, <span class="ruby-identifier">:accession</span>)
+      <span class="ruby-keyword kw">if</span> <span class="ruby-identifier">line_arr</span>[<span class="ruby-value">1</span>] <span class="ruby-operator">==</span> <span class="ruby-value str">&quot;0.0&quot;</span> <span class="ruby-keyword kw">then</span> <span class="ruby-identifier">line_arr</span>[<span class="ruby-value">1</span>] = <span class="ruby-value str">&quot;&quot;</span> <span class="ruby-keyword kw">end</span>
+      <span class="ruby-identifier">line_arr</span>.<span class="ruby-identifier">unshift</span>(<span class="ruby-value str">''</span>, <span class="ruby-value str">''</span>, <span class="ruby-value str">''</span>)
+      <span class="ruby-identifier">line_arr</span>.<span class="ruby-identifier">unshift</span>(<span class="ruby-value str">'&quot;'</span> <span class="ruby-operator">+</span> <span class="ruby-identifier">prot</span>.<span class="ruby-identifier">reference</span>.<span class="ruby-identifier">split</span>(<span class="ruby-value str">'|'</span>)[<span class="ruby-value">-1</span>] <span class="ruby-operator">+</span> <span class="ruby-value str">'&quot;'</span>)
+      <span class="ruby-identifier">line_arr</span>.<span class="ruby-identifier">unshift</span>(<span class="ruby-identifier">index</span><span class="ruby-operator">+</span><span class="ruby-value">1</span>)
+      <span class="ruby-identifier">pep_hit_counts</span> = <span class="ruby-identifier">prot</span>.<span class="ruby-identifier">peptide_hit_counts</span>
+      <span class="ruby-identifier">pep_hit_counts_string</span> = <span class="ruby-identifier">pep_hit_counts</span>[<span class="ruby-value">0</span>].<span class="ruby-identifier">to_s</span> <span class="ruby-operator">+</span> <span class="ruby-value str">' ('</span> <span class="ruby-operator">+</span> <span class="ruby-identifier">pep_hit_counts</span>[<span class="ruby-value">1</span><span class="ruby-operator">..</span><span class="ruby-value">-1</span>].<span class="ruby-identifier">join</span>(<span class="ruby-value str">&quot; &quot;</span>) <span class="ruby-operator">+</span> <span class="ruby-value str">')'</span> 
+      <span class="ruby-identifier">line_arr</span>.<span class="ruby-identifier">push</span>( <span class="ruby-identifier">pep_hit_counts_string</span> )
+      <span class="ruby-identifier">line_arr</span>.<span class="ruby-identifier">push</span>(<span class="ruby-value str">&quot;&quot;</span>)
+      <span class="ruby-identifier">line_arr</span>.<span class="ruby-identifier">push</span>(<span class="ruby-value str">&quot; &quot;</span>)
+      <span class="ruby-identifier">arr</span>.<span class="ruby-identifier">push</span>( <span class="ruby-identifier">line_arr</span> )
+      <span class="ruby-identifier">prot</span>.<span class="ruby-identifier">peps</span>.<span class="ruby-identifier">sort_by</span>{<span class="ruby-operator">|</span><span class="ruby-identifier">obj</span><span class="ruby-operator">|</span> [<span class="ruby-identifier">obj</span>.<span class="ruby-identifier">first_scan</span>.<span class="ruby-identifier">to_i</span>, <span class="ruby-identifier">obj</span>.<span class="ruby-identifier">last_scan</span>.<span class="ruby-identifier">to_i</span>] }.<span class="ruby-identifier">each</span> <span class="ruby-keyword kw">do</span> <span class="ruby-operator">|</span><span class="ruby-identifier">pep</span><span class="ruby-operator">|</span>
+
+        <span class="ruby-identifier">pep_arr</span> = <span class="ruby-identifier">pep</span>.<span class="ruby-identifier">get</span>(<span class="ruby-identifier">:sequence</span>, <span class="ruby-identifier">:mass</span>, <span class="ruby-identifier">:charge</span>, <span class="ruby-identifier">:xcorr</span>, <span class="ruby-identifier">:deltacn</span>, <span class="ruby-identifier">:sp</span>, <span class="ruby-identifier">:rsp</span>, <span class="ruby-identifier">:ions</span>)
+        <span class="ruby-identifier">count</span> = <span class="ruby-identifier">pep</span>.<span class="ruby-identifier">count</span>
+        <span class="ruby-keyword kw">if</span> <span class="ruby-identifier">count</span> <span class="ruby-operator">==</span> <span class="ruby-value str">'0'</span> <span class="ruby-keyword kw">then</span> <span class="ruby-identifier">count</span> = <span class="ruby-value str">&quot;&quot;</span> <span class="ruby-keyword kw">end</span>
+        <span class="ruby-identifier">pep_arr</span>.<span class="ruby-identifier">push</span>(<span class="ruby-identifier">count</span>)
+        <span class="ruby-identifier">pep_arr</span>.<span class="ruby-identifier">push</span>(<span class="ruby-value str">' '</span>)
+        <span class="ruby-identifier">pep_arr</span>.<span class="ruby-identifier">unshift</span>(<span class="ruby-value str">'&quot;'</span> <span class="ruby-operator">+</span> <span class="ruby-identifier">pep</span>.<span class="ruby-identifier">file</span> <span class="ruby-operator">+</span> <span class="ruby-value str">'&quot;'</span>)
+        <span class="ruby-identifier">pep_arr</span>.<span class="ruby-identifier">unshift</span>( <span class="ruby-value str">''</span> )
+        <span class="ruby-identifier">arr</span>.<span class="ruby-identifier">push</span>( <span class="ruby-identifier">pep_arr</span> )
+      <span class="ruby-keyword kw">end</span>
+    <span class="ruby-keyword kw">end</span>
+    <span class="ruby-constant">File</span>.<span class="ruby-identifier">open</span>(<span class="ruby-identifier">file</span>, <span class="ruby-value str">&quot;w&quot;</span>) <span class="ruby-keyword kw">do</span> <span class="ruby-operator">|</span><span class="ruby-identifier">out</span><span class="ruby-operator">|</span>
+      <span class="ruby-identifier">arr</span>.<span class="ruby-identifier">each</span> <span class="ruby-keyword kw">do</span> <span class="ruby-operator">|</span><span class="ruby-identifier">line</span><span class="ruby-operator">|</span>
+        <span class="ruby-identifier">out</span>.<span class="ruby-identifier">print</span>(<span class="ruby-identifier">line</span>.<span class="ruby-identifier">join</span>(<span class="ruby-value str">&quot;\t&quot;</span>), <span class="ruby-value str">&quot;\n&quot;</span>)
+      <span class="ruby-keyword kw">end</span>
+    <span class="ruby-keyword kw">end</span>
+
+  <span class="ruby-keyword kw">end</span></pre>
+</body>
+</html>

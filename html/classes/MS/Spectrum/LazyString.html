@@ -1,0 +1,258 @@
+<?xml version="1.0" encoding="iso-8859-1"?>
+<!DOCTYPE html 
+     PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+     "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+<head>
+  <title>Class: MS::Spectrum::LazyString</title>
+  <meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1" />
+  <meta http-equiv="Content-Script-Type" content="text/javascript" />
+  <link rel="stylesheet" href="../../.././rdoc-style.css" type="text/css" media="screen" />
+  <script type="text/javascript">
+  // <![CDATA[
+
+  function popupCode( url ) {
+    window.open(url, "Code", "resizable=yes,scrollbars=yes,toolbar=no,status=no,height=150,width=400")
+  }
+
+  function toggleCode( id ) {
+    if ( document.getElementById )
+      elem = document.getElementById( id );
+    else if ( document.all )
+      elem = eval( "document.all." + id );
+    else
+      return false;
+
+    elemStyle = elem.style;
+    
+    if ( elemStyle.display != "block" ) {
+      elemStyle.display = "block"
+    } else {
+      elemStyle.display = "none"
+    }
+
+    return true;
+  }
+  
+  // Make codeblocks hidden by default
+  document.writeln( "<style type=\"text/css\">div.method-source-code { display: none }</style>" )
+  
+  // ]]>
+  </script>
+
+</head>
+<body>
+
+
+
+    <div id="classHeader">
+        <table class="header-table">
+        <tr class="top-aligned-row">
+          <td><strong>Class</strong></td>
+          <td class="class-name-in-header">MS::Spectrum::LazyString</td>
+        </tr>
+        <tr class="top-aligned-row">
+            <td><strong>In:</strong></td>
+            <td>
+                <a href="../../../files/lib/ms/spectrum_rb.html">
+                lib/ms/spectrum.rb
+                </a>
+        <br />
+            </td>
+        </tr>
+
+        <tr class="top-aligned-row">
+            <td><strong>Parent:</strong></td>
+            <td>
+                <a href="../Spectrum.html">
+                MS::Spectrum
+               </a>
+            </td>
+        </tr>
+        </table>
+    </div>
+  <!-- banner header -->
+
+  <div id="bodyContent">
+
+
+
+  <div id="contextContent">
+
+    <div id="description">
+      <p>
+This implements a spectrum that stores itself as string data and only
+evaluates the information when it is called
+</p>
+
+    </div>
+
+
+   </div>
+
+    <div id="method-list">
+      <h3 class="section-bar">Methods</h3>
+
+      <div class="name-list">
+      <a href="#M000573">from_base64_pair</a>&nbsp;&nbsp;
+      <a href="#M000572">from_base64_peaks</a>&nbsp;&nbsp;
+      <a href="#M000575">has_intensity_data?</a>&nbsp;&nbsp;
+      <a href="#M000574">has_mz_data?</a>&nbsp;&nbsp;
+      <a href="#M000570">intensities</a>&nbsp;&nbsp;
+      <a href="#M000569">mzs</a>&nbsp;&nbsp;
+      <a href="#M000571">new</a>&nbsp;&nbsp;
+      </div>
+    </div>
+
+  </div>
+
+
+    <!-- if includes -->
+
+    <div id="section">
+
+
+
+
+
+      
+
+
+    <!-- if method_list -->
+    <div id="methods">
+      <h3 class="section-bar">Public Class methods</h3>
+
+      <div id="method-M000573" class="method-detail">
+        <a name="M000573"></a>
+
+        <div class="method-heading">
+          <a href="LazyString.src/M000573.html" target="Code" class="method-signature"
+            onclick="popupCode('LazyString.src/M000573.html');return false;">
+          <span class="method-name">from_base64_pair</span><span class="method-args">(b64_mz_string, mz_precision, mz_network_order, b64_intensity_string, intensity_precision, intensity_network_order)</span>
+          </a>
+        </div>
+      
+        <div class="method-description">
+          <p>
+from mzML and mzData style files where mz and intensity information are
+kept in different strings.
+</p>
+        </div>
+      </div>
+
+      <div id="method-M000572" class="method-detail">
+        <a name="M000572"></a>
+
+        <div class="method-heading">
+          <a href="LazyString.src/M000572.html" target="Code" class="method-signature"
+            onclick="popupCode('LazyString.src/M000572.html');return false;">
+          <span class="method-name">from_base64_peaks</span><span class="method-args">(b64_string, precision=32, network_order=true)</span>
+          </a>
+        </div>
+      
+        <div class="method-description">
+          <p>
+from mzXML files where information is held in peaks (m/z, intensity,
+m/z&#8230;)
+</p>
+        </div>
+      </div>
+
+      <div id="method-M000571" class="method-detail">
+        <a name="M000571"></a>
+
+        <div class="method-heading">
+          <a href="LazyString.src/M000571.html" target="Code" class="method-signature"
+            onclick="popupCode('LazyString.src/M000571.html');return false;">
+          <span class="method-name">new</span><span class="method-args">(mz_string, mz_precision, mz_network_order, intensity_string, intensity_precision, intensity_network_order)</span>
+          </a>
+        </div>
+      
+        <div class="method-description">
+          <p>
+this takes a decoded base64 string that is then interpreted when
+information is accessed
+</p>
+        </div>
+      </div>
+
+      <h3 class="section-bar">Public Instance methods</h3>
+
+      <div id="method-M000575" class="method-detail">
+        <a name="M000575"></a>
+
+        <div class="method-heading">
+          <a href="LazyString.src/M000575.html" target="Code" class="method-signature"
+            onclick="popupCode('LazyString.src/M000575.html');return false;">
+          <span class="method-name">has_intensity_data?</span><span class="method-args">()</span>
+          </a>
+        </div>
+      
+        <div class="method-description">
+        </div>
+      </div>
+
+      <div id="method-M000574" class="method-detail">
+        <a name="M000574"></a>
+
+        <div class="method-heading">
+          <a href="LazyString.src/M000574.html" target="Code" class="method-signature"
+            onclick="popupCode('LazyString.src/M000574.html');return false;">
+          <span class="method-name">has_mz_data?</span><span class="method-args">()</span>
+          </a>
+        </div>
+      
+        <div class="method-description">
+        </div>
+      </div>
+
+      <div id="method-M000570" class="method-detail">
+        <a name="M000570"></a>
+
+        <div class="method-heading">
+          <a href="LazyString.src/M000570.html" target="Code" class="method-signature"
+            onclick="popupCode('LazyString.src/M000570.html');return false;">
+          <span class="method-name">intensities</span><span class="method-args">()</span>
+          </a>
+        </div>
+      
+        <div class="method-description">
+          <p>
+beware that this converts the information in @intensity_string every time
+it is
+</p>
+        </div>
+      </div>
+
+      <div id="method-M000569" class="method-detail">
+        <a name="M000569"></a>
+
+        <div class="method-heading">
+          <a href="LazyString.src/M000569.html" target="Code" class="method-signature"
+            onclick="popupCode('LazyString.src/M000569.html');return false;">
+          <span class="method-name">mzs</span><span class="method-args">()</span>
+          </a>
+        </div>
+      
+        <div class="method-description">
+          <p>
+beware that this converts the information in @mz_string every time it is
+called
+</p>
+        </div>
+      </div>
+
+
+    </div>
+
+
+  </div>
+
+
+<div id="validator-badges">
+  <p><small><a href="http://validator.w3.org/check/referer">[Validate]</a></small></p>
+</div>
+
+</body>
+</html>

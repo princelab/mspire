@@ -1,0 +1,1296 @@
+--- 
+- time_to_access: 0.000277
+  first_scan: 
+    last_peak: 
+    - 1993.3837890625
+    - 693133.0
+    num: 1
+    first_peak: 
+    - 402.08984375
+    - 606036.0
+  scan_count: 3235
+  file_size: 20887722
+  last_scan: 
+    last_peak: 
+    - 1962.15405273438
+    - 1371.0
+    num: 3235
+    first_peak: 
+    - 365.479431152344
+    - 913.0
+  scans_to_read: fl
+  total_time_to_read_and_access: 12.857681
+  time_to_read: 12.85739
+  lazy_type: :string
+  end_time: 5223.44
+  start_time: 0.6099
+  file: mew010401mems56.mzXML
+--- 
+- time_to_access: 0.000594
+  first_scan: 
+    last_peak: 
+    - 1998.28979492188
+    - 100262.0
+    num: 1
+    first_peak: 
+    - 400.172973632812
+    - 46227.0
+  scan_count: 2955
+  file_size: 19294999
+  last_scan: 
+    last_peak: 
+    - 1999.85083007812
+    - 17410.0
+    num: 2955
+    first_peak: 
+    - 400.923095703125
+    - 11879.0
+  scans_to_read: fl
+  total_time_to_read_and_access: 11.933669
+  time_to_read: 11.933059
+  lazy_type: :string
+  end_time: 4737.78
+  start_time: 0.6099
+  file: mew010401mems57.mzXML
+--- 
+- time_to_access: 0.00091
+  first_scan: 
+    last_peak: 
+    - 1999.19458007812
+    - 18341.0
+    num: 1
+    first_peak: 
+    - 400.50732421875
+    - 64683.0
+  scan_count: 3039
+  file_size: 18880987
+  last_scan: 
+    last_peak: 
+    - 1995.77905273438
+    - 121070.0
+    num: 3039
+    first_peak: 
+    - 400.609130859375
+    - 20045.0
+  scans_to_read: fl
+  total_time_to_read_and_access: 12.086093
+  time_to_read: 12.085168
+  lazy_type: :string
+  end_time: 4918.92
+  start_time: 0.6099
+  file: mew010401mems58.mzXML
+--- 
+- time_to_access: 0.000622
+  first_scan: 
+    last_peak: 
+    - 1999.63159179688
+    - 103752.0
+    num: 1
+    first_peak: 
+    - 400.4912109375
+    - 69609.0
+  scan_count: 2968
+  file_size: 18926714
+  last_scan: 
+    last_peak: 
+    - 1887.22998046875
+    - 1482.0
+    num: 2968
+    first_peak: 
+    - 292.111450195312
+    - 1301.0
+  scans_to_read: fl
+  total_time_to_read_and_access: 11.915947
+  time_to_read: 11.915309
+  lazy_type: :string
+  end_time: 4715.55
+  start_time: 0.12
+  file: mew010501mems59.mzXML
+--- 
+- time_to_access: 0.000581
+  first_scan: 
+    last_peak: 
+    - 1998.72509765625
+    - 38304.0
+    num: 1
+    first_peak: 
+    - 400.713806152344
+    - 68206.0
+  scan_count: 2992
+  file_size: 19712018
+  last_scan: 
+    last_peak: 
+    - 1998.681640625
+    - 64360.0
+    num: 2992
+    first_peak: 
+    - 400.159973144531
+    - 45.0
+  scans_to_read: fl
+  total_time_to_read_and_access: 12.360855
+  time_to_read: 12.360259
+  lazy_type: :string
+  end_time: 4824.8499
+  start_time: 0.6099
+  file: mew010501mems60.mzXML
+--- 
+- time_to_access: 0.00023
+  first_scan: 
+    last_peak: 
+    - 1979.48657226562
+    - 384035.0
+    num: 1
+    first_peak: 
+    - 408.863830566406
+    - 161444.0
+  scan_count: 2673
+  file_size: 12224667
+  last_scan: 
+    last_peak: 
+    - 742.187133789062
+    - 2454.0
+    num: 2673
+    first_peak: 
+    - 148.928771972656
+    - 2358.0
+  scans_to_read: fl
+  total_time_to_read_and_access: 7.736844
+  time_to_read: 7.736599
+  lazy_type: :string
+  end_time: 4417.78
+  start_time: 0.6099
+  file: mew010601mems20.mzXML
+--- 
+- time_to_access: 0.000549
+  first_scan: 
+    last_peak: 
+    - 1997.90087890625
+    - 125562.0
+    num: 1
+    first_peak: 
+    - 400.01171875
+    - 17.0
+  scan_count: 2799
+  file_size: 15616871
+  last_scan: 
+    last_peak: 
+    - 1920.80346679688
+    - 1652.0
+    num: 2799
+    first_peak: 
+    - 661.427734375
+    - 4154.0
+  scans_to_read: fl
+  total_time_to_read_and_access: 9.686113
+  time_to_read: 9.685547
+  lazy_type: :string
+  end_time: 4711.07
+  start_time: 0.6099
+  file: mew010601mems21.mzXML
+--- 
+- time_to_access: 0.000592
+  first_scan: 
+    last_peak: 
+    - 1988.80859375
+    - 49479.0
+    num: 1
+    first_peak: 
+    - 429.081909179688
+    - 253666.0
+  scan_count: 2813
+  file_size: 15226419
+  last_scan: 
+    last_peak: 
+    - 1999.3486328125
+    - 38650.0
+    num: 2813
+    first_peak: 
+    - 400.013732910156
+    - 1472.0
+  scans_to_read: fl
+  total_time_to_read_and_access: 9.750643
+  time_to_read: 9.750036
+  lazy_type: :string
+  end_time: 4744.0199
+  start_time: 0.6099
+  file: mew010601mems22.mzXML
+--- 
+- time_to_access: 0.000607
+  first_scan: 
+    last_peak: 
+    - 1999.1376953125
+    - 7531.0
+    num: 1
+    first_peak: 
+    - 400.109008789062
+    - 15178.0
+  scan_count: 2582
+  file_size: 13252601
+  last_scan: 
+    last_peak: 
+    - 1997.73046875
+    - 19759.0
+    num: 2582
+    first_peak: 
+    - 400.837768554688
+    - 72579.0
+  scans_to_read: fl
+  total_time_to_read_and_access: 8.203451
+  time_to_read: 8.202829
+  lazy_type: :string
+  end_time: 4322.23
+  start_time: 0.6099
+  file: mew010601mems23.mzXML
+--- 
+- time_to_access: 0.000329
+  first_scan: 
+    last_peak: 
+    - 1992.29614257812
+    - 13982.0
+    num: 1
+    first_peak: 
+    - 400.0888671875
+    - 9.0
+  scan_count: 2773
+  file_size: 16605299
+  last_scan: 
+    last_peak: 
+    - 1994.70947265625
+    - 1641.0
+    num: 2773
+    first_peak: 
+    - 909.7744140625
+    - 5064.0
+  scans_to_read: fl
+  total_time_to_read_and_access: 10.337394
+  time_to_read: 10.33705
+  lazy_type: :string
+  end_time: 4752.35
+  start_time: 0.6099
+  file: mew010601mems24.mzXML
+--- 
+- time_to_access: 0.000495
+  first_scan: 
+    last_peak: 
+    - 1990.31909179688
+    - 15602.0
+    num: 1
+    first_peak: 
+    - 400.375549316406
+    - 34189.0
+  scan_count: 2629
+  file_size: 15762293
+  last_scan: 
+    last_peak: 
+    - 654.899780273438
+    - 1862.0
+    num: 2629
+    first_peak: 
+    - 347.705200195312
+    - 4227.0
+  scans_to_read: fl
+  total_time_to_read_and_access: 9.984006
+  time_to_read: 9.983496
+  lazy_type: :string
+  end_time: 4576.14
+  start_time: 0.6099
+  file: mew010708mems10.mzXML
+--- 
+- time_to_access: 0.000416
+  first_scan: 
+    last_peak: 
+    - 1999.833984375
+    - 162599.0
+    num: 1
+    first_peak: 
+    - 401.831481933594
+    - 350788.0
+  scan_count: 2907
+  file_size: 18975799
+  last_scan: 
+    last_peak: 
+    - 1997.9150390625
+    - 2766.0
+    num: 2907
+    first_peak: 
+    - 329.129638671875
+    - 5402.0
+  scans_to_read: fl
+  total_time_to_read_and_access: 11.844178
+  time_to_read: 11.843746
+  lazy_type: :string
+  end_time: 4750.5699
+  start_time: 0.6099
+  file: mew011101mems61.mzXML
+--- 
+- time_to_access: 0.000605
+  first_scan: 
+    last_peak: 
+    - 1999.056640625
+    - 26531.0
+    num: 1
+    first_peak: 
+    - 400.181396484375
+    - 17267.0
+  scan_count: 2890
+  file_size: 18742743
+  last_scan: 
+    last_peak: 
+    - 1998.90380859375
+    - 174971.0
+    num: 2890
+    first_peak: 
+    - 400.240295410156
+    - 143087.0
+  scans_to_read: fl
+  total_time_to_read_and_access: 11.753679
+  time_to_read: 11.753059
+  lazy_type: :string
+  end_time: 4744.21
+  start_time: 0.6099
+  file: mew011101mems62.mzXML
+--- 
+- time_to_access: 0.000401
+  first_scan: 
+    last_peak: 
+    - 1999.69311523438
+    - 5.0
+    num: 1
+    first_peak: 
+    - 400.513000488281
+    - 115940.0
+  scan_count: 3088
+  file_size: 20242632
+  last_scan: 
+    last_peak: 
+    - 1954.54858398438
+    - 1348.0
+    num: 3088
+    first_peak: 
+    - 331.772033691406
+    - 1666.0
+  scans_to_read: fl
+  total_time_to_read_and_access: 12.740722
+  time_to_read: 12.740305
+  lazy_type: :string
+  end_time: 5150.0999
+  start_time: 0.6099
+  file: mew011101mems63.mzXML
+--- 
+- time_to_access: 0.000502
+  first_scan: 
+    last_peak: 
+    - 1993.48559570312
+    - 10246.0
+    num: 1
+    first_peak: 
+    - 400.273315429688
+    - 68037.0
+  scan_count: 2912
+  file_size: 16283518
+  last_scan: 
+    last_peak: 
+    - 1581.47485351562
+    - 7128.0
+    num: 2912
+    first_peak: 
+    - 280.084106445312
+    - 1350.0
+  scans_to_read: fl
+  total_time_to_read_and_access: 10.227031
+  time_to_read: 10.226513
+  lazy_type: :string
+  end_time: 4795.77
+  start_time: 0.6099
+  file: mew011401mems64.mzXML
+--- 
+- time_to_access: 0.000563
+  first_scan: 
+    last_peak: 
+    - 1980.12915039062
+    - 308746.0
+    num: 1
+    first_peak: 
+    - 451.167846679688
+    - 383563.0
+  scan_count: 2909
+  file_size: 11291574
+  last_scan: 
+    last_peak: 
+    - 1999.3310546875
+    - 43071.0
+    num: 2909
+    first_peak: 
+    - 400.998046875
+    - 118423.0
+  scans_to_read: fl
+  total_time_to_read_and_access: 7.079486
+  time_to_read: 7.078907
+  lazy_type: :string
+  end_time: 4841.68
+  start_time: 0.6099
+  file: mew011801mems02.mzXML
+--- 
+- time_to_access: 0.000496
+  first_scan: 
+    last_peak: 
+    - 1980.27514648438
+    - 1389578.0
+    num: 1
+    first_peak: 
+    - 462.255065917969
+    - 368433.0
+  scan_count: 2840
+  file_size: 12522788
+  last_scan: 
+    last_peak: 
+    - 1997.70727539062
+    - 45703.0
+    num: 2840
+    first_peak: 
+    - 401.307189941406
+    - 628429.0
+  scans_to_read: fl
+  total_time_to_read_and_access: 7.842163
+  time_to_read: 7.841652
+  lazy_type: :string
+  end_time: 4770.61
+  start_time: 0.6099
+  file: mew011801mems65.mzXML
+--- 
+- time_to_access: 0.000523
+  first_scan: 
+    last_peak: 
+    - 1999.85205078125
+    - 107313.0
+    num: 1
+    first_peak: 
+    - 400.008361816406
+    - 33268.0
+  scan_count: 2881
+  file_size: 16797556
+  last_scan: 
+    last_peak: 
+    - 1997.62353515625
+    - 9238528.0
+    num: 2881
+    first_peak: 
+    - 411.004699707031
+    - 419374.0
+  scans_to_read: fl
+  total_time_to_read_and_access: 10.322297
+  time_to_read: 10.321758
+  lazy_type: :string
+  end_time: 4951.75
+  start_time: 0.6099
+  file: mew011801mems66.mzXML
+--- 
+- time_to_access: 0.000133
+  first_scan: 
+    last_peak: 
+    - 1984.62060546875
+    - 2347722.0
+    num: 1
+    first_peak: 
+    - 428.767578125
+    - 1401630.0
+  scan_count: 3665
+  file_size: 15177579
+  last_scan: 
+    last_peak: 
+    - 446.486999511719
+    - 15470.0
+    num: 3665
+    first_peak: 
+    - 149.201141357422
+    - 4970.0
+  scans_to_read: fl
+  total_time_to_read_and_access: 9.242503
+  time_to_read: 9.242354
+  lazy_type: :string
+  end_time: 6124.1999
+  start_time: 0.6099
+  file: mew011901mems19.mzXML
+--- 
+- time_to_access: 0.000675
+  first_scan: 
+    last_peak: 
+    - 1999.84594726562
+    - 29664.0
+    num: 1
+    first_peak: 
+    - 400.2958984375
+    - 56202.0
+  scan_count: 3021
+  file_size: 12409062
+  last_scan: 
+    last_peak: 
+    - 1998.87963867188
+    - 134240.0
+    num: 3021
+    first_peak: 
+    - 402.2509765625
+    - 94384.0
+  scans_to_read: fl
+  total_time_to_read_and_access: 7.618463
+  time_to_read: 7.617773
+  lazy_type: :string
+  end_time: 4806.51
+  start_time: 0.6
+  file: mew012901mems83.mzXML
+--- 
+- time_to_access: 0.000463
+  first_scan: 
+    last_peak: 
+    - 1999.27856445312
+    - 589458.0
+    num: 1
+    first_peak: 
+    - 402.7666015625
+    - 182621.0
+  scan_count: 2974
+  file_size: 15830203
+  last_scan: 
+    last_peak: 
+    - 1999.32275390625
+    - 11673.0
+    num: 2974
+    first_peak: 
+    - 400.117736816406
+    - 17835.0
+  scans_to_read: fl
+  total_time_to_read_and_access: 9.690378
+  time_to_read: 9.689899
+  lazy_type: :string
+  end_time: 4701.94
+  start_time: 0.6
+  file: mew120700mems30.mzXML
+--- 
+- time_to_access: 0.000741
+  first_scan: 
+    last_peak: 
+    - 1999.177734375
+    - 40377.0
+    num: 1
+    first_peak: 
+    - 400.133422851562
+    - 32032.0
+  scan_count: 3216
+  file_size: 17022859
+  last_scan: 
+    last_peak: 
+    - 1992.45092773438
+    - 42329.0
+    num: 3216
+    first_peak: 
+    - 400.405456542969
+    - 139129.0
+  scans_to_read: fl
+  total_time_to_read_and_access: 10.505387
+  time_to_read: 10.504631
+  lazy_type: :string
+  end_time: 5099.99
+  start_time: 0.6
+  file: mew120700mems31.mzXML
+--- 
+- time_to_access: 0.000586
+  first_scan: 
+    last_peak: 
+    - 1995.53125
+    - 51221.0
+    num: 1
+    first_peak: 
+    - 400.942565917969
+    - 74182.0
+  scan_count: 3268
+  file_size: 17593459
+  last_scan: 
+    last_peak: 
+    - 1999.64892578125
+    - 116634.0
+    num: 3268
+    first_peak: 
+    - 400.271789550781
+    - 82733.0
+  scans_to_read: fl
+  total_time_to_read_and_access: 10.826096
+  time_to_read: 10.825496
+  lazy_type: :string
+  end_time: 5181.09
+  start_time: 0.6
+  file: mew120800mems32.mzXML
+--- 
+- time_to_access: 0.000741
+  first_scan: 
+    last_peak: 
+    - 1998.16796875
+    - 19934.0
+    num: 1
+    first_peak: 
+    - 400.011535644531
+    - 2121.0
+  scan_count: 2854
+  file_size: 15629074
+  last_scan: 
+    last_peak: 
+    - 1999.86279296875
+    - 23150.0
+    num: 2854
+    first_peak: 
+    - 400.684387207031
+    - 35211.0
+  scans_to_read: fl
+  total_time_to_read_and_access: 9.594833
+  time_to_read: 9.594077
+  lazy_type: :string
+  end_time: 4636.3
+  start_time: 0.6
+  file: mew120900mems33.mzXML
+--- 
+- time_to_access: 0.000432
+  first_scan: 
+    last_peak: 
+    - 1999.42895507812
+    - 173082.0
+    num: 1
+    first_peak: 
+    - 400.290832519531
+    - 22.0
+  scan_count: 4410
+  file_size: 27342491
+  last_scan: 
+    last_peak: 
+    - 568.233154296875
+    - 2941.0
+    num: 4410
+    first_peak: 
+    - 220.840942382812
+    - 4122.0
+  scans_to_read: fl
+  total_time_to_read_and_access: 17.120808
+  time_to_read: 17.120361
+  lazy_type: :string
+  end_time: 7160.48
+  start_time: 0.6
+  file: mew120900mems34.mzXML
+--- 
+- time_to_access: 0.000752
+  first_scan: 
+    last_peak: 
+    - 1852.39135742188
+    - 12061.0
+    num: 1
+    first_peak: 
+    - 400.155517578125
+    - 12.0
+  scan_count: 3056
+  file_size: 14676005
+  last_scan: 
+    last_peak: 
+    - 1998.20166015625
+    - 2994.0
+    num: 3056
+    first_peak: 
+    - 400.971496582031
+    - 4711.0
+  scans_to_read: fl
+  total_time_to_read_and_access: 9.30273
+  time_to_read: 9.301963
+  lazy_type: :string
+  end_time: 4796.9
+  start_time: 0.6
+  file: mew120900mems35.mzXML
+--- 
+- time_to_access: 0.001016
+  first_scan: 
+    last_peak: 
+    - 1999.81713867188
+    - 28236.0
+    num: 1
+    first_peak: 
+    - 401.804809570312
+    - 228859.0
+  scan_count: 3006
+  file_size: 14179471
+  last_scan: 
+    last_peak: 
+    - 1998.03930664062
+    - 107777.0
+    num: 3006
+    first_peak: 
+    - 400.006103515625
+    - 2619.0
+  scans_to_read: fl
+  total_time_to_read_and_access: 8.815165
+  time_to_read: 8.814133
+  lazy_type: :string
+  end_time: 4659.78
+  start_time: 0.6
+  file: mew121000mems36.mzXML
+--- 
+- time_to_access: 0.000658
+  first_scan: 
+    last_peak: 
+    - 1999.728515625
+    - 19736.0
+    num: 1
+    first_peak: 
+    - 400.164367675781
+    - 6952.0
+  scan_count: 2998
+  file_size: 15259509
+  last_scan: 
+    last_peak: 
+    - 1999.83081054688
+    - 17518.0
+    num: 2998
+    first_peak: 
+    - 401.0302734375
+    - 12578.0
+  scans_to_read: fl
+  total_time_to_read_and_access: 9.335497
+  time_to_read: 9.334824
+  lazy_type: :string
+  end_time: 4678.17
+  start_time: 0.6
+  file: mew121000mems37.mzXML
+--- 
+- time_to_access: 0.000457
+  first_scan: 
+    last_peak: 
+    - 1999.80810546875
+    - 14622.0
+    num: 1
+    first_peak: 
+    - 400.339721679688
+    - 66910.0
+  scan_count: 2994
+  file_size: 16619654
+  last_scan: 
+    last_peak: 
+    - 1336.0361328125
+    - 803.0
+    num: 2994
+    first_peak: 
+    - 314.847778320312
+    - 1116.0
+  scans_to_read: fl
+  total_time_to_read_and_access: 10.151254
+  time_to_read: 10.150781
+  lazy_type: :string
+  end_time: 4725.95
+  start_time: 0.6
+  file: mew121000mems38.mzXML
+--- 
+- time_to_access: 0.000488
+  first_scan: 
+    last_peak: 
+    - 1998.84130859375
+    - 20155.0
+    num: 1
+    first_peak: 
+    - 401.730224609375
+    - 38295.0
+  scan_count: 3218
+  file_size: 19374332
+  last_scan: 
+    last_peak: 
+    - 1996.4443359375
+    - 519526.0
+    num: 3218
+    first_peak: 
+    - 400.809631347656
+    - 36802.0
+  scans_to_read: fl
+  total_time_to_read_and_access: 11.837575
+  time_to_read: 11.837073
+  lazy_type: :string
+  end_time: 5110.3
+  start_time: 0.6
+  file: mew121100mems39.mzXML
+--- 
+- time_to_access: 0.000392
+  first_scan: 
+    last_peak: 
+    - 1994.68920898438
+    - 17467.0
+    num: 1
+    first_peak: 
+    - 400.285888671875
+    - 20176.0
+  scan_count: 3001
+  file_size: 16735800
+  last_scan: 
+    last_peak: 
+    - 1903.47045898438
+    - 7536.0
+    num: 3001
+    first_peak: 
+    - 447.844482421875
+    - 1404.0
+  scans_to_read: fl
+  total_time_to_read_and_access: 10.230255
+  time_to_read: 10.229849
+  lazy_type: :string
+  end_time: 4732.71
+  start_time: 0.6
+  file: mew121100mems40.mzXML
+--- 
+- time_to_access: 0.00044
+  first_scan: 
+    last_peak: 
+    - 1993.28784179688
+    - 158949.0
+    num: 1
+    first_peak: 
+    - 400.080688476562
+    - 17797.0
+  scan_count: 2981
+  file_size: 16895781
+  last_scan: 
+    last_peak: 
+    - 1885.55541992188
+    - 25260.0
+    num: 2981
+    first_peak: 
+    - 401.963256835938
+    - 42948.0
+  scans_to_read: fl
+  total_time_to_read_and_access: 10.387749
+  time_to_read: 10.387294
+  lazy_type: :string
+  end_time: 4705.23
+  start_time: 0.6
+  file: mew121100mems43.mzXML
+--- 
+- time_to_access: 0.000667
+  first_scan: 
+    last_peak: 
+    - 1999.84936523438
+    - 5287.0
+    num: 1
+    first_peak: 
+    - 400.228149414062
+    - 49766.0
+  scan_count: 3966
+  file_size: 23502790
+  last_scan: 
+    last_peak: 
+    - 1995.72827148438
+    - 6408.0
+    num: 3966
+    first_peak: 
+    - 401.582580566406
+    - 6704.0
+  scans_to_read: fl
+  total_time_to_read_and_access: 14.75831
+  time_to_read: 14.757628
+  lazy_type: :string
+  end_time: 6303.46
+  start_time: 0.6
+  file: mew121200mems44.mzXML
+--- 
+- time_to_access: 0.000314
+  first_scan: 
+    last_peak: 
+    - 1995.27490234375
+    - 7671.0
+    num: 1
+    first_peak: 
+    - 400.066650390625
+    - 1.0
+  scan_count: 2957
+  file_size: 15855276
+  last_scan: 
+    last_peak: 
+    - 1956.35131835938
+    - 3035.0
+    num: 2957
+    first_peak: 
+    - 332.694030761719
+    - 2552.0
+  scans_to_read: fl
+  total_time_to_read_and_access: 9.765716
+  time_to_read: 9.765387
+  lazy_type: :string
+  end_time: 4697.47
+  start_time: 0.6
+  file: mew121200mems45.mzXML
+--- 
+- time_to_access: 0.00035
+  first_scan: 
+    last_peak: 
+    - 1994.15502929688
+    - 37371.0
+    num: 1
+    first_peak: 
+    - 400.767211914062
+    - 24647.0
+  scan_count: 3036
+  file_size: 16643658
+  last_scan: 
+    last_peak: 
+    - 1711.51293945312
+    - 2379.0
+    num: 3036
+    first_peak: 
+    - 1110.8876953125
+    - 1598.0
+  scans_to_read: fl
+  total_time_to_read_and_access: 10.186561
+  time_to_read: 10.186198
+  lazy_type: :string
+  end_time: 4747.47
+  start_time: 0.6
+  file: mew121200mems46.mzXML
+--- 
+- time_to_access: 0.000514
+  first_scan: 
+    last_peak: 
+    - 1991.04907226562
+    - 185559.0
+    num: 1
+    first_peak: 
+    - 402.841552734375
+    - 40887.0
+  scan_count: 2994
+  file_size: 17556836
+  last_scan: 
+    last_peak: 
+    - 1995.97192382812
+    - 40524.0
+    num: 2994
+    first_peak: 
+    - 401.643920898438
+    - 11020.0
+  scans_to_read: fl
+  total_time_to_read_and_access: 10.767801
+  time_to_read: 10.767273
+  lazy_type: :string
+  end_time: 4789.98
+  start_time: 0.6
+  file: mew121300mems47.mzXML
+--- 
+- time_to_access: 0.000353
+  first_scan: 
+    last_peak: 
+    - 1952.63818359375
+    - 24226.0
+    num: 1
+    first_peak: 
+    - 401.257934570312
+    - 28093.0
+  scan_count: 4574
+  file_size: 26083808
+  last_scan: 
+    last_peak: 
+    - 1989.0966796875
+    - 29547.0
+    num: 4574
+    first_peak: 
+    - 409.15283203125
+    - 15740.0
+  scans_to_read: fl
+  total_time_to_read_and_access: 16.423812
+  time_to_read: 16.423443
+  lazy_type: :string
+  end_time: 7199.58
+  start_time: 0.6
+  file: mew121300mems48.mzXML
+--- 
+- time_to_access: 0.000351
+  first_scan: 
+    last_peak: 
+    - 1962.07641601562
+    - 5077.0
+    num: 1
+    first_peak: 
+    - 400.991760253906
+    - 5388.0
+  scan_count: 3027
+  file_size: 15214992
+  last_scan: 
+    last_peak: 
+    - 1997.83935546875
+    - 6979.0
+    num: 3027
+    first_peak: 
+    - 400.779846191406
+    - 15330.0
+  scans_to_read: fl
+  total_time_to_read_and_access: 9.466426
+  time_to_read: 9.46606
+  lazy_type: :string
+  end_time: 4785.34
+  start_time: 0.6
+  file: mew121300mems49.mzXML
+--- 
+- time_to_access: 0.000527
+  first_scan: 
+    last_peak: 
+    - 1996.60473632812
+    - 6053.0
+    num: 1
+    first_peak: 
+    - 400.654602050781
+    - 48992.0
+  scan_count: 2995
+  file_size: 16748895
+  last_scan: 
+    last_peak: 
+    - 1986.470703125
+    - 6935.0
+    num: 2995
+    first_peak: 
+    - 400.308166503906
+    - 14042.0
+  scans_to_read: fl
+  total_time_to_read_and_access: 10.333156
+  time_to_read: 10.332612
+  lazy_type: :string
+  end_time: 4849.4
+  start_time: 0.6
+  file: mew121400mems50.mzXML
+--- 
+- time_to_access: 0.000466
+  first_scan: 
+    last_peak: 
+    - 1996.60961914062
+    - 6603.0
+    num: 1
+    first_peak: 
+    - 400.866149902344
+    - 10219.0
+  scan_count: 3062
+  file_size: 17468010
+  last_scan: 
+    last_peak: 
+    - 1996.39404296875
+    - 6274.0
+    num: 3062
+    first_peak: 
+    - 415.0654296875
+    - 6345.0
+  scans_to_read: fl
+  total_time_to_read_and_access: 10.996465
+  time_to_read: 10.995985
+  lazy_type: :string
+  end_time: 4899.86
+  start_time: 0.6099
+  file: mew121500mems51.mzXML
+--- 
+- time_to_access: 0.000418
+  first_scan: 
+    last_peak: 
+    - 1998.07446289062
+    - 19218.0
+    num: 1
+    first_peak: 
+    - 400.277709960938
+    - 6.0
+  scan_count: 3006
+  file_size: 19181600
+  last_scan: 
+    last_peak: 
+    - 1972.75659179688
+    - 2476.0
+    num: 3006
+    first_peak: 
+    - 348.749633789062
+    - 2034.0
+  scans_to_read: fl
+  total_time_to_read_and_access: 11.93016
+  time_to_read: 11.929725
+  lazy_type: :string
+  end_time: 4826.54
+  start_time: 0.6099
+  file: mew121500mems52.mzXML
+--- 
+- time_to_access: 0.000262
+  first_scan: 
+    last_peak: 
+    - 1960.51684570312
+    - 5331.0
+    num: 1
+    first_peak: 
+    - 403.260070800781
+    - 20721.0
+  scan_count: 3166
+  file_size: 18946762
+  last_scan: 
+    last_peak: 
+    - 1438.416015625
+    - 7672.0
+    num: 3166
+    first_peak: 
+    - 948.1025390625
+    - 2324.0
+  scans_to_read: fl
+  total_time_to_read_and_access: 11.750267
+  time_to_read: 11.74999
+  lazy_type: :string
+  end_time: 5179.45
+  start_time: 0.6099
+  file: mew121500mems53.mzXML
+--- 
+- time_to_access: 0.000311
+  first_scan: 
+    last_peak: 
+    - 1986.42797851562
+    - 81444.0
+    num: 1
+    first_peak: 
+    - 400.760375976562
+    - 42682.0
+  scan_count: 3400
+  file_size: 22053031
+  last_scan: 
+    last_peak: 
+    - 1372.822265625
+    - 5102.0
+    num: 3400
+    first_peak: 
+    - 976.62353515625
+    - 6015.0
+  scans_to_read: fl
+  total_time_to_read_and_access: 13.630567
+  time_to_read: 13.630242
+  lazy_type: :string
+  end_time: 5511.03
+  start_time: 0.6099
+  file: mew121800mems54.mzXML
+--- 
+- time_to_access: 0.000827
+  first_scan: 
+    last_peak: 
+    - 1999.703125
+    - 21164.0
+    num: 1
+    first_peak: 
+    - 400.275817871094
+    - 380205.0
+  scan_count: 2945
+  file_size: 18855821
+  last_scan: 
+    last_peak: 
+    - 1999.859375
+    - 26083.0
+    num: 2945
+    first_peak: 
+    - 401.930114746094
+    - 25291.0
+  scans_to_read: fl
+  total_time_to_read_and_access: 11.612496
+  time_to_read: 11.611654
+  lazy_type: :string
+  end_time: 4754.2
+  start_time: 0.6099
+  file: mew121800mems55.mzXML
+--- 
+- time_to_access: 0.000697
+  first_scan: 
+    last_peak: 
+    - 1993.78930664062
+    - 138410.0
+    num: 1
+    first_peak: 
+    - 401.157836914062
+    - 80682.0
+  scan_count: 2788
+  file_size: 17752663
+  last_scan: 
+    last_peak: 
+    - 1996.38232421875
+    - 72624.0
+    num: 2788
+    first_peak: 
+    - 400.269897460938
+    - 55428.0
+  scans_to_read: fl
+  total_time_to_read_and_access: 10.773418
+  time_to_read: 10.772707
+  lazy_type: :string
+  end_time: 4890.48
+  start_time: 0.62
+  file: mew121900mems27.mzXML
+--- 
+- time_to_access: 0.000784
+  first_scan: 
+    last_peak: 
+    - 1997.65454101562
+    - 52299.0
+    num: 1
+    first_peak: 
+    - 400.087341308594
+    - 31848.0
+  scan_count: 2763
+  file_size: 17260775
+  last_scan: 
+    last_peak: 
+    - 1999.66333007812
+    - 435786.0
+    num: 2763
+    first_peak: 
+    - 402.215393066406
+    - 88146.0
+  scans_to_read: fl
+  total_time_to_read_and_access: 10.511235
+  time_to_read: 10.510437
+  lazy_type: :string
+  end_time: 4722.74
+  start_time: 0.6099
+  file: mew121900mems28.mzXML
+--- 
+- time_to_access: 0.000405
+  first_scan: 
+    last_peak: 
+    - 1999.8359375
+    - 75941.0
+    num: 1
+    first_peak: 
+    - 400.925842285156
+    - 78526.0
+  scan_count: 2745
+  file_size: 17253065
+  last_scan: 
+    last_peak: 
+    - 1699.23559570312
+    - 899.0
+    num: 2745
+    first_peak: 
+    - 501.31591796875
+    - 2632.0
+  scans_to_read: fl
+  total_time_to_read_and_access: 10.56133
+  time_to_read: 10.56091
+  lazy_type: :string
+  end_time: 4702.93
+  start_time: 0.6099
+  file: mew121900mems29.mzXML
+--- 
+- time_to_access: 0.000842
+  first_scan: 
+    last_peak: 
+    - 1999.67260742188
+    - 24976.0
+    num: 1
+    first_peak: 
+    - 402.491271972656
+    - 108926.0
+  scan_count: 2659
+  file_size: 17427866
+  last_scan: 
+    last_peak: 
+    - 1999.79443359375
+    - 283839.0
+    num: 2659
+    first_peak: 
+    - 400.894104003906
+    - 52188.0
+  scans_to_read: fl
+  total_time_to_read_and_access: 10.772601
+  time_to_read: 10.771744
+  lazy_type: :string
+  end_time: 4707.44
+  start_time: 0.6099
+  file: mew122000mems26.mzXML

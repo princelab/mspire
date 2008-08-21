@@ -1,0 +1,128 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.1//EN" "http://www.w3.org/TR/xhtml11/DTD/xhtml11.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en">
+  <head>
+    <title>Cygwin</title>
+    <link href="../default.css" rel="stylesheet" />
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+  </head>
+  <body>
+    <div id="logo">
+        <a href=../index.html><img src=../images/mspire_logo.png border="0" alt="mspire - mass spectrometry proteomics in ruby"/></a>
+  </div>
+    <div id="header">
+      <h1>Cygwin</h1>
+    </div>
+
+    <div id="headerbar" class="bar">
+        <!-- <span class="left">Location: <a href="../index.html" title="mspire">mspire</a> / <a href="./index.html" title="Install">Install</a> / <a href="./cygwin.html" title="Cygwin">Cygwin</a></span> -->
+      <!--<span class="right">Language: <a href="./cygwin.html" title="en">en</a></span>-->
+      <div style="clear:both"></div>
+    </div>
+
+    <div id="menu">
+        <div class="webgen-menu-vert "><ul><li ><a href="../index.html" title="Home">Home</a></li><li class="webgen-menu-submenu webgen-menu-submenu-inhierarchy"><a href="./index.html" title="Install">Install</a><ul><li class="webgen-menu-item-selected"><a href="./cygwin.html" title="Cygwin">Cygwin</a></li></ul></li><li class="webgen-menu-submenu"><a href="../ms/index.html" title="MS">MS</a></li><li class="webgen-menu-submenu"><a href="../spec_id/index.html" title="SpecID">SpecID</a></li><li class="webgen-menu-submenu"><a href="../tutorial/index.html" title="Tutorials">Tutorials</a></li></ul></div>
+        <a style="font-size:130%; padding-left:20px" href="rdoc/index.html">rdoc</a>
+        <br/>
+        <a style="font-size:85%; padding-left:20px" href="http://rubyforge.org/projects/mspire/">Rubyforge Project Page</a>
+        <br/>
+        <br/>
+        <br/>
+        <br/>
+        <a href="http://www.ruby-lang.org/en/"><img style="padding-left:20px" src=../images/ruby_logo_small.png border="0" alt="Ruby Programming Language"/></a>
+    </div>
+
+    <div id="body">
+      <h1>Installing (and updating) mspire under cygwin</h1>
+
+<h2>1. Download and run cygwin setup</h2>
+
+<p>Download and run setup.exe from <a href="http://www.cygwin.com/">the main cygwin site</a>
+and make sure to select the following specific packages. </p>
+
+<h2>2. Install specific packages</h2>
+
+<p>Select to install a few packages from the main cygwin setup:</p>
+
+<pre><code>Devel -&gt; gcc
+Devel -&gt; make
+Interpreters -&gt; ruby
+Text -&gt; expat
+Text -&gt; libexpat
+
+# optional:
+Devel -&gt; libxml2
+Devel -&gt; libxml2-devel
+</code></pre>
+
+<p>Make sure that you <em>DO NOT</em> have the native windows ruby installed if you are running the cygwin ruby.</p>
+
+<h2>3. Download and install <a href="http://www.yoshidam.net/Ruby.html">ruby's xmlparser wrapper</a></h2>
+
+<p>In a cygwin terminal, unzip the package (<code>tar -xzvf xmlparser-0.6.8.tar.gz</code>)
+and cd into the xmlparser directory.  Then type:</p>
+
+<pre><code>ruby extconf.rb --with-expat-lib=/usr/lib --with-expat-include=/usr/include
+make
+make site-install
+</code></pre>
+
+<h2>4. Download and install <a href="http://rubyforge.org/frs/?group_id=126">rubygems</a></h2>
+
+<p>You want the latest <code>.tgz</code> package.  After downloading, in a cygwin terminal,
+unzip the package (<code>tar -xzvf rubygems*.tar.gz</code>), cd into the rubygems
+directory and type:</p>
+
+<pre><code>ruby setup.rb
+</code></pre>
+
+<p>You'll need to specify that you want to use gems.  There are <a href="http://rubygems.org/read/chapter/3#page70">multiple ways to
+do this</a>.  One way is to cut and
+paste this into your terminal:</p>
+
+<pre><code>echo "export RUBYOPT='rubygems'" &gt;&gt; ~/.bashrc
+source ~/.bashrc
+</code></pre>
+
+<p>From then on, every time you open a cygwin terminal (since it always reads
+your .bashrc file), rubygems will be turned on.</p>
+
+<h2>5. Install libxml-ruby (optional)</h2>
+
+<pre><code>gem install libxml-ruby
+</code></pre>
+
+<h2>6. Install axml</h2>
+
+<pre><code>gem install axml
+</code></pre>
+
+<h2>7. Install mspire</h2>
+
+<p>In the cygwin terminal type:</p>
+
+<pre><code>gem install mspire
+</code></pre>
+
+<p>This installs the mspire package in <code>/usr/lib/ruby/gems/1.8/</code>.  The
+executables work from the cygwin command line. (e.g., type <code>fasta_shaker.rb</code>)</p>
+
+<h2>8. Update mspire</h2>
+
+<p>If you want to ensure you have the latest version, open a terminal and type:</p>
+
+<pre><code>gem update mspire
+</code></pre>
+
+<p>You can also check to see if you have the latest version by comparing version numbers:</p>
+
+<pre><code>gem list mspire --remote
+gem list mspire --local
+</code></pre>
+    </div>
+
+    <div id="footer" class="bar">
+      Last update: <i>Monday, August 18 10:50:23 MDT 2008</i>
+    </div>
+  </body>
+</html>

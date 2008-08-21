@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="iso-8859-1"?>
+<!DOCTYPE html 
+     PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+     "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html>
+<head>
+  <title>_update_and_filter_by_scans (Align)</title>
+  <meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1" />
+  <link rel="stylesheet" href="../.././rdoc-style.css" type="text/css" media="screen" />
+</head>
+<body class="standalone-code">
+  <pre><span class="ruby-comment cmt"># File lib/align.rb, line 49</span>
+  <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">_update_and_filter_by_scans</span>(<span class="ruby-identifier">peptides</span>, <span class="ruby-identifier">scanindex_by_basename_noext</span>)
+    <span class="ruby-identifier">newpeps</span> = []
+    <span class="ruby-identifier">peptides</span>.<span class="ruby-identifier">each</span> <span class="ruby-keyword kw">do</span> <span class="ruby-operator">|</span><span class="ruby-identifier">pep</span><span class="ruby-operator">|</span>
+      <span class="ruby-identifier">newfilenames</span> = []
+      <span class="ruby-identifier">pep</span>.<span class="ruby-identifier">filenames</span>.<span class="ruby-identifier">each</span> <span class="ruby-keyword kw">do</span> <span class="ruby-operator">|</span><span class="ruby-identifier">dtafilename</span><span class="ruby-operator">|</span>
+        (<span class="ruby-identifier">dtabase</span>,<span class="ruby-identifier">first</span>,<span class="ruby-identifier">last</span>,<span class="ruby-identifier">charge</span>) = <span class="ruby-identifier">dtafilename</span>.<span class="ruby-identifier">split</span>(<span class="ruby-value str">'.'</span>)
+        <span class="ruby-keyword kw">if</span> <span class="ruby-identifier">scanindex_by_basename_noext</span>.<span class="ruby-identifier">key?</span>(<span class="ruby-identifier">dtabase</span>)
+          <span class="ruby-identifier">newfilenames</span> <span class="ruby-operator">&lt;&lt;</span> <span class="ruby-identifier">dtafilename</span>
+          <span class="ruby-keyword kw">if</span> <span class="ruby-identifier">first</span> <span class="ruby-operator">==</span> <span class="ruby-identifier">last</span>
+            <span class="ruby-identifier">pep</span>.<span class="ruby-identifier">scans</span> <span class="ruby-operator">&lt;&lt;</span> <span class="ruby-identifier">scanindex_by_basename_noext</span>[<span class="ruby-identifier">dtabase</span>][<span class="ruby-identifier">first</span>.<span class="ruby-identifier">to_i</span>]
+          <span class="ruby-keyword kw">else</span>
+            <span class="ruby-identifier">scans</span> = (<span class="ruby-identifier">first</span>.<span class="ruby-identifier">to_i</span><span class="ruby-operator">...</span><span class="ruby-identifier">last</span>.<span class="ruby-identifier">to_i</span>).<span class="ruby-identifier">collect</span> <span class="ruby-keyword kw">do</span> <span class="ruby-operator">|</span><span class="ruby-identifier">index</span><span class="ruby-operator">|</span>
+              <span class="ruby-identifier">scanindex_by_basename_noext</span>[<span class="ruby-identifier">dtabase</span>].<span class="ruby-identifier">scans_by_num</span>[<span class="ruby-identifier">index</span>]
+            <span class="ruby-keyword kw">end</span>
+            <span class="ruby-identifier">pep</span>.<span class="ruby-identifier">scans</span> <span class="ruby-operator">&lt;&lt;</span> <span class="ruby-identifier">scans</span>
+          <span class="ruby-keyword kw">end</span>
+        <span class="ruby-keyword kw">else</span>
+        <span class="ruby-keyword kw">end</span>
+      <span class="ruby-keyword kw">end</span>
+      <span class="ruby-identifier">pep</span>.<span class="ruby-identifier">filenames</span> = <span class="ruby-identifier">newfilenames</span>
+      <span class="ruby-keyword kw">if</span> <span class="ruby-identifier">pep</span>.<span class="ruby-identifier">scans</span>.<span class="ruby-identifier">size</span> <span class="ruby-operator">&gt;</span> <span class="ruby-value">0</span>
+        <span class="ruby-identifier">newpeps</span> <span class="ruby-operator">&lt;&lt;</span> <span class="ruby-identifier">pep</span>
+      <span class="ruby-keyword kw">end</span>
+    <span class="ruby-keyword kw">end</span>
+    <span class="ruby-identifier">newpeps</span>
+  <span class="ruby-keyword kw">end</span></pre>
+</body>
+</html>

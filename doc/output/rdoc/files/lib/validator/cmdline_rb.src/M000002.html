@@ -1,0 +1,131 @@
+<?xml version="1.0" encoding="iso-8859-1"?>
+<!DOCTYPE html 
+     PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+     "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html>
+<head>
+  <title>prepare_validators (lib/validator/cmdline.rb)</title>
+  <meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1" />
+  <link rel="stylesheet" href="../../../.././rdoc-style.css" type="text/css" media="screen" />
+</head>
+<body class="standalone-code">
+  <pre><span class="ruby-comment cmt"># File lib/validator/cmdline.rb, line 275</span>
+      <span class="ruby-keyword kw">def</span> <span class="ruby-keyword kw">self</span>.<span class="ruby-identifier">prepare_validators</span>(<span class="ruby-identifier">opts</span>, <span class="ruby-identifier">false_on_tie</span>, <span class="ruby-identifier">interactive</span>, <span class="ruby-identifier">postfilter</span>, <span class="ruby-identifier">spec_id</span>)      
+        <span class="ruby-identifier">validator_args</span> = <span class="ruby-identifier">opts</span>[<span class="ruby-identifier">:validators</span>]
+        <span class="ruby-identifier">correct_wins</span> = <span class="ruby-operator">!</span><span class="ruby-identifier">false_on_tie</span>
+        <span class="ruby-identifier">need_false_to_total_ratio</span> = []
+        <span class="ruby-identifier">need_frequency</span> = []
+        <span class="ruby-identifier">transmem_vals</span> = []
+        <span class="ruby-identifier">validators</span> = <span class="ruby-identifier">validator_args</span>.<span class="ruby-identifier">map</span> <span class="ruby-keyword kw">do</span> <span class="ruby-operator">|</span><span class="ruby-identifier">args</span><span class="ruby-operator">|</span>
+          <span class="ruby-identifier">tp</span> = <span class="ruby-identifier">args</span>.<span class="ruby-identifier">shift</span>
+          <span class="ruby-identifier">val_args</span> = <span class="ruby-identifier">args</span>.<span class="ruby-identifier">dup</span> <span class="ruby-comment cmt"># protect the original keys</span>
+          <span class="ruby-identifier">val_args</span> = 
+            <span class="ruby-keyword kw">case</span> <span class="ruby-identifier">tp</span>
+            <span class="ruby-keyword kw">when</span> <span class="ruby-identifier">:tmm</span>
+              <span class="ruby-identifier">val_args</span>[<span class="ruby-value">1</span>][<span class="ruby-identifier">:correct_wins</span>] = <span class="ruby-identifier">correct_wins</span>
+              <span class="ruby-keyword kw">if</span> <span class="ruby-identifier">opts</span>.<span class="ruby-identifier">key?</span>(<span class="ruby-identifier">:fasta</span>) 
+                <span class="ruby-identifier">val_args</span>[<span class="ruby-value">1</span>][<span class="ruby-identifier">:fasta</span>] = <span class="ruby-identifier">opts</span>[<span class="ruby-identifier">:fasta</span>]
+              <span class="ruby-keyword kw">end</span>
+              <span class="ruby-identifier">val_args</span>
+            <span class="ruby-keyword kw">when</span> <span class="ruby-identifier">:bias</span>
+              <span class="ruby-identifier">val_args</span>[<span class="ruby-value">1</span>][<span class="ruby-identifier">:correct_wins</span>] = <span class="ruby-identifier">correct_wins</span>
+              <span class="ruby-identifier">val_args</span>
+            <span class="ruby-keyword kw">when</span> <span class="ruby-identifier">:tps</span>
+              <span class="ruby-identifier">val_args</span> = [<span class="ruby-identifier">val_args</span>[<span class="ruby-value">0</span>], <span class="ruby-identifier">correct_wins</span>]
+              <span class="ruby-identifier">val_args</span>
+            <span class="ruby-keyword kw">when</span> <span class="ruby-identifier">:decoy</span>
+              <span class="ruby-identifier">val_args</span>[<span class="ruby-value">0</span>][<span class="ruby-identifier">:correct_wins</span>] = <span class="ruby-identifier">correct_wins</span>
+              <span class="ruby-comment cmt"># don't delete the key here since we need the decoy = regexp key</span>
+              <span class="ruby-identifier">val_args</span>
+            <span class="ruby-keyword kw">else</span> <span class="ruby-comment cmt">## bad_aa, prob, and qval are represented here:</span>
+              <span class="ruby-identifier">val_args</span>
+            <span class="ruby-keyword kw">end</span>
+          <span class="ruby-identifier">val</span> = <span class="ruby-constant">Validator_symbols_to_classes</span>[<span class="ruby-identifier">tp</span>].<span class="ruby-identifier">new</span>( <span class="ruby-operator">*</span><span class="ruby-identifier">val_args</span> )
+          <span class="ruby-comment cmt"># make some lists of validators based on pre-processing needs:</span>
+          <span class="ruby-keyword kw">if</span> <span class="ruby-identifier">tp</span> <span class="ruby-operator">==</span> <span class="ruby-identifier">:tmm</span>
+            <span class="ruby-identifier">transmem_vals</span> <span class="ruby-operator">&lt;&lt;</span> <span class="ruby-identifier">val</span>
+          <span class="ruby-keyword kw">end</span>
+          <span class="ruby-identifier">potential_digestion_classes</span> = <span class="ruby-regexp re">/Transmem|AA|AAEst|Bias/</span>
+          <span class="ruby-keyword kw">if</span> <span class="ruby-identifier">val</span>.<span class="ruby-identifier">class</span>.<span class="ruby-identifier">to_s</span> <span class="ruby-operator">=~</span> <span class="ruby-identifier">potential_digestion_classes</span>
+            <span class="ruby-keyword kw">if</span> <span class="ruby-identifier">val</span>.<span class="ruby-identifier">class</span>.<span class="ruby-identifier">to_s</span> <span class="ruby-operator">==</span> <span class="ruby-value str">'Validator::AAEst'</span>
+              <span class="ruby-identifier">need_frequency</span>.<span class="ruby-identifier">push</span>(<span class="ruby-identifier">val</span>) <span class="ruby-keyword kw">if</span> <span class="ruby-identifier">val</span>.<span class="ruby-identifier">frequency</span>.<span class="ruby-identifier">nil?</span>
+            <span class="ruby-keyword kw">elsif</span> <span class="ruby-operator">!</span>(<span class="ruby-identifier">val</span>.<span class="ruby-identifier">false_to_total_ratio</span>.<span class="ruby-identifier">nil?</span>)
+              <span class="ruby-identifier">$stderr</span>.<span class="ruby-identifier">puts</span> <span class="ruby-node">&quot;using false_to_total_ratio: #{val.false_to_total_ratio}&quot;</span>
+            <span class="ruby-keyword kw">else</span>
+              <span class="ruby-identifier">need_false_to_total_ratio</span> <span class="ruby-operator">&lt;&lt;</span> <span class="ruby-identifier">val</span>
+            <span class="ruby-keyword kw">end</span>
+          <span class="ruby-keyword kw">end</span>
+          <span class="ruby-identifier">val</span>
+        <span class="ruby-keyword kw">end</span>
+
+        <span class="ruby-keyword kw">if</span> ((<span class="ruby-identifier">need_false_to_total_ratio</span>.<span class="ruby-identifier">size</span> <span class="ruby-operator">&gt;</span> <span class="ruby-value">0</span>) <span class="ruby-keyword kw">or</span> (<span class="ruby-identifier">need_frequency</span>.<span class="ruby-identifier">size</span> <span class="ruby-operator">&gt;</span> <span class="ruby-value">0</span>))
+          <span class="ruby-keyword kw">if</span> <span class="ruby-identifier">opts</span>.<span class="ruby-identifier">key?</span>(<span class="ruby-identifier">:digestion_objects</span>)
+            <span class="ruby-comment cmt">#raise ArgumentError, &quot;requires --digestion fasta,params argument!&quot; if !opts.key?(:digestion_objects)</span>
+            <span class="ruby-identifier">peps</span> = <span class="ruby-constant">Digestor</span>.<span class="ruby-identifier">digest</span>( <span class="ruby-operator">*</span>(<span class="ruby-identifier">opts</span>[<span class="ruby-identifier">:digestion_objects</span>]) )
+            <span class="ruby-identifier">need_false_to_total_ratio</span>.<span class="ruby-identifier">each</span> <span class="ruby-keyword kw">do</span> <span class="ruby-operator">|</span><span class="ruby-identifier">val</span><span class="ruby-operator">|</span>
+              <span class="ruby-identifier">val</span>.<span class="ruby-identifier">set_false_to_total_ratio</span>( <span class="ruby-identifier">peps</span> )
+            <span class="ruby-keyword kw">end</span>
+            <span class="ruby-keyword kw">if</span> <span class="ruby-identifier">need_frequency</span>.<span class="ruby-identifier">size</span> <span class="ruby-operator">&gt;</span> <span class="ruby-value">0</span>
+              <span class="ruby-identifier">need_frequency</span>.<span class="ruby-identifier">each</span> <span class="ruby-keyword kw">do</span> <span class="ruby-operator">|</span><span class="ruby-identifier">val</span><span class="ruby-operator">|</span>
+                <span class="ruby-identifier">val</span>.<span class="ruby-identifier">set_frequency</span>( <span class="ruby-identifier">opts</span>[<span class="ruby-identifier">:digestion_objects</span>][<span class="ruby-value">0</span>] )
+              <span class="ruby-keyword kw">end</span>
+            <span class="ruby-keyword kw">end</span>
+            <span class="ruby-identifier">opts</span>.<span class="ruby-identifier">delete</span>(<span class="ruby-identifier">:digestion_objects</span>)
+          <span class="ruby-keyword kw">else</span>  <span class="ruby-comment cmt">## do the new and improved selection of non-top hits to get false_to_total_ratios and freqs</span>
+            <span class="ruby-identifier">$stderr</span>.<span class="ruby-identifier">puts</span> <span class="ruby-value str">&quot;...using pephits to calculate background ratios&quot;</span>
+            <span class="ruby-comment cmt"># first_index, last_index</span>
+            <span class="ruby-identifier">pephits</span> = 
+              <span class="ruby-keyword kw">if</span> <span class="ruby-identifier">opts</span>[<span class="ruby-identifier">:pephits</span>]  <span class="ruby-comment cmt">## protein prophet (since it needs to get ratios somewhere</span>
+                <span class="ruby-identifier">$stderr</span>.<span class="ruby-identifier">puts</span> <span class="ruby-value str">&quot;using --pephits&quot;</span>
+                <span class="ruby-identifier">opts</span>[<span class="ruby-identifier">:pephits</span>].<span class="ruby-identifier">peps</span>
+              <span class="ruby-keyword kw">elsif</span> <span class="ruby-identifier">requires_pephits?</span>(<span class="ruby-identifier">spec_id</span>)
+                <span class="ruby-identifier">raise</span> <span class="ruby-constant">ArgumentError</span>, <span class="ruby-node">&quot;with objects of class '#{spec_id.class}', one of your validators requires --pephits or --digestion&quot;</span>
+              <span class="ruby-keyword kw">else</span>
+                <span class="ruby-identifier">$stderr</span>.<span class="ruby-identifier">puts</span> <span class="ruby-value str">&quot;using given spec_id.peps&quot;</span>
+                <span class="ruby-identifier">spec_id</span>.<span class="ruby-identifier">peps</span>
+              <span class="ruby-keyword kw">end</span>
+
+            <span class="ruby-identifier">not_first_or_second_peps</span> = <span class="ruby-constant">Sequest</span>.<span class="ruby-identifier">other_hits_sorted_by_xcorr</span>(<span class="ruby-identifier">pephits</span>, <span class="ruby-value">2</span>, <span class="ruby-value">9</span>, [<span class="ruby-identifier">:base_name</span>, <span class="ruby-identifier">:first_scan</span>, <span class="ruby-identifier">:charge</span>])
+            <span class="ruby-identifier">pephits</span> = 
+              <span class="ruby-keyword kw">case</span> <span class="ruby-identifier">postfilter</span>
+              <span class="ruby-keyword kw">when</span> <span class="ruby-identifier">:top_per_scan</span> 
+                <span class="ruby-identifier">$stderr</span>.<span class="ruby-identifier">puts</span> <span class="ruby-value str">&quot;using top_per_scan&quot;</span> ; <span class="ruby-identifier">not_first_or_second_peps</span>
+              <span class="ruby-keyword kw">when</span> <span class="ruby-identifier">:top_per_aaseq</span>
+                <span class="ruby-comment cmt"># it doesn't matter which one is given since validators are</span>
+                <span class="ruby-comment cmt"># based on amino acid sequence</span>
+                <span class="ruby-identifier">$stderr</span>.<span class="ruby-identifier">puts</span> <span class="ruby-value str">'using top_per_aaseq'</span>
+                <span class="ruby-identifier">not_first_or_second_peps</span>.<span class="ruby-identifier">hash_by</span>(<span class="ruby-identifier">:aaseq</span>).<span class="ruby-identifier">values</span>.<span class="ruby-identifier">map</span> {<span class="ruby-operator">|</span><span class="ruby-identifier">pep</span><span class="ruby-operator">|</span> <span class="ruby-identifier">pep</span>.<span class="ruby-identifier">first</span> }
+              <span class="ruby-keyword kw">when</span> <span class="ruby-identifier">:top_per_aaseq_charge</span>
+                <span class="ruby-identifier">$stderr</span>.<span class="ruby-identifier">puts</span> <span class="ruby-value str">'using top_per_aaseq_charge'</span>
+                <span class="ruby-identifier">not_first_or_second_peps</span>.<span class="ruby-identifier">hash_by</span>(<span class="ruby-identifier">:aaseq</span>, <span class="ruby-identifier">:charge</span>).<span class="ruby-identifier">values</span>.<span class="ruby-identifier">map</span> {<span class="ruby-operator">|</span><span class="ruby-identifier">pep</span><span class="ruby-operator">|</span> <span class="ruby-identifier">pep</span>.<span class="ruby-identifier">first</span> }
+              <span class="ruby-keyword kw">else</span>
+                <span class="ruby-identifier">raise</span> <span class="ruby-constant">ArgumentError</span>, <span class="ruby-node">&quot;must have a valid postfilter method, yours: '#{postfilter}'&quot;</span>
+              <span class="ruby-keyword kw">end</span>
+
+            <span class="ruby-identifier">need_false_to_total_ratio</span>.<span class="ruby-identifier">each</span> <span class="ruby-keyword kw">do</span> <span class="ruby-operator">|</span><span class="ruby-identifier">val</span><span class="ruby-operator">|</span>
+              <span class="ruby-identifier">val</span>.<span class="ruby-identifier">set_false_to_total_ratio</span>( <span class="ruby-identifier">pephits</span> )
+              <span class="ruby-identifier">$stderr</span>.<span class="ruby-identifier">puts</span> <span class="ruby-node">&quot;false_to_total_ratio for #{val.class.to_s}: #{val.false_to_total_ratio}&quot;</span>
+            <span class="ruby-keyword kw">end</span>
+            <span class="ruby-keyword kw">if</span> <span class="ruby-identifier">need_frequency</span>.<span class="ruby-identifier">size</span> <span class="ruby-operator">&gt;</span> <span class="ruby-value">0</span>
+              <span class="ruby-identifier">need_frequency</span>.<span class="ruby-identifier">each</span> <span class="ruby-keyword kw">do</span> <span class="ruby-operator">|</span><span class="ruby-identifier">val</span><span class="ruby-operator">|</span>
+                <span class="ruby-identifier">$stderr</span>.<span class="ruby-identifier">puts</span> <span class="ruby-value str">&quot;Setting frequency!&quot;</span>
+                <span class="ruby-identifier">val</span>.<span class="ruby-identifier">set_frequency</span>( <span class="ruby-identifier">pephits</span> )
+              <span class="ruby-keyword kw">end</span>
+            <span class="ruby-keyword kw">end</span>
+          <span class="ruby-keyword kw">end</span>
+        <span class="ruby-keyword kw">end</span>
+
+        <span class="ruby-keyword kw">if</span> (<span class="ruby-identifier">transmem_vals</span>.<span class="ruby-identifier">size</span> <span class="ruby-operator">&gt;</span> <span class="ruby-value">0</span>)   <span class="ruby-comment cmt">#  and interactive   ## we'd like to just run this for interactive</span>
+          <span class="ruby-comment cmt"># This is overkill if we are doing a single filtering job, but it</span>
+          <span class="ruby-comment cmt"># ensures that it works in all the ways I'm doing it.  Should</span>
+          <span class="ruby-comment cmt"># refactor eventually !!</span>
+          <span class="ruby-identifier">transmem_vals</span>.<span class="ruby-identifier">each</span> <span class="ruby-keyword kw">do</span> <span class="ruby-operator">|</span><span class="ruby-identifier">val</span><span class="ruby-operator">|</span>                      <span class="ruby-comment cmt">## but, prob uses it too!</span>
+            <span class="ruby-identifier">val</span>.<span class="ruby-identifier">transmem_status_hash</span> = <span class="ruby-identifier">val</span>.<span class="ruby-identifier">create_transmem_status_hash</span>(<span class="ruby-identifier">spec_id</span>.<span class="ruby-identifier">peps</span>)
+          <span class="ruby-keyword kw">end</span>
+        <span class="ruby-keyword kw">end</span>
+        <span class="ruby-identifier">validators</span>
+
+      <span class="ruby-keyword kw">end</span></pre>
+</body>
+</html>

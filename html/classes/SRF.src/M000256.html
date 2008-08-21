@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="iso-8859-1"?>
+<!DOCTYPE html 
+     PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+     "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html>
+<head>
+  <title>to_mgf_file (SRF)</title>
+  <meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1" />
+  <link rel="stylesheet" href="../.././rdoc-style.css" type="text/css" media="screen" />
+</head>
+<body class="standalone-code">
+  <pre><span class="ruby-comment cmt"># File lib/spec_id/srf.rb, line 217</span>
+  <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">to_mgf_file</span>(<span class="ruby-identifier">filename</span>=<span class="ruby-keyword kw">nil</span>)
+    <span class="ruby-identifier">filename</span> =
+      <span class="ruby-keyword kw">if</span> <span class="ruby-identifier">filename</span> ; <span class="ruby-identifier">filename</span>
+      <span class="ruby-keyword kw">else</span>
+        <span class="ruby-identifier">base_name</span> <span class="ruby-operator">+</span> <span class="ruby-value str">'.mgf'</span>
+      <span class="ruby-keyword kw">end</span>
+    <span class="ruby-identifier">h_plus</span> = <span class="ruby-constant">SpecID</span><span class="ruby-operator">::</span><span class="ruby-constant">MONO</span>[<span class="ruby-identifier">:h_plus</span>]
+    <span class="ruby-constant">File</span>.<span class="ruby-identifier">open</span>(<span class="ruby-identifier">filename</span>, <span class="ruby-value str">'wb'</span>) <span class="ruby-keyword kw">do</span> <span class="ruby-operator">|</span><span class="ruby-identifier">out</span><span class="ruby-operator">|</span>
+      <span class="ruby-identifier">dta_files</span>.<span class="ruby-identifier">zip</span>(<span class="ruby-identifier">index</span>) <span class="ruby-keyword kw">do</span> <span class="ruby-operator">|</span><span class="ruby-identifier">dta</span>, <span class="ruby-identifier">i_ar</span><span class="ruby-operator">|</span>
+        <span class="ruby-identifier">chrg</span> = <span class="ruby-identifier">dta</span>.<span class="ruby-identifier">charge</span>
+        <span class="ruby-identifier">out</span>.<span class="ruby-identifier">puts</span> <span class="ruby-value str">'BEGIN IONS'</span>
+        <span class="ruby-identifier">out</span>.<span class="ruby-identifier">puts</span> <span class="ruby-node">&quot;TITLE=#{[base_name, *i_ar].push('dta').join('.')}&quot;</span>
+        <span class="ruby-identifier">out</span>.<span class="ruby-identifier">puts</span> <span class="ruby-node">&quot;CHARGE=#{chrg}+&quot;</span>
+        <span class="ruby-identifier">out</span>.<span class="ruby-identifier">puts</span> <span class="ruby-node">&quot;PEPMASS=#{(dta.mh+((chrg-1)*h_plus))/chrg}&quot;</span>
+        <span class="ruby-identifier">peak_ar</span> = <span class="ruby-identifier">dta</span>.<span class="ruby-identifier">peaks</span>.<span class="ruby-identifier">unpack</span>(<span class="ruby-value str">'e*'</span>)
+        (<span class="ruby-value">0</span><span class="ruby-operator">...</span>(<span class="ruby-identifier">peak_ar</span>.<span class="ruby-identifier">size</span>)).<span class="ruby-identifier">step</span>(<span class="ruby-value">2</span>) <span class="ruby-keyword kw">do</span> <span class="ruby-operator">|</span><span class="ruby-identifier">i</span><span class="ruby-operator">|</span>
+          <span class="ruby-identifier">out</span>.<span class="ruby-identifier">puts</span>( <span class="ruby-identifier">peak_ar</span>[<span class="ruby-identifier">i</span>,<span class="ruby-value">2</span>].<span class="ruby-identifier">join</span>(<span class="ruby-value str">' '</span>) )
+        <span class="ruby-keyword kw">end</span>
+        <span class="ruby-identifier">out</span>.<span class="ruby-identifier">puts</span> <span class="ruby-value str">''</span>
+        <span class="ruby-identifier">out</span>.<span class="ruby-identifier">puts</span> <span class="ruby-value str">'END IONS'</span>
+        <span class="ruby-identifier">out</span>.<span class="ruby-identifier">puts</span> <span class="ruby-value str">''</span>
+      <span class="ruby-keyword kw">end</span>
+    <span class="ruby-keyword kw">end</span>
+  <span class="ruby-keyword kw">end</span></pre>
+</body>
+</html>

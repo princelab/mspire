@@ -1,0 +1,11 @@
+--- 
+- time_to_access: 0.027046
+  scan_count: 4883
+  file_size: 13889570
+  scans_to_read: all
+  total_time_to_read_and_access: 15.15671
+  time_to_read: 15.129639
+  lazy_type: :not
+  end_time: 9001.26
+  start_time: 0.36
+  file: JNA-and-JGP-CAS-27Aug03_HUPO.mzXML

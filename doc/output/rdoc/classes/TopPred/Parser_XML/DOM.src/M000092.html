@@ -1,0 +1,65 @@
+<?xml version="1.0" encoding="iso-8859-1"?>
+<!DOCTYPE html 
+     PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+     "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html>
+<head>
+  <title>to_index (TopPred::Parser_XML::DOM)</title>
+  <meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1" />
+  <link rel="stylesheet" href="../../../.././rdoc-style.css" type="text/css" media="screen" />
+</head>
+<body class="standalone-code">
+  <pre><span class="ruby-comment cmt"># File lib/transmem/toppred.rb, line 152</span>
+  <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">to_index</span>(<span class="ruby-identifier">io</span>, <span class="ruby-identifier">index</span> = {})
+    <span class="ruby-identifier">get_root_node_from_io</span>(<span class="ruby-identifier">io</span>) <span class="ruby-keyword kw">do</span> <span class="ruby-operator">|</span><span class="ruby-identifier">toppreds_n</span><span class="ruby-operator">|</span>
+
+      <span class="ruby-identifier">abort</span> <span class="ruby-keyword kw">if</span> <span class="ruby-identifier">toppreds_n</span>.<span class="ruby-identifier">name</span> <span class="ruby-operator">!=</span> <span class="ruby-value str">'toppreds'</span>
+      <span class="ruby-identifier">toppreds_n</span>.<span class="ruby-identifier">find</span>(<span class="ruby-value str">'child::toppred'</span>).<span class="ruby-identifier">each</span> <span class="ruby-keyword kw">do</span> <span class="ruby-operator">|</span><span class="ruby-identifier">toppred_n</span><span class="ruby-operator">|</span>
+        <span class="ruby-identifier">att_hash</span> = {}
+        <span class="ruby-identifier">sequence_n</span> = <span class="ruby-identifier">toppred_n</span>.<span class="ruby-identifier">find_first</span>(<span class="ruby-value str">'child::sequence'</span>)
+        <span class="ruby-identifier">index</span>[<span class="ruby-identifier">sequence_n</span>[<span class="ruby-value str">'id'</span>]] = <span class="ruby-identifier">att_hash</span>
+        <span class="ruby-identifier">att_hash</span>[<span class="ruby-identifier">:aaseq</span>] = <span class="ruby-identifier">sequence_n</span>.<span class="ruby-identifier">content</span>.<span class="ruby-identifier">gsub</span>(<span class="ruby-regexp re">/[\s\n]/</span>,<span class="ruby-value str">''</span>)
+        <span class="ruby-identifier">abort</span> <span class="ruby-keyword kw">if</span> <span class="ruby-identifier">att_hash</span>[<span class="ruby-identifier">:aaseq</span>].<span class="ruby-identifier">size</span> <span class="ruby-operator">!=</span> <span class="ruby-identifier">sequence_n</span>[<span class="ruby-value str">'size'</span>].<span class="ruby-identifier">to_i</span>
+        <span class="ruby-identifier">tmsummary_n</span> = <span class="ruby-identifier">sequence_n</span>.<span class="ruby-identifier">find_first</span>(<span class="ruby-value str">'following-sibling::tmsummary'</span>)
+
+        <span class="ruby-identifier">num_found</span> = <span class="ruby-identifier">tmsummary_n</span>[<span class="ruby-value str">'segments'</span>].<span class="ruby-identifier">to_i</span>
+        <span class="ruby-identifier">att_hash</span>[<span class="ruby-identifier">:num_found</span>] = <span class="ruby-identifier">num_found</span>
+        <span class="ruby-keyword kw">if</span> <span class="ruby-identifier">num_found</span> <span class="ruby-operator">&gt;</span> <span class="ruby-value">0</span>
+
+          <span class="ruby-identifier">num_certain_transmembrane_segments</span> = <span class="ruby-value">0</span>
+          <span class="ruby-identifier">num_putative_transmembrane_segments</span> = <span class="ruby-value">0</span>
+          <span class="ruby-identifier">tmsummary_n</span>.<span class="ruby-identifier">find</span>(<span class="ruby-value str">'child::segment'</span>).<span class="ruby-identifier">each</span> <span class="ruby-keyword kw">do</span> <span class="ruby-operator">|</span><span class="ruby-identifier">segment_n</span><span class="ruby-operator">|</span>
+            <span class="ruby-identifier">abort</span> <span class="ruby-keyword kw">if</span> <span class="ruby-identifier">segment_n</span>.<span class="ruby-identifier">name</span> <span class="ruby-operator">!=</span> <span class="ruby-value str">'segment'</span>
+            <span class="ruby-keyword kw">case</span> <span class="ruby-identifier">segment_n</span>[<span class="ruby-value str">'type'</span>]
+            <span class="ruby-keyword kw">when</span> <span class="ruby-value str">'certain'</span>
+              <span class="ruby-identifier">num_certain_transmembrane_segments</span> <span class="ruby-operator">+=</span> <span class="ruby-value">1</span>
+            <span class="ruby-keyword kw">else</span> <span class="ruby-comment cmt"># putative</span>
+              <span class="ruby-identifier">num_putative_transmembrane_segments</span> <span class="ruby-operator">+=</span> <span class="ruby-value">1</span>
+            <span class="ruby-keyword kw">end</span>
+          <span class="ruby-keyword kw">end</span>
+          <span class="ruby-identifier">att_hash</span>[<span class="ruby-identifier">:num_putative_transmembrane_segments</span>] = <span class="ruby-identifier">num_putative_transmembrane_segments</span>
+          <span class="ruby-identifier">att_hash</span>[<span class="ruby-identifier">:num_certain_transmembrane_segments</span>] = <span class="ruby-identifier">num_certain_transmembrane_segments</span>
+
+          <span class="ruby-identifier">topologies_n</span> = <span class="ruby-identifier">tmsummary_n</span>.<span class="ruby-identifier">next</span>
+          <span class="ruby-identifier">abort</span> <span class="ruby-keyword kw">if</span> <span class="ruby-identifier">topologies_n</span>.<span class="ruby-identifier">name</span> <span class="ruby-operator">!=</span> <span class="ruby-value str">'topologies'</span>
+          <span class="ruby-comment cmt"># get the top probability topology:</span>
+          <span class="ruby-identifier">top_prob_topology_n</span> = <span class="ruby-identifier">topologies_n</span>.<span class="ruby-identifier">find</span>(<span class="ruby-value str">'child::topology'</span>).<span class="ruby-identifier">to_a</span>.<span class="ruby-identifier">max</span> {<span class="ruby-operator">|</span><span class="ruby-identifier">a</span>,<span class="ruby-identifier">b</span><span class="ruby-operator">|</span> <span class="ruby-identifier">a</span>[<span class="ruby-value str">'prob'</span>].<span class="ruby-identifier">to_f</span> <span class="ruby-operator">&lt;=&gt;</span> <span class="ruby-identifier">b</span>[<span class="ruby-value str">'prob'</span>].<span class="ruby-identifier">to_f</span> }
+          <span class="ruby-identifier">tmsegments</span> = []
+          <span class="ruby-identifier">top_prob_topology_n</span>.<span class="ruby-identifier">find</span>(<span class="ruby-value str">'child::tmsegment'</span>).<span class="ruby-identifier">each</span> <span class="ruby-keyword kw">do</span> <span class="ruby-operator">|</span><span class="ruby-identifier">tmsegment_n</span><span class="ruby-operator">|</span>
+            <span class="ruby-identifier">tmhash</span> = {}
+            <span class="ruby-identifier">tmhash</span>[<span class="ruby-identifier">:start</span>] = <span class="ruby-identifier">tmsegment_n</span>[<span class="ruby-value str">'start'</span>].<span class="ruby-identifier">to_i</span>
+            <span class="ruby-identifier">tmhash</span>[<span class="ruby-identifier">:stop</span>] = <span class="ruby-identifier">tmsegment_n</span>[<span class="ruby-value str">'stop'</span>].<span class="ruby-identifier">to_i</span>
+            <span class="ruby-comment cmt">## WARNING! it appears the probability is broken on xml output!!</span>
+            <span class="ruby-identifier">tmhash</span>[<span class="ruby-identifier">:probability</span>] = <span class="ruby-identifier">tmsegment_n</span>[<span class="ruby-value str">'prob'</span>].<span class="ruby-identifier">to_f</span>
+            <span class="ruby-identifier">tmsegments</span> <span class="ruby-operator">&lt;&lt;</span> <span class="ruby-identifier">tmhash</span>
+          <span class="ruby-keyword kw">end</span>
+          <span class="ruby-identifier">add_sequences_to_segments</span>(<span class="ruby-identifier">tmsegments</span>, <span class="ruby-identifier">att_hash</span>[<span class="ruby-identifier">:aaseq</span>])
+          <span class="ruby-identifier">att_hash</span>[<span class="ruby-identifier">:transmembrane_segments</span>] = <span class="ruby-identifier">tmsegments</span>
+        <span class="ruby-keyword kw">end</span>
+      <span class="ruby-keyword kw">end</span>
+    <span class="ruby-keyword kw">end</span>
+    <span class="ruby-identifier">index</span>
+  <span class="ruby-keyword kw">end</span></pre>
+</body>
+</html>

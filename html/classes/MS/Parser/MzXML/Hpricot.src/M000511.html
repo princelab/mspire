@@ -1,0 +1,78 @@
+<?xml version="1.0" encoding="iso-8859-1"?>
+<!DOCTYPE html 
+     PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+     "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html>
+<head>
+  <title>msrun (MS::Parser::MzXML::Hpricot)</title>
+  <meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1" />
+  <link rel="stylesheet" href="../../../../.././rdoc-style.css" type="text/css" media="screen" />
+</head>
+<body class="standalone-code">
+  <pre><span class="ruby-comment cmt"># File lib/ms/parser/mzxml/hpricot.rb, line 84</span>
+  <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">msrun</span>(<span class="ruby-identifier">file</span>, <span class="ruby-identifier">opts</span>={})
+    <span class="ruby-keyword kw">unless</span> <span class="ruby-identifier">opts</span>.<span class="ruby-identifier">key?</span>(<span class="ruby-identifier">:spectra</span>)
+      <span class="ruby-identifier">opts</span>[<span class="ruby-identifier">:spectra</span>] = <span class="ruby-keyword kw">true</span>
+    <span class="ruby-keyword kw">end</span>
+
+    <span class="ruby-identifier">msrun_obj</span> = 
+      <span class="ruby-keyword kw">if</span> <span class="ruby-identifier">x</span> = <span class="ruby-identifier">opts</span>[<span class="ruby-identifier">:msrun</span>]
+        <span class="ruby-identifier">msrun_obj</span> = <span class="ruby-identifier">x</span>
+      <span class="ruby-keyword kw">else</span>
+        <span class="ruby-constant">MS</span><span class="ruby-operator">::</span><span class="ruby-constant">MSRun</span>.<span class="ruby-identifier">new</span>
+      <span class="ruby-keyword kw">end</span>
+
+    <span class="ruby-identifier">doc</span> = <span class="ruby-constant">File</span>.<span class="ruby-identifier">open</span>(<span class="ruby-identifier">file</span>) {<span class="ruby-operator">|</span><span class="ruby-identifier">fh</span><span class="ruby-operator">|</span> <span class="ruby-operator">::</span><span class="ruby-constant">Hpricot</span>.<span class="ruby-constant">XML</span>(<span class="ruby-identifier">fh</span>) }
+      <span class="ruby-comment cmt">#if @version == '2.0'</span>
+      <span class="ruby-comment cmt">#  # may not be necessary in hpricot!</span>
+      <span class="ruby-comment cmt">#  #string = fix_bad_scan_tags(file)</span>
+      <span class="ruby-comment cmt">#  #XML::Parser.string(string).parse</span>
+      <span class="ruby-comment cmt">#else</span>
+      <span class="ruby-comment cmt">#  XML::Document.file(file)</span>
+      <span class="ruby-comment cmt">#end</span>
+    <span class="ruby-identifier">msrun_n</span> = <span class="ruby-identifier">doc</span>.<span class="ruby-identifier">at</span>(<span class="ruby-value str">'msRun'</span>)
+
+    <span class="ruby-comment cmt">## HEADER</span>
+    <span class="ruby-identifier">scan_count</span> = <span class="ruby-identifier">msrun_n</span>[<span class="ruby-value str">'scanCount'</span>].<span class="ruby-identifier">to_i</span>
+    <span class="ruby-identifier">msrun_obj</span>.<span class="ruby-identifier">scan_count</span> = <span class="ruby-identifier">scan_count</span>
+    <span class="ruby-identifier">scans_by_num</span> = <span class="ruby-constant">Array</span>.<span class="ruby-identifier">new</span>(<span class="ruby-identifier">scan_count</span> <span class="ruby-operator">+</span> <span class="ruby-value">1</span>)
+    
+    <span class="ruby-comment cmt">## SPECTRUM</span>
+    <span class="ruby-identifier">parent</span> = <span class="ruby-keyword kw">nil</span>
+    <span class="ruby-identifier">scans</span> = <span class="ruby-constant">Array</span>.<span class="ruby-identifier">new</span>( <span class="ruby-identifier">scan_count</span> )
+    <span class="ruby-identifier">scn_index</span> = <span class="ruby-value">0</span>
+
+    <span class="ruby-comment cmt"># we should be able to do this, but it's not working!!!</span>
+    <span class="ruby-comment cmt">#scan_n = msrun_n.find_first('scan')</span>
+    <span class="ruby-comment cmt">#while (scn_index &lt; scan_count)</span>
+    <span class="ruby-identifier">get_spectra</span> = <span class="ruby-identifier">opts</span>[<span class="ruby-identifier">:spectra</span>]
+
+    <span class="ruby-identifier">msrun_n</span>.<span class="ruby-identifier">each_child</span> <span class="ruby-keyword kw">do</span> <span class="ruby-operator">|</span><span class="ruby-identifier">scan_n</span><span class="ruby-operator">|</span>
+      <span class="ruby-identifier">p</span> <span class="ruby-identifier">scan_n</span> 
+      <span class="ruby-identifier">abort</span>
+
+      <span class="ruby-keyword kw">next</span> <span class="ruby-keyword kw">unless</span> <span class="ruby-identifier">scan_n</span>.<span class="ruby-identifier">name</span> <span class="ruby-operator">==</span> <span class="ruby-value str">'scan'</span>
+      <span class="ruby-identifier">scan</span> = <span class="ruby-identifier">create_scan</span>(<span class="ruby-identifier">scan_n</span>, <span class="ruby-identifier">scans_by_num</span>, <span class="ruby-identifier">get_spectra</span>)
+      <span class="ruby-identifier">scans</span>[<span class="ruby-identifier">scn_index</span>] = <span class="ruby-identifier">scan</span>
+      <span class="ruby-identifier">sc</span> = <span class="ruby-identifier">scan_n</span>.<span class="ruby-identifier">next</span>
+      <span class="ruby-identifier">scans_by_num</span>[<span class="ruby-identifier">scan</span>[<span class="ruby-value">0</span>]] = <span class="ruby-identifier">scan</span> 
+      <span class="ruby-identifier">scn_index</span> <span class="ruby-operator">+=</span> <span class="ruby-value">1</span>
+    <span class="ruby-keyword kw">end</span>
+
+
+    <span class="ruby-comment cmt">## update the scan's parents</span>
+    <span class="ruby-constant">MS</span><span class="ruby-operator">::</span><span class="ruby-constant">MSRun</span>.<span class="ruby-identifier">add_parent_scan</span>(<span class="ruby-identifier">scans</span>)
+
+    <span class="ruby-comment cmt"># note that startTime and endTime are optional AND in &gt;2.2 are dateTime</span>
+    <span class="ruby-comment cmt"># instead of duration types!, so we will just use scan times...</span>
+    <span class="ruby-comment cmt"># Also, note that startTime and endTime are BROKEN on readw -&gt; mzXML 2.0</span>
+    <span class="ruby-comment cmt"># export.  They give the start and end time in seconds, but they are</span>
+    <span class="ruby-comment cmt"># really minutes.  All the more reason to use the first and last scans!</span>
+    <span class="ruby-identifier">msrun_obj</span>.<span class="ruby-identifier">start_time</span> = <span class="ruby-identifier">scans</span>.<span class="ruby-identifier">first</span>.<span class="ruby-identifier">time</span>
+    <span class="ruby-identifier">msrun_obj</span>.<span class="ruby-identifier">end_time</span> = <span class="ruby-identifier">scans</span>.<span class="ruby-identifier">last</span>.<span class="ruby-identifier">time</span>
+
+    <span class="ruby-identifier">msrun_obj</span>.<span class="ruby-identifier">scans</span> = <span class="ruby-identifier">scans</span>
+  <span class="ruby-keyword kw">end</span></pre>
+</body>
+</html>

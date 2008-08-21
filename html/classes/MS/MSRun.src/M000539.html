@@ -1,0 +1,72 @@
+<?xml version="1.0" encoding="iso-8859-1"?>
+<!DOCTYPE html 
+     PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+     "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html>
+<head>
+  <title>start_and_end_mz (MS::MSRun)</title>
+  <meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1" />
+  <link rel="stylesheet" href="../../.././rdoc-style.css" type="text/css" media="screen" />
+</head>
+<body class="standalone-code">
+  <pre><span class="ruby-comment cmt"># File lib/ms/msrun.rb, line 109</span>
+  <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">start_and_end_mz</span>(<span class="ruby-identifier">mslevel</span>=<span class="ruby-value">1</span>)
+    <span class="ruby-keyword kw">if</span> <span class="ruby-identifier">mslevel</span> <span class="ruby-operator">==</span> <span class="ruby-value">1</span>
+      <span class="ruby-comment cmt"># special case for mslevel 1 (where we expect scans to be same length)</span>
+      <span class="ruby-identifier">scans</span>.<span class="ruby-identifier">each</span> <span class="ruby-keyword kw">do</span> <span class="ruby-operator">|</span><span class="ruby-identifier">sc</span><span class="ruby-operator">|</span>
+        <span class="ruby-keyword kw">if</span> <span class="ruby-identifier">sc</span>.<span class="ruby-identifier">ms_level</span> <span class="ruby-operator">==</span> <span class="ruby-identifier">mslevel</span>
+          <span class="ruby-keyword kw">if</span> <span class="ruby-identifier">sc</span>.<span class="ruby-identifier">start_mz</span> <span class="ruby-operator">&amp;&amp;</span> <span class="ruby-identifier">sc</span>.<span class="ruby-identifier">end_mz</span>
+            <span class="ruby-keyword kw">return</span> [<span class="ruby-identifier">sc</span>.<span class="ruby-identifier">start_mz</span>, <span class="ruby-identifier">sc</span>.<span class="ruby-identifier">end_mz</span>]
+          <span class="ruby-keyword kw">end</span>
+          <span class="ruby-keyword kw">break</span>
+        <span class="ruby-keyword kw">end</span>
+      <span class="ruby-keyword kw">end</span>
+    <span class="ruby-keyword kw">end</span>
+    <span class="ruby-identifier">hi_mz</span> = <span class="ruby-keyword kw">nil</span>
+    <span class="ruby-identifier">lo_mz</span> = <span class="ruby-keyword kw">nil</span>
+    <span class="ruby-comment cmt"># see if we have start_mz and end_mz for the level we want</span>
+    <span class="ruby-comment cmt"># set the initial hi_mz and lo_mz in any case</span>
+    <span class="ruby-identifier">have_start_end_mz</span> = <span class="ruby-keyword kw">false</span>
+    <span class="ruby-identifier">scans</span>.<span class="ruby-identifier">each</span> <span class="ruby-keyword kw">do</span> <span class="ruby-operator">|</span><span class="ruby-identifier">sc</span><span class="ruby-operator">|</span>
+      <span class="ruby-keyword kw">if</span> <span class="ruby-identifier">sc</span>.<span class="ruby-identifier">ms_level</span> <span class="ruby-operator">==</span> <span class="ruby-identifier">mslevel</span>
+        <span class="ruby-keyword kw">if</span> <span class="ruby-identifier">sc</span>.<span class="ruby-identifier">start_mz</span> <span class="ruby-operator">&amp;&amp;</span> <span class="ruby-identifier">sc</span>.<span class="ruby-identifier">end_mz</span>
+          <span class="ruby-identifier">lo_mz</span> = <span class="ruby-identifier">sc</span>.<span class="ruby-identifier">start_mz</span>
+          <span class="ruby-identifier">hi_mz</span> = <span class="ruby-identifier">sc</span>.<span class="ruby-identifier">end_mz</span>
+        <span class="ruby-keyword kw">else</span>
+          <span class="ruby-identifier">mz_ar</span> = <span class="ruby-identifier">sc</span>.<span class="ruby-identifier">spectrum</span>.<span class="ruby-identifier">mzs</span>
+          <span class="ruby-identifier">hi_mz</span> = <span class="ruby-identifier">mz_ar</span>.<span class="ruby-identifier">last</span>
+          <span class="ruby-identifier">lo_mz</span> = <span class="ruby-identifier">mz_ar</span>.<span class="ruby-identifier">first</span>
+        <span class="ruby-keyword kw">end</span>
+        <span class="ruby-keyword kw">break</span>
+      <span class="ruby-keyword kw">end</span>
+    <span class="ruby-keyword kw">end</span>
+    <span class="ruby-keyword kw">if</span> <span class="ruby-identifier">have_start_end_mz</span>
+      <span class="ruby-identifier">scans</span>.<span class="ruby-identifier">each</span> <span class="ruby-keyword kw">do</span> <span class="ruby-operator">|</span><span class="ruby-identifier">sc</span><span class="ruby-operator">|</span>
+        <span class="ruby-keyword kw">if</span> <span class="ruby-identifier">sc</span>.<span class="ruby-identifier">ms_level</span> <span class="ruby-operator">==</span> <span class="ruby-identifier">mslevel</span>
+          <span class="ruby-keyword kw">if</span> <span class="ruby-identifier">sc</span>.<span class="ruby-identifier">start_mz</span> <span class="ruby-operator">&lt;</span> <span class="ruby-identifier">lo_mz</span>
+            <span class="ruby-identifier">lo_mz</span> = <span class="ruby-identifier">sc</span>.<span class="ruby-identifier">start_mz</span>
+          <span class="ruby-keyword kw">end</span>
+          <span class="ruby-keyword kw">if</span> <span class="ruby-identifier">sc</span>.<span class="ruby-identifier">end_mz</span> <span class="ruby-operator">&gt;</span> <span class="ruby-identifier">hi_mz</span>
+            <span class="ruby-identifier">hi_mz</span> = <span class="ruby-identifier">sc</span>.<span class="ruby-identifier">end_mz</span>
+          <span class="ruby-keyword kw">end</span>
+        <span class="ruby-keyword kw">end</span>
+      <span class="ruby-keyword kw">end</span>
+    <span class="ruby-keyword kw">else</span>
+      <span class="ruby-comment cmt"># didn't have the attributes (find by brute force)</span>
+      <span class="ruby-identifier">scans</span>.<span class="ruby-identifier">each</span> <span class="ruby-keyword kw">do</span> <span class="ruby-operator">|</span><span class="ruby-identifier">sc</span><span class="ruby-operator">|</span>
+        <span class="ruby-keyword kw">if</span> <span class="ruby-identifier">sc</span>.<span class="ruby-identifier">ms_level</span> <span class="ruby-operator">==</span> <span class="ruby-identifier">mslevel</span>
+          <span class="ruby-identifier">mz_ar</span> = <span class="ruby-identifier">sc</span>.<span class="ruby-identifier">spectrum</span>.<span class="ruby-identifier">mzs</span>
+          <span class="ruby-keyword kw">if</span> <span class="ruby-identifier">mz_ar</span>.<span class="ruby-identifier">last</span> <span class="ruby-operator">&gt;</span> <span class="ruby-identifier">hi_mz</span>
+            <span class="ruby-identifier">hi_mz</span> = <span class="ruby-identifier">mz_ar</span>.<span class="ruby-identifier">last</span>
+          <span class="ruby-keyword kw">end</span>
+          <span class="ruby-keyword kw">if</span> <span class="ruby-identifier">mz_ar</span>.<span class="ruby-identifier">last</span> <span class="ruby-operator">&lt;</span> <span class="ruby-identifier">lo_mz</span>
+            <span class="ruby-identifier">lo_mz</span> = <span class="ruby-identifier">mz_ar</span>.<span class="ruby-identifier">last</span>
+          <span class="ruby-keyword kw">end</span>
+        <span class="ruby-keyword kw">end</span>
+      <span class="ruby-keyword kw">end</span>
+    <span class="ruby-keyword kw">end</span>
+    [<span class="ruby-identifier">lo_mz</span>.<span class="ruby-identifier">floor</span>, <span class="ruby-identifier">hi_mz</span>.<span class="ruby-identifier">ceil</span>]
+  <span class="ruby-keyword kw">end</span></pre>
+</body>
+</html>

@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="iso-8859-1"?>
+<!DOCTYPE html 
+     PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+     "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html>
+<head>
+  <title>num_overlapping_chars (TransmemIndex)</title>
+  <meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1" />
+  <link rel="stylesheet" href="../.././rdoc-style.css" type="text/css" media="screen" />
+</head>
+<body class="standalone-code">
+  <pre><span class="ruby-comment cmt"># File lib/transmem.rb, line 109</span>
+  <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">num_overlapping_chars</span>(<span class="ruby-identifier">full_sequence</span>, <span class="ruby-identifier">ranges</span>, <span class="ruby-identifier">substring</span>)
+    <span class="ruby-comment cmt">#start_positions = aaseq.enum_for(:scan, substring).map { $~.offset(0)[0]}</span>
+    <span class="ruby-keyword kw">if</span> <span class="ruby-identifier">ranges</span>.<span class="ruby-identifier">size</span> <span class="ruby-operator">==</span> <span class="ruby-value">0</span>
+      []
+      <span class="ruby-comment cmt">#full_sequence.enum_for(:scan, substring).map { 0 }</span>
+    <span class="ruby-keyword kw">else</span>
+      <span class="ruby-identifier">substring_ranges</span> = []
+      <span class="ruby-identifier">pos</span> = <span class="ruby-value">0</span>
+      <span class="ruby-identifier">slen</span> = <span class="ruby-identifier">substring</span>.<span class="ruby-identifier">size</span>
+      <span class="ruby-keyword kw">while</span> <span class="ruby-identifier">i</span>=<span class="ruby-identifier">full_sequence</span>.<span class="ruby-identifier">index</span>(<span class="ruby-identifier">substring</span>,<span class="ruby-identifier">pos</span>)
+        <span class="ruby-identifier">substring_ranges</span> <span class="ruby-operator">&lt;&lt;</span> <span class="ruby-constant">Range</span>.<span class="ruby-identifier">new</span>(<span class="ruby-identifier">i</span>, <span class="ruby-identifier">i</span><span class="ruby-operator">+</span><span class="ruby-identifier">slen</span><span class="ruby-operator">-</span><span class="ruby-value">1</span>)
+        <span class="ruby-identifier">pos</span> = <span class="ruby-identifier">i</span> <span class="ruby-operator">+</span> <span class="ruby-identifier">slen</span>
+      <span class="ruby-keyword kw">end</span>
+      <span class="ruby-comment cmt"># brute force way</span>
+      <span class="ruby-identifier">last_tm_range</span> = <span class="ruby-identifier">ranges</span>.<span class="ruby-identifier">last</span>.<span class="ruby-identifier">last</span>
+      <span class="ruby-identifier">to_return</span> = <span class="ruby-identifier">substring_ranges</span>.<span class="ruby-identifier">map</span> <span class="ruby-keyword kw">do</span> <span class="ruby-operator">|</span><span class="ruby-identifier">sb</span><span class="ruby-operator">|</span>
+        <span class="ruby-identifier">overlap</span> = <span class="ruby-value">0</span>
+        <span class="ruby-comment cmt"># there's got to be a much simpler way to do this, but this does work...</span>
+        <span class="ruby-identifier">ranges</span>.<span class="ruby-identifier">each</span> <span class="ruby-keyword kw">do</span> <span class="ruby-operator">|</span><span class="ruby-identifier">tm</span><span class="ruby-operator">|</span>
+          (<span class="ruby-identifier">frst</span>, <span class="ruby-identifier">lst</span>) = 
+            <span class="ruby-keyword kw">if</span> <span class="ruby-identifier">tm</span>.<span class="ruby-identifier">include?</span>( <span class="ruby-identifier">sb</span>.<span class="ruby-identifier">first</span> )
+              [<span class="ruby-identifier">tm</span>, <span class="ruby-identifier">sb</span>]
+            <span class="ruby-keyword kw">elsif</span> <span class="ruby-identifier">tm</span>.<span class="ruby-identifier">include?</span>( <span class="ruby-identifier">sb</span>.<span class="ruby-identifier">last</span> )
+              [<span class="ruby-identifier">sb</span>, <span class="ruby-identifier">tm</span>]
+            <span class="ruby-keyword kw">else</span>
+              <span class="ruby-keyword kw">nil</span>
+            <span class="ruby-keyword kw">end</span>
+          <span class="ruby-keyword kw">if</span> <span class="ruby-identifier">frst</span>
+            <span class="ruby-keyword kw">if</span> <span class="ruby-identifier">lst</span>.<span class="ruby-identifier">last</span> <span class="ruby-operator">&lt;=</span> <span class="ruby-identifier">frst</span>.<span class="ruby-identifier">last</span>
+              <span class="ruby-identifier">overlap</span> <span class="ruby-operator">+=</span> (<span class="ruby-identifier">frst</span>.<span class="ruby-identifier">last</span><span class="ruby-operator">+</span><span class="ruby-value">1</span> <span class="ruby-operator">-</span> <span class="ruby-identifier">frst</span>.<span class="ruby-identifier">first</span>) <span class="ruby-operator">-</span> (<span class="ruby-identifier">lst</span>.<span class="ruby-identifier">first</span> <span class="ruby-operator">-</span> <span class="ruby-identifier">frst</span>.<span class="ruby-identifier">first</span>) <span class="ruby-operator">-</span> (<span class="ruby-identifier">frst</span>.<span class="ruby-identifier">last</span> <span class="ruby-operator">-</span> <span class="ruby-identifier">lst</span>.<span class="ruby-identifier">last</span>)
+            <span class="ruby-keyword kw">else</span> 
+              <span class="ruby-identifier">overlap</span> <span class="ruby-operator">+=</span> (<span class="ruby-identifier">frst</span>.<span class="ruby-identifier">last</span><span class="ruby-operator">+</span><span class="ruby-value">1</span> <span class="ruby-operator">-</span> <span class="ruby-identifier">frst</span>.<span class="ruby-identifier">first</span>) <span class="ruby-operator">-</span> (<span class="ruby-identifier">lst</span>.<span class="ruby-identifier">first</span> <span class="ruby-operator">-</span> <span class="ruby-identifier">frst</span>.<span class="ruby-identifier">first</span>)
+            <span class="ruby-keyword kw">end</span>
+          <span class="ruby-keyword kw">end</span>
+        <span class="ruby-keyword kw">end</span>
+        <span class="ruby-identifier">overlap</span>
+      <span class="ruby-keyword kw">end</span>
+    <span class="ruby-keyword kw">end</span>
+  <span class="ruby-keyword kw">end</span></pre>
+</body>
+</html>

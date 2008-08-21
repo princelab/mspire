@@ -1,0 +1,187 @@
+--- 
+- time_to_access: 0.158465
+  scan_count: 1436
+  file_size: 8541155
+  scans_to_read: all
+  total_time_to_read_and_access: 12.232608
+  time_to_read: 12.07412
+  lazy_type: :string
+  end_time: 1800.63
+  start_time: 0.47
+  file: 03121604.mzXML
+--- 
+- time_to_access: 0.157198
+  scan_count: 1430
+  file_size: 8583076
+  scans_to_read: all
+  total_time_to_read_and_access: 11.922195
+  time_to_read: 11.764972
+  lazy_type: :string
+  end_time: 1801.56
+  start_time: 0.41
+  file: 03121621.mzXML
+--- 
+- time_to_access: 0.130693
+  scan_count: 1391
+  file_size: 6800239
+  scans_to_read: all
+  total_time_to_read_and_access: 10.178255
+  time_to_read: 10.047537
+  lazy_type: :string
+  end_time: 1799.58
+  start_time: 0.32
+  file: 03121115.mzXML
+--- 
+- time_to_access: 1.194189
+  scan_count: 1396
+  file_size: 6862422
+  scans_to_read: all
+  total_time_to_read_and_access: 10.108587
+  time_to_read: 8.914371
+  lazy_type: :string
+  end_time: 1799.61
+  start_time: 0.4
+  file: 03121110.mzXML
+--- 
+- time_to_access: 0.129781
+  scan_count: 1392
+  file_size: 6742058
+  scans_to_read: all
+  total_time_to_read_and_access: 9.09495
+  time_to_read: 8.965145
+  lazy_type: :string
+  end_time: 1800.51
+  start_time: 0.48
+  file: 03121141.mzXML
+--- 
+- time_to_access: 0.123845
+  scan_count: 1393
+  file_size: 6581475
+  scans_to_read: all
+  total_time_to_read_and_access: 8.767212
+  time_to_read: 8.643344
+  lazy_type: :string
+  end_time: 1800.38
+  start_time: 0.54
+  file: 03121102.mzXML
+--- 
+- time_to_access: 1.20584
+  scan_count: 1432
+  file_size: 8473100
+  scans_to_read: all
+  total_time_to_read_and_access: 12.890695
+  time_to_read: 11.68483
+  lazy_type: :string
+  end_time: 1799.37
+  start_time: 0.29
+  file: 03121610.mzXML
+--- 
+- time_to_access: 1.289305
+  scan_count: 1432
+  file_size: 8564242
+  scans_to_read: all
+  total_time_to_read_and_access: 11.931591
+  time_to_read: 10.642262
+  lazy_type: :string
+  end_time: 1800.21
+  start_time: 0.37
+  file: 03121634.mzXML
+--- 
+- time_to_access: 1.394995
+  scan_count: 1420
+  file_size: 8429465
+  scans_to_read: all
+  total_time_to_read_and_access: 11.763702
+  time_to_read: 10.368682
+  lazy_type: :string
+  end_time: 1800.96
+  start_time: 0.22
+  file: 03121609.mzXML
+--- 
+- time_to_access: 0.157779
+  scan_count: 1430
+  file_size: 8507351
+  scans_to_read: all
+  total_time_to_read_and_access: 11.817422
+  time_to_read: 11.659618
+  lazy_type: :string
+  end_time: 1801.53
+  start_time: 0.37
+  file: 03121611.mzXML
+--- 
+- time_to_access: 1.277313
+  scan_count: 1383
+  file_size: 6809077
+  scans_to_read: all
+  total_time_to_read_and_access: 10.059681
+  time_to_read: 8.782344
+  lazy_type: :string
+  end_time: 1799.84
+  start_time: 0.36
+  file: 03121113.mzXML
+--- 
+- time_to_access: 0.126089
+  scan_count: 1398
+  file_size: 6604079
+  scans_to_read: all
+  total_time_to_read_and_access: 8.882802
+  time_to_read: 8.756687
+  lazy_type: :string
+  end_time: 1799.84
+  start_time: 0.2
+  file: 03121108.mzXML
+--- 
+- time_to_access: 1.379588
+  scan_count: 1371
+  file_size: 7490894
+  scans_to_read: all
+  total_time_to_read_and_access: 10.881255
+  time_to_read: 9.501643
+  lazy_type: :string
+  end_time: 1801.36
+  start_time: 0.26
+  file: 03121111.mzXML
+--- 
+- time_to_access: 0.126493
+  scan_count: 1373
+  file_size: 6829374
+  scans_to_read: all
+  total_time_to_read_and_access: 8.968063
+  time_to_read: 8.841546
+  lazy_type: :string
+  end_time: 1800.68
+  start_time: 0.35
+  file: 03121122.mzXML
+--- 
+- time_to_access: 1.221378
+  scan_count: 1428
+  file_size: 8479842
+  scans_to_read: all
+  total_time_to_read_and_access: 12.875441
+  time_to_read: 11.654037
+  lazy_type: :string
+  end_time: 1800.74
+  start_time: 0.12
+  file: 03121614.mzXML
+--- 
+- time_to_access: 0.129122
+  scan_count: 1397
+  file_size: 6756348
+  scans_to_read: all
+  total_time_to_read_and_access: 9.055161
+  time_to_read: 8.926017
+  lazy_type: :string
+  end_time: 1799.62
+  start_time: 0.13
+  file: 03121138.mzXML
+--- 
+- time_to_access: 0.157316
+  scan_count: 1436
+  file_size: 8563586
+  scans_to_read: all
+  total_time_to_read_and_access: 11.967751
+  time_to_read: 11.810411
+  lazy_type: :string
+  end_time: 1801.59
+  start_time: 0.42
+  file: 03121633.mzXML

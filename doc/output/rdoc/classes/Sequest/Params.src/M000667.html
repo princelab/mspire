@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="iso-8859-1"?>
+<!DOCTYPE html 
+     PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+     "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html>
+<head>
+  <title>mass_table (Sequest::Params)</title>
+  <meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1" />
+  <link rel="stylesheet" href="../../.././rdoc-style.css" type="text/css" media="screen" />
+</head>
+<body class="standalone-code">
+  <pre><span class="ruby-comment cmt"># File lib/spec_id/sequest/params.rb, line 209</span>
+  <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">mass_table</span>
+    <span class="ruby-keyword kw">case</span> <span class="ruby-identifier">precursor_mass_type</span>
+    <span class="ruby-keyword kw">when</span> <span class="ruby-value str">'average'</span>
+      <span class="ruby-constant">SpecID</span><span class="ruby-operator">::</span><span class="ruby-constant">AVG</span>
+    <span class="ruby-keyword kw">when</span> <span class="ruby-value str">'monoisotopic'</span>
+      <span class="ruby-constant">SpecID</span><span class="ruby-operator">::</span><span class="ruby-constant">MONO</span>
+    <span class="ruby-keyword kw">end</span>
+  <span class="ruby-keyword kw">end</span></pre>
+</body>
+</html>

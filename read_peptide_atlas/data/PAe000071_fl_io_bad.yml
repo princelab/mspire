@@ -1,0 +1,1242 @@
+--- 
+- time_to_access: 0.007532
+  first_scan: 
+    last_peak: 
+    - 1721.2880859375
+    - 6113.0
+    num: 1
+    first_peak: 
+    - 400.643310546875
+    - 147159.0
+  scan_count: 5724
+  file_size: 29580288
+  last_scan: 
+    last_peak: 
+    - 1908.44604492188
+    - 1252.0
+    num: 5724
+    first_peak: 
+    - 558.9873046875
+    - 1391.0
+  scans_to_read: fl
+  total_time_to_read_and_access: 3.319664
+  time_to_read: 3.312115
+  lazy_type: :io_bad
+  end_time: 7504.73
+  start_time: 300.04
+  file: b1-CIT_glyco_lcq_07_1.mzXML
+--- 
+- time_to_access: 0.007753
+  first_scan: 
+    last_peak: 
+    - 1489.8056640625
+    - 3013.0
+    num: 1
+    first_peak: 
+    - 400.234985351562
+    - 30700.0
+  scan_count: 5818
+  file_size: 30214404
+  last_scan: 
+    last_peak: 
+    - 1541.44677734375
+    - 1317.0
+    num: 5818
+    first_peak: 
+    - 518.22607421875
+    - 3387.0
+  scans_to_read: fl
+  total_time_to_read_and_access: 3.784528
+  time_to_read: 3.776759
+  lazy_type: :io_bad
+  end_time: 7498.5
+  start_time: 300.06
+  file: b1-CIT_glyco_lcq_08_1.mzXML
+--- 
+- time_to_access: 0.030142
+  first_scan: 
+    last_peak: 
+    - 1709.95556640625
+    - 3020.0
+    num: 1
+    first_peak: 
+    - 400.413330078125
+    - 39727.0
+  scan_count: 5644
+  file_size: 36424019
+  last_scan: 
+    last_peak: 
+    - 1797.34423828125
+    - 13253.0
+    num: 5644
+    first_peak: 
+    - 400.471862792969
+    - 67639.0
+  scans_to_read: fl
+  total_time_to_read_and_access: 4.129891
+  time_to_read: 4.099733
+  lazy_type: :io_bad
+  end_time: 7498.44
+  start_time: 300.02
+  file: b1-CIT_glyco_lcq_09_1.mzXML
+--- 
+- time_to_access: 0.031191
+  first_scan: 
+    last_peak: 
+    - 1701.82397460938
+    - 1685.0
+    num: 1
+    first_peak: 
+    - 400.636291503906
+    - 77731.0
+  scan_count: 5693
+  file_size: 35417333
+  last_scan: 
+    last_peak: 
+    - 1798.89990234375
+    - 4035.0
+    num: 5693
+    first_peak: 
+    - 400.413452148438
+    - 68743.0
+  scans_to_read: fl
+  total_time_to_read_and_access: 3.816737
+  time_to_read: 3.785528
+  lazy_type: :io_bad
+  end_time: 7499.25
+  start_time: 300.04
+  file: b1-CIT_glyco_lcq_10_1.mzXML
+--- 
+- time_to_access: 0.030675
+  first_scan: 
+    last_peak: 
+    - 1638.2412109375
+    - 4168.0
+    num: 1
+    first_peak: 
+    - 400.562805175781
+    - 61786.0
+  scan_count: 5717
+  file_size: 34931157
+  last_scan: 
+    last_peak: 
+    - 1795.63818359375
+    - 1877.0
+    num: 5717
+    first_peak: 
+    - 400.133728027344
+    - 30761.0
+  scans_to_read: fl
+  total_time_to_read_and_access: 3.7517
+  time_to_read: 3.721007
+  lazy_type: :io_bad
+  end_time: 7498.85
+  start_time: 300.08
+  file: b1-CIT_glyco_lcq_11_1.mzXML
+--- 
+- time_to_access: 0.084672
+  first_scan: 
+    last_peak: 
+    - 1651.87622070312
+    - 514.0
+    num: 1
+    first_peak: 
+    - 400.612060546875
+    - 80850.0
+  scan_count: 5743
+  file_size: 34313547
+  last_scan: 
+    last_peak: 
+    - 1794.25268554688
+    - 11059.0
+    num: 5743
+    first_peak: 
+    - 400.640075683594
+    - 119178.0
+  scans_to_read: fl
+  total_time_to_read_and_access: 3.909565
+  time_to_read: 3.824875
+  lazy_type: :io_bad
+  end_time: 7498.75
+  start_time: 300.03
+  file: b1-CIT_glyco_lcq_12_1.mzXML
+--- 
+- time_to_access: 0.001192
+  first_scan: 
+    last_peak: 
+    - 0.0
+    - 0.0
+    num: 1
+    first_peak: 
+    - 0.0
+    - 0.0
+  scan_count: 6025
+  file_size: 29199635
+  last_scan: 
+    last_peak: 
+    - 1770.34008789062
+    - 8879.0
+    num: 6025
+    first_peak: 
+    - 350.103576660156
+    - 1185.0
+  scans_to_read: fl
+  total_time_to_read_and_access: 3.287159
+  time_to_read: 3.28595
+  lazy_type: :io_bad
+  end_time: 7500.8
+  start_time: 300.07
+  file: b1-CIT_glyco_lcq_13_1.mzXML
+--- 
+- time_to_access: 0.054409
+  first_scan: 
+    last_peak: 
+    - 1797.71020507812
+    - 22143.0
+    num: 1
+    first_peak: 
+    - 400.683837890625
+    - 834857.0
+  scan_count: 5910
+  file_size: 35686714
+  last_scan: 
+    last_peak: 
+    - 1798.30932617188
+    - 27314.0
+    num: 5910
+    first_peak: 
+    - 400.582092285156
+    - 141155.0
+  scans_to_read: fl
+  total_time_to_read_and_access: 4.156549
+  time_to_read: 4.102125
+  lazy_type: :io_bad
+  end_time: 7499.19
+  start_time: 300.06
+  file: b1-CIT_glyco_lcq_13_2.mzXML
+--- 
+- time_to_access: 0.034569
+  first_scan: 
+    last_peak: 
+    - 1797.4296875
+    - 195583.0
+    num: 1
+    first_peak: 
+    - 401.30126953125
+    - 737179.0
+  scan_count: 5872
+  file_size: 34927610
+  last_scan: 
+    last_peak: 
+    - 1736.3251953125
+    - 36715.0
+    num: 5872
+    first_peak: 
+    - 400.558837890625
+    - 117002.0
+  scans_to_read: fl
+  total_time_to_read_and_access: 3.993421
+  time_to_read: 3.958836
+  lazy_type: :io_bad
+  end_time: 7499.45
+  start_time: 300.07
+  file: b1-CIT_glyco_lcq_14_1.mzXML
+--- 
+- time_to_access: 0.001384
+  first_scan: 
+    last_peak: 
+    - 889.741333007812
+    - 2736.0
+    num: 1
+    first_peak: 
+    - 444.654846191406
+    - 5201.0
+  scan_count: 5895
+  file_size: 35658906
+  last_scan: 
+    last_peak: 
+    - 1726.8837890625
+    - 11346.0
+    num: 5895
+    first_peak: 
+    - 439.130859375
+    - 7884.0
+  scans_to_read: fl
+  total_time_to_read_and_access: 3.875849
+  time_to_read: 3.874448
+  lazy_type: :io_bad
+  end_time: 7499.06
+  start_time: 300.03
+  file: b1-CIT_glyco_lcq_15_1.mzXML
+--- 
+- time_to_access: 0.027544
+  first_scan: 
+    last_peak: 
+    - 1621.6708984375
+    - 2857.0
+    num: 1
+    first_peak: 
+    - 400.426635742188
+    - 59497.0
+  scan_count: 5769
+  file_size: 33049073
+  last_scan: 
+    last_peak: 
+    - 1836.603515625
+    - 2243.0
+    num: 5769
+    first_peak: 
+    - 965.14599609375
+    - 1607.0
+  scans_to_read: fl
+  total_time_to_read_and_access: 3.690265
+  time_to_read: 3.662704
+  lazy_type: :io_bad
+  end_time: 7500.04
+  start_time: 300.05
+  file: b1-CIT_glyco_lcq_16_1.mzXML
+--- 
+- time_to_access: 0.008064
+  first_scan: 
+    last_peak: 
+    - 1689.95434570312
+    - 2402.0
+    num: 1
+    first_peak: 
+    - 400.509704589844
+    - 94824.0
+  scan_count: 5602
+  file_size: 34443237
+  last_scan: 
+    last_peak: 
+    - 1787.45336914062
+    - 1443.0
+    num: 5602
+    first_peak: 
+    - 1285.6201171875
+    - 1765.0
+  scans_to_read: fl
+  total_time_to_read_and_access: 3.278037
+  time_to_read: 3.269957
+  lazy_type: :io_bad
+  end_time: 7503.98
+  start_time: 300.1
+  file: b1-CIT_glyco_lcq_17_1.mzXML
+--- 
+- time_to_access: 0.007913
+  first_scan: 
+    last_peak: 
+    - 1483.73217773438
+    - 3565.0
+    num: 1
+    first_peak: 
+    - 400.52392578125
+    - 59340.0
+  scan_count: 5698
+  file_size: 35263104
+  last_scan: 
+    last_peak: 
+    - 521.22705078125
+    - 5728.0
+    num: 5698
+    first_peak: 
+    - 191.251678466797
+    - 8569.0
+  scans_to_read: fl
+  total_time_to_read_and_access: 3.771496
+  time_to_read: 3.763567
+  lazy_type: :io_bad
+  end_time: 7504.84
+  start_time: 300.1
+  file: b1-CIT_glyco_lcq_18_1.mzXML
+--- 
+- time_to_access: 0.007191
+  first_scan: 
+    last_peak: 
+    - 1575.68725585938
+    - 6801.0
+    num: 1
+    first_peak: 
+    - 400.399536132812
+    - 51031.0
+  scan_count: 5645
+  file_size: 35190946
+  last_scan: 
+    last_peak: 
+    - 462.300598144531
+    - 3465.0
+    num: 5645
+    first_peak: 
+    - 462.300598144531
+    - 3465.0
+  scans_to_read: fl
+  total_time_to_read_and_access: 3.639723
+  time_to_read: 3.632516
+  lazy_type: :io_bad
+  end_time: 7504.95
+  start_time: 300.07
+  file: b1-CIT_glyco_lcq_19_1.mzXML
+--- 
+- time_to_access: 0.032503
+  first_scan: 
+    last_peak: 
+    - 1521.74438476562
+    - 7296.0
+    num: 1
+    first_peak: 
+    - 400.269714355469
+    - 42763.0
+  scan_count: 5689
+  file_size: 35732661
+  last_scan: 
+    last_peak: 
+    - 1799.65625
+    - 118270.0
+    num: 5689
+    first_peak: 
+    - 400.448608398438
+    - 111788.0
+  scans_to_read: fl
+  total_time_to_read_and_access: 3.759465
+  time_to_read: 3.726945
+  lazy_type: :io_bad
+  end_time: 7499.07
+  start_time: 300.07
+  file: b1-CIT_glyco_lcq_20_1.mzXML
+--- 
+- time_to_access: 0.031966
+  first_scan: 
+    last_peak: 
+    - 1513.63818359375
+    - 2586.0
+    num: 1
+    first_peak: 
+    - 400.479736328125
+    - 110211.0
+  scan_count: 5767
+  file_size: 35916564
+  last_scan: 
+    last_peak: 
+    - 1795.52099609375
+    - 11289.0
+    num: 5767
+    first_peak: 
+    - 400.65869140625
+    - 236184.0
+  scans_to_read: fl
+  total_time_to_read_and_access: 3.852881
+  time_to_read: 3.820898
+  lazy_type: :io_bad
+  end_time: 7498.81
+  start_time: 300.08
+  file: b1-CIT_glyco_lcq_21_1.mzXML
+--- 
+- time_to_access: 0.010904
+  first_scan: 
+    last_peak: 
+    - 1577.25048828125
+    - 5053.0
+    num: 1
+    first_peak: 
+    - 400.234985351562
+    - 34863.0
+  scan_count: 5792
+  file_size: 36351405
+  last_scan: 
+    last_peak: 
+    - 1976.7490234375
+    - 1630.0
+    num: 5792
+    first_peak: 
+    - 343.958557128906
+    - 1689.0
+  scans_to_read: fl
+  total_time_to_read_and_access: 3.984303
+  time_to_read: 3.973382
+  lazy_type: :io_bad
+  end_time: 7499.65
+  start_time: 300.07
+  file: b1-CIT_glyco_lcq_22_1.mzXML
+--- 
+- time_to_access: 0.027165
+  first_scan: 
+    last_peak: 
+    - 1799.140625
+    - 18830.0
+    num: 1
+    first_peak: 
+    - 400.465515136719
+    - 26364.0
+  scan_count: 5808
+  file_size: 34952828
+  last_scan: 
+    last_peak: 
+    - 1709.71875
+    - 1644.0
+    num: 5808
+    first_peak: 
+    - 1709.71875
+    - 1644.0
+  scans_to_read: fl
+  total_time_to_read_and_access: 3.988598
+  time_to_read: 3.961417
+  lazy_type: :io_bad
+  end_time: 7504.52
+  start_time: 300.11
+  file: b1-CIT_glyco_lcq_23_1.mzXML
+--- 
+- time_to_access: 0.007592
+  first_scan: 
+    last_peak: 
+    - 1620.51171875
+    - 375.0
+    num: 1
+    first_peak: 
+    - 400.385314941406
+    - 37136.0
+  scan_count: 5707
+  file_size: 36255014
+  last_scan: 
+    last_peak: 
+    - 497.150634765625
+    - 22709.0
+    num: 5707
+    first_peak: 
+    - 222.997375488281
+    - 20799.0
+  scans_to_read: fl
+  total_time_to_read_and_access: 4.014135
+  time_to_read: 4.006528
+  lazy_type: :io_bad
+  end_time: 7500.36
+  start_time: 300.07
+  file: b1-CIT_glyco_lcq_24_1.mzXML
+--- 
+- time_to_access: 0.0244
+  first_scan: 
+    last_peak: 
+    - 1795.50146484375
+    - 5377.0
+    num: 1
+    first_peak: 
+    - 400.587646484375
+    - 42955.0
+  scan_count: 5698
+  file_size: 36122539
+  last_scan: 
+    last_peak: 
+    - 1765.29345703125
+    - 4787.0
+    num: 5698
+    first_peak: 
+    - 400.35107421875
+    - 28365.0
+  scans_to_read: fl
+  total_time_to_read_and_access: 3.745649
+  time_to_read: 3.721234
+  lazy_type: :io_bad
+  end_time: 7499.07
+  start_time: 300.07
+  file: b1-CIT_glyco_lcq_25_1.mzXML
+--- 
+- time_to_access: 0.03393
+  first_scan: 
+    last_peak: 
+    - 1643.62377929688
+    - 4489.0
+    num: 1
+    first_peak: 
+    - 400.273254394531
+    - 38334.0
+  scan_count: 5628
+  file_size: 37036701
+  last_scan: 
+    last_peak: 
+    - 1799.615234375
+    - 45681.0
+    num: 5628
+    first_peak: 
+    - 400.583801269531
+    - 147200.0
+  scans_to_read: fl
+  total_time_to_read_and_access: 3.928832
+  time_to_read: 3.894887
+  lazy_type: :io_bad
+  end_time: 7498.76
+  start_time: 300.05
+  file: b1-CIT_glyco_lcq_26_1.mzXML
+--- 
+- time_to_access: 0.030787
+  first_scan: 
+    last_peak: 
+    - 1721.86059570312
+    - 1477.0
+    num: 1
+    first_peak: 
+    - 400.373046875
+    - 28188.0
+  scan_count: 5769
+  file_size: 35777493
+  last_scan: 
+    last_peak: 
+    - 1797.68505859375
+    - 7599.0
+    num: 5769
+    first_peak: 
+    - 400.501831054688
+    - 96945.0
+  scans_to_read: fl
+  total_time_to_read_and_access: 3.94699
+  time_to_read: 3.916188
+  lazy_type: :io_bad
+  end_time: 7499.09
+  start_time: 300.08
+  file: b1-CIT_glyco_lcq_27_1.mzXML
+--- 
+- time_to_access: 0.029688
+  first_scan: 
+    last_peak: 
+    - 1694.64624023438
+    - 1010.0
+    num: 1
+    first_peak: 
+    - 400.41064453125
+    - 47719.0
+  scan_count: 5699
+  file_size: 37361445
+  last_scan: 
+    last_peak: 
+    - 1798.79663085938
+    - 6970.0
+    num: 5699
+    first_peak: 
+    - 400.405090332031
+    - 71885.0
+  scans_to_read: fl
+  total_time_to_read_and_access: 3.930244
+  time_to_read: 3.900539
+  lazy_type: :io_bad
+  end_time: 7498.66
+  start_time: 300.07
+  file: b1-CIT_glyco_lcq_28_1.mzXML
+--- 
+- time_to_access: 0.026608
+  first_scan: 
+    last_peak: 
+    - 1623.060546875
+    - 688.0
+    num: 1
+    first_peak: 
+    - 400.322082519531
+    - 26432.0
+  scan_count: 5718
+  file_size: 34453161
+  last_scan: 
+    last_peak: 
+    - 1796.74389648438
+    - 235002.0
+    num: 5718
+    first_peak: 
+    - 400.422790527344
+    - 33484.0
+  scans_to_read: fl
+  total_time_to_read_and_access: 4.028423
+  time_to_read: 4.0018
+  lazy_type: :io_bad
+  end_time: 7499.65
+  start_time: 300.11
+  file: b1-CIT_glyco_lcq_29_1.mzXML
+--- 
+- time_to_access: 0.031357
+  first_scan: 
+    last_peak: 
+    - 1669.60620117188
+    - 1328.0
+    num: 1
+    first_peak: 
+    - 400.427734375
+    - 33160.0
+  scan_count: 5796
+  file_size: 36017777
+  last_scan: 
+    last_peak: 
+    - 1797.92578125
+    - 18196.0
+    num: 5796
+    first_peak: 
+    - 400.588500976562
+    - 67209.0
+  scans_to_read: fl
+  total_time_to_read_and_access: 3.999661
+  time_to_read: 3.96829
+  lazy_type: :io_bad
+  end_time: 7498.65
+  start_time: 300.07
+  file: b1-CIT_glyco_lcq_30_1.mzXML
+--- 
+- time_to_access: 0.031234
+  first_scan: 
+    last_peak: 
+    - 1740.4267578125
+    - 1193.0
+    num: 1
+    first_peak: 
+    - 400.338623046875
+    - 29492.0
+  scan_count: 5808
+  file_size: 35387902
+  last_scan: 
+    last_peak: 
+    - 1799.01049804688
+    - 14918.0
+    num: 5808
+    first_peak: 
+    - 400.822631835938
+    - 38699.0
+  scans_to_read: fl
+  total_time_to_read_and_access: 4.119852
+  time_to_read: 4.088602
+  lazy_type: :io_bad
+  end_time: 7499.03
+  start_time: 300.09
+  file: b1-CIT_glyco_lcq_31_1.mzXML
+--- 
+- time_to_access: 0.029151
+  first_scan: 
+    last_peak: 
+    - 1726.87744140625
+    - 3084.0
+    num: 1
+    first_peak: 
+    - 400.347229003906
+    - 31854.0
+  scan_count: 5721
+  file_size: 34628583
+  last_scan: 
+    last_peak: 
+    - 1799.13061523438
+    - 4175.0
+    num: 5721
+    first_peak: 
+    - 400.508605957031
+    - 108495.0
+  scans_to_read: fl
+  total_time_to_read_and_access: 3.77998
+  time_to_read: 3.750812
+  lazy_type: :io_bad
+  end_time: 7498.83
+  start_time: 300.03
+  file: b1-CIT_glyco_lcq_32_1.mzXML
+--- 
+- time_to_access: 0.029219
+  first_scan: 
+    last_peak: 
+    - 1623.1123046875
+    - 5986.0
+    num: 1
+    first_peak: 
+    - 400.36279296875
+    - 26767.0
+  scan_count: 5755
+  file_size: 36673664
+  last_scan: 
+    last_peak: 
+    - 1799.033203125
+    - 6533.0
+    num: 5755
+    first_peak: 
+    - 400.391296386719
+    - 15939.0
+  scans_to_read: fl
+  total_time_to_read_and_access: 4.025722
+  time_to_read: 3.996485
+  lazy_type: :io_bad
+  end_time: 7499.72
+  start_time: 300.07
+  file: b1-CIT_glyco_lcq_33_1.mzXML
+--- 
+- time_to_access: 0.007718
+  first_scan: 
+    last_peak: 
+    - 1789.89624023438
+    - 4050.0
+    num: 1
+    first_peak: 
+    - 400.54150390625
+    - 65534.0
+  scan_count: 5760
+  file_size: 36743631
+  last_scan: 
+    last_peak: 
+    - 520.039672851562
+    - 6301.0
+    num: 5760
+    first_peak: 
+    - 238.222503662109
+    - 48117.0
+  scans_to_read: fl
+  total_time_to_read_and_access: 3.806055
+  time_to_read: 3.79832
+  lazy_type: :io_bad
+  end_time: 7503.36
+  start_time: 300.1
+  file: b1-CIT_glyco_lcq_34_1.mzXML
+--- 
+- time_to_access: 0.029754
+  first_scan: 
+    last_peak: 
+    - 1644.85302734375
+    - 810.0
+    num: 1
+    first_peak: 
+    - 400.459350585938
+    - 48548.0
+  scan_count: 5744
+  file_size: 36610016
+  last_scan: 
+    last_peak: 
+    - 1796.17041015625
+    - 18020.0
+    num: 5744
+    first_peak: 
+    - 400.24462890625
+    - 56786.0
+  scans_to_read: fl
+  total_time_to_read_and_access: 4.041389
+  time_to_read: 4.01162
+  lazy_type: :io_bad
+  end_time: 7499.19
+  start_time: 300.07
+  file: b1-CIT_glyco_lcq_35_1.mzXML
+--- 
+- time_to_access: 0.029748
+  first_scan: 
+    last_peak: 
+    - 1721.82592773438
+    - 3273.0
+    num: 1
+    first_peak: 
+    - 400.378967285156
+    - 32512.0
+  scan_count: 5673
+  file_size: 36178309
+  last_scan: 
+    last_peak: 
+    - 1795.0234375
+    - 11082.0
+    num: 5673
+    first_peak: 
+    - 400.48876953125
+    - 39385.0
+  scans_to_read: fl
+  total_time_to_read_and_access: 3.754301
+  time_to_read: 3.724537
+  lazy_type: :io_bad
+  end_time: 7498.78
+  start_time: 300.04
+  file: b1-CIT_glyco_lcq_36_1.mzXML
+--- 
+- time_to_access: 0.034263
+  first_scan: 
+    last_peak: 
+    - 1671.74780273438
+    - 975.0
+    num: 1
+    first_peak: 
+    - 400.537536621094
+    - 60915.0
+  scan_count: 5598
+  file_size: 36126633
+  last_scan: 
+    last_peak: 
+    - 1799.60668945312
+    - 60960.0
+    num: 5598
+    first_peak: 
+    - 400.494750976562
+    - 70231.0
+  scans_to_read: fl
+  total_time_to_read_and_access: 3.682432
+  time_to_read: 3.648154
+  lazy_type: :io_bad
+  end_time: 7499.6
+  start_time: 300.04
+  file: b1-CIT_glyco_lcq_37_1.mzXML
+--- 
+- time_to_access: 0.030576
+  first_scan: 
+    last_peak: 
+    - 1722.5771484375
+    - 2933.0
+    num: 1
+    first_peak: 
+    - 400.483947753906
+    - 56683.0
+  scan_count: 5477
+  file_size: 36556099
+  last_scan: 
+    last_peak: 
+    - 1795.12280273438
+    - 6651.0
+    num: 5477
+    first_peak: 
+    - 400.382446289062
+    - 58371.0
+  scans_to_read: fl
+  total_time_to_read_and_access: 3.993167
+  time_to_read: 3.962572
+  lazy_type: :io_bad
+  end_time: 7498.75
+  start_time: 300.09
+  file: b1-CIT_glyco_lcq_38_1.mzXML
+--- 
+- time_to_access: 0.044742
+  first_scan: 
+    last_peak: 
+    - 1789.23193359375
+    - 7009.0
+    num: 1
+    first_peak: 
+    - 400.563232421875
+    - 76496.0
+  scan_count: 5483
+  file_size: 38724520
+  last_scan: 
+    last_peak: 
+    - 1798.28002929688
+    - 38682.0
+    num: 5483
+    first_peak: 
+    - 400.315551757812
+    - 52233.0
+  scans_to_read: fl
+  total_time_to_read_and_access: 3.757574
+  time_to_read: 3.712818
+  lazy_type: :io_bad
+  end_time: 7499.59
+  start_time: 300.07
+  file: b1-CIT_glyco_lcq_39_1.mzXML
+--- 
+- time_to_access: 0.032653
+  first_scan: 
+    last_peak: 
+    - 1799.814453125
+    - 3416.0
+    num: 1
+    first_peak: 
+    - 400.563171386719
+    - 54225.0
+  scan_count: 5403
+  file_size: 40837424
+  last_scan: 
+    last_peak: 
+    - 1799.01538085938
+    - 26073.0
+    num: 5403
+    first_peak: 
+    - 400.387023925781
+    - 197331.0
+  scans_to_read: fl
+  total_time_to_read_and_access: 3.768359
+  time_to_read: 3.735692
+  lazy_type: :io_bad
+  end_time: 7499.87
+  start_time: 300.05
+  file: b1-CIT_glyco_lcq_40_1.mzXML
+--- 
+- time_to_access: 0.02983
+  first_scan: 
+    last_peak: 
+    - 1689.859375
+    - 2507.0
+    num: 1
+    first_peak: 
+    - 400.625122070312
+    - 50081.0
+  scan_count: 5366
+  file_size: 41832701
+  last_scan: 
+    last_peak: 
+    - 1794.48828125
+    - 30799.0
+    num: 5366
+    first_peak: 
+    - 400.235229492188
+    - 55984.0
+  scans_to_read: fl
+  total_time_to_read_and_access: 4.566124
+  time_to_read: 4.536279
+  lazy_type: :io_bad
+  end_time: 7499.8
+  start_time: 300.06
+  file: b1-CIT_glyco_lcq_41_1.mzXML
+--- 
+- time_to_access: 0.027228
+  first_scan: 
+    last_peak: 
+    - 1722.69580078125
+    - 5036.0
+    num: 1
+    first_peak: 
+    - 400.375854492188
+    - 32359.0
+  scan_count: 5225
+  file_size: 40694110
+  last_scan: 
+    last_peak: 
+    - 1790.5068359375
+    - 2489.0
+    num: 5225
+    first_peak: 
+    - 400.280517578125
+    - 63638.0
+  scans_to_read: fl
+  total_time_to_read_and_access: 3.966351
+  time_to_read: 3.939107
+  lazy_type: :io_bad
+  end_time: 7498.56
+  start_time: 300.12
+  file: b1-CIT_glyco_lcq_42_1.mzXML
+--- 
+- time_to_access: 0.031947
+  first_scan: 
+    last_peak: 
+    - 1621.45068359375
+    - 4478.0
+    num: 1
+    first_peak: 
+    - 400.330078125
+    - 28139.0
+  scan_count: 5286
+  file_size: 44512359
+  last_scan: 
+    last_peak: 
+    - 1795.150390625
+    - 14353.0
+    num: 5286
+    first_peak: 
+    - 400.596923828125
+    - 53513.0
+  scans_to_read: fl
+  total_time_to_read_and_access: 4.243835
+  time_to_read: 4.211872
+  lazy_type: :io_bad
+  end_time: 7498.56
+  start_time: 300.07
+  file: b1-CIT_glyco_lcq_43_1.mzXML
+--- 
+- time_to_access: 0.088087
+  first_scan: 
+    last_peak: 
+    - 1752.22900390625
+    - 4312.0
+    num: 1
+    first_peak: 
+    - 400.679992675781
+    - 35431.0
+  scan_count: 5170
+  file_size: 44595589
+  last_scan: 
+    last_peak: 
+    - 1799.30493164062
+    - 7404.0
+    num: 5170
+    first_peak: 
+    - 400.458862304688
+    - 49258.0
+  scans_to_read: fl
+  total_time_to_read_and_access: 4.349164
+  time_to_read: 4.261059
+  lazy_type: :io_bad
+  end_time: 7499.07
+  start_time: 300.04
+  file: b1-CIT_glyco_lcq_44_1.mzXML
+--- 
+- time_to_access: 0.052812
+  first_scan: 
+    last_peak: 
+    - 1789.63330078125
+    - 3289.0
+    num: 1
+    first_peak: 
+    - 400.450866699219
+    - 31542.0
+  scan_count: 5041
+  file_size: 48721273
+  last_scan: 
+    last_peak: 
+    - 1785.69360351562
+    - 1968.0
+    num: 5041
+    first_peak: 
+    - 400.323120117188
+    - 56868.0
+  scans_to_read: fl
+  total_time_to_read_and_access: 4.467579
+  time_to_read: 4.414749
+  lazy_type: :io_bad
+  end_time: 7498.14
+  start_time: 300.07
+  file: b1-CIT_glyco_lcq_45_1.mzXML
+--- 
+- time_to_access: 0.040379
+  first_scan: 
+    last_peak: 
+    - 1755.419921875
+    - 1256.0
+    num: 1
+    first_peak: 
+    - 400.410400390625
+    - 12739.0
+  scan_count: 4955
+  file_size: 50309523
+  last_scan: 
+    last_peak: 
+    - 1799.61157226562
+    - 80595.0
+    num: 4955
+    first_peak: 
+    - 400.504821777344
+    - 269500.0
+  scans_to_read: fl
+  total_time_to_read_and_access: 4.625368
+  time_to_read: 4.584971
+  lazy_type: :io_bad
+  end_time: 7499.82
+  start_time: 300.1
+  file: b1-CIT_glyco_lcq_46_1.mzXML
+--- 
+- time_to_access: 0.029091
+  first_scan: 
+    last_peak: 
+    - 1489.51171875
+    - 2869.0
+    num: 1
+    first_peak: 
+    - 400.472351074219
+    - 30051.0
+  scan_count: 5390
+  file_size: 48546753
+  last_scan: 
+    last_peak: 
+    - 1799.63598632812
+    - 4909.0
+    num: 5390
+    first_peak: 
+    - 400.243957519531
+    - 35925.0
+  scans_to_read: fl
+  total_time_to_read_and_access: 4.58556
+  time_to_read: 4.556453
+  lazy_type: :io_bad
+  end_time: 7497.72
+  start_time: 300.02
+  file: b1-CIT_glyco_lcq_47_1.mzXML
+--- 
+- time_to_access: 0.024966
+  first_scan: 
+    last_peak: 
+    - 1689.48803710938
+    - 3552.0
+    num: 1
+    first_peak: 
+    - 400.541809082031
+    - 52943.0
+  scan_count: 5397
+  file_size: 49997645
+  last_scan: 
+    last_peak: 
+    - 1765.14086914062
+    - 10982.0
+    num: 5397
+    first_peak: 
+    - 400.162841796875
+    - 169636.0
+  scans_to_read: fl
+  total_time_to_read_and_access: 4.95968
+  time_to_read: 4.934697
+  lazy_type: :io_bad
+  end_time: 7499.86
+  start_time: 300.1
+  file: b1-CIT_glyco_lcq_48_1.mzXML
+--- 
+- time_to_access: 0.029092
+  first_scan: 
+    last_peak: 
+    - 1722.00244140625
+    - 5026.0
+    num: 1
+    first_peak: 
+    - 400.580688476562
+    - 68585.0
+  scan_count: 5217
+  file_size: 47063383
+  last_scan: 
+    last_peak: 
+    - 1794.70727539062
+    - 52064.0
+    num: 5217
+    first_peak: 
+    - 400.271911621094
+    - 86203.0
+  scans_to_read: fl
+  total_time_to_read_and_access: 4.756543
+  time_to_read: 4.727434
+  lazy_type: :io_bad
+  end_time: 7499.81
+  start_time: 300.06
+  file: b1-CIT_glyco_lcq_49_1.mzXML
+--- 
+- time_to_access: 0.029554
+  first_scan: 
+    last_peak: 
+    - 1721.90283203125
+    - 4996.0
+    num: 1
+    first_peak: 
+    - 400.291137695312
+    - 41188.0
+  scan_count: 5232
+  file_size: 55164238
+  last_scan: 
+    last_peak: 
+    - 1797.63061523438
+    - 8062.0
+    num: 5232
+    first_peak: 
+    - 400.353515625
+    - 44105.0
+  scans_to_read: fl
+  total_time_to_read_and_access: 4.658217
+  time_to_read: 4.628646
+  lazy_type: :io_bad
+  end_time: 7498.77
+  start_time: 300.1
+  file: b1-CIT_glyco_lcq_50_1.mzXML
+--- 
+- time_to_access: 0.03518
+  first_scan: 
+    last_peak: 
+    - 1591.03149414062
+    - 2595.0
+    num: 1
+    first_peak: 
+    - 400.379516601562
+    - 52405.0
+  scan_count: 5139
+  file_size: 29925234
+  last_scan: 
+    last_peak: 
+    - 1799.84765625
+    - 6969.0
+    num: 5139
+    first_peak: 
+    - 400.617065429688
+    - 79486.0
+  scans_to_read: fl
+  total_time_to_read_and_access: 3.596066
+  time_to_read: 3.56087
+  lazy_type: :io_bad
+  end_time: 7499.99
+  start_time: 300.08
+  file: b1-CIT_glyco_lcq_56_2.mzXML

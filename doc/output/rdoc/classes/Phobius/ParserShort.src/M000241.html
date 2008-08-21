@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="iso-8859-1"?>
+<!DOCTYPE html 
+     PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+     "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html>
+<head>
+  <title>prediction_to_array (Phobius::ParserShort)</title>
+  <meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1" />
+  <link rel="stylesheet" href="../../.././rdoc-style.css" type="text/css" media="screen" />
+</head>
+<body class="standalone-code">
+  <pre><span class="ruby-comment cmt"># File lib/transmem/phobius.rb, line 92</span>
+  <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">prediction_to_array</span>(<span class="ruby-identifier">string</span>)
+    <span class="ruby-identifier">segments</span> = []
+    <span class="ruby-identifier">string</span>.<span class="ruby-identifier">scan</span>(<span class="ruby-regexp re">/[io](\d+)-(\d+)/</span>) <span class="ruby-keyword kw">do</span> <span class="ruby-operator">|</span><span class="ruby-identifier">m1</span>, <span class="ruby-identifier">m2</span><span class="ruby-operator">|</span>
+      <span class="ruby-identifier">segments</span> <span class="ruby-operator">&lt;&lt;</span> { <span class="ruby-identifier">:start</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-identifier">m1</span>.<span class="ruby-identifier">to_i</span>, <span class="ruby-identifier">:stop</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-identifier">m2</span>.<span class="ruby-identifier">to_i</span> }
+    <span class="ruby-keyword kw">end</span>
+    <span class="ruby-identifier">segments</span>
+  <span class="ruby-keyword kw">end</span></pre>
+</body>
+</html>

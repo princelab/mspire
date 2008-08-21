@@ -1,0 +1,108 @@
+--- 
+- time_to_access: 0.162963
+  first_scan: 
+    last_peak: 
+    - 625.24560546875
+    - 1164.0
+    num: 1
+    first_peak: 
+    - 418.919128417969
+    - 1350.0
+  scan_count: 6114
+  file_size: 36108684
+  last_scan: 
+    last_peak: 
+    - 1750.13647460938
+    - 30399.0
+    num: 6114
+    first_peak: 
+    - 400.087280273438
+    - 3150.0
+  scans_to_read: fl
+  total_time_to_read_and_access: 4.689822
+  time_to_read: 4.526842
+  lazy_type: :io_bad
+  end_time: 11998.94
+  start_time: 300.1099
+  file: 1940_1ul02_030331162830.mzXML
+--- 
+- time_to_access: 0.002321
+  first_scan: 
+    last_peak: 
+    - 1522.92456054688
+    - 3636.0
+    num: 1
+    first_peak: 
+    - 400.943908691406
+    - 5797.0
+  scan_count: 4255
+  file_size: 6746277
+  last_scan: 
+    last_peak: 
+    - 0.0
+    - 0.0
+    num: 4255
+    first_peak: 
+    - 0.0
+    - 0.0
+  scans_to_read: fl
+  total_time_to_read_and_access: 0.878707
+  time_to_read: 0.87637
+  lazy_type: :io_bad
+  end_time: 11998.42
+  start_time: 300.1
+  file: 1940_7ul.mzXML
+--- 
+- time_to_access: 0.001634
+  first_scan: 
+    last_peak: 
+    - 1570.23071289062
+    - 8392.0
+    num: 1
+    first_peak: 
+    - 420.510375976562
+    - 2454.0
+  scan_count: 5548
+  file_size: 33666284
+  last_scan: 
+    last_peak: 
+    - 1564.208984375
+    - 723.0
+    num: 5548
+    first_peak: 
+    - 651.876953125
+    - 4522.0
+  scans_to_read: fl
+  total_time_to_read_and_access: 4.029363
+  time_to_read: 4.027712
+  lazy_type: :io_bad
+  end_time: 12003.14
+  start_time: 300.09
+  file: 970_1ul.mzXML
+--- 
+- time_to_access: 0.021508
+  first_scan: 
+    last_peak: 
+    - 1621.93090820312
+    - 2031.0
+    num: 1
+    first_peak: 
+    - 400.306396484375
+    - 2678.0
+  scan_count: 6180
+  file_size: 36022695
+  last_scan: 
+    last_peak: 
+    - 1785.64868164062
+    - 16185.0
+    num: 6180
+    first_peak: 
+    - 401.575988769531
+    - 14978.0
+  scans_to_read: fl
+  total_time_to_read_and_access: 3.725261
+  time_to_read: 3.703736
+  lazy_type: :io_bad
+  end_time: 11999.69
+  start_time: 300.1
+  file: 970_7ul.mzXML

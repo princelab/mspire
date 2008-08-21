@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="iso-8859-1"?>
+<!DOCTYPE html 
+     PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+     "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html>
+<head>
+  <title>add_static_masses (Mass)</title>
+  <meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1" />
+  <link rel="stylesheet" href="../.././rdoc-style.css" type="text/css" media="screen" />
+</head>
+<body class="standalone-code">
+  <pre><span class="ruby-comment cmt"># File lib/spec_id/mass.rb, line 84</span>
+  <span class="ruby-keyword kw">def</span> <span class="ruby-keyword kw">self</span>.<span class="ruby-identifier">add_static_masses</span>(<span class="ruby-identifier">monoisotopic</span>, <span class="ruby-identifier">static_mods</span>, <span class="ruby-identifier">static_terminal_mods</span>=<span class="ruby-keyword kw">nil</span>)
+    <span class="ruby-identifier">hash_to_use</span> = 
+      <span class="ruby-keyword kw">if</span> <span class="ruby-identifier">monoisotopic</span>
+        <span class="ruby-constant">Mass</span><span class="ruby-operator">::</span><span class="ruby-constant">MONO</span>
+      <span class="ruby-keyword kw">else</span>
+        <span class="ruby-constant">Mass</span><span class="ruby-operator">::</span><span class="ruby-constant">AVG</span>
+      <span class="ruby-keyword kw">end</span>
+    <span class="ruby-identifier">copy_hash</span> = <span class="ruby-identifier">hash_to_use</span>.<span class="ruby-identifier">dup</span>
+    <span class="ruby-identifier">static_mods</span>.<span class="ruby-identifier">each</span> <span class="ruby-keyword kw">do</span> <span class="ruby-operator">|</span><span class="ruby-identifier">mod</span><span class="ruby-operator">|</span>
+      <span class="ruby-identifier">copy_hash</span>[<span class="ruby-identifier">mod</span>.<span class="ruby-identifier">aminoacid</span>.<span class="ruby-identifier">to_sym</span>] <span class="ruby-operator">+=</span> <span class="ruby-identifier">mod</span>.<span class="ruby-identifier">massdiff</span>
+    <span class="ruby-keyword kw">end</span>
+    <span class="ruby-identifier">static_terminal_mods</span>.<span class="ruby-identifier">each</span> <span class="ruby-keyword kw">do</span> <span class="ruby-operator">|</span><span class="ruby-identifier">mod</span><span class="ruby-operator">|</span>
+      <span class="ruby-keyword kw">if</span> <span class="ruby-identifier">x</span> = <span class="ruby-identifier">mod</span>.<span class="ruby-identifier">protein_terminus</span>
+        <span class="ruby-comment cmt"># its a protein terminus modification</span>
+        <span class="ruby-keyword kw">case</span> <span class="ruby-identifier">x</span>
+        <span class="ruby-keyword kw">when</span> <span class="ruby-value str">'n'</span>
+          <span class="ruby-identifier">copy_hash</span>[<span class="ruby-identifier">:add_N_term_protein</span>] = <span class="ruby-identifier">mod</span>.<span class="ruby-identifier">massdiff</span>
+        <span class="ruby-keyword kw">when</span> <span class="ruby-value str">'c'</span>
+          <span class="ruby-identifier">copy_hash</span>[<span class="ruby-identifier">:add_C_term_protein</span>] = <span class="ruby-identifier">mod</span>.<span class="ruby-identifier">massdiff</span>
+        <span class="ruby-keyword kw">end</span>
+      <span class="ruby-keyword kw">else</span>
+        <span class="ruby-comment cmt"># its a peptide terminus modification</span>
+        <span class="ruby-keyword kw">case</span> <span class="ruby-identifier">mod</span>.<span class="ruby-identifier">terminus</span>
+        <span class="ruby-keyword kw">when</span> <span class="ruby-value str">'n'</span>
+          <span class="ruby-identifier">copy_hash</span>[<span class="ruby-identifier">:add_N_term_peptide</span>] = <span class="ruby-identifier">mod</span>.<span class="ruby-identifier">massdiff</span>
+        <span class="ruby-keyword kw">when</span> <span class="ruby-value str">'c'</span>
+          <span class="ruby-identifier">copy_hash</span>[<span class="ruby-identifier">:add_C_term_peptide</span>] = <span class="ruby-identifier">mod</span>.<span class="ruby-identifier">massdiff</span>
+        <span class="ruby-keyword kw">end</span>
+      <span class="ruby-keyword kw">end</span>
+    <span class="ruby-keyword kw">end</span>
+    <span class="ruby-identifier">copy_hash</span>
+  <span class="ruby-keyword kw">end</span></pre>
+</body>
+</html>

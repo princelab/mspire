@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="iso-8859-1"?>
+<!DOCTYPE html 
+     PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+     "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html>
+<head>
+  <title>to_pepxml (Sequest::PepXML::AAModification)</title>
+  <meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1" />
+  <link rel="stylesheet" href="../../../.././rdoc-style.css" type="text/css" media="screen" />
+</head>
+<body class="standalone-code">
+  <pre><span class="ruby-comment cmt"># File lib/spec_id/sequest/pepxml.rb, line 1140</span>
+  <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">to_pepxml</span>
+    <span class="ruby-comment cmt"># note massdiff</span>
+    <span class="ruby-identifier">short_element_xml_and_att_string</span>(<span class="ruby-value str">&quot;aminoacid_modification&quot;</span>, <span class="ruby-node">&quot;aminoacid=\&quot;#{aminoacid}\&quot; massdiff=\&quot;#{massdiff.to_plus_minus_string}\&quot; mass=\&quot;#{mass}\&quot; variable=\&quot;#{variable}\&quot; peptide_terminus=\&quot;#{peptide_terminus}\&quot; symbol=\&quot;#{symbol}\&quot; binary=\&quot;#{binary}\&quot;&quot;</span>)
+  <span class="ruby-keyword kw">end</span></pre>
+</body>
+</html>

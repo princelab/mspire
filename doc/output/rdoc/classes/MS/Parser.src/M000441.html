@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="iso-8859-1"?>
+<!DOCTYPE html 
+     PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+     "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html>
+<head>
+  <title>filetype_and_version (MS::Parser)</title>
+  <meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1" />
+  <link rel="stylesheet" href="../../.././rdoc-style.css" type="text/css" media="screen" />
+</head>
+<body class="standalone-code">
+  <pre><span class="ruby-comment cmt"># File lib/ms/parser.rb, line 48</span>
+  <span class="ruby-keyword kw">def</span> <span class="ruby-keyword kw">self</span>.<span class="ruby-identifier">filetype_and_version</span>(<span class="ruby-identifier">fh_or_filename</span>)
+    <span class="ruby-keyword kw">if</span> <span class="ruby-identifier">fh_or_filename</span>.<span class="ruby-identifier">is_a?</span> <span class="ruby-constant">IO</span>
+      <span class="ruby-identifier">fh</span> = <span class="ruby-identifier">fh_or_filename</span>
+      <span class="ruby-identifier">found</span> = <span class="ruby-keyword kw">nil</span>
+      <span class="ruby-comment cmt"># Test for RAW file:</span>
+      <span class="ruby-identifier">header</span> = <span class="ruby-identifier">fh</span>.<span class="ruby-identifier">read</span>(<span class="ruby-value">18</span>).<span class="ruby-identifier">unpack</span>(<span class="ruby-value str">'@2axaxaxaxaxaxaxa'</span>).<span class="ruby-identifier">join</span>
+      <span class="ruby-keyword kw">if</span> <span class="ruby-identifier">header</span> <span class="ruby-operator">==</span> <span class="ruby-value str">'Finnigan'</span>
+        <span class="ruby-keyword kw">return</span> [<span class="ruby-identifier">:raw</span>, <span class="ruby-keyword kw">nil</span>]
+      <span class="ruby-keyword kw">end</span>
+      <span class="ruby-identifier">fh</span>.<span class="ruby-identifier">rewind</span>
+      <span class="ruby-keyword kw">while</span> (<span class="ruby-identifier">line</span> = <span class="ruby-identifier">fh</span>.<span class="ruby-identifier">gets</span>)
+        <span class="ruby-identifier">found</span> = 
+          <span class="ruby-keyword kw">case</span> <span class="ruby-identifier">line</span>
+          <span class="ruby-keyword kw">when</span> <span class="ruby-constant">Mzxml_regexp</span>
+            <span class="ruby-identifier">mtch</span> = <span class="ruby-identifier">$2</span>.<span class="ruby-identifier">dup</span>
+            <span class="ruby-keyword kw">case</span> <span class="ruby-identifier">mtch</span>
+            <span class="ruby-keyword kw">when</span> <span class="ruby-regexp re">/mzXML_([\d\.]+)/</span>
+              [<span class="ruby-identifier">:mzxml</span>, <span class="ruby-identifier">$1</span>.<span class="ruby-identifier">dup</span>]
+            <span class="ruby-keyword kw">when</span> <span class="ruby-regexp re">/MsXML/</span>
+              [<span class="ruby-identifier">:mzxml</span>, <span class="ruby-value str">'1.0'</span>]
+            <span class="ruby-keyword kw">else</span>
+              <span class="ruby-identifier">abort</span> <span class="ruby-value str">&quot;Cannot determine mzXML version!&quot;</span>
+            <span class="ruby-keyword kw">end</span>
+          <span class="ruby-keyword kw">when</span> <span class="ruby-constant">Mzdata_regexp</span>
+            [<span class="ruby-identifier">:mzdata</span>, <span class="ruby-identifier">$1</span>.<span class="ruby-identifier">dup</span>]
+          <span class="ruby-keyword kw">end</span>
+        <span class="ruby-keyword kw">if</span> <span class="ruby-identifier">found</span>
+          <span class="ruby-keyword kw">break</span>
+        <span class="ruby-keyword kw">end</span>
+      <span class="ruby-keyword kw">end</span>
+      <span class="ruby-identifier">fh</span>.<span class="ruby-identifier">rewind</span>
+      <span class="ruby-identifier">found</span>
+    <span class="ruby-keyword kw">else</span>
+      <span class="ruby-constant">File</span>.<span class="ruby-identifier">open</span>(<span class="ruby-identifier">fh_or_filename</span>) <span class="ruby-keyword kw">do</span> <span class="ruby-operator">|</span><span class="ruby-identifier">fh</span><span class="ruby-operator">|</span>
+        <span class="ruby-identifier">filetype_and_version</span>(<span class="ruby-identifier">fh</span>)
+      <span class="ruby-keyword kw">end</span>
+    <span class="ruby-keyword kw">end</span>
+  <span class="ruby-keyword kw">end</span></pre>
+</body>
+</html>

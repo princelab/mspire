@@ -1,0 +1,405 @@
+--- 
+- time_to_access: 0.00015
+  first_scan: 
+    last_peak: 
+    - 1457.7119140625
+    - 77659.0
+    num: 1
+    first_peak: 
+    - 400.380737304688
+    - 441422.0
+  scan_count: 13012
+  file_size: 40575448
+  last_scan: 
+    last_peak: 
+    - 0.0
+    - 0.0
+    num: 13012
+    first_peak: 
+    - 0.0
+    - 0.0
+  scans_to_read: fl
+  total_time_to_read_and_access: 25.05369
+  time_to_read: 25.053525
+  lazy_type: :string
+  end_time: 14402.6
+  start_time: 0.41
+  file: plasma_0mM_C1.mzXML
+--- 
+- time_to_access: 0.000109
+  first_scan: 
+    last_peak: 
+    - 1423.02954101562
+    - 88097.0
+    num: 1
+    first_peak: 
+    - 450.390258789062
+    - 330608.0
+  scan_count: 11475
+  file_size: 31243114
+  last_scan: 
+    last_peak: 
+    - 578.652709960938
+    - 5678.0
+    num: 11475
+    first_peak: 
+    - 284.927368164062
+    - 1909.0
+  scans_to_read: fl
+  total_time_to_read_and_access: 20.052347
+  time_to_read: 20.052226
+  lazy_type: :string
+  end_time: 14399.3
+  start_time: 0.2
+  file: plasma_1000mM_C1.mzXML
+--- 
+- time_to_access: 0.000128
+  first_scan: 
+    last_peak: 
+    - 1763.81079101562
+    - 272623.0
+    num: 1
+    first_peak: 
+    - 400.392700195312
+    - 62859.0
+  scan_count: 12077
+  file_size: 37044235
+  last_scan: 
+    last_peak: 
+    - 448.719787597656
+    - 14267.0
+    num: 12077
+    first_peak: 
+    - 148.818572998047
+    - 3199.0
+  scans_to_read: fl
+  total_time_to_read_and_access: 23.915129
+  time_to_read: 23.914987
+  lazy_type: :string
+  end_time: 14402.0
+  start_time: 0.51
+  file: plasma_100mM_C1.mzXML
+--- 
+- time_to_access: 0.000115
+  first_scan: 
+    last_peak: 
+    - 1421.96435546875
+    - 66166.0
+    num: 1
+    first_peak: 
+    - 402.135192871094
+    - 144537.0
+  scan_count: 11860
+  file_size: 34692636
+  last_scan: 
+    last_peak: 
+    - 702.710815429688
+    - 1441.0
+    num: 11860
+    first_peak: 
+    - 298.692138671875
+    - 2077.0
+  scans_to_read: fl
+  total_time_to_read_and_access: 23.958808
+  time_to_read: 23.958679
+  lazy_type: :string
+  end_time: 14399.9
+  start_time: 0.11
+  file: plasma_150mM_C2.mzXML
+--- 
+- time_to_access: 0.000127
+  first_scan: 
+    last_peak: 
+    - 1987.50024414062
+    - 124316.0
+    num: 1
+    first_peak: 
+    - 400.016174316406
+    - 24271.0
+  scan_count: 11850
+  file_size: 33099545
+  last_scan: 
+    last_peak: 
+    - 0.0
+    - 0.0
+    num: 11850
+    first_peak: 
+    - 0.0
+    - 0.0
+  scans_to_read: fl
+  total_time_to_read_and_access: 23.312625
+  time_to_read: 23.312485
+  lazy_type: :string
+  end_time: 14402.5
+  start_time: 0.22
+  file: plasma_200mM_C1.mzXML
+--- 
+- time_to_access: 0.000382
+  first_scan: 
+    last_peak: 
+    - 1899.98022460938
+    - 230494.0
+    num: 1
+    first_peak: 
+    - 400.523376464844
+    - 408615.0
+  scan_count: 11137
+  file_size: 33445316
+  last_scan: 
+    last_peak: 
+    - 0.0
+    - 0.0
+    num: 11137
+    first_peak: 
+    - 0.0
+    - 0.0
+  scans_to_read: fl
+  total_time_to_read_and_access: 22.304127
+  time_to_read: 22.303731
+  lazy_type: :string
+  end_time: 14401.6
+  start_time: 0.54
+  file: plasma_20mM_C2.mzXML
+--- 
+- time_to_access: 0.000118
+  first_scan: 
+    last_peak: 
+    - 1722.13403320312
+    - 54861.0
+    num: 1
+    first_peak: 
+    - 400.13818359375
+    - 71766.0
+  scan_count: 11751
+  file_size: 32289248
+  last_scan: 
+    last_peak: 
+    - 0.0
+    - 0.0
+    num: 11751
+    first_peak: 
+    - 0.0
+    - 0.0
+  scans_to_read: fl
+  total_time_to_read_and_access: 20.92347
+  time_to_read: 20.92334
+  lazy_type: :string
+  end_time: 14400.6
+  start_time: 0.24
+  file: plasma_250mM_C2.mzXML
+--- 
+- time_to_access: 0.000482
+  first_scan: 
+    last_peak: 
+    - 1521.9873046875
+    - 323590.0
+    num: 1
+    first_peak: 
+    - 401.502685546875
+    - 83902.0
+  scan_count: 11560
+  file_size: 32429077
+  last_scan: 
+    last_peak: 
+    - 0.0
+    - 0.0
+    num: 11560
+    first_peak: 
+    - 0.0
+    - 0.0
+  scans_to_read: fl
+  total_time_to_read_and_access: 22.804552
+  time_to_read: 22.804055
+  lazy_type: :string
+  end_time: 14399.2
+  start_time: 0.21
+  file: plasma_300mM_C1.mzXML
+--- 
+- time_to_access: 0.000122
+  first_scan: 
+    last_peak: 
+    - 1894.12622070312
+    - 132904.0
+    num: 1
+    first_peak: 
+    - 400.423461914062
+    - 231989.0
+  scan_count: 11309
+  file_size: 31656103
+  last_scan: 
+    last_peak: 
+    - 0.0
+    - 0.0
+    num: 11309
+    first_peak: 
+    - 0.0
+    - 0.0
+  scans_to_read: fl
+  total_time_to_read_and_access: 20.95893
+  time_to_read: 20.958795
+  lazy_type: :string
+  end_time: 14401.6
+  start_time: 0.21
+  file: plasma_400mM_C2.mzXML
+--- 
+- time_to_access: 0.000182
+  first_scan: 
+    last_peak: 
+    - 1991.46728515625
+    - 221102.0
+    num: 1
+    first_peak: 
+    - 400.377380371094
+    - 103184.0
+  scan_count: 11810
+  file_size: 34178919
+  last_scan: 
+    last_peak: 
+    - 562.79345703125
+    - 2377.0
+    num: 11810
+    first_peak: 
+    - 222.051055908203
+    - 2133.0
+  scans_to_read: fl
+  total_time_to_read_and_access: 22.282126
+  time_to_read: 22.281929
+  lazy_type: :string
+  end_time: 14403.3
+  start_time: 0.32
+  file: plasma_500mM_C1.mzXML
+--- 
+- time_to_access: 0.000459
+  first_scan: 
+    last_peak: 
+    - 1522.619140625
+    - 137911.0
+    num: 1
+    first_peak: 
+    - 400.28955078125
+    - 111596.0
+  scan_count: 12775
+  file_size: 41793317
+  last_scan: 
+    last_peak: 
+    - 638.36083984375
+    - 4242.0
+    num: 12775
+    first_peak: 
+    - 324.945373535156
+    - 1320.0
+  scans_to_read: fl
+  total_time_to_read_and_access: 27.381713
+  time_to_read: 27.38124
+  lazy_type: :string
+  end_time: 14401.3
+  start_time: 0.54
+  file: plasma_50mM_C1.mzXML
+--- 
+- time_to_access: 0.000248
+  first_scan: 
+    last_peak: 
+    - 1422.83520507812
+    - 163450.0
+    num: 1
+    first_peak: 
+    - 400.155517578125
+    - 3.0
+  scan_count: 11961
+  file_size: 32277931
+  last_scan: 
+    last_peak: 
+    - 0.0
+    - 0.0
+    num: 11961
+    first_peak: 
+    - 0.0
+    - 0.0
+  scans_to_read: fl
+  total_time_to_read_and_access: 21.024496
+  time_to_read: 21.024234
+  lazy_type: :string
+  end_time: 14402.3
+  start_time: 0.11
+  file: plasma_600mM_C2.mzXML
+--- 
+- time_to_access: 0.000127
+  first_scan: 
+    last_peak: 
+    - 1523.2060546875
+    - 69617.0
+    num: 1
+    first_peak: 
+    - 401.951904296875
+    - 75313.0
+  scan_count: 11906
+  file_size: 31950280
+  last_scan: 
+    last_peak: 
+    - 653.972534179688
+    - 1569.0
+    num: 11906
+    first_peak: 
+    - 238.764129638672
+    - 5180.0
+  scans_to_read: fl
+  total_time_to_read_and_access: 20.525894
+  time_to_read: 20.525753
+  lazy_type: :string
+  end_time: 14399.9
+  start_time: 0.31
+  file: plasma_700mM_C1.mzXML
+--- 
+- time_to_access: 0.000668
+  first_scan: 
+    last_peak: 
+    - 1957.78930664062
+    - 279641.0
+    num: 1
+    first_peak: 
+    - 400.299926757812
+    - 4.0
+  scan_count: 11810
+  file_size: 36403818
+  last_scan: 
+    last_peak: 
+    - 564.0283203125
+    - 11891.0
+    num: 11810
+    first_peak: 
+    - 222.725128173828
+    - 8262.0
+  scans_to_read: fl
+  total_time_to_read_and_access: 25.217571
+  time_to_read: 25.216888
+  lazy_type: :string
+  end_time: 14401.5
+  start_time: 0.31
+  file: plasma_75mM_C2.mzXML
+--- 
+- time_to_access: 0.000359
+  first_scan: 
+    last_peak: 
+    - 1995.48486328125
+    - 164169.0
+    num: 1
+    first_peak: 
+    - 400.3271484375
+    - 118143.0
+  scan_count: 11937
+  file_size: 32379089
+  last_scan: 
+    last_peak: 
+    - 420.884582519531
+    - 1180.0
+    num: 11937
+    first_peak: 
+    - 299.34326171875
+    - 1347.0
+  scans_to_read: fl
+  total_time_to_read_and_access: 22.624277
+  time_to_read: 22.623903
+  lazy_type: :string
+  end_time: 14399.6
+  start_time: 0.11
+  file: plasma_800mM_C2.mzXML

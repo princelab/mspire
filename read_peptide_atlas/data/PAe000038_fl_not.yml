@@ -1,0 +1,297 @@
+--- 
+- time_to_access: 3.4e-05
+  first_scan: 
+    last_peak: 
+    - 1499.69360351562
+    - 26660.0
+    num: 1
+    first_peak: 
+    - 301.653930664062
+    - 27410.0
+  scan_count: 3376
+  file_size: 17432679
+  last_scan: 
+    last_peak: 
+    - 1684.63110351562
+    - 1079.0
+    num: 3376
+    first_peak: 
+    - 261.102294921875
+    - 785.0
+  scans_to_read: fl
+  total_time_to_read_and_access: 11.388696
+  time_to_read: 11.388648
+  lazy_type: :not
+  end_time: 5105.67
+  start_time: 0.24
+  file: 000.mzXML
+--- 
+- time_to_access: 3.5e-05
+  first_scan: 
+    last_peak: 
+    - 1499.75170898438
+    - 61640.0
+    num: 1
+    first_peak: 
+    - 300.377746582031
+    - 9.0
+  scan_count: 2903
+  file_size: 14172521
+  last_scan: 
+    last_peak: 
+    - 1965.90625
+    - 945.0
+    num: 2903
+    first_peak: 
+    - 381.140197753906
+    - 1041.0
+  scans_to_read: fl
+  total_time_to_read_and_access: 9.538277
+  time_to_read: 9.538228
+  lazy_type: :not
+  end_time: 5098.67
+  start_time: 0.03
+  file: 020.mzXML
+--- 
+- time_to_access: 3.2e-05
+  first_scan: 
+    last_peak: 
+    - 1499.58544921875
+    - 29845.0
+    num: 1
+    first_peak: 
+    - 301.544860839844
+    - 39563.0
+  scan_count: 3232
+  file_size: 16005857
+  last_scan: 
+    last_peak: 
+    - 1522.9990234375
+    - 809.0
+    num: 3232
+    first_peak: 
+    - 219.497955322266
+    - 1035.0
+  scans_to_read: fl
+  total_time_to_read_and_access: 10.412561
+  time_to_read: 10.412514
+  lazy_type: :not
+  end_time: 5106.17
+  start_time: 0.04
+  file: 040.mzXML
+--- 
+- time_to_access: 3.2e-05
+  first_scan: 
+    last_peak: 
+    - 1499.44262695312
+    - 20432.0
+    num: 1
+    first_peak: 
+    - 301.752014160156
+    - 15351.0
+  scan_count: 3028
+  file_size: 15385555
+  last_scan: 
+    last_peak: 
+    - 1405.83178710938
+    - 764.0
+    num: 3028
+    first_peak: 
+    - 354.515014648438
+    - 813.0
+  scans_to_read: fl
+  total_time_to_read_and_access: 10.232784
+  time_to_read: 10.232739
+  lazy_type: :not
+  end_time: 5105.0
+  start_time: 0.04
+  file: 060.mzXML
+--- 
+- time_to_access: 3.1e-05
+  first_scan: 
+    last_peak: 
+    - 1498.87841796875
+    - 35186.0
+    num: 1
+    first_peak: 
+    - 300.36474609375
+    - 47262.0
+  scan_count: 3236
+  file_size: 15608347
+  last_scan: 
+    last_peak: 
+    - 1991.39306640625
+    - 277.0
+    num: 3236
+    first_peak: 
+    - 368.860961914062
+    - 1009.0
+  scans_to_read: fl
+  total_time_to_read_and_access: 11.043844
+  time_to_read: 11.043799
+  lazy_type: :not
+  end_time: 5099.83
+  start_time: 0.24
+  file: 080.mzXML
+--- 
+- time_to_access: 3.2e-05
+  first_scan: 
+    last_peak: 
+    - 1498.45581054688
+    - 22674.0
+    num: 1
+    first_peak: 
+    - 300.361877441406
+    - 17420.0
+  scan_count: 3040
+  file_size: 14980945
+  last_scan: 
+    last_peak: 
+    - 498.210632324219
+    - 1723.0
+    num: 3040
+    first_peak: 
+    - 498.210632324219
+    - 1723.0
+  scans_to_read: fl
+  total_time_to_read_and_access: 9.931719
+  time_to_read: 9.931672
+  lazy_type: :not
+  end_time: 5102.3
+  start_time: 0.23
+  file: 100.mzXML
+--- 
+- time_to_access: 3.2e-05
+  first_scan: 
+    last_peak: 
+    - 1499.55615234375
+    - 5921.0
+    num: 1
+    first_peak: 
+    - 301.049499511719
+    - 18304.0
+  scan_count: 3200
+  file_size: 15399919
+  last_scan: 
+    last_peak: 
+    - 1973.62377929688
+    - 971.0
+    num: 3200
+    first_peak: 
+    - 545.5673828125
+    - 1179.0
+  scans_to_read: fl
+  total_time_to_read_and_access: 10.097106
+  time_to_read: 10.097059
+  lazy_type: :not
+  end_time: 5098.42
+  start_time: 0.33
+  file: 150.mzXML
+--- 
+- time_to_access: 3.1e-05
+  first_scan: 
+    last_peak: 
+    - 1499.794921875
+    - 31251.0
+    num: 1
+    first_peak: 
+    - 300.382690429688
+    - 27430.0
+  scan_count: 2912
+  file_size: 13491927
+  last_scan: 
+    last_peak: 
+    - 1310.21850585938
+    - 811.0
+    num: 2912
+    first_peak: 
+    - 500.37353515625
+    - 618.0
+  scans_to_read: fl
+  total_time_to_read_and_access: 9.174752
+  time_to_read: 9.174707
+  lazy_type: :not
+  end_time: 5102.93
+  start_time: 0.46
+  file: 200.mzXML
+--- 
+- time_to_access: 3.3e-05
+  first_scan: 
+    last_peak: 
+    - 1499.0986328125
+    - 12829.0
+    num: 1
+    first_peak: 
+    - 300.264282226562
+    - 36067.0
+  scan_count: 2976
+  file_size: 13660506
+  last_scan: 
+    last_peak: 
+    - 664.731567382812
+    - 2639.0
+    num: 2976
+    first_peak: 
+    - 664.731567382812
+    - 2639.0
+  scans_to_read: fl
+  total_time_to_read_and_access: 9.173161
+  time_to_read: 9.173114
+  lazy_type: :not
+  end_time: 5104.97
+  start_time: 0.44
+  file: 300.mzXML
+--- 
+- time_to_access: 3.2e-05
+  first_scan: 
+    last_peak: 
+    - 1492.93823242188
+    - 18078.0
+    num: 1
+    first_peak: 
+    - 302.117553710938
+    - 67627.0
+  scan_count: 2559
+  file_size: 11220584
+  last_scan: 
+    last_peak: 
+    - 1844.72485351562
+    - 472.0
+    num: 2559
+    first_peak: 
+    - 553.82275390625
+    - 615.0
+  scans_to_read: fl
+  total_time_to_read_and_access: 7.293466
+  time_to_read: 7.293419
+  lazy_type: :not
+  end_time: 5095.71
+  start_time: 0.24
+  file: 500.mzXML
+--- 
+- time_to_access: 3.2e-05
+  first_scan: 
+    last_peak: 
+    - 1497.2138671875
+    - 21778.0
+    num: 1
+    first_peak: 
+    - 300.990295410156
+    - 8184.0
+  scan_count: 2788
+  file_size: 12474991
+  last_scan: 
+    last_peak: 
+    - 922.235961914062
+    - 959.0
+    num: 2788
+    first_peak: 
+    - 440.939147949219
+    - 1213.0
+  scans_to_read: fl
+  total_time_to_read_and_access: 8.701592
+  time_to_read: 8.701547
+  lazy_type: :not
+  end_time: 5097.94
+  start_time: 0.33
+  file: 900.mzXML

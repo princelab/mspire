@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="iso-8859-1"?>
+<!DOCTYPE html 
+     PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+     "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html>
+<head>
+  <title>inspect (SRF::OUT::Pep)</title>
+  <meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1" />
+  <link rel="stylesheet" href="../../../.././rdoc-style.css" type="text/css" media="screen" />
+</head>
+<body class="standalone-code">
+  <pre><span class="ruby-comment cmt"># File lib/spec_id/srf.rb, line 807</span>
+  <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">inspect</span>
+    <span class="ruby-identifier">st</span> = <span class="ruby-node">%w(aaseq sequence mh deltacn_orig sp xcorr id rsp ions_matched ions_total prots deltamass ppm base_name first_scan last_scan charge deltacn)</span>.<span class="ruby-identifier">map</span> <span class="ruby-keyword kw">do</span> <span class="ruby-operator">|</span><span class="ruby-identifier">v</span><span class="ruby-operator">|</span> 
+      <span class="ruby-keyword kw">if</span> <span class="ruby-identifier">v</span> <span class="ruby-operator">==</span> <span class="ruby-value str">'prots'</span>
+        <span class="ruby-node">&quot;#{v}(#)=#{send(v.to_sym).size}&quot;</span>
+      <span class="ruby-keyword kw">elsif</span> <span class="ruby-identifier">v</span>.<span class="ruby-identifier">is_a?</span> <span class="ruby-constant">Array</span>
+        <span class="ruby-node">&quot;##{v}=#{send(v.to_sym).size}&quot;</span>
+      <span class="ruby-keyword kw">else</span>
+        <span class="ruby-node">&quot;#{v}=#{send(v.to_sym).inspect}&quot;</span>
+      <span class="ruby-keyword kw">end</span>
+    <span class="ruby-keyword kw">end</span>
+    <span class="ruby-identifier">st</span>.<span class="ruby-identifier">unshift</span>(<span class="ruby-node">&quot;&lt;#{self.class}&quot;</span>)
+    <span class="ruby-keyword kw">if</span> <span class="ruby-identifier">srf</span>
+      <span class="ruby-identifier">st</span>.<span class="ruby-identifier">push</span>(<span class="ruby-node">&quot;srf(base_name)=#{srf.base_name.inspect}&quot;</span>)
+    <span class="ruby-keyword kw">end</span>
+    <span class="ruby-identifier">st</span>.<span class="ruby-identifier">push</span>(<span class="ruby-value str">'&gt;'</span>)
+    <span class="ruby-identifier">st</span>.<span class="ruby-identifier">join</span>(<span class="ruby-value str">' '</span>)
+    <span class="ruby-comment cmt">#&quot;&lt;SRF::OUT::Pep @mh=#{mh}, @deltacn=#{deltacn}, @sp=#{sp}, @xcorr=#{xcorr}, @id=#{id}, @rsp=#{rsp}, @ions_matched=#{ions_matched}, @ions_total=#{ions_total}, @sequence=#{sequence}, @prots(count)=#{prots.size}, @deltamass=#{deltamass}, @ppm=#{ppm} @aaseq=#{aaseq}, @base_name=#{base_name}, @first_scan=#{first_scan}, @last_scan=#{last_scan}, @charge=#{charge}, @srf(base_name)=#{srf.base_name}&gt;&quot;</span>
+  <span class="ruby-keyword kw">end</span></pre>
+</body>
+</html>

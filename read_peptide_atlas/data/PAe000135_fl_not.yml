@@ -1,0 +1,3365 @@
+--- 
+- time_to_access: 5.1e-05
+  first_scan: 
+    last_peak: 
+    - 0.0
+    - 0.0
+    num: 1
+    first_peak: 
+    - 0.0
+    - 0.0
+  scan_count: 8526
+  file_size: 59452352
+  last_scan: 
+    last_peak: 
+    - 0.0
+    - 0.0
+    num: 8526
+    first_peak: 
+    - 0.0
+    - 0.0
+  scans_to_read: fl
+  total_time_to_read_and_access: 78.187473
+  time_to_read: 78.187392
+  lazy_type: :not
+  end_time: 3149.53
+  start_time: 0.2809
+  file: ltq042204_13.mzXML
+--- 
+- time_to_access: 4.8e-05
+  first_scan: 
+    last_peak: 
+    - 0.0
+    - 0.0
+    num: 1
+    first_peak: 
+    - 0.0
+    - 0.0
+  scan_count: 8972
+  file_size: 63297291
+  last_scan: 
+    last_peak: 
+    - 0.0
+    - 0.0
+    num: 8972
+    first_peak: 
+    - 0.0
+    - 0.0
+  scans_to_read: fl
+  total_time_to_read_and_access: 63.957994
+  time_to_read: 63.957923
+  lazy_type: :not
+  end_time: 3149.92
+  start_time: 0.2853
+  file: ltq042204_15.mzXML
+--- 
+- file_size: 99835647
+  limit: 83886080.0
+  file: ltq042204_17.mzXML
+--- 
+- file_size: 93859851
+  limit: 83886080.0
+  file: ltq042204_19.mzXML
+--- 
+- file_size: 98169255
+  limit: 83886080.0
+  file: ltq042204_21.mzXML
+--- 
+- file_size: 91676625
+  limit: 83886080.0
+  file: ltq042204_23.mzXML
+--- 
+- time_to_access: 5.0e-05
+  first_scan: 
+    last_peak: 
+    - 0.0
+    - 0.0
+    num: 1
+    first_peak: 
+    - 0.0
+    - 0.0
+  scan_count: 12847
+  file_size: 83295592
+  last_scan: 
+    last_peak: 
+    - 0.0
+    - 0.0
+    num: 12847
+    first_peak: 
+    - 0.0
+    - 0.0
+  scans_to_read: fl
+  total_time_to_read_and_access: 87.864701
+  time_to_read: 87.86463
+  lazy_type: :not
+  end_time: 4709.9
+  start_time: 0.2862
+  file: ltq042304_02.mzXML
+--- 
+- time_to_access: 4.9e-05
+  first_scan: 
+    last_peak: 
+    - 0.0
+    - 0.0
+    num: 1
+    first_peak: 
+    - 0.0
+    - 0.0
+  scan_count: 12662
+  file_size: 82963481
+  last_scan: 
+    last_peak: 
+    - 0.0
+    - 0.0
+    num: 12662
+    first_peak: 
+    - 0.0
+    - 0.0
+  scans_to_read: fl
+  total_time_to_read_and_access: 89.8588
+  time_to_read: 89.85873
+  lazy_type: :not
+  end_time: 4709.88
+  start_time: 0.2848
+  file: ltq042304_04.mzXML
+--- 
+- time_to_access: 5.3e-05
+  first_scan: 
+    last_peak: 
+    - 0.0
+    - 0.0
+    num: 1
+    first_peak: 
+    - 0.0
+    - 0.0
+  scan_count: 12446
+  file_size: 82516974
+  last_scan: 
+    last_peak: 
+    - 0.0
+    - 0.0
+    num: 12446
+    first_peak: 
+    - 0.0
+    - 0.0
+  scans_to_read: fl
+  total_time_to_read_and_access: 92.24261
+  time_to_read: 92.242535
+  lazy_type: :not
+  end_time: 4709.86
+  start_time: 0.2698
+  file: ltq042304_06.mzXML
+--- 
+- file_size: 98968993
+  limit: 83886080.0
+  file: ltq042304_08.mzXML
+--- 
+- time_to_access: 5.0e-05
+  first_scan: 
+    last_peak: 
+    - 0.0
+    - 0.0
+    num: 1
+    first_peak: 
+    - 0.0
+    - 0.0
+  scan_count: 12892
+  file_size: 80377892
+  last_scan: 
+    last_peak: 
+    - 0.0
+    - 0.0
+    num: 12892
+    first_peak: 
+    - 0.0
+    - 0.0
+  scans_to_read: fl
+  total_time_to_read_and_access: 88.508196
+  time_to_read: 88.508123
+  lazy_type: :not
+  end_time: 4709.9
+  start_time: 0.283
+  file: ltq042304_10.mzXML
+--- 
+- time_to_access: 5.6e-05
+  first_scan: 
+    last_peak: 
+    - 0.0
+    - 0.0
+    num: 1
+    first_peak: 
+    - 0.0
+    - 0.0
+  scan_count: 12661
+  file_size: 80232677
+  last_scan: 
+    last_peak: 
+    - 0.0
+    - 0.0
+    num: 12661
+    first_peak: 
+    - 0.0
+    - 0.0
+  scans_to_read: fl
+  total_time_to_read_and_access: 88.664531
+  time_to_read: 88.664454
+  lazy_type: :not
+  end_time: 4709.94
+  start_time: 0.2803
+  file: ltq042304_12.mzXML
+--- 
+- time_to_access: 5.3e-05
+  first_scan: 
+    last_peak: 
+    - 0.0
+    - 0.0
+    num: 1
+    first_peak: 
+    - 0.0
+    - 0.0
+  scan_count: 12373
+  file_size: 83570635
+  last_scan: 
+    last_peak: 
+    - 0.0
+    - 0.0
+    num: 12373
+    first_peak: 
+    - 0.0
+    - 0.0
+  scans_to_read: fl
+  total_time_to_read_and_access: 93.284924
+  time_to_read: 93.284849
+  lazy_type: :not
+  end_time: 4709.93
+  start_time: 0.2748
+  file: ltq042304_14.mzXML
+--- 
+- file_size: 111130446
+  limit: 83886080.0
+  file: ltq042304_16.mzXML
+--- 
+- time_to_access: 4.9e-05
+  first_scan: 
+    last_peak: 
+    - 0.0
+    - 0.0
+    num: 1
+    first_peak: 
+    - 0.0
+    - 0.0
+  scan_count: 8778
+  file_size: 66301817
+  last_scan: 
+    last_peak: 
+    - 0.0
+    - 0.0
+    num: 8778
+    first_peak: 
+    - 0.0
+    - 0.0
+  scans_to_read: fl
+  total_time_to_read_and_access: 72.835959
+  time_to_read: 72.835889
+  lazy_type: :not
+  end_time: 3149.77
+  start_time: 0.2813
+  file: ltq042304_18.mzXML
+--- 
+- time_to_access: 4.8e-05
+  first_scan: 
+    last_peak: 
+    - 0.0
+    - 0.0
+    num: 1
+    first_peak: 
+    - 0.0
+    - 0.0
+  scan_count: 8265
+  file_size: 58496858
+  last_scan: 
+    last_peak: 
+    - 0.0
+    - 0.0
+    num: 8265
+    first_peak: 
+    - 0.0
+    - 0.0
+  scans_to_read: fl
+  total_time_to_read_and_access: 62.018198
+  time_to_read: 62.018128
+  lazy_type: :not
+  end_time: 3149.89
+  start_time: 0.2837
+  file: ltq042304_20.mzXML
+--- 
+- time_to_access: 5.0e-05
+  first_scan: 
+    last_peak: 
+    - 0.0
+    - 0.0
+    num: 1
+    first_peak: 
+    - 0.0
+    - 0.0
+  scan_count: 9673
+  file_size: 81306647
+  last_scan: 
+    last_peak: 
+    - 0.0
+    - 0.0
+    num: 9673
+    first_peak: 
+    - 0.0
+    - 0.0
+  scans_to_read: fl
+  total_time_to_read_and_access: 88.539106
+  time_to_read: 88.539033
+  lazy_type: :not
+  end_time: 3149.81
+  start_time: 0.2753
+  file: ltq042304_22.mzXML
+--- 
+- time_to_access: 4.9e-05
+  first_scan: 
+    last_peak: 
+    - 0.0
+    - 0.0
+    num: 1
+    first_peak: 
+    - 0.0
+    - 0.0
+  scan_count: 9498
+  file_size: 78727656
+  last_scan: 
+    last_peak: 
+    - 0.0
+    - 0.0
+    num: 9498
+    first_peak: 
+    - 0.0
+    - 0.0
+  scans_to_read: fl
+  total_time_to_read_and_access: 84.343597
+  time_to_read: 84.343526
+  lazy_type: :not
+  end_time: 3149.53
+  start_time: 0.275
+  file: ltq042304_24.mzXML
+--- 
+- time_to_access: 5.3e-05
+  first_scan: 
+    last_peak: 
+    - 0.0
+    - 0.0
+    num: 1
+    first_peak: 
+    - 0.0
+    - 0.0
+  scan_count: 9223
+  file_size: 73667667
+  last_scan: 
+    last_peak: 
+    - 0.0
+    - 0.0
+    num: 9223
+    first_peak: 
+    - 0.0
+    - 0.0
+  scans_to_read: fl
+  total_time_to_read_and_access: 81.955896
+  time_to_read: 81.955821
+  lazy_type: :not
+  end_time: 3149.81
+  start_time: 0.2813
+  file: ltq042304_26.mzXML
+--- 
+- time_to_access: 4.8e-05
+  first_scan: 
+    last_peak: 
+    - 0.0
+    - 0.0
+    num: 1
+    first_peak: 
+    - 0.0
+    - 0.0
+  scan_count: 8873
+  file_size: 67938770
+  last_scan: 
+    last_peak: 
+    - 0.0
+    - 0.0
+    num: 8873
+    first_peak: 
+    - 0.0
+    - 0.0
+  scans_to_read: fl
+  total_time_to_read_and_access: 72.599644
+  time_to_read: 72.599575
+  lazy_type: :not
+  end_time: 3149.72
+  start_time: 0.2762
+  file: ltq042304_28.mzXML
+--- 
+- file_size: 89464418
+  limit: 83886080.0
+  file: ltq042304_30.mzXML
+--- 
+- time_to_access: 5.1e-05
+  first_scan: 
+    last_peak: 
+    - 0.0
+    - 0.0
+    num: 1
+    first_peak: 
+    - 0.0
+    - 0.0
+  scan_count: 9357
+  file_size: 76199010
+  last_scan: 
+    last_peak: 
+    - 0.0
+    - 0.0
+    num: 9357
+    first_peak: 
+    - 0.0
+    - 0.0
+  scans_to_read: fl
+  total_time_to_read_and_access: 83.206102
+  time_to_read: 83.206029
+  lazy_type: :not
+  end_time: 3149.88
+  start_time: 0.2712
+  file: ltq042304_32.mzXML
+--- 
+- file_size: 152297324
+  limit: 83886080.0
+  file: ltq042304_34.mzXML
+--- 
+- file_size: 114829474
+  limit: 83886080.0
+  file: ltq042304_36.mzXML
+--- 
+- time_to_access: 5.0e-05
+  first_scan: 
+    last_peak: 
+    - 0.0
+    - 0.0
+    num: 1
+    first_peak: 
+    - 0.0
+    - 0.0
+  scan_count: 12248
+  file_size: 80031383
+  last_scan: 
+    last_peak: 
+    - 0.0
+    - 0.0
+    num: 12248
+    first_peak: 
+    - 0.0
+    - 0.0
+  scans_to_read: fl
+  total_time_to_read_and_access: 86.451737
+  time_to_read: 86.451665
+  lazy_type: :not
+  end_time: 4709.79
+  start_time: 0.2869
+  file: ltq042304_38.mzXML
+--- 
+- time_to_access: 5.0e-05
+  first_scan: 
+    last_peak: 
+    - 0.0
+    - 0.0
+    num: 1
+    first_peak: 
+    - 0.0
+    - 0.0
+  scan_count: 11986
+  file_size: 77168412
+  last_scan: 
+    last_peak: 
+    - 0.0
+    - 0.0
+    num: 11986
+    first_peak: 
+    - 0.0
+    - 0.0
+  scans_to_read: fl
+  total_time_to_read_and_access: 82.836258
+  time_to_read: 82.836187
+  lazy_type: :not
+  end_time: 4709.66
+  start_time: 0.2799
+  file: ltq042304_40.mzXML
+--- 
+- time_to_access: 4.6e-05
+  first_scan: 
+    last_peak: 
+    - 0.0
+    - 0.0
+    num: 1
+    first_peak: 
+    - 0.0
+    - 0.0
+  scan_count: 9905
+  file_size: 82537599
+  last_scan: 
+    last_peak: 
+    - 0.0
+    - 0.0
+    num: 9905
+    first_peak: 
+    - 0.0
+    - 0.0
+  scans_to_read: fl
+  total_time_to_read_and_access: 83.175546
+  time_to_read: 83.175481
+  lazy_type: :not
+  end_time: 3149.97
+  start_time: 0.2862
+  file: ltq042304_42.mzXML
+--- 
+- time_to_access: 4.5e-05
+  first_scan: 
+    last_peak: 
+    - 0.0
+    - 0.0
+    num: 1
+    first_peak: 
+    - 0.0
+    - 0.0
+  scan_count: 9239
+  file_size: 75183289
+  last_scan: 
+    last_peak: 
+    - 1204.92150878906
+    - 4.12596750259399
+    num: 9239
+    first_peak: 
+    - 1204.92150878906
+    - 4.12596750259399
+  scans_to_read: fl
+  total_time_to_read_and_access: 76.504437
+  time_to_read: 76.504371
+  lazy_type: :not
+  end_time: 3149.96
+  start_time: 0.2846
+  file: ltq042304_44.mzXML
+--- 
+- time_to_access: 4.6e-05
+  first_scan: 
+    last_peak: 
+    - 0.0
+    - 0.0
+    num: 1
+    first_peak: 
+    - 0.0
+    - 0.0
+  scan_count: 7823
+  file_size: 45783534
+  last_scan: 
+    last_peak: 
+    - 0.0
+    - 0.0
+    num: 7823
+    first_peak: 
+    - 0.0
+    - 0.0
+  scans_to_read: fl
+  total_time_to_read_and_access: 44.971517
+  time_to_read: 44.97145
+  lazy_type: :not
+  end_time: 3149.88
+  start_time: 0.268
+  file: ltq042304_46.mzXML
+--- 
+- time_to_access: 4.8e-05
+  first_scan: 
+    last_peak: 
+    - 0.0
+    - 0.0
+    num: 1
+    first_peak: 
+    - 0.0
+    - 0.0
+  scan_count: 7212
+  file_size: 43995043
+  last_scan: 
+    last_peak: 
+    - 0.0
+    - 0.0
+    num: 7212
+    first_peak: 
+    - 0.0
+    - 0.0
+  scans_to_read: fl
+  total_time_to_read_and_access: 42.365105
+  time_to_read: 42.365037
+  lazy_type: :not
+  end_time: 3149.76
+  start_time: 0.2829
+  file: ltq042304_50.mzXML
+--- 
+- time_to_access: 4.4e-05
+  first_scan: 
+    last_peak: 
+    - 0.0
+    - 0.0
+    num: 1
+    first_peak: 
+    - 0.0
+    - 0.0
+  scan_count: 7307
+  file_size: 43672166
+  last_scan: 
+    last_peak: 
+    - 0.0
+    - 0.0
+    num: 7307
+    first_peak: 
+    - 0.0
+    - 0.0
+  scans_to_read: fl
+  total_time_to_read_and_access: 40.818608
+  time_to_read: 40.818543
+  lazy_type: :not
+  end_time: 3149.87
+  start_time: 0.2716
+  file: ltq042304_52.mzXML
+--- 
+- file_size: 101249466
+  limit: 83886080.0
+  file: ltq042304_54.mzXML
+--- 
+- time_to_access: 4.4e-05
+  first_scan: 
+    last_peak: 
+    - 0.0
+    - 0.0
+    num: 1
+    first_peak: 
+    - 0.0
+    - 0.0
+  scan_count: 11769
+  file_size: 78983243
+  last_scan: 
+    last_peak: 
+    - 0.0
+    - 0.0
+    num: 11769
+    first_peak: 
+    - 0.0
+    - 0.0
+  scans_to_read: fl
+  total_time_to_read_and_access: 75.149282
+  time_to_read: 75.149219
+  lazy_type: :not
+  end_time: 4709.36
+  start_time: 0.2829
+  file: ltq042304_56.mzXML
+--- 
+- file_size: 90790346
+  limit: 83886080.0
+  file: ltq042304_58.mzXML
+--- 
+- time_to_access: 4.2e-05
+  first_scan: 
+    last_peak: 
+    - 0.0
+    - 0.0
+    num: 1
+    first_peak: 
+    - 0.0
+    - 0.0
+  scan_count: 11968
+  file_size: 76208277
+  last_scan: 
+    last_peak: 
+    - 0.0
+    - 0.0
+    num: 11968
+    first_peak: 
+    - 0.0
+    - 0.0
+  scans_to_read: fl
+  total_time_to_read_and_access: 74.202091
+  time_to_read: 74.20203
+  lazy_type: :not
+  end_time: 4709.92
+  start_time: 0.2855
+  file: ltq042304_60.mzXML
+--- 
+- time_to_access: 4.4e-05
+  first_scan: 
+    last_peak: 
+    - 0.0
+    - 0.0
+    num: 1
+    first_peak: 
+    - 0.0
+    - 0.0
+  scan_count: 12237
+  file_size: 78408094
+  last_scan: 
+    last_peak: 
+    - 0.0
+    - 0.0
+    num: 12237
+    first_peak: 
+    - 0.0
+    - 0.0
+  scans_to_read: fl
+  total_time_to_read_and_access: 78.529375
+  time_to_read: 78.529313
+  lazy_type: :not
+  end_time: 4709.98
+  start_time: 0.2755
+  file: ltq042304_62.mzXML
+--- 
+- time_to_access: 4.4e-05
+  first_scan: 
+    last_peak: 
+    - 0.0
+    - 0.0
+    num: 1
+    first_peak: 
+    - 0.0
+    - 0.0
+  scan_count: 12242
+  file_size: 82931989
+  last_scan: 
+    last_peak: 
+    - 0.0
+    - 0.0
+    num: 12242
+    first_peak: 
+    - 0.0
+    - 0.0
+  scans_to_read: fl
+  total_time_to_read_and_access: 82.007142
+  time_to_read: 82.007078
+  lazy_type: :not
+  end_time: 4709.63
+  start_time: 0.2801
+  file: ltq042304_64.mzXML
+--- 
+- time_to_access: 4.8e-05
+  first_scan: 
+    last_peak: 
+    - 0.0
+    - 0.0
+    num: 1
+    first_peak: 
+    - 0.0
+    - 0.0
+  scan_count: 12384
+  file_size: 80605527
+  last_scan: 
+    last_peak: 
+    - 0.0
+    - 0.0
+    num: 12384
+    first_peak: 
+    - 0.0
+    - 0.0
+  scans_to_read: fl
+  total_time_to_read_and_access: 80.518671
+  time_to_read: 80.518603
+  lazy_type: :not
+  end_time: 4709.95
+  start_time: 0.2858
+  file: ltq042304_66.mzXML
+--- 
+- file_size: 96946704
+  limit: 83886080.0
+  file: ltq042304_68.mzXML
+--- 
+- time_to_access: 4.7e-05
+  first_scan: 
+    last_peak: 
+    - 0.0
+    - 0.0
+    num: 1
+    first_peak: 
+    - 0.0
+    - 0.0
+  scan_count: 12170
+  file_size: 80462277
+  last_scan: 
+    last_peak: 
+    - 0.0
+    - 0.0
+    num: 12170
+    first_peak: 
+    - 0.0
+    - 0.0
+  scans_to_read: fl
+  total_time_to_read_and_access: 80.645846
+  time_to_read: 80.64578
+  lazy_type: :not
+  end_time: 4709.91
+  start_time: 0.2801
+  file: ltq042304_70.mzXML
+--- 
+- file_size: 92550279
+  limit: 83886080.0
+  file: ltq042304_72.mzXML
+--- 
+- time_to_access: 4.4e-05
+  first_scan: 
+    last_peak: 
+    - 0.0
+    - 0.0
+    num: 1
+    first_peak: 
+    - 0.0
+    - 0.0
+  scan_count: 12201
+  file_size: 75557277
+  last_scan: 
+    last_peak: 
+    - 0.0
+    - 0.0
+    num: 12201
+    first_peak: 
+    - 0.0
+    - 0.0
+  scans_to_read: fl
+  total_time_to_read_and_access: 74.595163
+  time_to_read: 74.5951
+  lazy_type: :not
+  end_time: 4709.93
+  start_time: 0.2803
+  file: ltq042304_74.mzXML
+--- 
+- time_to_access: 4.5e-05
+  first_scan: 
+    last_peak: 
+    - 0.0
+    - 0.0
+    num: 1
+    first_peak: 
+    - 0.0
+    - 0.0
+  scan_count: 12335
+  file_size: 78691669
+  last_scan: 
+    last_peak: 
+    - 0.0
+    - 0.0
+    num: 12335
+    first_peak: 
+    - 0.0
+    - 0.0
+  scans_to_read: fl
+  total_time_to_read_and_access: 79.152379
+  time_to_read: 79.152314
+  lazy_type: :not
+  end_time: 4709.83
+  start_time: 0.2736
+  file: ltq042304_76.mzXML
+--- 
+- file_size: 92599114
+  limit: 83886080.0
+  file: ltq042304_78.mzXML
+--- 
+- file_size: 94342217
+  limit: 83886080.0
+  file: ltq042304_80.mzXML
+--- 
+- time_to_access: 4.5e-05
+  first_scan: 
+    last_peak: 
+    - 0.0
+    - 0.0
+    num: 1
+    first_peak: 
+    - 0.0
+    - 0.0
+  scan_count: 7887
+  file_size: 52210866
+  last_scan: 
+    last_peak: 
+    - 0.0
+    - 0.0
+    num: 7887
+    first_peak: 
+    - 0.0
+    - 0.0
+  scans_to_read: fl
+  total_time_to_read_and_access: 53.468422
+  time_to_read: 53.468358
+  lazy_type: :not
+  end_time: 3149.82
+  start_time: 0.2814
+  file: ltq042304_82.mzXML
+--- 
+- time_to_access: 4.7e-05
+  first_scan: 
+    last_peak: 
+    - 0.0
+    - 0.0
+    num: 1
+    first_peak: 
+    - 0.0
+    - 0.0
+  scan_count: 7989
+  file_size: 54284101
+  last_scan: 
+    last_peak: 
+    - 0.0
+    - 0.0
+    num: 7989
+    first_peak: 
+    - 0.0
+    - 0.0
+  scans_to_read: fl
+  total_time_to_read_and_access: 52.840184
+  time_to_read: 52.840118
+  lazy_type: :not
+  end_time: 3149.78
+  start_time: 0.2815
+  file: ltq042304_84.mzXML
+--- 
+- time_to_access: 4.4e-05
+  first_scan: 
+    last_peak: 
+    - 0.0
+    - 0.0
+    num: 1
+    first_peak: 
+    - 0.0
+    - 0.0
+  scan_count: 8680
+  file_size: 64697286
+  last_scan: 
+    last_peak: 
+    - 0.0
+    - 0.0
+    num: 8680
+    first_peak: 
+    - 0.0
+    - 0.0
+  scans_to_read: fl
+  total_time_to_read_and_access: 62.810015
+  time_to_read: 62.809952
+  lazy_type: :not
+  end_time: 3149.8
+  start_time: 0.2751
+  file: ltq042304_86.mzXML
+--- 
+- file_size: 126715061
+  limit: 83886080.0
+  file: ltq042304_88.mzXML
+--- 
+- time_to_access: 4.4e-05
+  first_scan: 
+    last_peak: 
+    - 0.0
+    - 0.0
+    num: 1
+    first_peak: 
+    - 0.0
+    - 0.0
+  scan_count: 8264
+  file_size: 59527638
+  last_scan: 
+    last_peak: 
+    - 0.0
+    - 0.0
+    num: 8264
+    first_peak: 
+    - 0.0
+    - 0.0
+  scans_to_read: fl
+  total_time_to_read_and_access: 56.437231
+  time_to_read: 56.437167
+  lazy_type: :not
+  end_time: 3149.96
+  start_time: 0.2686
+  file: ltq042304_90.mzXML
+--- 
+- file_size: 144599155
+  limit: 83886080.0
+  file: ltq042304_92.mzXML
+--- 
+- file_size: 133739322
+  limit: 83886080.0
+  file: ltq042304_94.mzXML
+--- 
+- file_size: 94602099
+  limit: 83886080.0
+  file: ltq042304_96.mzXML
+--- 
+- time_to_access: 4.4e-05
+  first_scan: 
+    last_peak: 
+    - 0.0
+    - 0.0
+    num: 1
+    first_peak: 
+    - 0.0
+    - 0.0
+  scan_count: 11997
+  file_size: 77029880
+  last_scan: 
+    last_peak: 
+    - 0.0
+    - 0.0
+    num: 11997
+    first_peak: 
+    - 0.0
+    - 0.0
+  scans_to_read: fl
+  total_time_to_read_and_access: 75.43043
+  time_to_read: 75.430368
+  lazy_type: :not
+  end_time: 4709.96
+  start_time: 0.282
+  file: ltq042704_02.mzXML
+--- 
+- file_size: 97047065
+  limit: 83886080.0
+  file: ltq042704_04.mzXML
+--- 
+- time_to_access: 4.3e-05
+  first_scan: 
+    last_peak: 
+    - 0.0
+    - 0.0
+    num: 1
+    first_peak: 
+    - 0.0
+    - 0.0
+  scan_count: 8588
+  file_size: 63209371
+  last_scan: 
+    last_peak: 
+    - 0.0
+    - 0.0
+    num: 8588
+    first_peak: 
+    - 0.0
+    - 0.0
+  scans_to_read: fl
+  total_time_to_read_and_access: 63.274481
+  time_to_read: 63.274419
+  lazy_type: :not
+  end_time: 3149.74
+  start_time: 0.2703
+  file: ltq042704_06.mzXML
+--- 
+- file_size: 85842574
+  limit: 83886080.0
+  file: ltq042704_08.mzXML
+--- 
+- time_to_access: 4.3e-05
+  first_scan: 
+    last_peak: 
+    - 0.0
+    - 0.0
+    num: 1
+    first_peak: 
+    - 0.0
+    - 0.0
+  scan_count: 8577
+  file_size: 57928846
+  last_scan: 
+    last_peak: 
+    - 0.0
+    - 0.0
+    num: 8577
+    first_peak: 
+    - 0.0
+    - 0.0
+  scans_to_read: fl
+  total_time_to_read_and_access: 55.255354
+  time_to_read: 55.255292
+  lazy_type: :not
+  end_time: 3149.79
+  start_time: 0.2798
+  file: ltq042704_10.mzXML
+--- 
+- time_to_access: 4.3e-05
+  first_scan: 
+    last_peak: 
+    - 0.0
+    - 0.0
+    num: 1
+    first_peak: 
+    - 0.0
+    - 0.0
+  scan_count: 8611
+  file_size: 63356491
+  last_scan: 
+    last_peak: 
+    - 0.0
+    - 0.0
+    num: 8611
+    first_peak: 
+    - 0.0
+    - 0.0
+  scans_to_read: fl
+  total_time_to_read_and_access: 65.212569
+  time_to_read: 65.212506
+  lazy_type: :not
+  end_time: 3149.97
+  start_time: 0.2729
+  file: ltq042704_14.mzXML
+--- 
+- time_to_access: 6.3e-05
+  first_scan: 
+    last_peak: 
+    - 0.0
+    - 0.0
+    num: 1
+    first_peak: 
+    - 0.0
+    - 0.0
+  scan_count: 8641
+  file_size: 63442746
+  last_scan: 
+    last_peak: 
+    - 0.0
+    - 0.0
+    num: 8641
+    first_peak: 
+    - 0.0
+    - 0.0
+  scans_to_read: fl
+  total_time_to_read_and_access: 61.045242
+  time_to_read: 61.045158
+  lazy_type: :not
+  end_time: 3149.87
+  start_time: 0.2697
+  file: ltq042704_16.mzXML
+--- 
+- time_to_access: 4.4e-05
+  first_scan: 
+    last_peak: 
+    - 0.0
+    - 0.0
+    num: 1
+    first_peak: 
+    - 0.0
+    - 0.0
+  scan_count: 8009
+  file_size: 54829797
+  last_scan: 
+    last_peak: 
+    - 0.0
+    - 0.0
+    num: 8009
+    first_peak: 
+    - 0.0
+    - 0.0
+  scans_to_read: fl
+  total_time_to_read_and_access: 52.609023
+  time_to_read: 52.608959
+  lazy_type: :not
+  end_time: 3149.84
+  start_time: 0.274
+  file: ltq042704_18.mzXML
+--- 
+- time_to_access: 4.5e-05
+  first_scan: 
+    last_peak: 
+    - 0.0
+    - 0.0
+    num: 1
+    first_peak: 
+    - 0.0
+    - 0.0
+  scan_count: 7767
+  file_size: 52067995
+  last_scan: 
+    last_peak: 
+    - 0.0
+    - 0.0
+    num: 7767
+    first_peak: 
+    - 0.0
+    - 0.0
+  scans_to_read: fl
+  total_time_to_read_and_access: 49.827903
+  time_to_read: 49.82784
+  lazy_type: :not
+  end_time: 3149.72
+  start_time: 0.2733
+  file: ltq042704_20.mzXML
+--- 
+- time_to_access: 4.5e-05
+  first_scan: 
+    last_peak: 
+    - 0.0
+    - 0.0
+    num: 1
+    first_peak: 
+    - 0.0
+    - 0.0
+  scan_count: 7490
+  file_size: 50346147
+  last_scan: 
+    last_peak: 
+    - 502.344848632812
+    - 3.5368435382843
+    num: 7490
+    first_peak: 
+    - 502.344848632812
+    - 3.5368435382843
+  scans_to_read: fl
+  total_time_to_read_and_access: 48.583623
+  time_to_read: 48.58356
+  lazy_type: :not
+  end_time: 3149.72
+  start_time: 0.2847
+  file: ltq042704_22.mzXML
+--- 
+- time_to_access: 4.5e-05
+  first_scan: 
+    last_peak: 
+    - 0.0
+    - 0.0
+    num: 1
+    first_peak: 
+    - 0.0
+    - 0.0
+  scan_count: 11678
+  file_size: 77967709
+  last_scan: 
+    last_peak: 
+    - 0.0
+    - 0.0
+    num: 11678
+    first_peak: 
+    - 0.0
+    - 0.0
+  scans_to_read: fl
+  total_time_to_read_and_access: 73.897445
+  time_to_read: 73.897381
+  lazy_type: :not
+  end_time: 4709.73
+  start_time: 0.275
+  file: ltq042704_24.mzXML
+--- 
+- time_to_access: 3.0e-05
+  first_scan: 
+    last_peak: 
+    - 0.0
+    - 0.0
+    num: 1
+    first_peak: 
+    - 0.0
+    - 0.0
+  scan_count: 12238
+  file_size: 78380417
+  last_scan: 
+    last_peak: 
+    - 0.0
+    - 0.0
+    num: 12238
+    first_peak: 
+    - 0.0
+    - 0.0
+  scans_to_read: fl
+  total_time_to_read_and_access: 64.842268
+  time_to_read: 64.842223
+  lazy_type: :not
+  end_time: 4709.93
+  start_time: 0.2778
+  file: ltq042704_26.mzXML
+--- 
+- time_to_access: 3.2e-05
+  first_scan: 
+    last_peak: 
+    - 0.0
+    - 0.0
+    num: 1
+    first_peak: 
+    - 0.0
+    - 0.0
+  scan_count: 12870
+  file_size: 77399848
+  last_scan: 
+    last_peak: 
+    - 0.0
+    - 0.0
+    num: 12870
+    first_peak: 
+    - 0.0
+    - 0.0
+  scans_to_read: fl
+  total_time_to_read_and_access: 51.506271
+  time_to_read: 51.506225
+  lazy_type: :not
+  end_time: 4709.95
+  start_time: 0.2794
+  file: ltq042704_28.mzXML
+--- 
+- file_size: 89417871
+  limit: 83886080.0
+  file: ltq042704_30.mzXML
+--- 
+- file_size: 84589290
+  limit: 83886080.0
+  file: ltq042704_32.mzXML
+--- 
+- file_size: 110425190
+  limit: 83886080.0
+  file: ltq042704_34.mzXML
+--- 
+- time_to_access: 3.0e-05
+  first_scan: 
+    last_peak: 
+    - 0.0
+    - 0.0
+    num: 1
+    first_peak: 
+    - 0.0
+    - 0.0
+  scan_count: 8110
+  file_size: 61368235
+  last_scan: 
+    last_peak: 
+    - 0.0
+    - 0.0
+    num: 8110
+    first_peak: 
+    - 0.0
+    - 0.0
+  scans_to_read: fl
+  total_time_to_read_and_access: 39.213091
+  time_to_read: 39.213047
+  lazy_type: :not
+  end_time: 3149.87
+  start_time: 0.2806
+  file: ltq042704_36.mzXML
+--- 
+- time_to_access: 3.1e-05
+  first_scan: 
+    last_peak: 
+    - 0.0
+    - 0.0
+    num: 1
+    first_peak: 
+    - 0.0
+    - 0.0
+  scan_count: 8116
+  file_size: 59593394
+  last_scan: 
+    last_peak: 
+    - 0.0
+    - 0.0
+    num: 8116
+    first_peak: 
+    - 0.0
+    - 0.0
+  scans_to_read: fl
+  total_time_to_read_and_access: 37.951217
+  time_to_read: 37.951172
+  lazy_type: :not
+  end_time: 3149.54
+  start_time: 0.2772
+  file: ltq042704_38.mzXML
+--- 
+- time_to_access: 3.3e-05
+  first_scan: 
+    last_peak: 
+    - 0.0
+    - 0.0
+    num: 1
+    first_peak: 
+    - 0.0
+    - 0.0
+  scan_count: 7672
+  file_size: 50834622
+  last_scan: 
+    last_peak: 
+    - 0.0
+    - 0.0
+    num: 7672
+    first_peak: 
+    - 0.0
+    - 0.0
+  scans_to_read: fl
+  total_time_to_read_and_access: 34.730268
+  time_to_read: 34.730218
+  lazy_type: :not
+  end_time: 3149.98
+  start_time: 0.2716
+  file: ltq042704_40.mzXML
+--- 
+- time_to_access: 3.1e-05
+  first_scan: 
+    last_peak: 
+    - 0.0
+    - 0.0
+    num: 1
+    first_peak: 
+    - 0.0
+    - 0.0
+  scan_count: 7894
+  file_size: 57255474
+  last_scan: 
+    last_peak: 
+    - 0.0
+    - 0.0
+    num: 7894
+    first_peak: 
+    - 0.0
+    - 0.0
+  scans_to_read: fl
+  total_time_to_read_and_access: 36.918457
+  time_to_read: 36.91841
+  lazy_type: :not
+  end_time: 3149.51
+  start_time: 0.2706
+  file: ltq042704_42.mzXML
+--- 
+- time_to_access: 3.1e-05
+  first_scan: 
+    last_peak: 
+    - 0.0
+    - 0.0
+    num: 1
+    first_peak: 
+    - 0.0
+    - 0.0
+  scan_count: 7729
+  file_size: 52480287
+  last_scan: 
+    last_peak: 
+    - 0.0
+    - 0.0
+    num: 7729
+    first_peak: 
+    - 0.0
+    - 0.0
+  scans_to_read: fl
+  total_time_to_read_and_access: 31.677269
+  time_to_read: 31.677224
+  lazy_type: :not
+  end_time: 3149.71
+  start_time: 0.2747
+  file: ltq042704_44.mzXML
+--- 
+- time_to_access: 3.1e-05
+  first_scan: 
+    last_peak: 
+    - 0.0
+    - 0.0
+    num: 1
+    first_peak: 
+    - 0.0
+    - 0.0
+  scan_count: 7672
+  file_size: 53294868
+  last_scan: 
+    last_peak: 
+    - 0.0
+    - 0.0
+    num: 7672
+    first_peak: 
+    - 0.0
+    - 0.0
+  scans_to_read: fl
+  total_time_to_read_and_access: 33.455372
+  time_to_read: 33.455328
+  lazy_type: :not
+  end_time: 3149.95
+  start_time: 0.2767
+  file: ltq042704_46.mzXML
+--- 
+- time_to_access: 3.2e-05
+  first_scan: 
+    last_peak: 
+    - 0.0
+    - 0.0
+    num: 1
+    first_peak: 
+    - 0.0
+    - 0.0
+  scan_count: 8444
+  file_size: 63396806
+  last_scan: 
+    last_peak: 
+    - 974.0625
+    - 4.78505945205688
+    num: 8444
+    first_peak: 
+    - 974.0625
+    - 4.78505945205688
+  scans_to_read: fl
+  total_time_to_read_and_access: 41.429888
+  time_to_read: 41.429843
+  lazy_type: :not
+  end_time: 3149.84
+  start_time: 0.2822
+  file: ltq042704_48.mzXML
+--- 
+- time_to_access: 3.9e-05
+  first_scan: 
+    last_peak: 
+    - 0.0
+    - 0.0
+    num: 1
+    first_peak: 
+    - 0.0
+    - 0.0
+  scan_count: 8503
+  file_size: 58582546
+  last_scan: 
+    last_peak: 
+    - 0.0
+    - 0.0
+    num: 8503
+    first_peak: 
+    - 0.0
+    - 0.0
+  scans_to_read: fl
+  total_time_to_read_and_access: 38.527624
+  time_to_read: 38.52757
+  lazy_type: :not
+  end_time: 3149.46
+  start_time: 0.2723
+  file: ltq042704_50.mzXML
+--- 
+- time_to_access: 3.1e-05
+  first_scan: 
+    last_peak: 
+    - 0.0
+    - 0.0
+    num: 1
+    first_peak: 
+    - 0.0
+    - 0.0
+  scan_count: 8596
+  file_size: 69429820
+  last_scan: 
+    last_peak: 
+    - 0.0
+    - 0.0
+    num: 8596
+    first_peak: 
+    - 0.0
+    - 0.0
+  scans_to_read: fl
+  total_time_to_read_and_access: 43.733191
+  time_to_read: 43.733146
+  lazy_type: :not
+  end_time: 3149.8
+  start_time: 0.2865
+  file: ltq042704_52.mzXML
+--- 
+- time_to_access: 3.1e-05
+  first_scan: 
+    last_peak: 
+    - 0.0
+    - 0.0
+    num: 1
+    first_peak: 
+    - 0.0
+    - 0.0
+  scan_count: 6976
+  file_size: 39678340
+  last_scan: 
+    last_peak: 
+    - 0.0
+    - 0.0
+    num: 6976
+    first_peak: 
+    - 0.0
+    - 0.0
+  scans_to_read: fl
+  total_time_to_read_and_access: 24.380229
+  time_to_read: 24.380184
+  lazy_type: :not
+  end_time: 3149.74
+  start_time: 0.2876
+  file: ltq043004_04.mzXML
+--- 
+- time_to_access: 3.1e-05
+  first_scan: 
+    last_peak: 
+    - 0.0
+    - 0.0
+    num: 1
+    first_peak: 
+    - 0.0
+    - 0.0
+  scan_count: 7330
+  file_size: 46265549
+  last_scan: 
+    last_peak: 
+    - 0.0
+    - 0.0
+    num: 7330
+    first_peak: 
+    - 0.0
+    - 0.0
+  scans_to_read: fl
+  total_time_to_read_and_access: 27.688109
+  time_to_read: 27.688064
+  lazy_type: :not
+  end_time: 3149.83
+  start_time: 0.2679
+  file: ltq043004_06.mzXML
+--- 
+- time_to_access: 3.1e-05
+  first_scan: 
+    last_peak: 
+    - 0.0
+    - 0.0
+    num: 1
+    first_peak: 
+    - 0.0
+    - 0.0
+  scan_count: 11349
+  file_size: 80105485
+  last_scan: 
+    last_peak: 
+    - 0.0
+    - 0.0
+    num: 11349
+    first_peak: 
+    - 0.0
+    - 0.0
+  scans_to_read: fl
+  total_time_to_read_and_access: 50.010297
+  time_to_read: 50.010252
+  lazy_type: :not
+  end_time: 4709.91
+  start_time: 0.2837
+  file: ltq043004_08.mzXML
+--- 
+- time_to_access: 3.0e-05
+  first_scan: 
+    last_peak: 
+    - 0.0
+    - 0.0
+    num: 1
+    first_peak: 
+    - 0.0
+    - 0.0
+  scan_count: 11810
+  file_size: 81628770
+  last_scan: 
+    last_peak: 
+    - 0.0
+    - 0.0
+    num: 11810
+    first_peak: 
+    - 0.0
+    - 0.0
+  scans_to_read: fl
+  total_time_to_read_and_access: 52.393657
+  time_to_read: 52.393612
+  lazy_type: :not
+  end_time: 4709.7
+  start_time: 0.2849
+  file: ltq043004_10.mzXML
+--- 
+- time_to_access: 3.0e-05
+  first_scan: 
+    last_peak: 
+    - 0.0
+    - 0.0
+    num: 1
+    first_peak: 
+    - 0.0
+    - 0.0
+  scan_count: 11711
+  file_size: 76303604
+  last_scan: 
+    last_peak: 
+    - 0.0
+    - 0.0
+    num: 11711
+    first_peak: 
+    - 0.0
+    - 0.0
+  scans_to_read: fl
+  total_time_to_read_and_access: 48.256811
+  time_to_read: 48.256766
+  lazy_type: :not
+  end_time: 4709.8
+  start_time: 0.2686
+  file: ltq043004_12.mzXML
+--- 
+- time_to_access: 3.1e-05
+  first_scan: 
+    last_peak: 
+    - 0.0
+    - 0.0
+    num: 1
+    first_peak: 
+    - 0.0
+    - 0.0
+  scan_count: 11672
+  file_size: 78367895
+  last_scan: 
+    last_peak: 
+    - 0.0
+    - 0.0
+    num: 11672
+    first_peak: 
+    - 0.0
+    - 0.0
+  scans_to_read: fl
+  total_time_to_read_and_access: 51.335375
+  time_to_read: 51.33533
+  lazy_type: :not
+  end_time: 4709.94
+  start_time: 0.2762
+  file: ltq043004_14.mzXML
+--- 
+- time_to_access: 3.1e-05
+  first_scan: 
+    last_peak: 
+    - 0.0
+    - 0.0
+    num: 1
+    first_peak: 
+    - 0.0
+    - 0.0
+  scan_count: 12334
+  file_size: 81827241
+  last_scan: 
+    last_peak: 
+    - 0.0
+    - 0.0
+    num: 12334
+    first_peak: 
+    - 0.0
+    - 0.0
+  scans_to_read: fl
+  total_time_to_read_and_access: 53.179045
+  time_to_read: 53.178999
+  lazy_type: :not
+  end_time: 4709.81
+  start_time: 0.285
+  file: ltq043004_16.mzXML
+--- 
+- time_to_access: 3.2e-05
+  first_scan: 
+    last_peak: 
+    - 0.0
+    - 0.0
+    num: 1
+    first_peak: 
+    - 0.0
+    - 0.0
+  scan_count: 11904
+  file_size: 78889456
+  last_scan: 
+    last_peak: 
+    - 0.0
+    - 0.0
+    num: 11904
+    first_peak: 
+    - 0.0
+    - 0.0
+  scans_to_read: fl
+  total_time_to_read_and_access: 50.90263
+  time_to_read: 50.902584
+  lazy_type: :not
+  end_time: 4709.96
+  start_time: 0.2806
+  file: ltq043004_18.mzXML
+--- 
+- time_to_access: 3.1e-05
+  first_scan: 
+    last_peak: 
+    - 0.0
+    - 0.0
+    num: 1
+    first_peak: 
+    - 0.0
+    - 0.0
+  scan_count: 11614
+  file_size: 76746226
+  last_scan: 
+    last_peak: 
+    - 0.0
+    - 0.0
+    num: 11614
+    first_peak: 
+    - 0.0
+    - 0.0
+  scans_to_read: fl
+  total_time_to_read_and_access: 48.939282
+  time_to_read: 48.939236
+  lazy_type: :not
+  end_time: 4709.89
+  start_time: 0.2787
+  file: ltq043004_20.mzXML
+--- 
+- time_to_access: 3.1e-05
+  first_scan: 
+    last_peak: 
+    - 0.0
+    - 0.0
+    num: 1
+    first_peak: 
+    - 0.0
+    - 0.0
+  scan_count: 11951
+  file_size: 81282495
+  last_scan: 
+    last_peak: 
+    - 0.0
+    - 0.0
+    num: 11951
+    first_peak: 
+    - 0.0
+    - 0.0
+  scans_to_read: fl
+  total_time_to_read_and_access: 52.913669
+  time_to_read: 52.913623
+  lazy_type: :not
+  end_time: 4709.89
+  start_time: 0.2698
+  file: ltq043004_22.mzXML
+--- 
+- time_to_access: 3.4e-05
+  first_scan: 
+    last_peak: 
+    - 0.0
+    - 0.0
+    num: 1
+    first_peak: 
+    - 0.0
+    - 0.0
+  scan_count: 11991
+  file_size: 80193341
+  last_scan: 
+    last_peak: 
+    - 0.0
+    - 0.0
+    num: 11991
+    first_peak: 
+    - 0.0
+    - 0.0
+  scans_to_read: fl
+  total_time_to_read_and_access: 52.344835
+  time_to_read: 52.344787
+  lazy_type: :not
+  end_time: 4709.68
+  start_time: 0.2802
+  file: ltq043004_24.mzXML
+--- 
+- time_to_access: 3.1e-05
+  first_scan: 
+    last_peak: 
+    - 0.0
+    - 0.0
+    num: 1
+    first_peak: 
+    - 0.0
+    - 0.0
+  scan_count: 11802
+  file_size: 79040366
+  last_scan: 
+    last_peak: 
+    - 0.0
+    - 0.0
+    num: 11802
+    first_peak: 
+    - 0.0
+    - 0.0
+  scans_to_read: fl
+  total_time_to_read_and_access: 49.903778
+  time_to_read: 49.903733
+  lazy_type: :not
+  end_time: 4709.73
+  start_time: 0.2876
+  file: ltq043004_26.mzXML
+--- 
+- time_to_access: 3.1e-05
+  first_scan: 
+    last_peak: 
+    - 0.0
+    - 0.0
+    num: 1
+    first_peak: 
+    - 0.0
+    - 0.0
+  scan_count: 12205
+  file_size: 81358586
+  last_scan: 
+    last_peak: 
+    - 0.0
+    - 0.0
+    num: 12205
+    first_peak: 
+    - 0.0
+    - 0.0
+  scans_to_read: fl
+  total_time_to_read_and_access: 53.105875
+  time_to_read: 53.105831
+  lazy_type: :not
+  end_time: 4709.77
+  start_time: 0.2853
+  file: ltq043004_28.mzXML
+--- 
+- time_to_access: 3.1e-05
+  first_scan: 
+    last_peak: 
+    - 0.0
+    - 0.0
+    num: 1
+    first_peak: 
+    - 0.0
+    - 0.0
+  scan_count: 12005
+  file_size: 79280915
+  last_scan: 
+    last_peak: 
+    - 0.0
+    - 0.0
+    num: 12005
+    first_peak: 
+    - 0.0
+    - 0.0
+  scans_to_read: fl
+  total_time_to_read_and_access: 52.282671
+  time_to_read: 52.282625
+  lazy_type: :not
+  end_time: 4709.78
+  start_time: 0.2838
+  file: ltq043004_30.mzXML
+--- 
+- time_to_access: 3.2e-05
+  first_scan: 
+    last_peak: 
+    - 0.0
+    - 0.0
+    num: 1
+    first_peak: 
+    - 0.0
+    - 0.0
+  scan_count: 12238
+  file_size: 80893278
+  last_scan: 
+    last_peak: 
+    - 0.0
+    - 0.0
+    num: 12238
+    first_peak: 
+    - 0.0
+    - 0.0
+  scans_to_read: fl
+  total_time_to_read_and_access: 51.955586
+  time_to_read: 51.955541
+  lazy_type: :not
+  end_time: 4709.77
+  start_time: 0.2864
+  file: ltq043004_32.mzXML
+--- 
+- time_to_access: 3.1e-05
+  first_scan: 
+    last_peak: 
+    - 0.0
+    - 0.0
+    num: 1
+    first_peak: 
+    - 0.0
+    - 0.0
+  scan_count: 12011
+  file_size: 80474711
+  last_scan: 
+    last_peak: 
+    - 0.0
+    - 0.0
+    num: 12011
+    first_peak: 
+    - 0.0
+    - 0.0
+  scans_to_read: fl
+  total_time_to_read_and_access: 52.887558
+  time_to_read: 52.887512
+  lazy_type: :not
+  end_time: 4709.96
+  start_time: 0.2834
+  file: ltq043004_34.mzXML
+--- 
+- time_to_access: 3.1e-05
+  first_scan: 
+    last_peak: 
+    - 0.0
+    - 0.0
+    num: 1
+    first_peak: 
+    - 0.0
+    - 0.0
+  scan_count: 11689
+  file_size: 77704010
+  last_scan: 
+    last_peak: 
+    - 0.0
+    - 0.0
+    num: 11689
+    first_peak: 
+    - 0.0
+    - 0.0
+  scans_to_read: fl
+  total_time_to_read_and_access: 51.683528
+  time_to_read: 51.683482
+  lazy_type: :not
+  end_time: 4709.71
+  start_time: 0.2858
+  file: ltq043004_36.mzXML
+--- 
+- time_to_access: 3.1e-05
+  first_scan: 
+    last_peak: 
+    - 0.0
+    - 0.0
+    num: 1
+    first_peak: 
+    - 0.0
+    - 0.0
+  scan_count: 12129
+  file_size: 80525389
+  last_scan: 
+    last_peak: 
+    - 0.0
+    - 0.0
+    num: 12129
+    first_peak: 
+    - 0.0
+    - 0.0
+  scans_to_read: fl
+  total_time_to_read_and_access: 52.339603
+  time_to_read: 52.339556
+  lazy_type: :not
+  end_time: 4709.68
+  start_time: 0.2724
+  file: ltq043004_38.mzXML
+--- 
+- file_size: 87499631
+  limit: 83886080.0
+  file: ltq043004_40.mzXML
+--- 
+- time_to_access: 3.1e-05
+  first_scan: 
+    last_peak: 
+    - 0.0
+    - 0.0
+    num: 1
+    first_peak: 
+    - 0.0
+    - 0.0
+  scan_count: 11638
+  file_size: 80960655
+  last_scan: 
+    last_peak: 
+    - 0.0
+    - 0.0
+    num: 11638
+    first_peak: 
+    - 0.0
+    - 0.0
+  scans_to_read: fl
+  total_time_to_read_and_access: 53.000253
+  time_to_read: 53.000207
+  lazy_type: :not
+  end_time: 4709.55
+  start_time: 0.2791
+  file: ltq043004_42.mzXML
+--- 
+- time_to_access: 3.3e-05
+  first_scan: 
+    last_peak: 
+    - 0.0
+    - 0.0
+    num: 1
+    first_peak: 
+    - 0.0
+    - 0.0
+  scan_count: 11577
+  file_size: 78630629
+  last_scan: 
+    last_peak: 
+    - 1508.78344726562
+    - 4.14145183563232
+    num: 11577
+    first_peak: 
+    - 1508.78344726562
+    - 4.14145183563232
+  scans_to_read: fl
+  total_time_to_read_and_access: 52.098636
+  time_to_read: 52.098588
+  lazy_type: :not
+  end_time: 4709.97
+  start_time: 0.2778
+  file: ltq043004_44.mzXML
+--- 
+- file_size: 92182906
+  limit: 83886080.0
+  file: ltq043004_46.mzXML
+--- 
+- file_size: 89023116
+  limit: 83886080.0
+  file: ltq043004_48.mzXML
+--- 
+- time_to_access: 3.2e-05
+  first_scan: 
+    last_peak: 
+    - 0.0
+    - 0.0
+    num: 1
+    first_peak: 
+    - 0.0
+    - 0.0
+  scan_count: 8260
+  file_size: 59778872
+  last_scan: 
+    last_peak: 
+    - 0.0
+    - 0.0
+    num: 8260
+    first_peak: 
+    - 0.0
+    - 0.0
+  scans_to_read: fl
+  total_time_to_read_and_access: 39.584111
+  time_to_read: 39.584064
+  lazy_type: :not
+  end_time: 3149.88
+  start_time: 0.276
+  file: ltq043004_50.mzXML
+--- 
+- time_to_access: 3.1e-05
+  first_scan: 
+    last_peak: 
+    - 0.0
+    - 0.0
+    num: 1
+    first_peak: 
+    - 0.0
+    - 0.0
+  scan_count: 7666
+  file_size: 49563719
+  last_scan: 
+    last_peak: 
+    - 0.0
+    - 0.0
+    num: 7666
+    first_peak: 
+    - 0.0
+    - 0.0
+  scans_to_read: fl
+  total_time_to_read_and_access: 30.699247
+  time_to_read: 30.699202
+  lazy_type: :not
+  end_time: 3149.82
+  start_time: 0.2777
+  file: ltq043004_52.mzXML
+--- 
+- file_size: 86910963
+  limit: 83886080.0
+  file: ltq043004_54.mzXML
+--- 
+- time_to_access: 3.1e-05
+  first_scan: 
+    last_peak: 
+    - 0.0
+    - 0.0
+    num: 1
+    first_peak: 
+    - 0.0
+    - 0.0
+  scan_count: 12447
+  file_size: 74838064
+  last_scan: 
+    last_peak: 
+    - 0.0
+    - 0.0
+    num: 12447
+    first_peak: 
+    - 0.0
+    - 0.0
+  scans_to_read: fl
+  total_time_to_read_and_access: 48.846779
+  time_to_read: 48.846734
+  lazy_type: :not
+  end_time: 4709.64
+  start_time: 0.2677
+  file: ltq043004_56.mzXML
+--- 
+- time_to_access: 3.1e-05
+  first_scan: 
+    last_peak: 
+    - 0.0
+    - 0.0
+    num: 1
+    first_peak: 
+    - 0.0
+    - 0.0
+  scan_count: 8617
+  file_size: 65955720
+  last_scan: 
+    last_peak: 
+    - 0.0
+    - 0.0
+    num: 8617
+    first_peak: 
+    - 0.0
+    - 0.0
+  scans_to_read: fl
+  total_time_to_read_and_access: 44.194488
+  time_to_read: 44.194442
+  lazy_type: :not
+  end_time: 3149.82
+  start_time: 0.2779
+  file: ltq043004_58.mzXML
+--- 
+- time_to_access: 3.1e-05
+  first_scan: 
+    last_peak: 
+    - 0.0
+    - 0.0
+    num: 1
+    first_peak: 
+    - 0.0
+    - 0.0
+  scan_count: 8548
+  file_size: 65215797
+  last_scan: 
+    last_peak: 
+    - 0.0
+    - 0.0
+    num: 8548
+    first_peak: 
+    - 0.0
+    - 0.0
+  scans_to_read: fl
+  total_time_to_read_and_access: 41.64128
+  time_to_read: 41.641234
+  lazy_type: :not
+  end_time: 3149.79
+  start_time: 0.2836
+  file: ltq043004_60.mzXML
+--- 
+- time_to_access: 3.2e-05
+  first_scan: 
+    last_peak: 
+    - 0.0
+    - 0.0
+    num: 1
+    first_peak: 
+    - 0.0
+    - 0.0
+  scan_count: 7068
+  file_size: 42098732
+  last_scan: 
+    last_peak: 
+    - 0.0
+    - 0.0
+    num: 7068
+    first_peak: 
+    - 0.0
+    - 0.0
+  scans_to_read: fl
+  total_time_to_read_and_access: 25.875496
+  time_to_read: 25.87545
+  lazy_type: :not
+  end_time: 3149.91
+  start_time: 0.2841
+  file: ltq050104_04.mzXML
+--- 
+- time_to_access: 3.1e-05
+  first_scan: 
+    last_peak: 
+    - 0.0
+    - 0.0
+    num: 1
+    first_peak: 
+    - 0.0
+    - 0.0
+  scan_count: 7123
+  file_size: 43131969
+  last_scan: 
+    last_peak: 
+    - 0.0
+    - 0.0
+    num: 7123
+    first_peak: 
+    - 0.0
+    - 0.0
+  scans_to_read: fl
+  total_time_to_read_and_access: 26.659233
+  time_to_read: 26.659187
+  lazy_type: :not
+  end_time: 3149.75
+  start_time: 0.2864
+  file: ltq050104_06.mzXML
+--- 
+- time_to_access: 3.1e-05
+  first_scan: 
+    last_peak: 
+    - 0.0
+    - 0.0
+    num: 1
+    first_peak: 
+    - 0.0
+    - 0.0
+  scan_count: 7359
+  file_size: 45823740
+  last_scan: 
+    last_peak: 
+    - 0.0
+    - 0.0
+    num: 7359
+    first_peak: 
+    - 0.0
+    - 0.0
+  scans_to_read: fl
+  total_time_to_read_and_access: 28.241109
+  time_to_read: 28.241065
+  lazy_type: :not
+  end_time: 3149.92
+  start_time: 0.2777
+  file: ltq050104_08.mzXML
+--- 
+- time_to_access: 3.2e-05
+  first_scan: 
+    last_peak: 
+    - 0.0
+    - 0.0
+    num: 1
+    first_peak: 
+    - 0.0
+    - 0.0
+  scan_count: 11515
+  file_size: 73897702
+  last_scan: 
+    last_peak: 
+    - 0.0
+    - 0.0
+    num: 11515
+    first_peak: 
+    - 0.0
+    - 0.0
+  scans_to_read: fl
+  total_time_to_read_and_access: 45.956748
+  time_to_read: 45.956701
+  lazy_type: :not
+  end_time: 4709.79
+  start_time: 0.281
+  file: ltq050104_10.mzXML
+--- 
+- time_to_access: 3.1e-05
+  first_scan: 
+    last_peak: 
+    - 0.0
+    - 0.0
+    num: 1
+    first_peak: 
+    - 0.0
+    - 0.0
+  scan_count: 12304
+  file_size: 78789213
+  last_scan: 
+    last_peak: 
+    - 0.0
+    - 0.0
+    num: 12304
+    first_peak: 
+    - 0.0
+    - 0.0
+  scans_to_read: fl
+  total_time_to_read_and_access: 49.457027
+  time_to_read: 49.456982
+  lazy_type: :not
+  end_time: 4709.89
+  start_time: 0.2734
+  file: ltq050104_12.mzXML
+--- 
+- time_to_access: 3.0e-05
+  first_scan: 
+    last_peak: 
+    - 0.0
+    - 0.0
+    num: 1
+    first_peak: 
+    - 0.0
+    - 0.0
+  scan_count: 11200
+  file_size: 72612241
+  last_scan: 
+    last_peak: 
+    - 0.0
+    - 0.0
+    num: 11200
+    first_peak: 
+    - 0.0
+    - 0.0
+  scans_to_read: fl
+  total_time_to_read_and_access: 46.798249
+  time_to_read: 46.798205
+  lazy_type: :not
+  end_time: 4709.93
+  start_time: 0.2793
+  file: ltq050104_14.mzXML
+--- 
+- time_to_access: 3.1e-05
+  first_scan: 
+    last_peak: 
+    - 0.0
+    - 0.0
+    num: 1
+    first_peak: 
+    - 0.0
+    - 0.0
+  scan_count: 11338
+  file_size: 79277117
+  last_scan: 
+    last_peak: 
+    - 0.0
+    - 0.0
+    num: 11338
+    first_peak: 
+    - 0.0
+    - 0.0
+  scans_to_read: fl
+  total_time_to_read_and_access: 51.686149
+  time_to_read: 51.686103
+  lazy_type: :not
+  end_time: 4709.82
+  start_time: 0.2765
+  file: ltq050104_16.mzXML
+--- 
+- time_to_access: 3.3e-05
+  first_scan: 
+    last_peak: 
+    - 0.0
+    - 0.0
+    num: 1
+    first_peak: 
+    - 0.0
+    - 0.0
+  scan_count: 10822
+  file_size: 65487348
+  last_scan: 
+    last_peak: 
+    - 0.0
+    - 0.0
+    num: 10822
+    first_peak: 
+    - 0.0
+    - 0.0
+  scans_to_read: fl
+  total_time_to_read_and_access: 46.11814
+  time_to_read: 46.118093
+  lazy_type: :not
+  end_time: 4709.5
+  start_time: 0.2708
+  file: ltq050104_18.mzXML
+--- 
+- file_size: 85900881
+  limit: 83886080.0
+  file: ltq050104_22.mzXML
+--- 
+- time_to_access: 3.3e-05
+  first_scan: 
+    last_peak: 
+    - 0.0
+    - 0.0
+    num: 1
+    first_peak: 
+    - 0.0
+    - 0.0
+  scan_count: 11177
+  file_size: 75064271
+  last_scan: 
+    last_peak: 
+    - 0.0
+    - 0.0
+    num: 11177
+    first_peak: 
+    - 0.0
+    - 0.0
+  scans_to_read: fl
+  total_time_to_read_and_access: 50.718538
+  time_to_read: 50.718491
+  lazy_type: :not
+  end_time: 4709.86
+  start_time: 0.2732
+  file: ltq050104_24.mzXML
+--- 
+- time_to_access: 3.1e-05
+  first_scan: 
+    last_peak: 
+    - 0.0
+    - 0.0
+    num: 1
+    first_peak: 
+    - 0.0
+    - 0.0
+  scan_count: 11549
+  file_size: 79329025
+  last_scan: 
+    last_peak: 
+    - 0.0
+    - 0.0
+    num: 11549
+    first_peak: 
+    - 0.0
+    - 0.0
+  scans_to_read: fl
+  total_time_to_read_and_access: 51.591158
+  time_to_read: 51.591112
+  lazy_type: :not
+  end_time: 4709.86
+  start_time: 0.2777
+  file: ltq050104_26.mzXML
+--- 
+- time_to_access: 3.1e-05
+  first_scan: 
+    last_peak: 
+    - 0.0
+    - 0.0
+    num: 1
+    first_peak: 
+    - 0.0
+    - 0.0
+  scan_count: 11867
+  file_size: 83682837
+  last_scan: 
+    last_peak: 
+    - 0.0
+    - 0.0
+    num: 11867
+    first_peak: 
+    - 0.0
+    - 0.0
+  scans_to_read: fl
+  total_time_to_read_and_access: 54.645648
+  time_to_read: 54.645603
+  lazy_type: :not
+  end_time: 4709.97
+  start_time: 0.2818
+  file: ltq050104_28.mzXML
+--- 
+- time_to_access: 3.0e-05
+  first_scan: 
+    last_peak: 
+    - 0.0
+    - 0.0
+    num: 1
+    first_peak: 
+    - 0.0
+    - 0.0
+  scan_count: 11417
+  file_size: 77193069
+  last_scan: 
+    last_peak: 
+    - 0.0
+    - 0.0
+    num: 11417
+    first_peak: 
+    - 0.0
+    - 0.0
+  scans_to_read: fl
+  total_time_to_read_and_access: 49.56454
+  time_to_read: 49.564495
+  lazy_type: :not
+  end_time: 4709.69
+  start_time: 0.2784
+  file: ltq050104_30.mzXML
+--- 
+- file_size: 94109490
+  limit: 83886080.0
+  file: ltq050104_32.mzXML
+--- 
+- file_size: 108168236
+  limit: 83886080.0
+  file: ltq050104_34.mzXML
+--- 
+- file_size: 96515060
+  limit: 83886080.0
+  file: ltq050104_36.mzXML
+--- 
+- file_size: 99191732
+  limit: 83886080.0
+  file: ltq050104_38.mzXML
+--- 
+- time_to_access: 3.2e-05
+  first_scan: 
+    last_peak: 
+    - 0.0
+    - 0.0
+    num: 1
+    first_peak: 
+    - 0.0
+    - 0.0
+  scan_count: 8066
+  file_size: 59068878
+  last_scan: 
+    last_peak: 
+    - 0.0
+    - 0.0
+    num: 8066
+    first_peak: 
+    - 0.0
+    - 0.0
+  scans_to_read: fl
+  total_time_to_read_and_access: 39.169556
+  time_to_read: 39.16951
+  lazy_type: :not
+  end_time: 3149.9
+  start_time: 0.2728
+  file: ltq050104_40.mzXML
+--- 
+- time_to_access: 3.2e-05
+  first_scan: 
+    last_peak: 
+    - 0.0
+    - 0.0
+    num: 1
+    first_peak: 
+    - 0.0
+    - 0.0
+  scan_count: 11500
+  file_size: 83841862
+  last_scan: 
+    last_peak: 
+    - 0.0
+    - 0.0
+    num: 11500
+    first_peak: 
+    - 0.0
+    - 0.0
+  scans_to_read: fl
+  total_time_to_read_and_access: 53.602354
+  time_to_read: 53.602307
+  lazy_type: :not
+  end_time: 4709.77
+  start_time: 0.2815
+  file: ltq050104_42.mzXML
+--- 
+- file_size: 100494070
+  limit: 83886080.0
+  file: ltq050104_44.mzXML
+--- 
+- time_to_access: 3.3e-05
+  first_scan: 
+    last_peak: 
+    - 0.0
+    - 0.0
+    num: 1
+    first_peak: 
+    - 0.0
+    - 0.0
+  scan_count: 7702
+  file_size: 53091648
+  last_scan: 
+    last_peak: 
+    - 0.0
+    - 0.0
+    num: 7702
+    first_peak: 
+    - 0.0
+    - 0.0
+  scans_to_read: fl
+  total_time_to_read_and_access: 38.044445
+  time_to_read: 38.044398
+  lazy_type: :not
+  end_time: 3149.85
+  start_time: 0.2742
+  file: ltq050104_46.mzXML
+--- 
+- time_to_access: 3.3e-05
+  first_scan: 
+    last_peak: 
+    - 0.0
+    - 0.0
+    num: 1
+    first_peak: 
+    - 0.0
+    - 0.0
+  scan_count: 8659
+  file_size: 67630985
+  last_scan: 
+    last_peak: 
+    - 0.0
+    - 0.0
+    num: 8659
+    first_peak: 
+    - 0.0
+    - 0.0
+  scans_to_read: fl
+  total_time_to_read_and_access: 44.076109
+  time_to_read: 44.07606
+  lazy_type: :not
+  end_time: 3149.82
+  start_time: 0.2866
+  file: ltq050104_48.mzXML
+--- 
+- time_to_access: 3.0e-05
+  first_scan: 
+    last_peak: 
+    - 0.0
+    - 0.0
+    num: 1
+    first_peak: 
+    - 0.0
+    - 0.0
+  scan_count: 8088
+  file_size: 59351632
+  last_scan: 
+    last_peak: 
+    - 0.0
+    - 0.0
+    num: 8088
+    first_peak: 
+    - 0.0
+    - 0.0
+  scans_to_read: fl
+  total_time_to_read_and_access: 36.963071
+  time_to_read: 36.963026
+  lazy_type: :not
+  end_time: 3149.67
+  start_time: 0.2846
+  file: ltq050104_50.mzXML
+--- 
+- time_to_access: 3.0e-05
+  first_scan: 
+    last_peak: 
+    - 0.0
+    - 0.0
+    num: 1
+    first_peak: 
+    - 0.0
+    - 0.0
+  scan_count: 8630
+  file_size: 67706722
+  last_scan: 
+    last_peak: 
+    - 0.0
+    - 0.0
+    num: 8630
+    first_peak: 
+    - 0.0
+    - 0.0
+  scans_to_read: fl
+  total_time_to_read_and_access: 43.402757
+  time_to_read: 43.402711
+  lazy_type: :not
+  end_time: 3149.69
+  start_time: 0.2793
+  file: ltq050104_52.mzXML
+--- 
+- time_to_access: 3.1e-05
+  first_scan: 
+    last_peak: 
+    - 0.0
+    - 0.0
+    num: 1
+    first_peak: 
+    - 0.0
+    - 0.0
+  scan_count: 7115
+  file_size: 43600884
+  last_scan: 
+    last_peak: 
+    - 0.0
+    - 0.0
+    num: 7115
+    first_peak: 
+    - 0.0
+    - 0.0
+  scans_to_read: fl
+  total_time_to_read_and_access: 28.416963
+  time_to_read: 28.416918
+  lazy_type: :not
+  end_time: 3149.92
+  start_time: 0.2747
+  file: ltq050204_04.mzXML
+--- 
+- time_to_access: 3.2e-05
+  first_scan: 
+    last_peak: 
+    - 0.0
+    - 0.0
+    num: 1
+    first_peak: 
+    - 0.0
+    - 0.0
+  scan_count: 7076
+  file_size: 43728426
+  last_scan: 
+    last_peak: 
+    - 0.0
+    - 0.0
+    num: 7076
+    first_peak: 
+    - 0.0
+    - 0.0
+  scans_to_read: fl
+  total_time_to_read_and_access: 27.292632
+  time_to_read: 27.292586
+  lazy_type: :not
+  end_time: 3149.73
+  start_time: 0.2702
+  file: ltq050204_06.mzXML
+--- 
+- time_to_access: 3.0e-05
+  first_scan: 
+    last_peak: 
+    - 0.0
+    - 0.0
+    num: 1
+    first_peak: 
+    - 0.0
+    - 0.0
+  scan_count: 7304
+  file_size: 46186030
+  last_scan: 
+    last_peak: 
+    - 0.0
+    - 0.0
+    num: 7304
+    first_peak: 
+    - 0.0
+    - 0.0
+  scans_to_read: fl
+  total_time_to_read_and_access: 27.990914
+  time_to_read: 27.990869
+  lazy_type: :not
+  end_time: 3149.9
+  start_time: 0.2703
+  file: ltq050204_08.mzXML
+--- 
+- time_to_access: 3.1e-05
+  first_scan: 
+    last_peak: 
+    - 0.0
+    - 0.0
+    num: 1
+    first_peak: 
+    - 0.0
+    - 0.0
+  scan_count: 7334
+  file_size: 48786116
+  last_scan: 
+    last_peak: 
+    - 0.0
+    - 0.0
+    num: 7334
+    first_peak: 
+    - 0.0
+    - 0.0
+  scans_to_read: fl
+  total_time_to_read_and_access: 29.495503
+  time_to_read: 29.495457
+  lazy_type: :not
+  end_time: 3149.7
+  start_time: 0.2871
+  file: ltq050204_10.mzXML
+--- 
+- time_to_access: 3.1e-05
+  first_scan: 
+    last_peak: 
+    - 1274.64074707031
+    - 1.67146098613739
+    num: 1
+    first_peak: 
+    - 1274.64074707031
+    - 1.67146098613739
+  scan_count: 11514
+  file_size: 81893294
+  last_scan: 
+    last_peak: 
+    - 0.0
+    - 0.0
+    num: 11514
+    first_peak: 
+    - 0.0
+    - 0.0
+  scans_to_read: fl
+  total_time_to_read_and_access: 50.637712
+  time_to_read: 50.637667
+  lazy_type: :not
+  end_time: 4709.98
+  start_time: 0.2845
+  file: ltq050204_12.mzXML
+--- 
+- time_to_access: 3.1e-05
+  first_scan: 
+    last_peak: 
+    - 0.0
+    - 0.0
+    num: 1
+    first_peak: 
+    - 0.0
+    - 0.0
+  scan_count: 11156
+  file_size: 77284719
+  last_scan: 
+    last_peak: 
+    - 0.0
+    - 0.0
+    num: 11156
+    first_peak: 
+    - 0.0
+    - 0.0
+  scans_to_read: fl
+  total_time_to_read_and_access: 49.259855
+  time_to_read: 49.25981
+  lazy_type: :not
+  end_time: 4709.75
+  start_time: 0.2814
+  file: ltq050204_14.mzXML
+--- 
+- time_to_access: 3.1e-05
+  first_scan: 
+    last_peak: 
+    - 0.0
+    - 0.0
+    num: 1
+    first_peak: 
+    - 0.0
+    - 0.0
+  scan_count: 11285
+  file_size: 74422159
+  last_scan: 
+    last_peak: 
+    - 0.0
+    - 0.0
+    num: 11285
+    first_peak: 
+    - 0.0
+    - 0.0
+  scans_to_read: fl
+  total_time_to_read_and_access: 47.634481
+  time_to_read: 47.634436
+  lazy_type: :not
+  end_time: 4709.89
+  start_time: 0.2872
+  file: ltq050204_16.mzXML
+--- 
+- time_to_access: 3.3e-05
+  first_scan: 
+    last_peak: 
+    - 0.0
+    - 0.0
+    num: 1
+    first_peak: 
+    - 0.0
+    - 0.0
+  scan_count: 10800
+  file_size: 69220480
+  last_scan: 
+    last_peak: 
+    - 0.0
+    - 0.0
+    num: 10800
+    first_peak: 
+    - 0.0
+    - 0.0
+  scans_to_read: fl
+  total_time_to_read_and_access: 49.87364
+  time_to_read: 49.873592
+  lazy_type: :not
+  end_time: 4709.75
+  start_time: 0.2762
+  file: ltq050204_18.mzXML
+--- 
+- time_to_access: 3.1e-05
+  first_scan: 
+    last_peak: 
+    - 0.0
+    - 0.0
+    num: 1
+    first_peak: 
+    - 0.0
+    - 0.0
+  scan_count: 10781
+  file_size: 70864558
+  last_scan: 
+    last_peak: 
+    - 0.0
+    - 0.0
+    num: 10781
+    first_peak: 
+    - 0.0
+    - 0.0
+  scans_to_read: fl
+  total_time_to_read_and_access: 44.443176
+  time_to_read: 44.443131
+  lazy_type: :not
+  end_time: 4709.92
+  start_time: 0.27
+  file: ltq050204_20.mzXML
+--- 
+- file_size: 86962703
+  limit: 83886080.0
+  file: ltq050204_22.mzXML
+--- 
+- time_to_access: 3.2e-05
+  first_scan: 
+    last_peak: 
+    - 0.0
+    - 0.0
+    num: 1
+    first_peak: 
+    - 0.0
+    - 0.0
+  scan_count: 11096
+  file_size: 72321806
+  last_scan: 
+    last_peak: 
+    - 0.0
+    - 0.0
+    num: 11096
+    first_peak: 
+    - 0.0
+    - 0.0
+  scans_to_read: fl
+  total_time_to_read_and_access: 46.338435
+  time_to_read: 46.338389
+  lazy_type: :not
+  end_time: 4709.67
+  start_time: 0.2809
+  file: ltq050204_24.mzXML
+--- 
+- time_to_access: 3.1e-05
+  first_scan: 
+    last_peak: 
+    - 0.0
+    - 0.0
+    num: 1
+    first_peak: 
+    - 0.0
+    - 0.0
+  scan_count: 11520
+  file_size: 76581536
+  last_scan: 
+    last_peak: 
+    - 0.0
+    - 0.0
+    num: 11520
+    first_peak: 
+    - 0.0
+    - 0.0
+  scans_to_read: fl
+  total_time_to_read_and_access: 48.716447
+  time_to_read: 48.716402
+  lazy_type: :not
+  end_time: 4709.71
+  start_time: 0.2859
+  file: ltq050204_26.mzXML
+--- 
+- time_to_access: 3.3e-05
+  first_scan: 
+    last_peak: 
+    - 0.0
+    - 0.0
+    num: 1
+    first_peak: 
+    - 0.0
+    - 0.0
+  scan_count: 12308
+  file_size: 78110756
+  last_scan: 
+    last_peak: 
+    - 0.0
+    - 0.0
+    num: 12308
+    first_peak: 
+    - 0.0
+    - 0.0
+  scans_to_read: fl
+  total_time_to_read_and_access: 51.61732
+  time_to_read: 51.617272
+  lazy_type: :not
+  end_time: 4709.99
+  start_time: 0.286
+  file: ltq050204_28.mzXML
+--- 
+- time_to_access: 3.1e-05
+  first_scan: 
+    last_peak: 
+    - 0.0
+    - 0.0
+    num: 1
+    first_peak: 
+    - 0.0
+    - 0.0
+  scan_count: 11353
+  file_size: 79072894
+  last_scan: 
+    last_peak: 
+    - 0.0
+    - 0.0
+    num: 11353
+    first_peak: 
+    - 0.0
+    - 0.0
+  scans_to_read: fl
+  total_time_to_read_and_access: 51.627624
+  time_to_read: 51.627539
+  lazy_type: :not
+  end_time: 4709.91
+  start_time: 0.2833
+  file: ltq050204_30.mzXML
+--- 
+- time_to_access: 3.1e-05
+  first_scan: 
+    last_peak: 
+    - 0.0
+    - 0.0
+    num: 1
+    first_peak: 
+    - 0.0
+    - 0.0
+  scan_count: 11885
+  file_size: 83032176
+  last_scan: 
+    last_peak: 
+    - 0.0
+    - 0.0
+    num: 11885
+    first_peak: 
+    - 0.0
+    - 0.0
+  scans_to_read: fl
+  total_time_to_read_and_access: 53.44924
+  time_to_read: 53.449195
+  lazy_type: :not
+  end_time: 4709.91
+  start_time: 0.2686
+  file: ltq050204_32.mzXML
+--- 
+- file_size: 92652457
+  limit: 83886080.0
+  file: ltq050204_34.mzXML
+--- 
+- file_size: 89302412
+  limit: 83886080.0
+  file: ltq050204_36.mzXML
+--- 
+- time_to_access: 3.2e-05
+  first_scan: 
+    last_peak: 
+    - 0.0
+    - 0.0
+    num: 1
+    first_peak: 
+    - 0.0
+    - 0.0
+  scan_count: 7779
+  file_size: 52769425
+  last_scan: 
+    last_peak: 
+    - 0.0
+    - 0.0
+    num: 7779
+    first_peak: 
+    - 0.0
+    - 0.0
+  scans_to_read: fl
+  total_time_to_read_and_access: 35.466612
+  time_to_read: 35.466566
+  lazy_type: :not
+  end_time: 3149.94
+  start_time: 0.2767
+  file: ltq050204_38.mzXML
+--- 
+- time_to_access: 3.0e-05
+  first_scan: 
+    last_peak: 
+    - 0.0
+    - 0.0
+    num: 1
+    first_peak: 
+    - 0.0
+    - 0.0
+  scan_count: 7822
+  file_size: 57213386
+  last_scan: 
+    last_peak: 
+    - 0.0
+    - 0.0
+    num: 7822
+    first_peak: 
+    - 0.0
+    - 0.0
+  scans_to_read: fl
+  total_time_to_read_and_access: 35.906281
+  time_to_read: 35.906236
+  lazy_type: :not
+  end_time: 3149.97
+  start_time: 0.2833
+  file: ltq050204_40.mzXML
+--- 
+- file_size: 97794411
+  limit: 83886080.0
+  file: ltq050204_42.mzXML
+--- 
+- time_to_access: 3.2e-05
+  first_scan: 
+    last_peak: 
+    - 0.0
+    - 0.0
+    num: 1
+    first_peak: 
+    - 0.0
+    - 0.0
+  scan_count: 11540
+  file_size: 81038588
+  last_scan: 
+    last_peak: 
+    - 0.0
+    - 0.0
+    num: 11540
+    first_peak: 
+    - 0.0
+    - 0.0
+  scans_to_read: fl
+  total_time_to_read_and_access: 52.518623
+  time_to_read: 52.518576
+  lazy_type: :not
+  end_time: 4709.79
+  start_time: 0.2716
+  file: ltq050204_44.mzXML
+--- 
+- time_to_access: 3.2e-05
+  first_scan: 
+    last_peak: 
+    - 0.0
+    - 0.0
+    num: 1
+    first_peak: 
+    - 0.0
+    - 0.0
+  scan_count: 7641
+  file_size: 50765468
+  last_scan: 
+    last_peak: 
+    - 0.0
+    - 0.0
+    num: 7641
+    first_peak: 
+    - 0.0
+    - 0.0
+  scans_to_read: fl
+  total_time_to_read_and_access: 33.005681
+  time_to_read: 33.005635
+  lazy_type: :not
+  end_time: 3149.77
+  start_time: 0.286
+  file: ltq050204_46.mzXML
+--- 
+- time_to_access: 3.0e-05
+  first_scan: 
+    last_peak: 
+    - 0.0
+    - 0.0
+    num: 1
+    first_peak: 
+    - 0.0
+    - 0.0
+  scan_count: 11335
+  file_size: 79259467
+  last_scan: 
+    last_peak: 
+    - 0.0
+    - 0.0
+    num: 11335
+    first_peak: 
+    - 0.0
+    - 0.0
+  scans_to_read: fl
+  total_time_to_read_and_access: 51.012384
+  time_to_read: 51.012339
+  lazy_type: :not
+  end_time: 4709.92
+  start_time: 0.2681
+  file: ltq050204_48.mzXML
+--- 
+- time_to_access: 3.2e-05
+  first_scan: 
+    last_peak: 
+    - 0.0
+    - 0.0
+    num: 1
+    first_peak: 
+    - 0.0
+    - 0.0
+  scan_count: 7918
+  file_size: 53801079
+  last_scan: 
+    last_peak: 
+    - 0.0
+    - 0.0
+    num: 7918
+    first_peak: 
+    - 0.0
+    - 0.0
+  scans_to_read: fl
+  total_time_to_read_and_access: 35.715098
+  time_to_read: 35.715052
+  lazy_type: :not
+  end_time: 3149.71
+  start_time: 0.2828
+  file: ltq050204_50.mzXML
+--- 
+- time_to_access: 3.1e-05
+  first_scan: 
+    last_peak: 
+    - 0.0
+    - 0.0
+    num: 1
+    first_peak: 
+    - 0.0
+    - 0.0
+  scan_count: 7700
+  file_size: 54441270
+  last_scan: 
+    last_peak: 
+    - 0.0
+    - 0.0
+    num: 7700
+    first_peak: 
+    - 0.0
+    - 0.0
+  scans_to_read: fl
+  total_time_to_read_and_access: 34.148982
+  time_to_read: 34.148936
+  lazy_type: :not
+  end_time: 3149.72
+  start_time: 0.2794
+  file: ltq050204_52.mzXML
+--- 
+- time_to_access: 3.3e-05
+  first_scan: 
+    last_peak: 
+    - 0.0
+    - 0.0
+    num: 1
+    first_peak: 
+    - 0.0
+    - 0.0
+  scan_count: 8426
+  file_size: 65318443
+  last_scan: 
+    last_peak: 
+    - 0.0
+    - 0.0
+    num: 8426
+    first_peak: 
+    - 0.0
+    - 0.0
+  scans_to_read: fl
+  total_time_to_read_and_access: 42.065771
+  time_to_read: 42.065722
+  lazy_type: :not
+  end_time: 3149.73
+  start_time: 0.2722
+  file: ltq050204_54.mzXML

@@ -1,0 +1,60 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.1//EN" "http://www.w3.org/TR/xhtml11/DTD/xhtml11.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en">
+  <head>
+    <title>.srg</title>
+    <link href="../default.css" rel="stylesheet" />
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+  </head>
+  <body>
+    <div id="logo">
+        <a href=../index.html><img src=../images/mspire_logo.png border="0" alt="mspire - mass spectrometry proteomics in ruby"/></a>
+  </div>
+    <div id="header">
+      <h1>.srg</h1>
+    </div>
+
+    <div id="headerbar" class="bar">
+        <!-- <span class="left">Location: <a href="../index.html" title="mspire">mspire</a> / <a href="./index.html" title="SpecID">SpecID</a> / <a href="./srg.html" title=".srg">.srg</a></span> -->
+      <!--<span class="right">Language: <a href="./srg.html" title="en">en</a></span>-->
+      <div style="clear:both"></div>
+    </div>
+
+    <div id="menu">
+        <div class="webgen-menu-vert "><ul><li ><a href="../index.html" title="Home">Home</a></li><li class="webgen-menu-submenu"><a href="../install/index.html" title="Install">Install</a></li><li class="webgen-menu-submenu"><a href="../ms/index.html" title="MS">MS</a></li><li class="webgen-menu-submenu webgen-menu-submenu-inhierarchy"><a href="./index.html" title="SpecID">SpecID</a><ul><li ><a href="./srf.html" title="SRF">SRF</a></li><li ><a href="./spec_id.html" title="SpecID">SpecID</a></li><li class="webgen-menu-submenu"><a href="fir/index.html" title="FIR">FIR</a></li></ul></li><li class="webgen-menu-submenu"><a href="../tutorial/index.html" title="Tutorials">Tutorials</a></li></ul></div>
+        <a style="font-size:130%; padding-left:20px" href="rdoc/index.html">rdoc</a>
+        <br/>
+        <a style="font-size:85%; padding-left:20px" href="http://rubyforge.org/projects/mspire/">Rubyforge Project Page</a>
+        <br/>
+        <br/>
+        <br/>
+        <br/>
+        <a href="http://www.ruby-lang.org/en/"><img style="padding-left:20px" src=../images/ruby_logo_small.png border="0" alt="Ruby Programming Language"/></a>
+    </div>
+
+    <div id="body">
+      <h2>.srg files</h2>
+
+<p>A .srg file is a text file with path names to .srf files.  Paths may be
+absolute or relative (absolute is much safer).</p>
+
+<pre><code># &lt;Inside 'file.srg'&gt;
+/my/path/to/file1.srf
+/my/path/to/file2.srf
+/my/path/to/file3.srf
+</code></pre>
+
+<p>mspire includes an executable for creating these files with little effort.  It will use complete pathnames for each file:</p>
+
+<pre><code>srf_group.rb file1.srf file2.srf file3.srf  # =&gt; bioworks.srg
+</code></pre>
+
+<p>Note that some mspire executables will automatically create a .srg file from
+.srf file input.</p>
+    </div>
+
+    <div id="footer" class="bar">
+      Last update: <i>Monday, August 18 10:50:22 MDT 2008</i>
+    </div>
+  </body>
+</html>

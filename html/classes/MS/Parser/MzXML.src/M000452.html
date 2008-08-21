@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="iso-8859-1"?>
+<!DOCTYPE html 
+     PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+     "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html>
+<head>
+  <title>scans_by_num (MS::Parser::MzXML)</title>
+  <meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1" />
+  <link rel="stylesheet" href="../../../.././rdoc-style.css" type="text/css" media="screen" />
+</head>
+<body class="standalone-code">
+  <pre><span class="ruby-comment cmt"># File lib/ms/parser/mzxml.rb, line 131</span>
+  <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">scans_by_num</span>(<span class="ruby-identifier">mzXML_file</span>, <span class="ruby-identifier">parse_type</span>=<span class="ruby-keyword kw">nil</span>)
+    <span class="ruby-keyword kw">unless</span> <span class="ruby-identifier">parse_type</span>
+      <span class="ruby-identifier">parse_type</span> = <span class="ruby-identifier">default_parser</span>
+    <span class="ruby-keyword kw">end</span>
+    <span class="ruby-identifier">scans</span> = []
+    <span class="ruby-keyword kw">case</span> <span class="ruby-identifier">parse_type</span>
+    <span class="ruby-keyword kw">when</span> <span class="ruby-value str">'xmlparser'</span> 
+      <span class="ruby-identifier">parser</span> = <span class="ruby-constant">MS</span><span class="ruby-operator">::</span><span class="ruby-constant">MzXML</span><span class="ruby-operator">::</span><span class="ruby-constant">XMLParser</span><span class="ruby-operator">::</span><span class="ruby-constant">TimeMzIntenIndexer</span>.<span class="ruby-identifier">new</span>
+      <span class="ruby-identifier">parser</span>.<span class="ruby-identifier">parse</span>(<span class="ruby-constant">IO</span>.<span class="ruby-identifier">read</span>(<span class="ruby-identifier">mzXML_file</span>))
+      <span class="ruby-identifier">scans</span> = <span class="ruby-identifier">parser</span>.<span class="ruby-identifier">scans_by_num</span>
+    <span class="ruby-keyword kw">when</span> <span class="ruby-value str">'rexml'</span> <span class="ruby-comment cmt"># use REXML</span>
+      <span class="ruby-comment cmt"># This is really too slow for files of this size</span>
+      <span class="ruby-identifier">doc</span> = <span class="ruby-constant">REXML</span><span class="ruby-operator">::</span><span class="ruby-constant">Document</span>.<span class="ruby-identifier">new</span> <span class="ruby-constant">File</span>.<span class="ruby-identifier">new</span>(<span class="ruby-identifier">mzXML_file</span>)
+      <span class="ruby-identifier">doc</span>.<span class="ruby-identifier">elements</span>.<span class="ruby-identifier">each</span>(<span class="ruby-value str">'msRun/scan'</span>) <span class="ruby-keyword kw">do</span> <span class="ruby-operator">|</span><span class="ruby-identifier">scan</span><span class="ruby-operator">|</span>
+        <span class="ruby-identifier">rt</span> = <span class="ruby-identifier">scan</span>.<span class="ruby-identifier">attributes</span>[<span class="ruby-value str">'retentionTime'</span>]  <span class="ruby-comment cmt">## like PT0.154000S&quot;</span>
+        <span class="ruby-identifier">level</span> = <span class="ruby-identifier">scan</span>.<span class="ruby-identifier">attributes</span>[<span class="ruby-value str">'msLevel'</span>]
+        <span class="ruby-identifier">to_print</span> = []
+        <span class="ruby-identifier">prec_mz</span> = <span class="ruby-keyword kw">nil</span>
+        <span class="ruby-identifier">prec_int</span> = <span class="ruby-keyword kw">nil</span>
+        <span class="ruby-keyword kw">if</span> <span class="ruby-identifier">level</span>.<span class="ruby-identifier">to_i</span> <span class="ruby-operator">!=</span> <span class="ruby-value">1</span>
+          <span class="ruby-identifier">scan</span>.<span class="ruby-identifier">elements</span>.<span class="ruby-identifier">each</span>(<span class="ruby-value str">&quot;precursorMz&quot;</span>) <span class="ruby-keyword kw">do</span> <span class="ruby-operator">|</span><span class="ruby-identifier">prec</span><span class="ruby-operator">|</span>
+            <span class="ruby-identifier">prec_mz</span> = <span class="ruby-identifier">prec</span>.<span class="ruby-identifier">text</span>.<span class="ruby-identifier">to_f</span>
+            <span class="ruby-identifier">prec_int</span> = <span class="ruby-identifier">prec</span>.<span class="ruby-identifier">attributes</span>[<span class="ruby-value str">&quot;precursorIntensity&quot;</span>].<span class="ruby-identifier">to_f</span>
+          <span class="ruby-keyword kw">end</span>
+        <span class="ruby-keyword kw">end</span>
+        <span class="ruby-comment cmt"># remove the leading PT and trailing S on the retention time!</span>
+        <span class="ruby-identifier">rt</span> = <span class="ruby-identifier">rt</span>[<span class="ruby-value">2</span><span class="ruby-operator">...</span><span class="ruby-value">-1</span>]
+
+        <span class="ruby-identifier">num</span> = <span class="ruby-identifier">scan</span>.<span class="ruby-identifier">attributes</span>[<span class="ruby-value str">'num'</span>].<span class="ruby-identifier">to_i</span>
+        <span class="ruby-identifier">scans</span>[<span class="ruby-identifier">num</span>] = <span class="ruby-constant">MS</span><span class="ruby-operator">::</span><span class="ruby-constant">Scan</span>.<span class="ruby-identifier">new</span>(<span class="ruby-identifier">num</span>, <span class="ruby-identifier">scan</span>.<span class="ruby-identifier">attributes</span>[<span class="ruby-value str">'msLevel'</span>].<span class="ruby-identifier">to_i</span>, <span class="ruby-identifier">rt</span>.<span class="ruby-identifier">to_f</span>, <span class="ruby-identifier">prec_mz</span>, <span class="ruby-identifier">prec_int</span>) 
+      <span class="ruby-keyword kw">end</span> <span class="ruby-comment cmt">#doc.elements</span>
+    <span class="ruby-keyword kw">else</span>
+      <span class="ruby-identifier">throw</span> <span class="ruby-constant">ArgumentError</span>, <span class="ruby-node">&quot;invalid parse type: #{parse_type}&quot;</span>
+    <span class="ruby-keyword kw">end</span>
+    <span class="ruby-comment cmt">## update the scans for parents</span>
+    <span class="ruby-constant">MS</span><span class="ruby-operator">::</span><span class="ruby-constant">Scan</span>.<span class="ruby-identifier">add_parent_scan</span>(<span class="ruby-identifier">scans</span>)
+    <span class="ruby-identifier">scans</span>
+  <span class="ruby-keyword kw">end</span></pre>
+</body>
+</html>

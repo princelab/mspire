@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="iso-8859-1"?>
+<!DOCTYPE html 
+     PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+     "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html>
+<head>
+  <title>prep_reply (SpecID::Precision::Filter::Interactive)</title>
+  <meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1" />
+  <link rel="stylesheet" href="../../../../.././rdoc-style.css" type="text/css" media="screen" />
+</head>
+<body class="standalone-code">
+  <pre><span class="ruby-comment cmt"># File lib/spec_id/precision/filter/interactive.rb, line 91</span>
+    <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">prep_reply</span>(<span class="ruby-identifier">reply</span>, <span class="ruby-identifier">base</span>, <span class="ruby-identifier">shortcut_order</span>, <span class="ruby-identifier">casting_array</span>)
+      <span class="ruby-keyword kw">if</span> <span class="ruby-identifier">reply</span> <span class="ruby-operator">==</span> <span class="ruby-value str">'q'</span> 
+        <span class="ruby-keyword kw">return</span> <span class="ruby-keyword kw">nil</span>
+      <span class="ruby-keyword kw">end</span>
+      <span class="ruby-keyword kw">if</span> <span class="ruby-identifier">reply</span> <span class="ruby-operator">=~</span> <span class="ruby-regexp re">/^\s*$/</span>
+        <span class="ruby-identifier">base</span>
+      <span class="ruby-keyword kw">elsif</span> <span class="ruby-identifier">reply</span>
+        <span class="ruby-identifier">arr</span> = <span class="ruby-identifier">reply</span>.<span class="ruby-identifier">split</span>(<span class="ruby-regexp re">/\s+/</span>)
+        <span class="ruby-identifier">to_change_ar</span> = []
+        <span class="ruby-identifier">to_change_hash</span> = {}
+        <span class="ruby-identifier">arr</span>.<span class="ruby-identifier">each</span> <span class="ruby-keyword kw">do</span> <span class="ruby-operator">|</span><span class="ruby-identifier">it</span><span class="ruby-operator">|</span>
+          <span class="ruby-keyword kw">if</span> <span class="ruby-identifier">it</span>.<span class="ruby-identifier">include?</span> <span class="ruby-value str">':'</span>
+            (<span class="ruby-identifier">k</span>,<span class="ruby-identifier">v</span>) = <span class="ruby-identifier">it</span>.<span class="ruby-identifier">split</span>(<span class="ruby-value str">':'</span>)
+            <span class="ruby-identifier">to_change_hash</span>[<span class="ruby-identifier">k</span>] = <span class="ruby-identifier">v</span>
+          <span class="ruby-keyword kw">else</span>
+            <span class="ruby-identifier">to_change_ar</span> <span class="ruby-operator">&lt;&lt;</span> <span class="ruby-identifier">it</span>
+          <span class="ruby-keyword kw">end</span>
+        <span class="ruby-keyword kw">end</span>
+        <span class="ruby-identifier">to_change_ar</span>.<span class="ruby-identifier">each_with_index</span> <span class="ruby-keyword kw">do</span> <span class="ruby-operator">|</span><span class="ruby-identifier">tc</span>,<span class="ruby-identifier">i</span><span class="ruby-operator">|</span>
+            <span class="ruby-identifier">base</span>[<span class="ruby-identifier">i</span>] = <span class="ruby-identifier">tc</span>
+        <span class="ruby-keyword kw">end</span>
+        <span class="ruby-identifier">to_change_hash</span>.<span class="ruby-identifier">each</span> <span class="ruby-keyword kw">do</span> <span class="ruby-operator">|</span><span class="ruby-identifier">k</span>,<span class="ruby-identifier">v</span><span class="ruby-operator">|</span>
+          <span class="ruby-identifier">index</span> = <span class="ruby-identifier">shortcut_order</span>.<span class="ruby-identifier">index</span>(<span class="ruby-identifier">k</span>)
+          <span class="ruby-keyword kw">if</span> <span class="ruby-identifier">index</span>.<span class="ruby-identifier">nil?</span>
+            <span class="ruby-identifier">out</span>(<span class="ruby-node">&quot;BAD ARG: #{k}:#{v}&quot;</span>) <span class="ruby-keyword kw">if</span> <span class="ruby-ivar">@verbose</span>
+          <span class="ruby-keyword kw">end</span>
+          <span class="ruby-identifier">base</span>[<span class="ruby-identifier">index</span>] = <span class="ruby-identifier">v</span>
+        <span class="ruby-keyword kw">end</span>
+        <span class="ruby-identifier">base</span>.<span class="ruby-identifier">zip</span>(<span class="ruby-identifier">casting_array</span>).<span class="ruby-identifier">map</span> <span class="ruby-keyword kw">do</span> <span class="ruby-operator">|</span><span class="ruby-identifier">v</span>,<span class="ruby-identifier">cast_proc</span><span class="ruby-operator">|</span> 
+          <span class="ruby-keyword kw">begin</span>
+            <span class="ruby-identifier">cast_proc</span>.<span class="ruby-identifier">call</span>(<span class="ruby-identifier">v</span>) 
+          <span class="ruby-keyword kw">rescue</span> <span class="ruby-constant">NoMethodError</span>
+            <span class="ruby-identifier">out</span> <span class="ruby-node">&quot;BAD ARG: #{tc}&quot;</span> <span class="ruby-keyword kw">if</span> <span class="ruby-ivar">@verbose</span>
+            <span class="ruby-keyword kw">return</span> <span class="ruby-keyword kw">false</span>
+          <span class="ruby-keyword kw">end</span>
+        <span class="ruby-keyword kw">end</span>
+      <span class="ruby-keyword kw">else</span>
+        <span class="ruby-keyword kw">false</span>
+      <span class="ruby-keyword kw">end</span>
+    <span class="ruby-keyword kw">end</span></pre>
+</body>
+</html>

@@ -1,0 +1,513 @@
+<?xml version="1.0" encoding="iso-8859-1"?>
+<!DOCTYPE html 
+     PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+     "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+<head>
+  <title>Class: ProteinSummary</title>
+  <meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1" />
+  <meta http-equiv="Content-Script-Type" content="text/javascript" />
+  <link rel="stylesheet" href=".././rdoc-style.css" type="text/css" media="screen" />
+  <script type="text/javascript">
+  // <![CDATA[
+
+  function popupCode( url ) {
+    window.open(url, "Code", "resizable=yes,scrollbars=yes,toolbar=no,status=no,height=150,width=400")
+  }
+
+  function toggleCode( id ) {
+    if ( document.getElementById )
+      elem = document.getElementById( id );
+    else if ( document.all )
+      elem = eval( "document.all." + id );
+    else
+      return false;
+
+    elemStyle = elem.style;
+    
+    if ( elemStyle.display != "block" ) {
+      elemStyle.display = "block"
+    } else {
+      elemStyle.display = "none"
+    }
+
+    return true;
+  }
+  
+  // Make codeblocks hidden by default
+  document.writeln( "<style type=\"text/css\">div.method-source-code { display: none }</style>" )
+  
+  // ]]>
+  </script>
+
+</head>
+<body>
+
+
+
+    <div id="classHeader">
+        <table class="header-table">
+        <tr class="top-aligned-row">
+          <td><strong>Class</strong></td>
+          <td class="class-name-in-header">ProteinSummary</td>
+        </tr>
+        <tr class="top-aligned-row">
+            <td><strong>In:</strong></td>
+            <td>
+                <a href="../files/lib/spec_id/protein_summary_rb.html">
+                lib/spec_id/protein_summary.rb
+                </a>
+        <br />
+            </td>
+        </tr>
+
+        <tr class="top-aligned-row">
+            <td><strong>Parent:</strong></td>
+            <td>
+                Object
+            </td>
+        </tr>
+        </table>
+    </div>
+  <!-- banner header -->
+
+  <div id="bodyContent">
+
+
+
+  <div id="contextContent">
+
+    <div id="description">
+      <p>
+class <a href="String.html">String</a>
+</p>
+<pre>
+  def margin
+    self.gsub(/^\s*\|/,'')
+  end
+</pre>
+<p>
+end
+</p>
+
+    </div>
+
+
+   </div>
+
+    <div id="method-list">
+      <h3 class="section-bar">Methods</h3>
+
+      <div class="name-list">
+      <a href="#M000125">accession</a>&nbsp;&nbsp;
+      <a href="#M000139">bioworks_output</a>&nbsp;&nbsp;
+      <a href="#M000133">bioworks_script_info</a>&nbsp;&nbsp;
+      <a href="#M000143">create_from_command_line_args</a>&nbsp;&nbsp;
+      <a href="#M000144">create_precision_argv</a>&nbsp;&nbsp;
+      <a href="#M000124">error_info</a>&nbsp;&nbsp;
+      <a href="#M000141">file_as_decoy_to_html</a>&nbsp;&nbsp;
+      <a href="#M000132">file_info</a>&nbsp;&nbsp;
+      <a href="#M000128">filter_and_sort</a>&nbsp;&nbsp;
+      <a href="#M000126">flag_to_regex</a>&nbsp;&nbsp;
+      <a href="#M000135">mspire_version</a>&nbsp;&nbsp;
+      <a href="#M000129">num_prots_above_fppr</a>&nbsp;&nbsp;
+      <a href="#M000140">num_prots_to_html</a>&nbsp;&nbsp;
+      <a href="#M000127">output_peptide_counts_file</a>&nbsp;&nbsp;
+      <a href="#M000138">peptide_cell</a>&nbsp;&nbsp;
+      <a href="#M000142">prefix_as_decoy_to_html</a>&nbsp;&nbsp;
+      <a href="#M000131">print_html_pieces</a>&nbsp;&nbsp;
+      <a href="#M000137">proph_output</a>&nbsp;&nbsp;
+      <a href="#M000134">protproph_script_info</a>&nbsp;&nbsp;
+      <a href="#M000123">ref_html</a>&nbsp;&nbsp;
+      <a href="#M000136">script_info</a>&nbsp;&nbsp;
+      <a href="#M000130">table_rows</a>&nbsp;&nbsp;
+      </div>
+    </div>
+
+  </div>
+
+
+    <!-- if includes -->
+    <div id="includes">
+      <h3 class="section-bar">Included Modules</h3>
+
+      <div id="includes-list">
+        <span class="include-name"><a href="ProteinSummary/HTML.html">ProteinSummary::HTML</a></span>
+      </div>
+    </div>
+
+    <div id="section">
+
+    <div id="class-list">
+      <h3 class="section-bar">Classes and Modules</h3>
+
+      Module <a href="ProteinSummary/HTML.html" class="link">ProteinSummary::HTML</a><br />
+
+    </div>
+
+
+
+
+      
+
+
+    <!-- if method_list -->
+    <div id="methods">
+      <h3 class="section-bar">Public Instance methods</h3>
+
+      <div id="method-M000125" class="method-detail">
+        <a name="M000125"></a>
+
+        <div class="method-heading">
+          <a href="ProteinSummary.src/M000125.html" target="Code" class="method-signature"
+            onclick="popupCode('ProteinSummary.src/M000125.html');return false;">
+          <span class="method-name">accession</span><span class="method-args">(name)</span>
+          </a>
+        </div>
+      
+        <div class="method-description">
+          <p>
+attempts to get the NCBI gi code
+</p>
+        </div>
+      </div>
+
+      <div id="method-M000139" class="method-detail">
+        <a name="M000139"></a>
+
+        <div class="method-heading">
+          <a href="ProteinSummary.src/M000139.html" target="Code" class="method-signature"
+            onclick="popupCode('ProteinSummary.src/M000139.html');return false;">
+          <span class="method-name">bioworks_output</span><span class="method-args">(spec_id, outfn, file=nil, false_flag_re=nil, fppr_output_as_html=nil)</span>
+          </a>
+        </div>
+      
+        <div class="method-description">
+          <p>
+takes spec_id object the outfn is the output filename opt is an OpenStruct
+that holds opt.f = the false prefix
+</p>
+        </div>
+      </div>
+
+      <div id="method-M000133" class="method-detail">
+        <a name="M000133"></a>
+
+        <div class="method-heading">
+          <a href="ProteinSummary.src/M000133.html" target="Code" class="method-signature"
+            onclick="popupCode('ProteinSummary.src/M000133.html');return false;">
+          <span class="method-name">bioworks_script_info</span><span class="method-args">(obj)</span>
+          </a>
+        </div>
+      
+        <div class="method-description">
+        </div>
+      </div>
+
+      <div id="method-M000143" class="method-detail">
+        <a name="M000143"></a>
+
+        <div class="method-heading">
+          <a href="ProteinSummary.src/M000143.html" target="Code" class="method-signature"
+            onclick="popupCode('ProteinSummary.src/M000143.html');return false;">
+          <span class="method-name">create_from_command_line_args</span><span class="method-args">(argv)</span>
+          </a>
+        </div>
+      
+        <div class="method-description">
+        </div>
+      </div>
+
+      <div id="method-M000144" class="method-detail">
+        <a name="M000144"></a>
+
+        <div class="method-heading">
+          <a href="ProteinSummary.src/M000144.html" target="Code" class="method-signature"
+            onclick="popupCode('ProteinSummary.src/M000144.html');return false;">
+          <span class="method-name">create_precision_argv</span><span class="method-args">(file, opt)</span>
+          </a>
+        </div>
+      
+        <div class="method-description">
+        </div>
+      </div>
+
+      <div id="method-M000124" class="method-detail">
+        <a name="M000124"></a>
+
+        <div class="method-heading">
+          <a href="ProteinSummary.src/M000124.html" target="Code" class="method-signature"
+            onclick="popupCode('ProteinSummary.src/M000124.html');return false;">
+          <span class="method-name">error_info</span><span class="method-args">(prot_file_name)</span>
+          </a>
+        </div>
+      
+        <div class="method-description">
+          <p>
+Takes the -prot.xml filename and grabs the png file (if available)
+</p>
+        </div>
+      </div>
+
+      <div id="method-M000141" class="method-detail">
+        <a name="M000141"></a>
+
+        <div class="method-heading">
+          <a href="ProteinSummary.src/M000141.html" target="Code" class="method-signature"
+            onclick="popupCode('ProteinSummary.src/M000141.html');return false;">
+          <span class="method-name">file_as_decoy_to_html</span><span class="method-args">(string)</span>
+          </a>
+        </div>
+      
+        <div class="method-description">
+          <p>
+transforms the output string of file_as_decoy into html
+</p>
+        </div>
+      </div>
+
+      <div id="method-M000132" class="method-detail">
+        <a name="M000132"></a>
+
+        <div class="method-heading">
+          <a href="ProteinSummary.src/M000132.html" target="Code" class="method-signature"
+            onclick="popupCode('ProteinSummary.src/M000132.html');return false;">
+          <span class="method-name">file_info</span><span class="method-args">(file)</span>
+          </a>
+        </div>
+      
+        <div class="method-description">
+        </div>
+      </div>
+
+      <div id="method-M000128" class="method-detail">
+        <a name="M000128"></a>
+
+        <div class="method-heading">
+          <a href="ProteinSummary.src/M000128.html" target="Code" class="method-signature"
+            onclick="popupCode('ProteinSummary.src/M000128.html');return false;">
+          <span class="method-name">filter_and_sort</span><span class="method-args">(uniq_prots, flag=nil, prefix=false)</span>
+          </a>
+        </div>
+      
+        <div class="method-description">
+          <p>
+filters on the false positive regex and sorts by prot probability
+</p>
+        </div>
+      </div>
+
+      <div id="method-M000126" class="method-detail">
+        <a name="M000126"></a>
+
+        <div class="method-heading">
+          <a href="ProteinSummary.src/M000126.html" target="Code" class="method-signature"
+            onclick="popupCode('ProteinSummary.src/M000126.html');return false;">
+          <span class="method-name">flag_to_regex</span><span class="method-args">(flag, prefix=false)</span>
+          </a>
+        </div>
+      
+        <div class="method-description">
+        </div>
+      </div>
+
+      <div id="method-M000135" class="method-detail">
+        <a name="M000135"></a>
+
+        <div class="method-heading">
+          <a href="ProteinSummary.src/M000135.html" target="Code" class="method-signature"
+            onclick="popupCode('ProteinSummary.src/M000135.html');return false;">
+          <span class="method-name">mspire_version</span><span class="method-args">()</span>
+          </a>
+        </div>
+      
+        <div class="method-description">
+        </div>
+      </div>
+
+      <div id="method-M000129" class="method-detail">
+        <a name="M000129"></a>
+
+        <div class="method-heading">
+          <a href="ProteinSummary.src/M000129.html" target="Code" class="method-signature"
+            onclick="popupCode('ProteinSummary.src/M000129.html');return false;">
+          <span class="method-name">num_prots_above_fppr</span><span class="method-args">(prots, desired_fppr)</span>
+          </a>
+        </div>
+      
+        <div class="method-description">
+          <p>
+assumes that these are sorted on probability desired_fppr is a float
+returns [number_of_prots, actual_fppr]
+</p>
+        </div>
+      </div>
+
+      <div id="method-M000140" class="method-detail">
+        <a name="M000140"></a>
+
+        <div class="method-heading">
+          <a href="ProteinSummary.src/M000140.html" target="Code" class="method-signature"
+            onclick="popupCode('ProteinSummary.src/M000140.html');return false;">
+          <span class="method-name">num_prots_to_html</span><span class="method-args">(desired_cutoff, actual_cutoff, num_proteins)</span>
+          </a>
+        </div>
+      
+        <div class="method-description">
+        </div>
+      </div>
+
+      <div id="method-M000127" class="method-detail">
+        <a name="M000127"></a>
+
+        <div class="method-heading">
+          <a href="ProteinSummary.src/M000127.html" target="Code" class="method-signature"
+            onclick="popupCode('ProteinSummary.src/M000127.html');return false;">
+          <span class="method-name">output_peptide_counts_file</span><span class="method-args">(prots, filename)</span>
+          </a>
+        </div>
+      
+        <div class="method-description">
+          <p>
+given a list of proteins, output a tab delimited textfile with protein name
+and the total number of peptides found
+</p>
+        </div>
+      </div>
+
+      <div id="method-M000138" class="method-detail">
+        <a name="M000138"></a>
+
+        <div class="method-heading">
+          <a href="ProteinSummary.src/M000138.html" target="Code" class="method-signature"
+            onclick="popupCode('ProteinSummary.src/M000138.html');return false;">
+          <span class="method-name">peptide_cell</span><span class="method-args">(prot_num, peptide_sequences)</span>
+          </a>
+        </div>
+      
+        <div class="method-description">
+          <p>
+given a list of peptide sequences creates javascript to hide/show them
+</p>
+        </div>
+      </div>
+
+      <div id="method-M000142" class="method-detail">
+        <a name="M000142"></a>
+
+        <div class="method-heading">
+          <a href="ProteinSummary.src/M000142.html" target="Code" class="method-signature"
+            onclick="popupCode('ProteinSummary.src/M000142.html');return false;">
+          <span class="method-name">prefix_as_decoy_to_html</span><span class="method-args">(string)</span>
+          </a>
+        </div>
+      
+        <div class="method-description">
+          <p>
+transforms the output string of file_as_decoy into html
+</p>
+        </div>
+      </div>
+
+      <div id="method-M000131" class="method-detail">
+        <a name="M000131"></a>
+
+        <div class="method-heading">
+          <a href="ProteinSummary.src/M000131.html" target="Code" class="method-signature"
+            onclick="popupCode('ProteinSummary.src/M000131.html');return false;">
+          <span class="method-name">print_html_pieces</span><span class="method-args">(file, *pieces)</span>
+          </a>
+        </div>
+      
+        <div class="method-description">
+        </div>
+      </div>
+
+      <div id="method-M000137" class="method-detail">
+        <a name="M000137"></a>
+
+        <div class="method-heading">
+          <a href="ProteinSummary.src/M000137.html" target="Code" class="method-signature"
+            onclick="popupCode('ProteinSummary.src/M000137.html');return false;">
+          <span class="method-name">proph_output</span><span class="method-args">(file, outfn, opt, fppr_output_as_html)</span>
+          </a>
+        </div>
+      
+        <div class="method-description">
+        </div>
+      </div>
+
+      <div id="method-M000134" class="method-detail">
+        <a name="M000134"></a>
+
+        <div class="method-heading">
+          <a href="ProteinSummary.src/M000134.html" target="Code" class="method-signature"
+            onclick="popupCode('ProteinSummary.src/M000134.html');return false;">
+          <span class="method-name">protproph_script_info</span><span class="method-args">()</span>
+          </a>
+        </div>
+      
+        <div class="method-description">
+        </div>
+      </div>
+
+      <div id="method-M000123" class="method-detail">
+        <a name="M000123"></a>
+
+        <div class="method-heading">
+          <a href="ProteinSummary.src/M000123.html" target="Code" class="method-signature"
+            onclick="popupCode('ProteinSummary.src/M000123.html');return false;">
+          <span class="method-name">ref_html</span><span class="method-args">(gi, name)</span>
+          </a>
+        </div>
+      
+        <div class="method-description">
+        </div>
+      </div>
+
+      <div id="method-M000136" class="method-detail">
+        <a name="M000136"></a>
+
+        <div class="method-heading">
+          <a href="ProteinSummary.src/M000136.html" target="Code" class="method-signature"
+            onclick="popupCode('ProteinSummary.src/M000136.html');return false;">
+          <span class="method-name">script_info</span><span class="method-args">()</span>
+          </a>
+        </div>
+      
+        <div class="method-description">
+        </div>
+      </div>
+
+      <div id="method-M000130" class="method-detail">
+        <a name="M000130"></a>
+
+        <div class="method-heading">
+          <a href="ProteinSummary.src/M000130.html" target="Code" class="method-signature"
+            onclick="popupCode('ProteinSummary.src/M000130.html');return false;">
+          <span class="method-name">table_rows</span><span class="method-args">(uniq_prots, prefix, false_positive_rate_percent, num_cols, desired_fppr, actual_percent_fp, annotations=nil, peptide_count_filename=nil)</span>
+          </a>
+        </div>
+      
+        <div class="method-description">
+          <p>
+returns a string of the table rows false_positive_rate (give as a %) is the
+cutoff mark returns the number of proteins at the desired_fppr (if given)
+</p>
+        </div>
+      </div>
+
+
+    </div>
+
+
+  </div>
+
+
+<div id="validator-badges">
+  <p><small><a href="http://validator.w3.org/check/referer">[Validate]</a></small></p>
+</div>
+
+</body>
+</html>

@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="iso-8859-1"?>
+<!DOCTYPE html 
+     PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+     "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html>
+<head>
+  <title>all_from_handle (GradientProgram)</title>
+  <meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1" />
+  <link rel="stylesheet" href="../.././rdoc-style.css" type="text/css" media="screen" />
+</head>
+<body class="standalone-code">
+  <pre><span class="ruby-comment cmt"># File lib/ms/gradient_program.rb, line 111</span>
+  <span class="ruby-keyword kw">def</span> <span class="ruby-keyword kw">self</span>.<span class="ruby-identifier">all_from_handle</span>(<span class="ruby-identifier">fh</span>)
+    <span class="ruby-comment cmt"># 0005340: 3000 2e00 3000 3000 0a00 0a00 5300 6100  0...0.0.....S.a.</span>
+    <span class="ruby-comment cmt"># 0005350: 6d00 7000 6c00 6500 2000 5000 7500 6d00  m.p.l.e. .P.u.m.</span>
+    <span class="ruby-comment cmt"># 0005360: 7000 2000 6700 7200 6100 6400 6900 6500  p. .g.r.a.d.i.e.</span>
+    <span class="ruby-comment cmt"># 0005370: 6e00 7400 2000 7400 6100 6200 6c00 6500  n.t. .t.a.b.l.e.</span>
+    <span class="ruby-comment cmt"># 0005380: 3a00 0a00 0a00 4e00 6f00 2e00 2000 5400  :.....N.o... .T.</span>
+    <span class="ruby-comment cmt"># 0005390: 6900 6d00 6500 2000 2000 4100 2500 2000  i.m.e. . .A.%. .</span>
+    <span class="ruby-comment cmt"># 00053a0: 2000 2000 2000 4200 2500 2000 2000 2000   . . .B.%. . . .</span>
+    <span class="ruby-comment cmt"># 00053b0: 2000 4300 2500 2000 2000 2000 2000 4400   .C.%. . . . .D.</span>
+    <span class="ruby-comment cmt"># 00053c0: 2500 2000 2000 2000 2000 b500 6c00 2f00  %. . . . ...l./.</span>
+    <span class="ruby-comment cmt"># 00053d0: 6d00 6900 6e00 2000 0a00 3000 2000 2000  m.i.n. ...0. . .</span>
+    <span class="ruby-comment cmt"># 00053e0: 2000 3000 2e00 3000 3000 2000 2000 3000   .0...0.0. . .0.</span>
+    <span class="ruby-comment cmt"># 00053f0: 2e00 3000 2000 2000 2000 3000 2e00 3000  ..0. . . .0...0.</span>
+    <span class="ruby-comment cmt"># 0005400: 2000 2000 2000 3100 3000 3000 2e00 3000   . . .1.0.0...0.</span>
+    <span class="ruby-identifier">programs</span> = []
+    <span class="ruby-keyword kw">while</span> (<span class="ruby-identifier">gp</span> = <span class="ruby-identifier">get_gradient_program</span>(<span class="ruby-identifier">fh</span>))
+      <span class="ruby-identifier">programs</span> <span class="ruby-operator">&lt;&lt;</span> <span class="ruby-identifier">gp</span> 
+    <span class="ruby-keyword kw">end</span>
+    <span class="ruby-identifier">programs</span>
+  <span class="ruby-keyword kw">end</span></pre>
+</body>
+</html>

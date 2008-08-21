@@ -1,0 +1,81 @@
+--- 
+- time_to_access: 0.0006
+  first_scan: 
+    last_peak: 
+    - 1521.78149414062
+    - 882.0
+    num: 1
+    first_peak: 
+    - 400.517395019531
+    - 11488.0
+  scan_count: 5187
+  file_size: 35800093
+  last_scan: 
+    last_peak: 
+    - 1792.78393554688
+    - 5763.0
+    num: 5187
+    first_peak: 
+    - 400.164184570312
+    - 35993.0
+  scans_to_read: fl
+  total_time_to_read_and_access: 22.202129
+  time_to_read: 22.201511
+  lazy_type: :string
+  end_time: 10799.93
+  start_time: 300.08
+  file: glypep_lectin_2ul.mzXML
+--- 
+- time_to_access: 0.000423
+  first_scan: 
+    last_peak: 
+    - 1621.81591796875
+    - 3426.0
+    num: 1
+    first_peak: 
+    - 400.605834960938
+    - 20332.0
+  scan_count: 4560
+  file_size: 38568094
+  last_scan: 
+    last_peak: 
+    - 1762.87915039062
+    - 3099.0
+    num: 4560
+    first_peak: 
+    - 400.202575683594
+    - 9541.0
+  scans_to_read: fl
+  total_time_to_read_and_access: 24.463773
+  time_to_read: 24.463335
+  lazy_type: :string
+  end_time: 10109.53
+  start_time: 300.02
+  file: glypep_lectin_2ul_redo.mzXML
+--- 
+- time_to_access: 0.000102
+  first_scan: 
+    last_peak: 
+    - 815.44775390625
+    - 1973.0
+    num: 1
+    first_peak: 
+    - 406.795471191406
+    - 4746.0
+  scan_count: 5101
+  file_size: 27151701
+  last_scan: 
+    last_peak: 
+    - 1965.74780273438
+    - 2750.0
+    num: 5101
+    first_peak: 
+    - 815.880981445312
+    - 2556.0
+  scans_to_read: fl
+  total_time_to_read_and_access: 17.372996
+  time_to_read: 17.372879
+  lazy_type: :string
+  end_time: 10114.87
+  start_time: 300.1099
+  file: glypep_lectin_6ul_redo.mzXML

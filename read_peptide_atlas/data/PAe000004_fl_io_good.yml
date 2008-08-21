@@ -1,0 +1,1107 @@
+--- 
+- time_to_access: 0.010331
+  first_scan: 
+    last_peak: 
+    - 1455.62133789062
+    - 5987.0
+    num: 1
+    first_peak: 
+    - 415.457885742188
+    - 4382.0
+  scan_count: 4064
+  file_size: 8847512
+  last_scan: 
+    last_peak: 
+    - 593.619384765625
+    - 5703.0
+    num: 4064
+    first_peak: 
+    - 418.846618652344
+    - 5088.0
+  scans_to_read: fl
+  total_time_to_read_and_access: 1.294049
+  time_to_read: 1.283703
+  lazy_type: :io_good
+  end_time: 5878.75
+  start_time: 0.26
+  file: raftflow10.mzXML
+--- 
+- time_to_access: 0.013196
+  first_scan: 
+    last_peak: 
+    - 1595.96655273438
+    - 33123.0
+    num: 1
+    first_peak: 
+    - 400.405212402344
+    - 24297.0
+  scan_count: 4238
+  file_size: 16125188
+  last_scan: 
+    last_peak: 
+    - 678.028198242188
+    - 5090.0
+    num: 4238
+    first_peak: 
+    - 452.338562011719
+    - 5556.0
+  scans_to_read: fl
+  total_time_to_read_and_access: 1.517235
+  time_to_read: 1.504021
+  lazy_type: :io_good
+  end_time: 5880.94
+  start_time: 0.34
+  file: raftflow11.mzXML
+--- 
+- time_to_access: 0.022041
+  first_scan: 
+    last_peak: 
+    - 1527.28784179688
+    - 32348.0
+    num: 1
+    first_peak: 
+    - 400.256958007812
+    - 47287.0
+  scan_count: 4244
+  file_size: 15185174
+  last_scan: 
+    last_peak: 
+    - 0.0
+    - 0.0
+    num: 4244
+    first_peak: 
+    - 0.0
+    - 0.0
+  scans_to_read: fl
+  total_time_to_read_and_access: 1.584226
+  time_to_read: 1.562167
+  lazy_type: :io_good
+  end_time: 5881.47
+  start_time: 0.34
+  file: raftflow12.mzXML
+--- 
+- time_to_access: 0.02065
+  first_scan: 
+    last_peak: 
+    - 1514.64916992188
+    - 4621.0
+    num: 1
+    first_peak: 
+    - 400.529296875
+    - 23304.0
+  scan_count: 4302
+  file_size: 12564603
+  last_scan: 
+    last_peak: 
+    - 421.009338378906
+    - 4953.0
+    num: 4302
+    first_peak: 
+    - 357.703247070312
+    - 5355.0
+  scans_to_read: fl
+  total_time_to_read_and_access: 1.54122
+  time_to_read: 1.520552
+  lazy_type: :io_good
+  end_time: 5879.6799
+  start_time: 0.08
+  file: raftflow13.mzXML
+--- 
+- time_to_access: 0.076767
+  first_scan: 
+    last_peak: 
+    - 1588.87182617188
+    - 63693.0
+    num: 1
+    first_peak: 
+    - 400.391784667969
+    - 149364.0
+  scan_count: 4306
+  file_size: 14556143
+  last_scan: 
+    last_peak: 
+    - 512.95654296875
+    - 5828.0
+    num: 4306
+    first_peak: 
+    - 360.91162109375
+    - 6136.0
+  scans_to_read: fl
+  total_time_to_read_and_access: 1.627044
+  time_to_read: 1.550261
+  lazy_type: :io_good
+  end_time: 5881.0
+  start_time: 0.45
+  file: raftflow14.mzXML
+--- 
+- time_to_access: 0.024035
+  first_scan: 
+    last_peak: 
+    - 1585.2236328125
+    - 19141.0
+    num: 1
+    first_peak: 
+    - 401.222351074219
+    - 21760.0
+  scan_count: 3985
+  file_size: 14526642
+  last_scan: 
+    last_peak: 
+    - 565.2529296875
+    - 18904.0
+    num: 3985
+    first_peak: 
+    - 471.375549316406
+    - 8396.0
+  scans_to_read: fl
+  total_time_to_read_and_access: 1.4435
+  time_to_read: 1.419448
+  lazy_type: :io_good
+  end_time: 5880.59
+  start_time: 0.44
+  file: raftflow15.mzXML
+--- 
+- time_to_access: 0.013339
+  first_scan: 
+    last_peak: 
+    - 1543.54711914062
+    - 2707.0
+    num: 1
+    first_peak: 
+    - 400.162475585938
+    - 5800.0
+  scan_count: 4285
+  file_size: 17000499
+  last_scan: 
+    last_peak: 
+    - 446.449462890625
+    - 4066.0
+    num: 4285
+    first_peak: 
+    - 360.570495605469
+    - 10059.0
+  scans_to_read: fl
+  total_time_to_read_and_access: 1.542734
+  time_to_read: 1.529378
+  lazy_type: :io_good
+  end_time: 5880.66
+  start_time: 0.44
+  file: raftflow16.mzXML
+--- 
+- time_to_access: 0.016374
+  first_scan: 
+    last_peak: 
+    - 1570.82421875
+    - 9207.0
+    num: 1
+    first_peak: 
+    - 401.56005859375
+    - 19833.0
+  scan_count: 4053
+  file_size: 13292801
+  last_scan: 
+    last_peak: 
+    - 518.97265625
+    - 3008.0
+    num: 4053
+    first_peak: 
+    - 281.095275878906
+    - 18166.0
+  scans_to_read: fl
+  total_time_to_read_and_access: 1.471768
+  time_to_read: 1.455377
+  lazy_type: :io_good
+  end_time: 5880.0899
+  start_time: 120.1
+  file: raftflow17.mzXML
+--- 
+- time_to_access: 0.017345
+  first_scan: 
+    last_peak: 
+    - 1591.4716796875
+    - 13983.0
+    num: 1
+    first_peak: 
+    - 400.238952636719
+    - 31711.0
+  scan_count: 4196
+  file_size: 17730243
+  last_scan: 
+    last_peak: 
+    - 620.667114257812
+    - 9481.0
+    num: 4196
+    first_peak: 
+    - 413.482299804688
+    - 4569.0
+  scans_to_read: fl
+  total_time_to_read_and_access: 1.581125
+  time_to_read: 1.563764
+  lazy_type: :io_good
+  end_time: 5880.6
+  start_time: 0.15
+  file: raftflow20_.mzXML
+--- 
+- time_to_access: 0.000282
+  first_scan: 
+    last_peak: 
+    - 497.482849121094
+    - 4938.0
+    num: 1
+    first_peak: 
+    - 497.482849121094
+    - 4938.0
+  scan_count: 3837
+  file_size: 15955000
+  last_scan: 
+    last_peak: 
+    - 1328.29125976562
+    - 6103.0
+    num: 3837
+    first_peak: 
+    - 1328.29125976562
+    - 6103.0
+  scans_to_read: fl
+  total_time_to_read_and_access: 1.407739
+  time_to_read: 1.407442
+  lazy_type: :io_good
+  end_time: 5879.2
+  start_time: 300.1
+  file: raftflow20.mzXML
+--- 
+- time_to_access: 0.017197
+  first_scan: 
+    last_peak: 
+    - 1572.59375
+    - 1143.0
+    num: 1
+    first_peak: 
+    - 491.215148925781
+    - 4011.0
+  scan_count: 3958
+  file_size: 16231808
+  last_scan: 
+    last_peak: 
+    - 0.0
+    - 0.0
+    num: 3958
+    first_peak: 
+    - 0.0
+    - 0.0
+  scans_to_read: fl
+  total_time_to_read_and_access: 1.506771
+  time_to_read: 1.489313
+  lazy_type: :io_good
+  end_time: 5880.41
+  start_time: 120.1
+  file: raftflow20r.mzXML
+--- 
+- time_to_access: 0.01091
+  first_scan: 
+    last_peak: 
+    - 1442.4814453125
+    - 2219.0
+    num: 1
+    first_peak: 
+    - 426.431823730469
+    - 4312.0
+  scan_count: 3971
+  file_size: 13293176
+  last_scan: 
+    last_peak: 
+    - 415.507690429688
+    - 2882.0
+    num: 3971
+    first_peak: 
+    - 298.600280761719
+    - 19178.0
+  scans_to_read: fl
+  total_time_to_read_and_access: 1.384486
+  time_to_read: 1.373558
+  lazy_type: :io_good
+  end_time: 5879.89
+  start_time: 120.11
+  file: raftflow22.mzXML
+--- 
+- time_to_access: 0.000964
+  first_scan: 
+    last_peak: 
+    - 1335.54028320312
+    - 3245.0
+    num: 1
+    first_peak: 
+    - 414.8173828125
+    - 8854.0
+  scan_count: 4026
+  file_size: 13339006
+  last_scan: 
+    last_peak: 
+    - 339.7177734375
+    - 6197.0
+    num: 4026
+    first_peak: 
+    - 339.7177734375
+    - 6197.0
+  scans_to_read: fl
+  total_time_to_read_and_access: 1.39958
+  time_to_read: 1.398601
+  lazy_type: :io_good
+  end_time: 5881.0399
+  start_time: 120.02
+  file: raftflow23.mzXML
+--- 
+- time_to_access: 0.005966
+  first_scan: 
+    last_peak: 
+    - 1597.16455078125
+    - 4372.0
+    num: 1
+    first_peak: 
+    - 403.312744140625
+    - 3587.0
+  scan_count: 4034
+  file_size: 13776387
+  last_scan: 
+    last_peak: 
+    - 0.0
+    - 0.0
+    num: 4034
+    first_peak: 
+    - 0.0
+    - 0.0
+  scans_to_read: fl
+  total_time_to_read_and_access: 1.432215
+  time_to_read: 1.426233
+  lazy_type: :io_good
+  end_time: 5879.58
+  start_time: 120.09
+  file: raftflow24.mzXML
+--- 
+- time_to_access: 0.009806
+  first_scan: 
+    last_peak: 
+    - 1580.8095703125
+    - 3317.0
+    num: 1
+    first_peak: 
+    - 401.337463378906
+    - 3034.0
+  scan_count: 4036
+  file_size: 14124128
+  last_scan: 
+    last_peak: 
+    - 0.0
+    - 0.0
+    num: 4036
+    first_peak: 
+    - 0.0
+    - 0.0
+  scans_to_read: fl
+  total_time_to_read_and_access: 1.46545
+  time_to_read: 1.455629
+  lazy_type: :io_good
+  end_time: 5881.28
+  start_time: 120.1
+  file: raftflow26.mzXML
+--- 
+- time_to_access: 0.00851
+  first_scan: 
+    last_peak: 
+    - 1587.25
+    - 3551.0
+    num: 1
+    first_peak: 
+    - 402.021789550781
+    - 6134.0
+  scan_count: 4052
+  file_size: 14610282
+  last_scan: 
+    last_peak: 
+    - 841.377807617188
+    - 5586.0
+    num: 4052
+    first_peak: 
+    - 841.377807617188
+    - 5586.0
+  scans_to_read: fl
+  total_time_to_read_and_access: 1.484789
+  time_to_read: 1.476262
+  lazy_type: :io_good
+  end_time: 5879.51
+  start_time: 120.11
+  file: raftflow27.mzXML
+--- 
+- time_to_access: 0.011582
+  first_scan: 
+    last_peak: 
+    - 1548.97119140625
+    - 3774.0
+    num: 1
+    first_peak: 
+    - 401.506958007812
+    - 10140.0
+  scan_count: 4102
+  file_size: 15803299
+  last_scan: 
+    last_peak: 
+    - 847.185546875
+    - 5181.0
+    num: 4102
+    first_peak: 
+    - 847.185546875
+    - 5181.0
+  scans_to_read: fl
+  total_time_to_read_and_access: 1.523544
+  time_to_read: 1.511946
+  lazy_type: :io_good
+  end_time: 5879.42
+  start_time: 120.09
+  file: raftflow28.mzXML
+--- 
+- time_to_access: 0.025583
+  first_scan: 
+    last_peak: 
+    - 1599.81103515625
+    - 4442.0
+    num: 1
+    first_peak: 
+    - 400.622253417969
+    - 3892.0
+  scan_count: 4098
+  file_size: 15177064
+  last_scan: 
+    last_peak: 
+    - 430.930603027344
+    - 110548.0
+    num: 4098
+    first_peak: 
+    - 341.009643554688
+    - 9383.0
+  scans_to_read: fl
+  total_time_to_read_and_access: 1.528174
+  time_to_read: 1.502575
+  lazy_type: :io_good
+  end_time: 5879.44
+  start_time: 120.1
+  file: raftflow29.mzXML
+--- 
+- time_to_access: 0.01763
+  first_scan: 
+    last_peak: 
+    - 1591.53002929688
+    - 4088.0
+    num: 1
+    first_peak: 
+    - 400.460205078125
+    - 36808.0
+  scan_count: 4126
+  file_size: 15117284
+  last_scan: 
+    last_peak: 
+    - 431.882446289062
+    - 29796.0
+    num: 4126
+    first_peak: 
+    - 302.204956054688
+    - 8230.0
+  scans_to_read: fl
+  total_time_to_read_and_access: 1.501878
+  time_to_read: 1.484232
+  lazy_type: :io_good
+  end_time: 5881.23
+  start_time: 0.34
+  file: raftflow2x.mzXML
+--- 
+- time_to_access: 0.022508
+  first_scan: 
+    last_peak: 
+    - 1593.68725585938
+    - 5333.0
+    num: 1
+    first_peak: 
+    - 400.023681640625
+    - 3191.0
+  scan_count: 3965
+  file_size: 13998236
+  last_scan: 
+    last_peak: 
+    - 429.599182128906
+    - 2.0
+    num: 3965
+    first_peak: 
+    - 340.98876953125
+    - 9573.0
+  scans_to_read: fl
+  total_time_to_read_and_access: 1.434205
+  time_to_read: 1.41168
+  lazy_type: :io_good
+  end_time: 5881.18
+  start_time: 0.44
+  file: raftflow2y.mzXML
+--- 
+- time_to_access: 0.013226
+  first_scan: 
+    last_peak: 
+    - 1590.0625
+    - 2969.0
+    num: 1
+    first_peak: 
+    - 400.199951171875
+    - 1.0
+  scan_count: 4066
+  file_size: 15529655
+  last_scan: 
+    last_peak: 
+    - 538.034912109375
+    - 5670.0
+    num: 4066
+    first_peak: 
+    - 239.360778808594
+    - 4291.0
+  scans_to_read: fl
+  total_time_to_read_and_access: 1.496868
+  time_to_read: 1.483625
+  lazy_type: :io_good
+  end_time: 5879.48
+  start_time: 120.1
+  file: raftflow31.mzXML
+--- 
+- time_to_access: 0.014414
+  first_scan: 
+    last_peak: 
+    - 1543.427734375
+    - 5953.0
+    num: 1
+    first_peak: 
+    - 400.972412109375
+    - 8907.0
+  scan_count: 4061
+  file_size: 15353389
+  last_scan: 
+    last_peak: 
+    - 520.96044921875
+    - 10029.0
+    num: 4061
+    first_peak: 
+    - 281.115478515625
+    - 11301.0
+  scans_to_read: fl
+  total_time_to_read_and_access: 1.502102
+  time_to_read: 1.487673
+  lazy_type: :io_good
+  end_time: 5879.57
+  start_time: 120.1
+  file: raftflow32.mzXML
+--- 
+- time_to_access: 0.061812
+  first_scan: 
+    last_peak: 
+    - 1583.0400390625
+    - 3399.0
+    num: 1
+    first_peak: 
+    - 401.342224121094
+    - 8301.0
+  scan_count: 4024
+  file_size: 17126021
+  last_scan: 
+    last_peak: 
+    - 1244.93920898438
+    - 3653.0
+    num: 4024
+    first_peak: 
+    - 547.15771484375
+    - 4122.0
+  scans_to_read: fl
+  total_time_to_read_and_access: 1.551512
+  time_to_read: 1.489684
+  lazy_type: :io_good
+  end_time: 5879.95
+  start_time: 120.1
+  file: raftflow33.mzXML
+--- 
+- time_to_access: 0.013505
+  first_scan: 
+    last_peak: 
+    - 1584.99291992188
+    - 2477.0
+    num: 1
+    first_peak: 
+    - 400.333312988281
+    - 1.0
+  scan_count: 4066
+  file_size: 15885190
+  last_scan: 
+    last_peak: 
+    - 579.432006835938
+    - 6409.0
+    num: 4066
+    first_peak: 
+    - 440.553283691406
+    - 9587.0
+  scans_to_read: fl
+  total_time_to_read_and_access: 1.501598
+  time_to_read: 1.488077
+  lazy_type: :io_good
+  end_time: 5879.03
+  start_time: 120.09
+  file: raftflow34.mzXML
+--- 
+- time_to_access: 0.009898
+  first_scan: 
+    last_peak: 
+    - 1543.04125976562
+    - 2847.0
+    num: 1
+    first_peak: 
+    - 406.361938476562
+    - 5070.0
+  scan_count: 4066
+  file_size: 17097636
+  last_scan: 
+    last_peak: 
+    - 445.903991699219
+    - 5358.0
+    num: 4066
+    first_peak: 
+    - 445.903991699219
+    - 5358.0
+  scans_to_read: fl
+  total_time_to_read_and_access: 1.507185
+  time_to_read: 1.49727
+  lazy_type: :io_good
+  end_time: 5881.53
+  start_time: 120.11
+  file: raftflow35.mzXML
+--- 
+- time_to_access: 0.006102
+  first_scan: 
+    last_peak: 
+    - 1519.82080078125
+    - 5679.0
+    num: 1
+    first_peak: 
+    - 405.331359863281
+    - 5457.0
+  scan_count: 4115
+  file_size: 16561788
+  last_scan: 
+    last_peak: 
+    - 448.544616699219
+    - 6591.0
+    num: 4115
+    first_peak: 
+    - 325.591064453125
+    - 6517.0
+  scans_to_read: fl
+  total_time_to_read_and_access: 1.506736
+  time_to_read: 1.500617
+  lazy_type: :io_good
+  end_time: 5879.66
+  start_time: 120.11
+  file: raftflow36.mzXML
+--- 
+- time_to_access: 0.00103
+  first_scan: 
+    last_peak: 
+    - 1466.712890625
+    - 4073.0
+    num: 1
+    first_peak: 
+    - 578.80029296875
+    - 4677.0
+  scan_count: 4131
+  file_size: 15540704
+  last_scan: 
+    last_peak: 
+    - 784.718994140625
+    - 3598.0
+    num: 4131
+    first_peak: 
+    - 441.617004394531
+    - 7206.0
+  scans_to_read: fl
+  total_time_to_read_and_access: 1.493647
+  time_to_read: 1.492602
+  lazy_type: :io_good
+  end_time: 5880.2
+  start_time: 120.11
+  file: raftflow37.mzXML
+--- 
+- time_to_access: 0.076273
+  first_scan: 
+    last_peak: 
+    - 1591.70776367188
+    - 8483.0
+    num: 1
+    first_peak: 
+    - 401.313537597656
+    - 33657.0
+  scan_count: 4127
+  file_size: 16039307
+  last_scan: 
+    last_peak: 
+    - 1177.15234375
+    - 6569.0
+    num: 4127
+    first_peak: 
+    - 232.148193359375
+    - 8519.0
+  scans_to_read: fl
+  total_time_to_read_and_access: 1.574214
+  time_to_read: 1.497925
+  lazy_type: :io_good
+  end_time: 5879.69
+  start_time: 120.11
+  file: raftflow38.mzXML
+--- 
+- time_to_access: 0.009036
+  first_scan: 
+    last_peak: 
+    - 1592.3173828125
+    - 3798.0
+    num: 1
+    first_peak: 
+    - 401.25146484375
+    - 6475.0
+  scan_count: 4102
+  file_size: 16048265
+  last_scan: 
+    last_peak: 
+    - 1066.11694335938
+    - 2058.0
+    num: 4102
+    first_peak: 
+    - 474.467712402344
+    - 5226.0
+  scans_to_read: fl
+  total_time_to_read_and_access: 1.516536
+  time_to_read: 1.507484
+  lazy_type: :io_good
+  end_time: 5879.44
+  start_time: 120.05
+  file: raftflow39.mzXML
+--- 
+- time_to_access: 0.096124
+  first_scan: 
+    last_peak: 
+    - 1590.27490234375
+    - 4549.0
+    num: 1
+    first_peak: 
+    - 401.441223144531
+    - 10039.0
+  scan_count: 4158
+  file_size: 15661914
+  last_scan: 
+    last_peak: 
+    - 1588.59741210938
+    - 3273.0
+    num: 4158
+    first_peak: 
+    - 400.250305175781
+    - 6118.0
+  scans_to_read: fl
+  total_time_to_read_and_access: 1.620851
+  time_to_read: 1.524711
+  lazy_type: :io_good
+  end_time: 5878.1899
+  start_time: 120.04
+  file: raftflow41.mzXML
+--- 
+- time_to_access: 0.011206
+  first_scan: 
+    last_peak: 
+    - 1571.99462890625
+    - 16839.0
+    num: 1
+    first_peak: 
+    - 401.139099121094
+    - 5943.0
+  scan_count: 4132
+  file_size: 17018580
+  last_scan: 
+    last_peak: 
+    - 825.163818359375
+    - 5413.0
+    num: 4132
+    first_peak: 
+    - 390.988342285156
+    - 97501.0
+  scans_to_read: fl
+  total_time_to_read_and_access: 1.564636
+  time_to_read: 1.553415
+  lazy_type: :io_good
+  end_time: 5880.34
+  start_time: 120.03
+  file: raftflow42.mzXML
+--- 
+- time_to_access: 0.01062
+  first_scan: 
+    last_peak: 
+    - 1593.9130859375
+    - 2976.0
+    num: 1
+    first_peak: 
+    - 400.2666015625
+    - 1.0
+  scan_count: 4158
+  file_size: 17706605
+  last_scan: 
+    last_peak: 
+    - 669.336059570312
+    - 4743.0
+    num: 4158
+    first_peak: 
+    - 281.049560546875
+    - 32081.0
+  scans_to_read: fl
+  total_time_to_read_and_access: 1.68719
+  time_to_read: 1.676553
+  lazy_type: :io_good
+  end_time: 5881.09
+  start_time: 120.1
+  file: raftflow43.mzXML
+--- 
+- time_to_access: 0.009361
+  first_scan: 
+    last_peak: 
+    - 1580.80419921875
+    - 7120.0
+    num: 1
+    first_peak: 
+    - 402.52197265625
+    - 12067.0
+  scan_count: 4168
+  file_size: 17447093
+  last_scan: 
+    last_peak: 
+    - 429.928649902344
+    - 148425.0
+    num: 4168
+    first_peak: 
+    - 341.0576171875
+    - 12111.0
+  scans_to_read: fl
+  total_time_to_read_and_access: 1.600369
+  time_to_read: 1.590992
+  lazy_type: :io_good
+  end_time: 5879.72
+  start_time: 120.1
+  file: raftflow44.mzXML
+--- 
+- time_to_access: 0.009001
+  first_scan: 
+    last_peak: 
+    - 1575.666015625
+    - 2149.0
+    num: 1
+    first_peak: 
+    - 401.276794433594
+    - 4181.0
+  scan_count: 4183
+  file_size: 17599816
+  last_scan: 
+    last_peak: 
+    - 0.0
+    - 0.0
+    num: 4183
+    first_peak: 
+    - 0.0
+    - 0.0
+  scans_to_read: fl
+  total_time_to_read_and_access: 1.57953
+  time_to_read: 1.570513
+  lazy_type: :io_good
+  end_time: 5881.69
+  start_time: 120.1
+  file: raftflow45.mzXML
+--- 
+- time_to_access: 0.021411
+  first_scan: 
+    last_peak: 
+    - 1596.88134765625
+    - 4147.0
+    num: 1
+    first_peak: 
+    - 400.669616699219
+    - 51561.0
+  scan_count: 4220
+  file_size: 16442360
+  last_scan: 
+    last_peak: 
+    - 442.643310546875
+    - 13823.0
+    num: 4220
+    first_peak: 
+    - 367.866638183594
+    - 7288.0
+  scans_to_read: fl
+  total_time_to_read_and_access: 1.677891
+  time_to_read: 1.656463
+  lazy_type: :io_good
+  end_time: 5880.42
+  start_time: 0.35
+  file: raftflow46.mzXML
+--- 
+- time_to_access: 0.025027
+  first_scan: 
+    last_peak: 
+    - 1596.7216796875
+    - 22176.0
+    num: 1
+    first_peak: 
+    - 401.541015625
+    - 203523.0
+  scan_count: 4178
+  file_size: 17366371
+  last_scan: 
+    last_peak: 
+    - 701.786987304688
+    - 7797.0
+    num: 4178
+    first_peak: 
+    - 386.484985351562
+    - 8353.0
+  scans_to_read: fl
+  total_time_to_read_and_access: 1.651239
+  time_to_read: 1.626196
+  lazy_type: :io_good
+  end_time: 5879.8
+  start_time: 0.15
+  file: raftflow47.mzXML
+--- 
+- time_to_access: 0.01802
+  first_scan: 
+    last_peak: 
+    - 1558.90356445312
+    - 46919.0
+    num: 1
+    first_peak: 
+    - 401.221313476562
+    - 54448.0
+  scan_count: 4309
+  file_size: 17610947
+  last_scan: 
+    last_peak: 
+    - 685.709716796875
+    - 4273.0
+    num: 4309
+    first_peak: 
+    - 288.400146484375
+    - 7129.0
+  scans_to_read: fl
+  total_time_to_read_and_access: 1.647217
+  time_to_read: 1.629182
+  lazy_type: :io_good
+  end_time: 5880.57
+  start_time: 0.06
+  file: raftflow48.mzXML
+--- 
+- time_to_access: 0.021472
+  first_scan: 
+    last_peak: 
+    - 1564.65014648438
+    - 19103.0
+    num: 1
+    first_peak: 
+    - 400.459594726562
+    - 67772.0
+  scan_count: 4318
+  file_size: 17293010
+  last_scan: 
+    last_peak: 
+    - 582.74169921875
+    - 4963.0
+    num: 4318
+    first_peak: 
+    - 368.971313476562
+    - 7652.0
+  scans_to_read: fl
+  total_time_to_read_and_access: 1.660187
+  time_to_read: 1.6387
+  lazy_type: :io_good
+  end_time: 5880.31
+  start_time: 0.23
+  file: raftflow49.mzXML
+--- 
+- time_to_access: 0.019084
+  first_scan: 
+    last_peak: 
+    - 1587.7822265625
+    - 25047.0
+    num: 1
+    first_peak: 
+    - 400.596801757812
+    - 63490.0
+  scan_count: 4354
+  file_size: 17559569
+  last_scan: 
+    last_peak: 
+    - 764.006958007812
+    - 7500.0
+    num: 4354
+    first_peak: 
+    - 385.82275390625
+    - 5112.0
+  scans_to_read: fl
+  total_time_to_read_and_access: 1.666963
+  time_to_read: 1.647863
+  lazy_type: :io_good
+  end_time: 5879.0
+  start_time: 0.18
+  file: raftflow50.mzXML
+--- 
+- time_to_access: 0.01492
+  first_scan: 
+    last_peak: 
+    - 1591.220703125
+    - 16.0
+    num: 1
+    first_peak: 
+    - 400.520324707031
+    - 107030.0
+  scan_count: 4309
+  file_size: 17222652
+  last_scan: 
+    last_peak: 
+    - 659.3984375
+    - 3389.0
+    num: 4309
+    first_peak: 
+    - 201.342407226562
+    - 7337.0
+  scans_to_read: fl
+  total_time_to_read_and_access: 1.635795
+  time_to_read: 1.620859
+  lazy_type: :io_good
+  end_time: 5880.71
+  start_time: 0.14
+  file: raftflow51.mzXML
+--- 
+- time_to_access: 0.001094
+  first_scan: 
+    last_peak: 
+    - 1483.46533203125
+    - 2701.0
+    num: 1
+    first_peak: 
+    - 405.808532714844
+    - 4530.0
+  scan_count: 4146
+  file_size: 16482715
+  last_scan: 
+    last_peak: 
+    - 1733.84912109375
+    - 3907.0
+    num: 4146
+    first_peak: 
+    - 920.4599609375
+    - 8190.0
+  scans_to_read: fl
+  total_time_to_read_and_access: 1.535217
+  time_to_read: 1.534107
+  lazy_type: :io_good
+  end_time: 5879.58
+  start_time: 120.02
+  file: raftflow52.mzXML

@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="iso-8859-1"?>
+<!DOCTYPE html 
+     PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+     "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html>
+<head>
+  <title>create_scan (MS::Parser::MzXML::Hpricot)</title>
+  <meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1" />
+  <link rel="stylesheet" href="../../../../.././rdoc-style.css" type="text/css" media="screen" />
+</head>
+<body class="standalone-code">
+  <pre><span class="ruby-comment cmt"># File lib/ms/parser/mzxml/hpricot.rb, line 33</span>
+  <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">create_scan</span>(<span class="ruby-identifier">scan_n</span>, <span class="ruby-identifier">scans_by_num</span>, <span class="ruby-identifier">get_spectra</span>=<span class="ruby-keyword kw">true</span>)
+    <span class="ruby-keyword kw">if</span> <span class="ruby-ivar">@version</span> <span class="ruby-operator">&lt;</span> <span class="ruby-value str">'3.0'</span>
+      <span class="ruby-identifier">scan</span> = <span class="ruby-identifier">new_scan_from_hash</span>(<span class="ruby-identifier">scan_n</span>)
+      <span class="ruby-identifier">precs</span> = []
+      <span class="ruby-identifier">scan_n</span>.<span class="ruby-identifier">each_child</span> <span class="ruby-keyword kw">do</span> <span class="ruby-operator">|</span><span class="ruby-identifier">node</span><span class="ruby-operator">|</span>
+        <span class="ruby-keyword kw">case</span> <span class="ruby-identifier">node</span>.<span class="ruby-identifier">name</span>
+        <span class="ruby-keyword kw">when</span> <span class="ruby-value str">'precursorMz'</span>
+          <span class="ruby-comment cmt"># should be able to do this!!!</span>
+          <span class="ruby-comment cmt">#scan[5] = scan_n.find('child::precursorMz').map do |prec_n|</span>
+          <span class="ruby-identifier">prec</span> = <span class="ruby-constant">MS</span><span class="ruby-operator">::</span><span class="ruby-constant">Precursor</span>.<span class="ruby-identifier">new</span>
+          <span class="ruby-identifier">prec</span>[<span class="ruby-value">1</span>] = <span class="ruby-identifier">node</span>[<span class="ruby-value str">'precursorIntensity'</span>].<span class="ruby-identifier">to_f</span>
+          <span class="ruby-identifier">prec</span>[<span class="ruby-value">0</span>] = <span class="ruby-identifier">node</span>.<span class="ruby-identifier">content</span>.<span class="ruby-identifier">to_f</span>
+          <span class="ruby-keyword kw">if</span> <span class="ruby-identifier">x</span> = <span class="ruby-identifier">node</span>[<span class="ruby-value str">'precursorScanNum'</span>]
+            <span class="ruby-identifier">prec</span>[<span class="ruby-value">2</span>] = <span class="ruby-identifier">scans_by_num</span>[<span class="ruby-identifier">x</span>.<span class="ruby-identifier">to_i</span>]
+          <span class="ruby-keyword kw">end</span>
+          <span class="ruby-identifier">precs</span> <span class="ruby-operator">&lt;&lt;</span> <span class="ruby-identifier">prec</span>
+        <span class="ruby-keyword kw">when</span> <span class="ruby-value str">'peaks'</span>
+          <span class="ruby-keyword kw">next</span> <span class="ruby-keyword kw">unless</span> <span class="ruby-identifier">get_spectra</span>
+          <span class="ruby-comment cmt"># SHOULD be able to do this!!</span>
+          <span class="ruby-comment cmt">#peaks_n = scan_n.find_first('child::peaks')</span>
+          <span class="ruby-identifier">scan</span>[<span class="ruby-value">6</span>] = <span class="ruby-constant">MS</span><span class="ruby-operator">::</span><span class="ruby-constant">Spectrum</span>.<span class="ruby-identifier">from_base64_peaks</span>(<span class="ruby-identifier">node</span>.<span class="ruby-identifier">content</span>, <span class="ruby-identifier">node</span>[<span class="ruby-value str">'precision'</span>].<span class="ruby-identifier">to_i</span>)
+        <span class="ruby-keyword kw">end</span>
+      <span class="ruby-keyword kw">end</span>
+      <span class="ruby-identifier">scan</span>[<span class="ruby-value">5</span>] = <span class="ruby-identifier">precs</span>
+      <span class="ruby-identifier">scan</span>
+    <span class="ruby-keyword kw">else</span>  <span class="ruby-comment cmt"># for version &gt; 3.0 </span>
+      <span class="ruby-identifier">abort</span> <span class="ruby-value str">'not supporting version 3.0 just yet'</span>
+      <span class="ruby-comment cmt"># note that mzXML version 3.0 *can* have more than one peak...</span>
+      <span class="ruby-comment cmt"># I'm not sure how to deal with that since I have one spectrum/scan</span>
+    <span class="ruby-keyword kw">end</span>
+  <span class="ruby-keyword kw">end</span></pre>
+</body>
+</html>

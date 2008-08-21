@@ -1,0 +1,27 @@
+--- 
+- time_to_access: 0.000344
+  first_scan: 
+    last_peak: 
+    - 0.0
+    - 0.0
+    num: 1
+    first_peak: 
+    - 0.0
+    - 0.0
+  scan_count: 5125
+  file_size: 30719278
+  last_scan: 
+    last_peak: 
+    - 1487.267578125
+    - 11134.0
+    num: 5125
+    first_peak: 
+    - 1041.2646484375
+    - 8933.0
+  scans_to_read: fl
+  total_time_to_read_and_access: 1.667896
+  time_to_read: 1.667536
+  lazy_type: :io_good
+  end_time: 5880.33
+  start_time: 120.11
+  file: YAGmem1220_rpt1.mzXML

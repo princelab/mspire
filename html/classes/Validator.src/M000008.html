@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="iso-8859-1"?>
+<!DOCTYPE html 
+     PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+     "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html>
+<head>
+  <title>sensible_validator_hashes (Validator)</title>
+  <meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1" />
+  <link rel="stylesheet" href="../.././rdoc-style.css" type="text/css" media="screen" />
+</head>
+<body class="standalone-code">
+  <pre><span class="ruby-comment cmt"># File lib/validator.rb, line 109</span>
+  <span class="ruby-keyword kw">def</span> <span class="ruby-keyword kw">self</span>.<span class="ruby-identifier">sensible_validator_hashes</span>(<span class="ruby-identifier">validators</span>)
+    <span class="ruby-identifier">validators</span>.<span class="ruby-identifier">map</span> <span class="ruby-keyword kw">do</span> <span class="ruby-operator">|</span><span class="ruby-identifier">val</span><span class="ruby-operator">|</span>
+      <span class="ruby-identifier">hash</span> = {}
+      <span class="ruby-keyword kw">case</span> <span class="ruby-identifier">val</span>
+      <span class="ruby-keyword kw">when</span> <span class="ruby-constant">Validator</span><span class="ruby-operator">::</span><span class="ruby-constant">TruePos</span>
+        <span class="ruby-identifier">hash</span>.<span class="ruby-identifier">merge</span>( {<span class="ruby-identifier">:correct_wins</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-identifier">val</span>.<span class="ruby-identifier">correct_wins</span>, <span class="ruby-identifier">:file</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-identifier">val</span>.<span class="ruby-identifier">fasta</span>.<span class="ruby-identifier">filename</span> } )
+      <span class="ruby-keyword kw">when</span> <span class="ruby-constant">Validator</span><span class="ruby-operator">::</span><span class="ruby-constant">AAEst</span>
+        <span class="ruby-node">%w(frequency background calculated_background)</span>.<span class="ruby-identifier">each</span> <span class="ruby-keyword kw">do</span> <span class="ruby-operator">|</span><span class="ruby-identifier">cat</span><span class="ruby-operator">|</span>
+          <span class="ruby-identifier">hash</span>[<span class="ruby-identifier">cat</span>.<span class="ruby-identifier">to_sym</span>] = <span class="ruby-identifier">val</span>.<span class="ruby-identifier">send</span>(<span class="ruby-identifier">cat</span>.<span class="ruby-identifier">to_sym</span>)
+        <span class="ruby-keyword kw">end</span>
+      <span class="ruby-keyword kw">when</span> <span class="ruby-constant">Validator</span><span class="ruby-operator">::</span><span class="ruby-constant">AA</span>
+        <span class="ruby-node">%w(false_to_total_ratio background calculated_background)</span>.<span class="ruby-identifier">each</span> <span class="ruby-keyword kw">do</span> <span class="ruby-operator">|</span><span class="ruby-identifier">cat</span><span class="ruby-operator">|</span>
+          <span class="ruby-identifier">hash</span>[<span class="ruby-identifier">cat</span>.<span class="ruby-identifier">to_sym</span>] = <span class="ruby-identifier">val</span>.<span class="ruby-identifier">send</span>(<span class="ruby-identifier">cat</span>.<span class="ruby-identifier">to_sym</span>)
+        <span class="ruby-keyword kw">end</span>
+      <span class="ruby-keyword kw">when</span> <span class="ruby-constant">Validator</span><span class="ruby-operator">::</span><span class="ruby-constant">Decoy</span>
+        <span class="ruby-node">%w(decoy_to_target_ratio correct_wins decoy_on_match)</span>.<span class="ruby-identifier">each</span> <span class="ruby-keyword kw">do</span> <span class="ruby-operator">|</span><span class="ruby-identifier">cat</span><span class="ruby-operator">|</span>
+          <span class="ruby-identifier">hash</span>[<span class="ruby-identifier">cat</span>.<span class="ruby-identifier">to_sym</span>] = <span class="ruby-identifier">val</span>.<span class="ruby-identifier">send</span>(<span class="ruby-identifier">cat</span>.<span class="ruby-identifier">to_sym</span>)
+        <span class="ruby-keyword kw">end</span>
+        <span class="ruby-identifier">hash</span>[<span class="ruby-identifier">:constraint</span>] = <span class="ruby-identifier">val</span>.<span class="ruby-identifier">constraint</span>.<span class="ruby-identifier">inspect</span> <span class="ruby-keyword kw">if</span> <span class="ruby-identifier">val</span>.<span class="ruby-identifier">constraint</span>
+      <span class="ruby-keyword kw">when</span> <span class="ruby-constant">Validator</span><span class="ruby-operator">::</span><span class="ruby-constant">Bias</span>
+        <span class="ruby-node">%w(correct_wins proteins_expected background calculated_background false_to_total_ratio)</span>.<span class="ruby-identifier">each</span> <span class="ruby-keyword kw">do</span> <span class="ruby-operator">|</span><span class="ruby-identifier">cat</span><span class="ruby-operator">|</span>
+          <span class="ruby-identifier">hash</span>[<span class="ruby-identifier">cat</span>.<span class="ruby-identifier">to_sym</span>] = <span class="ruby-identifier">val</span>.<span class="ruby-identifier">send</span>(<span class="ruby-identifier">cat</span>.<span class="ruby-identifier">to_sym</span>)
+        <span class="ruby-keyword kw">end</span>
+        <span class="ruby-identifier">hash</span>[<span class="ruby-identifier">:file</span>] = <span class="ruby-identifier">val</span>.<span class="ruby-identifier">fasta</span>.<span class="ruby-identifier">filename</span>
+      <span class="ruby-keyword kw">when</span> <span class="ruby-constant">Validator</span><span class="ruby-operator">::</span><span class="ruby-constant">Transmem</span><span class="ruby-operator">::</span><span class="ruby-constant">Protein</span>
+        <span class="ruby-node">%w(false_to_total_ratio min_num_tms soluble_fraction correct_wins no_include_tm_peps background calculated_background transmem_file)</span>.<span class="ruby-identifier">each</span> <span class="ruby-keyword kw">do</span> <span class="ruby-operator">|</span><span class="ruby-identifier">cat</span><span class="ruby-operator">|</span>
+          <span class="ruby-identifier">hash</span>[<span class="ruby-identifier">cat</span>.<span class="ruby-identifier">to_sym</span>] = <span class="ruby-identifier">val</span>.<span class="ruby-identifier">send</span>(<span class="ruby-identifier">cat</span>.<span class="ruby-identifier">to_sym</span>)
+        <span class="ruby-keyword kw">end</span>
+      <span class="ruby-keyword kw">when</span> <span class="ruby-constant">Validator</span><span class="ruby-operator">::</span><span class="ruby-constant">Probability</span>
+        <span class="ruby-node">%w(prob_method)</span>.<span class="ruby-identifier">each</span> <span class="ruby-keyword kw">do</span> <span class="ruby-operator">|</span><span class="ruby-identifier">cat</span><span class="ruby-operator">|</span>
+          <span class="ruby-identifier">hash</span>[<span class="ruby-identifier">cat</span>.<span class="ruby-identifier">to_sym</span>] = <span class="ruby-identifier">val</span>.<span class="ruby-identifier">send</span>(<span class="ruby-identifier">cat</span>.<span class="ruby-identifier">to_sym</span>)
+        <span class="ruby-keyword kw">end</span>
+      <span class="ruby-keyword kw">when</span> <span class="ruby-constant">Validator</span><span class="ruby-operator">::</span><span class="ruby-constant">QValue</span>
+        <span class="ruby-comment cmt"># no params to add</span>
+      <span class="ruby-keyword kw">else</span> ; <span class="ruby-identifier">raise</span> <span class="ruby-constant">ArgumentError</span>, <span class="ruby-node">&quot;Don't know the validator class #{val}&quot;</span>
+      <span class="ruby-keyword kw">end</span>
+      <span class="ruby-identifier">klass_as_s</span> = <span class="ruby-identifier">val</span>.<span class="ruby-identifier">class</span>.<span class="ruby-identifier">to_s</span>
+      <span class="ruby-identifier">hash</span>[<span class="ruby-identifier">:type</span>] = <span class="ruby-constant">Validator_to_string</span>[<span class="ruby-identifier">klass_as_s</span>]
+      <span class="ruby-identifier">hash</span>[<span class="ruby-identifier">:class</span>] = <span class="ruby-identifier">klass_as_s</span>
+      <span class="ruby-identifier">hash</span>
+    <span class="ruby-keyword kw">end</span>
+  <span class="ruby-keyword kw">end</span></pre>
+</body>
+</html>

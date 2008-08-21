@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="iso-8859-1"?>
+<!DOCTYPE html 
+     PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+     "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html>
+<head>
+  <title>filter_args (SpecID::Precision::Filter::Interactive)</title>
+  <meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1" />
+  <link rel="stylesheet" href="../../../../.././rdoc-style.css" type="text/css" media="screen" />
+</head>
+<body class="standalone-code">
+  <pre><span class="ruby-comment cmt"># File lib/spec_id/precision/filter/interactive.rb, line 27</span>
+    <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">filter_args</span>(<span class="ruby-identifier">opts_to_change</span>, <span class="ruby-identifier">changing_keys</span>, <span class="ruby-identifier">shortcut_map</span>, <span class="ruby-identifier">casting_map</span>)
+      <span class="ruby-identifier">shortcut_order</span> = <span class="ruby-identifier">changing_keys</span>.<span class="ruby-identifier">map</span> {<span class="ruby-operator">|</span><span class="ruby-identifier">k</span><span class="ruby-operator">|</span> <span class="ruby-identifier">shortcut_map</span>[<span class="ruby-identifier">k</span>] }
+      <span class="ruby-identifier">casting_array</span> = <span class="ruby-identifier">changing_keys</span>.<span class="ruby-identifier">map</span> {<span class="ruby-operator">|</span><span class="ruby-identifier">k</span><span class="ruby-operator">|</span> <span class="ruby-identifier">casting_map</span>[<span class="ruby-identifier">k</span>] }
+      <span class="ruby-identifier">return_val</span> = <span class="ruby-keyword kw">true</span>
+      <span class="ruby-identifier">reply</span> = <span class="ruby-keyword kw">nil</span>
+      <span class="ruby-identifier">base_args</span> = <span class="ruby-identifier">opts_to_change</span>.<span class="ruby-identifier">values_at</span>( <span class="ruby-operator">*</span><span class="ruby-identifier">changing_keys</span> )
+      <span class="ruby-comment cmt">#b = base_args</span>
+      <span class="ruby-identifier">current_values</span> = <span class="ruby-identifier">changing_keys</span>.<span class="ruby-identifier">map</span> {<span class="ruby-operator">|</span><span class="ruby-identifier">v</span><span class="ruby-operator">|</span> <span class="ruby-node">&quot;#{shortcut_map[v]}:#{opts_to_change[v]}&quot;</span> }
+      <span class="ruby-identifier">out</span>(<span class="ruby-identifier">current_values</span>.<span class="ruby-identifier">join</span>(<span class="ruby-value str">&quot; &quot;</span>)) <span class="ruby-keyword kw">if</span> <span class="ruby-ivar">@verbose</span>
+      <span class="ruby-comment cmt">#out &quot;#{b[0]} #{b[1]} #{b[2]} dcn:#{b[3]} ppm:#{b[4]}&quot;</span>
+      <span class="ruby-identifier">loop</span> <span class="ruby-keyword kw">do</span>
+        <span class="ruby-identifier">reply</span> = 
+          <span class="ruby-keyword kw">if</span> <span class="ruby-ivar">@lines</span>
+            <span class="ruby-keyword kw">if</span> <span class="ruby-ivar">@lines</span>.<span class="ruby-identifier">size</span> <span class="ruby-operator">&gt;</span> <span class="ruby-value">0</span>
+              <span class="ruby-ivar">@lines</span>.<span class="ruby-identifier">shift</span>.<span class="ruby-identifier">chomp</span>
+            <span class="ruby-keyword kw">else</span>
+              <span class="ruby-value str">'q'</span>
+            <span class="ruby-keyword kw">end</span>
+          <span class="ruby-keyword kw">else</span>
+            <span class="ruby-identifier">gets</span>.<span class="ruby-identifier">chomp</span>
+          <span class="ruby-keyword kw">end</span>
+        <span class="ruby-identifier">answer</span> = <span class="ruby-identifier">prep_reply</span>(<span class="ruby-identifier">reply</span>, <span class="ruby-identifier">base_args</span>, <span class="ruby-identifier">shortcut_order</span>, <span class="ruby-identifier">casting_array</span>)
+        <span class="ruby-keyword kw">if</span> <span class="ruby-identifier">answer</span> <span class="ruby-operator">==</span> <span class="ruby-keyword kw">false</span>
+          <span class="ruby-identifier">out</span>(<span class="ruby-identifier">interactive_help</span>(<span class="ruby-identifier">changing_keys</span>, <span class="ruby-identifier">shortcut_map</span>)) <span class="ruby-keyword kw">if</span> <span class="ruby-ivar">@verbose</span>
+        <span class="ruby-keyword kw">elsif</span> <span class="ruby-identifier">answer</span> <span class="ruby-operator">==</span> <span class="ruby-keyword kw">nil</span>
+          <span class="ruby-keyword kw">return</span> <span class="ruby-keyword kw">nil</span>
+        <span class="ruby-keyword kw">else</span>
+          <span class="ruby-identifier">answer</span>.<span class="ruby-identifier">zip</span>(<span class="ruby-identifier">changing_keys</span>) <span class="ruby-keyword kw">do</span> <span class="ruby-operator">|</span><span class="ruby-identifier">newval</span>,<span class="ruby-identifier">changing_key</span><span class="ruby-operator">|</span>
+            <span class="ruby-identifier">opts_to_change</span>[<span class="ruby-identifier">changing_key</span>] = <span class="ruby-identifier">newval</span>
+          <span class="ruby-keyword kw">end</span>
+          <span class="ruby-identifier">return_val</span> = <span class="ruby-keyword kw">true</span>
+          <span class="ruby-keyword kw">break</span>
+        <span class="ruby-keyword kw">end</span>
+      <span class="ruby-keyword kw">end</span>
+      <span class="ruby-identifier">return_val</span>
+    <span class="ruby-keyword kw">end</span></pre>
+</body>
+</html>

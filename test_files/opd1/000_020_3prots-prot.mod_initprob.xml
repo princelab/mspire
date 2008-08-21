@@ -1,0 +1,62 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?xml-stylesheet type="text/xsl" href="/work/tpp-data/trial-prot.xsl"?>
+<protein_summary xmlns="http://regis-web.systemsbiology.net/protXML" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://regis-web.systemsbiology.net/protXML /tools/bin/TPP/tpp/bin/../schema/protXML_v4.xsd" summary_xml="/work/tpp-data/trial-prot.xml">
+<protein_summary_header reference_database="/project/marcotte/ms/database/ecoli_K12.fasta" residue_substitution_list="I -> L" source_files="/work/tpp-data/trial.xml" source_files_alt="/work/tpp-data/trial.xml" min_peptide_probability="0.20" min_peptide_weight="0.50" num_predicted_correct_prots="268.5" num_input_1_spectra="34" num_input_2_spectra="454" num_input_3_spectra="672" initial_min_peptide_prob="0.05" total_no_spectrum_ids="348.3" sample_enzyme="trypsin">
+<program_details analysis="proteinprophet" time="2006-08-21T22:29:51" version="4.0(TPP v2.9 GALE rev.2, Build 200608211407)">
+<proteinprophet_details  occam_flag="Y" groups_flag="Y" degen_flag="Y" nsp_flag="Y" initial_peptide_wt_iters="2" nsp_distribution_iters="1" final_peptide_wt_iters="2" run_options="XML_INPUT">
+      <nsp_information neighboring_bin_smoothing="Y">
+         <nsp_distribution bin_no="0" nsp_lower_bound_incl="0.00" nsp_upper_bound_excl="0.10" pos_freq="0.623" neg_freq="0.623" pos_to_neg_ratio="1.00"/>
+         <nsp_distribution bin_no="1" nsp_lower_bound_incl="0.10" nsp_upper_bound_excl="0.25" pos_freq="0.198" neg_freq="0.184" pos_to_neg_ratio="1.07"/>
+         <nsp_distribution bin_no="2" nsp_lower_bound_incl="0.25" nsp_upper_bound_excl="0.50" pos_freq="0.075" neg_freq="0.074" pos_to_neg_ratio="1.02" alt_pos_to_neg_ratio="1.07"/>
+         <nsp_distribution bin_no="3" nsp_lower_bound_incl="0.50" nsp_upper_bound_excl="1.00" pos_freq="0.063" neg_freq="0.074" pos_to_neg_ratio="0.85" alt_pos_to_neg_ratio="1.07"/>
+         <nsp_distribution bin_no="4" nsp_lower_bound_incl="1.00" nsp_upper_bound_excl="2.00" pos_freq="0.023" neg_freq="0.026" pos_to_neg_ratio="0.87" alt_pos_to_neg_ratio="1.07"/>
+         <nsp_distribution bin_no="5" nsp_lower_bound_incl="2.00" nsp_upper_bound_excl="5.00" pos_freq="0.007" neg_freq="0.007" pos_to_neg_ratio="0.97" alt_pos_to_neg_ratio="1.07"/>
+         <nsp_distribution bin_no="6" nsp_lower_bound_incl="5.00" nsp_upper_bound_excl="15.00" pos_freq="0.006" neg_freq="0.006" pos_to_neg_ratio="1.00" alt_pos_to_neg_ratio="1.07"/>
+         <nsp_distribution bin_no="7" nsp_lower_bound_incl="15.00" nsp_upper_bound_excl="inf" pos_freq="0.006" neg_freq="0.006" pos_to_neg_ratio="1.00" alt_pos_to_neg_ratio="1.07"/>
+      </nsp_information>      <protein_summary_data_filter min_probability="0.00" sensitivity="1.000" false_positive_error_rate="0.715" predicted_num_correct="268" predicted_num_incorrect="675" />
+      <protein_summary_data_filter min_probability="0.10" sensitivity="1.000" false_positive_error_rate="0.497" predicted_num_correct="268" predicted_num_incorrect="266" />
+      <protein_summary_data_filter min_probability="0.20" sensitivity="1.000" false_positive_error_rate="0.497" predicted_num_correct="268" predicted_num_incorrect="266" />
+      <protein_summary_data_filter min_probability="0.30" sensitivity="0.881" false_positive_error_rate="0.415" predicted_num_correct="237" predicted_num_incorrect="167" />
+      <protein_summary_data_filter min_probability="0.40" sensitivity="0.759" false_positive_error_rate="0.336" predicted_num_correct="204" predicted_num_incorrect="103" />
+      <protein_summary_data_filter min_probability="0.50" sensitivity="0.654" false_positive_error_rate="0.281" predicted_num_correct="176" predicted_num_incorrect="68" />
+      <protein_summary_data_filter min_probability="0.60" sensitivity="0.514" false_positive_error_rate="0.211" predicted_num_correct="138" predicted_num_incorrect="37" />
+      <protein_summary_data_filter min_probability="0.70" sensitivity="0.380" false_positive_error_rate="0.143" predicted_num_correct="102" predicted_num_incorrect="17" />
+      <protein_summary_data_filter min_probability="0.80" sensitivity="0.220" false_positive_error_rate="0.030" predicted_num_correct="59" predicted_num_incorrect="2" />
+      <protein_summary_data_filter min_probability="0.90" sensitivity="0.205" false_positive_error_rate="0.016" predicted_num_correct="55" predicted_num_incorrect="1" />
+      <protein_summary_data_filter min_probability="0.95" sensitivity="0.181" false_positive_error_rate="0.008" predicted_num_correct="49" predicted_num_incorrect="0" />
+      <protein_summary_data_filter min_probability="0.96" sensitivity="0.178" false_positive_error_rate="0.007" predicted_num_correct="48" predicted_num_incorrect="0" />
+      <protein_summary_data_filter min_probability="0.97" sensitivity="0.170" false_positive_error_rate="0.006" predicted_num_correct="46" predicted_num_incorrect="0" />
+      <protein_summary_data_filter min_probability="0.98" sensitivity="0.163" false_positive_error_rate="0.005" predicted_num_correct="44" predicted_num_incorrect="0" />
+      <protein_summary_data_filter min_probability="0.99" sensitivity="0.149" false_positive_error_rate="0.003" predicted_num_correct="40" predicted_num_incorrect="0" />
+      <protein_summary_data_filter min_probability="1.00" sensitivity="0.104" false_positive_error_rate="0.000" predicted_num_correct="28" predicted_num_incorrect="0" />
+</proteinprophet_details>
+</program_details>
+</protein_summary_header>
+<dataset_derivation generation_no="0">
+</dataset_derivation>
+<protein_group group_number="1" probability="1.00">
+      <protein protein_name="gi|16128297|ref|NP_414846.1|" n_indistinguishable_proteins="1" probability="1.00" percent_coverage="1.4" unique_stripped_peptides="RAVDILR" group_sibling_id="a" total_number_peptides="2" pct_spectrum_ids="0.56">
+         <annotation protein_description="NAD+-dependent betaine aldehyde dehydrogenase [Escherichia coli K12]"/>
+         <peptide peptide_sequence="RAVDILR" charge="2" initial_probability="1.00" nsp_adjusted_probability="1.00" weight="1.00" is_nondegenerate_evidence="Y" n_enzymatic_termini="2" n_sibling_peptides="0.00" n_sibling_peptides_bin="0" n_instances="2" is_contributing_evidence="Y" calc_neutral_pep_mass="841.9920">
+         </peptide>
+      </protein>
+</protein_group>
+<protein_group group_number="2" probability="1.00">
+      <protein protein_name="gi|16132019|ref|NP_418618.1|" n_indistinguishable_proteins="1" probability="1.00" percent_coverage="13.0" unique_stripped_peptides="FRDGLK+AIQFAQDVGIRVIQLAGYDVYYQEANNETRR" group_sibling_id="a" total_number_peptides="2" pct_spectrum_ids="0.41">
+         <annotation protein_description="putative hexulose-6-phosphate isomerase [Escherichia coli K12]"/>
+         <peptide peptide_sequence="FRDGLK" charge="1" initial_probability="0.90" nsp_adjusted_probability="1.00" weight="1.00" is_nondegenerate_evidence="Y" n_enzymatic_termini="2" n_sibling_peptides="0.42" n_sibling_peptides_bin="2" n_instances="1" is_contributing_evidence="Y" calc_neutral_pep_mass="734.8920">
+         </peptide>
+         <peptide peptide_sequence="AIQFAQDVGIRVIQLAGYDVYYQEANNETRR" charge="3" initial_probability="0.32" nsp_adjusted_probability="0.42" weight="1.00" is_nondegenerate_evidence="Y" n_enzymatic_termini="2" n_sibling_peptides="1.00" n_sibling_peptides_bin="3" n_instances="1" is_contributing_evidence="Y" calc_neutral_pep_mass="3601.9920">
+         </peptide>
+      </protein>
+</protein_group>
+<protein_group group_number="41" probability="0.98">
+      <protein protein_name="gi|16128237|ref|NP_414786.1|" n_indistinguishable_proteins="2" probability="0.98" percent_coverage="4.4" unique_stripped_peptides="GGLSGRNAKGGR" group_sibling_id="a" total_number_peptides="2" pct_spectrum_ids="0.46">
+         <annotation protein_description="orf, hypothetical protein [Escherichia coli K12]"/>
+         <indistinguishable_protein protein_name="gi|16130551|ref|NP_417122.1|">
+            <annotation protein_description="orf, hypothetical protein [Escherichia coli K12]"/>         </indistinguishable_protein>
+         <peptide peptide_sequence="GGLSGRNAKGGR" charge="2" initial_probability="0.99" nsp_adjusted_probability="0.98" weight="1.00" is_nondegenerate_evidence="Y" n_enzymatic_termini="2" n_sibling_peptides="0.00" n_sibling_peptides_bin="0" n_instances="2" is_contributing_evidence="Y" calc_neutral_pep_mass="1129.1920">
+         </peptide>
+      </protein>
+</protein_group>
+</protein_summary>

@@ -1,0 +1,170 @@
+<?xml version="1.0" encoding="iso-8859-1"?>
+<!DOCTYPE html 
+     PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+     "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+<head>
+  <title>Class: Validator::Cmdline</title>
+  <meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1" />
+  <meta http-equiv="Content-Script-Type" content="text/javascript" />
+  <link rel="stylesheet" href="../.././rdoc-style.css" type="text/css" media="screen" />
+  <script type="text/javascript">
+  // <![CDATA[
+
+  function popupCode( url ) {
+    window.open(url, "Code", "resizable=yes,scrollbars=yes,toolbar=no,status=no,height=150,width=400")
+  }
+
+  function toggleCode( id ) {
+    if ( document.getElementById )
+      elem = document.getElementById( id );
+    else if ( document.all )
+      elem = eval( "document.all." + id );
+    else
+      return false;
+
+    elemStyle = elem.style;
+    
+    if ( elemStyle.display != "block" ) {
+      elemStyle.display = "block"
+    } else {
+      elemStyle.display = "none"
+    }
+
+    return true;
+  }
+  
+  // Make codeblocks hidden by default
+  document.writeln( "<style type=\"text/css\">div.method-source-code { display: none }</style>" )
+  
+  // ]]>
+  </script>
+
+</head>
+<body>
+
+
+
+    <div id="classHeader">
+        <table class="header-table">
+        <tr class="top-aligned-row">
+          <td><strong>Class</strong></td>
+          <td class="class-name-in-header">Validator::Cmdline</td>
+        </tr>
+        <tr class="top-aligned-row">
+            <td><strong>In:</strong></td>
+            <td>
+                <a href="../../files/lib/validator/cmdline_rb.html">
+                lib/validator/cmdline.rb
+                </a>
+        <br />
+            </td>
+        </tr>
+
+        <tr class="top-aligned-row">
+            <td><strong>Parent:</strong></td>
+            <td>
+                Object
+            </td>
+        </tr>
+        </table>
+    </div>
+  <!-- banner header -->
+
+  <div id="bodyContent">
+
+
+
+  <div id="contextContent">
+
+
+
+   </div>
+
+    <div id="method-list">
+      <h3 class="section-bar">Methods</h3>
+
+      <div class="name-list">
+      <a href="#M000051">boolean</a>&nbsp;&nbsp;
+      </div>
+    </div>
+
+  </div>
+
+
+    <!-- if includes -->
+
+    <div id="section">
+
+
+    <div id="constants-list">
+      <h3 class="section-bar">Constants</h3>
+
+      <div class="name-list">
+        <table summary="Constants">
+        <tr class="top-aligned-row context-row">
+          <td class="context-item-name">Validator_symbols_to_classes</td>
+          <td>=</td>
+          <td class="context-item-value">{     :tmm =&gt; Validator::Transmem::Protein,     :decoy =&gt; Validator::Decoy,     :bad_aa =&gt; Validator::AA,     :bad_aa_est =&gt; Validator::AAEst,     :tps =&gt; Validator::TruePos,     :bias =&gt; Validator::Bias,     :prob =&gt; Validator::Probability,     :qval =&gt; Validator::QValue,   }</td>
+        </tr>
+        <tr class="top-aligned-row context-row">
+          <td class="context-item-name">DEFAULTS</td>
+          <td>=</td>
+          <td class="context-item-value">{     :tmm =&gt;      {       # file                             :min_num_tmm_seqs =&gt; 1,            :expect_soluble =&gt; true,          :no_include_tm_peps =&gt; 0.8,        :bkg =&gt; 0.0,                    },     :decoy =&gt;      {       :hits_together =&gt; true,       :decoy_on_match =&gt; true,       :decoy_to_target_ratio =&gt; 1.0,     },     :bad_aa =&gt;      {       :false_if_found =&gt; true,       :bkg =&gt; 0.0,      },     :bad_aa_est =&gt;      {       :false_if_found =&gt; true,       :bkg =&gt; 0.0,      },     :bias =&gt;     {       :bkg =&gt; 0.0,       :proteins_expected =&gt; true,     },     :ties =&gt; true,   }</td>
+          <td width="3em">&nbsp;</td>
+          <td class="context-item-desc">
+was VAL_DEFAULTS
+
+</td>
+        </tr>
+        <tr class="top-aligned-row context-row">
+          <td class="context-item-name">COMMAND_LINE</td>
+          <td>=</td>
+          <td class="context-item-value">{     :decoy =&gt; [&quot;--decoy /REGEXP/|FILENAME[,DTR,DOM]&quot;, Array, &quot;REGEXP for decoy proteins (catenated searches) or a&quot;,                                                 &quot;FILENAME of separate search on decoys.&quot;,                                                  &quot;All regular expressions must be surrounded by '/'&quot;,                                                 &quot;(no extended options [trailing modifiers]).&quot;,                                                 &quot;e.g., a run using concatenated reversed proteins that&quot;,                                                 &quot;includes 'REVERSE' in the fasta heading:&quot;,                                                 &quot;    --decoy /REVERSE/&quot;,                                                 &quot;Anything fancier should be quoted:&quot;,                                                 &quot;    --decoy '/^\\s*REVERSE/'&quot;,                                                 &quot;If decoys proteins were searched in a separate file,&quot;,                                                 &quot;then give the FILENAME (e.g., --decoy decoy.srg)&quot;,                                                 &quot;DTR = Decoy to Target Ratio (default: #{DEFAULTS[:decoy][:decoy_to_target_ratio]})&quot;,                                                 &quot;DOM = *true/false, decoy on match&quot;,],         :tps =&gt; [&quot;--tps &lt;fasta&gt;&quot;, &quot;for a completely defined sample, this is the&quot;,                                   &quot;fasta file containing the true protein hits&quot;],          # may require digestion:         :fasta =&gt; [&quot;--fasta FASTA&quot;, &quot;fasta file for phobius transmembrane&quot;,                                     &quot;(needed if PEPS options is not false)&quot;],         :digestion =&gt; [&quot;--digestion ORIG_FASTA,PARAMS&quot;, Array, &quot;[not recommended]&quot;,                                                          &quot;Creates the 'false/total' ratio with in silico&quot;,                                                          &quot;digestion.  Otherwise, the 3rd-10th best hits (sorted by&quot;,                                                          &quot;xcorr) are used.&quot;,                                                          &quot;The following validators will use this&quot;,                                                          &quot;information (shared between them) if option given&quot;,                                                          &quot;ORIG_FASTA = the fasta file used to do the run&quot;,                                                          &quot;PARAMS = the params file used to do the run&quot;,],         :bias =&gt; [&quot;--bias FASTA[,PE,BKG]&quot;, Array, &quot;FASTA contains proteins expected to be in the sample&quot;,                                                   &quot;PE = *true|false proteins in fasta file expected in sample&quot;,                                                   &quot;BKG = Background frequency of fps (d: #{DEFAULTS[:bias][:bkg]})&quot;,],         :bad_aa =&gt; [&quot;--bad_aa AA,BKG]&quot;, Array, &quot;An amino acid expected (or not expected) in legitimate hits&quot;,                                                         &quot;AA = The amino acid (e.g., 'C')&quot;,                                                         &quot;BKG = Background frequency of genuine pephits (d: #{DEFAULTS[:bad_aa][:bkg]}):&quot;,],         :bad_aa_est =&gt; [&quot;--bad_aa_est AA,BKG]&quot;, Array, &quot;An amino acid expected (or not expected) in legitimate hits&quot;,                                                         &quot;AA = The amino acid (e.g., 'C')&quot;,                                                         &quot;BKG = Background frequency of genuine pephits (d: #{DEFAULTS[:bad_aa_est][:bkg]}):&quot;,],          :tmm =&gt; [&quot;--tmm &lt;TM[,MIN,SOL,PEPS,BKG]&gt;&quot;, Array, &quot;TM = phobius.small or toppred.out file&quot;,                                                          &quot;phobius.small:&quot;,                                                          &quot;http://phobius.cgb.ki.se/&quot;,                                                          &quot;(select 'Short' output, and save output as file)&quot;,                                                          &quot;toppred.out:&quot;,                                                          &quot;http://bioweb.pasteur.fr/seqanal/interfaces/toppred.html&quot;,                                                          &quot;(output 'toppred.out' in 'New' or 'Xml' format)&quot;,                                                          &quot;MIN = Int, minimum number transmembrane seqs (def: #{DEFAULTS[:tmm][:min_num_tmm_seqs]})&quot;,                                                          &quot;SOL = true|false, this is a soluble fraction( def: #{DEFAULTS[:tmm][:expect_soluble]})&quot;,                                                          &quot;PEPS = Float | false, don't consider tm peps (&gt;= fraction&quot;,                                                          &quot;                   tm content) (false skips) (def: #{DEFAULTS[:tmm][:no_include_tm_peps]})&quot;,                                                          &quot;BKG = Float , background contaminating insoluble (def: #{DEFAULTS[:tmm][:bkg]})&quot;],           # VALIDATION MODIFIERS         :false_on_tie =&gt; [&quot;--false_on_tie&quot;, &quot;if peptide belongs to correct AND incorrect proteins&quot;,                                             &quot;it will be counted as correct&quot;],    }</td>
+        </tr>
+        <tr class="top-aligned-row context-row">
+          <td class="context-item-name">PrepArgs</td>
+          <td>=</td>
+          <td class="context-item-value">{         :prob =&gt; lambda {|ar, opts|         mthd =            if ar</td>
+        </tr>
+        </table>
+      </div>
+    </div>
+
+
+
+      
+
+
+    <!-- if method_list -->
+    <div id="methods">
+      <h3 class="section-bar">Public Class methods</h3>
+
+      <div id="method-M000051" class="method-detail">
+        <a name="M000051"></a>
+
+        <div class="method-heading">
+          <a href="Cmdline.src/M000051.html" target="Code" class="method-signature"
+            onclick="popupCode('Cmdline.src/M000051.html');return false;">
+          <span class="method-name">boolean</span><span class="method-args">(arg, default)</span>
+          </a>
+        </div>
+      
+        <div class="method-description">
+        </div>
+      </div>
+
+
+    </div>
+
+
+  </div>
+
+
+<div id="validator-badges">
+  <p><small><a href="http://validator.w3.org/check/referer">[Validate]</a></small></p>
+</div>
+
+</body>
+</html>

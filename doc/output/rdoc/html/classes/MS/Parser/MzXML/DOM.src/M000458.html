@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="iso-8859-1"?>
+<!DOCTYPE html 
+     PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+     "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html>
+<head>
+  <title>add_scan_nodes (MS::Parser::MzXML::DOM)</title>
+  <meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1" />
+  <link rel="stylesheet" href="../../../../.././rdoc-style.css" type="text/css" media="screen" />
+</head>
+<body class="standalone-code">
+  <pre><span class="ruby-comment cmt"># File lib/ms/parser/mzxml/dom.rb, line 36</span>
+  <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">add_scan_nodes</span>(<span class="ruby-identifier">nodes</span>, <span class="ruby-identifier">scans</span>, <span class="ruby-identifier">scn_index</span>, <span class="ruby-identifier">scans_by_num</span>, <span class="ruby-identifier">lazy</span>, <span class="ruby-identifier">io</span>)
+    <span class="ruby-identifier">nodes</span>.<span class="ruby-identifier">each</span> <span class="ruby-keyword kw">do</span> <span class="ruby-operator">|</span><span class="ruby-identifier">scan_n</span><span class="ruby-operator">|</span>
+      <span class="ruby-identifier">scan</span> = <span class="ruby-identifier">create_scan</span>(<span class="ruby-identifier">scan_n</span>, <span class="ruby-identifier">scans_by_num</span>, <span class="ruby-identifier">lazy</span>, <span class="ruby-identifier">io</span>)
+      <span class="ruby-identifier">scans</span>[<span class="ruby-identifier">scn_index</span>] = <span class="ruby-identifier">scan</span>
+      <span class="ruby-identifier">scans_by_num</span>[<span class="ruby-identifier">scan</span>[<span class="ruby-value">0</span>]] = <span class="ruby-identifier">scan</span> 
+      <span class="ruby-identifier">scn_index</span> <span class="ruby-operator">+=</span> <span class="ruby-value">1</span>
+      <span class="ruby-keyword kw">if</span> <span class="ruby-ivar">@version</span> <span class="ruby-operator">&gt;</span> <span class="ruby-value str">'1.0'</span>
+        <span class="ruby-identifier">new_nodes</span> = <span class="ruby-identifier">scan_n</span>.<span class="ruby-identifier">find</span>(<span class="ruby-value str">'child::scan'</span>)
+        <span class="ruby-keyword kw">if</span> <span class="ruby-identifier">new_nodes</span>.<span class="ruby-identifier">size</span> <span class="ruby-operator">&gt;</span> <span class="ruby-value">0</span>
+          <span class="ruby-identifier">scn_index</span> = <span class="ruby-identifier">add_scan_nodes</span>(<span class="ruby-identifier">new_nodes</span>, <span class="ruby-identifier">scans</span>, <span class="ruby-identifier">scn_index</span>, <span class="ruby-identifier">scans_by_num</span>, <span class="ruby-identifier">lazy</span>, <span class="ruby-identifier">io</span>)
+        <span class="ruby-keyword kw">end</span>
+      <span class="ruby-keyword kw">end</span>
+    <span class="ruby-keyword kw">end</span>
+    <span class="ruby-identifier">scn_index</span>
+  <span class="ruby-keyword kw">end</span></pre>
+</body>
+</html>

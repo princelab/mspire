@@ -1,0 +1,22 @@
+--- 
+- time_to_access: 0.034543
+  scan_count: 6228
+  file_size: 32688212
+  scans_to_read: all
+  total_time_to_read_and_access: 34.03996
+  time_to_read: 34.005393
+  lazy_type: :not
+  end_time: 12005.07
+  start_time: 300.09
+  file: 4aE.mzXML
+--- 
+- time_to_access: 0.034074
+  scan_count: 5963
+  file_size: 32080466
+  scans_to_read: all
+  total_time_to_read_and_access: 35.532084
+  time_to_read: 35.497988
+  lazy_type: :not
+  end_time: 11997.85
+  start_time: 300.04
+  file: 4aF_030325142640.mzXML

@@ -1,0 +1,155 @@
+<?xml version="1.0" encoding="iso-8859-1"?>
+<!DOCTYPE html 
+     PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+     "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html>
+<head>
+  <title>msrun (MS::Parser::MzData::DOM)</title>
+  <meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1" />
+  <link rel="stylesheet" href="../../../../.././rdoc-style.css" type="text/css" media="screen" />
+</head>
+<body class="standalone-code">
+  <pre><span class="ruby-comment cmt"># File lib/ms/parser/mzdata/dom.rb, line 31</span>
+  <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">msrun</span>(<span class="ruby-identifier">file</span>, <span class="ruby-identifier">opts</span>={})
+    <span class="ruby-identifier">msrun_obj</span> = 
+      <span class="ruby-keyword kw">if</span> <span class="ruby-identifier">x</span> = <span class="ruby-identifier">opts</span>[<span class="ruby-identifier">:msrun</span>]
+        <span class="ruby-identifier">msrun_obj</span> = <span class="ruby-identifier">x</span>
+      <span class="ruby-keyword kw">else</span>
+        <span class="ruby-constant">MS</span><span class="ruby-operator">::</span><span class="ruby-constant">MSRun</span>.<span class="ruby-identifier">new</span>
+      <span class="ruby-keyword kw">end</span>
+    <span class="ruby-comment cmt"># should ensure that parsing is not counting spaces...</span>
+
+    <span class="ruby-comment cmt"># a string we'd parse like this:</span>
+    <span class="ruby-comment cmt"># doc = XML::Parser.string(st).parse</span>
+
+    <span class="ruby-comment cmt"># WE NEED TO GET scan_count, start_time and end_time!!!!</span>
+    <span class="ruby-identifier">id_to_scan_hash</span> = {}
+
+    <span class="ruby-comment cmt">#    0   1       2             3       4     5          6</span>
+    <span class="ruby-comment cmt"># %w(num msLevel retentionTime startMz endMz precursor spectrum)</span>
+
+    <span class="ruby-identifier">io</span> =
+      <span class="ruby-keyword kw">if</span> <span class="ruby-identifier">file</span>.<span class="ruby-identifier">is_a?</span> <span class="ruby-constant">String</span>
+        <span class="ruby-identifier">filename</span> = <span class="ruby-identifier">file</span>
+        <span class="ruby-constant">File</span>.<span class="ruby-identifier">open</span>(<span class="ruby-identifier">file</span>)
+      <span class="ruby-keyword kw">else</span>
+        <span class="ruby-identifier">file</span>
+      <span class="ruby-keyword kw">end</span>
+    <span class="ruby-identifier">root</span> = <span class="ruby-identifier">get_root_node_from_io</span>(<span class="ruby-identifier">io</span>)
+
+
+    <span class="ruby-identifier">description</span> = <span class="ruby-identifier">root</span>.<span class="ruby-identifier">find_first</span>(<span class="ruby-value str">'child::description'</span>)
+    <span class="ruby-identifier">bioworks33</span> = <span class="ruby-identifier">is_bioworks33?</span>(<span class="ruby-identifier">description</span>)  
+    <span class="ruby-identifier">spectrum_list</span> = <span class="ruby-identifier">description</span>.<span class="ruby-identifier">next</span>
+
+    <span class="ruby-identifier">scans</span> = []
+
+    <span class="ruby-comment cmt"># bioworks 33 gives incorrect scan count</span>
+    <span class="ruby-identifier">stated_num_scans</span> = <span class="ruby-identifier">spectrum_list</span>[<span class="ruby-value str">'count'</span>].<span class="ruby-identifier">to_i</span>
+
+    <span class="ruby-comment cmt"># if I move from node to node, it means I've checked that it's a sequence</span>
+    <span class="ruby-comment cmt"># and that the elements are req'd</span>
+    <span class="ruby-keyword kw">if</span> <span class="ruby-identifier">spectrum_list</span>.<span class="ruby-identifier">child?</span>
+      <span class="ruby-identifier">spectrum_n</span> = <span class="ruby-identifier">spectrum_list</span>.<span class="ruby-identifier">child</span>
+      <span class="ruby-identifier">loop</span> <span class="ruby-keyword kw">do</span>
+        <span class="ruby-identifier">scan</span> = <span class="ruby-constant">MS</span><span class="ruby-operator">::</span><span class="ruby-constant">Scan</span>.<span class="ruby-identifier">new</span>(<span class="ruby-value">9</span>)
+        <span class="ruby-identifier">id</span> = <span class="ruby-identifier">spectrum_n</span>[<span class="ruby-value str">&quot;id&quot;</span>].<span class="ruby-identifier">to_i</span>
+        <span class="ruby-identifier">id_to_scan_hash</span>[<span class="ruby-identifier">id</span>] = <span class="ruby-identifier">scan</span>
+        <span class="ruby-identifier">spec_desc_n</span> = <span class="ruby-identifier">spectrum_n</span>.<span class="ruby-identifier">child</span>   <span class="ruby-comment cmt"># required in sequence</span>
+        <span class="ruby-identifier">spec_settings_n</span> = <span class="ruby-identifier">spec_desc_n</span>.<span class="ruby-identifier">child</span> <span class="ruby-comment cmt"># required in sequence</span>
+        <span class="ruby-keyword kw">if</span> <span class="ruby-identifier">acq_n</span> = <span class="ruby-identifier">spec_settings_n</span>.<span class="ruby-identifier">find_first</span>(<span class="ruby-value str">'descendant::acquisition'</span>)
+          <span class="ruby-identifier">scan</span>[<span class="ruby-value">0</span>] = <span class="ruby-identifier">acq_n</span>[<span class="ruby-value str">'acqNumber'</span>].<span class="ruby-identifier">to_i</span>
+        <span class="ruby-keyword kw">else</span>
+          <span class="ruby-identifier">scan</span>[<span class="ruby-value">0</span>] = <span class="ruby-identifier">id</span>
+        <span class="ruby-keyword kw">end</span>
+        <span class="ruby-identifier">spec_inst_n</span> = <span class="ruby-identifier">spec_settings_n</span>.<span class="ruby-identifier">find_first</span>(<span class="ruby-value str">'child::spectrumInstrument'</span>)
+        <span class="ruby-identifier">scan</span>[<span class="ruby-value">1</span>] = <span class="ruby-identifier">spec_inst_n</span>[<span class="ruby-value str">'msLevel'</span>].<span class="ruby-identifier">to_i</span>
+
+        <span class="ruby-comment cmt"># we could use a scan_count, but in bioworks 33, we can't trust the</span>
+        <span class="ruby-comment cmt"># scan count!  So, we just collect them</span>
+        <span class="ruby-identifier">scans</span> <span class="ruby-operator">&lt;&lt;</span> <span class="ruby-identifier">scan</span> 
+
+        <span class="ruby-identifier">scan</span>[<span class="ruby-value">3</span>] = <span class="ruby-identifier">spec_inst_n</span>[<span class="ruby-value str">'mzRangeStart'</span>].<span class="ruby-identifier">to_f</span>
+        <span class="ruby-identifier">scan</span>[<span class="ruby-value">4</span>] = <span class="ruby-identifier">spec_inst_n</span>[<span class="ruby-value str">'mzRangeStop'</span>].<span class="ruby-identifier">to_f</span>
+        <span class="ruby-identifier">spec_inst_n</span>.<span class="ruby-identifier">find</span>(<span class="ruby-value str">'child::cvParam'</span>).<span class="ruby-identifier">each</span> <span class="ruby-keyword kw">do</span> <span class="ruby-operator">|</span><span class="ruby-identifier">cv_param</span><span class="ruby-operator">|</span>
+          <span class="ruby-keyword kw">if</span> <span class="ruby-identifier">cv_param</span>[<span class="ruby-value str">'name'</span>] <span class="ruby-operator">==</span> <span class="ruby-value str">'TimeInMinutes'</span>
+            <span class="ruby-identifier">scan</span>[<span class="ruby-value">2</span>] = <span class="ruby-identifier">cv_param</span>[<span class="ruby-value str">'value'</span>].<span class="ruby-identifier">to_f</span> <span class="ruby-operator">*</span> <span class="ruby-value">60</span> <span class="ruby-comment cmt">#convert to seconds</span>
+          <span class="ruby-keyword kw">end</span>
+        <span class="ruby-keyword kw">end</span>
+        <span class="ruby-keyword kw">if</span> <span class="ruby-identifier">scan</span>[<span class="ruby-value">1</span>] <span class="ruby-operator">&gt;</span> <span class="ruby-value">1</span>  <span class="ruby-comment cmt"># precursormz info</span>
+          <span class="ruby-identifier">prec_list_n</span> = <span class="ruby-identifier">spec_settings_n</span>.<span class="ruby-identifier">next</span>
+          <span class="ruby-identifier">raise</span> <span class="ruby-constant">RuntimeError</span>, <span class="ruby-value str">&quot;MSRun objects can only accept 1 precursor&quot;</span> <span class="ruby-keyword kw">if</span> <span class="ruby-identifier">prec_list_n</span>[<span class="ruby-value str">'count'</span>] <span class="ruby-operator">!=</span> <span class="ruby-value str">'1'</span>
+          <span class="ruby-identifier">prec_n</span> = <span class="ruby-identifier">prec_list_n</span>.<span class="ruby-identifier">find_first</span>(<span class="ruby-value str">'child::precursor'</span>)
+          <span class="ruby-comment cmt"># %w(mz inten parent ms_level parent charge_states)</span>
+          <span class="ruby-identifier">prec</span> = <span class="ruby-constant">MS</span><span class="ruby-operator">::</span><span class="ruby-constant">Precursor</span>.<span class="ruby-identifier">new</span>
+          <span class="ruby-keyword kw">unless</span> <span class="ruby-identifier">bioworks33</span>  <span class="ruby-comment cmt"># bioworks33 points to the wrong scan!!!</span>
+            <span class="ruby-identifier">prec</span>[<span class="ruby-value">2</span>] = <span class="ruby-identifier">id_to_scan_hash</span>[<span class="ruby-identifier">prec_n</span>[<span class="ruby-value str">'spectrumRef'</span>].<span class="ruby-identifier">to_i</span>]
+          <span class="ruby-keyword kw">end</span>
+          <span class="ruby-comment cmt"># we're not keeping track of this guy anymore</span>
+          <span class="ruby-comment cmt"># prec[3] = prec_n['msLevel'].to_i</span>
+          <span class="ruby-identifier">charges</span> = []
+          <span class="ruby-identifier">prec_n</span>.<span class="ruby-identifier">find</span>(<span class="ruby-value str">'descendant::cvParam'</span>).<span class="ruby-identifier">each</span> <span class="ruby-keyword kw">do</span> <span class="ruby-operator">|</span><span class="ruby-identifier">cv_param_n</span><span class="ruby-operator">|</span>
+            <span class="ruby-keyword kw">case</span> <span class="ruby-identifier">cv_param_n</span>[<span class="ruby-value str">'name'</span>]
+            <span class="ruby-keyword kw">when</span> <span class="ruby-value str">'MassToChargeRatio'</span>
+              <span class="ruby-identifier">prec</span>[<span class="ruby-value">0</span>] = <span class="ruby-identifier">cv_param_n</span>[<span class="ruby-value str">'value'</span>].<span class="ruby-identifier">to_f</span>
+              <span class="ruby-comment cmt"># find the prec intensity</span>
+              <span class="ruby-keyword kw">unless</span> <span class="ruby-identifier">bioworks33</span>
+                <span class="ruby-identifier">prec</span>[<span class="ruby-value">1</span>] = <span class="ruby-identifier">prec</span>[<span class="ruby-value">2</span>].<span class="ruby-identifier">spectrum</span>.<span class="ruby-identifier">intensity_at_mz</span>(<span class="ruby-identifier">prec</span>[<span class="ruby-value">0</span>])
+              <span class="ruby-keyword kw">end</span>
+            <span class="ruby-keyword kw">when</span> <span class="ruby-value str">'ChargeState'</span>
+              <span class="ruby-identifier">charges</span> <span class="ruby-operator">&lt;&lt;</span> <span class="ruby-identifier">cv_param_n</span>[<span class="ruby-value str">'value'</span>].<span class="ruby-identifier">to_i</span>
+            <span class="ruby-keyword kw">end</span>
+          <span class="ruby-keyword kw">end</span>
+          <span class="ruby-identifier">prec</span>[<span class="ruby-value">3</span>] = <span class="ruby-identifier">charges</span>
+          <span class="ruby-identifier">scan</span>[<span class="ruby-value">5</span>] = <span class="ruby-identifier">prec</span>
+        <span class="ruby-keyword kw">else</span>  <span class="ruby-comment cmt"># no precursors</span>
+          <span class="ruby-identifier">scan</span>[<span class="ruby-value">5</span>] = <span class="ruby-keyword kw">nil</span>
+        <span class="ruby-keyword kw">end</span>
+        <span class="ruby-comment cmt"># here's the one line way of doing it, but it's probably more clear in</span>
+        <span class="ruby-comment cmt"># the loop</span>
+        <span class="ruby-comment cmt">#while ((mz_array_bin_n = spec_desc_n.next).name != 'mzArrayBinary') do</span>
+        <span class="ruby-keyword kw">unless</span> <span class="ruby-identifier">opts</span>[<span class="ruby-identifier">:lazy</span>] <span class="ruby-operator">==</span> <span class="ruby-identifier">:no_spectra</span>
+          <span class="ruby-identifier">mz_array_bin_n</span> = <span class="ruby-keyword kw">nil</span>
+          <span class="ruby-identifier">loop</span> <span class="ruby-keyword kw">do</span>
+            <span class="ruby-identifier">mz_array_bin_n</span> = <span class="ruby-identifier">spec_desc_n</span>.<span class="ruby-identifier">next</span>
+            <span class="ruby-keyword kw">break</span> <span class="ruby-keyword kw">if</span> <span class="ruby-identifier">mz_array_bin_n</span>.<span class="ruby-identifier">name</span> <span class="ruby-operator">==</span> <span class="ruby-value str">'mzArrayBinary'</span>
+          <span class="ruby-keyword kw">end</span>
+          <span class="ruby-identifier">mz_data_n</span> = <span class="ruby-identifier">mz_array_bin_n</span>.<span class="ruby-identifier">child</span>
+          <span class="ruby-identifier">inten_array_bin_n</span> = <span class="ruby-identifier">mz_array_bin_n</span>.<span class="ruby-identifier">next</span>
+          <span class="ruby-identifier">inten_data_n</span> = <span class="ruby-identifier">inten_array_bin_n</span>.<span class="ruby-identifier">child</span>
+          <span class="ruby-keyword kw">case</span> <span class="ruby-identifier">opts</span>[<span class="ruby-identifier">:lazy</span>]
+          <span class="ruby-keyword kw">when</span> <span class="ruby-identifier">:string</span>
+           <span class="ruby-identifier">scan</span>[<span class="ruby-value">6</span>] = <span class="ruby-constant">MS</span><span class="ruby-operator">::</span><span class="ruby-constant">Spectrum</span><span class="ruby-operator">::</span><span class="ruby-constant">LazyString</span>.<span class="ruby-identifier">from_base64_pair</span>(<span class="ruby-identifier">mz_data_n</span>.<span class="ruby-identifier">content</span>, <span class="ruby-identifier">mz_data_n</span>[<span class="ruby-value str">'precision'</span>].<span class="ruby-identifier">to_i</span>, ((<span class="ruby-identifier">mz_data_n</span>[<span class="ruby-value str">'endian'</span>]<span class="ruby-operator">==</span><span class="ruby-value str">'little'</span>) <span class="ruby-operator">?</span> <span class="ruby-keyword kw">false</span> <span class="ruby-operator">:</span> <span class="ruby-keyword kw">true</span>), <span class="ruby-identifier">inten_data_n</span>.<span class="ruby-identifier">content</span>, <span class="ruby-identifier">inten_data_n</span>[<span class="ruby-value str">'precision'</span>].<span class="ruby-identifier">to_i</span>, ((<span class="ruby-identifier">inten_data_n</span>[<span class="ruby-value str">'endian'</span>]<span class="ruby-operator">==</span><span class="ruby-value str">'little'</span>) <span class="ruby-operator">?</span> <span class="ruby-keyword kw">false</span> <span class="ruby-operator">:</span> <span class="ruby-keyword kw">true</span>) )
+          <span class="ruby-keyword kw">when</span> <span class="ruby-identifier">:io</span>
+            <span class="ruby-identifier">mz_data_n_content</span> = <span class="ruby-identifier">mz_data_n</span>.<span class="ruby-identifier">content</span>
+            <span class="ruby-identifier">i_data_n_content</span> = <span class="ruby-identifier">inten_data_n</span>.<span class="ruby-identifier">content</span>
+            <span class="ruby-identifier">scan</span>[<span class="ruby-value">6</span>] = <span class="ruby-constant">MS</span><span class="ruby-operator">::</span><span class="ruby-constant">Spectrum</span><span class="ruby-operator">::</span><span class="ruby-constant">LazyIO</span>.<span class="ruby-identifier">new</span>(<span class="ruby-identifier">io</span>, <span class="ruby-identifier">mz_data_n_content</span>.<span class="ruby-identifier">first</span>, <span class="ruby-identifier">mz_data_n_content</span>.<span class="ruby-identifier">last</span>, <span class="ruby-identifier">mz_data_n</span>[<span class="ruby-value str">'precision'</span>].<span class="ruby-identifier">to_i</span>, ((<span class="ruby-identifier">mz_data_n</span>[<span class="ruby-value str">'endian'</span>]<span class="ruby-operator">==</span><span class="ruby-value str">'little'</span>) <span class="ruby-operator">?</span> <span class="ruby-keyword kw">false</span> <span class="ruby-operator">:</span> <span class="ruby-keyword kw">true</span>), <span class="ruby-identifier">i_data_n_content</span>.<span class="ruby-identifier">first</span>, <span class="ruby-identifier">i_data_n_content</span>.<span class="ruby-identifier">last</span>, <span class="ruby-identifier">inten_data_n</span>[<span class="ruby-value str">'precision'</span>].<span class="ruby-identifier">to_i</span>, ((<span class="ruby-identifier">inten_data_n</span>[<span class="ruby-value str">'endian'</span>]<span class="ruby-operator">==</span><span class="ruby-value str">'little'</span>) <span class="ruby-operator">?</span> <span class="ruby-keyword kw">false</span> <span class="ruby-operator">:</span> <span class="ruby-keyword kw">true</span>))
+          <span class="ruby-keyword kw">when</span> <span class="ruby-identifier">:not</span>
+            <span class="ruby-identifier">mz</span> = <span class="ruby-constant">MS</span><span class="ruby-operator">::</span><span class="ruby-constant">Spectrum</span>.<span class="ruby-identifier">base64_to_array</span>(<span class="ruby-identifier">mz_data_n</span>.<span class="ruby-identifier">content</span>, <span class="ruby-identifier">mz_data_n</span>[<span class="ruby-value str">'precision'</span>].<span class="ruby-identifier">to_i</span>, ((<span class="ruby-identifier">mz_data_n</span>[<span class="ruby-value str">'endian'</span>]<span class="ruby-operator">==</span><span class="ruby-value str">'little'</span>) <span class="ruby-operator">?</span> <span class="ruby-keyword kw">false</span> <span class="ruby-operator">:</span> <span class="ruby-keyword kw">true</span>))
+            <span class="ruby-identifier">inten</span> = <span class="ruby-constant">MS</span><span class="ruby-operator">::</span><span class="ruby-constant">Spectrum</span>.<span class="ruby-identifier">base64_to_array</span>(<span class="ruby-identifier">inten_data_n</span>.<span class="ruby-identifier">content</span>, <span class="ruby-identifier">inten_data_n</span>[<span class="ruby-value str">'precision'</span>].<span class="ruby-identifier">to_i</span>, ((<span class="ruby-identifier">inten_data_n</span>[<span class="ruby-value str">'endian'</span>]<span class="ruby-operator">==</span><span class="ruby-value str">'little'</span>) <span class="ruby-operator">?</span> <span class="ruby-keyword kw">false</span> <span class="ruby-operator">:</span> <span class="ruby-keyword kw">true</span>))
+            <span class="ruby-identifier">scan</span>[<span class="ruby-value">6</span>] = <span class="ruby-constant">MS</span><span class="ruby-operator">::</span><span class="ruby-constant">Spectrum</span>.<span class="ruby-identifier">new</span>(<span class="ruby-identifier">mz</span>, <span class="ruby-identifier">inten</span>)
+          <span class="ruby-keyword kw">end</span>
+        <span class="ruby-keyword kw">end</span>
+
+        <span class="ruby-comment cmt"># set up the next loop</span>
+        <span class="ruby-keyword kw">break</span> <span class="ruby-keyword kw">unless</span> <span class="ruby-identifier">spectrum_n</span> = <span class="ruby-identifier">spectrum_n</span>.<span class="ruby-identifier">next</span>
+      <span class="ruby-keyword kw">end</span>
+    <span class="ruby-keyword kw">end</span>
+    <span class="ruby-keyword kw">if</span> <span class="ruby-identifier">bioworks33</span>
+      <span class="ruby-constant">MS</span><span class="ruby-operator">::</span><span class="ruby-constant">MSRun</span>.<span class="ruby-identifier">add_parent_scan</span>(<span class="ruby-identifier">scans</span>, ((<span class="ruby-identifier">opts</span>[<span class="ruby-identifier">:lazy</span>] <span class="ruby-operator">==</span> <span class="ruby-identifier">:not</span>) <span class="ruby-operator">?</span> <span class="ruby-keyword kw">true</span> <span class="ruby-operator">:</span> <span class="ruby-keyword kw">false</span>))
+    <span class="ruby-keyword kw">end</span>
+    <span class="ruby-identifier">msrun_obj</span>.<span class="ruby-identifier">scans</span> = <span class="ruby-identifier">scans</span>
+    <span class="ruby-identifier">msrun_obj</span>.<span class="ruby-identifier">scan_count</span> = <span class="ruby-identifier">scans</span>.<span class="ruby-identifier">size</span>
+    <span class="ruby-keyword kw">unless</span> <span class="ruby-identifier">bioworks33</span>  <span class="ruby-comment cmt"># we know the scan count is off here</span>
+      <span class="ruby-keyword kw">if</span> <span class="ruby-identifier">msrun_obj</span>.<span class="ruby-identifier">scan_count</span> <span class="ruby-operator">!=</span> <span class="ruby-identifier">stated_num_scans</span>
+        <span class="ruby-identifier">warn</span> <span class="ruby-node">&quot;num collected scans (#{scans.size}) does not agree with stated num scans (#{stated_num_scans})!&quot;</span>
+      <span class="ruby-keyword kw">end</span>
+    <span class="ruby-keyword kw">end</span>
+    <span class="ruby-identifier">msrun_obj</span>.<span class="ruby-identifier">start_time</span> = <span class="ruby-identifier">msrun_obj</span>.<span class="ruby-identifier">scans</span>.<span class="ruby-identifier">first</span>.<span class="ruby-identifier">time</span>
+    <span class="ruby-identifier">msrun_obj</span>.<span class="ruby-identifier">end_time</span> = <span class="ruby-identifier">msrun_obj</span>.<span class="ruby-identifier">scans</span>.<span class="ruby-identifier">last</span>.<span class="ruby-identifier">time</span>
+
+    <span class="ruby-identifier">io</span>.<span class="ruby-identifier">close</span> <span class="ruby-keyword kw">if</span> <span class="ruby-identifier">filename</span>
+  <span class="ruby-keyword kw">end</span></pre>
+</body>
+</html>

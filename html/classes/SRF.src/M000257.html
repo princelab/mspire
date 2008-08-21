@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="iso-8859-1"?>
+<!DOCTYPE html 
+     PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+     "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html>
+<head>
+  <title>to_dta_files (SRF)</title>
+  <meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1" />
+  <link rel="stylesheet" href="../.././rdoc-style.css" type="text/css" media="screen" />
+</head>
+<body class="standalone-code">
+  <pre><span class="ruby-comment cmt"># File lib/spec_id/srf.rb, line 243</span>
+  <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">to_dta_files</span>(<span class="ruby-identifier">out_folder</span>=<span class="ruby-keyword kw">nil</span>)
+    <span class="ruby-identifier">outdir</span> = 
+      <span class="ruby-keyword kw">if</span> <span class="ruby-identifier">out_folder</span> ; <span class="ruby-identifier">out_folder</span>
+      <span class="ruby-keyword kw">else</span> <span class="ruby-identifier">base_name</span>
+      <span class="ruby-keyword kw">end</span>
+
+    <span class="ruby-constant">FileUtils</span>.<span class="ruby-identifier">mkpath</span>(<span class="ruby-identifier">outdir</span>)
+    <span class="ruby-constant">Dir</span>.<span class="ruby-identifier">chdir</span>(<span class="ruby-identifier">outdir</span>) <span class="ruby-keyword kw">do</span>
+      <span class="ruby-identifier">dta_files</span>.<span class="ruby-identifier">zip</span>(<span class="ruby-identifier">index</span>) <span class="ruby-keyword kw">do</span> <span class="ruby-operator">|</span><span class="ruby-identifier">dta</span>,<span class="ruby-identifier">i_ar</span><span class="ruby-operator">|</span>
+        <span class="ruby-constant">File</span>.<span class="ruby-identifier">open</span>([<span class="ruby-identifier">base_name</span>, <span class="ruby-operator">*</span><span class="ruby-identifier">i_ar</span>].<span class="ruby-identifier">join</span>(<span class="ruby-value str">'.'</span>) <span class="ruby-operator">&lt;&lt;</span> <span class="ruby-value str">'.dta'</span>, <span class="ruby-value str">'wb'</span>) <span class="ruby-keyword kw">do</span> <span class="ruby-operator">|</span><span class="ruby-identifier">out</span><span class="ruby-operator">|</span>
+          <span class="ruby-identifier">dta</span>.<span class="ruby-identifier">write_dta_file</span>(<span class="ruby-identifier">out</span>) 
+        <span class="ruby-keyword kw">end</span>
+      <span class="ruby-keyword kw">end</span>
+    <span class="ruby-keyword kw">end</span>
+  <span class="ruby-keyword kw">end</span></pre>
+</body>
+</html>

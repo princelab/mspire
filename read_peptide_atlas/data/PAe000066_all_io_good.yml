@@ -1,0 +1,187 @@
+--- 
+- time_to_access: 24.821571
+  scan_count: 11708
+  file_size: 31628115
+  scans_to_read: all
+  total_time_to_read_and_access: 32.433672
+  time_to_read: 7.612076
+  lazy_type: :io_good
+  end_time: 14399.4
+  start_time: 0.31
+  file: plasma_50mM_C1.mzXML
+--- 
+- time_to_access: 21.69732
+  scan_count: 10816
+  file_size: 27153370
+  scans_to_read: all
+  total_time_to_read_and_access: 29.117185
+  time_to_read: 7.41984
+  lazy_type: :io_good
+  end_time: 14398.8
+  start_time: 0.32
+  file: plasma_300mM_C1.mzXML
+--- 
+- time_to_access: 21.881641
+  scan_count: 10884
+  file_size: 27597862
+  scans_to_read: all
+  total_time_to_read_and_access: 29.298834
+  time_to_read: 7.417172
+  lazy_type: :io_good
+  end_time: 14404.3
+  start_time: 0.24
+  file: plasma_600mM_C2.mzXML
+--- 
+- time_to_access: 19.961016
+  scan_count: 10832
+  file_size: 26401261
+  scans_to_read: all
+  total_time_to_read_and_access: 27.262883
+  time_to_read: 7.301842
+  lazy_type: :io_good
+  end_time: 14401.6
+  start_time: 0.21
+  file: plasma_200mM_C1.mzXML
+--- 
+- time_to_access: 20.923173
+  scan_count: 10688
+  file_size: 26113966
+  scans_to_read: all
+  total_time_to_read_and_access: 28.281819
+  time_to_read: 7.358619
+  lazy_type: :io_good
+  end_time: 14401.6
+  start_time: 0.31
+  file: plasma_500mM_C1.mzXML
+--- 
+- time_to_access: 22.639205
+  scan_count: 11236
+  file_size: 28669187
+  scans_to_read: all
+  total_time_to_read_and_access: 30.201262
+  time_to_read: 7.562032
+  lazy_type: :io_good
+  end_time: 14399.5
+  start_time: 0.54
+  file: plasma_20mM_C2.mzXML
+--- 
+- time_to_access: 21.17529
+  scan_count: 10664
+  file_size: 26468118
+  scans_to_read: all
+  total_time_to_read_and_access: 28.458926
+  time_to_read: 7.283613
+  lazy_type: :io_good
+  end_time: 14400.9
+  start_time: 0.41
+  file: plasma_800mM_C2.mzXML
+--- 
+- time_to_access: 21.122006
+  scan_count: 10728
+  file_size: 26516832
+  scans_to_read: all
+  total_time_to_read_and_access: 27.433348
+  time_to_read: 6.311319
+  lazy_type: :io_good
+  end_time: 14401.2
+  start_time: 0.54
+  file: plasma_700mM_C1.mzXML
+--- 
+- time_to_access: 28.726777
+  scan_count: 10291
+  file_size: 34790827
+  scans_to_read: all
+  total_time_to_read_and_access: 36.72721
+  time_to_read: 8.00041
+  lazy_type: :io_good
+  end_time: 14399.7
+  start_time: 0.2
+  file: plasma_1000mM_C1_2.mzXML
+--- 
+- time_to_access: 24.602893
+  scan_count: 10304
+  file_size: 30620881
+  scans_to_read: all
+  total_time_to_read_and_access: 32.697175
+  time_to_read: 8.094259
+  lazy_type: :io_good
+  end_time: 14401.5
+  start_time: 0.3
+  file: plasma_1000mM_C1_1.mzXML
+--- 
+- time_to_access: 6.796937
+  scan_count: 3200
+  file_size: 8498253
+  scans_to_read: all
+  total_time_to_read_and_access: 9.143021
+  time_to_read: 2.346062
+  lazy_type: :io_good
+  end_time: 5524.7
+  start_time: 0.54
+  file: plasma_0mM_C1.mzXML
+--- 
+- time_to_access: 21.057531
+  scan_count: 10900
+  file_size: 26644142
+  scans_to_read: all
+  total_time_to_read_and_access: 28.271512
+  time_to_read: 7.213958
+  lazy_type: :io_good
+  end_time: 14403.5
+  start_time: 0.44
+  file: plasma_150mM_C2.mzXML
+--- 
+- time_to_access: 23.110757
+  scan_count: 11348
+  file_size: 29280099
+  scans_to_read: all
+  total_time_to_read_and_access: 30.680524
+  time_to_read: 7.569744
+  lazy_type: :io_good
+  end_time: 14400.4
+  start_time: 0.11
+  file: plasma_75mM_C2.mzXML
+--- 
+- time_to_access: 30.765051
+  scan_count: 10368
+  file_size: 35390525
+  scans_to_read: all
+  total_time_to_read_and_access: 38.903014
+  time_to_read: 8.137941
+  lazy_type: :io_good
+  end_time: 14399.1
+  start_time: 0.54
+  file: plasma_800mM_C2_2.mzXML
+--- 
+- time_to_access: 21.024943
+  scan_count: 10800
+  file_size: 26472922
+  scans_to_read: all
+  total_time_to_read_and_access: 27.378046
+  time_to_read: 6.353079
+  lazy_type: :io_good
+  end_time: 14401.7
+  start_time: 0.21
+  file: plasma_250mM_C2.mzXML
+--- 
+- time_to_access: 21.602357
+  scan_count: 10828
+  file_size: 27162895
+  scans_to_read: all
+  total_time_to_read_and_access: 28.881579
+  time_to_read: 7.2792
+  lazy_type: :io_good
+  end_time: 14404.0
+  start_time: 0.31
+  file: plasma_400mM_C2.mzXML
+--- 
+- time_to_access: 23.313765
+  scan_count: 11284
+  file_size: 29450259
+  scans_to_read: all
+  total_time_to_read_and_access: 30.731283
+  time_to_read: 7.417494
+  lazy_type: :io_good
+  end_time: 14402.6
+  start_time: 0.11
+  file: plasma_100mM_C1.mzXML

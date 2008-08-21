@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="iso-8859-1"?>
+<!DOCTYPE html 
+     PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+     "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html>
+<head>
+  <title>to_index (TopPred::Parser_Text)</title>
+  <meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1" />
+  <link rel="stylesheet" href="../../.././rdoc-style.css" type="text/css" media="screen" />
+</head>
+<body class="standalone-code">
+  <pre><span class="ruby-comment cmt"># File lib/transmem/toppred.rb, line 214</span>
+  <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">to_index</span>(<span class="ruby-identifier">io</span>, <span class="ruby-identifier">index</span>={})
+    <span class="ruby-identifier">current_record</span> = <span class="ruby-keyword kw">nil</span>
+
+    <span class="ruby-identifier">io</span>.<span class="ruby-identifier">each</span> <span class="ruby-keyword kw">do</span> <span class="ruby-operator">|</span><span class="ruby-identifier">line</span><span class="ruby-operator">|</span>
+      <span class="ruby-keyword kw">if</span> <span class="ruby-identifier">line</span> <span class="ruby-operator">=~</span> <span class="ruby-regexp re">/^Sequence : (.*?) +\(/</span>
+        <span class="ruby-identifier">current_identifier</span> = <span class="ruby-identifier">$1</span>.<span class="ruby-identifier">dup</span>
+        <span class="ruby-identifier">index</span>[<span class="ruby-identifier">current_identifier</span>] = {}
+        <span class="ruby-identifier">current_record</span> = <span class="ruby-identifier">index</span>[<span class="ruby-identifier">current_identifier</span>]
+        <span class="ruby-identifier">current_record</span>[<span class="ruby-identifier">:aaseq</span>] = <span class="ruby-identifier">read_aaseq</span>(<span class="ruby-identifier">io</span>)
+        <span class="ruby-identifier">read_segment_summary</span>(<span class="ruby-identifier">io</span>, <span class="ruby-identifier">current_record</span>)
+      <span class="ruby-keyword kw">elsif</span> <span class="ruby-identifier">line</span> <span class="ruby-operator">=~</span> <span class="ruby-regexp re">/^HEADER\s+START\s+STOP/</span>
+        <span class="ruby-identifier">top_struc</span> = <span class="ruby-identifier">top_structure</span>( <span class="ruby-identifier">read_structures</span>(<span class="ruby-identifier">io</span>) )
+        <span class="ruby-identifier">current_record</span>[<span class="ruby-identifier">:best_structure_probability</span>] = <span class="ruby-identifier">top_struc</span>[<span class="ruby-identifier">:probability</span>]
+        <span class="ruby-identifier">current_record</span>[<span class="ruby-identifier">:transmembrane_segments</span>] = <span class="ruby-identifier">top_struc</span>[<span class="ruby-identifier">:tm</span>]
+        <span class="ruby-identifier">add_sequences_to_segments</span>(<span class="ruby-identifier">current_record</span>[<span class="ruby-identifier">:transmembrane_segments</span>], <span class="ruby-identifier">current_record</span>[<span class="ruby-identifier">:aaseq</span>])
+        <span class="ruby-identifier">segment_arrays_to_hashes</span>(<span class="ruby-identifier">current_record</span>[<span class="ruby-identifier">:transmembrane_segments</span>])
+      <span class="ruby-keyword kw">end</span>
+    <span class="ruby-keyword kw">end</span>
+    <span class="ruby-identifier">index</span>
+  <span class="ruby-keyword kw">end</span></pre>
+</body>
+</html>

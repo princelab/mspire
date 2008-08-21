@@ -1,0 +1,27 @@
+--- 
+- time_to_access: 0.000126
+  first_scan: 
+    last_peak: 
+    - 1560.203125
+    - 22736.0
+    num: 1
+    first_peak: 
+    - 400.325439453125
+    - 42715.0
+  scan_count: 2707
+  file_size: 17083881
+  last_scan: 
+    last_peak: 
+    - 1957.32836914062
+    - 9160.0
+    num: 2707
+    first_peak: 
+    - 444.4912109375
+    - 3976.0
+  scans_to_read: fl
+  total_time_to_read_and_access: 10.218437
+  time_to_read: 10.218296
+  lazy_type: :string
+  end_time: 4078.49
+  start_time: 120.05
+  file: YAGmem1.mzXML

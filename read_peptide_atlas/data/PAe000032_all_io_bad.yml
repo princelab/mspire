@@ -1,0 +1,121 @@
+--- 
+- time_to_access: 32.598736
+  scan_count: 4814
+  file_size: 18905671
+  scans_to_read: all
+  total_time_to_read_and_access: 37.055233
+  time_to_read: 4.456472
+  lazy_type: :io_bad
+  end_time: 11996.62
+  start_time: 300.05
+  file: 16.mzXML
+--- 
+- time_to_access: 61.593943
+  scan_count: 5610
+  file_size: 34291903
+  scans_to_read: all
+  total_time_to_read_and_access: 67.462936
+  time_to_read: 5.868968
+  lazy_type: :io_bad
+  end_time: 11998.09
+  start_time: 300.08
+  file: 18.mzXML
+--- 
+- time_to_access: 52.206767
+  scan_count: 5768
+  file_size: 29802105
+  scans_to_read: all
+  total_time_to_read_and_access: 57.388355
+  time_to_read: 5.181566
+  lazy_type: :io_bad
+  end_time: 12003.1
+  start_time: 300.06
+  file: 21.mzXML
+--- 
+- time_to_access: 65.913054
+  scan_count: 5950
+  file_size: 36838860
+  scans_to_read: all
+  total_time_to_read_and_access: 72.815595
+  time_to_read: 6.902518
+  lazy_type: :io_bad
+  end_time: 11999.25
+  start_time: 300.1
+  file: 24.mzXML
+--- 
+- time_to_access: 66.745624
+  scan_count: 5748
+  file_size: 36821096
+  scans_to_read: all
+  total_time_to_read_and_access: 72.684182
+  time_to_read: 5.938533
+  lazy_type: :io_bad
+  end_time: 11998.24
+  start_time: 300.1
+  file: 19.mzXML
+--- 
+- time_to_access: 69.653843
+  scan_count: 6046
+  file_size: 38838356
+  scans_to_read: all
+  total_time_to_read_and_access: 75.677193
+  time_to_read: 6.023327
+  lazy_type: :io_bad
+  end_time: 11999.58
+  start_time: 300.06
+  file: 22.mzXML
+--- 
+- time_to_access: 72.437782
+  scan_count: 5690
+  file_size: 39856208
+  scans_to_read: all
+  total_time_to_read_and_access: 79.129052
+  time_to_read: 6.691244
+  lazy_type: :io_bad
+  end_time: 11999.93
+  start_time: 300.05
+  file: 25.mzXML
+--- 
+- time_to_access: 57.233309
+  scan_count: 5964
+  file_size: 32010761
+  scans_to_read: all
+  total_time_to_read_and_access: 62.413164
+  time_to_read: 5.17983
+  lazy_type: :io_bad
+  end_time: 11998.9999
+  start_time: 300.08
+  file: 23.mzXML
+--- 
+- time_to_access: 46.774
+  scan_count: 5496
+  file_size: 26849092
+  scans_to_read: all
+  total_time_to_read_and_access: 51.674761
+  time_to_read: 4.900737
+  lazy_type: :io_bad
+  end_time: 12003.65
+  start_time: 300.08
+  file: 17.mzXML
+--- 
+- time_to_access: 68.120229
+  scan_count: 5715
+  file_size: 37758566
+  scans_to_read: all
+  total_time_to_read_and_access: 74.049683
+  time_to_read: 5.929431
+  lazy_type: :io_bad
+  end_time: 11997.9699
+  start_time: 300.07
+  file: 20.mzXML
+--- 
+- time_to_access: 75.949927
+  scan_count: 4209
+  file_size: 41405943
+  scans_to_read: all
+  total_time_to_read_and_access: 81.958422
+  time_to_read: 6.00847
+  lazy_type: :io_bad
+  end_time: 11998.25
+  start_time: 300.02
+  file: 15.mzXML

@@ -1,0 +1,27 @@
+--- 
+- time_to_access: 3.3e-05
+  first_scan: 
+    last_peak: 
+    - 1396.0498046875
+    - 3169.0
+    num: 1
+    first_peak: 
+    - 402.358215332031
+    - 4697.0
+  scan_count: 4558
+  file_size: 13439098
+  last_scan: 
+    last_peak: 
+    - 1350.3115234375
+    - 9159.0
+    num: 4558
+    first_peak: 
+    - 685.026000976562
+    - 6705.0
+  scans_to_read: fl
+  total_time_to_read_and_access: 7.087352
+  time_to_read: 7.087303
+  lazy_type: :not
+  end_time: 5879.12
+  start_time: 120.04
+  file: pum4.mzXML

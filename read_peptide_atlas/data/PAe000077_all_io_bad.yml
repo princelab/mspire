@@ -1,0 +1,88 @@
+--- 
+- time_to_access: 57.195829
+  scan_count: 5899
+  file_size: 33175093
+  scans_to_read: all
+  total_time_to_read_and_access: 62.503534
+  time_to_read: 5.30768
+  lazy_type: :io_bad
+  end_time: 11999.81
+  start_time: 300.06
+  file: B30_1ms_4msms.mzXML
+--- 
+- time_to_access: 54.408399
+  scan_count: 5946
+  file_size: 32103277
+  scans_to_read: all
+  total_time_to_read_and_access: 59.809866
+  time_to_read: 5.401444
+  lazy_type: :io_bad
+  end_time: 11998.09
+  start_time: 300.02
+  file: B29_1ms_4msms.mzXML
+--- 
+- time_to_access: 61.214634
+  scan_count: 5777
+  file_size: 35804337
+  scans_to_read: all
+  total_time_to_read_and_access: 66.548808
+  time_to_read: 5.33415
+  lazy_type: :io_bad
+  end_time: 12002.81
+  start_time: 300.06
+  file: B30_1ms_3msms.mzXML
+--- 
+- time_to_access: 84.497398
+  scan_count: 5584
+  file_size: 48122330
+  scans_to_read: all
+  total_time_to_read_and_access: 91.801357
+  time_to_read: 7.303935
+  lazy_type: :io_bad
+  end_time: 11999.54
+  start_time: 300.08
+  file: B29_1ms_1msms.mzXML
+--- 
+- time_to_access: 70.706884
+  scan_count: 5556
+  file_size: 40471018
+  scans_to_read: all
+  total_time_to_read_and_access: 76.812067
+  time_to_read: 6.10516
+  lazy_type: :io_bad
+  end_time: 12004.33
+  start_time: 300.1099
+  file: B30_1ms_2msms.mzXML
+--- 
+- time_to_access: 84.938046
+  scan_count: 5241
+  file_size: 48250213
+  scans_to_read: all
+  total_time_to_read_and_access: 90.853976
+  time_to_read: 5.915905
+  lazy_type: :io_bad
+  end_time: 11998.32
+  start_time: 300.1
+  file: B30_1ms_1msms.mzXML
+--- 
+- time_to_access: 67.700154
+  scan_count: 5822
+  file_size: 39448692
+  scans_to_read: all
+  total_time_to_read_and_access: 73.996498
+  time_to_read: 6.296317
+  lazy_type: :io_bad
+  end_time: 11999.52
+  start_time: 300.07
+  file: B29_1ms_2msms.mzXML
+--- 
+- time_to_access: 60.210406
+  scan_count: 5896
+  file_size: 35060935
+  scans_to_read: all
+  total_time_to_read_and_access: 66.55254
+  time_to_read: 6.342113
+  lazy_type: :io_bad
+  end_time: 11999.45
+  start_time: 300.08
+  file: B29_1ms_3msms.mzXML

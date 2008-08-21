@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="iso-8859-1"?>
+<!DOCTYPE html 
+     PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+     "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html>
+<head>
+  <title>new (SampleEnzyme)</title>
+  <meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1" />
+  <link rel="stylesheet" href="../.././rdoc-style.css" type="text/css" media="screen" />
+</head>
+<body class="standalone-code">
+  <pre><span class="ruby-comment cmt"># File lib/sample_enzyme.rb, line 25</span>
+  <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">initialize</span>(<span class="ruby-identifier">name</span>=<span class="ruby-keyword kw">nil</span>)
+    <span class="ruby-ivar">@num_missed_cleavages_regex</span> = <span class="ruby-keyword kw">nil</span>
+    <span class="ruby-ivar">@sense</span> = <span class="ruby-keyword kw">nil</span>
+    <span class="ruby-ivar">@cut</span> = <span class="ruby-keyword kw">nil</span>
+    <span class="ruby-ivar">@no_cut</span> = <span class="ruby-keyword kw">nil</span>
+    <span class="ruby-ivar">@name</span> = <span class="ruby-identifier">name</span>
+    <span class="ruby-keyword kw">if</span> <span class="ruby-ivar">@name</span>
+      <span class="ruby-comment cmt"># set the values if we recognize this name</span>
+      <span class="ruby-identifier">send</span>(<span class="ruby-node">&quot;set_#{@name}&quot;</span>.<span class="ruby-identifier">to_sym</span>)
+    <span class="ruby-keyword kw">end</span>
+    <span class="ruby-keyword kw">if</span> <span class="ruby-identifier">block_given?</span>
+      <span class="ruby-keyword kw">yield</span>(<span class="ruby-keyword kw">self</span>)
+    <span class="ruby-keyword kw">end</span>
+  <span class="ruby-keyword kw">end</span></pre>
+</body>
+</html>

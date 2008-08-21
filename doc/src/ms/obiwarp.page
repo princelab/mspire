@@ -1,0 +1,27 @@
+---
+title: Preparing files for OBI-Warp
+inMenu: true
+directoryName: OBI-Warp
+---
+mspire can be used to prepare .lmat files for chromatographic alignment in OBI-Warp
+
+More information on the .lmat format and other possible conversion tools can
+be found on the [OBI-Warp site](http://obi-warp.sourceforge.net/tutorials/mass_spectrometry_alignment.html)
+
+The converter `ms_to_lmat.rb` will take mzXMl or mzData files and convert raw MS spectra into a rectilinear grid of points that can be used for alignment.  The script is run:
+
+    ms_to_lmat.rb file.mzXML
+
+If the scans in the file do not have 'startMz' or 'endMz' tags (e.g., in many mzXML 2.X files), you may want to indicate the bounds on the matrix (although mspire will attempt to determine these on-the-fly):
+
+    ms_to_lmat.rb --mz_start 300 --mz_end 1500 file.mzXML
+
+For high resolution data you may want to decrease the m/z step size you are using:
+
+    ms_to_lmat.rb --mz_inc 0.01 file.mzXML
+
+For ascii output (an .lmata file) use the --ascii flag:
+
+    ms_to_lmat.rb --ascii file.mzXML   # => file.lmata
+
+Type 'ms_to_lmat.rb' for more options.

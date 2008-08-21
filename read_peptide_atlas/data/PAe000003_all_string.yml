@@ -1,0 +1,176 @@
+--- 
+- time_to_access: 1.032123
+  scan_count: 4294
+  file_size: 12765550
+  scans_to_read: all
+  total_time_to_read_and_access: 19.436734
+  time_to_read: 18.404584
+  lazy_type: :string
+  end_time: 6598.84
+  start_time: 120.11
+  file: raft_kv17.mzXML
+--- 
+- time_to_access: 1.252406
+  scan_count: 3956
+  file_size: 15978254
+  scans_to_read: all
+  total_time_to_read_and_access: 22.480525
+  time_to_read: 21.228094
+  lazy_type: :string
+  end_time: 5881.36
+  start_time: 120.1
+  file: raft_kv20.mzXML
+--- 
+- time_to_access: 1.229046
+  scan_count: 4194
+  file_size: 15606343
+  scans_to_read: all
+  total_time_to_read_and_access: 21.753258
+  time_to_read: 20.524186
+  lazy_type: :string
+  end_time: 6599.09
+  start_time: 120.02
+  file: raft_kv29.mzXML
+--- 
+- time_to_access: 1.044852
+  scan_count: 4199
+  file_size: 13173181
+  scans_to_read: all
+  total_time_to_read_and_access: 18.16027
+  time_to_read: 17.115393
+  lazy_type: :string
+  end_time: 6598.74
+  start_time: 120.11
+  file: raft_kv19.mzXML
+--- 
+- time_to_access: 0.974822
+  scan_count: 4337
+  file_size: 14670535
+  scans_to_read: all
+  total_time_to_read_and_access: 20.681194
+  time_to_read: 19.706346
+  lazy_type: :string
+  end_time: 6601.48
+  start_time: 120.02
+  file: raft_kv22.mzXML
+--- 
+- time_to_access: 1.041768
+  scan_count: 4274
+  file_size: 15412304
+  scans_to_read: all
+  total_time_to_read_and_access: 21.396984
+  time_to_read: 20.355192
+  lazy_type: :string
+  end_time: 6599.1399
+  start_time: 120.04
+  file: raft_kv27.mzXML
+--- 
+- time_to_access: 1.3382
+  scan_count: 4415
+  file_size: 16767107
+  scans_to_read: all
+  total_time_to_read_and_access: 23.542372
+  time_to_read: 22.204145
+  lazy_type: :string
+  end_time: 6601.72
+  start_time: 60.07
+  file: raft_kv33.mzXML
+--- 
+- time_to_access: 0.992784
+  scan_count: 4266
+  file_size: 11633326
+  scans_to_read: all
+  total_time_to_read_and_access: 16.112177
+  time_to_read: 15.119368
+  lazy_type: :string
+  end_time: 6601.21
+  start_time: 120.11
+  file: raft_kv18.mzXML
+--- 
+- time_to_access: 1.012326
+  scan_count: 4403
+  file_size: 14544051
+  scans_to_read: all
+  total_time_to_read_and_access: 20.262341
+  time_to_read: 19.24999
+  lazy_type: :string
+  end_time: 6600.22
+  start_time: 120.1
+  file: raft_kv24.mzXML
+--- 
+- time_to_access: 1.037949
+  scan_count: 4387
+  file_size: 15204875
+  scans_to_read: all
+  total_time_to_read_and_access: 21.224448
+  time_to_read: 20.186474
+  lazy_type: :string
+  end_time: 6599.56
+  start_time: 120.1199
+  file: raft_kv23.mzXML
+--- 
+- time_to_access: 0.96704
+  scan_count: 4376
+  file_size: 13746608
+  scans_to_read: all
+  total_time_to_read_and_access: 19.24903
+  time_to_read: 18.281965
+  lazy_type: :string
+  end_time: 6600.12
+  start_time: 120.1
+  file: raft_kv25.mzXML
+--- 
+- time_to_access: 1.033193
+  scan_count: 4354
+  file_size: 15883377
+  scans_to_read: all
+  total_time_to_read_and_access: 22.171734
+  time_to_read: 21.138515
+  lazy_type: :string
+  end_time: 6599.72
+  start_time: 60.07
+  file: raft_kv37.mzXML
+--- 
+- time_to_access: 1.241389
+  scan_count: 4368
+  file_size: 16344623
+  scans_to_read: all
+  total_time_to_read_and_access: 23.063085
+  time_to_read: 21.821671
+  lazy_type: :string
+  end_time: 6601.24
+  start_time: 60.02
+  file: raft_kv32.mzXML
+--- 
+- time_to_access: 1.303654
+  scan_count: 4386
+  file_size: 15596290
+  scans_to_read: all
+  total_time_to_read_and_access: 21.95347
+  time_to_read: 20.649792
+  lazy_type: :string
+  end_time: 6601.03
+  start_time: 60.09
+  file: raft_kv34.mzXML
+--- 
+- time_to_access: 1.001018
+  scan_count: 4231
+  file_size: 14398128
+  scans_to_read: all
+  total_time_to_read_and_access: 20.123902
+  time_to_read: 19.122857
+  lazy_type: :string
+  end_time: 6599.25
+  start_time: 120.11
+  file: raft_kv28.mzXML
+--- 
+- time_to_access: 1.017289
+  scan_count: 4283
+  file_size: 14322414
+  scans_to_read: all
+  total_time_to_read_and_access: 19.955579
+  time_to_read: 18.938264
+  lazy_type: :string
+  end_time: 6599.9099
+  start_time: 120.1
+  file: raft_kv26.mzXML

@@ -1,0 +1,412 @@
+<?xml version="1.0" encoding="iso-8859-1"?>
+<!DOCTYPE html 
+     PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+     "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+<head>
+  <title>Class: Bioworks</title>
+  <meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1" />
+  <meta http-equiv="Content-Script-Type" content="text/javascript" />
+  <link rel="stylesheet" href=".././rdoc-style.css" type="text/css" media="screen" />
+  <script type="text/javascript">
+  // <![CDATA[
+
+  function popupCode( url ) {
+    window.open(url, "Code", "resizable=yes,scrollbars=yes,toolbar=no,status=no,height=150,width=400")
+  }
+
+  function toggleCode( id ) {
+    if ( document.getElementById )
+      elem = document.getElementById( id );
+    else if ( document.all )
+      elem = eval( "document.all." + id );
+    else
+      return false;
+
+    elemStyle = elem.style;
+    
+    if ( elemStyle.display != "block" ) {
+      elemStyle.display = "block"
+    } else {
+      elemStyle.display = "none"
+    }
+
+    return true;
+  }
+  
+  // Make codeblocks hidden by default
+  document.writeln( "<style type=\"text/css\">div.method-source-code { display: none }</style>" )
+  
+  // ]]>
+  </script>
+
+</head>
+<body>
+
+
+
+    <div id="classHeader">
+        <table class="header-table">
+        <tr class="top-aligned-row">
+          <td><strong>Class</strong></td>
+          <td class="class-name-in-header">Bioworks</td>
+        </tr>
+        <tr class="top-aligned-row">
+            <td><strong>In:</strong></td>
+            <td>
+                <a href="../files/lib/spec_id/bioworks_rb.html">
+                lib/spec_id/bioworks.rb
+                </a>
+        <br />
+            </td>
+        </tr>
+
+        <tr class="top-aligned-row">
+            <td><strong>Parent:</strong></td>
+            <td>
+                Object
+            </td>
+        </tr>
+        </table>
+    </div>
+  <!-- banner header -->
+
+  <div id="bodyContent">
+
+
+
+  <div id="contextContent">
+
+
+
+   </div>
+
+    <div id="method-list">
+      <h3 class="section-bar">Methods</h3>
+
+      <div class="name-list">
+      <a href="#M000171">_uniq_peps_by_sequence_charge</a>&nbsp;&nbsp;
+      <a href="#M000175">get_prots_from_xml_stream</a>&nbsp;&nbsp;
+      <a href="#M000176">get_regex_val</a>&nbsp;&nbsp;
+      <a href="#M000166">hi_prob_best</a>&nbsp;&nbsp;
+      <a href="#M000172">new</a>&nbsp;&nbsp;
+      <a href="#M000168">num_prots</a>&nbsp;&nbsp;
+      <a href="#M000174">parse_xml</a>&nbsp;&nbsp;
+      <a href="#M000173">parse_xml_by_xmlparser</a>&nbsp;&nbsp;
+      <a href="#M000169">to_excel</a>&nbsp;&nbsp;
+      <a href="#M000177">to_pepxml</a>&nbsp;&nbsp;
+      <a href="#M000167">to_sqt</a>&nbsp;&nbsp;
+      <a href="#M000170">update_peptide_hit_counts</a>&nbsp;&nbsp;
+      </div>
+    </div>
+
+  </div>
+
+
+    <!-- if includes -->
+    <div id="includes">
+      <h3 class="section-bar">Included Modules</h3>
+
+      <div id="includes-list">
+        <span class="include-name"><a href="SpecID.html">SpecID</a></span>
+      </div>
+    </div>
+
+    <div id="section">
+
+    <div id="class-list">
+      <h3 class="section-bar">Classes and Modules</h3>
+
+      Module <a href="Bioworks/XML.html" class="link">Bioworks::XML</a><br />
+Class <a href="Bioworks/Pep.html" class="link">Bioworks::Pep</a><br />
+Class <a href="Bioworks/Prot.html" class="link">Bioworks::Prot</a><br />
+Class <a href="Bioworks/XMLParser.html" class="link">Bioworks::XMLParser</a><br />
+
+    </div>
+
+
+
+
+    <div id="attribute-list">
+      <h3 class="section-bar">Attributes</h3>
+
+      <div class="name-list">
+        <table>
+        <tr class="top-aligned-row context-row">
+          <td class="context-item-name">global_filename</td>
+          <td class="context-item-value">&nbsp;[RW]&nbsp;</td>
+          <td class="context-item-desc"></td>
+        </tr>
+        <tr class="top-aligned-row context-row">
+          <td class="context-item-name">modifications</td>
+          <td class="context-item-value">&nbsp;[RW]&nbsp;</td>
+          <td class="context-item-desc">
+a string of modifications e.g., &quot;(M* +15.99491) (S@ +14.9322) &quot;
+
+</td>
+        </tr>
+        <tr class="top-aligned-row context-row">
+          <td class="context-item-name">origfilename</td>
+          <td class="context-item-value">&nbsp;[RW]&nbsp;</td>
+          <td class="context-item-desc"></td>
+        </tr>
+        <tr class="top-aligned-row context-row">
+          <td class="context-item-name">origfilepath</td>
+          <td class="context-item-value">&nbsp;[RW]&nbsp;</td>
+          <td class="context-item-desc"></td>
+        </tr>
+        <tr class="top-aligned-row context-row">
+          <td class="context-item-name">peps</td>
+          <td class="context-item-value">&nbsp;[RW]&nbsp;</td>
+          <td class="context-item-desc"></td>
+        </tr>
+        <tr class="top-aligned-row context-row">
+          <td class="context-item-name">prots</td>
+          <td class="context-item-value">&nbsp;[RW]&nbsp;</td>
+          <td class="context-item-desc"></td>
+        </tr>
+        <tr class="top-aligned-row context-row">
+          <td class="context-item-name">version</td>
+          <td class="context-item-value">&nbsp;[RW]&nbsp;</td>
+          <td class="context-item-desc"></td>
+        </tr>
+        </table>
+      </div>
+    </div>
+      
+
+
+    <!-- if method_list -->
+    <div id="methods">
+      <h3 class="section-bar">Public Class methods</h3>
+
+      <div id="method-M000172" class="method-detail">
+        <a name="M000172"></a>
+
+        <div class="method-heading">
+          <a href="Bioworks.src/M000172.html" target="Code" class="method-signature"
+            onclick="popupCode('Bioworks.src/M000172.html');return false;">
+          <span class="method-name">new</span><span class="method-args">(file=nil)</span>
+          </a>
+        </div>
+      
+        <div class="method-description">
+        </div>
+      </div>
+
+      <h3 class="section-bar">Public Instance methods</h3>
+
+      <div id="method-M000171" class="method-detail">
+        <a name="M000171"></a>
+
+        <div class="method-heading">
+          <a href="Bioworks.src/M000171.html" target="Code" class="method-signature"
+            onclick="popupCode('Bioworks.src/M000171.html');return false;">
+          <span class="method-name">_uniq_peps_by_sequence_charge</span><span class="method-args">(peps)</span>
+          </a>
+        </div>
+      
+        <div class="method-description">
+          <p>
+returns (peptides, proteins) where peptides is the unique list of peps and
+proteins is a parallel array of arrays of represented proteins note that
+each pep will contain its original prot it belongs to, even though the
+parallel protein actually represents the proteins it belongs to. assumes
+that each peptide points to all its proteins in pep.prots
+</p>
+        </div>
+      </div>
+
+      <div id="method-M000175" class="method-detail">
+        <a name="M000175"></a>
+
+        <div class="method-heading">
+          <a href="Bioworks.src/M000175.html" target="Code" class="method-signature"
+            onclick="popupCode('Bioworks.src/M000175.html');return false;">
+          <span class="method-name">get_prots_from_xml_stream</span><span class="method-args">(fh)</span>
+          </a>
+        </div>
+      
+        <div class="method-description">
+          <p>
+returns proteins and peptides
+</p>
+        </div>
+      </div>
+
+      <div id="method-M000176" class="method-detail">
+        <a name="M000176"></a>
+
+        <div class="method-heading">
+          <a href="Bioworks.src/M000176.html" target="Code" class="method-signature"
+            onclick="popupCode('Bioworks.src/M000176.html');return false;">
+          <span class="method-name">get_regex_val</span><span class="method-args">(fh, regex)</span>
+          </a>
+        </div>
+      
+        <div class="method-description">
+          <p>
+gets the regex and stops (and rewinds if it hits a protein) if no regex is
+found, returns nil and rewinds the filehandle
+</p>
+        </div>
+      </div>
+
+      <div id="method-M000166" class="method-detail">
+        <a name="M000166"></a>
+
+        <div class="method-heading">
+          <a href="Bioworks.src/M000166.html" target="Code" class="method-signature"
+            onclick="popupCode('Bioworks.src/M000166.html');return false;">
+          <span class="method-name">hi_prob_best</span><span class="method-args">()</span>
+          </a>
+        </div>
+      
+        <div class="method-description">
+        </div>
+      </div>
+
+      <div id="method-M000168" class="method-detail">
+        <a name="M000168"></a>
+
+        <div class="method-heading">
+          <a href="Bioworks.src/M000168.html" target="Code" class="method-signature"
+            onclick="popupCode('Bioworks.src/M000168.html');return false;">
+          <span class="method-name">num_prots</span><span class="method-args">(file)</span>
+          </a>
+        </div>
+      
+        <div class="method-description">
+          <p>
+returns the number of prots. Raises an Exception if open and closing xml
+tags don&#8216;t agree
+</p>
+        </div>
+      </div>
+
+      <div id="method-M000174" class="method-detail">
+        <a name="M000174"></a>
+
+        <div class="method-heading">
+          <a href="Bioworks.src/M000174.html" target="Code" class="method-signature"
+            onclick="popupCode('Bioworks.src/M000174.html');return false;">
+          <span class="method-name">parse_xml</span><span class="method-args">(file)</span>
+          </a>
+        </div>
+      
+        <div class="method-description">
+          <p>
+This is highly specific to <a href="Bioworks.html">Bioworks</a> 3.2 xml
+export. In other words, unless the newlines, etc. are duplicated, this
+parser will fail! Not robust, but it is faster than xmlparser (which is
+based on the speedy expat)
+</p>
+        </div>
+      </div>
+
+      <div id="method-M000173" class="method-detail">
+        <a name="M000173"></a>
+
+        <div class="method-heading">
+          <a href="Bioworks.src/M000173.html" target="Code" class="method-signature"
+            onclick="popupCode('Bioworks.src/M000173.html');return false;">
+          <span class="method-name">parse_xml_by_xmlparser</span><span class="method-args">(file)</span>
+          </a>
+        </div>
+      
+        <div class="method-description">
+        </div>
+      </div>
+
+      <div id="method-M000169" class="method-detail">
+        <a name="M000169"></a>
+
+        <div class="method-heading">
+          <a href="Bioworks.src/M000169.html" target="Code" class="method-signature"
+            onclick="popupCode('Bioworks.src/M000169.html');return false;">
+          <span class="method-name">to_excel</span><span class="method-args">(file)</span>
+          </a>
+        </div>
+      
+        <div class="method-description">
+          <p>
+Outputs the bioworks browser excel format (tab delimited) to file. Useful
+if you have more than ~65,000 lines (can export bioworks.xml and then
+convert to excel format). Currently, the only things not precisely
+identical are:
+</p>
+<pre>
+  1. The peptide hit counts (although the first number [total # peptides] is accurate)
+  2. The precise ordering of peptides within each protein.  When dealing with output from multiple runs, peptides with runs with exactly the  same scan numbers are not guaranteed to be in the same order.
+</pre>
+        </div>
+      </div>
+
+      <div id="method-M000177" class="method-detail">
+        <a name="M000177"></a>
+
+        <div class="method-heading">
+          <a href="Bioworks.src/M000177.html" target="Code" class="method-signature"
+            onclick="popupCode('Bioworks.src/M000177.html');return false;">
+          <span class="method-name">to_pepxml</span><span class="method-args">()</span>
+          </a>
+        </div>
+      
+        <div class="method-description">
+          <p>
+Outputs sequest xml files (pepxml) for the trans-proteomics pipeline
+</p>
+        </div>
+      </div>
+
+      <div id="method-M000167" class="method-detail">
+        <a name="M000167"></a>
+
+        <div class="method-heading">
+          <a href="Bioworks.src/M000167.html" target="Code" class="method-signature"
+            onclick="popupCode('Bioworks.src/M000167.html');return false;">
+          <span class="method-name">to_sqt</span><span class="method-args">(params_file)</span>
+          </a>
+        </div>
+      
+        <div class="method-description">
+          <p>
+-&gt; prints to file filename1.sqt, filename2.sqt @TODO: sqt file output
+</p>
+        </div>
+      </div>
+
+      <div id="method-M000170" class="method-detail">
+        <a name="M000170"></a>
+
+        <div class="method-heading">
+          <a href="Bioworks.src/M000170.html" target="Code" class="method-signature"
+            onclick="popupCode('Bioworks.src/M000170.html');return false;">
+          <span class="method-name">update_peptide_hit_counts</span><span class="method-args">()</span>
+          </a>
+        </div>
+      
+        <div class="method-description">
+          <p>
+for output to excel format or other things, updates each protein with a
+peptide hit count array based on ranking of xcorr per dta file where each
+array is the total number of peptide hits, then rank 1,2,3,4,5 @TODO:
+Can&#8216;t get this to check out yet. Perhaps they use normalized Xcorr?
+</p>
+        </div>
+      </div>
+
+
+    </div>
+
+
+  </div>
+
+
+<div id="validator-badges">
+  <p><small><a href="http://validator.w3.org/check/referer">[Validate]</a></small></p>
+</div>
+
+</body>
+</html>

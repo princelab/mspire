@@ -1,0 +1,2160 @@
+--- 
+- time_to_access: 0.020097
+  first_scan: 
+    last_peak: 
+    - 1798.23901367188
+    - 2573.0
+    num: 1
+    first_peak: 
+    - 400.363220214844
+    - 131498.0
+  scan_count: 3849
+  file_size: 43528345
+  last_scan: 
+    last_peak: 
+    - 947.945068359375
+    - 1306.0
+    num: 3849
+    first_peak: 
+    - 155.788818359375
+    - 1738.0
+  scans_to_read: fl
+  total_time_to_read_and_access: 4.043449
+  time_to_read: 4.023335
+  lazy_type: :io_bad
+  end_time: 5994.39
+  start_time: 120.1
+  file: mflory_t000_scx_14_full_01.mzXML
+--- 
+- time_to_access: 0.042012
+  first_scan: 
+    last_peak: 
+    - 1798.0185546875
+    - 57009.0
+    num: 1
+    first_peak: 
+    - 400.494934082031
+    - 156476.0
+  scan_count: 3727
+  file_size: 32657844
+  last_scan: 
+    last_peak: 
+    - 1774.63061523438
+    - 3662.0
+    num: 3727
+    first_peak: 
+    - 400.171936035156
+    - 74686.0
+  scans_to_read: fl
+  total_time_to_read_and_access: 2.27412
+  time_to_read: 2.232093
+  lazy_type: :io_bad
+  end_time: 5993.16
+  start_time: 120.1199
+  file: mflory_t000_scx_14_full_02.mzXML
+--- 
+- time_to_access: 0.015126
+  first_scan: 
+    last_peak: 
+    - 749.549560546875
+    - 3132.0
+    num: 1
+    first_peak: 
+    - 400.542541503906
+    - 84026.0
+  scan_count: 5810
+  file_size: 23114412
+  last_scan: 
+    last_peak: 
+    - 749.598876953125
+    - 71918.0
+    num: 5810
+    first_peak: 
+    - 400.507507324219
+    - 168024.0
+  scans_to_read: fl
+  total_time_to_read_and_access: 2.450366
+  time_to_read: 2.435223
+  lazy_type: :io_bad
+  end_time: 5993.68
+  start_time: 120.07
+  file: mflory_t000_scx_15_1st_01.mzXML
+--- 
+- time_to_access: 0.01924
+  first_scan: 
+    last_peak: 
+    - 1149.3857421875
+    - 17241.0
+    num: 1
+    first_peak: 
+    - 700.427856445312
+    - 85153.0
+  scan_count: 5924
+  file_size: 29424729
+  last_scan: 
+    last_peak: 
+    - 1148.7060546875
+    - 1058.0
+    num: 5924
+    first_peak: 
+    - 700.429809570312
+    - 86179.0
+  scans_to_read: fl
+  total_time_to_read_and_access: 3.523302
+  time_to_read: 3.504047
+  lazy_type: :io_bad
+  end_time: 6593.26
+  start_time: 120.07
+  file: mflory_t000_scx_15_2nd_01.mzXML
+--- 
+- time_to_access: 0.028384
+  first_scan: 
+    last_peak: 
+    - 1799.3818359375
+    - 2692.0
+    num: 1
+    first_peak: 
+    - 1100.32470703125
+    - 24729.0
+  scan_count: 5476
+  file_size: 41242220
+  last_scan: 
+    last_peak: 
+    - 1799.7822265625
+    - 772.0
+    num: 5476
+    first_peak: 
+    - 1100.44995117188
+    - 29036.0
+  scans_to_read: fl
+  total_time_to_read_and_access: 3.581565
+  time_to_read: 3.553159
+  lazy_type: :io_bad
+  end_time: 6592.7
+  start_time: 120.1
+  file: mflory_t000_scx_15_3rd_01.mzXML
+--- 
+- time_to_access: 0.049867
+  first_scan: 
+    last_peak: 
+    - 1798.30639648438
+    - 31573.0
+    num: 1
+    first_peak: 
+    - 400.401184082031
+    - 100779.0
+  scan_count: 3817
+  file_size: 40211876
+  last_scan: 
+    last_peak: 
+    - 1799.8408203125
+    - 67572.0
+    num: 3817
+    first_peak: 
+    - 400.675048828125
+    - 232184.0
+  scans_to_read: fl
+  total_time_to_read_and_access: 2.930677
+  time_to_read: 2.880794
+  lazy_type: :io_bad
+  end_time: 5993.84
+  start_time: 120.07
+  file: mflory_t000_scx_15_full_01.mzXML
+--- 
+- time_to_access: 0.015224
+  first_scan: 
+    last_peak: 
+    - 749.548828125
+    - 24328.0
+    num: 1
+    first_peak: 
+    - 400.254577636719
+    - 38467.0
+  scan_count: 5456
+  file_size: 20627758
+  last_scan: 
+    last_peak: 
+    - 749.589721679688
+    - 204166.0
+    num: 5456
+    first_peak: 
+    - 400.600769042969
+    - 122416.0
+  scans_to_read: fl
+  total_time_to_read_and_access: 2.415932
+  time_to_read: 2.400692
+  lazy_type: :io_bad
+  end_time: 5993.91
+  start_time: 120.1
+  file: mflory_t000_scx_16_1st_01.mzXML
+--- 
+- time_to_access: 0.019347
+  first_scan: 
+    last_peak: 
+    - 1149.68530273438
+    - 30281.0
+    num: 1
+    first_peak: 
+    - 700.5166015625
+    - 125618.0
+  scan_count: 4595
+  file_size: 20601389
+  last_scan: 
+    last_peak: 
+    - 1149.61865234375
+    - 38705.0
+    num: 4595
+    first_peak: 
+    - 700.101684570312
+    - 46415.0
+  scans_to_read: fl
+  total_time_to_read_and_access: 2.187121
+  time_to_read: 2.167757
+  lazy_type: :io_bad
+  end_time: 5993.45
+  start_time: 120.03
+  file: mflory_t000_scx_16_2nd_01.mzXML
+--- 
+- time_to_access: 0.029342
+  first_scan: 
+    last_peak: 
+    - 1799.49267578125
+    - 18485.0
+    num: 1
+    first_peak: 
+    - 1100.54541015625
+    - 66180.0
+  scan_count: 4633
+  file_size: 31260066
+  last_scan: 
+    last_peak: 
+    - 1799.40380859375
+    - 147701.0
+    num: 4633
+    first_peak: 
+    - 1100.57373046875
+    - 339814.0
+  scans_to_read: fl
+  total_time_to_read_and_access: 2.812376
+  time_to_read: 2.783017
+  lazy_type: :io_bad
+  end_time: 5993.94
+  start_time: 120.02
+  file: mflory_t000_scx_16_3rd_01.mzXML
+--- 
+- time_to_access: 0.090034
+  first_scan: 
+    last_peak: 
+    - 1799.76391601562
+    - 6752.0
+    num: 1
+    first_peak: 
+    - 400.230834960938
+    - 148307.0
+  scan_count: 3729
+  file_size: 34010640
+  last_scan: 
+    last_peak: 
+    - 1798.84301757812
+    - 48409.0
+    num: 3729
+    first_peak: 
+    - 400.16259765625
+    - 72878.0
+  scans_to_read: fl
+  total_time_to_read_and_access: 3.233856
+  time_to_read: 3.143805
+  lazy_type: :io_bad
+  end_time: 5993.05
+  start_time: 120.05
+  file: mflory_t000_scx_16_full_01.mzXML
+--- 
+- time_to_access: 0.335416
+  first_scan: 
+    last_peak: 
+    - 749.772705078125
+    - 13174.0
+    num: 1
+    first_peak: 
+    - 400.479675292969
+    - 133672.0
+  scan_count: 5302
+  file_size: 20085666
+  last_scan: 
+    last_peak: 
+    - 749.637573242188
+    - 145828.0
+    num: 5302
+    first_peak: 
+    - 400.387268066406
+    - 58529.0
+  scans_to_read: fl
+  total_time_to_read_and_access: 2.448486
+  time_to_read: 2.113054
+  lazy_type: :io_bad
+  end_time: 5993.84
+  start_time: 120.06
+  file: mflory_t000_scx_17_1st_01.mzXML
+--- 
+- time_to_access: 0.019558
+  first_scan: 
+    last_peak: 
+    - 1149.68530273438
+    - 2998.0
+    num: 1
+    first_peak: 
+    - 700.440795898438
+    - 125799.0
+  scan_count: 4479
+  file_size: 20187832
+  last_scan: 
+    last_peak: 
+    - 1149.64868164062
+    - 6902.0
+    num: 4479
+    first_peak: 
+    - 700.707885742188
+    - 525979.0
+  scans_to_read: fl
+  total_time_to_read_and_access: 1.806153
+  time_to_read: 1.786579
+  lazy_type: :io_bad
+  end_time: 5993.8999
+  start_time: 120.02
+  file: mflory_t000_scx_17_2nd_01.mzXML
+--- 
+- time_to_access: 0.028734
+  first_scan: 
+    last_peak: 
+    - 1799.68017578125
+    - 14298.0
+    num: 1
+    first_peak: 
+    - 1100.68212890625
+    - 77048.0
+  scan_count: 4734
+  file_size: 33247731
+  last_scan: 
+    last_peak: 
+    - 1799.61108398438
+    - 61208.0
+    num: 4734
+    first_peak: 
+    - 1100.25805664062
+    - 273106.0
+  scans_to_read: fl
+  total_time_to_read_and_access: 3.314895
+  time_to_read: 3.286144
+  lazy_type: :io_bad
+  end_time: 5993.43
+  start_time: 120.08
+  file: mflory_t000_scx_17_3rd_01.mzXML
+--- 
+- time_to_access: 0.047656
+  first_scan: 
+    last_peak: 
+    - 1797.10815429688
+    - 12583.0
+    num: 1
+    first_peak: 
+    - 400.34814453125
+    - 77531.0
+  scan_count: 3719
+  file_size: 32409545
+  last_scan: 
+    last_peak: 
+    - 1797.822265625
+    - 158641.0
+    num: 3719
+    first_peak: 
+    - 400.712463378906
+    - 184376.0
+  scans_to_read: fl
+  total_time_to_read_and_access: 2.97683
+  time_to_read: 2.929157
+  lazy_type: :io_bad
+  end_time: 5993.05
+  start_time: 120.02
+  file: mflory_t000_scx_17_full_03.mzXML
+--- 
+- time_to_access: 0.015118
+  first_scan: 
+    last_peak: 
+    - 749.3935546875
+    - 11227.0
+    num: 1
+    first_peak: 
+    - 400.484069824219
+    - 52078.0
+  scan_count: 5192
+  file_size: 18528773
+  last_scan: 
+    last_peak: 
+    - 749.56103515625
+    - 56246.0
+    num: 5192
+    first_peak: 
+    - 400.435241699219
+    - 30789.0
+  scans_to_read: fl
+  total_time_to_read_and_access: 2.572106
+  time_to_read: 2.556971
+  lazy_type: :io_bad
+  end_time: 5993.2
+  start_time: 120.05
+  file: mflory_t000_scx_18_1st_01.mzXML
+--- 
+- time_to_access: 0.020089
+  first_scan: 
+    last_peak: 
+    - 1149.3505859375
+    - 2872.0
+    num: 1
+    first_peak: 
+    - 700.661499023438
+    - 201970.0
+  scan_count: 4501
+  file_size: 19711086
+  last_scan: 
+    last_peak: 
+    - 1149.451171875
+    - 15660.0
+    num: 4501
+    first_peak: 
+    - 700.2978515625
+    - 300115.0
+  scans_to_read: fl
+  total_time_to_read_and_access: 2.396311
+  time_to_read: 2.376206
+  lazy_type: :io_bad
+  end_time: 5993.69
+  start_time: 120.02
+  file: mflory_t000_scx_18_2nd_01.mzXML
+--- 
+- time_to_access: 0.029114
+  first_scan: 
+    last_peak: 
+    - 1799.72119140625
+    - 7058.0
+    num: 1
+    first_peak: 
+    - 1100.52514648438
+    - 78565.0
+  scan_count: 4596
+  file_size: 30144451
+  last_scan: 
+    last_peak: 
+    - 1799.50439453125
+    - 147630.0
+    num: 4596
+    first_peak: 
+    - 1100.4873046875
+    - 133272.0
+  scans_to_read: fl
+  total_time_to_read_and_access: 2.37987
+  time_to_read: 2.35074
+  lazy_type: :io_bad
+  end_time: 5993.91
+  start_time: 120.04
+  file: mflory_t000_scx_18_3rd_01.mzXML
+--- 
+- time_to_access: 0.031494
+  first_scan: 
+    last_peak: 
+    - 1799.84790039062
+    - 14276.0
+    num: 1
+    first_peak: 
+    - 400.167236328125
+    - 56259.0
+  scan_count: 3747
+  file_size: 31143927
+  last_scan: 
+    last_peak: 
+    - 1054.69970703125
+    - 5351.0
+    num: 3747
+    first_peak: 
+    - 164.535217285156
+    - 2662.0
+  scans_to_read: fl
+  total_time_to_read_and_access: 2.517535
+  time_to_read: 2.486025
+  lazy_type: :io_bad
+  end_time: 5993.1
+  start_time: 120.04
+  file: mflory_t000_scx_18_full_01.mzXML
+--- 
+- time_to_access: 0.015505
+  first_scan: 
+    last_peak: 
+    - 749.4052734375
+    - 20234.0
+    num: 1
+    first_peak: 
+    - 400.714416503906
+    - 128414.0
+  scan_count: 5519
+  file_size: 20899224
+  last_scan: 
+    last_peak: 
+    - 749.51904296875
+    - 24778.0
+    num: 5519
+    first_peak: 
+    - 400.502197265625
+    - 88691.0
+  scans_to_read: fl
+  total_time_to_read_and_access: 2.347304
+  time_to_read: 2.331783
+  lazy_type: :io_bad
+  end_time: 5993.7199
+  start_time: 120.05
+  file: mflory_t000_scx_19_1st_01.mzXML
+--- 
+- time_to_access: 0.019445
+  first_scan: 
+    last_peak: 
+    - 1149.52026367188
+    - 9520.0
+    num: 1
+    first_peak: 
+    - 700.455322265625
+    - 73363.0
+  scan_count: 4959
+  file_size: 23574750
+  last_scan: 
+    last_peak: 
+    - 1149.583984375
+    - 17663.0
+    num: 4959
+    first_peak: 
+    - 700.515869140625
+    - 155557.0
+  scans_to_read: fl
+  total_time_to_read_and_access: 2.188132
+  time_to_read: 2.16867
+  lazy_type: :io_bad
+  end_time: 5993.47
+  start_time: 120.04
+  file: mflory_t000_scx_19_2nd_01.mzXML
+--- 
+- time_to_access: 0.02978
+  first_scan: 
+    last_peak: 
+    - 1799.86987304688
+    - 3164.0
+    num: 1
+    first_peak: 
+    - 1100.42456054688
+    - 92601.0
+  scan_count: 4788
+  file_size: 34186224
+  last_scan: 
+    last_peak: 
+    - 1799.67260742188
+    - 10231.0
+    num: 4788
+    first_peak: 
+    - 1100.45751953125
+    - 98715.0
+  scans_to_read: fl
+  total_time_to_read_and_access: 3.080006
+  time_to_read: 3.05021
+  lazy_type: :io_bad
+  end_time: 5994.0
+  start_time: 120.09
+  file: mflory_t000_scx_19_3rd_01.mzXML
+--- 
+- time_to_access: 0.029745
+  first_scan: 
+    last_peak: 
+    - 1799.31494140625
+    - 63121.0
+    num: 1
+    first_peak: 
+    - 400.444702148438
+    - 53052.0
+  scan_count: 3840
+  file_size: 31303572
+  last_scan: 
+    last_peak: 
+    - 1439.7734375
+    - 8309.0
+    num: 3840
+    first_peak: 
+    - 225.094635009766
+    - 3643.0
+  scans_to_read: fl
+  total_time_to_read_and_access: 2.116805
+  time_to_read: 2.087043
+  lazy_type: :io_bad
+  end_time: 5993.63
+  start_time: 120.05
+  file: mflory_t000_scx_19_full_01.mzXML
+--- 
+- time_to_access: 0.01515
+  first_scan: 
+    last_peak: 
+    - 748.875
+    - 8971.0
+    num: 1
+    first_peak: 
+    - 400.466674804688
+    - 55163.0
+  scan_count: 5534
+  file_size: 20832822
+  last_scan: 
+    last_peak: 
+    - 749.404052734375
+    - 26342.0
+    num: 5534
+    first_peak: 
+    - 400.412414550781
+    - 91210.0
+  scans_to_read: fl
+  total_time_to_read_and_access: 2.345629
+  time_to_read: 2.330464
+  lazy_type: :io_bad
+  end_time: 5993.29
+  start_time: 120.04
+  file: mflory_t000_scx_20_1st_01.mzXML
+--- 
+- time_to_access: 0.118962
+  first_scan: 
+    last_peak: 
+    - 1149.5732421875
+    - 14582.0
+    num: 1
+    first_peak: 
+    - 700.65185546875
+    - 103152.0
+  scan_count: 5093
+  file_size: 23909874
+  last_scan: 
+    last_peak: 
+    - 1149.56884765625
+    - 23244.0
+    num: 5093
+    first_peak: 
+    - 700.750244140625
+    - 382300.0
+  scans_to_read: fl
+  total_time_to_read_and_access: 2.840622
+  time_to_read: 2.721643
+  lazy_type: :io_bad
+  end_time: 5993.68
+  start_time: 120.05
+  file: mflory_t000_scx_20_2nd_01.mzXML
+--- 
+- time_to_access: 0.029992
+  first_scan: 
+    last_peak: 
+    - 1799.03759765625
+    - 7309.0
+    num: 1
+    first_peak: 
+    - 1101.00390625
+    - 51014.0
+  scan_count: 4654
+  file_size: 31362315
+  last_scan: 
+    last_peak: 
+    - 1799.29443359375
+    - 166057.0
+    num: 4654
+    first_peak: 
+    - 1100.29858398438
+    - 157856.0
+  scans_to_read: fl
+  total_time_to_read_and_access: 2.65985
+  time_to_read: 2.62984
+  lazy_type: :io_bad
+  end_time: 5992.99
+  start_time: 120.02
+  file: mflory_t000_scx_20_3rd_01.mzXML
+--- 
+- time_to_access: 0.051121
+  first_scan: 
+    last_peak: 
+    - 1799.61694335938
+    - 25023.0
+    num: 1
+    first_peak: 
+    - 400.307800292969
+    - 41975.0
+  scan_count: 3885
+  file_size: 33103836
+  last_scan: 
+    last_peak: 
+    - 1798.58178710938
+    - 36540.0
+    num: 3885
+    first_peak: 
+    - 400.451599121094
+    - 53789.0
+  scans_to_read: fl
+  total_time_to_read_and_access: 2.987971
+  time_to_read: 2.936834
+  lazy_type: :io_bad
+  end_time: 5993.27
+  start_time: 120.03
+  file: mflory_t000_scx_20_full_01.mzXML
+--- 
+- time_to_access: 0.014628
+  first_scan: 
+    last_peak: 
+    - 749.341064453125
+    - 23208.0
+    num: 1
+    first_peak: 
+    - 400.2138671875
+    - 107554.0
+  scan_count: 6316
+  file_size: 20809750
+  last_scan: 
+    last_peak: 
+    - 749.54638671875
+    - 87222.0
+    num: 6316
+    first_peak: 
+    - 400.447570800781
+    - 44937.0
+  scans_to_read: fl
+  total_time_to_read_and_access: 2.51724
+  time_to_read: 2.502598
+  lazy_type: :io_bad
+  end_time: 5993.93
+  start_time: 120.09
+  file: mflory_t000_scx_21_1st_01.mzXML
+--- 
+- time_to_access: 0.017247
+  first_scan: 
+    last_peak: 
+    - 1149.34912109375
+    - 246868.0
+    num: 1
+    first_peak: 
+    - 700.688720703125
+    - 59713.0
+  scan_count: 6199
+  file_size: 27767152
+  last_scan: 
+    last_peak: 
+    - 1149.40283203125
+    - 204216.0
+    num: 6199
+    first_peak: 
+    - 700.4990234375
+    - 44348.0
+  scans_to_read: fl
+  total_time_to_read_and_access: 2.86979
+  time_to_read: 2.852527
+  lazy_type: :io_bad
+  end_time: 5993.63
+  start_time: 120.04
+  file: mflory_t000_scx_21_2nd_01.mzXML
+--- 
+- time_to_access: 0.026292
+  first_scan: 
+    last_peak: 
+    - 1799.75708007812
+    - 1046.0
+    num: 1
+    first_peak: 
+    - 1100.00463867188
+    - 56.0
+  scan_count: 4799
+  file_size: 33906256
+  last_scan: 
+    last_peak: 
+    - 1799.845703125
+    - 3637.0
+    num: 4799
+    first_peak: 
+    - 1100.41479492188
+    - 95896.0
+  scans_to_read: fl
+  total_time_to_read_and_access: 3.243546
+  time_to_read: 3.217239
+  lazy_type: :io_bad
+  end_time: 5993.88
+  start_time: 120.06
+  file: mflory_t000_scx_21_3rd_01.mzXML
+--- 
+- time_to_access: 0.723138
+  first_scan: 
+    last_peak: 
+    - 1799.77905273438
+    - 32913.0
+    num: 1
+    first_peak: 
+    - 400.337341308594
+    - 52117.0
+  scan_count: 3846
+  file_size: 30363915
+  last_scan: 
+    last_peak: 
+    - 1798.98901367188
+    - 77480.0
+    num: 3846
+    first_peak: 
+    - 400.560119628906
+    - 100795.0
+  scans_to_read: fl
+  total_time_to_read_and_access: 2.841182
+  time_to_read: 2.118027
+  lazy_type: :io_bad
+  end_time: 5993.69
+  start_time: 120.06
+  file: mflory_t000_scx_21_full_01.mzXML
+--- 
+- time_to_access: 0.008448
+  first_scan: 
+    last_peak: 
+    - 744.151489257812
+    - 14406.0
+    num: 1
+    first_peak: 
+    - 401.23681640625
+    - 37215.0
+  scan_count: 6490
+  file_size: 18643444
+  last_scan: 
+    last_peak: 
+    - 749.589721679688
+    - 76175.0
+    num: 6490
+    first_peak: 
+    - 400.280334472656
+    - 9374.0
+  scans_to_read: fl
+  total_time_to_read_and_access: 1.580381
+  time_to_read: 1.571916
+  lazy_type: :io_bad
+  end_time: 6173.97
+  start_time: 402.09
+  file: mflory_t000_scx_22_1st_02.mzXML
+--- 
+- time_to_access: 0.005989
+  first_scan: 
+    last_peak: 
+    - 1146.67944335938
+    - 9832.0
+    num: 1
+    first_peak: 
+    - 713.035766601562
+    - 2782.0
+  scan_count: 5323
+  file_size: 21726846
+  last_scan: 
+    last_peak: 
+    - 1149.69921875
+    - 13545.0
+    num: 5323
+    first_peak: 
+    - 700.501220703125
+    - 8223.0
+  scans_to_read: fl
+  total_time_to_read_and_access: 2.233773
+  time_to_read: 2.227767
+  lazy_type: :io_bad
+  end_time: 6173.8
+  start_time: 402.0999
+  file: mflory_t000_scx_22_2nd_01.mzXML
+--- 
+- time_to_access: 0.013506
+  first_scan: 
+    last_peak: 
+    - 1797.6044921875
+    - 10384.0
+    num: 1
+    first_peak: 
+    - 1110.1728515625
+    - 11744.0
+  scan_count: 4838
+  file_size: 25881792
+  last_scan: 
+    last_peak: 
+    - 1799.70239257812
+    - 38023.0
+    num: 4838
+    first_peak: 
+    - 1102.66064453125
+    - 22991.0
+  scans_to_read: fl
+  total_time_to_read_and_access: 2.692445
+  time_to_read: 2.678924
+  lazy_type: :io_bad
+  end_time: 6173.45
+  start_time: 402.11
+  file: mflory_t000_scx_22_3rd_01.mzXML
+--- 
+- time_to_access: 0.028081
+  first_scan: 
+    last_peak: 
+    - 1999.82080078125
+    - 27352.0
+    num: 1
+    first_peak: 
+    - 400.020812988281
+    - 12952.0
+  scan_count: 3713
+  file_size: 28966414
+  last_scan: 
+    last_peak: 
+    - 1995.33447265625
+    - 218.0
+    num: 3713
+    first_peak: 
+    - 300.154602050781
+    - 469.0
+  scans_to_read: fl
+  total_time_to_read_and_access: 2.368565
+  time_to_read: 2.340469
+  lazy_type: :io_bad
+  end_time: 6174.43
+  start_time: 402.05
+  file: mflory_T000_scx_22_full_01.mzXML
+--- 
+- time_to_access: 0.031752
+  first_scan: 
+    last_peak: 
+    - 1991.6640625
+    - 928.0
+    num: 1
+    first_peak: 
+    - 400.750122070312
+    - 132486.0
+  scan_count: 3726
+  file_size: 28192531
+  last_scan: 
+    last_peak: 
+    - 1999.41821289062
+    - 334395.0
+    num: 3726
+    first_peak: 
+    - 400.121459960938
+    - 2084.0
+  scans_to_read: fl
+  total_time_to_read_and_access: 2.446689
+  time_to_read: 2.414921
+  lazy_type: :io_bad
+  end_time: 6173.74
+  start_time: 402.04
+  file: mflory_T000_scx_22_full_02.mzXML
+--- 
+- time_to_access: 0.029598
+  first_scan: 
+    last_peak: 
+    - 1986.23291015625
+    - 8157.0
+    num: 1
+    first_peak: 
+    - 401.081420898438
+    - 132303.0
+  scan_count: 3678
+  file_size: 27939732
+  last_scan: 
+    last_peak: 
+    - 1998.98657226562
+    - 58090.0
+    num: 3678
+    first_peak: 
+    - 400.844116210938
+    - 95176.0
+  scans_to_read: fl
+  total_time_to_read_and_access: 1.94844
+  time_to_read: 1.918826
+  lazy_type: :io_bad
+  end_time: 6173.15
+  start_time: 402.04
+  file: mflory_T000_scx_22_full_03.mzXML
+--- 
+- time_to_access: 0.012976
+  first_scan: 
+    last_peak: 
+    - 749.633911132812
+    - 23214.0
+    num: 1
+    first_peak: 
+    - 400.249572753906
+    - 71883.0
+  scan_count: 6552
+  file_size: 19069763
+  last_scan: 
+    last_peak: 
+    - 749.557373046875
+    - 44271.0
+    num: 6552
+    first_peak: 
+    - 400.525146484375
+    - 128806.0
+  scans_to_read: fl
+  total_time_to_read_and_access: 2.41118
+  time_to_read: 2.398188
+  lazy_type: :io_bad
+  end_time: 6173.44
+  start_time: 402.08
+  file: mflory_t000_scx_23_1st_01.mzXML
+--- 
+- time_to_access: 0.007569
+  first_scan: 
+    last_peak: 
+    - 1129.75537109375
+    - 15918.0
+    num: 1
+    first_peak: 
+    - 712.877563476562
+    - 9011.0
+  scan_count: 4938
+  file_size: 19106342
+  last_scan: 
+    last_peak: 
+    - 1149.20849609375
+    - 54465.0
+    num: 4938
+    first_peak: 
+    - 701.990356445312
+    - 193282.0
+  scans_to_read: fl
+  total_time_to_read_and_access: 2.032354
+  time_to_read: 2.024769
+  lazy_type: :io_bad
+  end_time: 6173.42
+  start_time: 402.07
+  file: mflory_t000_scx_23_2nd_01.mzXML
+--- 
+- time_to_access: 0.008611
+  first_scan: 
+    last_peak: 
+    - 1135.4912109375
+    - 4649.0
+    num: 1
+    first_peak: 
+    - 712.54638671875
+    - 21060.0
+  scan_count: 5176
+  file_size: 20428907
+  last_scan: 
+    last_peak: 
+    - 1149.74169921875
+    - 32951.0
+    num: 5176
+    first_peak: 
+    - 700.501586914062
+    - 47219.0
+  scans_to_read: fl
+  total_time_to_read_and_access: 2.471818
+  time_to_read: 2.463192
+  lazy_type: :io_bad
+  end_time: 6173.39
+  start_time: 402.06
+  file: mflory_t000_scx_23_3rd_01.mzXML
+--- 
+- time_to_access: 0.013982
+  first_scan: 
+    last_peak: 
+    - 1797.283203125
+    - 12604.0
+    num: 1
+    first_peak: 
+    - 1110.2626953125
+    - 9701.0
+  scan_count: 4459
+  file_size: 23102392
+  last_scan: 
+    last_peak: 
+    - 1797.90087890625
+    - 180232.0
+    num: 4459
+    first_peak: 
+    - 1101.31640625
+    - 148918.0
+  scans_to_read: fl
+  total_time_to_read_and_access: 2.096147
+  time_to_read: 2.082148
+  lazy_type: :io_bad
+  end_time: 6173.76
+  start_time: 402.05
+  file: mflory_t000_scx_23_3rd_02.mzXML
+--- 
+- time_to_access: 0.025908
+  first_scan: 
+    last_peak: 
+    - 1798.447265625
+    - 41418.0
+    num: 1
+    first_peak: 
+    - 400.007446289062
+    - 446.0
+  scan_count: 3650
+  file_size: 25213633
+  last_scan: 
+    last_peak: 
+    - 1799.86547851562
+    - 24179.0
+    num: 3650
+    first_peak: 
+    - 401.074890136719
+    - 205950.0
+  scans_to_read: fl
+  total_time_to_read_and_access: 1.927564
+  time_to_read: 1.90164
+  lazy_type: :io_bad
+  end_time: 6172.75
+  start_time: 402.05
+  file: mflory_t000_scx_23_full_01.mzXML
+--- 
+- time_to_access: 0.008902
+  first_scan: 
+    last_peak: 
+    - 746.86474609375
+    - 18510.0
+    num: 1
+    first_peak: 
+    - 400.829162597656
+    - 37186.0
+  scan_count: 7057
+  file_size: 21979013
+  last_scan: 
+    last_peak: 
+    - 749.521484375
+    - 153730.0
+    num: 7057
+    first_peak: 
+    - 400.111694335938
+    - 29324.0
+  scans_to_read: fl
+  total_time_to_read_and_access: 2.393147
+  time_to_read: 2.38423
+  lazy_type: :io_bad
+  end_time: 6173.81
+  start_time: 402.02
+  file: mflory_t000_scx_24_1st_01.mzXML
+--- 
+- time_to_access: 0.009395
+  first_scan: 
+    last_peak: 
+    - 1149.71923828125
+    - 8333.0
+    num: 1
+    first_peak: 
+    - 714.963012695312
+    - 28982.0
+  scan_count: 4975
+  file_size: 21031546
+  last_scan: 
+    last_peak: 
+    - 1149.59375
+    - 36065.0
+    num: 4975
+    first_peak: 
+    - 700.496826171875
+    - 60946.0
+  scans_to_read: fl
+  total_time_to_read_and_access: 2.413753
+  time_to_read: 2.404343
+  lazy_type: :io_bad
+  end_time: 6173.68
+  start_time: 402.07
+  file: mflory_t000_scx_24_2nd_01.mzXML
+--- 
+- time_to_access: 0.014851
+  first_scan: 
+    last_peak: 
+    - 1795.90649414062
+    - 5002.0
+    num: 1
+    first_peak: 
+    - 1109.93359375
+    - 13923.0
+  scan_count: 4005
+  file_size: 20109142
+  last_scan: 
+    last_peak: 
+    - 1799.43432617188
+    - 25819.0
+    num: 4005
+    first_peak: 
+    - 1100.56079101562
+    - 132913.0
+  scans_to_read: fl
+  total_time_to_read_and_access: 1.969408
+  time_to_read: 1.954541
+  lazy_type: :io_bad
+  end_time: 6173.88
+  start_time: 402.04
+  file: mflory_t000_scx_24_3rd_01.mzXML
+--- 
+- time_to_access: 0.026854
+  first_scan: 
+    last_peak: 
+    - 1797.43237304688
+    - 6981.0
+    num: 1
+    first_peak: 
+    - 400.812622070312
+    - 77921.0
+  scan_count: 3721
+  file_size: 23970975
+  last_scan: 
+    last_peak: 
+    - 1798.38891601562
+    - 208365.0
+    num: 3721
+    first_peak: 
+    - 401.165405273438
+    - 134248.0
+  scans_to_read: fl
+  total_time_to_read_and_access: 2.37044
+  time_to_read: 2.34357
+  lazy_type: :io_bad
+  end_time: 6173.61
+  start_time: 402.06
+  file: mflory_t000_scx_24_full_01.mzXML
+--- 
+- time_to_access: 0.008843
+  first_scan: 
+    last_peak: 
+    - 1798.95434570312
+    - 15653.0
+    num: 1
+    first_peak: 
+    - 400.117980957031
+    - 15098.0
+  scan_count: 3910
+  file_size: 24893608
+  last_scan: 
+    last_peak: 
+    - 1979.33325195312
+    - 187.0
+    num: 3910
+    first_peak: 
+    - 448.191711425781
+    - 500.0
+  scans_to_read: fl
+  total_time_to_read_and_access: 2.004122
+  time_to_read: 1.995263
+  lazy_type: :io_bad
+  end_time: 6174.45
+  start_time: 402.04
+  file: mflory_t000_scx_25_full_01.mzXML
+--- 
+- time_to_access: 0.014789
+  first_scan: 
+    last_peak: 
+    - 748.7490234375
+    - 16071.0
+    num: 1
+    first_peak: 
+    - 400.490661621094
+    - 51566.0
+  scan_count: 5243
+  file_size: 22101271
+  last_scan: 
+    last_peak: 
+    - 749.69873046875
+    - 9492.0
+    num: 5243
+    first_peak: 
+    - 400.408447265625
+    - 47278.0
+  scans_to_read: fl
+  total_time_to_read_and_access: 2.07644
+  time_to_read: 2.061635
+  lazy_type: :io_bad
+  end_time: 5693.77
+  start_time: 120.04
+  file: mflory_T000_scx_27_1st_01.mzXML
+--- 
+- time_to_access: 0.018466
+  first_scan: 
+    last_peak: 
+    - 1149.5
+    - 7994.0
+    num: 1
+    first_peak: 
+    - 700.793212890625
+    - 48955.0
+  scan_count: 4654
+  file_size: 24744823
+  last_scan: 
+    last_peak: 
+    - 1149.71142578125
+    - 945.0
+    num: 4654
+    first_peak: 
+    - 700.123168945312
+    - 3530.0
+  scans_to_read: fl
+  total_time_to_read_and_access: 2.360441
+  time_to_read: 2.341958
+  lazy_type: :io_bad
+  end_time: 5693.86
+  start_time: 120.1
+  file: mflory_t000_scx_27_2nd_01.mzXML
+--- 
+- time_to_access: 0.028595
+  first_scan: 
+    last_peak: 
+    - 1799.14770507812
+    - 5477.0
+    num: 1
+    first_peak: 
+    - 1100.21020507812
+    - 12970.0
+  scan_count: 4372
+  file_size: 32439767
+  last_scan: 
+    last_peak: 
+    - 1799.66528320312
+    - 7746.0
+    num: 4372
+    first_peak: 
+    - 1100.53344726562
+    - 13871.0
+  scans_to_read: fl
+  total_time_to_read_and_access: 2.693067
+  time_to_read: 2.664456
+  lazy_type: :io_bad
+  end_time: 5693.51
+  start_time: 120.03
+  file: mflory_t000_scx_27_3rd_01.mzXML
+--- 
+- time_to_access: 0.050021
+  first_scan: 
+    last_peak: 
+    - 1799.43212890625
+    - 35132.0
+    num: 1
+    first_peak: 
+    - 400.147155761719
+    - 36119.0
+  scan_count: 3795
+  file_size: 42266018
+  last_scan: 
+    last_peak: 
+    - 1799.79223632812
+    - 12700.0
+    num: 3795
+    first_peak: 
+    - 400.15283203125
+    - 41933.0
+  scans_to_read: fl
+  total_time_to_read_and_access: 3.115143
+  time_to_read: 3.065105
+  lazy_type: :io_bad
+  end_time: 5693.06
+  start_time: 120.03
+  file: mflory_t000_scx_27_full_01.mzXML
+--- 
+- time_to_access: 0.014424
+  first_scan: 
+    last_peak: 
+    - 749.88134765625
+    - 4217.0
+    num: 1
+    first_peak: 
+    - 400.505798339844
+    - 45158.0
+  scan_count: 5623
+  file_size: 24289928
+  last_scan: 
+    last_peak: 
+    - 749.6142578125
+    - 4640.0
+    num: 5623
+    first_peak: 
+    - 400.509704589844
+    - 49108.0
+  scans_to_read: fl
+  total_time_to_read_and_access: 2.266411
+  time_to_read: 2.25197
+  lazy_type: :io_bad
+  end_time: 5693.8
+  start_time: 120.03
+  file: mflory_t000_scx_28_1st_01.mzXML
+--- 
+- time_to_access: 0.018066
+  first_scan: 
+    last_peak: 
+    - 1149.33325195312
+    - 1.0
+    num: 1
+    first_peak: 
+    - 700.904174804688
+    - 13921.0
+  scan_count: 4946
+  file_size: 26578261
+  last_scan: 
+    last_peak: 
+    - 1149.7978515625
+    - 2717.0
+    num: 4946
+    first_peak: 
+    - 700.208251953125
+    - 8909.0
+  scans_to_read: fl
+  total_time_to_read_and_access: 1.980097
+  time_to_read: 1.962014
+  lazy_type: :io_bad
+  end_time: 5693.92
+  start_time: 120.1
+  file: mflory_t000_scx_28_2nd_01.mzXML
+--- 
+- time_to_access: 0.028018
+  first_scan: 
+    last_peak: 
+    - 1797.91357421875
+    - 12837.0
+    num: 1
+    first_peak: 
+    - 1100.5400390625
+    - 13776.0
+  scan_count: 4506
+  file_size: 33955778
+  last_scan: 
+    last_peak: 
+    - 1799.62866210938
+    - 9626.0
+    num: 4506
+    first_peak: 
+    - 1100.51953125
+    - 14766.0
+  scans_to_read: fl
+  total_time_to_read_and_access: 2.620934
+  time_to_read: 2.5929
+  lazy_type: :io_bad
+  end_time: 5693.32
+  start_time: 120.1
+  file: mflory_t000_scx_28_3rd_01.mzXML
+--- 
+- time_to_access: 0.050129
+  first_scan: 
+    last_peak: 
+    - 1798.37719726562
+    - 29759.0
+    num: 1
+    first_peak: 
+    - 400.629760742188
+    - 60494.0
+  scan_count: 3673
+  file_size: 40297995
+  last_scan: 
+    last_peak: 
+    - 1799.46337890625
+    - 60765.0
+    num: 3673
+    first_peak: 
+    - 400.486267089844
+    - 69059.0
+  scans_to_read: fl
+  total_time_to_read_and_access: 3.134759
+  time_to_read: 3.084614
+  lazy_type: :io_bad
+  end_time: 5693.22
+  start_time: 120.11
+  file: mflory_t000_scx_28_full_01.mzXML
+--- 
+- time_to_access: 0.014798
+  first_scan: 
+    last_peak: 
+    - 749.791259765625
+    - 5083.0
+    num: 1
+    first_peak: 
+    - 400.349548339844
+    - 39303.0
+  scan_count: 5482
+  file_size: 22949918
+  last_scan: 
+    last_peak: 
+    - 749.708251953125
+    - 119978.0
+    num: 5482
+    first_peak: 
+    - 400.376037597656
+    - 173667.0
+  scans_to_read: fl
+  total_time_to_read_and_access: 2.232966
+  time_to_read: 2.218153
+  lazy_type: :io_bad
+  end_time: 5693.82
+  start_time: 120.04
+  file: mflory_t000_scx_29_1st_01.mzXML
+--- 
+- time_to_access: 0.018293
+  first_scan: 
+    last_peak: 
+    - 1149.67504882812
+    - 32877.0
+    num: 1
+    first_peak: 
+    - 700.58984375
+    - 121395.0
+  scan_count: 4587
+  file_size: 22215449
+  last_scan: 
+    last_peak: 
+    - 1985.99438476562
+    - 5280.0
+    num: 4587
+    first_peak: 
+    - 284.283874511719
+    - 2252.0
+  scans_to_read: fl
+  total_time_to_read_and_access: 1.958151
+  time_to_read: 1.939843
+  lazy_type: :io_bad
+  end_time: 5693.33
+  start_time: 120.08
+  file: mflory_t000_scx_29_2nd_01.mzXML
+--- 
+- time_to_access: 0.020251
+  first_scan: 
+    last_peak: 
+    - 1149.31396484375
+    - 12977.0
+    num: 1
+    first_peak: 
+    - 700.489013671875
+    - 14247.0
+  scan_count: 4990
+  file_size: 26029298
+  last_scan: 
+    last_peak: 
+    - 1149.65209960938
+    - 7817.0
+    num: 4990
+    first_peak: 
+    - 700.420776367188
+    - 53595.0
+  scans_to_read: fl
+  total_time_to_read_and_access: 2.925676
+  time_to_read: 2.905409
+  lazy_type: :io_bad
+  end_time: 5693.12
+  start_time: 120.02
+  file: mflory_t000_scx_29_2nd_02.mzXML
+--- 
+- time_to_access: 0.029597
+  first_scan: 
+    last_peak: 
+    - 1799.51123046875
+    - 27207.0
+    num: 1
+    first_peak: 
+    - 1100.5068359375
+    - 21747.0
+  scan_count: 4559
+  file_size: 33276982
+  last_scan: 
+    last_peak: 
+    - 1799.58544921875
+    - 81546.0
+    num: 4559
+    first_peak: 
+    - 1100.65478515625
+    - 277429.0
+  scans_to_read: fl
+  total_time_to_read_and_access: 2.246153
+  time_to_read: 2.216539
+  lazy_type: :io_bad
+  end_time: 5693.19
+  start_time: 120.04
+  file: mflory_t000_scx_29_3rd_01.mzXML
+--- 
+- time_to_access: 0.049465
+  first_scan: 
+    last_peak: 
+    - 1799.37963867188
+    - 18113.0
+    num: 1
+    first_peak: 
+    - 400.244018554688
+    - 71496.0
+  scan_count: 3673
+  file_size: 40523405
+  last_scan: 
+    last_peak: 
+    - 1799.74658203125
+    - 28778.0
+    num: 3673
+    first_peak: 
+    - 400.274169921875
+    - 29678.0
+  scans_to_read: fl
+  total_time_to_read_and_access: 2.958305
+  time_to_read: 2.908825
+  lazy_type: :io_bad
+  end_time: 5692.6
+  start_time: 120.05
+  file: mflory_t000_scx_29_full_01.mzXML
+--- 
+- time_to_access: 0.047479
+  first_scan: 
+    last_peak: 
+    - 1799.42236328125
+    - 8989.0
+    num: 1
+    first_peak: 
+    - 400.237609863281
+    - 16943.0
+  scan_count: 3491
+  file_size: 32846863
+  last_scan: 
+    last_peak: 
+    - 1799.533203125
+    - 2.0
+    num: 3491
+    first_peak: 
+    - 400.35107421875
+    - 38560.0
+  scans_to_read: fl
+  total_time_to_read_and_access: 2.587099
+  time_to_read: 2.539603
+  lazy_type: :io_bad
+  end_time: 5693.98
+  start_time: 120.05
+  file: mflory_t000_scx_29_full_02.mzXML
+--- 
+- time_to_access: 0.014854
+  first_scan: 
+    last_peak: 
+    - 749.598388671875
+    - 3321.0
+    num: 1
+    first_peak: 
+    - 400.47021484375
+    - 40535.0
+  scan_count: 5538
+  file_size: 23356974
+  last_scan: 
+    last_peak: 
+    - 749.59716796875
+    - 16122.0
+    num: 5538
+    first_peak: 
+    - 400.531311035156
+    - 61405.0
+  scans_to_read: fl
+  total_time_to_read_and_access: 2.347371
+  time_to_read: 2.332502
+  lazy_type: :io_bad
+  end_time: 5693.89
+  start_time: 120.04
+  file: mflory_t000_scx_30_1st_01.mzXML
+--- 
+- time_to_access: 0.019268
+  first_scan: 
+    last_peak: 
+    - 1149.6796875
+    - 8748.0
+    num: 1
+    first_peak: 
+    - 700.609008789062
+    - 35028.0
+  scan_count: 5012
+  file_size: 26241613
+  last_scan: 
+    last_peak: 
+    - 1149.28881835938
+    - 3.0
+    num: 5012
+    first_peak: 
+    - 700.460815429688
+    - 51595.0
+  scans_to_read: fl
+  total_time_to_read_and_access: 2.968326
+  time_to_read: 2.949042
+  lazy_type: :io_bad
+  end_time: 5693.86
+  start_time: 120.1
+  file: mflory_t000_scx_30_2nd_01.mzXML
+--- 
+- time_to_access: 0.029405
+  first_scan: 
+    last_peak: 
+    - 1799.47631835938
+    - 28667.0
+    num: 1
+    first_peak: 
+    - 1100.4296875
+    - 26333.0
+  scan_count: 4505
+  file_size: 33214069
+  last_scan: 
+    last_peak: 
+    - 1799.61669921875
+    - 12775.0
+    num: 4505
+    first_peak: 
+    - 1100.37158203125
+    - 27572.0
+  scans_to_read: fl
+  total_time_to_read_and_access: 2.23826
+  time_to_read: 2.208839
+  lazy_type: :io_bad
+  end_time: 5693.14
+  start_time: 120.02
+  file: mflory_t000_scx_30_3rd_01.mzXML
+--- 
+- time_to_access: 0.051201
+  first_scan: 
+    last_peak: 
+    - 1799.5
+    - 193154.0
+    num: 1
+    first_peak: 
+    - 400.599487304688
+    - 247622.0
+  scan_count: 3645
+  file_size: 40312249
+  last_scan: 
+    last_peak: 
+    - 1799.82543945312
+    - 18527.0
+    num: 3645
+    first_peak: 
+    - 400.406921386719
+    - 28602.0
+  scans_to_read: fl
+  total_time_to_read_and_access: 3.039405
+  time_to_read: 2.988189
+  lazy_type: :io_bad
+  end_time: 5693.8
+  start_time: 120.03
+  file: mflory_t000_scx_30_full_01.mzXML
+--- 
+- time_to_access: 0.229371
+  first_scan: 
+    last_peak: 
+    - 749.659301757812
+    - 11904.0
+    num: 1
+    first_peak: 
+    - 400.507202148438
+    - 55485.0
+  scan_count: 5269
+  file_size: 22542553
+  last_scan: 
+    last_peak: 
+    - 749.440185546875
+    - 33161.0
+    num: 5269
+    first_peak: 
+    - 400.349182128906
+    - 53935.0
+  scans_to_read: fl
+  total_time_to_read_and_access: 3.108867
+  time_to_read: 2.879479
+  lazy_type: :io_bad
+  end_time: 5693.1
+  start_time: 120.08
+  file: mflory_t000_scx_31_1st_01.mzXML
+--- 
+- time_to_access: 0.021337
+  first_scan: 
+    last_peak: 
+    - 1149.78515625
+    - 822.0
+    num: 1
+    first_peak: 
+    - 700.494995117188
+    - 34945.0
+  scan_count: 4968
+  file_size: 24535514
+  last_scan: 
+    last_peak: 
+    - 1149.4462890625
+    - 28504.0
+    num: 4968
+    first_peak: 
+    - 700.454223632812
+    - 84765.0
+  scans_to_read: fl
+  total_time_to_read_and_access: 2.507592
+  time_to_read: 2.486238
+  lazy_type: :io_bad
+  end_time: 5693.56
+  start_time: 120.1
+  file: mflory_t000_scx_31_2nd_01.mzXML
+--- 
+- time_to_access: 0.035155
+  first_scan: 
+    last_peak: 
+    - 1799.26806640625
+    - 60177.0
+    num: 1
+    first_peak: 
+    - 1100.25
+    - 79632.0
+  scan_count: 4570
+  file_size: 31961070
+  last_scan: 
+    last_peak: 
+    - 1799.83813476562
+    - 12432.0
+    num: 4570
+    first_peak: 
+    - 1100.74340820312
+    - 105416.0
+  scans_to_read: fl
+  total_time_to_read_and_access: 2.330451
+  time_to_read: 2.29528
+  lazy_type: :io_bad
+  end_time: 5693.3099
+  start_time: 120.03
+  file: mflory_t000_scx_31_3rd_01.mzXML
+--- 
+- time_to_access: 0.051031
+  first_scan: 
+    last_peak: 
+    - 1799.7568359375
+    - 5597.0
+    num: 1
+    first_peak: 
+    - 400.5888671875
+    - 18899.0
+  scan_count: 3575
+  file_size: 38126175
+  last_scan: 
+    last_peak: 
+    - 1799.8115234375
+    - 20179.0
+    num: 3575
+    first_peak: 
+    - 400.37060546875
+    - 114906.0
+  scans_to_read: fl
+  total_time_to_read_and_access: 2.83796
+  time_to_read: 2.786914
+  lazy_type: :io_bad
+  end_time: 5692.5899
+  start_time: 120.11
+  file: mflory_t000_scx_31_full_01.mzXML
+--- 
+- time_to_access: 0.01486
+  first_scan: 
+    last_peak: 
+    - 749.406494140625
+    - 42300.0
+    num: 1
+    first_peak: 
+    - 400.259826660156
+    - 55065.0
+  scan_count: 5572
+  file_size: 22113367
+  last_scan: 
+    last_peak: 
+    - 749.58642578125
+    - 4139.0
+    num: 5572
+    first_peak: 
+    - 400.551086425781
+    - 113273.0
+  scans_to_read: fl
+  total_time_to_read_and_access: 2.068521
+  time_to_read: 2.053645
+  lazy_type: :io_bad
+  end_time: 5693.3599
+  start_time: 120.08
+  file: mflory_t000_scx_32_1st_01.mzXML
+--- 
+- time_to_access: 0.019724
+  first_scan: 
+    last_peak: 
+    - 1149.23876953125
+    - 23204.0
+    num: 1
+    first_peak: 
+    - 700.272705078125
+    - 38181.0
+  scan_count: 4912
+  file_size: 24268953
+  last_scan: 
+    last_peak: 
+    - 1149.6669921875
+    - 4399.0
+    num: 4912
+    first_peak: 
+    - 700.536376953125
+    - 76964.0
+  scans_to_read: fl
+  total_time_to_read_and_access: 2.786592
+  time_to_read: 2.766852
+  lazy_type: :io_bad
+  end_time: 5693.4
+  start_time: 120.02
+  file: mflory_t000_scx_32_2nd_01.mzXML
+--- 
+- time_to_access: 0.016349
+  first_scan: 
+    last_peak: 
+    - 1149.1328125
+    - 12431.0
+    num: 1
+    first_peak: 
+    - 700.319580078125
+    - 11692.0
+  scan_count: 4684
+  file_size: 21666060
+  last_scan: 
+    last_peak: 
+    - 1895.85083007812
+    - 3345.0
+    num: 4684
+    first_peak: 
+    - 316.127624511719
+    - 5597.0
+  scans_to_read: fl
+  total_time_to_read_and_access: 2.061691
+  time_to_read: 2.045326
+  lazy_type: :io_bad
+  end_time: 5693.12
+  start_time: 120.05
+  file: mflory_t000_scx_32_2nd_02.mzXML
+--- 
+- time_to_access: 0.020379
+  first_scan: 
+    last_peak: 
+    - 1799.478515625
+    - 64167.0
+    num: 1
+    first_peak: 
+    - 1100.41040039062
+    - 284971.0
+  scan_count: 3986
+  file_size: 20142969
+  last_scan: 
+    last_peak: 
+    - 1794.6220703125
+    - 3261.0
+    num: 3986
+    first_peak: 
+    - 1101.23095703125
+    - 672.0
+  scans_to_read: fl
+  total_time_to_read_and_access: 1.926253
+  time_to_read: 1.905858
+  lazy_type: :io_bad
+  end_time: 5693.18
+  start_time: 120.05
+  file: mflory_t000_scx_32_3rd_01.mzXML
+--- 
+- time_to_access: 0.051814
+  first_scan: 
+    last_peak: 
+    - 1799.66967773438
+    - 54249.0
+    num: 1
+    first_peak: 
+    - 400.664855957031
+    - 42969.0
+  scan_count: 3597
+  file_size: 38301593
+  last_scan: 
+    last_peak: 
+    - 1799.84594726562
+    - 3994.0
+    num: 3597
+    first_peak: 
+    - 400.345764160156
+    - 133319.0
+  scans_to_read: fl
+  total_time_to_read_and_access: 2.715879
+  time_to_read: 2.664049
+  lazy_type: :io_bad
+  end_time: 5693.88
+  start_time: 120.11
+  file: mflory_t000_scx_32_full_01.mzXML
+--- 
+- time_to_access: 0.049414
+  first_scan: 
+    last_peak: 
+    - 1799.85327148438
+    - 8997.0
+    num: 1
+    first_peak: 
+    - 400.184753417969
+    - 31200.0
+  scan_count: 3730
+  file_size: 42374823
+  last_scan: 
+    last_peak: 
+    - 1799.43725585938
+    - 23519.0
+    num: 3730
+    first_peak: 
+    - 400.333312988281
+    - 2.0
+  scans_to_read: fl
+  total_time_to_read_and_access: 2.808535
+  time_to_read: 2.759105
+  lazy_type: :io_bad
+  end_time: 5693.27
+  start_time: 120.02
+  file: mflory_t000_scx_33_full_02.mzXML
+--- 
+- time_to_access: 0.047915
+  first_scan: 
+    last_peak: 
+    - 1799.68237304688
+    - 85823.0
+    num: 1
+    first_peak: 
+    - 400.321533203125
+    - 97623.0
+  scan_count: 3513
+  file_size: 29376916
+  last_scan: 
+    last_peak: 
+    - 1798.38720703125
+    - 9569.0
+    num: 3513
+    first_peak: 
+    - 400.674377441406
+    - 196893.0
+  scans_to_read: fl
+  total_time_to_read_and_access: 2.468918
+  time_to_read: 2.420987
+  lazy_type: :io_bad
+  end_time: 5693.1299
+  start_time: 120.03
+  file: mflory_t000_scx_33_full_03.mzXML
+--- 
+- time_to_access: 0.039775
+  first_scan: 
+    last_peak: 
+    - 1771.97924804688
+    - 5906.0
+    num: 1
+    first_peak: 
+    - 400.705322265625
+    - 149428.0
+  scan_count: 3507
+  file_size: 28117408
+  last_scan: 
+    last_peak: 
+    - 1799.240234375
+    - 5083.0
+    num: 3507
+    first_peak: 
+    - 400.897155761719
+    - 219424.0
+  scans_to_read: fl
+  total_time_to_read_and_access: 1.874736
+  time_to_read: 1.834943
+  lazy_type: :io_bad
+  end_time: 5692.85
+  start_time: 120.05
+  file: mflory_t000_scx_33_full_04.mzXML
+--- 
+- time_to_access: 0.050512
+  first_scan: 
+    last_peak: 
+    - 1794.86547851562
+    - 45752.0
+    num: 1
+    first_peak: 
+    - 400.158325195312
+    - 47007.0
+  scan_count: 3748
+  file_size: 34003688
+  last_scan: 
+    last_peak: 
+    - 1799.65502929688
+    - 21492.0
+    num: 3748
+    first_peak: 
+    - 400.260620117188
+    - 21018.0
+  scans_to_read: fl
+  total_time_to_read_and_access: 2.59586
+  time_to_read: 2.545331
+  lazy_type: :io_bad
+  end_time: 5992.48
+  start_time: 120.04
+  file: mflory_t000_scx_34_full_01.mzXML
+--- 
+- time_to_access: 0.045431
+  first_scan: 
+    last_peak: 
+    - 1798.71362304688
+    - 24690.0
+    num: 1
+    first_peak: 
+    - 400.235717773438
+    - 94638.0
+  scan_count: 3716
+  file_size: 32257545
+  last_scan: 
+    last_peak: 
+    - 1794.94799804688
+    - 30699.0
+    num: 3716
+    first_peak: 
+    - 400.252624511719
+    - 33033.0
+  scans_to_read: fl
+  total_time_to_read_and_access: 2.569206
+  time_to_read: 2.523758
+  lazy_type: :io_bad
+  end_time: 5992.73
+  start_time: 120.05
+  file: mflory_t000_scx_34_full_02.mzXML
+--- 
+- time_to_access: 0.061729
+  first_scan: 
+    last_peak: 
+    - 1797.94921875
+    - 20713.0
+    num: 1
+    first_peak: 
+    - 400.320617675781
+    - 68468.0
+  scan_count: 3627
+  file_size: 31376114
+  last_scan: 
+    last_peak: 
+    - 1799.744140625
+    - 95306.0
+    num: 3627
+    first_peak: 
+    - 400.580017089844
+    - 201380.0
+  scans_to_read: fl
+  total_time_to_read_and_access: 2.930694
+  time_to_read: 2.86895
+  lazy_type: :io_bad
+  end_time: 5993.53
+  start_time: 120.08
+  file: mflory_t000_scx_35_full_01.mzXML
+--- 
+- time_to_access: 0.029312
+  first_scan: 
+    last_peak: 
+    - 1799.15673828125
+    - 38842.0
+    num: 1
+    first_peak: 
+    - 400.509338378906
+    - 112957.0
+  scan_count: 3521
+  file_size: 29200316
+  last_scan: 
+    last_peak: 
+    - 1983.47314453125
+    - 8925.0
+    num: 3521
+    first_peak: 
+    - 576.696044921875
+    - 3454.0
+  scans_to_read: fl
+  total_time_to_read_and_access: 1.976344
+  time_to_read: 1.947015
+  lazy_type: :io_bad
+  end_time: 5993.56
+  start_time: 120.08
+  file: mflory_t000_scx_35_full_02.mzXML

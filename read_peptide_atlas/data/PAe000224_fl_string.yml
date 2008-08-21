@@ -1,0 +1,27 @@
+--- 
+- time_to_access: 0.000344
+  first_scan: 
+    last_peak: 
+    - 1597.1904296875
+    - 38987.0
+    num: 1
+    first_peak: 
+    - 400.63427734375
+    - 56029.0
+  scan_count: 2728
+  file_size: 16928701
+  last_scan: 
+    last_peak: 
+    - 933.301513671875
+    - 6036.0
+    num: 2728
+    first_peak: 
+    - 222.085723876953
+    - 7720.0
+  scans_to_read: fl
+  total_time_to_read_and_access: 10.152351
+  time_to_read: 10.151991
+  lazy_type: :string
+  end_time: 4079.47
+  start_time: 120.07
+  file: YAGsn1.mzXML

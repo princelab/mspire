@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="iso-8859-1"?>
+<!DOCTYPE html 
+     PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+     "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html>
+<head>
+  <title>tps_and_ppv (ROC)</title>
+  <meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1" />
+  <link rel="stylesheet" href="../.././rdoc-style.css" type="text/css" media="screen" />
+</head>
+<body class="standalone-code">
+  <pre><span class="ruby-comment cmt"># File lib/roc.rb, line 73</span>
+  <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">tps_and_ppv</span>(<span class="ruby-identifier">tp</span>, <span class="ruby-identifier">fp</span>)
+    <span class="ruby-identifier">tp_i</span> = <span class="ruby-value">0</span>
+    <span class="ruby-identifier">fp_i</span> = <span class="ruby-value">0</span>
+    <span class="ruby-identifier">x</span> = []
+    <span class="ruby-identifier">y</span> = []
+    <span class="ruby-identifier">num_tps</span> = <span class="ruby-value">0</span>
+
+    <span class="ruby-keyword kw">while</span> <span class="ruby-identifier">tp_i</span> <span class="ruby-operator">&lt;</span> <span class="ruby-identifier">tp</span>.<span class="ruby-identifier">size</span>
+      <span class="ruby-keyword kw">while</span> <span class="ruby-identifier">fp_i</span> <span class="ruby-operator">&lt;</span> <span class="ruby-identifier">fp</span>.<span class="ruby-identifier">size</span> <span class="ruby-operator">&amp;&amp;</span> <span class="ruby-identifier">tp</span>[<span class="ruby-identifier">tp_i</span>] <span class="ruby-operator">&gt;=</span> <span class="ruby-identifier">fp</span>[<span class="ruby-identifier">fp_i</span>]
+        <span class="ruby-identifier">fp_i</span> <span class="ruby-operator">+=</span> <span class="ruby-value">1</span>
+      <span class="ruby-keyword kw">end</span>
+      <span class="ruby-keyword kw">unless</span> <span class="ruby-identifier">tp</span>[<span class="ruby-identifier">tp_i</span>] <span class="ruby-operator">==</span> <span class="ruby-identifier">tp</span>[<span class="ruby-identifier">tp_i</span><span class="ruby-operator">+</span><span class="ruby-value">1</span>]
+        <span class="ruby-comment cmt"># get the correct number of each</span>
+        <span class="ruby-identifier">num_tps</span> = <span class="ruby-identifier">tp_i</span> <span class="ruby-operator">+</span> <span class="ruby-value">1</span> 
+        <span class="ruby-identifier">num_fps</span> = <span class="ruby-identifier">fp_i</span> 
+
+        <span class="ruby-identifier">x</span> <span class="ruby-operator">&lt;&lt;</span> <span class="ruby-identifier">num_tps</span>
+        <span class="ruby-identifier">y</span> <span class="ruby-operator">&lt;&lt;</span> <span class="ruby-identifier">num_tps</span>.<span class="ruby-identifier">to_f</span><span class="ruby-operator">/</span>(<span class="ruby-identifier">num_tps</span><span class="ruby-operator">+</span><span class="ruby-identifier">num_fps</span>)
+
+      <span class="ruby-keyword kw">end</span>
+      <span class="ruby-identifier">tp_i</span> <span class="ruby-operator">+=</span> <span class="ruby-value">1</span> 
+    <span class="ruby-keyword kw">end</span>
+    <span class="ruby-keyword kw">return</span> <span class="ruby-identifier">x</span>, <span class="ruby-identifier">y</span>
+  <span class="ruby-keyword kw">end</span></pre>
+</body>
+</html>
