@@ -19,10 +19,18 @@ describe PiZero do
     answ_pis.zip(expected) {|a,e| a.should be_close(e, 0.0000000001) }
   end
 
-  it 'can find a plateau region' do
+  xit 'can find a plateau height with exponential' do
     x = [0.0, 0.01, 0.012, 0.13, 0.2, 0.3, 0.4, 0.6, 0.7, 0.8, 0.9, 1.0, 1.1, 1.2]
     y = [1.0, 0.95, 0.92, 0.8, 0.7, 0.6, 0.55, 0.58, 0.62, 0.53, 0.54, 0.59, 0.4, 0.72]
-    z = PiZero.plateau(x,y)
+
+    z = PiZero.plateau_exponential(x,y)
+    # still working on this one
+  end
+
+  it 'can find a plateau height' do
+    x = [0.0, 0.01, 0.012, 0.13, 0.2, 0.3, 0.4, 0.6, 0.7, 0.8, 0.9, 1.0, 1.1, 1.2]
+    y = [1.0, 0.95, 0.92, 0.8, 0.7, 0.6, 0.55, 0.58, 0.62, 0.53, 0.54, 0.59, 0.4, 0.72]
+    z = PiZero.plateau_height(x,y)
     z.should be_close(0.57, 0.05)
     #require 'rsruby'
     #r = RSRuby.instance

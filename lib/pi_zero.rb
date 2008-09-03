@@ -1,4 +1,5 @@
 require 'rsruby'
+require 'gsl'
 
 module PiZero
   # takes a sorted array of p-values (floats between 0 and 1 inclusive)
@@ -27,7 +28,7 @@ module PiZero
   # expecting x and y to make a scatter plot descending to a plateau on the
   # right side (which is assumed to be of increasing noise as it goes to the
   # right)
-  # returns the height of the plateau
+  # returns the height of the plateau at the right edge
   #
   # *
   #   *
@@ -35,7 +36,7 @@ module PiZero
   #       **
   #          ** ***         *    *
   #                    ***** **** ***
-  def self.plateau(x, y)
+  def self.plateau_height(x, y)
 =begin
     require 'gsl'
     x_deltas = (0...(x.size-1)).to_a.map do |i|
@@ -69,9 +70,22 @@ module PiZero
     ## to plot it!
     #r.plot(x,y)
     #r.lines(answ['x'], answ['y'])
+    #r.points(answ['x'], answ['y'])
     #sleep(8)
 
     answ['y'].last
+  end
+
+  def self.plateau_exponential(x,y)
+    xvec = GSL::Vector.alloc(x)
+    yvec = GSL::Vector.alloc(y)
+    a2, b2, = GSL::Fit.linear(xvec, GSL::Sf::log(yvec))
+    x2 = GSL::Vector.linspace(0, 1.2, 20)
+    exp_a = GSL::Sf::exp(a2)
+    out_y = exp_a*GSL::Sf::exp(b2*x2)
+    raise NotImplementedError, "need to grab out the answer"
+    #graph([xvec, yvec], [x2, exp_a*GSL::Sf::exp(b2*x2)], "-C -g 3 -S 4")
+
   end
 
   # returns a conservative (but close) estimate of pi_0 given sorted p-values
