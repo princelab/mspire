@@ -91,7 +91,7 @@ module PiZero
   # returns a conservative (but close) estimate of pi_0 given sorted p-values
   # following Storey et al. 2003, PNAS.
   def self.pi_zero(sorted_pvals)
-    plateau( *(pi_zero_hats(sorted_pvals)) )
+    plateau_height( *(pi_zero_hats(sorted_pvals)) )
   end
 
 end
