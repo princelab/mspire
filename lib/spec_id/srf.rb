@@ -241,16 +241,30 @@ class SRF
 
   # not given an out_folder, will make one with the basename
   # compress may be: :zip, :tgz, or nil (no compression)
-  # :zip requires gem rubyzip to be installed!
+  # :zip requires gem rubyzip to be installed and is *very* bloated
+  # as it writes out all the files first!
+  # :tgz requires gem archive-tar-minitar to be installed
   def to_dta_files(out_folder=nil, compress=nil)
     outdir = 
       if out_folder ; out_folder
       else base_name
       end
 
-    raise NotImplementedError, "no .tgz compression yet!" if compress == :tgz
-
     case compress
+    when :tgz
+      begin
+        require 'archive/tar/minitar'
+      rescue LoadError
+        abort "need gem 'archive-tar-minitar' installed' for tgz compression!\n#{$!}"
+      end
+      require 'archive/targz'  # my own simplified interface!
+      names = index.map do |i_ar|
+        outdir + '/' + [base_name, *i_ar].join('.') + '.dta')
+      end
+      dta_files.map do |dta_file|
+        dta_file.to_dta_file_data
+      end
+      Archive::Targz.archive_as_files(outdir + '.tgz', names, dta_files)
     when :zip
       begin
         require 'zip/zipfilesystem'
@@ -679,6 +693,15 @@ class SRF::DTA
     st3 = fh.read(num_bytes_to_read)
     self[7] = st3
     self
+  end
+
+  def to_dta_file_data
+     string = "#{mh} #{charge}\r\n"
+     peak_ar = peaks.unpack('e*')
+     (0...(peak_ar.size)).step(2) do |i|
+       string << ( peak_ar[i,2].join(' '), "\r\n" )
+     end
+     string
   end
 
   # write a class dta file to the io object
