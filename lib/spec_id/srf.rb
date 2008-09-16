@@ -259,7 +259,7 @@ class SRF
       end
       require 'archive/targz'  # my own simplified interface!
       names = index.map do |i_ar|
-        outdir + '/' + [base_name, *i_ar].join('.') + '.dta')
+        [outdir, '/', [base_name, *i_ar].join('.'), '.dta'].join('')
       end
       dta_files.map do |dta_file|
         dta_file.to_dta_file_data
