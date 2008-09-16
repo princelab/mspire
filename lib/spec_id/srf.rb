@@ -699,7 +699,7 @@ class SRF::DTA
      string = "#{mh} #{charge}\r\n"
      peak_ar = peaks.unpack('e*')
      (0...(peak_ar.size)).step(2) do |i|
-       string << ( peak_ar[i,2].join(' '), "\r\n" )
+       string << peak_ar[i,2].join(' ') << "\r\n"
      end
      string
   end
