@@ -1,0 +1,29 @@
+---
+inMenu: true
+title: conversions
+directoryName: conversions
+---
+Bioworks (srf or bioworks.xml) to .pepxml
+=========================================
+
+mspire can convert Bioworks search output into a pepxml file for input into the transproteomic pipeline.
+
+Command line interface
+----------------------
+
+### With .srf files
+
+    bioworks_to_pepxml.rb run1.srf run2.srf run3.srf
+        # => run1.pepXML, run2.pepXML, run3.pepXML
+
+### With BioworksBrowser Multiconcensus XML export
+
+Open a group of files from a single sample in BioworksBrowser's Multiconcensus output.  In the default protein view with no filters applied export to xml (and name the file bioworks.xml).  With some additional information, you can then convert these files into pepXML:
+
+    # [@TODO: need to specifiy which information is required for each version]
+    bioworks_to_pepxml.rb bioworks.xml --params params.sequest --dbpath '/path/to/fasta/database/files' --model LCQ --mass_analyzer 'Ion Trap' --mspath '/path/to/mzxml/files'
+
+SRF to DTA
+==========
+
+Documented ![here](../ms/conversions.html)
