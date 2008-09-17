@@ -94,4 +94,16 @@ module PiZero
     plateau_height( *(pi_zero_hats(sorted_pvals)) )
   end
 
+  def pvalues(target_hits, decoy_hits, 
+  end
+
+  # combines all data values, sorts, and ranks them and returns parallel
+  # arrays corresponding to the final ranks.
+  # ties will split the ranks (i.e., two values tying for 2 and 3 will each be
+  # given a rank of 2.5)
+  # returns two parallel arrays of ranks
+  def rank(ar1,ar2)
+  end
+
+
 end

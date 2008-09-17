@@ -38,5 +38,9 @@ describe PiZero do
     #sleep(8)
   end
 
+  it 'can calculate p values for SEQUEST hits' do
+    pvalues = PiZero.pvalues(target, decoy, :xcorr)
+  end
+
 end
 

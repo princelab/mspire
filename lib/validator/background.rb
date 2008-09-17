@@ -29,6 +29,10 @@ class Validator::Background
     min_in_window(data_vec, last_0_index, min_window_pre, min_window_post)
   end
 
+  def plot(vec)
+    `graph #{vec.join(" ")} -a -T X`
+  end
+
   # not really working right currently
   def derivs(avg_points=15, min_window_pre=5, min_window_post=5)
     data_vec = VecD[*@data]
