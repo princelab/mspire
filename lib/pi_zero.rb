@@ -94,16 +94,21 @@ module PiZero
     plateau_height( *(pi_zero_hats(sorted_pvals)) )
   end
 
-  def pvalues(target_hits, decoy_hits, 
+  def p_values(target_hits, decoy_hits)
   end
 
-  # combines all data values, sorts, and ranks them and returns parallel
-  # arrays corresponding to the final ranks.
-  # ties will split the ranks (i.e., two values tying for 2 and 3 will each be
-  # given a rank of 2.5)
-  # returns two parallel arrays of ranks
-  def rank(ar1,ar2)
+  # performs a wilcox test assuming that target values are being tested for
+  # being greater than the null decoy values
+  def self.wilcox_test(target, decoy)
+    r = RSRuby.instance
+    answ = r.wilcox_test(target, decoy, :alternative => 'greater', :exact => false, :correct => false)
+    p answ
   end
 
+end
 
+if $0 == __FILE__
+  x = [2,4,6,8,10,12,14]
+  y = [0,1,2,3,4]
+  p PiZero.wilcox_test(x,y) 
 end
