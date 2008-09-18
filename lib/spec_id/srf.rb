@@ -258,13 +258,19 @@ class SRF
         abort "need gem 'archive-tar-minitar' installed' for tgz compression!\n#{$!}"
       end
       require 'archive/targz'  # my own simplified interface!
+      require 'zlib'
       names = index.map do |i_ar|
-        outdir + '/' + [base_name, *i_ar].join('.') + '.dta')
+        [outdir, '/', [base_name, *i_ar].join('.'), '.dta'].join('')
       end
-      dta_files.map do |dta_file|
-        dta_file.to_dta_file_data
+      #Archive::Targz.archive_as_files(outdir + '.tgz', names, dta_file_data)
+
+      tgz = Zlib::GzipWriter.new(File.open(outdir + '.tgz', 'wb'))
+
+      Archive::Tar::Minitar::Output.open(tgz) do |outp|
+        dta_files.each_with_index do |dta_file, i|
+          Archive::Tar::Minitar.pack_as_file(names[i], dta_file.to_dta_file_data, outp)
+        end
       end
-      Archive::Targz.archive_as_files(outdir + '.tgz', names, dta_files)
     when :zip
       begin
         require 'zip/zipfilesystem'
@@ -699,7 +705,7 @@ class SRF::DTA
      string = "#{mh} #{charge}\r\n"
      peak_ar = peaks.unpack('e*')
      (0...(peak_ar.size)).step(2) do |i|
-       string << ( peak_ar[i,2].join(' '), "\r\n" )
+       string << peak_ar[i,2].join(' ') << "\r\n"
      end
      string
   end

@@ -83,12 +83,11 @@ module Archive::Targz
   # nil as an entry in the data_ar means that an empty directory will be
   # created
   def self.archive_as_files(archive_name, filenames=[], data_ar=[])
-    Zlib::GzipWriter.open(File.open(archive_name, 'wb')) do |tgz|
+    tgz = Zlib::GzipWriter.new(File.open(archive_name, 'wb'))
 
-      Archive::Tar::Minitar::Output.open(tgz) do |outp|
-        filenames.zip(data_ar) do |name, data|
-          Archive::Tar::Minitar.pack_as_file(name, data, outp)
-        end
+    Archive::Tar::Minitar::Output.open(tgz) do |outp|
+      filenames.zip(data_ar) do |name, data|
+        Archive::Tar::Minitar.pack_as_file(name, data, outp)
       end
     end
   end
