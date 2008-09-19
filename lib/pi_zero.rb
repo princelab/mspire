@@ -1,5 +1,6 @@
 require 'rsruby'
 require 'gsl'
+require 'vec'
 
 module PiZero
   # takes a sorted array of p-values (floats between 0 and 1 inclusive)
@@ -94,21 +95,67 @@ module PiZero
     plateau_height( *(pi_zero_hats(sorted_pvals)) )
   end
 
-  def p_values(target_hits, decoy_hits)
+ # returns an array where the left values have been filled in using the
+  # similar values on the right side of the distribution.  These values are
+  # pushed onto the end of the array in no guaranteed order.
+  # extends a distribution on the left side where it is missing since
+  # xcorr values <= 0.0 are not reported
+  #     **
+  #    *  *
+  #   *    *
+  #          *
+  #            *
+  #                   *
+  #  Grabs the right tail from above and inverts it to the left side (less
+  #  than zero), creating a more full distribution.  raises an ArgumentError
+  #  if values_chopped_at_zero.size == 0
+  #  this method would be more robust with some smoothing.
+  #  Method currently only meant for large amounts of data.
+  #  input data does not need to be sorted
+  def self.extend_distribution_left_of_zero(values_chopped_at_zero)
+    sz = values_chopped_at_zero.size
+    raise ArgumentError, "array.size must be > 0" if sz == 0 
+    num_bins = (Math.log10(sz) * 100).round
+    vec = VecD.new(values_chopped_at_zero)
+    (bins, freqs) = vec.histogram(num_bins)
+    start_i = 0
+    freqs.each_with_index do |f,i|
+      if f.is_a?(Numeric) && f > 0
+        start_i = i 
+        break
+      end
+    end
+    match_it = freqs[start_i]
+    # get the index of the first frequency value less than the zero frequency
+    index_to_chop_at = -1
+    rev_freqs = freqs.reverse
+    rev_freqs.each_with_index do |freq,rev_i|
+      if match_it - rev_freqs[rev_i+1] <= 0
+        index_to_chop_at = freqs.size - 1 - rev_i
+        break
+      end
+    end
+    cut_point = bins[index_to_chop_at]
+    values_chopped_at_zero + values_chopped_at_zero.select {|v| v >= cut_point }.map {|v| cut_point - v }
   end
 
-  # performs a wilcox test assuming that target values are being tested for
-  # being greater than the null decoy values
-  def self.wilcox_test(target, decoy)
+  # assumes the decoy_vals follows a normal distribution
+  def p_values(target_vals, decoy_vals)
+    (mean, stdev) = VecD(decoy_vals).sample_stats
     r = RSRuby.instance
-    answ = r.wilcox_test(target, decoy, :alternative => 'greater', :exact => false, :correct => false)
-    p answ
+    r.pnorm(mean, stdev)
+    
+  end
+
+  def p_values_for_sequest(target_hits, decoy_hits)
+    new_decoy_hits = PiZero.extend_distribution_left_of_zero(decoy_hits)
+    p_values(target_hits.map {|v| v.xcorr}, new_decoy_hits.map {|v| v.xcorr } )
   end
 
 end
 
 if $0 == __FILE__
-  x = [2,4,6,8,10,12,14]
-  y = [0,1,2,3,4]
-  p PiZero.wilcox_test(x,y) 
+  xcorrs = IO.readlines("/home/jtprince/xcorr_hist/all_xcorrs.yada").first.chomp.split(/\s+/).map {|v| v.to_f }
+  new_dist = PiZero.extend_distribution_left_of_zero(xcorrs) 
+  File.open("newtail.yada", 'w') {|out| out.puts new_dist.join(" ") }
 end

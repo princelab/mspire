@@ -6,6 +6,8 @@ require 'fasta'
 require 'mspire'
 require 'set'
 
+require 'core_extensions'
+
 module BinaryReader
   Null_char = "\0"[0]  ## TODO: change for ruby 1.9 or 2.0
   # extracts a string with all empty chars at the end stripped
@@ -702,21 +704,19 @@ class SRF::DTA
   end
 
   def to_dta_file_data
-     string = "#{mh} #{charge}\r\n"
+     string = "#{mh.round_to(6)} #{charge}\r\n"
      peak_ar = peaks.unpack('e*')
      (0...(peak_ar.size)).step(2) do |i|
-       string << peak_ar[i,2].join(' ') << "\r\n"
+       # %d is equivalent to floor, so we round by adding 0.5!
+       string << "#{peak_ar[i].round_to(4)} #{(peak_ar[i+1] + 0.5).floor}\r\n"
+       #string << peak_ar[i,2].join(' ') << "\r\n"
      end
      string
   end
 
   # write a class dta file to the io object
   def write_dta_file(io)
-    io.print("#{mh} #{charge}\r\n")
-    peak_ar = peaks.unpack('e*')
-    (0...(peak_ar.size)).step(2) do |i|
-      io.print( peak_ar[i,2].join(' '), "\r\n" )
-    end
+    io.print to_dta_file_data
   end
 
 end
