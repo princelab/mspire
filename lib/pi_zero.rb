@@ -1,6 +1,7 @@
 require 'rsruby'
 require 'gsl'
 require 'vec'
+require 'vec/r'
 
 module PiZero
   # takes a sorted array of p-values (floats between 0 and 1 inclusive)
@@ -69,10 +70,10 @@ module PiZero
     r = RSRuby.instance
     answ = r.smooth_spline(x,y, :df => 3)
     ## to plot it!
-    #r.plot(x,y)
-    #r.lines(answ['x'], answ['y'])
-    #r.points(answ['x'], answ['y'])
-    #sleep(8)
+    r.plot(x,y)
+    r.lines(answ['x'], answ['y'])
+    r.points(answ['x'], answ['y'])
+    sleep(8)
 
     answ['y'].last
   end
@@ -143,8 +144,8 @@ module PiZero
   def p_values(target_vals, decoy_vals)
     (mean, stdev) = VecD(decoy_vals).sample_stats
     r = RSRuby.instance
-    r.pnorm(mean, stdev)
-    
+    vec = VecD.new(target_vals)
+    vec.p_values_normal(mean, stdev)
   end
 
   def p_values_for_sequest(target_hits, decoy_hits)
@@ -155,7 +156,9 @@ module PiZero
 end
 
 if $0 == __FILE__
-  xcorrs = IO.readlines("/home/jtprince/xcorr_hist/all_xcorrs.yada").first.chomp.split(/\s+/).map {|v| v.to_f }
-  new_dist = PiZero.extend_distribution_left_of_zero(xcorrs) 
-  File.open("newtail.yada", 'w') {|out| out.puts new_dist.join(" ") }
+  #xcorrs = IO.readlines("/home/jtprince/xcorr_hist/all_xcorrs.yada").first.chomp.split(/\s+/).map {|v| v.to_f }
+  #new_dist = PiZero.extend_distribution_left_of_zero(xcorrs) 
+  #File.open("newtail.yada", 'w') {|out| out.puts new_dist.join(" ") }
+  
+
 end
