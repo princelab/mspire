@@ -1,4 +1,7 @@
 
+# calculates precision based on the Benjamini-Hochberg FDR method.
+# @TODO: class should probably be renamed to reflect method used!
+# or options given to specify different methods (i.e., q-value)??
 class Validator::Probability
 
   attr_accessor :prob_method

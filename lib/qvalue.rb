@@ -119,11 +119,11 @@ class VecD
   #                           a direct finite sample estimate of pFDR
   # A q-value can be thought of as the global positive false discovery rate
   # at a particular p-value
-  def q_values(robust=false, pi_zero_args={})
+  def qvalues(robust=false, pi_zero_args={})
     sz = self.size
     pi0_args = Default_pi_zero_args.merge(pi_zero_args)
     self.pi_zero(*(pi0_args.values_at(:lambda_vals, :method, :log_transform)))
-    raise RunTimeError, "pi0 <= 0 ... check your p-values!!" if pi_zero <= 0
+    raise RuntimeError, "pi0 <= 0 ... check your p-values!!" if pi_zero <= 0
     num_le_ar = self.num_le
     qvalues =
       if robust

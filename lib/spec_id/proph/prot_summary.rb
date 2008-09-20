@@ -122,7 +122,7 @@ end  # Proph
 
 
 
-Proph::Prot = Arrayclass.new(%w(protein_name probability n_indistinguishable_proteins percent_coverage unique_stripped_peptides group_sibling_id total_number_peptides pct_spectrum_ids description peps))
+Proph::Prot = Arrayclass.new(%w(protein_name probability n_indistinguishable_proteins percent_coverage unique_stripped_peptides group_sibling_id total_number_peptides pct_spectrum_ids description peps q_value))
 
 # note that 'description' is found in the element 'annotation', attribute 'protein_description'
 # NOTE!: unique_stripped peptides is an array rather than + joined string
@@ -142,7 +142,7 @@ end
 
 # this is a pep from a -prot.xml file
 
-Proph::Prot::Pep = Arrayclass.new(%w(peptide_sequence charge initial_probability nsp_adjusted_probability weight is_nondegenerate_evidence n_enzymatic_termini n_sibling_peptides n_sibling_peptides_bin n_instances is_contributing_evidence calc_neutral_pep_mass modification_info prots))
+Proph::Prot::Pep = Arrayclass.new(%w(peptide_sequence charge initial_probability nsp_adjusted_probability weight is_nondegenerate_evidence n_enzymatic_termini n_sibling_peptides n_sibling_peptides_bin n_instances is_contributing_evidence calc_neutral_pep_mass modification_info prots q_value))
 
 class Proph::Prot::Pep
   include SpecID::Pep

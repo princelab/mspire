@@ -194,3 +194,8 @@ evaluation))
 ## version 0.4.3
 
 1. added to_mfg_file from SRF
+2. added to_dta_files from SRF complete with streaming .tar.gz output (and
+supporting .zip output but it has to make tmp files)
+
+## version 0.4.4
+1. implemented q-value and pi_0 methods of Storey

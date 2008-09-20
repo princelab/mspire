@@ -12,7 +12,9 @@ module SpecID
        
         COMMAND_LINE = {
           :sort_by_init => ['--sort_by_init', "sort the proteins based on init probability"],
-          :qval => ['--qval', "use percolator q-values to calculate precision"],
+          :perc_qval => ['--perc_qval', "use percolator q-values to calculate precision"],
+          :to_qvalues => ['--to_qvalues', "transform probabilities into q-values",
+                                       "(includes pi_0 correction)"],
           :prob => ['--prob [TYPE]', "use prophet probabilites to calculate precision",
                                      "TYPE = nsp [default] prophet nsp",
                                      "     (nsp also should be used for PeptideProphet results)",
@@ -95,7 +97,8 @@ module SpecID
             op.separator ""
 
             op.val_opt(:prob, opts)
-            op.val_opt(:qval, opts)
+            op.val_opt(:perc_qval, opts)
+            op.val_opt(:to_qvalues, opts)
             op.val_opt(:decoy, opts)
             op.val_opt(:pephits, opts)       # sets opts[:ties] = false
             op.val_opt(:digestion, opts)

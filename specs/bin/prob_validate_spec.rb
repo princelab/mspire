@@ -46,6 +46,12 @@ describe 'filter_and_validate.rb on small bioworks file' do
     reply.keys.map {|v| v.to_s}.sort.should == keys
   end
 
+  it 'can convert to qvalues' do
+    #qvals = @st_to_yaml.call( @args + " --to_qvalues" )
+    #p qvals
+    #p qvals[:pephits_precision]
+  end
+
   it 'responds to --prob init' do
     normal = @st_to_yaml.call( @args + " --prob" )
 

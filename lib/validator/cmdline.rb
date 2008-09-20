@@ -141,7 +141,7 @@ class Validator::Cmdline
           end
         opts[:validators].push([:prob, mthd])
       },
-        :qval => lambda {|ar, opts| opts[:validators].push([:qval]) },
+        :perc_qval => lambda {|ar, opts| opts[:validators].push([:perc_qval]) },
         :decoy => lambda {|ar, opts| 
         myargs = [:decoy] 
         first_arg = ar[0]

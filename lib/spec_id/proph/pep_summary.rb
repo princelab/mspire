@@ -63,7 +63,7 @@ module Proph
   class PepSummary::Pep < Sequest::PepXML::SearchHit
     # aaseq is defined in SearchHit
     
-    %w(probability fval ntt nmc massd prots).each do |guy|
+    %w(probability fval ntt nmc massd prots q_value).each do |guy|
       self.add_member(guy)
     end
 
