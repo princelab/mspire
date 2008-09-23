@@ -86,8 +86,6 @@ class SpecID::Precision::Prob
       end
     end
 
-
-
     validators.delete(decoy_val)
     other_validators = validators
 
@@ -97,29 +95,6 @@ class SpecID::Precision::Prob
         pv.prob_method = :initial_probability
       end
     end
-
-    if opt[:to_qvalues]
-      require 'vec'
-      begin 
-        require 'qvalue'
-      rescue LoadError
-        puts "You must have rsruby gem installed to convert to q-values!"
-        puts $!
-        exit
-      end
-      prob_method = :probability
-      if opt[:initial_probability]
-        prob_method = :initial_probability
-      end
-      # get a list of p-values
-      pvals = spec_id.peps.map {|pep| 1.0 - pep.send(prob_method) }
-      pvals = VecD.new(pvals)
-      qvals = pvals.qvalues
-      qvals.zip(spec_id.peps) do |qval,pep|
-        pep.q_value = qval
-      end
-    end
-
 
     n_count = 0
     d_count = 0
@@ -131,7 +106,7 @@ class SpecID::Precision::Prob
       else ;false
       end
 
-    use_q_value = opt[:perc_qval] || opt[:to_qvalues]
+    use_q_value = other_validators.any? {|v| v.class == Validator::QValue }
 
     ## ORDER THE PEPTIDE HITS:
     ordered_peps = 

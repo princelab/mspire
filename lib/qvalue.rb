@@ -1,5 +1,11 @@
 
+begin
 require 'rsruby'
+rescue LoadError
+  puts "You must have the rsruby gem installed to use the qvalue module"
+  puts $!
+  raise LoadError
+end
 require 'vec'
 
 # Adapted from qvalue.R by Alan Dabney and John Storey which was LGPL licensed

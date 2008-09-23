@@ -14,7 +14,9 @@ module SpecID
           :sort_by_init => ['--sort_by_init', "sort the proteins based on init probability"],
           :perc_qval => ['--perc_qval', "use percolator q-values to calculate precision"],
           :to_qvalues => ['--to_qvalues', "transform probabilities into q-values",
-                                       "(includes pi_0 correction)"],
+                                       "(includes pi_0 correction)",
+                                       "uses PROB [TYPE] if given and supercedes",
+                                       "the prob validation type"],
           :prob => ['--prob [TYPE]', "use prophet probabilites to calculate precision",
                                      "TYPE = nsp [default] prophet nsp",
                                      "     (nsp also should be used for PeptideProphet results)",
@@ -132,6 +134,7 @@ module SpecID
                 #puts 'making background estimates with: top_per_aaseq_charge'
                 :top_per_aaseq_charge
               end
+
             opts[:validators] = Validator::Cmdline.prepare_validators(opts, !opts[:ties], opts[:interactive], postfilter, spec_id_obj)
 
             if opts[:output].size == 0

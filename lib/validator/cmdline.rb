@@ -142,6 +142,7 @@ class Validator::Cmdline
         opts[:validators].push([:prob, mthd])
       },
         :perc_qval => lambda {|ar, opts| opts[:validators].push([:perc_qval]) },
+        :to_qvalues => lambda {|ar, opts| opts[:validators].push([:to_qvalues]) },
         :decoy => lambda {|ar, opts| 
         myargs = [:decoy] 
         first_arg = ar[0]
@@ -273,7 +274,43 @@ class Validator::Cmdline
       # postfilter is one of :top_per_scan, :top_per_aaseq,
       # :top_per_aaseq_charge (of which last two are subsets of scan)
       def self.prepare_validators(opts, false_on_tie, interactive, postfilter, spec_id)      
+
         validator_args = opts[:validators]
+        if validator_args.any? {|v| v.first == :to_qvalues }
+          prob_val_args_ar = validator_args.select {|v| v.first == :prob }.first
+          prob_method = 
+            if prob_val_args_ar && prob_val_args_ar[1]
+              prob_val_args_ar[1]
+            else
+              :probability
+            end
+          validator_args.reject! {|v| v.first == :prob }
+
+          require 'vec'
+          require 'qvalue'
+
+          # get a list of p-values
+          pvals = spec_id.peps.map do |pep| 
+            val = 1.0 - pep.send(prob_method)
+            val = 1e-9 if val == 0
+            val
+          end
+          pvals = VecD.new(pvals)
+          #qvals = pvals.qvalues(false, :lambda_vals => 0.30 )
+          qvals = pvals.qvalues
+          qvals.zip(spec_id.peps) do |qval,pep|
+            pep.q_value = qval
+          end
+        end
+
+        validator_args.map! do |v|
+          if v.first == :to_qvalues || v.first == :perc_qval
+            [:qval]
+          else
+            v
+          end
+        end
+
         correct_wins = !false_on_tie
         need_false_to_total_ratio = []
         need_frequency = []
