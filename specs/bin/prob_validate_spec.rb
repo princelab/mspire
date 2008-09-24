@@ -41,14 +41,14 @@ describe 'filter_and_validate.rb on small bioworks file' do
   # this ensures that the actual commandline version gives usage.
   # it_should_behave_like "a cmdline program"
 
-  xit 'outputs to yaml' do
+  it 'outputs to yaml' do
     reply = @st_to_yaml.call( @args )
     keys = [:probabilities, :params, :pephits, :pephits_precision, :charges, :aaseqs, :count].map {|v| v.to_s }.sort
     reply.keys.map {|v| v.to_s}.sort.should == keys
   end
 
 
-  xit 'responds to --prob init' do
+  it 'responds to --prob init' do
     normal = @st_to_yaml.call( @args + " --prob" )
 
  normal[:pephits_precision].first[:values].zip([1.0, 1.0, 0.993333333333333, 0.85]) do |got,exp|

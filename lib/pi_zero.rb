@@ -2,6 +2,8 @@ require 'rsruby'
 require 'gsl'
 require 'vec'
 require 'vec/r'
+require 'enumerator'
+
 
 module PiZero
   class << self
@@ -71,10 +73,10 @@ module PiZero
       r = RSRuby.instance
       answ = r.smooth_spline(x,y, :df => 3)
       ## to plot it!
-      r.plot(x,y)
-      r.lines(answ['x'], answ['y'])
-      r.points(answ['x'], answ['y'])
-      sleep(30)
+      #r.plot(x,y, :ylab=>"instantaneous pi_zeros")
+      #r.lines(answ['x'], answ['y'])
+      #r.points(answ['x'], answ['y'])
+      #sleep(8)
 
       answ['y'].last
     end
@@ -158,7 +160,61 @@ module PiZero
       #abort 'checking'
       p_values(target_hits.map {|v| v.xcorr}, new_decoy_vals )
     end
+
+    # takes a list of booleans with true being a target hit and false being a
+    # decoy hit and returns the pi_zero using the smooth method
+    # Should be ordered from best to worst (i.e., one expects more true values
+    # at the beginning of the list)
+    def pi_zero_from_booleans(booleans)
+      targets = 0
+      decoys = 0
+      xs = []
+      ys = []
+      booleans.reverse.each_with_index do |v,index|
+        if v
+          targets += 1
+        else
+          decoys += 1
+        end
+        if decoys > 0
+          xs << index
+          ys << targets.to_f / decoys
+        end
+      end
+      ys.reverse!
+      plateau_height(xs, ys)
+    end
+
+    # Takes an array of doublets ([[int, int], [int, int]...]) where the first
+    # value is the number of target hits and the second is the number of decoy
+    # hits.  Expects that best hits are at the beginning of the list.  Assumes
+    # that each sum is a subset
+    # of the following group (shown as actual hits rather than number of hits):
+    #
+    #    [[target, target, target, decoy], [target, target, target, decoy,
+    #    target, decoy, target], [target, target, target, decoy, target,
+    #    decoy, target, decoy, target, target]]
+    #
+    # This assumption may be relaxed somewhat and should still give good
+    # results.
+    def pi_zero_from_groups(array_of_doublets)
+      pi_zeros = []
+      array_of_doublets.reverse.each_cons(2) do |two_doublets|
+        bigger, smaller = two_doublets
+        bigger[0] = bigger[0] - smaller[0]
+        bigger[1] = bigger[1] - smaller[1]
+        bigger.map! {|v| v < 0 ? 0 : v }
+        if bigger[1] > 0
+          pi_zeros << (bigger[0].to_f / bigger[1])
+        end
+      end
+      pi_zeros.reverse!
+      xs = (0...(pi_zeros.size)).to_a
+      plateau_height(xs, pi_zeros)
+    end
+
   end
+
 
 end
 

@@ -51,15 +51,16 @@ bias-prot: 37
     end
   end
 
-  it 'finds the minimum of the plateu region of a stringency plot' do
-    @data.each do |k,v|
-      exp = @expected[k]
-      bkg = Validator::Background.new(v)
-      ans = bkg.quartile_deriv_finder
-      ans.should be_close(v[exp], 0.01)
-      # expecting were my best judgement (erring on the min side)
-    end
-  end
+  # This is where I'd like to go finding the plateau region!
+  #it 'finds the minimum of the plateu region of a stringency plot' do
+  #  @data.each do |k,v|
+  #    exp = @expected[k]
+  #    bkg = Validator::Background.new(v)
+  #    ans = bkg.quartile_deriv_finder
+  #    ans.should be_close(v[exp], 0.01)
+  #    # expecting were my best judgement (erring on the min side)
+  #  end
+  #end
 
 
 

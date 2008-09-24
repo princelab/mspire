@@ -199,3 +199,12 @@ supporting .zip output but it has to make tmp files)
 
 ## version 0.4.4
 1. implemented q-value and pi_0 methods of Storey
+2. can do complete q-value calculations given p-values
+3. can determine a pi_0 given a list of target and decoy values (as booleans)
+4. can determine a pi_0 given a list containing numbers of decoy and target
+values as is often encountered with filtering
+5. prob_validate.rb implements a q-value option for turning PeptideProphet
+probabilities into q-values
+6. filter_validate.rb implements a p value method using xcorr values, however,
+this is not very effective since xcorr values underrepresent the the
+difference between good hits and bad hits

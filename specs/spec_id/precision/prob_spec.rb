@@ -38,16 +38,6 @@ describe 'finding precision Proph::Prot::Pep objects' do
     answer.keys.map {|v| v.to_s }.sort.should == ["aaseqs", "charges", "count", "modified_peptides", "params", "pephits", "pephits_precision", "probabilities"]
   end
 
-  it 'can convert to q-values' do
-    new_probs = [0.9999, 0.99, 0.1, 0.3, 0.9]
-    @spec_id.peps.zip(new_probs) do |pep, new_prob|
-      pep.nsp_adjusted_probability = new_prob    
-    end
-    answer = SpecID::Precision::Prob.new.precision_vs_num_hits(@spec_id, :to_qvalues => true) 
-    answer.keys.map {|v| v.to_s }.sort.should == ["aaseqs", "charges", "count", "params", "pephits", "pephits_precision", "q_values"]
-    answer[:aaseqs].should == ["0", "1", "4", "3", "2"]
-  end
-
 end
 
 
