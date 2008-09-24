@@ -310,6 +310,17 @@ class SpecID::Precision::Filter
         [peps]  # no decoy
       end
 
+    if opts[:decoy_pi_zero]
+      if pep_sets.size < 2
+        raise ArgumentError, "must have a decoy validator for pi zero calculation!"
+      end
+      require 'pi_zero'
+      (_target, _decoy) = pep_sets
+      pvals = PiZero.p_values_for_sequest(*pep_sets).sort
+      pi_zero = PiZero.pi_zero(pvals)
+      opts[:decoy_pi_zero] = PiZero.pi_zero(pvals)
+    end
+
     if opts[:proteins]
       protein_validator = Validator::ProtFromPep.new
     end

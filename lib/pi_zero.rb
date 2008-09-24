@@ -8,9 +8,9 @@ module PiZero
     # takes a sorted array of p-values (floats between 0 and 1 inclusive)
     # returns [thresholds_ar, instantaneous pi_0 calculations_ar]
     # evenly incremented values will be used by default:
-    # :start=>0.0, :stop=>1.0, :step=>0.01
+    # :start=>0.0, :stop=>0.9, :step=>0.01
     def pi_zero_hats(sorted_pvals, args={})
-      defaults = {:start => 0.0, :stop=>1.0, :step=>0.01 }
+      defaults = {:start => 0.0, :stop=>0.9, :step=>0.05 }
       margs = defaults.merge( args )
       (start, stop, step) = margs.values_at(:start, :stop, :step)
 
@@ -74,7 +74,7 @@ module PiZero
       r.plot(x,y)
       r.lines(answ['x'], answ['y'])
       r.points(answ['x'], answ['y'])
-      sleep(8)
+      sleep(30)
 
       answ['y'].last
     end
@@ -143,15 +143,20 @@ module PiZero
 
     # assumes the decoy_vals follows a normal distribution
     def p_values(target_vals, decoy_vals)
-      (mean, stdev) = VecD(decoy_vals).sample_stats
+      (mean, stdev) = VecD.new(decoy_vals).sample_stats
       r = RSRuby.instance
       vec = VecD.new(target_vals)
-      vec.p_values_normal(mean, stdev)
+      right_tailed = true
+      vec.p_value_normal(mean, stdev, right_tailed)
     end
 
     def p_values_for_sequest(target_hits, decoy_hits)
-      new_decoy_hits = PiZero.extend_distribution_left_of_zero(decoy_hits)
-      p_values(target_hits.map {|v| v.xcorr}, new_decoy_hits.map {|v| v.xcorr } )
+      dh_vals = decoy_hits.map {|v| v.xcorr }
+      new_decoy_vals = PiZero.extend_distribution_left_of_zero(dh_vals)
+      #File.open("target.yml", 'w') {|out| out.puts new_decoy_vals.join(" ") }
+      #File.open("decoy.yml", 'w') {|out| out.puts target_hits.map {|v| v.xcorr }.join(" ") }
+      #abort 'checking'
+      p_values(target_hits.map {|v| v.xcorr}, new_decoy_vals )
     end
   end
 

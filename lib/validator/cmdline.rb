@@ -74,6 +74,9 @@ class Validator::Cmdline
                                                 "then give the FILENAME (e.g., --decoy decoy.srg)",
                                                 "DTR = Decoy to Target Ratio (default: #{DEFAULTS[:decoy][:decoy_to_target_ratio]})",
                                                 "DOM = *true/false, decoy on match",],
+      :decoy_pi_zero => ["--decoy_pi_zero", "uses sequest Xcorrs to estimate the",
+                                            "percentage of incorrect target hits.",
+                                            "This over-rides any given DTR (above)"],
         :tps => ["--tps <fasta>", "for a completely defined sample, this is the",
                                   "fasta file containing the true protein hits"],
          # may require digestion:
