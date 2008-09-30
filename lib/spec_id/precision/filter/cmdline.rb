@@ -128,7 +128,6 @@ module SpecID
             op.separator ""
 
             op.val_opt(:decoy, opts)
-            op.exact_opt(opts, :decoy_pi_zero)
             op.val_opt(:digestion, opts)
             op.val_opt(:bias, opts)
             op.val_opt(:bad_aa, opts)

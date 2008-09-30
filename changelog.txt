@@ -208,3 +208,8 @@ probabilities into q-values
 6. filter_validate.rb implements a p value method using xcorr values, however,
 this is not very effective since xcorr values underrepresent the the
 difference between good hits and bad hits
+
+## version 0.4.5
+1. using pi_zero instead of decoy_to_target_ratio.  While all tests are
+passing, this release should be considered experimental with the use of any
+target-decoy validation.

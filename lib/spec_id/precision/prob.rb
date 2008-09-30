@@ -31,12 +31,22 @@ class SpecID::Precision::Prob
     end
   end
 
+  # this is the way I was doing it:
+  #       ajdusted = (1+R)*prec / (R*precision +1) 
+  #       # where R is the decoy_to_target ratio
+
   # opts may include:
   #   :proteins => true|*false
   #   :validators => array of Validator objects
-  #   adjusts the precision in the *probability* validators ajdusted =
-  #   (1+R)*prec / (R*precision +1) where R is the decoy_to_target ratio
-  #   used in the decoy validator (R = 0.0 if no decoy validator)
+  #
+  #   This method will adjust the precision in the *probability* validators
+  #   used in the decoy validator (both terms with pi_0 in the denominator go
+  #   to zero if there is no decoy validator and the precision is not
+  #   adjusted)
+  #
+  #       ajdusted = (1+(1/pi_0))*prec / ((precision/pi_0) +1) 
+  #       # where pi_0 is the ratio incorrect target hits to total decoy hits
+  #
   #   NOTE: if you have decoy data, you MUST pass in a decoy validator for the
   #   decoy pephits to be removed from other validator analyses!  
   #   
@@ -82,7 +92,7 @@ class SpecID::Precision::Prob
     else
       decoy_val = decoy_vals.first
       if decoy_val
-        decoy_to_target_ratio = decoy_val.decoy_to_target_ratio
+        pi_zero = decoy_val.pi_zero
       end
     end
 
@@ -167,7 +177,8 @@ class SpecID::Precision::Prob
         val_hash[decoy_val].push(decoy_precision) if decoy_val
         probability_validators.zip(last_prob_values) do |val,prec| 
           if decoy_val
-            val_hash[val].push( ((decoy_to_target_ratio+1.0)*prec) / ((decoy_to_target_ratio*prec) + 1.0) )
+            raise ArgumentError, "pi_zero in decoy validator must not == 0" if pi_zero == 0
+            val_hash[val].push( ((1.0/pi_zero+1.0)*prec) / ((prec/pi_zero) + 1.0) )
           else
             val_hash[val] << prec
           end

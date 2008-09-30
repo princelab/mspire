@@ -162,8 +162,8 @@ describe SRF, 'creating dta files' do
       File.directory?('020').should be_true
       File.exist?('020/020.3366.3366.2.dta').should be_true
       lines = IO.readlines('020/020.3366.3366.2.dta', "\r\n")
-      lines.first.should == "1113.10649290125 2\r\n"
-      lines[1].should == "164.56591796875 4817.0\r\n"
+      lines.first.should == "1113.106493 2\r\n"
+      lines[1].should == "164.5659 4817\r\n"
       
       FileUtils.rm_rf '020'
     end
