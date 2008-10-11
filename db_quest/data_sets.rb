@@ -1,6 +1,6 @@
 require 'generator'
 require 'vec'
-require 'facets/enumerable/each'
+require 'facets/enumerable/each_by'
 require 'yaml'
 require 'hash_by'
 

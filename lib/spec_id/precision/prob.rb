@@ -226,7 +226,7 @@ class SpecID::Precision::Prob
     else
       out[:probabilities] = probabilities
     end
-    out[:pephits] = ordered_peps  # just in case they want to see
+    # out[:pephits] = ordered_peps  # just in case they want to see
     out[:count] = num_pephits
     out[:aaseqs] = pepstrings
     out[:charges] = pepcharges

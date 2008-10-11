@@ -73,10 +73,10 @@ module PiZero
       r = RSRuby.instance
       answ = r.smooth_spline(x,y, :df => 3)
       ## to plot it!
-      #r.plot(x,y, :ylab=>"instantaneous pi_zeros")
-      #r.lines(answ['x'], answ['y'])
-      #r.points(answ['x'], answ['y'])
-      #sleep(8)
+      r.plot(x,y, :ylab=>"instantaneous pi_zeros")
+      r.lines(answ['x'], answ['y'])
+      r.points(answ['x'], answ['y'])
+      sleep(8)
 
       answ['y'].last
     end
@@ -183,6 +183,23 @@ module PiZero
       end
       ys.reverse!
       plateau_height(xs, ys)
+    end
+
+    # takes two parallel arrays consisting of the total number of hits
+    # (this will typically be the total # target hits) at that point and the
+    # precision (ranging from: [0,1]) (typically determined by counting the
+    # number of decoy hits).  Expects the number of total hits to be
+    # monotonically increasng and the precision to roughly start high and
+    # decrease as more hits (of lesser quality) are added.
+    def pi_zero_from_precision(total_num_hits_ar, precision_ar)
+      instant_pi_zeros = []
+      total_num_hits_ar.reverse.zip(precision_ar.reverse).each_cons(2) do |dp1, dp0|
+        (x1, y1) = dp1
+        (x0, y0) = dp0
+        instant_pi_zeros << ((x1 * (1.0 - y1)) - (x0 * (1.0 - y0) )) / (x1 - x0)
+      end
+      instant_pi_zeros.reverse!
+      plateau_height(total_num_hits_ar[1..-1], instant_pi_zeros)
     end
 
     # Takes an array of doublets ([[int, int], [int, int]...]) where the first

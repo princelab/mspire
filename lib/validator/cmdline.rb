@@ -295,6 +295,7 @@ class Validator::Cmdline
             val = 1e-9 if val == 0
             val
           end
+          File.open("TMP_PVALUES.txt", 'w') {|v| v.puts pvals.sort.join(" ") }
           pvals = VecD.new(pvals)
           #qvals = pvals.qvalues(false, :lambda_vals => 0.30 )
           qvals = pvals.qvalues

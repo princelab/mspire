@@ -79,41 +79,50 @@ class VecD
     end
 
     pi_zeros = lambda_vals.map {|val| self.pi_zero_at_lambda(val) }
-    if lambda_vals.size == 1
-      pi_zeros.first
-    else
-      case method
-      when :smooth
-        r = RSRuby.instance
-        calc_pi_zero = lambda do |_pi_zeros| 
-          hash = r.smooth_spline(lambda_vals, _pi_zeros, :df => Default_smooth_df) 
-          hash['y'][VecD.new(lambda_vals).max_indices.max]
-        end
-        if log_transform
-          pi_zeros.log_space {|log_vals| calc_pi_zero.call(log_vals) }
-        else
-          calc_pi_zero.call(pi_zeros)
-        end
-      when :bootstrap
-        min_pi0 = pi_zeros.min
-        lsz = lambda_vals.size
-        mse = VecD.new(lsz, 0)
-        pi0_boot = VecD.new(lsz, 0)
-        sz = self.size
-        100.times do   #  for(i in 1:100) {
-          p_boot = self.shuffle
-          (0...lsz).each do |i|
-            pi0_boot[i] = ( p_boot.select{|v| v > lambda_vals[i] }.size.to_f/p_boot.size ) / (1-lambda_vals[i])
+
+    r = RSRuby.instance
+    r.plot(lambda_vals,pi_zeros, :ylab=>"instantaneous pi_zeros")
+    answ = r.smooth_spline(lambda_vals, pi_zeros, :df => Default_smooth_df)
+    r.lines(answ['x'], answ['y'])
+    r.points(answ['x'], answ['y'])
+    sleep(20)
+
+    answer = 
+      if lambda_vals.size == 1
+        pi_zeros.first
+      else
+        case method
+        when :smooth
+          r = RSRuby.instance
+          calc_pi_zero = lambda do |_pi_zeros| 
+            hash = r.smooth_spline(lambda_vals, _pi_zeros, :df => Default_smooth_df) 
+            hash['y'][VecD.new(lambda_vals).max_indices.max]
           end
-          mse = mse + ( (pi0_boot-min_pi0)**2 )
+          if log_transform
+            pi_zeros.log_space {|log_vals| calc_pi_zero.call(log_vals) }
+          else
+            calc_pi_zero.call(pi_zeros)
+          end
+        when :bootstrap
+          min_pi0 = pi_zeros.min
+          lsz = lambda_vals.size
+          mse = VecD.new(lsz, 0)
+          pi0_boot = VecD.new(lsz, 0)
+          sz = self.size
+          100.times do   #  for(i in 1:100) {
+            p_boot = self.shuffle
+            (0...lsz).each do |i|
+              pi0_boot[i] = ( p_boot.select{|v| v > lambda_vals[i] }.size.to_f/p_boot.size ) / (1-lambda_vals[i])
+            end
+            mse = mse + ( (pi0_boot-min_pi0)**2 )
+          end
+          #  pi0 <- min(pi0[mse==min(mse)])
+          pi_zero = pi_zeros.values_at(*(mse.min_indices)).min
+          [pi_zero,1].min
+        else 
+          raise ArgumentError, ":pi_zero_method must be :smooth or :bootstrap!"
         end
-        #  pi0 <- min(pi0[mse==min(mse)])
-        pi_zero = pi_zeros.values_at(*(mse.min_indices)).min
-        [pi_zero,1].min
-      else 
-        raise ArgumentError, ":pi_zero_method must be :smooth or :bootstrap!"
       end
-    end
   end
 
   # Returns a VecD filled with parallel q-values

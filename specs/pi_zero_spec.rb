@@ -18,7 +18,7 @@ describe PiZero do
     @sorted_pvals = [0.0, 0.1, 0.223, 0.24, 0.55, 0.68, 0.68, 0.90, 0.98, 1.0]
   end
 
-  it 'calculates instantaneous pi_0 hats' do
+  xit 'calculates instantaneous pi_0 hats' do
     answ = PiZero.pi_zero_hats(@sorted_pvals, :step => 0.1)
     exp_lambdas =       [0.0, 0.1, 0.2, 0.3, 0.4, 0.5, 0.6, 0.7, 0.8, 0.9]
     passing_threshold = [9,   8,   8,   6,   6,   6,   5,   3,   3,   2]
@@ -36,7 +36,7 @@ describe PiZero do
     # still working on this one
   end
 
-  it 'can find a plateau height' do
+  xit 'can find a plateau height' do
     x = [0.0, 0.01, 0.012, 0.13, 0.2, 0.3, 0.4, 0.6, 0.7, 0.8, 0.9, 1.0, 1.1, 1.2]
     y = [1.0, 0.95, 0.92, 0.8, 0.7, 0.6, 0.55, 0.58, 0.62, 0.53, 0.54, 0.59, 0.4, 0.72]
     z = PiZero.plateau_height(x,y)
@@ -47,7 +47,7 @@ describe PiZero do
     #sleep(8)
   end
 
-  it 'can calculate p values for SEQUEST hits' do
+  xit 'can calculate p values for SEQUEST hits' do
     class FakeSequest ; attr_accessor :xcorr ; def initialize(xcorr) ; @xcorr = xcorr ; end ; end
 
     target = []
@@ -68,13 +68,13 @@ describe PiZero do
     end
   end
 
-  it 'can calculate pi zero for target/decoy booleans' do
+  xit 'can calculate pi zero for target/decoy booleans' do
     pi_zero = PiZero.pi_zero_from_booleans(@bools)
     # frozen
     pi_zero.should be_close(0.03522869, 0.0001)
   end
 
-  it 'can calculate pi zero for groups of hits' do
+  xit 'can calculate pi zero for groups of hits' do
     # setup
     targets = [4,3,8,3,5,3,4,5,4]
     decoys = [0,2,2,3,5,7,8,8,8]
@@ -98,6 +98,17 @@ describe PiZero do
     pi_zero = PiZero.pi_zero_from_groups(zipped)
     # frozen
     pi_zero.should be_close(0.384064, 0.00001)
+  end
+
+  it 'can calcuate pi zero for total number of hits and precision' do
+    tot_hits = [1,10,20,30,50,200]
+    precision = [1.0, 1.0, 0.85, 0.80, 0.7, 0.5]
+    reply = PiZero.pi_zero_from_precision(tot_hits, precision)
+    puts "ANSER"
+    # frozen
+    puts reply
+    #reply.should be_close()
+
   end
 
 end
