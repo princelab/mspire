@@ -1,5 +1,4 @@
 require 'rsruby'
-require 'gsl'
 require 'vec'
 require 'vec/r'
 require 'enumerator'
@@ -21,7 +20,8 @@ module PiZero
       pi_zeros = []                # pi_0
       total = sorted_pvals.size  # m 
 
-      # totally retarded implementation with correct logic:
+      # totally inefficient implementation (with correct logic):
+      # TODO: implement this efficiently
       start.step(stop, step) do |lam|
         lambdas << lam
         (greater, less) = sorted_pvals.partition {|pval| pval > lam }
@@ -29,6 +29,36 @@ module PiZero
       end
       [lambdas, pi_zeros]
     end
+
+=begin
+    def plateau_height_with_gsl(x, y)
+      require 'gsl'
+      x_deltas = (0...(x.size-1)).to_a.map do |i|
+        x[i+1] - x[i]
+      end
+      y_deltas = (0...(y.size-1)).to_a.map do |i|
+        y[i+1] - y[i]
+      end
+      new_xs = x.dup
+      new_ys = y.dup
+      x_deltas.reverse.each do |delt|
+        new_xs.push( new_xs.last + delt )
+      end
+
+      y_cnt = y.size
+      y_deltas.reverse.each do |delt|
+        y_cnt -= 1
+        new_ys.push( y[y_cnt] - delt )
+      end
+
+      x_vec = GSL::Vector.alloc(new_xs)
+      y_vec = GSL::Vector.alloc(new_ys)
+      coef, cov, chisq, status = GSL::Poly.fit(x_vec,y_vec, 3)
+      coef.eval(x.last)
+      #x2 = GSL::Vector::linspace(0,2.4,20)
+      #graph([x_vec,y_vec], [x2, coef.eval(x2)], "-C -g 3 -S 4")
+    end
+=end
 
     # expecting x and y to make a scatter plot descending to a plateau on the
     # right side (which is assumed to be of increasing noise as it goes to the
@@ -42,34 +72,6 @@ module PiZero
     #          ** ***         *    *
     #                    ***** **** ***
     def plateau_height(x, y)
-=begin
-    require 'gsl'
-    x_deltas = (0...(x.size-1)).to_a.map do |i|
-      x[i+1] - x[i]
-    end
-    y_deltas = (0...(y.size-1)).to_a.map do |i|
-      y[i+1] - y[i]
-    end
-    new_xs = x.dup
-    new_ys = y.dup
-    x_deltas.reverse.each do |delt|
-      new_xs.push( new_xs.last + delt )
-    end
-
-    y_cnt = y.size
-    y_deltas.reverse.each do |delt|
-      y_cnt -= 1
-      new_ys.push( y[y_cnt] - delt )
-    end
-
-    x_vec = GSL::Vector.alloc(new_xs)
-    y_vec = GSL::Vector.alloc(new_ys)
-    coef, cov, chisq, status = GSL::Poly.fit(x_vec,y_vec, 3)
-    coef.eval(x.last)
-    #x2 = GSL::Vector::linspace(0,2.4,20)
-    #graph([x_vec,y_vec], [x2, coef.eval(x2)], "-C -g 3 -S 4")
-=end
-
       r = RSRuby.instance
       answ = r.smooth_spline(x,y, :df => 3)
       ## to plot it!
@@ -82,6 +84,7 @@ module PiZero
     end
 
     def plateau_exponential(x,y)
+      require 'gsl'
       xvec = GSL::Vector.alloc(x)
       yvec = GSL::Vector.alloc(y)
       a2, b2, = GSL::Fit.linear(xvec, GSL::Sf::log(yvec))
@@ -161,6 +164,8 @@ module PiZero
       p_values(target_hits.map {|v| v.xcorr}, new_decoy_vals )
     end
 
+#### NEED TO VERIFY if this is PIT or PI_ZERO!
+=begin
     # takes a list of booleans with true being a target hit and false being a
     # decoy hit and returns the pi_zero using the smooth method
     # Should be ordered from best to worst (i.e., one expects more true values
@@ -184,6 +189,7 @@ module PiZero
       ys.reverse!
       plateau_height(xs, ys)
     end
+=end
 
     # takes two parallel arrays consisting of the total number of hits
     # (this will typically be the total # target hits) at that point and the
@@ -202,6 +208,8 @@ module PiZero
       plateau_height(total_num_hits_ar[1..-1], instant_pi_zeros)
     end
 
+#### NEED TO VERIFY if this is PIT or PI_ZERO!
+=begin
     # Takes an array of doublets ([[int, int], [int, int]...]) where the first
     # value is the number of target hits and the second is the number of decoy
     # hits.  Expects that best hits are at the beginning of the list.  Assumes
@@ -230,9 +238,10 @@ module PiZero
       plateau_height(xs, pi_zeros)
     end
 
+=end
+
+
   end
-
-
 end
 
 if $0 == __FILE__
