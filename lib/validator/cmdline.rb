@@ -41,7 +41,7 @@ class Validator::Cmdline
     {
       :hits_together => true,
       :decoy_on_match => true,
-      :pi_zero => 1.0,
+      :frit => 1.0, # fraction incorrect targets (like PIT)
     },
     :bad_aa => 
     {
@@ -61,7 +61,7 @@ class Validator::Cmdline
     :ties => true,
   }
   COMMAND_LINE = {
-    :decoy => ["--decoy /REGEXP/|FILENAME[,PI0,DOM]", Array, "REGEXP for decoy proteins (catenated searches) or a",
+    :decoy => ["--decoy /REGEXP/|FILENAME[,PIT,DOM]", Array, "REGEXP for decoy proteins (catenated searches) or a",
                                                 "FILENAME of separate search on decoys.", 
                                                 "All regular expressions must be surrounded by '/'",
                                                 "(no extended options [trailing modifiers]).",
@@ -72,7 +72,8 @@ class Validator::Cmdline
                                                 "    --decoy '/^\\s*REVERSE/'",
                                                 "If decoys proteins were searched in a separate file,",
                                                 "then give the FILENAME (e.g., --decoy decoy.srg)",
-                                                "PI0 = Incorrect Targets to Decoy Ratio (default: #{DEFAULTS[:decoy][:pi_zero]})",
+                                                "FRIT = Fraction Incorrect Targets (like",
+                                                "the PIT as a fraction) (default: #{DEFAULTS[:decoy][:frit]})",
                                                 "DOM = *true/false, decoy on match",],
         :tps => ["--tps <fasta>", "for a completely defined sample, this is the",
                                   "fasta file containing the true protein hits"],
@@ -156,7 +157,7 @@ class Validator::Cmdline
             raise ArgumentError, "File does not exist: #{first_arg}\n(was this supposed to be a regular expression? if so, should be given: /#{first_arg}/)" unless File.exist?(first_arg)
             first_arg
           end
-        val_opts[:pi_zero] = (ar[1] || DEFAULTS[:decoy][:pi_zero]).to_f
+        val_opts[:frit] = (ar[1] || DEFAULTS[:decoy][:frit]).to_f
         val_opts[:decoy_on_match] = self.boolean(ar[2], DEFAULTS[:decoy][:decoy_on_match])
         myargs.push(val_opts)
         opts[:validators].push(myargs)

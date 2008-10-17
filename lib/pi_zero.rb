@@ -75,10 +75,10 @@ module PiZero
       r = RSRuby.instance
       answ = r.smooth_spline(x,y, :df => 3)
       ## to plot it!
-      r.plot(x,y, :ylab=>"instantaneous pi_zeros")
+      r.plot(x,y, :ylab=>"pi_zeros or frit")
       r.lines(answ['x'], answ['y'])
       r.points(answ['x'], answ['y'])
-      sleep(8)
+      sleep(4)
 
       answ['y'].last
     end
@@ -191,13 +191,15 @@ module PiZero
     end
 =end
 
-    # takes two parallel arrays consisting of the total number of hits
-    # (this will typically be the total # target hits) at that point and the
+    # returns fraction of incorrect target hits (frit) (this is the percent
+    # incorrect targets [PIT] expressed as a fraction rather than percent)
+    # takes two parallel arrays consisting of the total number of hits (this
+    # will typically be the total # target hits) at that point and the
     # precision (ranging from: [0,1]) (typically determined by counting the
     # number of decoy hits).  Expects the number of total hits to be
-    # monotonically increasng and the precision to roughly start high and
+    # monotonically increasing and the precision to roughly start high and
     # decrease as more hits (of lesser quality) are added.
-    def pi_zero_from_precision(total_num_hits_ar, precision_ar)
+    def frit_from_precision(total_num_hits_ar, precision_ar)
       instant_pi_zeros = []
       total_num_hits_ar.reverse.zip(precision_ar.reverse).each_cons(2) do |dp1, dp0|
         (x1, y1) = dp1
@@ -208,13 +210,11 @@ module PiZero
       plateau_height(total_num_hits_ar[1..-1], instant_pi_zeros)
     end
 
-#### NEED TO VERIFY if this is PIT or PI_ZERO!
-=begin
     # Takes an array of doublets ([[int, int], [int, int]...]) where the first
     # value is the number of target hits and the second is the number of decoy
     # hits.  Expects that best hits are at the beginning of the list.  Assumes
-    # that each sum is a subset
-    # of the following group (shown as actual hits rather than number of hits):
+    # that each sum is a subset of the following group (shown as actual hits
+    # rather than number of hits):
     #
     #    [[target, target, target, decoy], [target, target, target, decoy,
     #    target, decoy, target], [target, target, target, decoy, target,
@@ -222,32 +222,22 @@ module PiZero
     #
     # This assumption may be relaxed somewhat and should still give good
     # results.
-    def pi_zero_from_groups(array_of_doublets)
-      pi_zeros = []
+    def frit_from_groups(array_of_doublets)
+      frits = []
       array_of_doublets.reverse.each_cons(2) do |two_doublets|
         bigger, smaller = two_doublets
-        bigger[0] = bigger[0] - smaller[0]
-        bigger[1] = bigger[1] - smaller[1]
-        bigger.map! {|v| v < 0 ? 0 : v }
-        if bigger[1] > 0
-          pi_zeros << (bigger[0].to_f / bigger[1])
+        num_targets = bigger[0] - smaller[0] 
+        num_decoy = bigger[1] - smaller[1]
+        num_targets = 0 if num_targets < 0
+        num_decoy = 0 if num_targets < 0
+        if num_decoy > 0
+          frits << (num_targets.to_f / num_decoy)
         end
       end
-      pi_zeros.reverse!
-      xs = (0...(pi_zeros.size)).to_a
-      plateau_height(xs, pi_zeros)
+      frits.reverse!
+      xs = (0...(frits.size)).to_a
+      plateau_height(xs, frits)
     end
 
-=end
-
-
   end
-end
-
-if $0 == __FILE__
-  #xcorrs = IO.readlines("/home/jtprince/xcorr_hist/all_xcorrs.yada").first.chomp.split(/\s+/).map {|v| v.to_f }
-  #PiZero.p_values_for_sequest(
-  #File.open("newtail.yada", 'w') {|out| out.puts new_dist.join(" ") }
-  
-
 end
