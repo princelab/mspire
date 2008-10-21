@@ -1,5 +1,4 @@
 require 'rsruby'
-require 'gsl'
 require 'vec'
 require 'vec/r'
 require 'enumerator'
@@ -21,7 +20,8 @@ module PiZero
       pi_zeros = []                # pi_0
       total = sorted_pvals.size  # m 
 
-      # totally retarded implementation with correct logic:
+      # totally inefficient implementation (with correct logic):
+      # TODO: implement this efficiently
       start.step(stop, step) do |lam|
         lambdas << lam
         (greater, less) = sorted_pvals.partition {|pval| pval > lam }
@@ -29,6 +29,36 @@ module PiZero
       end
       [lambdas, pi_zeros]
     end
+
+=begin
+    def plateau_height_with_gsl(x, y)
+      require 'gsl'
+      x_deltas = (0...(x.size-1)).to_a.map do |i|
+        x[i+1] - x[i]
+      end
+      y_deltas = (0...(y.size-1)).to_a.map do |i|
+        y[i+1] - y[i]
+      end
+      new_xs = x.dup
+      new_ys = y.dup
+      x_deltas.reverse.each do |delt|
+        new_xs.push( new_xs.last + delt )
+      end
+
+      y_cnt = y.size
+      y_deltas.reverse.each do |delt|
+        y_cnt -= 1
+        new_ys.push( y[y_cnt] - delt )
+      end
+
+      x_vec = GSL::Vector.alloc(new_xs)
+      y_vec = GSL::Vector.alloc(new_ys)
+      coef, cov, chisq, status = GSL::Poly.fit(x_vec,y_vec, 3)
+      coef.eval(x.last)
+      #x2 = GSL::Vector::linspace(0,2.4,20)
+      #graph([x_vec,y_vec], [x2, coef.eval(x2)], "-C -g 3 -S 4")
+    end
+=end
 
     # expecting x and y to make a scatter plot descending to a plateau on the
     # right side (which is assumed to be of increasing noise as it goes to the
@@ -42,46 +72,19 @@ module PiZero
     #          ** ***         *    *
     #                    ***** **** ***
     def plateau_height(x, y)
-=begin
-    require 'gsl'
-    x_deltas = (0...(x.size-1)).to_a.map do |i|
-      x[i+1] - x[i]
-    end
-    y_deltas = (0...(y.size-1)).to_a.map do |i|
-      y[i+1] - y[i]
-    end
-    new_xs = x.dup
-    new_ys = y.dup
-    x_deltas.reverse.each do |delt|
-      new_xs.push( new_xs.last + delt )
-    end
-
-    y_cnt = y.size
-    y_deltas.reverse.each do |delt|
-      y_cnt -= 1
-      new_ys.push( y[y_cnt] - delt )
-    end
-
-    x_vec = GSL::Vector.alloc(new_xs)
-    y_vec = GSL::Vector.alloc(new_ys)
-    coef, cov, chisq, status = GSL::Poly.fit(x_vec,y_vec, 3)
-    coef.eval(x.last)
-    #x2 = GSL::Vector::linspace(0,2.4,20)
-    #graph([x_vec,y_vec], [x2, coef.eval(x2)], "-C -g 3 -S 4")
-=end
-
       r = RSRuby.instance
       answ = r.smooth_spline(x,y, :df => 3)
       ## to plot it!
-      r.plot(x,y, :ylab=>"instantaneous pi_zeros")
+      r.plot(x,y, :ylab=>"pi_zeros or frit")
       r.lines(answ['x'], answ['y'])
       r.points(answ['x'], answ['y'])
-      sleep(8)
+      sleep(4)
 
       answ['y'].last
     end
 
     def plateau_exponential(x,y)
+      require 'gsl'
       xvec = GSL::Vector.alloc(x)
       yvec = GSL::Vector.alloc(y)
       a2, b2, = GSL::Fit.linear(xvec, GSL::Sf::log(yvec))
@@ -161,6 +164,8 @@ module PiZero
       p_values(target_hits.map {|v| v.xcorr}, new_decoy_vals )
     end
 
+#### NEED TO VERIFY if this is PIT or PI_ZERO!
+=begin
     # takes a list of booleans with true being a target hit and false being a
     # decoy hit and returns the pi_zero using the smooth method
     # Should be ordered from best to worst (i.e., one expects more true values
@@ -184,14 +189,17 @@ module PiZero
       ys.reverse!
       plateau_height(xs, ys)
     end
+=end
 
-    # takes two parallel arrays consisting of the total number of hits
-    # (this will typically be the total # target hits) at that point and the
+    # returns fraction of incorrect target hits (frit) (this is the percent
+    # incorrect targets [PIT] expressed as a fraction rather than percent)
+    # takes two parallel arrays consisting of the total number of hits (this
+    # will typically be the total # target hits) at that point and the
     # precision (ranging from: [0,1]) (typically determined by counting the
     # number of decoy hits).  Expects the number of total hits to be
-    # monotonically increasng and the precision to roughly start high and
+    # monotonically increasing and the precision to roughly start high and
     # decrease as more hits (of lesser quality) are added.
-    def pi_zero_from_precision(total_num_hits_ar, precision_ar)
+    def frit_from_precision(total_num_hits_ar, precision_ar)
       instant_pi_zeros = []
       total_num_hits_ar.reverse.zip(precision_ar.reverse).each_cons(2) do |dp1, dp0|
         (x1, y1) = dp1
@@ -205,8 +213,8 @@ module PiZero
     # Takes an array of doublets ([[int, int], [int, int]...]) where the first
     # value is the number of target hits and the second is the number of decoy
     # hits.  Expects that best hits are at the beginning of the list.  Assumes
-    # that each sum is a subset
-    # of the following group (shown as actual hits rather than number of hits):
+    # that each sum is a subset of the following group (shown as actual hits
+    # rather than number of hits):
     #
     #    [[target, target, target, decoy], [target, target, target, decoy,
     #    target, decoy, target], [target, target, target, decoy, target,
@@ -214,31 +222,22 @@ module PiZero
     #
     # This assumption may be relaxed somewhat and should still give good
     # results.
-    def pi_zero_from_groups(array_of_doublets)
-      pi_zeros = []
+    def frit_from_groups(array_of_doublets)
+      frits = []
       array_of_doublets.reverse.each_cons(2) do |two_doublets|
         bigger, smaller = two_doublets
-        bigger[0] = bigger[0] - smaller[0]
-        bigger[1] = bigger[1] - smaller[1]
-        bigger.map! {|v| v < 0 ? 0 : v }
-        if bigger[1] > 0
-          pi_zeros << (bigger[0].to_f / bigger[1])
+        num_targets = bigger[0] - smaller[0] 
+        num_decoy = bigger[1] - smaller[1]
+        num_targets = 0 if num_targets < 0
+        num_decoy = 0 if num_targets < 0
+        if num_decoy > 0
+          frits << (num_targets.to_f / num_decoy)
         end
       end
-      pi_zeros.reverse!
-      xs = (0...(pi_zeros.size)).to_a
-      plateau_height(xs, pi_zeros)
+      frits.reverse!
+      xs = (0...(frits.size)).to_a
+      plateau_height(xs, frits)
     end
 
   end
-
-
-end
-
-if $0 == __FILE__
-  #xcorrs = IO.readlines("/home/jtprince/xcorr_hist/all_xcorrs.yada").first.chomp.split(/\s+/).map {|v| v.to_f }
-  #PiZero.p_values_for_sequest(
-  #File.open("newtail.yada", 'w') {|out| out.puts new_dist.join(" ") }
-  
-
 end

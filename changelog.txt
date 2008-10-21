@@ -213,3 +213,8 @@ difference between good hits and bad hits
 1. using pi_zero instead of decoy_to_target_ratio.  While all tests are
 passing, this release should be considered experimental with the use of any
 target-decoy validation.
+
+## version 0.4.6
+1. added NOTE to --to_qvalues option to include all results (no low prob
+filter)
+

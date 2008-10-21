@@ -167,11 +167,11 @@ end
 # normal hits (which may be true or false) and the second are decoy hits.
 # edge case:  if num_normal.to_f == 0.0 then if num_decoy.to_f > 0 ; 0, else 1
 module Precision::Calculator::Decoy
-  def calc_precision(num_normal, num_decoy, pi_zero=1.0)
+  def calc_precision(num_normal, num_decoy, frit=1.0)
     # will calculate as floats in case fractional amounts passed in for
     # whatever reason
     num_normal_f = num_normal.to_f
-    num_true_pos = num_normal_f - (num_decoy.to_f * pi_zero)
+    num_true_pos = num_normal_f - (num_decoy.to_f * frit)
     precision =
       if num_normal_f == 0.0
         if num_decoy.to_f > 0.0

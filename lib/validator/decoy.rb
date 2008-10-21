@@ -9,10 +9,11 @@ class Validator::Decoy < Validator
   attr_accessor :decoy_on_match
   attr_accessor :correct_wins
   # This is the the number of incorrect target hits over the total decoy hits
-  # The very rough, conservative ballpark estimate is the ratio of target hits
-  # to decoy hits.  This can be refined by removing the number of true target
+  # The percent incorrect targets (PIT) expressed as a fraction (== 1 - PI_0).
+  # The rough, conservative ballpark estimate is the ratio of target hits to
+  # decoy hits.  This can be refined by removing the number of true target
   # hits from the targets used to calculate it.
-  attr_accessor :pi_zero
+  attr_accessor :frit
 
   attr_accessor :last_pep_was_decoy
 
@@ -25,12 +26,12 @@ class Validator::Decoy < Validator
   DEFAULTS = {
     :decoy_on_match => true,
     :correct_wins => true,
-    :pi_zero => 1.0,
+    :frit => 1.0,
   }
 
   def initialize(opts={})
     merged = DEFAULTS.merge(opts)
-    @constraint, @decoy_on_match, @correct_wins, @pi_zero = merged.values_at(:constraint, :decoy_on_match, :correct_wins, :pi_zero)
+    @constraint, @decoy_on_match, @correct_wins, @frit = merged.values_at(:constraint, :decoy_on_match, :correct_wins, :frit)
   end
 
   # returns [normal, decoy] (?? I think ??)
@@ -86,15 +87,15 @@ class Validator::Decoy < Validator
     @normal_peps_just_submitted = normal
     @increment_normal += normal.size
     @increment_decoy += decoy.size
-    calc_precision(@increment_normal, @increment_decoy, @pi_zero)
+    calc_precision(@increment_normal, @increment_decoy, @frit)
   end
 
   def pephit_precision(peps, separate_peps=nil)
     if separate_peps
-      calc_precision(peps.size, separate_peps.size, @pi_zero)
+      calc_precision(peps.size, separate_peps.size, @frit)
     else
       (norm, decoy) = partition(peps)
-      calc_precision(norm.size, decoy.size, @pi_zero)
+      calc_precision(norm.size, decoy.size, @frit)
     end
   end
 

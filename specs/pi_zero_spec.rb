@@ -74,7 +74,7 @@ describe PiZero do
     pi_zero.should be_close(0.03522869, 0.0001)
   end
 
-  xit 'can calculate pi zero for groups of hits' do
+  it 'can calculate frit for groups of hits' do
     # setup
     targets = [4,3,8,3,5,3,4,5,4]
     decoys = [0,2,2,3,5,7,8,8,8]
@@ -95,15 +95,15 @@ describe PiZero do
       decoys_summed << sum
     end
     zipped = targets_summed.zip(decoys_summed)
-    pi_zero = PiZero.pi_zero_from_groups(zipped)
+    frit = PiZero.frit_from_groups(zipped)
     # frozen
-    pi_zero.should be_close(0.384064, 0.00001)
+    frit.should be_close(0.384064, 0.00001)
   end
 
-  it 'can calcuate pi zero for total number of hits and precision' do
+  xit 'can calcuate pi zero for total number of hits and precision' do
     tot_hits = [1,10,20,30,50,200]
     precision = [1.0, 1.0, 0.85, 0.80, 0.7, 0.5]
-    reply = PiZero.pi_zero_from_precision(tot_hits, precision)
+    reply = PiZero.frit_from_precision(tot_hits, precision)
     puts "ANSER"
     # frozen
     puts reply
