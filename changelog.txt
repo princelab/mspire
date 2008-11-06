@@ -218,3 +218,6 @@ target-decoy validation.
 1. added NOTE to --to_qvalues option to include all results (no low prob
 filter)
 
+## version 0.4.7
+1. Added ability to quickly grab sequest params out of a .SRF file
+2. Added helpful runtime error if print_duplicate_references is 0.

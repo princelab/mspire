@@ -73,6 +73,7 @@ class SRFGroup
     IO.readlines(file).grep(/\w/).map {|v| v.chomp } 
   end
 
+
   # if srfs were read in separately, then the proteins will need to be merged
   # by their reference
   def merge_different_sets(srfs)
@@ -183,6 +184,20 @@ class SRF
   MASCOT_HYDROGEN_MASS = 1.007276
 
   attr_accessor :filtered_by_precursor_mass_tolerance 
+
+  # returns a Sequest::Params object
+  def self.get_sequest_params(filename)
+    # split the file in half and only read the second half (since we can be
+    # confident that the params file will be there!)
+    File.open(filename) do |handle|
+      halfway = handle.stat.size / 2
+      handle.seek halfway
+      last_half = handle.read
+      params_start_index = last_half.rindex('[SEQUEST]') + halfway
+      handle.seek(params_start_index)
+      Sequest::Params.new.parse_handle(handle)
+    end
+  end
 
   def dta_start_byte
     case @version
@@ -468,10 +483,24 @@ class SRF
 
   # returns self
   def from_file(filename, peps, global_ref_hash)
+    dups = SRF.get_sequest_params(filename).print_duplicate_references
+    if dups == '0'
+      raise RuntimeError, <<END
+
+***************************************************************************
+Sorry, but the SRF reader cannot read this file!
+.srf files must currently be created with print_duplicate_references > 0
+(This is how the srf object can link peptides with proteins!)
+To capture all duplicate references, set the sequest parameter
+'print_duplicate_references' to 100 or greater.
+***************************************************************************
+END
+    end
 
     File.open(filename, "rb") do |fh|
       @header = SRF::Header.new.from_handle(fh)      
       @version = @header.version
+      
       unpack_35 = case @version
                   when '3.2'
                     false
@@ -824,6 +853,7 @@ class SRF::OUT::Pep
   end
 
   def self.read_extra_references(fh, num_extra_references, pep_hits, global_ref_hash)
+    p num_extra_references
     num_extra_references.times do
       # 80 bytes total (with index number)
       pep = pep_hits[fh.read(8).unpack('x4I').first - 1]
