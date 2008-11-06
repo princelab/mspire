@@ -96,9 +96,10 @@ module PiZero
 
     end
 
-    # returns a conservative (but close) estimate of pi_0 given sorted p-values
+    # returns a conservative (but close) estimate of pi_0 given p-values
     # following Storey et al. 2003, PNAS.
-    def pi_zero(sorted_pvals)
+    def pi_zero(pvals)
+      sorted_pvals = pvals.sort
       plateau_height( *(pi_zero_hats(sorted_pvals)) )
     end
 
