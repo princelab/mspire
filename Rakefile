@@ -60,7 +60,7 @@ end
 
 desc "upload docs (doc/output) to server"
 task :upload_docs do
-  sh "scp -i ~/.ssh/rubyforge_key -r doc/output/* jtprince@rubyforge.org:/var/www/gforge-projects/mspire/"
+  sh "scp -i ~/.ssh/id_rsa -r doc/output/* jtprince@rubyforge.org:/var/www/gforge-projects/mspire/"
 end
 
 # best to use webgen 0.3.8 right now

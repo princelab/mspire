@@ -23,7 +23,8 @@ Much of the package will work without any prerequisites at all.  Some functional
 Installation
 ------------
 
-    gem install mspire
+    gem install mspire -v 0.4.7  # stable release
+    gem install mspire   # current 0.5.x series (currently missing functionality)
 
 See [installation under cygwin](cygwin.html) if you're on Windows.
 

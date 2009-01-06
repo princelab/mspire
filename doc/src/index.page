@@ -49,17 +49,13 @@ The [MS](ms/index.html) namespace contains objects for working with mass spectra
 
 The [SpecID](spec_id/index.html) namespace contains objects for working with spectral identifications.
 
-Tutorials
----------
+Warnings
+--------
 
-* [Database Searching Tutorial](tutorial/database_searching/index.html) -
-Demonstrates two methods for running and analysing Bioworks output to obtain
-false positive rates using mspire executables.
+mspire 0.5.x is a rewrite/refactor of mspire with new features over the 0.4.x series.  It is stable but currently missing much of the 0.4.x functionality.  
+ * The [rdocs online](http://mspire.rubyforge.org/rdoc) will reflect this version (always the latest released gem).  Run 'rdoc' in the base directory of your mspire gem to ensure documentation specific to your release.  
 
-Warning
--------
-
-This is an experimental package.  As such, all versions prior to version 1.0
+mspire is an experimental package.  As such, all versions prior to version 1.0
 may contain interface changes on minor revisions (major.minor.build) (e.g.,
 0.4.0 may contain interface change from 0.3.9).  Beyond version 1.0, the
 versioning scheme will be strictly adhered to (no interface changes except on
