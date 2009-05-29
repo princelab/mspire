@@ -1,3 +1,7 @@
-pkg
-test_files_large
-doc/output/*
+.DS_Store
+pkg/
+rdoc/
+backup/
+config/
+data/
+*.swp

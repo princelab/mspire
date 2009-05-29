@@ -1,0 +1,7 @@
+== 0.6.0 / 2009-05-29
+
+* mspire is now an umbrella package that requires generally useful packages
+for ms-proteomics.
+* new History file
+* revamping Rakefile
+
