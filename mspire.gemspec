@@ -25,6 +25,7 @@ Gem::Specification.new do |s|
   s.files = %W{
     mspire.gemspec
     README.rdoc
+
   }
 
   ## -- all add_dependency lines are auto-generated based on dependencies.yml -- ##
