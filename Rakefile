@@ -3,18 +3,62 @@ require 'rake/testtask'
 require 'rake/rdoctask'
 require 'rake/gempackagetask'
 require 'configurable'  # for cdoc
+require 'yaml'
 
-NAME = 'ms-core'
+NAME = 'mspire'
+GEMSPEC_FILE = "#{NAME}.gemspec"
+DEPENDENCIES_FILE = "dependencies.yml"
 
 #
 # Gem specification
 #
 
 def gemspec
-  data = File.read("#{NAME}.gemspec")
+  data = File.read(GEMSPEC_FILE)
   spec = nil
   Thread.new { spec = eval("$SAFE = 3\n#{data}") }.join
   spec
+end
+
+
+# dependencies is an array of doublets [[package, version],...]
+def write_dependencies_to_gemspec(file, dependencies)
+  tmpfile = file + ".tmp"
+  lines = IO.readlines(file).reject {|v| v =~ /add_dependency/ }
+  File.open(tmpfile, 'w') do |out|
+    lines.each do |line|
+      if line =~ /^end$/
+        out.puts "  ## -- all add_dependency lines are auto-generated based on #{DEPENDENCIES_FILE} -- ##"
+        dependencies.each do |depend, version|
+          out.puts "  s.add_dependency(\"#{depend}\",\"= #{version}\")"
+        end
+      end
+      out.puts line
+    end
+  end
+  File.unlink file
+  File.rename(tmpfile, file)
+end
+
+def gem_versions(regexp) 
+  `rubyforge login`
+  `rubyforge config mspire`
+  hash = YAML.load_file("#{ENV['HOME']}/.rubyforge/auto-config.yml")
+  doublets = hash['release_ids'].select {|k,v| k =~ regexp }
+  doublets.map do |k,v| 
+    gem = v.keys.first 
+    version = gem.split('-').last.sub(/\.gem$/,'')
+    [k, version]
+  end
+end
+
+desc "adds dependencies to gemspec"
+task :add_dependencies do
+  dependencies = YAML.load_file(DEPENDENCIES_FILE)
+  p dependencies
+  using_depend = gem_versions(/^ms-/).select {|k,v| dependencies.include?(k) } 
+  p using_depend
+  write_dependencies_to_gemspec(GEMSPEC_FILE, using_depend)
 end
 
 Rake::GemPackageTask.new(gemspec) do |pkg|
