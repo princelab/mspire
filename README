@@ -9,6 +9,14 @@ spectrometry data in ruby.
 * Homepage[http://mspire.rubyforge.org/]
 * {Rubyforge project page}http://rubyforge.org/projects/mspire/
 
+== mspire modules
+
+The mspire project houses a collection of independent modules that (should)
+work well with one another.
+
+mspire [] :: umbrella module to require other modules
+[ ] [] :: umbrella module to require other modules
+
 == the mspire gem
 
 Installing the mspire gem will install a
@@ -64,4 +72,14 @@ Installation
 ------------
 
 see [Install](install/index.html)
+
+
+OLD STUFF
+----------
+[MS::MSRun] http://mspire.rubyforge.org/ms/msrun.html
+[SpecID] http://mspire.rubyforge.org/spec_id/spec_id.html
+[SRF] http://mspire.rubyforge.org/spec_id/srf.html
+[False Identification Rate Determination] http://mspire.rubyforge.org/spec_id/fir/index.html
+[OBI-Warp] http://mspire.rubyforge.org/ms/obiwarp.html
+
 

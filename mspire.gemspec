@@ -1,37 +1,44 @@
+# -*- encoding: utf-8 -*-
+
 Gem::Specification.new do |s|
-  s.name = "mspire"
+  s.name = %q{mspire}
   s.version = "0.6.0"
-  s.authors = ["Simon Chiang", "John Prince"]
-  s.email = "jtprince@gmail.com"
-  s.homepage = "http://mspire.rubyforge.org/"
-  s.platform = Gem::Platform::RUBY
-  s.summary = "mass spectrometry proteomics in Ruby: umbrella gem to include commonly used functionality"
-  #s.require_path = "lib"
-  s.rubyforge_project = "mspire"
-  s.has_rdoc = false
 
+  s.required_rubygems_version = Gem::Requirement.new(">= 0") if s.respond_to? :required_rubygems_version=
+  s.authors = ["John Prince", "Simon Chiang"]
+  s.date = %q{2009-06-03}
+  s.email = %q{jtprince@gmail.com}
+  s.extra_rdoc_files = ["README.rdoc", "MIT-LICENSE", "History"]
+  s.files = ["lib/mspire.rb", "README.rdoc", "MIT-LICENSE", "History"]
+  s.homepage = %q{http://mspire.rubyforge.org/}
+  s.rdoc_options = ["--main", "README.rdoc", "-S", "-N", "--title", "mspire"]
+  s.require_paths = ["lib"]
+  s.rubyforge_project = %q{mspire}
+  s.rubygems_version = %q{1.3.2}
+  s.summary = %q{mass spectrometry proteomics in Ruby: umbrella gem to include commonly used functionality}
 
-  s.rdoc_options.concat %W{--main README -S -N --title mspire}
-  
-  # list extra rdoc files like README here.
-  s.extra_rdoc_files = %W{
-    README
-    MIT-LICENSE
-    History
-  }
-  
-  # list the files you want to include here. you can
-  # check this manifest using 'rake :print_manifest'
-  s.files = %W{
-    mspire.gemspec
-    README.rdoc
+  if s.respond_to? :specification_version then
+    current_version = Gem::Specification::CURRENT_SPECIFICATION_VERSION
+    s.specification_version = 3
 
-  }
-
-  ## -- all add_dependency lines are auto-generated based on dependencies.yml -- ##
-  s.add_dependency("ms-unimod","= 0.1.0")
-  s.add_dependency("ms-core","= 0.0.1")
-  s.add_dependency("ms-in_silico","= 0.3.0")
-  s.add_dependency("ms-fasta","= 0.1.0")
-  s.add_dependency("ms-msrun","= 0.0.1")
+    if Gem::Version.new(Gem::RubyGemsVersion) >= Gem::Version.new('1.2.0') then
+      s.add_runtime_dependency(%q<ms-unimod>, ["= 0.1.0"])
+      s.add_runtime_dependency(%q<ms-core>, ["= 0.0.1"])
+      s.add_runtime_dependency(%q<ms-in_silico>, ["= 0.3.0"])
+      s.add_runtime_dependency(%q<ms-msrun>, ["= 0.0.1"])
+      s.add_runtime_dependency(%q<ms-fasta>, ["= 0.1.0"])
+    else
+      s.add_dependency(%q<ms-unimod>, ["= 0.1.0"])
+      s.add_dependency(%q<ms-core>, ["= 0.0.1"])
+      s.add_dependency(%q<ms-in_silico>, ["= 0.3.0"])
+      s.add_dependency(%q<ms-msrun>, ["= 0.0.1"])
+      s.add_dependency(%q<ms-fasta>, ["= 0.1.0"])
+    end
+  else
+    s.add_dependency(%q<ms-unimod>, ["= 0.1.0"])
+    s.add_dependency(%q<ms-core>, ["= 0.0.1"])
+    s.add_dependency(%q<ms-in_silico>, ["= 0.3.0"])
+    s.add_dependency(%q<ms-msrun>, ["= 0.0.1"])
+    s.add_dependency(%q<ms-fasta>, ["= 0.1.0"])
+  end
 end
