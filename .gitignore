@@ -4,4 +4,4 @@ rdoc/
 backup/
 config/
 data/
-*.swp
+.*.swp
