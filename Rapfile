@@ -1,0 +1,10 @@
+
+
+include Rap::Declarations
+
+namespace :doc do
+  task(:inject_projects) do |task, args|
+    pkgs = YAML.load_file('mspire_packages.yml')
+    p pkgs
+  end
+end

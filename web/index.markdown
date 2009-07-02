@@ -1,25 +1,14 @@
----
-title: Home
-inMenu: true
-directoryName: mspire 
----
 
-mspire - 'Mass Spectrometry Proteomics in Ruby' is a collection of tools for
-working with MS proteomics data in ruby.  It seeks to provide support for open
-standards (e.g., parsers for mzData, mzXML, Peptide/Protein Prophet and the
-TPP) and contribute other useful functionality for working with mass
+# The mspire project
+
+mspire - 'Mass Spectrometry Proteomics in Ruby' is a collection of packages
+for working with MS proteomics data in ruby.  It seeks to provide support for
+open standards (e.g., parsers for mzData, mzXML, mzML, Peptide/Protein Prophet
+and the TPP) and contribute other useful functionality for working with mass
 spectrometry data in ruby.
 
-Current Focus
--------------
+## Packages
 
-The project is currently focusing on the following:
-
-* SEQUEST data (particularly the output of Bioworks 3.2-3.3)
-* mzXML
-* mzData
-* ProteinProphet
-* Preparation of files for [obiwarp](http://obi-warp.sourceforge.net/)
 
 Features
 --------

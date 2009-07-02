@@ -1,0 +1,48 @@
+---
+# this document respects markdown notation
+# unless otherwise stated, rdoc will be at
+# http://<maint>.github.com/<project>/rdoc
+# www will be: http://<maint>.github.com/<project>/
+- mspire:
+    maint: jtprince
+    description: Umbrella package that loads most widely used packages.
+    www: http://jtprince.github.com/mspire/gem/
+- ms-core:
+    maint: bahuvrihi
+    description: Common, shared libraries and utilities for mspire libraries.
+- ms-fasta:
+    maint: bahuvrihi
+    description: Tasks for working with protein/nucleic acid FASTA databases.
+- ms-msrun:
+    maint: jtprince
+    description: A library for working with LC/MS runs.
+- ms-in_silico:
+    maint: bahuvrihi
+    description: _In-silico_ mass spectrum calculations.
+- ms-unimod:
+    maint: bahuvrihi
+    description: Access to the Unimod database for mass spec analysis.
+- ms-sequest:
+    maint: jtprince
+    description: A library for working with SEQUEST related data including .srf and .sqt files. 
+- ms-mascot:
+    maint: bahuvrihi
+    description: Tasks for working with Mascot and its files.
+- ms-xcalibur:
+    maint: bahuvrihi
+    description: A library for working with Xcalibur data.
+- ms-uniprot:
+    maint: bahuvrihi
+    description: A library for working with UniProt.
+- ms-data_explorer:
+    maint: bahuvrihi
+    description: A library for working with DataExplorer.
+- ms-pir:
+    maint: bahuvrihi
+    description: A library to interact with the Protein Information Resource.
+- ms-prots:
+    maint: bahuvrihi
+    description: A library for working with ProTS.
+- ms-testdata:
+    maint: bahuvrihi
+    description: A repository of test data used by the mspire libraries.
