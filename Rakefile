@@ -27,7 +27,7 @@ BaseGemspec = Gem::Specification.new do |s|
 end
 
 GEMSPEC_FILE = "#{NAME}.gemspec"
-DEPENDENCIES_FILE = "dependencies.yml"
+CFG = YAML.load_file("mspire_packages.yml")
 
 def gem_versions(regexp) 
   `rubyforge login`
@@ -48,11 +48,21 @@ def gemspec_from_file
   spec
 end
 
+def get_dependencies
+  CFG.map do |pkg_hash|
+    if pkg_hash['in_mspire_gem']
+      pkg_hash['name']
+    else
+      nil
+    end
+  end.compact
+end
+
 def gemspec_with_dependencies
-  dependencies = YAML.load_file(DEPENDENCIES_FILE)
+  dependencies = get_dependencies
   to_include = gem_versions(/^ms-/).select {|k,v| dependencies.include?(k) }
   to_include.each do |k,v|
-    BaseGemspec.add_dependency(k, "= #{v}")
+    BaseGemspec.add_dependency(k, ">= #{v}")
   end
   BaseGemspec
 end
@@ -64,12 +74,13 @@ end
 
 desc "prints all ms-* modules in rdoc list format"
 task :mspire_modules_in_rdoc do
-  # working on this
 end
 
-# uses the .gemspec file
-pkg_task = Rake::GemPackageTask.new(gemspec_from_file) do |pkg|
-  pkg.need_tar = true
+if gemspec_from_file.is_a? Gem::Specification
+  # uses the .gemspec file
+  pkg_task = Rake::GemPackageTask.new(gemspec_from_file) do |pkg|
+    pkg.need_tar = true
+  end
 end
 
 #

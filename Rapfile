@@ -1,10 +1,33 @@
 
 
-include Rap::Declarations
+require 'ostruct'
+require 'find'
+require 'erb'
 
-namespace :doc do
-  task(:inject_projects) do |task, args|
-    pkgs = YAML.load_file('mspire_packages.yml')
-    p pkgs
+#include Rap::Declarations
+
+def get_packages
+  YAML.load_file('mspire_packages.yml').map do |hash| 
+    struct = OpenStruct.new(hash)
+    struct.www = "http://#{struct.maintainer}.github.com/#{struct.name}" unless struct.www
+    struct.rdoc = "http://#{struct.maintainer}.github.com/#{struct.name}/rdoc/" unless struct.www unless struct.rdoc
+    struct
+  end
+end
+
+def inject_erb(file)
+  template = ERB.new(IO.read(file), nil, '%<>')
+  packages = get_packages
+  File.open(file.sub(/\.erb$/,''),'w') do |out|
+    out.print template.result(binding)
+  end
+end
+
+desc "processes erb"
+task :process_erb do |task, args|
+  Find.find('web') do |path|
+    if File.extname(path) == '.erb'
+      inject_erb(path)
+    end
   end
 end

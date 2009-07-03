@@ -1,0 +1,41 @@
+# The mspire project
+
+mspire - 'Mass Spectrometry Proteomics in Ruby' is a collection of packages
+for working with MS proteomics data in ruby.  It seeks to provide support for
+open standards (e.g., parsers for mzData, mzXML, mzML, Peptide/Protein Prophet
+and the TPP) and contribute other useful functionality for working with mass
+spectrometry data in ruby.
+
+_mspire_ is also a gem that includes broad, commonly used packages.
+
+## Mspire Packages
+
+[packages included in the _mspire gem_ in **bold**]
+<% packages.each do |pkg| %>
+<%= '**' if pkg.in_mspire_gem %><%= pkg.name %><%= '**' if pkg.in_mspire_gem %> [www](<%= pkg.www %>) [rdoc](<%= pkg.rdoc %>):
+    <%= pkg.description %>
+<% end %>
+
+## Major Features
+
+* Tight integration with TAP (Task Application) framework for creating modular, distributable workflows.
+* A unified LC/MS format *Ms::Msrun* for mzXML (all versions) and mzData (mzML soon) (ms-msrun).
+* A Thermo's Bioworks .srf (binary files) reader and converter (ms-sequest).
+* Read/write .sqt files (ms-sequest)
+* Read/write Mascot .dat and .mgf formats (ms-mascot)
+* Tasks for automating submission to Mascot server. (ms-mascot)
+* _in-silico_ spectrum creation. (ms-in_silico)
+* highly portable: works across platforms
+* makes use of [External]() for reading large files.
+
+## Installation
+
+To install the mspire gem:
+
+    gem install mspire
+
+To install a particular mspire package and its dependencies:
+
+    gem install <package>
+
+
