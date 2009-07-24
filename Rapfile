@@ -4,7 +4,7 @@ require 'ostruct'
 require 'find'
 require 'erb'
 
-#include Rap::Declarations
+include Rap::Declarations
 
 def get_packages
   YAML.load_file('mspire_packages.yml').map do |hash| 
