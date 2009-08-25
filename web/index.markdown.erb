@@ -10,10 +10,11 @@ _mspire_ is also a gem that includes broad, commonly used packages.
 
 ## Mspire Packages
 
-[packages included in the _mspire gem_ in **bold**]
+(packages included in the _mspire gem_ in **bold**)
+
 <% packages.each do |pkg| %>
-<%= '**' if pkg.in_mspire_gem %><%= pkg.name %><%= '**' if pkg.in_mspire_gem %> [www](<%= pkg.www %>) [rdoc](<%= pkg.rdoc %>):
-    <%= pkg.description %>
+<%= '**' if pkg.in_mspire_gem %><%= pkg.name %><%= '**' if pkg.in_mspire_gem %> [www](<%= pkg.www %>) [rdoc](<%= pkg.rdoc %>)
+: <%= pkg.description %>
 <% end %>
 
 ## Major Features
