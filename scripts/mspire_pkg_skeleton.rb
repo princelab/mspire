@@ -2,25 +2,19 @@
 
 require 'optparse'
 
-opt = {
-  :author => "[TODO: AUTHOR]",
-  :email => "[TODO: email]",
-}
-
-opts = OptionParser.new do |op|
-  op.banner = "usage: #{File.basename(__FILE__)} <name>"
-  op.separator "<name> should probably be: ms-<something>"
-  op.separator "assumes use of Jeweler"
-  op.separator "OPTIONS (will fill in with [TODO: xxx] if missing"
-  op.on("-a", "--author <string>", "the author of the package ('First Last')") {|v| opt[:author] = v }
-  op.on("-e", "--email <string>", "email address of author") {|v| opt[:email] = v }
-  op.on("-f", "--force", "write over files if necessary") {|v| opt[:force] = v }
-end
-opts.parse!
-
-if ARGV.size != 1
-  puts opts
-  exit
+# the block allows writing into the final module
+def make_module(pieces, string="", klass=false, spaces=0, &block)
+  name = pieces.shift
+  margin = " " * spaces
+  if name
+    tp = klass ? 'class' : 'module'
+    string << margin + "#{tp} #{name.capitalize}\n"
+    spaces += 2
+    make_module(pieces, string, false, spaces, &block)
+    string << margin + "end\n"
+  else
+    string << block.call << "\n"
+  end
 end
 
 def remove_margin(string)
@@ -41,11 +35,19 @@ def remove_margin(string)
   new_string
 end
 
-def make_file(name, &block)
-  if File.exist?(name) && !opt[:force]
+def make_file(name, _remove_margin=true, &block)
+  if File.exist?(name) && !$force
     puts "not writing over #{name} (use --force to overwrite)"
   else
-    File.open(name, 'w') do |out| out.print remove_margin(block.call) unless block.nil? end
+    File.open(name, 'w') do |out| 
+      if block.nil?
+        out.print " "
+      else
+        string = block.call
+        string = remove_margin(string) if _remove_margin
+        out.print string
+      end
+    end
   end
 end
 
@@ -59,6 +61,29 @@ def make_dir(name, &block)
     end
   end
 end
+
+opt = {
+  :author => "[TODO: AUTHOR]",
+  :email => "[TODO: email]",
+}
+$force = false
+
+opts = OptionParser.new do |op|
+  op.banner = "usage: #{File.basename(__FILE__)} <name>"
+  op.separator "<name> should probably be: ms-<something>"
+  op.separator "assumes use of Jeweler"
+  op.separator "OPTIONS (will fill in with [TODO: xxx] if missing"
+  op.on("-a", "--author <string>", "the author of the package ('First Last')") {|v| opt[:author] = v }
+  op.on("-e", "--email <string>", "email address of author") {|v| opt[:email] = v }
+  op.on("-f", "--force", "write over files if necessary") {|v| $force = v }
+end
+opts.parse!
+
+if ARGV.size != 1
+  puts opts
+  exit
+end
+
 
 project = ARGV.shift
 
@@ -179,12 +204,21 @@ make_dir(project) do
   end # make_file("Rakefile")
 
   pieces = project.split('-')
+  all_pieces = pieces.map
   file_base = pieces.pop
   proj_dir_path = pieces.join("/")
 
   make_dir("lib") do
     make_dir(proj_dir_path) do
       make_file(file_base + '.rb')
+      make_dir(file_base) do
+        make_file('version.rb', false) do
+          make_module(all_pieces) do
+            updir = '/..' * (pieces.size+2)
+            %Q{    VERSION = IO.readlines(File.dirname(__FILE__) + "#{updir}/VERSION").first.chomp}
+          end
+        end
+      end
     end
   end
 
@@ -220,8 +254,6 @@ make_dir(project) do
         }
       end
     end
-
-
   end
 
 
