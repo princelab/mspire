@@ -69,7 +69,7 @@ opt = {
 $force = false
 
 opts = OptionParser.new do |op|
-  op.banner = "usage: #{File.basename(__FILE__)} <name>"
+  op.banner = "usage: #{File.basename(__FILE__)} <project_name> <github_username>"
   op.separator "<name> should probably be: ms-<something>"
   op.separator "assumes use of Jeweler"
   op.separator "OPTIONS (will fill in with [TODO: xxx] if missing"
@@ -79,13 +79,13 @@ opts = OptionParser.new do |op|
 end
 opts.parse!
 
-if ARGV.size != 1
+if ARGV.size != 2
   puts opts
   exit
 end
 
 
-project = ARGV.shift
+(project, github_username) = ARGV
 
 make_dir(project) do 
   tm = Time.now
@@ -98,9 +98,9 @@ make_dir(project) do
 
   make_file("README.rdoc") do
     %Q{
-    = {#{project}}[http:/mspire.rubyforge.org/projects/#{project}]
+    = {#{project}}[http://#{github_username}.github.com/#{project}/rdoc/]
 
-    #{project} is an {mspire}[http:/mspire.rubyforge.org/] library that ... {TODO: Description of the project}
+    #{project} is an {mspire}[http:/jtprince.github.com/mspire/] library that ... {TODO: Description of the project}
 
     == Examples
 
@@ -164,12 +164,14 @@ make_dir(project) do
       s.name = NAME
       s.authors = ["#{opt[:author]}"]
       s.email = "#{opt[:email]}"
-      s.homepage = "http://mspire.rubyforge.org/projects/" + NAME + "/"
+      s.homepage = "http://#{github_username}.github.com/" + NAME + "/"
       s.summary = "An mspire library [TODO: that does what?]"
       s.description = "[TODO: longer description]"
+      s.rubyforge_project = 'mspire'
       # s.add_dependency("ms-core", ">= 0.0.2")
       # s.add_development_dependency("ms-testdata", ">= 0.18.0")
       s.add_development_dependency("bacon", ">= 1.1.0")
+      s.files << "VERSION"
     end
 
     Jeweler::Tasks.new(gemspec)
