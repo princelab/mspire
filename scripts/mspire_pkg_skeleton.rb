@@ -2,6 +2,13 @@
 
 require 'optparse'
 
+def run(cmd)
+  reply = `#{cmd}`
+  if reply || reply != ""
+    puts reply
+  end
+end
+
 # the block allows writing into the final module
 def make_module(pieces, string="", klass=false, spaces=0, &block)
   name = pieces.shift
@@ -70,12 +77,15 @@ $force = false
 
 opts = OptionParser.new do |op|
   op.banner = "usage: #{File.basename(__FILE__)} <project_name> <github_username>"
-  op.separator "<name> should probably be: ms-<something>"
+  op.separator "creates a new mspire package"
+  op.separator "Designed to work with a project name like: ms-template "
+  op.separator "giving 'ms/template' and Ms::Template"
   op.separator "assumes use of Jeweler"
   op.separator "OPTIONS (will fill in with [TODO: xxx] if missing"
   op.on("-a", "--author <string>", "the author of the package ('First Last')") {|v| opt[:author] = v }
   op.on("-e", "--email <string>", "email address of author") {|v| opt[:email] = v }
   op.on("-f", "--force", "write over files if necessary") {|v| $force = v }
+  op.on("-t", "--template", "build the github template") {|v| opt[:template] = v }
 end
 opts.parse!
 
@@ -97,25 +107,51 @@ make_dir(project) do
   end
 
   make_file("README.rdoc") do
+    description = '{TODO: Description of the project}'
+    examples = %Q{    require "#{project.gsub('-','/')}\n\n"    {TODO: example code!}}
+    installation = %Q{    gem install #{project}}
+        
+    if opt[:template]
+      description = ["gives the suggested layout for an mspire <tt>ms-<whatever></tt> package."]
+      description << ""
+      description << "<b>DO NOT MODIFY <tt>git@github.com:#{github_username}/#{project}.git</tt> directly!</b>  <em>Modify the generator described below, run it, and push the changes.</em>  Of course, if you clone this for a new project, you should modify it directly."
+      description = description.join("\n")
+
+      examples = ["This template can be used to start a fresh project by cloning it:"]
+      examples << ""
+      examples << "    git clone git@github.com:#{github_username}/#{project}.git"
+      examples << ""
+      examples << "Now you need to search and replace:"
+      examples << ""
+      examples << "    1. #{project} => <your project>"
+      examples << "    2. #{opt[:author]} => <your name>"
+      examples << "    3. <email address hidden> => <your email>"
+      examples << "    4. (and some other minor changes to the specs)"
+      examples << "    5. make sure the LICENSE is as you desire it"
+      examples << ""
+      examples << "Or, install the mspire gem (<tt>gem install mspire</tt>), go to the base directory of the gem and you will find a script in the 'script' folder: <em>#{File.basename(__FILE__)}</em>.  Run the script with no arguments for usage information."
+      examples = examples.join("\n")
+
+      installation = %Q{(You probably don't want to actually install the template.  See Examples above for cloning or generating a template for your mspire project)}
+
+    end
+
     %Q{
-    = {#{project}}[http://#{github_username}.github.com/#{project}/rdoc/]
+= {#{project}}[http://#{github_username}.github.com/#{project}/rdoc/]
 
-    #{project} is an {mspire}[http:/jtprince.github.com/mspire/] library that ... {TODO: Description of the project}
+#{project} is an {mspire}[http:/jtprince.github.com/mspire/] library that #{description}
 
-    == Examples
+== Examples
 
-        require "#{project.gsub('-','/')}"
+#{examples}
 
-        {TODO: example code!}
+== Installation
 
-    == Installation
+#{installation} 
 
-        gem install #{project}
+== Copyright
 
-    == Copyright
-
-    See LICENSE.
-    README
+See LICENSE.
     }
   end
 
@@ -197,9 +233,9 @@ make_dir(project) do
       rdoc.rdoc_files.include('lib/**/*.rb')
     end
 
-    task :spec => :check_dependencies
-
     task :default => :spec
+
+    task :build => :gemspec
 
     # credit: Rakefile modeled after Jeweler's
     }
@@ -239,18 +275,20 @@ make_dir(project) do
 
     make_dir(proj_dir_path) do
       make_file(file_base + "_spec.rb") do
+        proj_path = project.gsub('-','/')
+        the_module = project.split('-').map {|v| v.capitalize }.join("::")
         path_up = "/.." * pieces.size
         %Q{
         require File.expand_path(File.dirname(__FILE__) + '#{path_up}/spec_helper.rb')
 
-        require '#{project.gsub('-','/')}'
+        require '#{proj_path}'
 
+        # bacon usage:
+        # http://chneukirchen.org/repos/bacon/README"
         describe 'a #{project}' do
-          # http://chneukirchen.org/repos/bacon/README"
-          it 'works like a charm!' do
-            x = 29
-            x.should.equal 29
-            x.should.flunk "you need to write some specs!"
+          it 'has a version' do
+            require '#{proj_path}/version'
+            #{the_module}::VERSION.should.match /^\\d+\\.\\d+\\.\\d+$/
           end
         end
         }
@@ -258,6 +296,47 @@ make_dir(project) do
     end
   end
 
+  puts "(Jeweler requires an active GIT repo for building packages properly)"
+  puts "Initializing GIT repository"
+
+  unless File.exist?(".git")
+    run "git init"
+    run "git add *"
+    puts "Making first commit"
+    run "git commit -m 'initial commit'"
+  end
+
+  puts "Now generating branch gh-pages (the website)"
+  run "git symbolic-ref HEAD refs/heads/gh-pages"
+  run "rm .git/index"
+  run "git clean -fdx"
+
+  puts "Creating the main page"
+  
+  make_file("index.html") { "#{project} page" }
+  run "git add ."
+  run "git commit -a -m 'initial gh-pages commit'"
+  run "git push origin gh-pages"
+
+  run "git checkout master"
+  mkdir("website/output")
+  run "git submodule add -b gh-pages git@github.com:#{github_username}/#{project}.git website/output" 
+  Dir.chdir("website") do
+    mkdir("lib") do
+      make_file("default.rb") do
+        %Q{
+        # All files in the 'lib' directory will be loaded
+        # before nanoc starts compiling.
+        }
+      end
+      make_file("mspire.rb") do
+        # This file can be updated from here:
+        # http://github.com/jtprince/ms-template/raw/master/website/lib/mspire.rb
+        WORKING HERE
+
+      end
+    end
+  end
 
 end # chdir
 
