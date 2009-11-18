@@ -195,6 +195,8 @@ See LICENSE.
     require 'rcov/rcovtask'
 
     NAME = "#{project}"
+    WEBSITE_BASE = "website"
+    WEBSITE_OUTPUT = WEBSITE_BASE + "/output"
 
     gemspec = Gem::Specification.new do |s|
       s.name = NAME
@@ -223,14 +225,74 @@ See LICENSE.
       spec.pattern = 'spec/**/*_spec.rb'
       spec.verbose = true
     end
-
+    } + %q{
+    def rdoc_redirect(base_rdoc_output_dir, package_website_page, version)
+      content = %Q{
+    <!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+    <html><head><title>mspire: } + NAME + %Q{rdoc</title>
+    <meta http-equiv="REFRESH" content="0;url=#{package_website_page}/rdoc/#{version}/">
+    </head> </html> 
+      }
+      FileUtils.mkpath(base_rdoc_output_dir)
+      File.open(base_rdoc_output_dir + "/index.html", 'w') {|out| out.print content }
+    end
+    
     require 'rake/rdoctask'
     Rake::RDocTask.new do |rdoc|
+      base_rdoc_output_dir = WEBSITE_OUTPUT + '/rdoc'
       version = File.read('VERSION')
       rdoc.rdoc_dir = 'rdoc'
       rdoc.title = NAME + ' ' + version
       rdoc.rdoc_files.include('README*')
       rdoc.rdoc_files.include('lib/**/*.rb')
+    end
+
+    task :create_redirect do
+      base_rdoc_output_dir = WEBSITE_OUTPUT + '/rdoc'
+      rdoc_redirect(base_rdoc_output_dir, gemspec.homepage,version)
+    end
+
+    namespace :website do
+      desc "checkout and configure the gh-pages submodule (assumes you have it)"
+      task :submodule_update do
+        if File.exist?(WEBSITE_OUTPUT + "/.git")
+          puts "!! not doing anything, #{WEBSITE_OUTPUT + "/.git"} already exists !!"
+        else
+
+          puts "(not sure why this won't work programmatically)"
+          puts "################################################"
+          puts "[Execute these commands]"
+          puts "################################################"
+          puts "git submodule init"
+          puts "git submodule update"
+          puts "pushd #{WEBSITE_OUTPUT}"
+          puts "git co --track -b gh-pages origin/gh-pages ;"
+          puts "popd"
+          puts "################################################"
+
+          # not sure why this won't work!
+          #%x{git submodule init}
+          #%x{git submodule update}
+          #Dir.chdir(WEBSITE_OUTPUT) do
+          #  %x{git co --track -b gh-pages origin/gh-pages ;}
+          #end
+        end
+      end
+
+      desc "setup your initial gh-pages"
+      task :init_ghpages do
+        puts "################################################"
+        puts "[Execute these commands]"
+        puts "################################################"
+        puts "git symbolic-ref HEAD refs/heads/gh-pages"
+        puts "rm .git/index"
+        puts "git clean -fdx"
+        puts 'echo "Hello" > index.html'
+        puts "git add ."
+        puts 'git commit -a -m "my first gh-page"'
+        puts "git push origin gh-pages"
+      end
+
     end
 
     task :default => :spec
@@ -306,37 +368,13 @@ See LICENSE.
     run "git commit -m 'initial commit'"
   end
 
-  puts "Now generating branch gh-pages (the website)"
-  run "git symbolic-ref HEAD refs/heads/gh-pages"
-  run "rm .git/index"
-  run "git clean -fdx"
-
-  puts "Creating the main page"
-  
-  make_file("index.html") { "#{project} page" }
-  run "git add ."
-  run "git commit -a -m 'initial gh-pages commit'"
-  run "git push origin gh-pages"
-
-  run "git checkout master"
-  mkdir("website/output")
-  run "git submodule add -b gh-pages git@github.com:#{github_username}/#{project}.git website/output" 
-  Dir.chdir("website") do
-    mkdir("lib") do
-      make_file("default.rb") do
-        %Q{
-        # All files in the 'lib' directory will be loaded
-        # before nanoc starts compiling.
-        }
-      end
-      make_file("mspire.rb") do
-        # This file can be updated from here:
-        # http://github.com/jtprince/ms-template/raw/master/website/lib/mspire.rb
-        WORKING HERE
-
-      end
-    end
+  make_dir("tmp") do 
+    system 'git clone git@github.com:jtprince/ms-template ;'
+    FileUtils.mv "ms-template/website", File.join(Dir.pwd, "../website")
   end
+  FileUtils.rm_rf "tmp"
+
+  
 
 end # chdir
 
