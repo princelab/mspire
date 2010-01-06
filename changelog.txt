@@ -221,3 +221,7 @@ filter)
 ## version 0.4.7
 1. Added ability to quickly grab sequest params out of a .SRF file
 2. Added helpful runtime error if print_duplicate_references is 0.
+
+## version 0.4.9
+1. quiet some unneeded output and fixed truncation of filenames with '.'
+inside them.
