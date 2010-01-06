@@ -767,8 +767,8 @@ Default_Options = {
   # given any kind of filename (from windows or whatever)
   # returns the base of the filename with no file extension
   def self.base_name_noext(file)
-    file.gsub!("\\", '/')
-    File.basename(file).sub(/\.[\w^\.]+$/, '')
+    basename = file.split(/[\/\\]/).last
+    basename.chomp(File.extname(basename))
   end
 
 

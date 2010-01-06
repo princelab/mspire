@@ -853,7 +853,6 @@ class SRF::OUT::Pep
   end
 
   def self.read_extra_references(fh, num_extra_references, pep_hits, global_ref_hash)
-    p num_extra_references
     num_extra_references.times do
       # 80 bytes total (with index number)
       pep = pep_hits[fh.read(8).unpack('x4I').first - 1]
