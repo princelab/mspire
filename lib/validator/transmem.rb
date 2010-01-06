@@ -136,7 +136,7 @@ class Validator::Transmem::Protein < Validator::DigestionBased
     prts = pep.prots
     prts_w_keys = 0
     sum_of_fractions = 0.0
-    prts.each do |prot| 
+    prts.each do |prot|
       key = @transmem_index.reference_to_key(prot.reference)
       ans = @transmem_index.avg_overlap(key, pep.aaseq, :fraction)
       if ans
