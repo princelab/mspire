@@ -1,0 +1,330 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+<mzML xmlns="http://psi.hupo.org/ms/mzml" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://psi.hupo.org/ms/mzml http://psidev.info/files/ms/mzML/xsd/mzML1.1.0.xsd" accession="" version="1.1.0">
+    <cvList count="2">
+        <cv id="MS" fullName="Proteomics Standards Initiative Mass Spectrometry Ontology" URI="http://psidev.cvs.sourceforge.net/*checkout*/psidev/psi/psi-ms/mzML/controlledVocabulary/psi-ms.obo"/>
+        <cv id="UO" fullName="Unit Ontology" URI="http://obo.cvs.sourceforge.net/obo/obo/ontology/phenotype/unit.obo"/>
+    </cvList>
+    <fileDescription>
+        <fileContent>
+            <cvParam cvRef="MS" accession="MS:1000294" name="mass spectrum" />
+        </fileContent>
+        <sourceFileList count="1">
+            <sourceFile id="sf_ru_0" name="file://CHEMBRI-EXTZA1B/t/Mouse_brain_Phosphoproteomics/may062011/11_110506125210.raw" location="">
+                <cvParam cvRef="MS" accession="MS:1000569" name="SHA-1" value="826a6634f11d0bfd1948d06ecd033ce935175b0c" />
+                <cvParam cvRef="MS" accession="MS:1000564" name="PSI mzData file" />
+                <cvParam cvRef="MS" accession="MS:1000777" name="spectrum identifier nativeID format" />
+            </sourceFile>
+        </sourceFileList>
+    </fileDescription>
+    <sampleList count="1">
+        <sample id="sa_0" name="">
+            <cvParam cvRef="MS" accession="MS:1000004" name="sample mass" value="0"  unitAccession="UO:0000021" unitName="gram" unitCvRef="UO" />
+            <cvParam cvRef="MS" accession="MS:1000005" name="sample volume" value="0" unitAccession="UO:0000098" unitName="milliliter" unitCvRef="UO" />
+            <cvParam cvRef="MS" accession="MS:1000006" name="sample concentration" value="0" unitAccession="UO:0000175" unitName="gram per liter" unitCvRef="UO" />
+        </sample>
+    </sampleList>
+    <softwareList count="5">
+        <software id="so_in_0" version="2.5.5" >
+            <cvParam cvRef="MS" accession="MS:1000532" name="Xcalibur" />
+        </software>
+        <software id="so_default" version="" >
+            <cvParam cvRef="MS" accession="MS:1000799" name="custom unreleased software tool" value="" />
+        </software>
+        <software id="so_dp_sp_0_pm_0" version="4.3.1(build Sep  9 2009 12:30:29)" >
+            <cvParam cvRef="MS" accession="MS:1000541" name="ReAdW" />
+        </software>
+        <software id="so_dp_sp_0_pm_1" version="1.7.0" >
+            <cvParam cvRef="MS" accession="MS:1000799" name="custom unreleased software tool" value="SpectrumCanvas" />
+        </software>
+        <software id="so_dp_sp_0_pm_2" version="1.7.0" >
+            <cvParam cvRef="MS" accession="MS:1000799" name="custom unreleased software tool" value="SpectrumCanvas" />
+        </software>
+    </softwareList>
+    <instrumentConfigurationList count="1">
+        <instrumentConfiguration id="ic_0">
+            <cvParam cvRef="MS" accession="MS:1000031" name="instrument model" />
+            <componentList count="3">
+                <source order="0">
+                    <cvParam cvRef="MS" accession="MS:1000008" name="ionization type" />
+                </source>
+                <analyzer order="0">
+                    <cvParam cvRef="MS" accession="MS:1000014" name="accuracy" value="0" unitAccession="UO:0000169" unitName="parts per million" unitCvRef="UO" />
+                    <cvParam cvRef="MS" accession="MS:1000022" name="TOF Total Path Length" value="0" unitAccession="UO:0000008" unitName="meter" unitCvRef="UO" />
+                    <cvParam cvRef="MS" accession="MS:1000024" name="final MS exponent" value="0" />
+                    <cvParam cvRef="MS" accession="MS:1000025" name="magnetic field strength" value="0" unitAccession="UO:0000228" unitName="tesla" unitCvRef="UO" />
+                    <cvParam cvRef="MS" accession="MS:1000443" name="mass analyzer type" />
+                </analyzer>
+                <detector order="0">
+                    <cvParam cvRef="MS" accession="MS:1000028" name="detector resolution" value="0" />
+                    <cvParam cvRef="MS" accession="MS:1000029" name="sampling frequency" value="0" unitAccession="UO:0000106" unitName="hertz" unitCvRef="UO" />
+                    <cvParam cvRef="MS" accession="MS:1000026" name="detector type" />
+                </detector>
+            </componentList>
+            <softwareRef ref="so_in_0" />
+        </instrumentConfiguration>
+    </instrumentConfigurationList>
+    <dataProcessingList count="1">
+        <dataProcessing id="dp_sp_0">
+            <processingMethod order="0" softwareRef="so_dp_sp_0_pm_0">
+                <cvParam cvRef="MS" accession="MS:1000035" name="peak picking" />
+                <userParam name="#type" type="xsd:string" value="conversion"/>
+            </processingMethod>
+            <processingMethod order="0" softwareRef="so_dp_sp_0_pm_1">
+                <cvParam cvRef="MS" accession="MS:1001486" name="data filtering" />
+                <cvParam cvRef="MS" accession="MS:1000747" name="completion time" value="2011-05-19+20:22" />
+            </processingMethod>
+            <processingMethod order="0" softwareRef="so_dp_sp_0_pm_2">
+                <cvParam cvRef="MS" accession="MS:1001486" name="data filtering" />
+                <cvParam cvRef="MS" accession="MS:1000747" name="completion time" value="2011-06-10+09:32" />
+            </processingMethod>
+        </dataProcessing>
+    </dataProcessingList>
+    <run id="ru_0" defaultInstrumentConfigurationRef="ic_0" sampleRef="sa_0" defaultSourceFileRef="sf_ru_0">
+        <spectrumList count="12" defaultDataProcessingRef="dp_sp_0">
+            <spectrum id="scan=10929" index="0" defaultArrayLength="0" dataProcessingRef="dp_sp_0">
+                <cvParam cvRef="MS" accession="MS:1000525" name="spectrum representation" />
+                <cvParam cvRef="MS" accession="MS:1000511" name="ms level" value="1" />
+                <cvParam cvRef="MS" accession="MS:1000294" name="mass spectrum" />
+                <cvParam cvRef="MS" accession="MS:1000130" name="positive scan" />
+                <scanList count="1">
+                    <cvParam cvRef="MS" accession="MS:1000795" name="no combination" />
+                    <scan >
+                        <cvParam cvRef="MS" accession="MS:1000016" name="scan start time" value="6604.58" unitAccession="UO:0000010" unitName="second" unitCvRef="UO" />
+                    </scan>
+                </scanList>
+            </spectrum>
+            <spectrum id="scan=10930" index="1" defaultArrayLength="0">
+                <cvParam cvRef="MS" accession="MS:1000525" name="spectrum representation" />
+                <cvParam cvRef="MS" accession="MS:1000511" name="ms level" value="2" />
+                <cvParam cvRef="MS" accession="MS:1000294" name="mass spectrum" />
+                <cvParam cvRef="MS" accession="MS:1000130" name="positive scan" />
+                <scanList count="1">
+                    <cvParam cvRef="MS" accession="MS:1000795" name="no combination" />
+                    <scan >
+                        <cvParam cvRef="MS" accession="MS:1000016" name="scan start time" value="6605.5" unitAccession="UO:0000010" unitName="second" unitCvRef="UO" />
+                    </scan>
+                </scanList>
+                <precursorList count="1">
+                    <precursor>
+                        <isolationWindow>
+                            <cvParam cvRef="MS" accession="MS:1000827" name="isolation window target m/z" value="696.86376953" unitAccession="MS:1000040" unitName="m/z" unitCvRef="MS" />
+                            <cvParam cvRef="MS" accession="MS:1000828" name="isolation window lower offset" value="0" unitAccession="MS:1000040" unitName="m/z" unitCvRef="MS" />
+                            <cvParam cvRef="MS" accession="MS:1000829" name="isolation window upper offset" value="0" unitAccession="MS:1000040" unitName="m/z" unitCvRef="MS" />
+                        </isolationWindow>
+                        <selectedIonList count="1">
+                            <selectedIon>
+                                <cvParam cvRef="MS" accession="MS:1000744" name="selected ion m/z" value="696.86376953" unitAccession="MS:1000040" unitName="m/z" unitCvRef="MS" />
+                                <cvParam cvRef="MS" accession="MS:1000041" name="charge state" value="2" />
+                                <cvParam cvRef="MS" accession="MS:1000042" name="peak intensity" value="248886" unitAccession="MS:1000132" unitName="percent of base peak" unitCvRef="MS" />
+                            </selectedIon>
+                        </selectedIonList>
+                        <activation>
+                            <cvParam cvRef="MS" accession="MS:1000509" name="activation energy" value="0" unitAccession="UO:0000266" unitName="electronvolt" unitCvRef="UO" />
+                            <cvParam cvRef="MS" accession="MS:1000044" name="dissociation method" />
+                        </activation>
+                    </precursor>
+                </precursorList>
+            </spectrum>
+            <spectrum id="scan=10931" index="2" defaultArrayLength="0">
+                <cvParam cvRef="MS" accession="MS:1000525" name="spectrum representation" />
+                <cvParam cvRef="MS" accession="MS:1000511" name="ms level" value="1" />
+                <cvParam cvRef="MS" accession="MS:1000294" name="mass spectrum" />
+                <cvParam cvRef="MS" accession="MS:1000130" name="positive scan" />
+                <scanList count="1">
+                    <cvParam cvRef="MS" accession="MS:1000795" name="no combination" />
+                    <scan >
+                        <cvParam cvRef="MS" accession="MS:1000016" name="scan start time" value="6605.91" unitAccession="UO:0000010" unitName="second" unitCvRef="UO" />
+                    </scan>
+                </scanList>
+            </spectrum>
+            <spectrum id="scan=10932" index="3" defaultArrayLength="0">
+                <cvParam cvRef="MS" accession="MS:1000525" name="spectrum representation" />
+                <cvParam cvRef="MS" accession="MS:1000511" name="ms level" value="2" />
+                <cvParam cvRef="MS" accession="MS:1000294" name="mass spectrum" />
+                <cvParam cvRef="MS" accession="MS:1000130" name="positive scan" />
+                <scanList count="1">
+                    <cvParam cvRef="MS" accession="MS:1000795" name="no combination" />
+                    <scan >
+                        <cvParam cvRef="MS" accession="MS:1000016" name="scan start time" value="6606.48" unitAccession="UO:0000010" unitName="second" unitCvRef="UO" />
+                    </scan>
+                </scanList>
+                <precursorList count="1">
+                    <precursor>
+                        <isolationWindow>
+                            <cvParam cvRef="MS" accession="MS:1000827" name="isolation window target m/z" value="960.46551514" unitAccession="MS:1000040" unitName="m/z" unitCvRef="MS" />
+                            <cvParam cvRef="MS" accession="MS:1000828" name="isolation window lower offset" value="0" unitAccession="MS:1000040" unitName="m/z" unitCvRef="MS" />
+                            <cvParam cvRef="MS" accession="MS:1000829" name="isolation window upper offset" value="0" unitAccession="MS:1000040" unitName="m/z" unitCvRef="MS" />
+                        </isolationWindow>
+                        <selectedIonList count="1">
+                            <selectedIon>
+                                <cvParam cvRef="MS" accession="MS:1000744" name="selected ion m/z" value="960.46551514" unitAccession="MS:1000040" unitName="m/z" unitCvRef="MS" />
+                                <cvParam cvRef="MS" accession="MS:1000041" name="charge state" value="2" />
+                                <cvParam cvRef="MS" accession="MS:1000042" name="peak intensity" value="120446" unitAccession="MS:1000132" unitName="percent of base peak" unitCvRef="MS" />
+                            </selectedIon>
+                        </selectedIonList>
+                        <activation>
+                            <cvParam cvRef="MS" accession="MS:1000509" name="activation energy" value="0" unitAccession="UO:0000266" unitName="electronvolt" unitCvRef="UO" />
+                            <cvParam cvRef="MS" accession="MS:1000044" name="dissociation method" />
+                        </activation>
+                    </precursor>
+                </precursorList>
+            </spectrum>
+            <spectrum id="scan=10933" index="4" defaultArrayLength="0">
+                <cvParam cvRef="MS" accession="MS:1000525" name="spectrum representation" />
+                <cvParam cvRef="MS" accession="MS:1000511" name="ms level" value="1" />
+                <cvParam cvRef="MS" accession="MS:1000294" name="mass spectrum" />
+                <cvParam cvRef="MS" accession="MS:1000130" name="positive scan" />
+                <scanList count="1">
+                    <cvParam cvRef="MS" accession="MS:1000795" name="no combination" />
+                    <scan >
+                        <cvParam cvRef="MS" accession="MS:1000016" name="scan start time" value="6606.98" unitAccession="UO:0000010" unitName="second" unitCvRef="UO" />
+                    </scan>
+                </scanList>
+            </spectrum>
+            <spectrum id="scan=10934" index="5" defaultArrayLength="0">
+                <cvParam cvRef="MS" accession="MS:1000525" name="spectrum representation" />
+                <cvParam cvRef="MS" accession="MS:1000511" name="ms level" value="2" />
+                <cvParam cvRef="MS" accession="MS:1000294" name="mass spectrum" />
+                <cvParam cvRef="MS" accession="MS:1000130" name="positive scan" />
+                <scanList count="1">
+                    <cvParam cvRef="MS" accession="MS:1000795" name="no combination" />
+                    <scan >
+                        <cvParam cvRef="MS" accession="MS:1000016" name="scan start time" value="6607.53" unitAccession="UO:0000010" unitName="second" unitCvRef="UO" />
+                    </scan>
+                </scanList>
+                <precursorList count="1">
+                    <precursor>
+                        <isolationWindow>
+                            <cvParam cvRef="MS" accession="MS:1000827" name="isolation window target m/z" value="647.30865479" unitAccession="MS:1000040" unitName="m/z" unitCvRef="MS" />
+                            <cvParam cvRef="MS" accession="MS:1000828" name="isolation window lower offset" value="0" unitAccession="MS:1000040" unitName="m/z" unitCvRef="MS" />
+                            <cvParam cvRef="MS" accession="MS:1000829" name="isolation window upper offset" value="0" unitAccession="MS:1000040" unitName="m/z" unitCvRef="MS" />
+                        </isolationWindow>
+                        <selectedIonList count="1">
+                            <selectedIon>
+                                <cvParam cvRef="MS" accession="MS:1000744" name="selected ion m/z" value="647.30865479" unitAccession="MS:1000040" unitName="m/z" unitCvRef="MS" />
+                                <cvParam cvRef="MS" accession="MS:1000041" name="charge state" value="2" />
+                                <cvParam cvRef="MS" accession="MS:1000042" name="peak intensity" value="363399" unitAccession="MS:1000132" unitName="percent of base peak" unitCvRef="MS" />
+                            </selectedIon>
+                        </selectedIonList>
+                        <activation>
+                            <cvParam cvRef="MS" accession="MS:1000509" name="activation energy" value="0" unitAccession="UO:0000266" unitName="electronvolt" unitCvRef="UO" />
+                            <cvParam cvRef="MS" accession="MS:1000044" name="dissociation method" />
+                        </activation>
+                    </precursor>
+                </precursorList>
+            </spectrum>
+            <spectrum id="scan=10935" index="6" defaultArrayLength="0">
+                <cvParam cvRef="MS" accession="MS:1000525" name="spectrum representation" />
+                <cvParam cvRef="MS" accession="MS:1000511" name="ms level" value="1" />
+                <cvParam cvRef="MS" accession="MS:1000294" name="mass spectrum" />
+                <cvParam cvRef="MS" accession="MS:1000130" name="positive scan" />
+                <scanList count="1">
+                    <cvParam cvRef="MS" accession="MS:1000795" name="no combination" />
+                    <scan >
+                        <cvParam cvRef="MS" accession="MS:1000016" name="scan start time" value="6607.93" unitAccession="UO:0000010" unitName="second" unitCvRef="UO" />
+                    </scan>
+                </scanList>
+            </spectrum>
+            <spectrum id="scan=10936" index="7" defaultArrayLength="0">
+                <cvParam cvRef="MS" accession="MS:1000525" name="spectrum representation" />
+                <cvParam cvRef="MS" accession="MS:1000511" name="ms level" value="2" />
+                <cvParam cvRef="MS" accession="MS:1000294" name="mass spectrum" />
+                <cvParam cvRef="MS" accession="MS:1000130" name="positive scan" />
+                <scanList count="1">
+                    <cvParam cvRef="MS" accession="MS:1000795" name="no combination" />
+                    <scan >
+                        <cvParam cvRef="MS" accession="MS:1000016" name="scan start time" value="6608.49" unitAccession="UO:0000010" unitName="second" unitCvRef="UO" />
+                    </scan>
+                </scanList>
+                <precursorList count="1">
+                    <precursor>
+                        <isolationWindow>
+                            <cvParam cvRef="MS" accession="MS:1000827" name="isolation window target m/z" value="640.64752197" unitAccession="MS:1000040" unitName="m/z" unitCvRef="MS" />
+                            <cvParam cvRef="MS" accession="MS:1000828" name="isolation window lower offset" value="0" unitAccession="MS:1000040" unitName="m/z" unitCvRef="MS" />
+                            <cvParam cvRef="MS" accession="MS:1000829" name="isolation window upper offset" value="0" unitAccession="MS:1000040" unitName="m/z" unitCvRef="MS" />
+                        </isolationWindow>
+                        <selectedIonList count="1">
+                            <selectedIon>
+                                <cvParam cvRef="MS" accession="MS:1000744" name="selected ion m/z" value="640.64752197" unitAccession="MS:1000040" unitName="m/z" unitCvRef="MS" />
+                                <cvParam cvRef="MS" accession="MS:1000041" name="charge state" value="3" />
+                                <cvParam cvRef="MS" accession="MS:1000042" name="peak intensity" value="237991" unitAccession="MS:1000132" unitName="percent of base peak" unitCvRef="MS" />
+                            </selectedIon>
+                        </selectedIonList>
+                        <activation>
+                            <cvParam cvRef="MS" accession="MS:1000509" name="activation energy" value="0" unitAccession="UO:0000266" unitName="electronvolt" unitCvRef="UO" />
+                            <cvParam cvRef="MS" accession="MS:1000044" name="dissociation method" />
+                        </activation>
+                    </precursor>
+                </precursorList>
+            </spectrum>
+            <spectrum id="scan=10937" index="8" defaultArrayLength="0">
+                <cvParam cvRef="MS" accession="MS:1000525" name="spectrum representation" />
+                <cvParam cvRef="MS" accession="MS:1000511" name="ms level" value="1" />
+                <cvParam cvRef="MS" accession="MS:1000294" name="mass spectrum" />
+                <cvParam cvRef="MS" accession="MS:1000130" name="positive scan" />
+                <scanList count="1">
+                    <cvParam cvRef="MS" accession="MS:1000795" name="no combination" />
+                    <scan >
+                        <cvParam cvRef="MS" accession="MS:1000016" name="scan start time" value="6608.92" unitAccession="UO:0000010" unitName="second" unitCvRef="UO" />
+                    </scan>
+                </scanList>
+            </spectrum>
+            <spectrum id="scan=10938" index="9" defaultArrayLength="0">
+                <cvParam cvRef="MS" accession="MS:1000525" name="spectrum representation" />
+                <cvParam cvRef="MS" accession="MS:1000511" name="ms level" value="2" />
+                <cvParam cvRef="MS" accession="MS:1000294" name="mass spectrum" />
+                <cvParam cvRef="MS" accession="MS:1000130" name="positive scan" />
+                <scanList count="1">
+                    <cvParam cvRef="MS" accession="MS:1000795" name="no combination" />
+                    <scan >
+                        <cvParam cvRef="MS" accession="MS:1000016" name="scan start time" value="6609.49" unitAccession="UO:0000010" unitName="second" unitCvRef="UO" />
+                    </scan>
+                </scanList>
+                <precursorList count="1">
+                    <precursor>
+                        <isolationWindow>
+                            <cvParam cvRef="MS" accession="MS:1000827" name="isolation window target m/z" value="460.55426025" unitAccession="MS:1000040" unitName="m/z" unitCvRef="MS" />
+                            <cvParam cvRef="MS" accession="MS:1000828" name="isolation window lower offset" value="0" unitAccession="MS:1000040" unitName="m/z" unitCvRef="MS" />
+                            <cvParam cvRef="MS" accession="MS:1000829" name="isolation window upper offset" value="0" unitAccession="MS:1000040" unitName="m/z" unitCvRef="MS" />
+                        </isolationWindow>
+                        <selectedIonList count="1">
+                            <selectedIon>
+                                <cvParam cvRef="MS" accession="MS:1000744" name="selected ion m/z" value="460.55426025" unitAccession="MS:1000040" unitName="m/z" unitCvRef="MS" />
+                                <cvParam cvRef="MS" accession="MS:1000041" name="charge state" value="3" />
+                                <cvParam cvRef="MS" accession="MS:1000042" name="peak intensity" value="182959" unitAccession="MS:1000132" unitName="percent of base peak" unitCvRef="MS" />
+                            </selectedIon>
+                        </selectedIonList>
+                        <activation>
+                            <cvParam cvRef="MS" accession="MS:1000509" name="activation energy" value="0" unitAccession="UO:0000266" unitName="electronvolt" unitCvRef="UO" />
+                            <cvParam cvRef="MS" accession="MS:1000044" name="dissociation method" />
+                        </activation>
+                    </precursor>
+                </precursorList>
+            </spectrum>
+            <spectrum id="scan=10939" index="10" defaultArrayLength="0">
+                <cvParam cvRef="MS" accession="MS:1000525" name="spectrum representation" />
+                <cvParam cvRef="MS" accession="MS:1000511" name="ms level" value="1" />
+                <cvParam cvRef="MS" accession="MS:1000294" name="mass spectrum" />
+                <cvParam cvRef="MS" accession="MS:1000130" name="positive scan" />
+                <scanList count="1">
+                    <cvParam cvRef="MS" accession="MS:1000795" name="no combination" />
+                    <scan >
+                        <cvParam cvRef="MS" accession="MS:1000016" name="scan start time" value="6609.94" unitAccession="UO:0000010" unitName="second" unitCvRef="UO" />
+                    </scan>
+                </scanList>
+            </spectrum>
+            <spectrum id="scan=10940" index="11" defaultArrayLength="0">
+                <cvParam cvRef="MS" accession="MS:1000525" name="spectrum representation" />
+                <cvParam cvRef="MS" accession="MS:1000511" name="ms level" value="1" />
+                <cvParam cvRef="MS" accession="MS:1000294" name="mass spectrum" />
+                <cvParam cvRef="MS" accession="MS:1000130" name="positive scan" />
+                <scanList count="1">
+                    <cvParam cvRef="MS" accession="MS:1000795" name="no combination" />
+                    <scan >
+                        <cvParam cvRef="MS" accession="MS:1000016" name="scan start time" value="6610.53" unitAccession="UO:0000010" unitName="second" unitCvRef="UO" />
+                    </scan>
+                </scanList>
+            </spectrum>
+        </spectrumList>
+    </run>
+</mzML>

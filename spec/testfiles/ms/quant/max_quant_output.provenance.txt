@@ -1,0 +1,15 @@
+To get this file, used MaxQuant 1.2.2.5
+
+Used Perseus 1.2.0.17 to transform the data:
+
+First removed contaminants
+Then removed those that showed up in reverse search
+Ln of LFQ intensities
+Imputation of LFQ int (normal distr) so that there are no zeros [ Width 0.3 and Downshift 1.8 ]
+
+Columns selected (included):
+LFQ Intensities
+MS/MS
+Protein ID's
+
+note, the file is really tab delimited

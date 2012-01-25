@@ -1,1 +1,24 @@
+= mspire
+
+Tools for working with mass spectrometry data in ruby.
+
+== Examples
+
+=== mzml
+
+    require 'ms/mzml'
+
+    MS::Mzml.open("somefile.mzml") do |mzml|
+      spectrum = mzml[0]   # the first spectrum ( same as mzml.spectrum(0) )
+      spectrum = mzml["controllerType=0 controllerNumber=1 scan=2"]  # query by id string
+      mzml.spectrum_from_scan_num(23) # raises ScanNumbersNotFound or ScanNumbersNotUnique errors if problems
+    end
+
+    require 'ms/mass/aa'
+
+    MS::Mass::AA::MONO['A'] # or access by symbol
+
+== Copyright
+
+See LICENSE (MIT)
 
