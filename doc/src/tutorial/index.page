@@ -1,8 +1,0 @@
----
-inMenu: false
-title: Tutorials
-directoryName: Tutorials
----
-Tutorials for analyzing mass spectrometry and database search engine data with mspire.
-
-* [Search Precision (False Identification Rates)](search_precision/index.html)
