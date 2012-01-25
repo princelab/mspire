@@ -113,6 +113,9 @@ module MS
         base64 = binary_data_array_n.xpath('./binary').text
         MS::Mzml.unpack_binary(base64, accessions)
       end
+      # if there is no spectrum, we will still return a spectrum object, it
+      # just has no mzs or intensities
+      data_arrays = [[], []] if data_arrays.size == 0
       MS::Spectrum.new(data_arrays)
     end
 

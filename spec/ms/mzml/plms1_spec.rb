@@ -22,12 +22,12 @@ describe 'converting mzml to plms1' do
       plms1.times.should == times
       plms1.scan_numbers.should == scan_nums
       plms1.spectra.each do |spec|
-        p spec.size
-        p spec.class
-        p spec.mzs
-        p spec.intensities
+        spec.size.should == 2
+        spec.class.should == MS::Spectrum
+        spec.mzs.should == []
+        spec.intensities.should == []
       end
-      plms1.write("tmp.tmp.bin")
+      #plms1.write("tmp.tmp.bin")
     end
 
   end
@@ -47,13 +47,14 @@ describe 'converting mzml to plms1' do
       #times =[6604.58, 6605.5, 6605.91, 6606.48, 6606.98, 6607.53, 6607.93, 6608.49, 6608.92, 6609.49, 6609.94, 6610.53]
       plms1 = @mzml.to_plms1
       plms1.spectra.respond_to?(:each).should be_true
-      p plms1.times
-      p plms1.scan_numbers
-      plms1.spectra.each do |spec|
-        p spec.size
-        p spec.class
-        p spec.mzs.size
-        p spec.intensities.size
+      plms1.times.should == [1981.5726, 1982.1077, 1982.4020999999998]
+      plms1.scan_numbers.should == [1, 2, 3] 
+      sizes = [20168, 315, 634]
+      plms1.spectra.zip(sizes).each do |spec,exp_size|
+        spec.class.should == MS::Spectrum
+        spec.size.should == 2
+        spec.mzs.size.should == exp_size
+        spec.intensities.size.should == exp_size
       end
       #plms1.write("tmp.tmp.bin")
     end
