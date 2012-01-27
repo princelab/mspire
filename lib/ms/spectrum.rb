@@ -1,8 +1,11 @@
+require 'bsearch'
+
 module MS
   class Spectrum
     include Enumerable
 
-    # The underlying data store.
+    # The underlying data store. methods are implemented so that data[0] is
+    # the m/z's and data[1] is intensities
     attr_reader :data
     
     # data takes an array: [mzs, intensities]
@@ -48,13 +51,12 @@ module MS
 
     # retrieve an m/z and intensity doublet at that index
     def [](array_index)
-      [mzs[array_index], intensities[array_index]]
+      [@data[0][array_index], @data[1][array_index]]
     end
 
     # yields(mz, inten) across the spectrum, or array of doublets if no block
     def peaks(&block)
-      (m, i) = mzs_and_intensities
-      m.zip(i, &block)
+      @data[0].zip(@data[1], &block)
     end
 
     alias_method :each, :peaks
@@ -67,105 +69,66 @@ module MS
     end
 
     # returns a new spectrum whose intensities have been normalized by the tic
-    def normalize
-      tic = self.intensities.inject(0.0) {|sum,int| sum += int }
-      MS::Spectrum.new([self.mzs, self.intensities.map {|v| v / tic }])
+    # of another given value
+    def normalize(norm_by=:tic)
+      norm_by = tic if norm_by == :tic
+      MS::Spectrum.new([self.mzs, self.intensities.map {|v| v / norm_by }])
     end
 
-    ## uses index function and returns the intensity at that value
-    #def intensity_at_mz(mz)
-      #if x = index(mz)
-        #intensities[x]
-      #else
-        #nil
-      #end
-    #end
+    def tic
+      self.intensities.reduce(:+)
+    end
 
-    ## index mz, tolerance = :nearest(1), Float, :nearest_within_integer
+    # ensures that the m/z values are monotonically ascending (some
+    # instruments are bad about this)
+    # returns self
+    def sort!
+      _peaks = peaks.to_a
+      _peaks.sort!
+      _peaks.each_with_index {|(mz,int), i| @data[0][i] = mz ; @data[1][i] = int }
+      self
+    end
 
-    ## returns the index of the first value matching that m/z.  the argument m/z
-    ## may be less precise than the actual m/z (rounding to the same precision
-    ## given) but must be at least integer precision (after rounding)
-    ## implemented as binary search (bsearch from the web)
-    #def index(mz)
-      #mz_ar = mzs
-      #return_val = nil
-      #ind = mz_ar.bsearch_lower_boundary{|x| x <=> mz }
-      #if mz_ar[ind] == mz
-        #return_val = ind
-      #else 
-        ## do a rounding game to see which one is it, or nil
-        ## find all the values rounding to the same integer in the locale
-        ## test each one fully in turn
-        #mz = mz.to_f
-        #mz_size = mz_ar.size
-        #if ((ind < mz_size) and equal_after_rounding?(mz_ar[ind], mz))
-          #return_val = ind
-        #else # run the loop
-          #up = ind
-          #loop do
-            #up += 1
-            #if up >= mz_size
-              #break
-            #end
-            #mz_up = mz_ar[up]
-            #if (mz_up.ceil  - mz.ceil >= 2)
-              #break
-            #else
-              #if equal_after_rounding?(mz_up, mz)
-                #return_val = up
-                #return return_val
-              #end
-            #end
-          #end
-          #dn= ind
-          #loop do
-            #dn -= 1
-            #if dn < 0
-              #break
-            #end
-            #mz_dn = mz_ar[dn]
-            #if (mz.floor - mz_dn.floor >= 2)
-              #break
-            #else
-              #if equal_after_rounding?(mz_dn, mz)
-                #return_val = dn
-                #return return_val
-              #end
-            #end
-          #end
-        #end
-      #end
-      #return_val
-    #end
+    # returns the m/z that is closest to the value, favoring the lower m/z in
+    # the case of a tie. Uses a binary search.
+    def find_nearest(val)
+      mzs[find_nearest_index(val)]
+    end
 
-    ## less_precise should be a float
-    ## precise should be a float
-    #def equal_after_rounding?(precise, less_precise) # :nodoc:
-      ## determine the precision of less_precise
-      #exp10 = precision_as_neg_int(less_precise)
-      ##puts "EXP10: #{exp10}"
-      #answ = ((precise*exp10).round == (less_precise*exp10).round)
-      ##puts "TESTING FOR EQUAL: #{precise} #{less_precise}"
-      ##puts answ
-      #(precise*exp10).round == (less_precise*exp10).round
-    #end
+    # same as find_nearest but returns the index of the peak
+    def find_nearest_index(val)
+      find_all_nearest_index(val).first
+    end
 
-    ## returns 1 for ones place, 10 for tenths, 100 for hundredths
-    ## to a precision exceeding 1e-6
-    #def precision_as_neg_int(float) # :nodoc:
-      #neg_exp10 = 1
-      #loop do
-        #over = float * neg_exp10
-        #rounded = over.round
-        #if (over - rounded).abs <= 1e-6
-          #break
-        #end
-        #neg_exp10 *= 10
-      #end
-      #neg_exp10
-    #end
+    def find_all_nearest_index(val)
+      _mzs = mzs
+      index = _mzs.bsearch_lower_boundary {|v| v <=> val }
+      if index == _mzs.size
+        [_mzs.size-1]
+      else
+        # if the previous m/z diff is smaller, use it
+        if index == 0
+          [index]
+        else
+          case (val - _mzs[index-1]).abs <=> (_mzs[index] - val).abs
+          when -1
+            [index-1]
+          when 0
+            [index-1, index]
+          when 1
+            [index]
+          end
+        end
+      end
+    end
 
+    def find_all_nearest(val)
+      find_all_nearest_index(val).map {|i| mzs[i] }
+    end
 
   end
 end
+
+
+  
+
