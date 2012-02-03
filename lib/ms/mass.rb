@@ -16,6 +16,7 @@ module MS
       end.reduce(:+)
     end
 
+    ELECTRON = 0.0005486 # www.mikeblaber.org/oldwine/chm1045/notes/Atoms/.../Atoms03.htm
     H_PLUS = 1.00727646677
     #  + http://www.unimod.org/masses.html
     MONO_STR = {
@@ -37,6 +38,7 @@ module MS
       'h' => 1.007825035,  # +
       'h2o' => 18.0105647,
       'oh' => 17.002739665,
+      'e' => 0.0005486,
     }
     AVG_STR = {
       'h+' => 1.007276, # using Mascot_H_plus mass (is this right for AVG??)
