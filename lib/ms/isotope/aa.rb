@@ -1,6 +1,7 @@
 module MS
   module Isotope
     module AA
+      # These represent counts for the individual residues.
       ATOM_COUNTS_STR = {
         'A' => { :c =>3, :h =>5 , :o =>1 , :n =>1 , :s =>0 , :p =>0, :se =>0 },
         'R' => { :c =>6, :h =>12 , :o =>1 , :n =>4 , :s =>0 , :p =>0, :se =>0 },
