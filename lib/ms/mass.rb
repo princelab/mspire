@@ -2,7 +2,7 @@
 module MS
   module Mass
 
-    # takes a chemical formula in this format: C2BrH12O
+    # takes a molecular formula in this format: C2BrH12O
     def self.formula_to_exact_mass(formula)
       # TODO: add other input methods
       pairs = formula.scan(/([A-Z][a-z]?)(\d*)/).map do |match|
