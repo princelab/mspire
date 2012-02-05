@@ -10,7 +10,7 @@ module MS
   #         scan = spectrum.scan
   #         spectrum.mzs                  # array of m/zs
   #         spectrum.intensities          # array of intensities
-  #         spectrum.peaks.each do |mz,intensity|
+  #         spectrum.points.each do |mz,intensity|
   #           puts "mz: #{mz} intensity: #{intensity}" 
   #         end
   #       end

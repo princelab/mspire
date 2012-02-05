@@ -1,23 +1,142 @@
 require 'bsearch'
+require 'bin'
+require 'ms/peak'
 
 module MS
+  # note that a point is an [m/z, intensity] doublet.
+  # A peak is considered a related string of points
   class Spectrum
     include Enumerable
 
+    DEFAULT_MERGE = {
+      :bin_width => 5,
+      :bin_unit => :ppm,
+      :normalize => true,
+      :return_data => false,
+      :split => :share
+    }
+
+    # returns a new spectrum which has been merged with the others.  If the
+    # spectra are centroided (just checks the first one and assumes the others
+    # are the same) then it will bin the points (bin width determined by
+    # opts[:resolution]) and then segment according to monotonicity (sharing
+    # intensity between abutting points).  The  final m/z is the weighted
+    # averaged of all the m/z's in each peak.  Valid opts (with default listed
+    # first):
+    #
+    #     :bin_width => 5 
+    #     :bin_unit => :ppm | :amu        interpret bin_width as ppm or amu
+    #     :bins => array of Bin objects   for custom bins (overides other bin options)
+    #     :normalize => false             if true, divides total intensity by 
+    #                                     number of spectra
+    #     :return_data => false           returns a parallel array containing
+    #                                     the peaks associated with each returned point
+    #     :split => :share | :greedy_y    see MS::Peak#split
+    #
+    # The binning algorithm is the fastest possible algorithm that would allow
+    # for arbitrary, non-constant bin widths (a ratcheting algorithm O(n + m))
+    def self.merge(spectra, opts={})
+      opt = DEFAULT_MERGE.merge(opts)
+      (spectrum, returned_data) =  
+        if spectra.first.centroided?
+          # find the min and max across all spectra
+          first_mzs = spectra.first.mzs
+          min = first_mzs.first ; max = first_mzs.last
+          spectra.each do |spectrum| 
+            mzs = spectrum.mzs
+            min = mzs.first if mzs.first < min
+            max = mzs.last if mzs.last > max
+          end
+
+          # Create Bin objects
+          bins = 
+            if opt[:bins]
+              opt[:bins]
+            else
+              divisions = []
+              bin_width = opt[:bin_width]
+              use_ppm = (opt[:bin_unit] == :ppm)
+              current_mz = min
+              loop do
+                if current_mz >= max
+                  divisions << max
+                  break
+                else
+                  divisions << current_mz
+                  current_mz += ( use_ppm ? current_mz./(1e6).*(bin_width) : bin_width )
+                end
+              end
+              # make each bin exclusive so there is no overlap
+              bins = divisions.each_cons(2).map {|pair| Bin.new(*pair, true) }
+              # make the last bin *inclusive* of the terminating value
+              bins[-1] = Bin.new(bins.last.begin, bins.last.end)
+              bins
+            end
+
+          spectra.each do |spectrum|
+            Bin.bin!(bins, spectrum.points, &:first)
+          end
+
+          pseudo_points = bins.map do |bin|
+            [bin, bin.data.reduce(0.0) {|sum,point| sum += point.last }]
+          end
+
+          peaks = MS::Peak.new(pseudo_points).split(opt[:split])
+
+          return_data = []
+          _mzs = [] ; _ints = []
+          peaks.each do |peak|
+            tot_intensity = peak.map(&:last).reduce(:+)
+            return_data_per_peak = [] if opt[:return_data]
+            weighted_mz = peak.reduce(0.0) do |wavg, point|
+              return_data_per_peak.push(*point[0].data) if opt[:return_data]
+              point[0].data.each do |lil_point|
+                wavg += lil_point[0] * (lil_point[1] / tot_intensity)
+              end
+              wavg
+            end
+            return_data << return_data_per_peak if opt[:return_data]
+            _mzs << weighted_mz
+            _ints << tot_intensity
+          end
+          [Spectrum.new([_mzs, _ints]), return_data]
+        else
+          raise NotImplementedError, "the way to do this is interpolate the profile evenly and sum"
+        end
+
+      if opt[:normalize]
+        sz = spectra.size
+        spectrum.data[1].map! {|v| v.to_f / sz }
+      end
+      if opt[:return_data]
+        [spectrum, return_data]
+      else
+        spectrum
+      end
+    end
+
+
     # boolean for if the spectrum represents centroided data or not
     attr_accessor :centroided
+
+    def centroided?() centroided end
+
     # The underlying data store. methods are implemented so that data[0] is
     # the m/z's and data[1] is intensities
     attr_reader :data
     
+
+
+
     # data takes an array: [mzs, intensities]
     # @return [MS::Spectrum]
     # @param [Array] data two element array of mzs and intensities
-    def initialize(data)
+    def initialize(data, centroided=true)
       @data = data
+      @centroided = centroided
     end
 
-    def self.from_peaks(ar_of_doublets)
+    def self.from_points(ar_of_doublets)
       _mzs = []
       _ints = []
       ar_of_doublets.each do |mz, int|
@@ -57,12 +176,12 @@ module MS
     end
 
     # yields(mz, inten) across the spectrum, or array of doublets if no block
-    def peaks(&block)
+    def points(&block)
       @data[0].zip(@data[1], &block)
     end
 
-    alias_method :each, :peaks
-    alias_method :each_peak, :peaks
+    alias_method :each, :points
+    alias_method :each_point, :points
 
     # if the mzs and intensities are the same then the spectra are considered
     # equal
@@ -85,9 +204,9 @@ module MS
     # instruments are bad about this)
     # returns self
     def sort!
-      _peaks = peaks.to_a
-      _peaks.sort!
-      _peaks.each_with_index {|(mz,int), i| @data[0][i] = mz ; @data[1][i] = int }
+      _points = points.to_a
+      _points.sort!
+      _points.each_with_index {|(mz,int), i| @data[0][i] = mz ; @data[1][i] = int }
       self
     end
 
@@ -97,7 +216,7 @@ module MS
       mzs[find_nearest_index(val)]
     end
 
-    # same as find_nearest but returns the index of the peak
+    # same as find_nearest but returns the index of the point
     def find_nearest_index(val)
       find_all_nearest_index(val).first
     end
@@ -128,22 +247,11 @@ module MS
       find_all_nearest_index(val).map {|i| mzs[i] }
     end
 
-    # returns a new spectrum which has been merged with the others.  If the
-    # spectra are centroided (just checks the first one and assumes the others
-    # are the same) then it will bin the peaks (peak width determined by
-    # opts[:resolution]) and then segment according to monotonicity (sharing
-    # intensity between abutting peaks).  The  final m/z is the weighted
-    # averaged of all the m/z's in each peak.  Valid opts (with default listed
-    # first):
-    #
-    #     :bin_width => 5,
-    #     :bin_unit => :ppm | :amu
-    #
-    # The binning algorithm is the fastest possible algorithm that would allow
-    # for arbitrary, non-constant bin widths (a ratcheting algorithm O(n + m))
-    def self.merge(spectra, opts={})
-
+    # uses MS::Spectrum.merge
+    def merge(other_spectra, opts={})
+      MS::Spectrum.merge([self, *other_spectra], opts)
     end
+
 
   end
 end

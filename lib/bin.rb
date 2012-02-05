@@ -20,8 +20,8 @@ class Bin < Range
 
     done = false
     until done
-      value = block.nil? ? obj : block.call(obj)
-      if bin.begin < value
+      value = (block.nil? ? obj : block.call(obj))
+      if bin.begin <= value
         until bin === value && bin.data << obj
           bin=bin_e.next rescue done=true && break
         end
@@ -29,7 +29,7 @@ class Bin < Range
       else
         while bin.begin > value && !done
           obj=obj_e.next rescue done=true && break
-          value = block.nil? ? obj : block.call(obj)
+          value = (block.nil? ? obj : block.call(obj))
         end
       end
     end
