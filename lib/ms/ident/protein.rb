@@ -11,13 +11,13 @@ module MS::Ident
     alias_method :seq, :sequence
     alias_method :seq=, :sequence=
 
-      # a description of the protein
-      attr_accessor :description
+    # a description of the protein
+    attr_accessor :description
 
     # if the GN=([^\s]+) regexp is found in the description, returns the first
     # match, or nil if not found
     def gene_id
-      description.andand.match(/ GN=(\w+) ?/)[1]
+      description.andand[/ GN=(\w+) ?/, 1]
     end
   end
 

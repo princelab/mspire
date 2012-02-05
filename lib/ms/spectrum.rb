@@ -4,6 +4,8 @@ module MS
   class Spectrum
     include Enumerable
 
+    # boolean for if the spectrum represents centroided data or not
+    attr_accessor :centroided
     # The underlying data store. methods are implemented so that data[0] is
     # the m/z's and data[1] is intensities
     attr_reader :data
@@ -124,6 +126,23 @@ module MS
 
     def find_all_nearest(val)
       find_all_nearest_index(val).map {|i| mzs[i] }
+    end
+
+    # returns a new spectrum which has been merged with the others.  If the
+    # spectra are centroided (just checks the first one and assumes the others
+    # are the same) then it will bin the peaks (peak width determined by
+    # opts[:resolution]) and then segment according to monotonicity (sharing
+    # intensity between abutting peaks).  The  final m/z is the weighted
+    # averaged of all the m/z's in each peak.  Valid opts (with default listed
+    # first):
+    #
+    #     :bin_width => 5,
+    #     :bin_unit => :ppm | :amu
+    #
+    # The binning algorithm is the fastest possible algorithm that would allow
+    # for arbitrary, non-constant bin widths (a ratcheting algorithm O(n + m))
+    def self.merge(spectra, opts={})
+
     end
 
   end
