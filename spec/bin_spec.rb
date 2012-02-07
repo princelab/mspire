@@ -6,87 +6,73 @@ describe Bin do
 
   describe 'putting data into bins' do
 
-    def delete_and_confirm_empty(bins, indices)
-      indices.sort.reverse.each {|i| bins.delete_at(i) }
-      bins.all? {|bin| bin.data.size == 0 }.should be_true
+    def matching(bins, peaks, bin_to_peak_index_pairs)
+      bins_dup = bins.dup
+      bin_to_peak_index_pairs.sort_by(&:first).reverse.each do |bin_i, peak_i|
+        _bin = bins_dup.delete_at(bin_i)
+        data = _bin.respond_to?(:data) ? _bin.data[0] : _bin[0]
+        data.should == peaks[peak_i]
+      end
+      bins_dup.map! {|bin| bin.respond_to?(:data) ? bin.data : bin }
+      bins_dup.all? {|bin| bin.size == 0 }.should be_true
     end
 
-    before do
-      @bin_to_data_range = {
-        :lower_higher
-      ranges = (0..9).map {|i| Range.new(i.to_f, (i+1).to_f, true) }
-      peaks = [3.0, 4.4, 11.0].map {|v| [v, 1] }
-
+    def self.make_ranges(range, use_bin=false)
+      klass = use_bin ? Bin : Range
+      range.map {|i| klass.new(i.to_f, (i+1).to_f, true) }
     end
 
-    describe 'using bin objects to store the data' do
-
-      it 'works for bins lower and higher' do
-        bins = (0..9).map {|i| Bin.new(i.to_f, (i+1).to_f, true) }
-        peaks = [3.0, 4.4, 11.0].map {|v| [v, 1] }
-        rbins = Bin.bin(bins, peaks, &:first)
-        [[3,0], [4,1]].each {|ri, pi| rbins[ri].data.first.should == peaks[pi] }
-        delete_and_confirm_empty(rbins, [3,4])
-      end
-
-      it 'works for lower values and higher bins' do
-        bins = (3..9).map {|i| Bin.new(i.to_f, (i+1).to_f, true) }
-        peaks = [1.0, 2.99, 5.2].map {|v| [v, 1] }
-        rbins = Bin.bin(bins, peaks, &:first)
-        rbins[2].data.first.should == peaks.last
-        delete_and_confirm_empty(rbins, [2])
-      end
-
-      it 'works for higher values and lower bins' do
-        bins = (3..9).map {|i| Bin.new(i.to_f, (i+1).to_f, true) }
-        peaks = [5.2, 11.0].map {|v| [v, 1] }
-        rbins = Bin.bin(bins, peaks, &:first)
-        rbins[2].data.first.should == peaks.first
-        delete_and_confirm_empty(rbins, [2])
-      end
-
-      it 'works for values lower and higher' do
-        bins = (2..9).map {|i| Bin.new(i.to_f, (i+1).to_f, true) }
-        peaks = [1.0, 2.99, 5.2, 11.0].map {|v| [v, 1] }
-        rbins = Bin.bin(bins, peaks, &:first)
-        [[0,1], [3,2]].each {|ri, pi| rbins[ri].data.first.should == peaks[pi] }
-        delete_and_confirm_empty(rbins, [0,3])
-      end
+    def self.make_pairs(x_vals)
+      x_vals.each_with_index.map {|v,i| [v, i*100] }
     end
 
-    describe 'using a separate object to store the data' do
+    def ranges_to_bins(ranges)
+      ranges.map {|range| Bin.new(range.begin, range.end, true) }
+    end
 
-      it 'works for ranges lower and higher' do
-               rbins = Bin.bin(ranges, peaks, &:first)
-        [[3,0], [4,1]].each {|ri, pi| rbins[ri].data.first.should == peaks[pi] }
-        delete_and_confirm_empty(rbins, [3,4])
-      end
+    data = {
+      lower_and_lower: {
+      range: 0..9,
+      peaks: [3.0, 4.4, 11.0],
+      bin_to_peak_index_pairs: [[3,0], [4,1]]
+    },
+      higher_and_higher: {
+      range: 3..9,
+      peaks: [1.0, 2.99, 5.2],
+      bin_to_peak_index_pairs: [[2,2]]
+    },
+      lower_and_higher: {
+      range: 3..11,
+      peaks: [5.2, 11.0],
+      bin_to_peak_index_pairs: [[2,0], [8,1]]
+    },
+      higher_and_lower: {
+      range: 2..9,
+      peaks: [1.0, 2.99, 5.2, 11.0],
+      bin_to_peak_index_pairs: [[0,1],[3,2]]
+    }
+    }
+    data = data.map do |key, hash|
+      [ key, { ranges: make_ranges(hash[:range]),
+        peaks: make_pairs(hash[:peaks]),
+        bin_to_peak_index_pairs: hash[:bin_to_peak_index_pairs]} ]
+    end
+    data = Hash[data]
+    # not really the subject, but it is the data we care about here...
 
-      it 'works for lower values and higher ranges' do
-        ranges = (3..9).map {|i| Bin.new(i.to_f, (i+1).to_f, true) }
-        peaks = [1.0, 2.99, 5.2].map {|v| [v, 1] }
-        rbins = Bin.bin(ranges, peaks, &:first)
-        rbins[2].data.first.should == peaks.last
-        delete_and_confirm_empty(rbins, [2])
-      end
-
-      it 'works for higher values and lower ranges' do
-        ranges = (3..9).map {|i| Bin.new(i.to_f, (i+1).to_f, true) }
-        peaks = [5.2, 11.0].map {|v| [v, 1] }
-        rbins = Bin.bin(ranges, peaks, &:first)
-        rbins[2].data.first.should == peaks.first
-        delete_and_confirm_empty(rbins, [2])
-      end
-
-      it 'works for values lower and higher' do
-        ranges = (2..9).map {|i| Bin.new(i.to_f, (i+1).to_f, true) }
-        peaks = [1.0, 2.99, 5.2, 11.0].map {|v| [v, 1] }
-        rbins = Bin.bin(ranges, peaks, &:first)
-        [[0,1], [3,2]].each {|ri, pi| rbins[ri].data.first.should == peaks[pi] }
-        delete_and_confirm_empty(rbins, [0,3])
+    data.each do |type, init|
+      it "works for bins to data #{type.to_s.gsub('_',' ')}" do
+        rbins = Bin.bin(ranges_to_bins(init[:ranges]), init[:peaks], &:first)
+        matching(rbins, init[:peaks], init[:bin_to_peak_index_pairs])
       end
     end
 
-
+    data.each do |type, init|
+      it "works for ranges to data #{type.to_s.gsub('_',' ')}" do
+        custom_data_store = (0...init[:ranges].size).map { [] }
+        rbins = Bin.bin(init[:ranges], init[:peaks], custom_data_store, &:first)
+        matching(rbins, init[:peaks], init[:bin_to_peak_index_pairs])
+      end
+    end
   end
 end

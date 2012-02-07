@@ -74,7 +74,7 @@ module MS
             end
 
           spectra.each do |spectrum|
-            Bin.bin!(bins, spectrum.points, &:first)
+            Bin.bin(bins, spectrum.points, &:first)
           end
 
           pseudo_points = bins.map do |bin|
