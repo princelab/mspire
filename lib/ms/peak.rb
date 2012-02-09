@@ -23,7 +23,8 @@ class MS::Peak < Array
   def split(split_multipeaks=false, return_local_minima=false)
     if split_multipeaks
       (zeroed_peaks, local_min_ind_ar) = self.split(false, true)
-      zeroed_peaks.zip(local_min_ind_ar).map do |peak, lm_indices|
+      $stderr.print "splitting on local minima ..." if $VERBOSE
+      no_local_minima_peaks = zeroed_peaks.zip(local_min_ind_ar).map do |peak, lm_indices|
         new_peaks = [ peak.class.new ]
         if lm_indices.size > 0
           prev_lm_i = -1   # <- it's okay, we don't use until it is zero
@@ -56,13 +57,16 @@ class MS::Peak < Array
             end
             prev_lm_i = lm_i
           end
-          new_peaks.last.push( *self[(prev_lm_i+2)...self.size] )
+          new_peaks.last.push( *peak[(prev_lm_i+2)...peak.size] )
           new_peaks
         else
           [peak]
         end
       end.flatten(1) # end zip
+      $stderr.puts "now #{no_local_minima_peaks.size} peaks." if $VERBOSE
+      no_local_minima_peaks 
     else
+      $stderr.print "splitting on zeros..." if $VERBOSE
       # first, split the peaks based on zero intensity values 
       # and simultaneously keep track of the local minima within each
       # resulting peak
@@ -95,6 +99,7 @@ class MS::Peak < Array
           in_peak = false
         end # end if point[1] > 0
       end
+      $stderr.puts "#{peaks.size} no-whitespace-inside peaks." if $VERBOSE
       return_local_minima ? [peaks, local_min_ind_ar] : peaks
     end # 
   end # def split

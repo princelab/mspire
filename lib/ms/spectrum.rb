@@ -81,6 +81,19 @@ module MS
             [bin, bin.data.reduce(0.0) {|sum,point| sum += point.last }]
           end
 
+          p_mzs = [] 
+          p_ints = [] 
+          p_num_points = [] 
+          pseudo_points.each do |psp|
+            p_mzs << ((psp.first.begin + psp.first.end)/2)
+            p_ints << psp.last
+            p_num_points <<  psp.first.data.size
+          end
+
+          File.write("file_#{opt[:bin_width]}_to_plot.txt", [p_mzs, p_ints, p_num_points].map {|ar| ar.join(' ') }.join("\n"))
+          abort 'here'
+
+
           peaks = MS::Peak.new(pseudo_points).split(opt[:split])
 
           return_data = []
@@ -88,12 +101,12 @@ module MS
           peaks.each do |peak|
             tot_intensity = peak.map(&:last).reduce(:+)
             return_data_per_peak = [] if opt[:return_data]
-            weighted_mz = peak.reduce(0.0) do |wavg, point|
+            weighted_mz = 0.0
+            peak.each do |point|
               return_data_per_peak.push(*point[0].data) if opt[:return_data]
               point[0].data.each do |lil_point|
-                wavg += lil_point[0] * (lil_point[1] / tot_intensity)
+                weighted_mz += lil_point[0] * (lil_point[1].to_f / tot_intensity)
               end
-              wavg
             end
             return_data << return_data_per_peak if opt[:return_data]
             _mzs << weighted_mz
@@ -109,8 +122,10 @@ module MS
         spectrum.data[1].map! {|v| v.to_f / sz }
       end
       if opt[:return_data]
+        $stderr.puts "returning spectrum (#{spectrum.mzs.size}) and data" if $VERBOSE
         [spectrum, return_data]
       else
+        $stderr.puts "returning spectrum (#{spectrum.mzs.size})" if $VERBOSE
         spectrum
       end
     end
