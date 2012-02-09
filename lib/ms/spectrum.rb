@@ -78,7 +78,8 @@ module MS
           end
 
           pseudo_points = bins.map do |bin|
-            [bin, bin.data.reduce(0.0) {|sum,point| sum += point.last }]
+            #int = bin.data.reduce(0.0) {|sum,point| sum + point.last }.round(3)   # <- just for info:
+            [bin, bin.data.reduce(0.0) {|sum,point| sum + point.last }]
           end
 
           #p_mzs = [] 
@@ -98,14 +99,36 @@ module MS
 
           return_data = []
           _mzs = [] ; _ints = []
-          peaks.each do |peak|
+
+          #p peaks[97]
+          #puts "HIYA"
+          #abort 'here'
+
+          peaks.each_with_index do |peak,i|
+          #peaks.each do |peak|
             tot_intensity = peak.map(&:last).reduce(:+)
             return_data_per_peak = [] if opt[:return_data]
             weighted_mz = 0.0
             peak.each do |point|
+              pre_scaled_intensity = point[0].data.reduce(0.0) {|sum,v| sum + v.last }
+              post_scaled_intensity = point[1]
+              # some peaks may have been shared.  In this case the intensity
+              # for that peak was downweighted.  However, the actually data
+              # composing that peak is not altered when the intensity is
+              # shared.  So, to calculate a proper weighted avg we need to
+              # downweight the intensity of any data point found within a bin
+              # whose intensity was scaled.
+              correction_factor = 
+                if pre_scaled_intensity != post_scaled_intensity
+                  post_scaled_intensity / pre_scaled_intensity
+                else
+                  1.0
+                end
+
               return_data_per_peak.push(*point[0].data) if opt[:return_data]
+
               point[0].data.each do |lil_point|
-                weighted_mz += lil_point[0] * (lil_point[1].to_f / tot_intensity)
+                weighted_mz += lil_point[0] * ( (lil_point[1].to_f * correction_factor) / tot_intensity)
               end
             end
             return_data << return_data_per_peak if opt[:return_data]
