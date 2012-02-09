@@ -81,17 +81,17 @@ module MS
             [bin, bin.data.reduce(0.0) {|sum,point| sum += point.last }]
           end
 
-          p_mzs = [] 
-          p_ints = [] 
-          p_num_points = [] 
-          pseudo_points.each do |psp|
-            p_mzs << ((psp.first.begin + psp.first.end)/2)
-            p_ints << psp.last
-            p_num_points <<  psp.first.data.size
-          end
+          #p_mzs = [] 
+          #p_ints = [] 
+          #p_num_points = [] 
+          #pseudo_points.each do |psp|
+          #  p_mzs << ((psp.first.begin + psp.first.end)/2)
+          #  p_ints << psp.last
+          #  p_num_points <<  psp.first.data.size
+          #end
 
-          File.write("file_#{opt[:bin_width]}_to_plot.txt", [p_mzs, p_ints, p_num_points].map {|ar| ar.join(' ') }.join("\n"))
-          abort 'here'
+          #File.write("file_#{opt[:bin_width]}_to_plot.txt", [p_mzs, p_ints, p_num_points].map {|ar| ar.join(' ') }.join("\n"))
+          #abort 'here'
 
 
           peaks = MS::Peak.new(pseudo_points).split(opt[:split])
