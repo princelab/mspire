@@ -45,19 +45,21 @@ class MS::Peak < Array
               new_peaks.last << point_class.new( [lm[0], lm[1] * (before_pnt[1].to_f/sum)] )
               # create a new peak that contains its portion of the local min
               new_peaks << self.class.new( [point_class.new([lm[0], lm[1] * (after_pnt[1].to_f/sum)])] )
+              prev_lm_i = lm_i
             when :greedy_y
               if before_pnt[1] >= after_pnt[1]
                 new_peaks.last << lm
                 new_peaks << self.class.new
+                prev_lm_i = lm_i
               else
                 new_peaks << self.class.new( [lm] )
+                prev_lm_i = lm_i
               end
             else
               raise ArgumentError, "only recognize :share, :greedy_y, or false for the arg in #split(arg)"
             end
-            prev_lm_i = lm_i
           end
-          new_peaks.last.push( *peak[(prev_lm_i+2)...peak.size] )
+          new_peaks.last.push( *peak[(prev_lm_i+1)...peak.size] )
           new_peaks
         else
           [peak]

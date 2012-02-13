@@ -55,26 +55,27 @@ describe MS::Peak do
     end
 
     it 'does #split(:share) and shares the peak proportional to adjacent peaks' do
-      multipeak1 = MS::Peak.new( @points[7,9] )
+      data = [[50.07, 0], [50.08, 3], [50.09, 8], [50.1, 2], [50.11, 9], [50.12, 7], [50.13, 1], [50.14, 3], [50.15, 0]]
+      multipeak1 = MS::Peak.new( data )
 
       answer = [
         [[50.08, 3], [50.09, 8], [50.1, (2*8.0/17)]], 
         [[50.1, 2*9.0/17], [50.11, 9], [50.12, 7], [50.13, 0.7]],
-        [[50.13, 0.3], [50.14, 3], [50.15, 0]]
+        [[50.13, 0.3], [50.14, 3]]
       ]
       multipeak1.split(:share).should == answer
 
       answer = [
         [[50.08, 3], [50.09, 8]], 
         [[50.1, 2], [50.11, 9], [50.12, 7], [50.13, 1]], 
-        [[50.14, 3], [50.15, 0]]
+        [[50.14, 3]]
       ]
       multipeak1.split(:greedy_y).should == answer
 
       answer = [
         [[50.08, 3], [50.09, 9], [50.1, 2]], 
         [[50.11, 9], [50.12, 7], [50.13, 1]], 
-        [[50.14, 3], [50.15, 0]]
+        [[50.14, 3]]
       ] 
 
       # test a tie -> goes left!
