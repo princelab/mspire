@@ -1,4 +1,3 @@
-
 module MS
   module Mass
 
@@ -39,6 +38,7 @@ module MS
       'h2o' => 18.0105647,
       'oh' => 17.002739665,
       'e' => 0.0005486,
+      'se' => 79.9165196
     }
     AVG_STR = {
       'h+' => 1.007276, # using Mascot_H_plus mass (is this right for AVG??)
