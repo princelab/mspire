@@ -1,11 +1,11 @@
 require 'spec_helper'
-require 'ms/cvlist'
+require 'ms/cv/description'
 require 'cv'
 
-describe 'appending CV params objects to an MS::CVList' do
+describe 'appending CV params objects to an MS::CV::Description' do
   describe 'intelligently appending params with #param' do
     before do
-      @cv = MS::CVList.new
+      @cv = MS::CV::Description.new
     end
     it 'sends detailed descriptions to CV::Param.new' do
       arglist = [
@@ -36,7 +36,7 @@ describe 'appending CV params objects to an MS::CVList' do
     end
     describe 'appending on initialization' do
       it 'can be done with a block' do
-        cvlist = MS::CVList.new do
+        cvlist = MS::CV::Description.new do
           param 'MS:1000004'  # sample mass
           param 'IMS:1000042', 23 # max count of pixels of y
         end
@@ -47,7 +47,7 @@ describe 'appending CV params objects to an MS::CVList' do
     it 'can be done with brackets' do
       args = ['IMS', 'IMS:1000052', 'position z', 22]
       param_obj = CV::Param.new(*args)
-      cvlist = MS::CVList['MS:1000004', ['MS:1000004'], ['IMS:1000042', 23], param_obj, args]
+      cvlist = MS::CV::Description['MS:1000004', ['MS:1000004'], ['IMS:1000042', 23], param_obj, args]
       cvlist.size.should == 5
       cvlist[0].should == cvlist[1]
       cvlist.each do |param|

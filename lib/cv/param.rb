@@ -9,6 +9,7 @@ module CV
       (@cv_ref, @accession, @name, @value) = [cv_ref, accession, name, value]
     end
 
+    # for now, assumes this is a Nokogiri::XML::Builder object
     def to_xml(xml, name=:cvParam)
       hash_to_send = {:cvRef => @cvref, :accession => @accession, :name => @name}
       hash_to_send[:value] = @value if @value

@@ -11,6 +11,7 @@ module CV
       push CV::Param.new(*args)
     end
 
+    # for now, assumes xml is a Nokogiri::XML::Builder object
     def to_xml(xml)
       each {|param| param.to_xml(xml) }
     end
