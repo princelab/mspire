@@ -1,8 +1,12 @@
+require 'builder'
 require 'nokogiri'
 require 'io/bookmark'
 require 'zlib'
 require 'ms/mzml/index_list'
 require 'ms/spectrum'
+require 'ms/mzml/referenceable_param_group'
+require 'ms/mzml/cv'
+require 'ms/mzml/sample'
 
 module MS
   #     MS::Mzml.open("somefile.mzML") do |mzml|
@@ -16,23 +20,91 @@ module MS
   #       end
   #     end
   class Mzml
+
+    module Default
+      NAMESPACE = {
+        :xmlns => "http://psi.hupo.org/ms/mzml",
+        "xmlns:xsi" => "http://www.w3.org/2001/XMLSchema-instance", 
+        "xmlns:xsd" => "http://www.w3.org/2001/XMLSchema", 
+      }
+
+      VERSION = '1.1.0'
+    end
+
+    ###############################################
+    # ATTRIBUTES
+    ###############################################
+
+    # (optional) an id for accessing from external files
+    attr_accessor :id
+   
+    # (required) the Mzml document version
+    attr_accessor :version
+
+    # (optional) e.g. a PRIDE accession number
+    attr_accessor :accession
+
+    ###############################################
+    # SUBELEMENTS
+    ###############################################
+
+    # (required) an array of MS::Mzml::CV objects
+    attr_accessor :cvs
+
+    # (required) an MS::Mzml::FileDescription
+    attr_accessor :file_description
+
+    # (optional) an array of CV::ReferenceableParamGroup objects
+    attr_accessor :referenceable_param_groups
+
+    # (optional) an array of MS::Mzml::Sample objects
+    attr_accessor :samples
+
+    # (required) an array of MS::Mzml::Software objects 
+    attr_accessor :software_list
+
+    # (optional) an array of MS::Mzml::ScanSettings objects
+    attr_accessor :scan_settings_list
+
+    # (required) an array of MS::Mzml::InstrumentConfiguration objects
+    attr_accessor :instrument_configurations
+
+    # (required) an array of MS::Mzml::DataProcessing objects
+    attr_accessor :data_processing_list
+
+    # (required) an MS::Mzml::Run object
+    attr_accessor :run
+
     module Parser
       NOBLANKS = ::Nokogiri::XML::ParseOptions::DEFAULT_XML | ::Nokogiri::XML::ParseOptions::NOBLANKS
     end
     include Enumerable
 
-    attr_accessor :filename
     attr_accessor :io
     attr_accessor :index_list
     attr_accessor :encoding
 
+    # arg must be an IO object for automatic index and header parsing to
+    # occur.  If arg is a hash, then attributes are set.  In addition (or
+    # alternatively) a block called in the initializing object's context can
+    # be used to setup the object.
+    #
     # io must respond_to?(:size), giving the size of the io object in bytes
-    # which allows seeking.  #get_index_list is called to get or create the
+    # which allows seeking.  get_index_list is called to get or create the
     # index list.
-    def initialize(io)
-      @io = io
-      @encoding = @io.bookmark(true) {|io| io.readline.match(/encoding=["'](.*?)["']/)[1] }
-      @index_list = get_index_list
+    def initialize(arg=nil, &block)
+      case arg
+      when IO
+        @io = arg
+        @encoding = @io.bookmark(true) {|io| io.readline.match(/encoding=["'](.*?)["']/)[1] }
+        @index_list = get_index_list
+        # TODO: and read in 'header' info (everything until 'run'
+      when Hash
+        arg.each {|k,v| self.send("#{k}=", v) }
+      end
+      if block
+        instance_eval &block
+      end
     end
 
     class << self
@@ -189,6 +261,49 @@ module MS
     # @return [Array] an array of indices
     def get_index_list
       read_index_list || create_index_list
+    end
+
+    # Because mzml files are often very large, we try to avoid storing the
+    # entire object tree in memory before writing.
+    # 
+    # takes a filename and uses builder to write to it
+    # if no filename is given, returns a string
+    def to_xml(filename=nil)
+      # TODO: support indexed mzml files
+      io = filename ? File.open(filename, 'w') : StringIO.new
+      xml = Builder::XmlMarkup.new(io)
+      xml.instruct!
+
+      mzml_atts = Default::NAMESPACE.dup
+      mzml_atts[:version] = @version || Default::VERSION
+      mzml_atts[:accession] = @accession if @accession
+      mzml_atts[:id] = @id if @id
+
+      xml.mzML(mzml_atts) do |mzml_n|
+        # the 'if' statements capture whether or not the list is required or not
+        MS::Mzml::CV.list_xml(@cvs, mzml_n)
+        @file_description.to_xml(mzml_n)
+        if @referenceable_param_groups
+          MS::Mzml::ReferenceableParamGroup.list_xml(@referenceable_param_groups, mzml_n)
+        end
+        if @samples
+          MS::Mzml::Sample.list_xml(@samples, mzml_n)
+        end
+        MS::Mzml::Software.list_xml(@software_list, mzml_n)
+        if @scan_settings_list
+          MS::Mzml::ScanSettings.list_xml(@scan_settings_list, mzml_n)
+        end
+        MS::Mzml::InstrumentConfiguration.list_xml(@instrument_configurations, mzml_n)
+        MS::Mzml::DataProcessing.list_xml(@data_processing_list, mzml_n)
+        MS::Mzml::Run.to_xml(mzml_n)
+      end
+      
+      if filename
+        io.close 
+        self
+      else
+        io.string
+      end
     end
 
     class ScanNumbersNotUnique < Exception

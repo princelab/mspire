@@ -1,4 +1,5 @@
 require 'spec_helper'
+require 'builder'
 
 require 'ms/mzml'
 
@@ -44,7 +45,35 @@ describe 'indexed, compressed peaks, mzML file' do
       end
 
     end
+
+    describe 'writing a file' do
+
+      xit 'creates mzml xml' do
+        mzml = MS::Mzml.new
+        xml_string = mzml.to_xml do |xml|
+          xml.should be_a(Builder::XmlMarkup)
+        end
+        xml_string.should be_a(String)
+        [/xmlns/, /xsi/, /xsd/, /version/].each do |regexp|
+          xml_string.should match(regexp)
+        end
+      end
+
+      xit 'can write to a builder object' do
+        mzml = MS::Mzml.new
+        builder = Nokogiri::XML::Builder.new
+        revised = mzml.to_xml(builder) do |xml|
+          xml.should be_a(Builder::XmlMarkup)
+        end
+        revised.should == builder
+        revised.should be_a(Builder::XmlMarkup)
+        xml_string = revised.to_xml
+        [/xmlns/, /xsi/, /xsd/, /version/].each do |regexp|
+          xml_string.should match(regexp)
+        end
+      end
+
+    end
   end
 end
-
 

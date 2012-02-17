@@ -8,12 +8,17 @@ module CV
 
     # pushes a CV::Param object onto the description array
     def param(*args)
-      push CV::Param.new(*args)
+      if args.first.is_a?(Symbol)
+        push CV::ReferenceableParamGroupRef.new(args.first)
+      else
+        push CV::Param.new(*args)
+      end
     end
 
     # for now, assumes xml is a Nokogiri::XML::Builder object
     def to_xml(xml)
-      each {|param| param.to_xml(xml) }
+      each {|item| item.to_xml(xml) }
+      xml
     end
   end
 end

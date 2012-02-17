@@ -33,11 +33,23 @@ module MS
         instance_eval &block if block
       end
 
-      # if the first object is a MS::CV::Param it is just pushed onto the list,
-      # otherwise the arguments are sent in to initialize a fresh MS::CV::Param,
-      # and this object is pushed onto the list.
+      # if the first object is a MS::CV::Param it is just pushed onto the
+      # list, otherwise the arguments are sent in to initialize a fresh
+      # MS::CV::Param, and this object is pushed onto the list.  A symbol will
+      # be interpreted as a ref to a ReferenceableParamGroup object and a
+      # CV::ReferenceableParamGroupRef will be created and pushed on.
       def param(*args)
-        push args.first.is_a?(::CV::Param) ? args.first : MS::CV::Param.new(*args)
+        # TODO: add support for user params (shoudln't be hard)
+        push( 
+             case args.first
+             when ::CV::Param
+               args.first
+             when Symbol
+               ::CV::ReferenceableParamGroupRef.new(args.first)
+             else
+               MS::CV::Param.new(*args)
+             end
+            )
       end
     end
 
