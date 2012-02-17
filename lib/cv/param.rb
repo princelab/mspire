@@ -10,8 +10,9 @@ module CV
     end
 
     # for now, assumes this is a Nokogiri::XML::Builder object
+    # returns the xml builder object
     def to_xml(xml, name=:cvParam)
-      hash_to_send = {:cvRef => @cvref, :accession => @accession, :name => @name}
+      hash_to_send = {:cvRef => @cv_ref, :accession => @accession, :name => @name}
       hash_to_send[:value] = @value if @value
       if unit
         hash_to_send.merge!( { :unitCvRef => unit.cv_ref, 
@@ -19,6 +20,7 @@ module CV
                             :unitName => unit.name } )
       end
       xml.send(name, hash_to_send)
+      xml
     end
 
     def ==(other)

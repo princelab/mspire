@@ -1,4 +1,5 @@
 require 'ms/cv/param'
+require 'cv/description'
 
 module MS
   module CV
@@ -13,7 +14,7 @@ module MS
     #       param MS:1000004
     #       param MS:1000042, 23
     #     end
-    class Description < Array
+    class Description < ::CV::Description
 
       # ensures that each argument is an argument that can be handled by
       # CV::Param. Returns the Description object it creates
