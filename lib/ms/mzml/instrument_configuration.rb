@@ -28,6 +28,15 @@ module MS
         end
         builder
       end
+
+      def self.list_xml(inst_confs, builder)
+        builder.instrumentConfigurationList(count: inst_confs.size) do |icl_n|
+          inst_confs.each do |inst_conf|
+            inst_conf.to_xml(icl_n)
+          end
+        end
+        builder
+      end
     end
   end
 end

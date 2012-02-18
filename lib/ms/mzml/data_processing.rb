@@ -22,7 +22,7 @@ module MS
         builder
       end
 
-      def list_xml(data_processing_objs, builder)
+      def self.list_xml(data_processing_objs, builder)
         builder.dataProcessingList(count: data_processing_objs.size) do |proc_list_n|
           data_processing_objs.each do |data_processing_obj|
             data_processing_obj.to_xml(proc_list_n)

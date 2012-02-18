@@ -8,7 +8,7 @@ module MS
 
       def initialize(*param_objs, &block)
         @description = MS::CV::Description.new( *param_objs )
-        @description.instance_eval &block
+        @description.instance_eval(&block) if block
       end
 
     end

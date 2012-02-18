@@ -153,6 +153,10 @@ module MS
       end
     end
 
+    attr_accessor :parents
+    attr_accessor :precursors
+    attr_accessor :scans
+    attr_accessor :ms_level
 
     # boolean for if the spectrum represents centroided data or not
     attr_accessor :centroided

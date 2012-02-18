@@ -47,11 +47,24 @@ describe 'indexed, compressed peaks, mzML file' do
     end
 
     describe 'writing the simplest file with MS1 spectra' do
-      spec1 = MS::Spectrum.new( [[1,2,3], [4,5,6]] )
-      spec2 = MS::Spectrum.new( [[1,2,3.5], [5,6,5]] )
 
-      MS::Mzml.new do |mzml|
+
+      spec_params = ['MS:1000127', 'MS:1000525', 'MS:1000511', 'MS:1000294']
+
+      spec1 = MS::Mzml::Spectrum.new('scan=1', nil, *spec_params) do |spec|
+        spec.data = [[1,2,3], [4,5,6]]
+        spec.scans << MS::Mzml::Scan.new
+        # ^ need to impleemnt for RT's
+      end
+      spec2 = MS::Mzml::Spectrum.new('scan=2', nil, *spec_params) do |spec| 
+        spec.data = [[1,2,3.5], [5,6,5]]
+        spec.scans << MS::Mzml::Scan.new
+        # ^ need to impleemnt for RT's
+      end
+
+      mzml = MS::Mzml.new do |mzml|
         mzml.id = 'the_little_one'
+        mzml.cvs = MS::Mzml::CV::DEFAULT_CVS
         mzml.file_description = MS::Mzml::FileDescription.new  do |fd|
           fd.file_content = MS::Mzml::FileContent.new
           fd.source_files << MS::Mzml::SourceFile.new("text_data", "__simulated__")
@@ -65,13 +78,16 @@ describe 'indexed, compressed peaks, mzML file' do
         software = MS::Mzml::Software.new
         mzml.software_list << software
         default_data_processing = MS::Mzml::DataProcessing.new("did_nothing")
-        mzml.data_processing << default_data_processing
+        mzml.data_processing_list << default_data_processing
         mzml.run = MS::Mzml::Run.new("little_run", default_instrument_config) do |run|
           spectrum_list = MS::Mzml::SpectrumList.new(default_data_processing)
-          spectrum_list.add_spectra([spec1, spec2])
+          spectrum_list.push(spec1, spec2)
           run.spectrum_list = spectrum_list
         end
       end
+
+      File.write("tmp.mzML", mzml.to_xml)
+      abort 'hiya'
 
     end
 

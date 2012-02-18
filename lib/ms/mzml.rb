@@ -5,6 +5,13 @@ require 'io/bookmark'
 require 'zlib'
 require 'ms/mzml/index_list'
 require 'ms/spectrum'
+require 'ms/mzml/file_description'
+require 'ms/mzml/software'
+require 'ms/mzml/run'
+require 'ms/mzml/spectrum_list'
+require 'ms/mzml/chromatogram_list'
+require 'ms/mzml/instrument_configuration'
+require 'ms/mzml/data_processing'
 require 'ms/mzml/referenceable_param_group'
 require 'ms/mzml/cv'
 require 'ms/mzml/sample'
@@ -273,7 +280,7 @@ module MS
     def to_xml(filename=nil)
       # TODO: support indexed mzml files
       io = filename ? File.open(filename, 'w') : StringIO.new
-      xml = Builder::XmlMarkup.new(io)
+      xml = Builder::XmlMarkup.new(:target => io, :indent => 2)
       xml.instruct!
 
       mzml_atts = Default::NAMESPACE.dup
@@ -283,6 +290,7 @@ module MS
 
       xml.mzML(mzml_atts) do |mzml_n|
         # the 'if' statements capture whether or not the list is required or not
+        raise "#{self.class}#cvs must have > 0 MS::Mzml::CV objects" unless @cvs.size > 0 
         MS::Mzml::CV.list_xml(@cvs, mzml_n)
         @file_description.to_xml(mzml_n)
         if @referenceable_param_groups
@@ -292,12 +300,12 @@ module MS
           MS::Mzml::Sample.list_xml(@samples, mzml_n)
         end
         MS::Mzml::Software.list_xml(@software_list, mzml_n)
-        if @scan_settings_list
+        if @scan_settings_list && @scan_settings_list.size > 0
           MS::Mzml::ScanSettings.list_xml(@scan_settings_list, mzml_n)
         end
-        MS::Mzml::InstrumentConfiguration.list_xml(@instrument_configurations, mzml_n)
+        icl = MS::Mzml::InstrumentConfiguration.list_xml(@instrument_configurations, mzml_n)
         MS::Mzml::DataProcessing.list_xml(@data_processing_list, mzml_n)
-        MS::Mzml::Run.to_xml(mzml_n)
+        @run.to_xml(mzml_n)
       end
       
       if filename

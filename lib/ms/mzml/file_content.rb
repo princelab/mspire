@@ -9,9 +9,9 @@ module MS
     # appropriate CV term.
     class FileContent
       include MS::CV::Describable
-      def to_xml(builder)
+      def to_xml(builder, &block)
         builder.fileContent do |fc_n|
-          super(fc_n)
+          super(fc_n, &block)
         end
         builder
       end

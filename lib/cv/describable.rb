@@ -8,11 +8,11 @@ module CV
 
     def initialize(*param_objs, &block)
       description = CV::Description.new( param_objs )
-      description.instance_eval &block
+      description.instance_eval &block if block
     end
 
     def to_xml(builder)
-      description.to_xml(builder)
+      description.to_xml(builder) if description
     end
   end
 end

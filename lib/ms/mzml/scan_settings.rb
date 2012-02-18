@@ -21,7 +21,7 @@ module MS
       end
 
       # creates a scanSettingsList xml object
-      def list_xml(scan_settings_objs, builder)
+      def self.list_xml(scan_settings_objs, builder)
         builder.scanSettingsList(count: scan_settings_objs.size) do |ssl_n|
           scan_settings_objs.each {|scan_settings| scan_settings.to_xml(ssl_n) }
         end

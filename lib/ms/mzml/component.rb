@@ -3,11 +3,11 @@ require 'ms/cv/describable'
 module MS
   class Mzml
     module Component
-      include Describable
+      include MS::CV::Describable
       attr_accessor :order
 
       def to_xml(builder)
-        klass = class.to_s
+        klass = self.class.to_s
         klass[0] = klass[0].downcase
         builder.send(klass, order: @order)
         super(builder)

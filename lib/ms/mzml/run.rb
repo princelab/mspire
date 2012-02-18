@@ -28,15 +28,16 @@ module MS
 
       # yields self if given a block
       def initialize(id, default_instrument_configuration, *params, &block)
-        @spectrum_list= MS::Mzml::SpectrumList.new
-        @chromatogram_list = MS::Mzml::ChromatogramList.new
+        @id = id
+        @default_instrument_configuration = default_instrument_configuration
+        @description = MS::CV::Description[ *params ]
         if block
           block.call(self)
         end
       end
 
       def to_xml(builder)
-        atts = { id: @id, 
+        atts = { id: @id,
           defaultInstrumentConfigurationRef: @default_instrument_configuration.id
         }
         atts[:defaultSourceFileRef] = @default_source_file.id if @default_source_file
@@ -45,7 +46,8 @@ module MS
         
         builder.run(atts) do |run_n|
           super(run_n)
-          run_n.spectrumList
+          spectrum_list.to_xml(run_n) if spectrum_list
+          chromatogram_list.to_xml(run_n) if chromatogram_list
         end
         builder
       end

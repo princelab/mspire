@@ -14,14 +14,14 @@ module MS
       end
 
       def to_xml(builder)
-        builder.software( id: @id, name: @name, location: @location ) do |sf_n|
+        builder.software( id: @id, version: @version) do |sf_n|
           super(sf_n)
         end
         builder
       end
 
       # creates softwareList xml
-      def list_xml(software_objs, builder)
+      def self.list_xml(software_objs, builder)
         software_objs.each {|software| software.to_xml(builder) }
         builder
       end

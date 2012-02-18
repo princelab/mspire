@@ -25,7 +25,7 @@ module MS
         builder
       end
 
-      def list_xml(source_files, builder)
+      def self.list_xml(source_files, builder)
         builder.sourceFileList(count: source_files.size) do |sf_n|
           source_files.each do |source_file|
             source_file.to_xml(sf_n)

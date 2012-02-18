@@ -42,6 +42,8 @@ module MS
       # download date: DD:MM:YYY
       UO = self.new("UO", "Unit Ontology", "http://obo.cvs.sourceforge.net/*checkout*/obo/obo/ontology/phenotype/unit.obo", "16:02:2012")
 
+      DEFAULT_CVS = [MS, UO, IMS]
+
     end
   end
 end

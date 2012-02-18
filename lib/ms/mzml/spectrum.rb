@@ -1,16 +1,10 @@
-
 require 'ms/cv/describable'
+require 'ms/mzml/data_array'
 
 module MS
   class Mzml
     class Spectrum
       include MS::CV::Describable
-
-      # specifies 64-bit float with compression as the default encoding
-      DEFAULT_ENCODING = { 
-        mz: { dtype: 'MS:1000523', compression: true }, 
-        intensity: {dtype: 'MS:1000523', compression: true } 
-      }
 
       ###########################################
       # ATTRIBUTES
@@ -19,7 +13,7 @@ module MS
       # (required) the spectrum id matching this general pattern: \S+=\S+( \S+=\S+)*)
       attr_accessor :id
 
-      # the index in the spectrum list
+      # (required [at xml write time]) the index in the spectrum list
       attr_accessor :index
 
       # (optional) an MS::Mzml::DataProcessing object
@@ -54,12 +48,11 @@ module MS
       #
       # This would generate a spectrum of ms_level=2 :
       #
-      #     MS::Mzml::Spectrum.new(0, "scan=1") do
-      #       param 'MS:1000511', 2
-      #     end
-      def initialize(index, id, *params, &block)
+      #     MS::Mzml::Spectrum.new(0, "scan=1", 'MS:1000511')
+      def initialize(id, index=nil, *params, &block)
+        @description = MS::CV::Description.new(*params)
         @index, @id = index, id
-        super(*params, &block)
+        block.call(self) if block
       end
 
       def default_array_length
@@ -68,21 +61,15 @@ module MS
 
       # see SpectrumList for generating the entire list
       def to_xml(builder, opts={})
-        mz_encoding = DEFAULT_ENCODING[:mz].merge(opts[:mz])
-        int_encoding = DEFAULT_ENCODING[:intensity].merge(opts[:intensity])
+        raise "#{self.class} objects must have defined index before to_xml is called" unless @index
         atts = {id: @id, index: @index, defaultArrayLength: default_array_length}
         atts[:dataProcessingRef] = @data_processing.id if @data_processing
         atts[:sourceFile] = @source_file.id if @source_file
         atts[:spotID] = @spot_id if @spot_id
+
         builder.spectrum(atts) do |sp_n|
-          super(sp_n)
-
-          # the data itself
-          data.each do |array|
-            # TODO: support custom MS::Mzml::DataArray objects that would
-            # specify specific encoding behavior. 
-
-          end
+          @description.to_xml(sp_n)
+          MS::Mzml::DataArray.list_xml(data, sp_n)
         end
         builder
       end

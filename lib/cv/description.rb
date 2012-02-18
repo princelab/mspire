@@ -17,7 +17,7 @@ module CV
 
     # for now, assumes xml is a Nokogiri::XML::Builder object
     def to_xml(xml)
-      each {|item| item.to_xml(xml) }
+      self.each {|item| item.to_xml(xml) }
       xml
     end
   end
