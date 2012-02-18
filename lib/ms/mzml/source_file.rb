@@ -13,7 +13,7 @@ module MS
       # (required) URI-formatted location where the file was retrieved.
       attr_accessor :location
 
-      def initialize(id, name, location='.', *params, &block)
+      def initialize(id, name, location='file://', *params, &block)
         @id, @name, @location = id, name, location
         super(*params, &block)
       end

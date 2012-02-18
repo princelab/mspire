@@ -20,14 +20,19 @@ module MS
       # optional
       attr_accessor :start_time_stamp
 
-      # takes a SpectrumList object (a special array of spectra)
-      attr_accessor :spectra
+      # a SpectrumList object (a special array of spectra)
+      attr_accessor :spectrum_list
 
       # takes a ChromatogramList object (a special array of chromatograms)
-      attr_accessor :chromatograms
+      attr_accessor :chromatogram_list
 
+      # yields self if given a block
       def initialize(id, default_instrument_configuration, *params, &block)
-        super(*params, &block)
+        @spectrum_list= MS::Mzml::SpectrumList.new
+        @chromatogram_list = MS::Mzml::ChromatogramList.new
+        if block
+          block.call(self)
+        end
       end
 
       def to_xml(builder)

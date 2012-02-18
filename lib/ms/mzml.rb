@@ -1,3 +1,4 @@
+require 'mspire'
 require 'builder'
 require 'nokogiri'
 require 'io/bookmark'
@@ -86,13 +87,14 @@ module MS
 
     # arg must be an IO object for automatic index and header parsing to
     # occur.  If arg is a hash, then attributes are set.  In addition (or
-    # alternatively) a block called in the initializing object's context can
-    # be used to setup the object.
+    # alternatively) a block called that yields self to setup the object.
     #
     # io must respond_to?(:size), giving the size of the io object in bytes
     # which allows seeking.  get_index_list is called to get or create the
     # index list.
     def initialize(arg=nil, &block)
+      %w(cvs referenceable_param_groups samples software_list scan_settings_list instrument_configurations data_processing_list).each {|guy| self.send( guy + '=', [] ) }
+
       case arg
       when IO
         @io = arg
@@ -103,7 +105,7 @@ module MS
         arg.each {|k,v| self.send("#{k}=", v) }
       end
       if block
-        instance_eval &block
+        block.call(self)
       end
     end
 

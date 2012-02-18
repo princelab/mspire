@@ -1,3 +1,4 @@
+require 'mspire'
 require 'ms/cv/describable'
 
 module MS
@@ -7,7 +8,7 @@ module MS
 
       attr_accessor :id, :version
 
-      def initialize(id, version, *params, &block)
+      def initialize(id='mspire', version=Mspire::VERSION, *params, &block)
         @id, @version = id, version
         super(*params, &block)
       end

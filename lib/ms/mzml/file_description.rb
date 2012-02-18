@@ -20,8 +20,13 @@ module MS
       #     </contact>
       attr_accessor :contacts
 
-      def initialize(file_content, source_files=[], contacts=[])
+      # hands the user the object if given a block
+      def initialize(file_content=nil, source_files=[], contacts=[], &block)
         @file_content, @source_files, @contacts = file_content, source_files, contacts
+        if block
+          block.call(self)
+        end
+        raise ArgumentError, "FileDescription must have file_content" unless @file_content
       end
 
       def to_xml(builder)

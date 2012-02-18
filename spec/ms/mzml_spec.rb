@@ -46,7 +46,36 @@ describe 'indexed, compressed peaks, mzML file' do
 
     end
 
-    describe 'writing a file' do
+    describe 'writing the simplest file with MS1 spectra' do
+      spec1 = MS::Spectrum.new( [[1,2,3], [4,5,6]] )
+      spec2 = MS::Spectrum.new( [[1,2,3.5], [5,6,5]] )
+
+      MS::Mzml.new do |mzml|
+        mzml.id = 'the_little_one'
+        mzml.file_description = MS::Mzml::FileDescription.new  do |fd|
+          fd.file_content = MS::Mzml::FileContent.new
+          fd.source_files << MS::Mzml::SourceFile.new("text_data", "__simulated__")
+        end
+        default_instrument_config = MS::Mzml::InstrumentConfiguration.new("IC") do 
+          param 'MS:1000031'  # instrument model (generic class)
+          param :some_group_id
+          param 'asdfas', 'asdfasdf'
+        end
+        mzml.instrument_configurations << default_instrument_config
+        software = MS::Mzml::Software.new
+        mzml.software_list << software
+        default_data_processing = MS::Mzml::DataProcessing.new("did_nothing")
+        mzml.data_processing << default_data_processing
+        mzml.run = MS::Mzml::Run.new("little_run", default_instrument_config) do |run|
+          spectrum_list = MS::Mzml::SpectrumList.new(default_data_processing)
+          spectrum_list.add_spectra([spec1, spec2])
+          run.spectrum_list = spectrum_list
+        end
+      end
+
+    end
+
+    describe 'writing xml' do
 
       xit 'creates mzml xml' do
         mzml = MS::Mzml.new
