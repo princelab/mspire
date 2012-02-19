@@ -1,4 +1,4 @@
-
+require 'ms/mzml/list'
 require 'ms/cv/describable'
 
 module MS
@@ -20,13 +20,8 @@ module MS
         builder
       end
 
-      # creates a scanSettingsList xml object
-      def self.list_xml(scan_settings_objs, builder)
-        builder.scanSettingsList(count: scan_settings_objs.size) do |ssl_n|
-          scan_settings_objs.each {|scan_settings| scan_settings.to_xml(ssl_n) }
-        end
-        builder
-      end
+      extend(MS::Mzml::List)
+
     end
   end
 end

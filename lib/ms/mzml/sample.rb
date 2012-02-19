@@ -1,4 +1,5 @@
 require 'ms/cv/describable'
+require 'ms/mzml/list'
 
 module MS
   class Mzml
@@ -19,14 +20,7 @@ module MS
         builder
       end
 
-      def self.list_xml(samples, builder)
-        builder.sampleList(count: samples.size) do |sl_n|
-          samples.each do |sample|
-            sample.to_xml(sl_n)
-          end
-        end
-        builder
-      end
+      extend(MS::Mzml::List)
     end
   end
 end

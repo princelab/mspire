@@ -1,4 +1,3 @@
-
 require 'ms/cv'
 
 module MS

@@ -1,4 +1,5 @@
 require 'mspire'
+require 'ms/mzml/list'
 require 'ms/cv/describable'
 
 module MS
@@ -20,11 +21,7 @@ module MS
         builder
       end
 
-      # creates softwareList xml
-      def self.list_xml(software_objs, builder)
-        software_objs.each {|software| software.to_xml(builder) }
-        builder
-      end
+      extend(MS::Mzml::List)
     end
   end
 end

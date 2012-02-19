@@ -1,5 +1,6 @@
 require 'ms/cv/describable'
 require 'ms/mzml/component'
+require 'ms/mzml/list'
 
 module MS
   class Mzml
@@ -29,14 +30,7 @@ module MS
         builder
       end
 
-      def self.list_xml(inst_confs, builder)
-        builder.instrumentConfigurationList(count: inst_confs.size) do |icl_n|
-          inst_confs.each do |inst_conf|
-            inst_conf.to_xml(icl_n)
-          end
-        end
-        builder
-      end
+      self.extend(MS::Mzml::List)
     end
   end
 end

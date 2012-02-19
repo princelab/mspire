@@ -52,13 +52,13 @@ describe 'indexed, compressed peaks, mzML file' do
       spec_params = ['MS:1000127', 'MS:1000525', 'MS:1000511', 'MS:1000294']
 
       spec1 = MS::Mzml::Spectrum.new('scan=1', nil, *spec_params) do |spec|
-        spec.data = [[1,2,3], [4,5,6]]
-        spec.scans << MS::Mzml::Scan.new
+        spec.data_arrays = [[1,2,3], [4,5,6]]
+        #spec.scans << MS::Mzml::Scan.new
         # ^ need to impleemnt for RT's
       end
       spec2 = MS::Mzml::Spectrum.new('scan=2', nil, *spec_params) do |spec| 
-        spec.data = [[1,2,3.5], [5,6,5]]
-        spec.scans << MS::Mzml::Scan.new
+        spec.data_arrays = [[1,2,3.5], [5,6,5]]
+        #spec.scans << MS::Mzml::Scan.new
         # ^ need to impleemnt for RT's
       end
 
@@ -86,7 +86,8 @@ describe 'indexed, compressed peaks, mzML file' do
         end
       end
 
-      File.write("tmp.mzML", mzml.to_xml)
+      puts mzml.to_xml
+      #File.write("tmp.mzML", mzml.to_xml)
       abort 'hiya'
 
     end
