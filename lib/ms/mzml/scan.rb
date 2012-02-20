@@ -4,21 +4,20 @@ module MS
   class Mzml
     class Scan
       include MS::CV::Describable
+
       # (optional) the MS::Mzml::Spectrum object from which the precursor is
-      # derived
+      # derived.  (the sourceFileRef is derived from this spectrum object if
+      # from_external_source_file == true)
       attr_accessor :spectrum
-
-      # (optional)
-      attr_accessor :isolation_window 
-
-      # (optional) An array of ions that were selected.
-      attr_accessor :selected_ions
-
-      # (required) The type and energy level used for activation.
-      attr_accessor :activation
 
       # a boolean indicating the spectrum is from an external source file
       attr_accessor :from_external_source_file
+
+      # an InstrumentConfiguration object
+      attr_accessor :instrument_configuration
+
+      # ScanWindow objects
+      attr_accessor :scan_windows
 
       def initialize(&block)
         block.call(self) if block
@@ -32,10 +31,10 @@ module MS
         else
           atts[:spectrumRef] = @spectrum.id if @spectrum
         end
-        builder.precursor(atts) do |prec_n|
-          @isolation_window.to_xml(prec_n) if @isolation_window
-          MS::Mzml::SelectedIonList.list_xml(@selected_ions, prec_n) if @selected_ions
-          @activation.to_xml(prec_n)
+        atts[:instrumentConfigurationRef] = @instrument_configuration.id if @instrument_configuration
+        builder.scan(atts) do |prec_n|
+          super(prec_n) # description
+          ScanWindow.list_xml(@scan_windows, prec_n) if @scan_windows
         end
       end
 

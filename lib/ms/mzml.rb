@@ -102,7 +102,7 @@ module MS
     # which allows seeking.  get_index_list is called to get or create the
     # index list.
     def initialize(arg=nil, &block)
-      %w(cvs referenceable_param_groups samples software_list scan_settings_list instrument_configurations data_processing_list).each {|guy| self.send( guy + '=', [] ) }
+      %w(cvs software_list instrument_configurations data_processing_list).each {|guy| self.send( guy + '=', [] ) }
 
       case arg
       when IO

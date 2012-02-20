@@ -1,10 +1,14 @@
 require 'ms/cv/describable'
-require 'ms/mzml/list'
 
 module MS
   class Mzml
+
+    # need to call to_xml_definition (or use
+    # MS::Mzml::ReferenceableParamGroupList.list_xml) to get the xml for the
+    # object itself (and not a reference).  Merely callying #to_xml will
+    # result in a referenceableParamGroupRef being created.
     class ReferenceableParamGroup
-      include ::MS::CV::Describable
+      include MS::CV::Describable
 
       attr_accessor :id
 
@@ -14,13 +18,22 @@ module MS
       end
 
       def to_xml(builder)
+        builder.referenceableParamGroupRef(ref: @id)
+        builder
+      end
+
+      def to_xml_definition
         builder.referenceableParamGroup(id: @id) do |fc_n|
           super(fc_n)
         end
         builder
       end
 
-      extend(MS::Mzml::List)
+      def self.list_xml(objs, builder)
+        builder.referenceableParamGroupList(count: objs.size) do |rpgl_n|
+          objs.each {|obj| obj.to_xml(rpgl_n) }
+        end
+      end
     end
   end
 end

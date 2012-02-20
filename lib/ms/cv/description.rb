@@ -1,11 +1,9 @@
 require 'ms/cv/param'
-require 'cv/description'
-require 'ms/mzml/referenceable_param_group'
 
 module MS
   module CV
 
-    # An MS::Description is a convenient way to specify several mass spec related
+    # An MS::CV::Description is a convenient way to specify several mass spec related
     # cvParam-like objects at once. 
     #
     # examples of usage:

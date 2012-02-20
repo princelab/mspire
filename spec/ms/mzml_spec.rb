@@ -43,10 +43,13 @@ describe MS::Mzml do
         end
       end
     end
+  end
 
-    describe 'writing a simple mzML file with MS1 spectra' do
+  describe 'writing mzml' do 
 
-      spec_params = ['MS:1000127', 'MS:1000525', 'MS:1000511', 'MS:1000294']
+    it 'reads MS1 spectra and retention times' do
+
+      spec_params = ['MS:1000127', ['MS:1000511', 1]]
 
       spec1 = MS::Mzml::Spectrum.new('scan=1', *spec_params) do |spec|
         spec.data_arrays = [[1,2,3], [4,5,6]]
@@ -78,7 +81,7 @@ describe MS::Mzml do
         mzml.cvs = MS::Mzml::CV::DEFAULT_CVS
         mzml.file_description = MS::Mzml::FileDescription.new  do |fd|
           fd.file_content = MS::Mzml::FileContent.new
-          fd.source_files << MS::Mzml::SourceFile.new("text_data", "__simulated__")
+          fd.source_files << MS::Mzml::SourceFile.new
         end
         default_instrument_config = MS::Mzml::InstrumentConfiguration.new("IC") do 
           param 'MS:1000031'  # instrument model (generic class)
@@ -95,40 +98,15 @@ describe MS::Mzml do
         end
       end
 
-
-      puts mzml.to_xml
-      #File.write("tmp.mzML", mzml.to_xml)
-      abort 'hiya'
-
-    end
-
-    describe 'writing xml' do
-
-      xit 'creates mzml xml' do
-        mzml = MS::Mzml.new
-        xml_string = mzml.to_xml do |xml|
-          xml.should be_a(Builder::XmlMarkup)
-        end
-        xml_string.should be_a(String)
-        [/xmlns/, /xsi/, /xsd/, /version/].each do |regexp|
-          xml_string.should match(regexp)
-        end
-      end
-
-      xit 'can write to a builder object' do
-        mzml = MS::Mzml.new
-        builder = Nokogiri::XML::Builder.new
-        revised = mzml.to_xml(builder) do |xml|
-          xml.should be_a(Builder::XmlMarkup)
-        end
-        revised.should == builder
-        revised.should be_a(Builder::XmlMarkup)
-        xml_string = revised.to_xml
-        [/xmlns/, /xsi/, /xsd/, /version/].each do |regexp|
-          xml_string.should match(regexp)
-        end
-      end
-
+      check = TESTFILES + '/ms/mzml/mspire_simulated.noidx.check.mzML'
+      tmpfile = TESTFILES + '/ms/mzml/mspire_simulated.TMP.mzML'
+      mzml.to_xml(tmpfile)
+      xml = IO.read(tmpfile)
+      xml.should be_a(String)
+      mzml.to_xml.should == xml
+      xml.should == IO.read(check)
+      xml.should match(/<mzML/)
+      File.unlink(tmpfile)
     end
   end
 end
