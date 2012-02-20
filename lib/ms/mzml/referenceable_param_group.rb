@@ -1,15 +1,16 @@
 require 'ms/cv/describable'
+require 'ms/mzml/list'
 
 module MS
   class Mzml
     class ReferenceableParamGroup
-      include MS::CV::Describable
+      include ::MS::CV::Describable
 
       attr_accessor :id
 
-      def initialize(id, *params, &block)
+      def initialize(id, *params)
         @id = id
-        super(*params, &block)
+        super(*params)
       end
 
       def to_xml(builder)
@@ -19,13 +20,7 @@ module MS
         builder
       end
 
-      # creates the xml for a referenceableParamGroupList
-      def self.list_xml(ref_group_objs, builder)
-        builder.referenceableParamGroupList(count: ref_group_objs.size) do |ref_group_n|
-          ref_group_objs.each {|rg| rg.to_xml(ref_group_n) }
-        end
-        builder
-      end
+      extend(MS::Mzml::List)
     end
   end
 end

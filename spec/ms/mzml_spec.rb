@@ -3,10 +3,9 @@ require 'builder'
 
 require 'ms/mzml'
 
-describe 'indexed, compressed peaks, mzML file' do
+describe MS::Mzml do
 
-  describe MS::Mzml do
-
+  describe 'reading an indexed, compressed peaks, mzML file' do
     describe 'reading a spectrum' do
 
       before do
@@ -43,23 +42,35 @@ describe 'indexed, compressed peaks, mzML file' do
           spec.mzs.size.should == mz_sizes.shift
         end
       end
-
     end
 
-    describe 'writing the simplest file with MS1 spectra' do
-
+    describe 'writing a simple mzML file with MS1 spectra' do
 
       spec_params = ['MS:1000127', 'MS:1000525', 'MS:1000511', 'MS:1000294']
 
-      spec1 = MS::Mzml::Spectrum.new('scan=1', nil, *spec_params) do |spec|
+      spec1 = MS::Mzml::Spectrum.new('scan=1', *spec_params) do |spec|
         spec.data_arrays = [[1,2,3], [4,5,6]]
-        #spec.scans << MS::Mzml::Scan.new
-        # ^ need to impleemnt for RT's
+        spec.scan_list = MS::Mzml::ScanList.new do |sl|
+          scan = MS::Mzml::Scan.new do |scan|
+            scan.description = MS::CV::Description.new do |d|
+              # retention time of 42 seconds
+              d.param 'MS:1000016', 40.0, 'UO:0000010'
+            end
+          end
+          sl << scan
+        end
       end
-      spec2 = MS::Mzml::Spectrum.new('scan=2', nil, *spec_params) do |spec| 
+      spec2 = MS::Mzml::Spectrum.new('scan=2', *spec_params) do |spec| 
         spec.data_arrays = [[1,2,3.5], [5,6,5]]
-        #spec.scans << MS::Mzml::Scan.new
-        # ^ need to impleemnt for RT's
+        spec.scan_list = MS::Mzml::ScanList.new do |sl|
+          scan = MS::Mzml::Scan.new do |scan|
+            scan.description = MS::CV::Description.new do |d|
+              # retention time of 42 seconds
+              d.param 'MS:1000016', 45.0, 'UO:0000010'
+            end
+          end
+          sl << scan
+        end
       end
 
       mzml = MS::Mzml.new do |mzml|
@@ -71,8 +82,6 @@ describe 'indexed, compressed peaks, mzML file' do
         end
         default_instrument_config = MS::Mzml::InstrumentConfiguration.new("IC") do 
           param 'MS:1000031'  # instrument model (generic class)
-          param :some_group_id
-          param 'asdfas', 'asdfasdf'
         end
         mzml.instrument_configurations << default_instrument_config
         software = MS::Mzml::Software.new
@@ -85,6 +94,7 @@ describe 'indexed, compressed peaks, mzML file' do
           run.spectrum_list = spectrum_list
         end
       end
+
 
       puts mzml.to_xml
       #File.write("tmp.mzML", mzml.to_xml)

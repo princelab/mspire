@@ -1,4 +1,3 @@
-
 =begin
 # if you want to use Nokogiri as the builder, you need something like this
 # code:
@@ -14,12 +13,14 @@ module CV
   # the xml writer is written with the assumption that the object is a
   # Builder::XmlMarkup object.  You can get away with using Nokogiri
   class Param
+
     attr_accessor :cv_ref, :accession, :name, :value
+
     # A valueless CV::Param object that describes the units being used
     attr_accessor :unit
 
-    def initialize(cv_ref, accession, name, value=nil)
-      (@cv_ref, @accession, @name, @value) = [cv_ref, accession, name, value]
+    def initialize(cv_ref, accession, name, value=nil, unit=nil)
+      @cv_ref, @accession, @name, @value, @unit = cv_ref, accession, name, value, unit
     end
 
     # for now, assumes this is a Builder::XmlMarkup object.  

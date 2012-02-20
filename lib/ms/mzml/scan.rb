@@ -1,10 +1,9 @@
 require 'ms/cv/describable'
-require 'ms/mzml/list'
 
 module MS
   class Mzml
-    # The method of precursor ion selection and activation
     class Scan
+      include MS::CV::Describable
       # (optional) the MS::Mzml::Spectrum object from which the precursor is
       # derived
       attr_accessor :spectrum
@@ -21,6 +20,10 @@ module MS
       # a boolean indicating the spectrum is from an external source file
       attr_accessor :from_external_source_file
 
+      def initialize(&block)
+        block.call(self) if block
+      end
+
       def to_xml(builder)
         atts = {}
         if @from_external_source_file
@@ -35,8 +38,6 @@ module MS
           @activation.to_xml(prec_n)
         end
       end
-
-      extend(MS::Mzml::List)
 
     end
   end

@@ -48,8 +48,8 @@ module MS
         atts[:spotID] = @spot_id if @spot_id
         super(builder, atts) do |node|
           @scan_list.list_xml( node ) if @scan_list
-          MS::Mzml::Precursor.list_xml(@precursors, node)
-          MS::Mzml::Product.list_xml(@products, node)
+          MS::Mzml::Precursor.list_xml(@precursors, node) if @precursors
+          MS::Mzml::Product.list_xml(@products, node) if @products
         end
       end
 

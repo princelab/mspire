@@ -1,23 +1,38 @@
 require 'ms/cv/param'
 require 'cv/description'
+require 'ms/mzml/referenceable_param_group'
 
 module MS
   module CV
+
     # An MS::Description is a convenient way to specify several mass spec related
-    # cvParam objects at once. 
+    # cvParam-like objects at once. 
     #
     # examples of usage:
     #
-    #     Description.new( <CV::Param> )
-    #     Description['MS:1000004', ['MS:1000004'], ['IMS:1000042', 23], param_obj, args]
-    #     Description.new do
-    #       param MS:1000004
-    #       param MS:1000042, 23
-    #     end
-    class Description < ::CV::Description
+    #     # initialize with various cv param or user params:
+    #     MS::CV::Description.new( MS::CV::Param.new('MS:1244551') )
+    #
+    #     # MS::CV::Description[] filters all arguments through the 'param'
+    #     # method which interprets arguments:
+    #     MS::CV::Description['MS:1000004', ['IMS:1000042', 23], param_obj, :some_ref_param_group_id,]
+    #     
+    #     # or can call the param method directly 
+    #     desc = MS::CV::Description.new
+    #     desc.param 'MS:1000004'                       # cv param
+    #     desc.param 'MS:1000042', '23', 'UO:0000108'   # cv param, value, units
+    #     desc.param :jazzy_param_group_id              # an id of a ReferenceableParamGroup
+    #     desc.param 'super_fast', '9999'               # an MS::User::Param (name, value)
+    #
+    # Note: the preferred way to deal with ReferenceableParamGroup objects
+    # is to pass in the ReferenceableParamGroup object itself (although the
+    # to_xml method will properly handle a ReferenceableParamGroupRef object
+    # and the param method will interpret a symbol
+    class Description < Array
 
-      # ensures that each argument is an argument that can be handled by
-      # CV::Param. Returns the Description object it creates
+      ACCESSION_REGEX = /^[A-Z]+:[^\s]+$/
+
+      # calls param on each argument.
       def self.[](*args)
         list = self.new
         args.each do |arg| 
@@ -26,32 +41,42 @@ module MS
         list
       end
 
-      # takes a list of valid CV::Param objects, or they can be set in the block
-      # using param
       def initialize(*args, &block)
-        args.each {|arg| param(arg) }
-        instance_eval &block if block
+        super(*args)
+        block.call(self) if block
       end
 
-      # if the first object is a MS::CV::Param it is just pushed onto the
-      # list, otherwise the arguments are sent in to initialize a fresh
-      # MS::CV::Param, and this object is pushed onto the list.  A symbol will
-      # be interpreted as a ref to a ReferenceableParamGroup object and a
-      # CV::ReferenceableParamGroupRef will be created and pushed on.
+      # The advantage of using param is that if the first argument is a string
+      # it will pass it directly to MS::CV::Param[ ].  All other arguments are
+      # merely pushed onto the description array.
+      #
+      #     desc = MS::CV::Description.new
+      #     desc.param MS::UserParam.new('name', 'value')
+      #     desc.param MS::Mzml::ReferenceableParamGroup.new("happy", ...)
+      #     # these are passed to MS::CV::Param[]:
+      #     desc.param 'MS:1000514', 29, 'UO:0000108'
       def param(*args)
-        # TODO: add support for user params (shoudln't be hard)
         push( 
              case args.first
-             when ::CV::Param
-               args.first
-             when Symbol
-               ::CV::ReferenceableParamGroupRef.new(args.first)
+             when String
+               MS::CV::Param[*args]
              else
-               MS::CV::Param.new(*args)
+               args.first
              end
             )
       end
-    end
 
+      # for now, assumes xml is a Nokogiri::XML::Builder object
+      def to_xml(xml)
+        self.each do |item| 
+          if item.is_a?(MS::Mzml::ReferenceableParamGroup)
+            xml.referenceableParamGroupRef(ref: item.id)
+          else
+            item.to_xml(xml)
+          end
+        end
+        xml
+      end
+    end
   end
 end

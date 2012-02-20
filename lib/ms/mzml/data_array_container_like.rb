@@ -26,9 +26,9 @@ module MS
       # (optional) an array of MS::Mzml::DataArray
       attr_accessor :data_arrays
 
-      def initialize(id, index=nil, *params)
-        @description = MS::CV::Description.new(*params)
-        @index, @id = index, id
+      def initialize(id, *params)
+        @description = MS::CV::Description[*params]
+        @id = id
       end
 
       def default_array_length
@@ -39,10 +39,10 @@ module MS
       # the opt key :sub_elements can be used to pass in subelements whose
       # to_xml methods will be called.
       def to_xml(builder, opts={}, &block)
-        raise "#{self.class} objects must have defined index before to_xml is called" unless @index
         atts = {id: @id, index: @index, defaultArrayLength: default_array_length}
         atts[:dataProcessingRef] = @data_processing.id if @data_processing
         atts.merge!(opts)
+        raise "#{self.class} object must have index at xml writing time!" unless atts[:index] 
 
         builder.spectrum(atts) do |sp_n|
           @description.to_xml(sp_n)
