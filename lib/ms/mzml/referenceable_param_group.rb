@@ -22,16 +22,16 @@ module MS
         builder
       end
 
-      def to_xml_definition
+      def to_xml_definition(builder)
         builder.referenceableParamGroup(id: @id) do |fc_n|
-          super(fc_n)
+          @description.each {|obj| obj.to_xml(fc_n) }
         end
         builder
       end
 
       def self.list_xml(objs, builder)
         builder.referenceableParamGroupList(count: objs.size) do |rpgl_n|
-          objs.each {|obj| obj.to_xml(rpgl_n) }
+          objs.each {|obj| obj.to_xml_definition(rpgl_n) }
         end
       end
     end

@@ -23,9 +23,7 @@ module MS
       # hands the user the object if given a block
       def initialize(file_content=nil, source_files=[], contacts=[], &block)
         @file_content, @source_files, @contacts = file_content, source_files, contacts
-        if block
-          block.call(self)
-        end
+        block.call(self) if block
         raise ArgumentError, "FileDescription must have file_content" unless @file_content
       end
 

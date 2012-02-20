@@ -24,7 +24,7 @@ module MS
       @unit = 
         if args.size > 1 && ((args.last.is_a?(::CV::Param) || args.last =~ /^[A-Za-z]+:\d+$/))
           unit_arg = args.pop
-          unit_arg.is_a?(::CV::Param) ? unit_arg : MS::CV::Param.new(unit_arg)
+          unit_arg.is_a?(::CV::Param) ? unit_arg : MS::CV::Param[unit_arg]
         end
       @name, @value, @type = args
     end

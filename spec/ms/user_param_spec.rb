@@ -24,7 +24,7 @@ describe MS::UserParam do
 
     it' can be initialized with an included CV::Param (unit)' do
       arg = 'special_user_param'
-      param = MS::UserParam.new arg, MS::CV::Param.new('UO:0000108')
+      param = MS::UserParam.new arg, MS::CV::Param['UO:0000108']
       param.name.should == arg
       param.unit.should_not be_nil
       param.unit.accession.should == 'UO:0000108'

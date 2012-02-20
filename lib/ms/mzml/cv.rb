@@ -1,4 +1,3 @@
-require 'ms/mzml/list'
 
 module MS
   class Mzml
@@ -26,7 +25,12 @@ module MS
         builder
       end
 
-      extend(MS::Mzml::List)
+      def self.list_xml(objs, builder)
+        builder.cvList(count: objs.size) do |cvl_n|
+          objs.each {|obj| obj.to_xml(cvl_n) }
+        end
+        builder
+      end
 
       # These are derived by looking in the obo folder at the top of mspire
       IMS = self.new("IMS",  "Imaging MS Ontology", "http://www.maldi-msi.org/download/imzml/imagingMS.obo", "0.9.1")

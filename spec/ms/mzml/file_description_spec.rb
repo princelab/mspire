@@ -5,8 +5,8 @@ describe 'creating mzml xml' do
   describe 'making fileContent' do
 
     it 'can be generated with a block' do
-      filecontent = MS::Mzml::FileContent.new do
-        param 'MS:1000579'  # value-less param
+      filecontent = MS::Mzml::FileContent.new do |fc|
+        fc.param 'MS:1000579'  # value-less param
         param 'IMS:1000080', "{9D501BDC-5344-4916-B7E9-7E795B02C856}"  # param with value
       end
 

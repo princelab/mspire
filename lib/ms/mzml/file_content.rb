@@ -8,7 +8,8 @@ module MS
     # describe the nativeID format used in the file by referring to an
     # appropriate CV term.
     class FileContent
-      include MS::CV::Describable
+      include MS::CV::Paramable
+
       def to_xml(builder, &block)
         builder.fileContent do |fc_n|
           super(fc_n, &block)
