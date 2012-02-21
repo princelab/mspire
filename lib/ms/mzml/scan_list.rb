@@ -1,4 +1,4 @@
-require 'ms/cv/describable'
+require 'ms/cv/paramable'
 
 module MS
   class Mzml
@@ -10,10 +10,10 @@ module MS
     #     e.g.: MS:1000575 (mean of spectra)
     #     e.g.: MS:1000795 (no combination)
     class ScanList < Array
-      include MS::CV::Describable
+      include MS::CV::Paramable
 
-      def initialize(*params, &block)
-        super(*params)
+      def initialize(opts={params: []}, &block)
+        describe!(*opts[:params])
         block.call(self) if block
       end
 
@@ -24,6 +24,7 @@ module MS
             scan.to_xml(sl_n)
           end
         end
+        builder
       end
 
       alias_method :list_xml, :to_xml

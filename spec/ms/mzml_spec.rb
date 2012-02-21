@@ -51,26 +51,22 @@ describe MS::Mzml do
 
       spec_params = ['MS:1000127', ['MS:1000511', 1]]
 
-      spec1 = MS::Mzml::Spectrum.new('scan=1', *spec_params) do |spec|
+      spec1 = MS::Mzml::Spectrum.new('scan=1', params: spec_params) do |spec|
         spec.data_arrays = [[1,2,3], [4,5,6]]
         spec.scan_list = MS::Mzml::ScanList.new do |sl|
           scan = MS::Mzml::Scan.new do |scan|
-            scan.description = MS::CV::Description.new do |d|
-              # retention time of 42 seconds
-              d.param 'MS:1000016', 40.0, 'UO:0000010'
-            end
+            # retention time of 42 seconds
+            scan.describe! ['MS:1000016', 40.0, 'UO:0000010']
           end
           sl << scan
         end
       end
-      spec2 = MS::Mzml::Spectrum.new('scan=2', *spec_params) do |spec| 
+      spec2 = MS::Mzml::Spectrum.new('scan=2', params: spec_params) do |spec| 
         spec.data_arrays = [[1,2,3.5], [5,6,5]]
         spec.scan_list = MS::Mzml::ScanList.new do |sl|
           scan = MS::Mzml::Scan.new do |scan|
-            scan.description = MS::CV::Description.new do |d|
-              # retention time of 42 seconds
-              d.param 'MS:1000016', 45.0, 'UO:0000010'
-            end
+            # retention time of 42 seconds
+            scan.describe! ['MS:1000016', 45.0, 'UO:0000010']
           end
           sl << scan
         end
@@ -83,9 +79,7 @@ describe MS::Mzml do
           fd.file_content = MS::Mzml::FileContent.new
           fd.source_files << MS::Mzml::SourceFile.new
         end
-        default_instrument_config = MS::Mzml::InstrumentConfiguration.new("IC") do 
-          param 'MS:1000031'  # instrument model (generic class)
-        end
+        default_instrument_config = MS::Mzml::InstrumentConfiguration.new("IC",[], params: ['MS:1000031'])
         mzml.instrument_configurations << default_instrument_config
         software = MS::Mzml::Software.new
         mzml.software_list << software

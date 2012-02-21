@@ -1,16 +1,17 @@
 require 'ms/mzml/list'
-require 'ms/cv/describable'
+require 'ms/cv/paramable'
 
 module MS
   class Mzml
     class ScanSettings
-      include MS::CV::Describable
+      include MS::CV::Paramable
 
       attr_accessor :id
 
-      def initialize(id, *params, &block)
+      def initialize(id, opts={params: []}, &block)
         @id = id
-        super(*params, &block)
+        describe!(*opts[:params])
+        block.call(self) if block
       end
 
       def to_xml(builder)

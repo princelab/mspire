@@ -42,12 +42,9 @@ module MS
       def to_xml(builder, dtype=DEFAULT_DTYPE, compression=DEFAULT_COMPRESSION)
         base64 = self.class.to_mzml_string(self, dtype, compression)
         builder.binaryDataArray(encodedLength: base64.bytesize) do |bda_n|
-          desc = MS::CV::Description[ 
-            DTYPE_TO_ACC[dtype], 
-            compression ? 'MS:1000574' : 'MS:1000576',
-            (@type == :mz) ? 'MS:1000514' : 'MS:1000515' # must be m/z or intensity 
-          ]
-          desc.to_xml(bda_n)
+          MS::CV::Param[ DTYPE_TO_ACC[dtype] ].to_xml(bda_n)
+          MS::CV::Param[ compression ? 'MS:1000574' : 'MS:1000576' ].to_xml(bda_n)
+          MS::CV::Param[ (@type == :mz) ? 'MS:1000514' : 'MS:1000515' ].to_xml(bda_n) # must be m/z or intensity 
           bda_n.binary(base64)
         end
       end

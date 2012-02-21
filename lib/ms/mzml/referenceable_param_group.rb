@@ -1,4 +1,4 @@
-require 'ms/cv/describable'
+require 'ms/cv/paramable'
 
 module MS
   class Mzml
@@ -8,13 +8,13 @@ module MS
     # object itself (and not a reference).  Merely callying #to_xml will
     # result in a referenceableParamGroupRef being created.
     class ReferenceableParamGroup
-      include MS::CV::Describable
+      include MS::CV::Paramable
 
       attr_accessor :id
 
-      def initialize(id, *params)
+      def initialize(id, opts={params: []} )
         @id = id
-        super(*params)
+        describe!(*opts[:params])
       end
 
       def to_xml(builder)
@@ -24,7 +24,7 @@ module MS
 
       def to_xml_definition(builder)
         builder.referenceableParamGroup(id: @id) do |fc_n|
-          @description.each {|obj| obj.to_xml(fc_n) }
+          @params.each {|obj| obj.to_xml(fc_n) }
         end
         builder
       end
@@ -33,6 +33,7 @@ module MS
         builder.referenceableParamGroupList(count: objs.size) do |rpgl_n|
           objs.each {|obj| obj.to_xml_definition(rpgl_n) }
         end
+        builder
       end
     end
   end

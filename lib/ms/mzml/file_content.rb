@@ -1,4 +1,4 @@
-require 'ms/cv/describable'
+require 'ms/cv/paramable'
 
 module MS
   class Mzml

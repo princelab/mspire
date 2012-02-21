@@ -1,10 +1,10 @@
-require 'ms/cv/describable'
+require 'ms/cv/paramable'
 require 'ms/mzml/data_array'
 
 module MS
   class Mzml
     module DataArrayContainerLike
-      include MS::CV::Describable
+      include MS::CV::Paramable
 
       ###########################################
       # ATTRIBUTES
@@ -26,9 +26,9 @@ module MS
       # (optional) an array of MS::Mzml::DataArray
       attr_accessor :data_arrays
 
-      def initialize(id, *params)
-        @description = MS::CV::Description[*params]
+      def initialize(id, opts={params: []})
         @id = id
+        describe!(*opts[:params])
       end
 
       def default_array_length
@@ -45,7 +45,7 @@ module MS
         raise "#{self.class} object must have index at xml writing time!" unless atts[:index] 
 
         builder.spectrum(atts) do |sp_n|
-          @description.to_xml(sp_n)
+          super(sp_n) # params
           block.call(sp_n) if block
           MS::Mzml::DataArray.list_xml(@data_arrays, sp_n) if @data_arrays
         end

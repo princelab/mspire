@@ -4,6 +4,7 @@ module MS
   class Mzml
     class Product
       attr_accessor :isolation_window
+
       def initialize(isolation_window=nil)
         @isolation_window = isolation_window
       end

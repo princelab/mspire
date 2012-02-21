@@ -19,6 +19,7 @@
   </softwareList>
   <instrumentConfigurationList count="1">
     <instrumentConfiguration id="IC">
+      <cvParam cvRef="MS" accession="MS:1000031" name="instrument model"/>
       <componentList count="0">
       </componentList>
     </instrumentConfiguration>

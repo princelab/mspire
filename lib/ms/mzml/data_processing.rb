@@ -9,9 +9,7 @@ module MS
       # yields self if given a block
       def initialize(id, processing_methods=[], &block)
         @id, @processing_methods = id, processing_methods
-        if block
-          block.call(self)
-        end
+        block.call(self) if block
       end
 
       def to_xml(builder)

@@ -1,11 +1,11 @@
-require 'ms/cv/describable'
+require 'ms/cv/paramable'
 require 'ms/mzml/component'
 require 'ms/mzml/list'
 
 module MS
   class Mzml
     class InstrumentConfiguration
-      include MS::CV::Describable
+      include MS::CV::Paramable
 
       # (required) the id that this guy can be referenced from
       attr_accessor :id
@@ -16,7 +16,8 @@ module MS
       # a single software object associated with the instrument
       attr_accessor :software
 
-      def initialize(id, components=[])
+      def initialize(id, components=[], opts={params: []})
+        describe!(*opts[:params])
         @id = id
         @components = components
       end

@@ -1,9 +1,9 @@
-require 'ms/cv/describable'
+require 'ms/cv/paramable'
 
 module MS
   class Mzml
     class Run
-      include MS::CV::Describable
+      include MS::CV::Paramable
 
       # required
       attr_accessor :default_instrument_configuration
@@ -27,13 +27,11 @@ module MS
       attr_accessor :chromatogram_list
 
       # yields self if given a block
-      def initialize(id, default_instrument_configuration, *params, &block)
+      def initialize(id, default_instrument_configuration, opts={params: []}, &block)
         @id = id
         @default_instrument_configuration = default_instrument_configuration
-        @description = MS::CV::Description[ *params ]
-        if block
-          block.call(self)
-        end
+        describe!(*opts[:params])
+        block.call(self) if block
       end
 
       def to_xml(builder)

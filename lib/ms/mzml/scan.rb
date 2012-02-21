@@ -1,9 +1,9 @@
-require 'ms/cv/describable'
+require 'ms/cv/paramable'
 
 module MS
   class Mzml
     class Scan
-      include MS::CV::Describable
+      include MS::CV::Paramable
 
       # (optional) the MS::Mzml::Spectrum object from which the precursor is
       # derived.  (the sourceFileRef is derived from this spectrum object if
@@ -19,7 +19,8 @@ module MS
       # ScanWindow objects
       attr_accessor :scan_windows
 
-      def initialize(&block)
+      def initialize(opts={params: []}, &block)
+        describe!(*opts[:params])
         block.call(self) if block
       end
 

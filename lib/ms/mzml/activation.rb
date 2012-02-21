@@ -1,4 +1,4 @@
-require 'ms/cv/describable'
+require 'ms/cv/paramable'
 
 module MS
   class Mzml
@@ -27,7 +27,7 @@ module MS
     #     e.g.: MS:1000433 (low-energy collision-induced dissociation)
     #     et al.
     class Activation
-      include MS::CV::Describable
+      include MS::CV::Paramable
     end
   end
 end

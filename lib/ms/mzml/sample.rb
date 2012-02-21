@@ -1,16 +1,17 @@
-require 'ms/cv/describable'
+require 'ms/cv/paramable'
 require 'ms/mzml/list'
 
 module MS
   class Mzml
     class Sample
-      include MS::CV::Describable
+      include MS::CV::Paramable
 
       attr_accessor :id, :name
 
-      def initialize(id, name, *params, &block)
+      def initialize(id, name, opts={params: []}, &block)
         @id, @name = id, name
-        super(*params, &block)
+        describe!(*opts[:params])
+        block.call(self) if block
       end
 
       def to_xml(builder)

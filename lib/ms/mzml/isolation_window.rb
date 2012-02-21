@@ -1,4 +1,4 @@
-require 'ms/cv/describable'
+require 'ms/cv/paramable'
 
 module MS
   class Mzml
@@ -15,7 +15,7 @@ module MS
     #     e.g.: MS:1000828 (isolation window lower offset)
     #     e.g.: MS:1000829 (isolation window upper offset)
     class IsolationWindow
-      include MS::CV::Describable
+      include MS::CV::Paramable
     end
   end
 end

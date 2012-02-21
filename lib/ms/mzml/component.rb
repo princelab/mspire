@@ -1,24 +1,21 @@
-require 'ms/cv/describable'
+require 'ms/cv/paramable'
+require 'ms/mzml/list'
 
 module MS
   class Mzml
     module Component
-      include MS::CV::Describable
+      include MS::CV::Paramable
+
       attr_accessor :order
 
       def to_xml(builder)
-        klass = self.class.to_s
-        klass[0] = klass[0].downcase
-        builder.send(klass, order: @order)
-        super(builder)
-      end
-
-      def self.list_xml(components, builder)
-        builder.componentList(count: components.size) do |comp_n|
-          components.each {|component| component.to_xml(comp_n) }
+        builder.component(order: @order) do |c_n|
+          super(c_n)
         end
         builder
       end
+
+      extend(MS::Mzml::List)
     end
   end
 end

@@ -1,17 +1,18 @@
 require 'mspire'
 require 'ms/mzml/list'
-require 'ms/cv/describable'
+require 'ms/cv/paramable'
 
 module MS
   class Mzml
     class Software
-      include MS::CV::Describable
+      include MS::CV::Paramable
 
       attr_accessor :id, :version
 
-      def initialize(id='mspire', version=Mspire::VERSION, *params, &block)
+      def initialize(id='mspire', version=Mspire::VERSION, opts={params: []}, &block)
         @id, @version = id, version
-        super(*params, &block)
+        describe!(*opts[:params])
+        block.call(self) if block
       end
 
       def to_xml(builder)

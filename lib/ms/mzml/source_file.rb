@@ -1,10 +1,10 @@
-require 'ms/cv/describable'
+require 'ms/cv/paramable'
 require 'ms/mzml/list'
 
 module MS
   class Mzml
     class SourceFile
-      include MS::CV::Describable
+      include MS::CV::Paramable
 
       # (required) An identifier for this file.
       attr_accessor :id
@@ -14,8 +14,9 @@ module MS
       # (required) URI-formatted location where the file was retrieved.
       attr_accessor :location
 
-      def initialize(id="sourcefile1", name="mspire-simulated", location='file://', &block)
+      def initialize(id="sourcefile1", name="mspire-simulated", location='file://', opts={params: []}, &block)
         @id, @name, @location = id, name, location
+        describe!(*opts[:params])
         block.call(self) if block
       end
 
