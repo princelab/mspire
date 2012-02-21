@@ -1,7 +1,7 @@
-module Ms ; end
-module Ms::Quant ; end
+module MS ; end
+module MS::Quant ; end
 
-class Ms::Quant::Qspec
+class MS::Quant::Qspec
 
   # personal communication with Hyungwon Choi: "We typically use nburn=2000,
   # niter=10000, which is quite sufficient to guarantee the reproducibility of
@@ -62,7 +62,7 @@ class Ms::Quant::Qspec
 
   # writes a qspec formatted file to filename
   def write(filename)
-    ints = Ms::Quant::Qspec.conditions_to_ints(conditions)
+    ints = MS::Quant::Qspec.conditions_to_ints(conditions)
     header_cats = INIT_HEADER + ints
     rows = @protname_length_pairs.map {|pair| pair.map.to_a }
     @condition_to_count_array.each do |cond,counts|

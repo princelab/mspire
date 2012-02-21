@@ -1,14 +1,14 @@
 require 'ms/quant/protein_group_comparison'
 
-module Ms
+module MS
   module Quant
     module ProteinGroupComparison
     end
   end
 end
 
-class Ms::Quant::ProteinGroupComparison::Qspec
-  include Ms::Quant::ProteinGroupComparison
+class MS::Quant::ProteinGroupComparison::Qspec
+  include MS::Quant::ProteinGroupComparison
 
   attr_accessor :qspec_results_struct
 

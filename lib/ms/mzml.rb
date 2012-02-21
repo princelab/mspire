@@ -19,6 +19,8 @@ require 'ms/mzml/cv'
 require 'ms/mzml/sample'
 
 module MS
+  # Reading an mzxml file:
+  #
   #     MS::Mzml.open("somefile.mzML") do |mzml|
   #       mzml.each do |spectrum|
   #         scan = spectrum.scan
@@ -27,6 +29,44 @@ module MS
   #         spectrum.points.each do |mz,intensity|
   #           puts "mz: #{mz} intensity: #{intensity}" 
   #         end
+  #       end
+  #     end
+  #
+  # Note that the mzml object supports random spectrum access (even if the
+  # mzml was not indexed):
+  #
+  #     mzml[22]  # retrieve spectrum at index 22
+  #
+  # Writing an mzml file from scratch:
+  #
+  #     spec1 = MS::Mzml::Spectrum.new('scan=1', params: ['MS:1000127', ['MS:1000511', 1]]) do |spec|
+  #       spec.data_arrays = [[1,2,3], [4,5,6]]
+  #       spec.scan_list = MS::Mzml::ScanList.new do |sl|
+  #         scan = MS::Mzml::Scan.new do |scan|
+  #           # retention time of 40 seconds
+  #           scan.describe! ['MS:1000016', 40.0, 'UO:0000010']
+  #         end
+  #         sl << scan
+  #       end
+  #     end
+  #
+  #     mzml = MS::Mzml.new do |mzml|
+  #       mzml.id = 'the_little_example'
+  #       mzml.cvs = MS::Mzml::CV::DEFAULT_CVS
+  #       mzml.file_description = MS::Mzml::FileDescription.new  do |fd|
+  #         fd.file_content = MS::Mzml::FileContent.new
+  #         fd.source_files << MS::Mzml::SourceFile.new
+  #       end
+  #       default_instrument_config = MS::Mzml::InstrumentConfiguration.new("IC",[], params: ['MS:1000031'])
+  #       mzml.instrument_configurations << default_instrument_config
+  #       software = MS::Mzml::Software.new
+  #       mzml.software_list << software
+  #       default_data_processing = MS::Mzml::DataProcessing.new("did_nothing")
+  #       mzml.data_processing_list << default_data_processing
+  #       mzml.run = MS::Mzml::Run.new("little_run", default_instrument_config) do |run|
+  #         spectrum_list = MS::Mzml::SpectrumList.new(default_data_processing)
+  #         spectrum_list.push(spec1)
+  #         run.spectrum_list = spectrum_list
   #       end
   #     end
   class Mzml

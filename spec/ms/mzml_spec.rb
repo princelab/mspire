@@ -47,6 +47,10 @@ describe MS::Mzml do
 
   describe 'writing mzml' do 
 
+    def sanitize_version(string)
+      string.gsub(/"mspire" version="([\.\d]+)"/, %Q{"mspire" version="X.X.X"})    
+    end
+
     it 'reads MS1 spectra and retention times' do
 
       spec_params = ['MS:1000127', ['MS:1000511', 1]]
@@ -95,10 +99,10 @@ describe MS::Mzml do
       check = TESTFILES + '/ms/mzml/mspire_simulated.noidx.check.mzML'
       tmpfile = TESTFILES + '/ms/mzml/mspire_simulated.TMP.mzML'
       mzml.to_xml(tmpfile)
-      xml = IO.read(tmpfile)
+      xml = sanitize_version(IO.read(tmpfile))
       xml.should be_a(String)
-      mzml.to_xml.should == xml
-      xml.should == IO.read(check)
+      sanitize_version(mzml.to_xml).should == xml
+      xml.should == sanitize_version(IO.read(check))
       xml.should match(/<mzML/)
       File.unlink(tmpfile)
     end
