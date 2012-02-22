@@ -13,7 +13,8 @@ module MS
       #     acc_num, value[, unit_acc_num]
       #
       # Where acc_num and unit_acc_num are strings containing valid accession
-      # numbers (e.g., 'MS:1000514' or 'UO:0000108')
+      # numbers (e.g., 'MS:1000514' or 'UO:0000108').  Note that sometimes units are
+      # from obo's other than UO.
       def self.[](*args)
         #puts "param args #{args.inspect}"
         unit = 
@@ -21,7 +22,7 @@ module MS
           when 1
             nil
           when 2
-            MS::CV::Param[args.pop] if args.last.to_s[0,3] == 'UO:'
+            MS::CV::Param[args.pop] if args.last.is_a?(String) && args.last =~ /^[A-Za-z]+:/
           when 3
             MS::CV::Param[args.pop]
           end
