@@ -12,9 +12,10 @@ module MS
         super(spectra)
       end
 
-      # This method takes an MS::Spectrum object and transforms it into an
-      # MS::Mzml::Spectrum object and puts it in the internal list
-      def add_ms_spectrum(spectrum, id)
+      # This method takes an object responding to :data, creates a new
+      # MS::Mzml::Spectrum object with that data and puts it in the internal
+      # list
+      def add_ms_spectrum!(spectrum, id)
         mzml_spec = MS::Mzml::Spectrum.new(id)
         mzml_spec.data = spectrum.data
         self << mzml_spec
@@ -22,7 +23,7 @@ module MS
 
       # takes an array of spectra and performs add_spectrum on each
       # returns self
-      def add_spectra(spectra, ids=[])
+      def add_ms_spectra!(spectra, ids=[])
         spectra.zip(ids).each_with_index {|(spec,id),i| add_spectrum(spec, "spectrum=#{i+1}") }
         self
       end

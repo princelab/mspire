@@ -69,8 +69,10 @@ module MS
       # This would generate a spectrum of ms_level=2 :
       #
       #     MS::Mzml::Spectrum.new(0, "scan=1", 'MS:1000511')
-      def initialize(*args, &block)
-        super(*args)
+      #
+      def initialize(id, opts={params: []}, &block)
+        @id = id
+        describe! *opts[:params]
         block.call(self) if block
       end
 
