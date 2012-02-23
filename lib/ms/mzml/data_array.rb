@@ -47,7 +47,7 @@ module MS
           if @external
             0
           else
-            base64 = self.class.to_binary(self, dtype, compression) unless @external
+            base64 = self.class.to_binary(self, dtype, compression)
             base64.bytesize
           end
 
@@ -66,7 +66,14 @@ module MS
       def self.list_xml(arrays, builder)
         builder.binaryDataArrayList(count: arrays.size) do |bdal_n|
           arrays.zip([:mz, :intensity]) do |data_ar, typ|
-            ar = data_ar.is_a?(MS::Mzml::DataArray) ? data_ar : MS::Mzml::DataArray.new(typ, data_ar)
+            ar = 
+              if data_ar.is_a?(MS::Mzml::DataArray)
+                data_ar
+              else
+                real_data_array = MS::Mzml::DataArray.new(typ)
+                real_data_array.replace(data_ar)
+                real_data_array
+              end
             ar.type = typ unless ar.type
             ar.to_xml(bdal_n)
           end
