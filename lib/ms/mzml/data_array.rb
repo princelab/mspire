@@ -52,7 +52,7 @@ module MS
           end
 
         builder.binaryDataArray(encodedLength: encoded_length) do |bda_n|
-          @params.each {|param| param.to_xml } if @params
+          @params.each {|param| param.to_xml(bda_n) } if @params
           unless @external
             MS::CV::Param[ DTYPE_TO_ACC[dtype] ].to_xml(bda_n)
             MS::CV::Param[ compression ? 'MS:1000574' : 'MS:1000576' ].to_xml(bda_n)
@@ -64,8 +64,6 @@ module MS
 
       # takes an array of DataArray objects or other kinds of objects
       def self.list_xml(arrays, builder)
-        puts "EHLLO"
-        p arrays
         builder.binaryDataArrayList(count: arrays.size) do |bdal_n|
           arrays.zip([:mz, :intensity]) do |data_ar, typ|
             ar = data_ar.is_a?(MS::Mzml::DataArray) ? data_ar : MS::Mzml::DataArray.new(typ, data_ar)
