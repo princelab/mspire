@@ -22,9 +22,12 @@ module MS
         self.new DEFAULT_SOURCEFILE_ID, *uri_basename_and_path(path)
       end
 
+      # takes a filename (with a relative or expanded path) and returns the
+      # uri basename and path suitable for mzml files
       def self.uri_basename_and_path(file)
-        pathname = Pathname.new(path)
-        dir = pathname.expand_path.dirname
+        pathname = Pathname.new(file)
+        dir = pathname.expand_path.dirname.to_s
+        p dir
         dir = '/'+dir unless (dir[0] == '/')
         [pathname.basename, 'file://'+ dir]
       end
