@@ -27,7 +27,6 @@ module MS
       def self.uri_basename_and_path(file)
         pathname = Pathname.new(file)
         dir = pathname.expand_path.dirname.to_s
-        p dir
         dir = '/'+dir unless (dir[0] == '/')
         [pathname.basename, 'file://'+ dir]
       end
