@@ -20,12 +20,14 @@ module MS
       # the type of data array (:mz or :intensity)
       attr_accessor :type
 
-      # requires a type, :mz or :intensity
+      # requires a type, :mz, :intensity, :mz_external, or :intensity_external
+      # (external types used in imzml)
       def initialize(_type, opts={params: []})
         @type = _type
+        @external = !!(@type.to_s =~ /external$/)
       end
 
-      def self.to_mzml_string(array_ish, dtype=DEFAULT_DTYPE, compression=DEFAULT_COMPRESSION)
+      def self.to_binary(array_ish, dtype=DEFAULT_DTYPE, compression=DEFAULT_COMPRESSION)
         pack_code = 
           case dtype
           when :float64 ; 'E*'
@@ -41,12 +43,23 @@ module MS
       end
 
       def to_xml(builder, dtype=DEFAULT_DTYPE, compression=DEFAULT_COMPRESSION)
-        base64 = self.class.to_mzml_string(self, dtype, compression)
-        builder.binaryDataArray(encodedLength: base64.bytesize) do |bda_n|
-          MS::CV::Param[ DTYPE_TO_ACC[dtype] ].to_xml(bda_n)
-          MS::CV::Param[ compression ? 'MS:1000574' : 'MS:1000576' ].to_xml(bda_n)
-          MS::CV::Param[ (@type == :mz) ? 'MS:1000514' : 'MS:1000515' ].to_xml(bda_n) # must be m/z or intensity 
-          bda_n.binary(base64)
+        encoded_length = 
+          if @external
+            0
+          else
+            base64 = self.class.to_binary(self, dtype, compression) unless @external
+            base64.bytesize
+          end
+
+          builder.binaryDataArray(encodedLength: encoded_length) do |bda_n|
+            @params.each {|param| param.to_xml } if @params
+            unless @external
+              MS::CV::Param[ DTYPE_TO_ACC[dtype] ].to_xml(bda_n)
+              MS::CV::Param[ compression ? 'MS:1000574' : 'MS:1000576' ].to_xml(bda_n)
+              MS::CV::Param[ (@type == :mz) ? 'MS:1000514' : 'MS:1000515' ].to_xml(bda_n) # must be m/z or intensity 
+              bda_n.binary(base64)
+            end
+          end
         end
       end
 
