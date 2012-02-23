@@ -51,14 +51,13 @@ module MS
             base64.bytesize
           end
 
-          builder.binaryDataArray(encodedLength: encoded_length) do |bda_n|
-            @params.each {|param| param.to_xml } if @params
-            unless @external
-              MS::CV::Param[ DTYPE_TO_ACC[dtype] ].to_xml(bda_n)
-              MS::CV::Param[ compression ? 'MS:1000574' : 'MS:1000576' ].to_xml(bda_n)
-              MS::CV::Param[ (@type == :mz) ? 'MS:1000514' : 'MS:1000515' ].to_xml(bda_n) # must be m/z or intensity 
-              bda_n.binary(base64)
-            end
+        builder.binaryDataArray(encodedLength: encoded_length) do |bda_n|
+          @params.each {|param| param.to_xml } if @params
+          unless @external
+            MS::CV::Param[ DTYPE_TO_ACC[dtype] ].to_xml(bda_n)
+            MS::CV::Param[ compression ? 'MS:1000574' : 'MS:1000576' ].to_xml(bda_n)
+            MS::CV::Param[ (@type == :mz) ? 'MS:1000514' : 'MS:1000515' ].to_xml(bda_n) # must be m/z or intensity 
+            bda_n.binary(base64)
           end
         end
       end
