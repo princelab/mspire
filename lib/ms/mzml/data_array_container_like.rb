@@ -32,7 +32,15 @@ module MS
       end
 
       def default_array_length
-        @data_arrays ? @data_arrays.first.size : 0
+        if @data_arrays
+          if @data_arrays.first
+            @data_arrays.first.size
+          else
+            0
+          end
+        else
+          0
+        end
       end
 
       # see SpectrumList for generating the entire list

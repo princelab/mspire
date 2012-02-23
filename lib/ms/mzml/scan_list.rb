@@ -19,7 +19,7 @@ module MS
 
       def to_xml(builder)
         builder.scanList(count: self.size) do |sl_n|
-          @description.to_xml(sl_n) if @description
+          @params.each {|param| param.to_xml(sl_n) } if @params
           self.each do |scan|
             scan.to_xml(sl_n)
           end

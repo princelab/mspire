@@ -1,9 +1,11 @@
 require 'base64'
 require 'zlib'
+require 'ms/cv/paramable'
 
 module MS
   class Mzml
     class DataArray < Array
+      include MS::CV::Paramable
 
       DEFAULT_DTYPE = :float64
       DEFAULT_COMPRESSION = true
@@ -19,9 +21,8 @@ module MS
       attr_accessor :type
 
       # requires a type, :mz or :intensity
-      def initialize(_type, ar=[])
+      def initialize(_type, opts={params: []})
         @type = _type
-        super(ar)
       end
 
       def self.to_mzml_string(array_ish, dtype=DEFAULT_DTYPE, compression=DEFAULT_COMPRESSION)
@@ -51,6 +52,8 @@ module MS
 
       # takes an array of DataArray objects or other kinds of objects
       def self.list_xml(arrays, builder)
+        puts "EHLLO"
+        p arrays
         builder.binaryDataArrayList(count: arrays.size) do |bdal_n|
           arrays.zip([:mz, :intensity]) do |data_ar, typ|
             ar = data_ar.is_a?(MS::Mzml::DataArray) ? data_ar : MS::Mzml::DataArray.new(typ, data_ar)

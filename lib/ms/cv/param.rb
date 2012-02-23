@@ -16,6 +16,8 @@ module MS
       # numbers (e.g., 'MS:1000514' or 'UO:0000108').  Note that sometimes units are
       # from obo's other than UO.
       def self.[](*args)
+        puts "before ARGS:"
+        p args
         #puts "param args #{args.inspect}"
         unit = 
           case args.size
@@ -26,7 +28,13 @@ module MS
           when 3
             MS::CV::Param[args.pop]
           end
+        puts "after ARGS:"
+        p args
+        puts "AREGS 0:"
+        p args[0]
         obo_type = args[0][/([A-Za-z]+):/,1]
+        puts "OBO_TYPE:"
+        p obo_type
         self.new(obo_type, args[0], MS::CV::Obo[obo_type][args.first], args[1], unit)
       end
     end
