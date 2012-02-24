@@ -52,7 +52,7 @@ module MS
       def merge(spectra, opts={})
         opt = DEFAULT_MERGE.merge(opts)
         (spectrum, returned_data) =  
-          if spectra.first.centroided?
+          unless spectra.first.centroided? == false
             # find the min and max across all spectra
             first_mzs = spectra.first.mzs
             min = first_mzs.first ; max = first_mzs.last

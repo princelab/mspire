@@ -45,6 +45,7 @@ module MS
 
     # yields each Bio::FastaFormat object in turn
     def self.foreach(file, &block)
+      block or return enum_for(__method__, file)
       Bio::FlatFile.open(Bio::FastaFormat, file) do |fasta|
         fasta.each(&block)
       end
