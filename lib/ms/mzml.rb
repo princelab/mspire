@@ -4,7 +4,7 @@ require 'nokogiri'
 require 'io/bookmark'
 require 'zlib'
 require 'ms/mzml/index_list'
-require 'ms/spectrum'
+require 'ms/mzml/spectrum'
 require 'ms/mzml/file_description'
 require 'ms/mzml/software'
 require 'ms/mzml/scan_list'
@@ -161,6 +161,7 @@ module MS
     end
 
     class << self
+
       # read-only right now
       def open(filename, &block)
         File.open(filename) do |io|
@@ -169,6 +170,7 @@ module MS
       end
 
       def foreach(filename, &block)
+        block or return enum_for(__method__, filename)
         open(filename) do |mzml|
           mzml.each(&block)
         end
@@ -208,9 +210,14 @@ module MS
     end
 
     def each_spectrum(&block)
+      block or return enum_for(__method__)
       (0...@index_list[:spectrum].size).each do |int|
-        block.call spectrum(int)
+        block.call(spectrum(int))
       end
+      #block_given? or return enum_for(__method__)
+      #(0...@index_list[:spectrum].size).each do |int|
+      #  yield spectrum(int)
+      #end
     end
 
     # returns the Nokogiri::XML::Node object associated with each spectrum
@@ -231,17 +238,9 @@ module MS
     # @param [Object] arg an index number (Integer) or id string (String)
     # @return [MS::Spectrum] a spectrum object
     def spectrum(arg)
-      ################### trouble
       start_byte = index_list[0].start_byte(arg)
-      data_arrays = spectrum_node_from_start_byte(start_byte).xpath('//binaryDataArray').map do |binary_data_array_n|
-        accessions = binary_data_array_n.xpath('./cvParam').map {|node| node['accession'] }
-        base64 = binary_data_array_n.xpath('./binary').text
-        MS::Mzml.unpack_binary(base64, accessions)
-      end
-      # if there is no spectrum, we will still return a spectrum object, it
-      # just has no mzs or intensities
-      data_arrays = [[], []] if data_arrays.size == 0
-      MS::Spectrum.new(data_arrays)
+      spec_n = spectrum_node_from_start_byte(start_byte)
+      MS::Mzml::Spectrum.from_xml(spec_n)
     end
 
     # returns the number of spectra

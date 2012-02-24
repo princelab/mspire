@@ -156,7 +156,7 @@ module MS
 
         if opt[:normalize]
           sz = spectra.size
-          spectrum.data[1].map! {|v| v.to_f / sz }
+          spectrum.intensities.map! {|v| v.to_f / sz }
         end
         if opt[:return_data]
           $stderr.puts "returning spectrum (#{spectrum.mzs.size}) and data" if $VERBOSE

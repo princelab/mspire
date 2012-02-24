@@ -19,9 +19,10 @@ describe MS::Mzml do
 
       it '#spectrum (or #[]) returns a spectrum when queried by index (Integer)' do
         spectrum = @mzml.spectrum(1) # getting the second spectrum
-        spectrum1 = @mzml[1]
+        spectrum1 = @mzml[1] # can get with brackets
+        spectrum.ms_level.should == 2
         spectrum.should == spectrum1
-        spectrum.should be_a(MS::Spectrum)
+        spectrum.should be_a(MS::Mzml::Spectrum)
         spectrum.should respond_to(:mzs)
         spectrum.should respond_to(:intensities)
         spectrum.mzs.size.should == 315
@@ -32,8 +33,9 @@ describe MS::Mzml do
       it '#spectrum (or #[]) returns a spectrum when queried by id (String)' do
         spectrum = @mzml.spectrum("controllerType=0 controllerNumber=1 scan=2")
         spectrum1 = @mzml["controllerType=0 controllerNumber=1 scan=2"]
+        spectrum.ms_level.should == 2
         spectrum.should == spectrum1
-        spectrum.should be_a(MS::Spectrum)
+        spectrum.should be_a(MS::Mzml::Spectrum)
       end
 
       it 'goes through spectrum with #each or #each_spectrum' do
@@ -41,6 +43,27 @@ describe MS::Mzml do
         @mzml.each do |spec|
           spec.mzs.size.should == mz_sizes.shift
         end
+      end
+
+      it 'gets an enumerator if called without a block' do
+        mz_sizes = [20168, 315, 634]
+        iter = @mzml.each
+        3.times { iter.next.mzs.size.should == mz_sizes.shift }
+        lambda {iter.next}.should raise_error
+      end
+
+      it 'iterates with foreach' do
+        mz_sizes = [20168, 315, 634]
+        iter = MS::Mzml.foreach(@file)
+        3.times { iter.next.mzs.size.should == mz_sizes.shift }
+        lambda {iter.next}.should raise_error
+      end
+
+      it 'can gracefully determine the m/z with highest peak in select scans' do
+        highest_mzs = MS::Mzml.foreach(@file).select {|v| v.ms_level > 1 }.map do |spec|
+          spec.points.sort_by(&:last).first.first
+        end
+        highest_mzs.map(&:round).should == [453, 866]
       end
     end
   end
@@ -51,7 +74,7 @@ describe MS::Mzml do
       string.gsub(/"mspire" version="([\.\d]+)"/, %Q{"mspire" version="X.X.X"})    
     end
 
-    it 'reads MS1 spectra and retention times' do
+    it 'writes MS1 spectra and retention times' do
 
       spec_params = ['MS:1000127', ['MS:1000511', 1]]
 

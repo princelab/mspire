@@ -10,24 +10,25 @@ module MS
     # boolean for if the spectrum represents centroided data or not
     attr_accessor :centroided
 
-    # The underlying data store. methods are implemented so that data[0] is
-    # the m/z's and data[1] is intensities
-    attr_accessor :data
+    # The underlying data store. methods are implemented so that data_arrays[0] is
+    # the m/z's and data_arrays[1] is intensities
+    attr_accessor :data_arrays
+
 
     def centroided?() centroided end
 
-    # data takes an array: [mzs, intensities]
     # @return [MS::Spectrum]
     # @param [Array] data two element array of mzs and intensities
-    def initialize(data, centroided=true)
-      @data = data
+    # @param [Boolean] centroided is the spectrum centroided or not
+    def initialize(data_arrays, centroided=true)
+      @data_arrays = data_arrays
       @centroided = centroided
     end
 
        # found by querying the size of the data store.  This should almost always
     # be 2 (m/z and intensities)
     def size
-      @data.size
+      @data_arrays.size
     end
 
     def ==(other)
@@ -36,26 +37,26 @@ module MS
       
     # An array of the mz data.
     def mzs
-      @data[0]
+      @data_arrays[0]
     end
       
     # An array of the intensities data, corresponding to mzs.
     def intensities
-      @data[1]
+      @data_arrays[1]
     end
 
     def mzs_and_intensities
-      [@data[0], @data[1]]
+      [@data_arrays[0], @data_arrays[1]]
     end
 
     # retrieve an m/z and intensity doublet at that index
     def [](array_index)
-      [@data[0][array_index], @data[1][array_index]]
+      [@data_arrays[0][array_index], @data_arrays[1][array_index]]
     end
 
     # yields(mz, inten) across the spectrum, or array of doublets if no block
     def points(&block)
-      @data[0].zip(@data[1], &block)
+      @data_arrays[0].zip(@data_arrays[1], &block)
     end
 
     alias_method :each, :points
@@ -84,7 +85,7 @@ module MS
     def sort!
       _points = points.to_a
       _points.sort!
-      _points.each_with_index {|(mz,int), i| @data[0][i] = mz ; @data[1][i] = int }
+      _points.each_with_index {|(mz,int), i| @data_arrays[0][i] = mz ; @data_arrays[1][i] = int }
       self
     end
 
