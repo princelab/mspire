@@ -40,8 +40,10 @@ describe MS::Mzml do
 
       it 'goes through spectrum with #each or #each_spectrum' do
         mz_sizes = [20168, 315, 634]
+        centroided = [false, true, true]
         @mzml.each do |spec|
           spec.mzs.size.should == mz_sizes.shift
+          spec.centroided?.should == centroided.shift
         end
       end
 

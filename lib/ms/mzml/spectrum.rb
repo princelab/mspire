@@ -73,7 +73,12 @@ module MS
           params[cvparam[:accession]] = cvparam[:value]
         end
         spec.ms_level = params['MS:1000511'].to_i
+        # we assume centroid if they don't tell us profile
+        spec.centroided = !params.key?("MS:1000128") # profile spectrum 
+        # centroid -> "MS:1000127"
+
         # TODO: need to slot in all the other info in reasonable ways
+        # TODO: need to make sure we deal with referencable params
 
         data_arrays = xml.xpath('./binaryDataArrayList/binaryDataArray').map do |binary_data_array_n|
           accessions = binary_data_array_n.xpath('./cvParam').map {|node| node['accession'] }
