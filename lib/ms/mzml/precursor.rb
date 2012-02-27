@@ -1,4 +1,5 @@
 require 'ms/mzml/list'
+require 'ms/mzml/selected_ion'
 
 module MS
   class Mzml
@@ -20,6 +21,10 @@ module MS
       # a boolean indicating the spectrum is from an external source file
       attr_accessor :from_external_source_file
 
+      def initialize(spectrum_derived_from=nil)
+        @spectrum=spectrum_derived_from
+      end
+
       def to_xml(builder)
         atts = {}
         if @from_external_source_file
@@ -30,8 +35,8 @@ module MS
         end
         builder.precursor(atts) do |prec_n|
           @isolation_window.to_xml(prec_n) if @isolation_window
-          MS::Mzml::SelectedIonList.list_xml(@selected_ions, prec_n) if @selected_ions
-          @activation.to_xml(prec_n)
+          MS::Mzml::SelectedIon.list_xml(@selected_ions, prec_n) if @selected_ions
+          @activation.to_xml(prec_n) if @activation
         end
       end
 
