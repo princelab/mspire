@@ -45,7 +45,7 @@ module MS
       #                                     number of spectra
       #     :return_data => false           returns a parallel array containing
       #                                     the peaks associated with each returned point
-      #     :split => :share | :greedy_y    see MS::Peak#split
+      #     :split => false | :share | :greedy_y   see MS::Peak#split
       #
       # The binning algorithm is the fastest possible algorithm that would allow
       # for arbitrary, non-constant bin widths (a ratcheting algorithm O(n + m))
