@@ -76,6 +76,78 @@ describe MS::Mzml do
       string.gsub(/"mspire" version="([\.\d]+)"/, %Q{"mspire" version="X.X.X"})    
     end
 
+    it 'writes MS1 and MS2 spectra' do
+      # profile and ms_level 1
+      spec_params = ['MS:1000128', ['MS:1000511', 1]]
+
+      spec1 = MS::Mzml::Spectrum.new('scan=1', params: spec_params) do |spec|
+        spec.data_arrays = [[1,2,3], [4,5,6]]
+        spec.scan_list = MS::Mzml::ScanList.new do |sl|
+          scan = MS::Mzml::Scan.new do |scan|
+            # retention time of 42 seconds
+            scan.describe! ['MS:1000016', 40.0, 'UO:0000010']
+          end
+          sl << scan
+        end
+      end
+
+      # centroid,  ms_level 2, MSn spectrum, 
+      spec_params = ['MS:1000127', ['MS:1000511', 2], "MS:1000580"]
+
+      spec2 = MS::Mzml::Spectrum.new('scan=2', params: spec_params) do |spec| 
+        spec.data_arrays = [[1,2,3.5], [5,6,5]]
+        spec.scan_list = MS::Mzml::ScanList.new do |sl|
+          scan = MS::Mzml::Scan.new do |scan|
+            # retention time of 42 seconds
+            scan.describe! ['MS:1000016', 45.0, 'UO:0000010']
+          end
+          sl << scan
+        end
+        precursor = MS::Mzml::Precursor.new( spec1 )
+        si = MS::Mzml::SelectedIon.new
+        # the selected ion m/z:
+        si.describe! ["MS:1000744", 2.0]
+        # the selected ion charge state
+        si.describe! ["MS:1000041", 2]
+        # the selected ion intensity
+        si.describe! ["MS:1000042", 5]
+        precursor.selected_ions = [si]
+        spec.precursors = [precursor]
+      end
+
+      mzml = MS::Mzml.new do |mzml|
+        mzml.id = 'ms1_and_ms2'
+        mzml.cvs = MS::Mzml::CV::DEFAULT_CVS
+        mzml.file_description = MS::Mzml::FileDescription.new  do |fd|
+          fd.file_content = MS::Mzml::FileContent.new
+          fd.source_files << MS::Mzml::SourceFile.new
+        end
+        default_instrument_config = MS::Mzml::InstrumentConfiguration.new("IC",[], params: ['MS:1000031'])
+        mzml.instrument_configurations << default_instrument_config
+        software = MS::Mzml::Software.new
+        mzml.software_list << software
+        default_data_processing = MS::Mzml::DataProcessing.new("did_nothing")
+        mzml.data_processing_list << default_data_processing
+        mzml.run = MS::Mzml::Run.new("little_run", default_instrument_config) do |run|
+          spectrum_list = MS::Mzml::SpectrumList.new(default_data_processing)
+          spectrum_list.push(spec1, spec2)
+          run.spectrum_list = spectrum_list
+        end
+      end
+
+      #check = TESTFILES + '/ms/mzml/mspire_simulated.noidx.check.mzML'
+      tmpfile = TESTFILES + '/ms/mzml/mspire_simulated.MSn.TMP.mzML'
+      mzml.to_xml(tmpfile)
+      p tmpfile
+      #xml = sanitize_version(IO.read(tmpfile))
+      #xml.should be_a(String)
+      #sanitize_version(mzml.to_xml).should == xml
+      #xml.should == sanitize_version(IO.read(check))
+      #xml.should match(/<mzML/)
+      #File.unlink(tmpfile)
+    end
+
+
     it 'writes MS1 spectra and retention times' do
 
       spec_params = ['MS:1000127', ['MS:1000511', 1]]
