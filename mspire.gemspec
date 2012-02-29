@@ -5,11 +5,11 @@
 
 Gem::Specification.new do |s|
   s.name = "mspire"
-  s.version = "0.6.20"
+  s.version = "0.6.22"
 
   s.required_rubygems_version = Gem::Requirement.new(">= 0") if s.respond_to? :required_rubygems_version=
   s.authors = ["John T. Prince", "Simon Chiang"]
-  s.date = "2012-02-24"
+  s.date = "2012-02-29"
   s.description = "mass spectrometry proteomics, lipidomics, and tools, a rewrite of mspire, merging of ms-* gems"
   s.email = "jtprince@gmail.com"
   s.extra_rdoc_files = [
@@ -33,6 +33,8 @@ Gem::Specification.new do |s|
     "lib/ms/cv/param.rb",
     "lib/ms/cv/paramable.rb",
     "lib/ms/digester.rb",
+    "lib/ms/error_rate/decoy.rb",
+    "lib/ms/error_rate/qvalue.rb",
     "lib/ms/fasta.rb",
     "lib/ms/ident.rb",
     "lib/ms/ident/peptide.rb",
@@ -106,12 +108,14 @@ Gem::Specification.new do |s|
     "lib/obo/unit.rb",
     "lib/openany.rb",
     "lib/write_file_or_string.rb",
+    "mspire.gemspec",
     "obo/ims.obo",
     "obo/ms.obo",
     "obo/unit.obo",
     "spec/bin_spec.rb",
     "spec/ms/cv/param_spec.rb",
     "spec/ms/digester_spec.rb",
+    "spec/ms/error_rate/qvalue_spec.rb",
     "spec/ms/fasta_spec.rb",
     "spec/ms/ident/peptide/db_spec.rb",
     "spec/ms/ident/pepxml/sample_enzyme_spec.rb",
