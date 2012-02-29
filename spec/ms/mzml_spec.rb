@@ -77,10 +77,8 @@ describe MS::Mzml do
     end
 
     it 'writes MS1 and MS2 spectra' do
-      # profile and ms_level 1
-      spec_params = ['MS:1000128', ['MS:1000511', 1]]
-
-      spec1 = MS::Mzml::Spectrum.new('scan=1', params: spec_params) do |spec|
+      # params: profile and ms_level 1
+      spec1 = MS::Mzml::Spectrum.new('scan=1', params: ['MS:1000128', ['MS:1000511', 1]]) do |spec|
         spec.data_arrays = [[1,2,3], [4,5,6]]
         spec.scan_list = MS::Mzml::ScanList.new do |sl|
           scan = MS::Mzml::Scan.new do |scan|
