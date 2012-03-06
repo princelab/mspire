@@ -16,6 +16,7 @@ Jeweler::Tasks.new do |gem|
   gem.add_dependency "bsearch", ">= 1.5.0"
   gem.add_dependency "andand", ">= 1.3.1"
   gem.add_dependency "obo", ">= 0.1.0"
+  gem.add_dependency "builder", ">= 3.0.0"
   gem.add_development_dependency "rspec", "~> 2.6"
   gem.add_development_dependency "jeweler", "~> 1.5.2"
   gem.add_development_dependency "rcov", ">= 0"
