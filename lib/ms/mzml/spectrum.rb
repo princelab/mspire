@@ -83,15 +83,14 @@ module MS
         data_arrays = xml.xpath('./binaryDataArrayList/binaryDataArray').map do |binary_data_array_n|
           accessions = binary_data_array_n.xpath('./cvParam').map {|node| node['accession'] }
           base64 = binary_data_array_n.xpath('./binary').text
-          MS::Mzml.unpack_binary(base64, accessions)
+          MS::Mzml::DataArray.from_binary(base64, accessions)
         end
         # if there is no spectrum, we will still return a spectrum object, it
         # just has no mzs or intensities
-        data_arrays = [[], []] if data_arrays.size == 0
+        data_arrays = [MS::Mzml::DataArray.new, MS::Mzml::DataArray.new] if data_arrays.size == 0
         spec.data_arrays = data_arrays
         spec
       end
-
 
       # the most common param to pass in would be ms level: 'MS:1000511'
       #

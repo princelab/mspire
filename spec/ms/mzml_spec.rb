@@ -136,7 +136,12 @@ describe MS::Mzml do
       #check = TESTFILES + '/ms/mzml/mspire_simulated.noidx.check.mzML'
       tmpfile = TESTFILES + '/ms/mzml/mspire_simulated.MSn.TMP.mzML'
       mzml.to_xml(tmpfile)
-      p tmpfile
+      as_string = mzml.to_xml
+      check_string = IO.read(TESTFILES + '/ms/mzml/mspire_simulated.MSn.check.mzML')
+
+      [IO.read(tmpfile), as_string].each do |st|
+        sanitize_version(check_string).should == sanitize_version(st)
+      end
       #xml = sanitize_version(IO.read(tmpfile))
       #xml.should be_a(String)
       #sanitize_version(mzml.to_xml).should == xml

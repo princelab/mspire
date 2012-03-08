@@ -176,24 +176,6 @@ module MS
           mzml.each(&block)
         end
       end
-
-      # unpack binary data based on an accesions.  accessions must only
-      # respond to :include?  So, hash keys, a set, or an array will all work.
-      def unpack_binary(base64string, accessions)
-        compressed =
-          if accessions.include?('MS:1000574') then true # zlib compression
-          elsif accessions.include?('MS:1000576') then false # no compression
-          else raise 'no compression info: check your MS accession numbers'
-          end
-        precision_unpack = 
-          if accessions.include?('MS:1000523') then 'E*'
-          elsif accessions.include?('MS:1000521') then 'e*'
-          else raise 'unrecognized precision: check your MS accession numbers'
-          end
-        data = base64string.unpack("m*").first
-        unzipped = compressed ? Zlib::Inflate.inflate(data) : data
-        unzipped.unpack(precision_unpack)
-      end
     end
 
     # name can be :spectrum or :chromatogram
