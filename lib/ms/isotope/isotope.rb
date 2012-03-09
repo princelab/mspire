@@ -61,9 +61,7 @@ module MS
   end #module Isotope
 end # module MS
 
-MS::Isotope::Updater.parse_NIST_site
-MS::Isotope::Updater.group_by_element
-
-require 'pry'
-binding.pry
-p MS::Isotope.IsotopicAbundanceAndMassByElement
+if __FILE__ == $0
+  MS::Isotope::Updater.parse_NIST_site
+  MS::Isotope::Updater.group_by_element
+end
