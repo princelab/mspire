@@ -77,6 +77,12 @@ describe 'basic fasta operations' do
     end
   end
 
+  it 'gives an iterator called with MS::Fasta.foreach and no block' do
+    seqs = MS::Fasta.foreach(@data['newlines_file']).select {|e| e.header =~ /^gi/ }.map(&:sequence)
+    seqs.size.should == 1
+    seqs.first[0,4].should == 'LCLY'
+  end
+
   it 'runs the documentation' do
     fasta_file = @data['newlines_file']
     ids = MS::Fasta.open(fasta_file) do |fasta| 

@@ -23,7 +23,7 @@ describe 'converting mzml to plms1' do
       plms1.scan_numbers.should == scan_nums
       plms1.spectra.each do |spec|
         spec.size.should == 2
-        spec.class.should == MS::Spectrum
+        spec.should be_a_kind_of(MS::SpectrumLike)
         spec.mzs.should == []
         spec.intensities.should == []
       end
@@ -51,7 +51,7 @@ describe 'converting mzml to plms1' do
       plms1.scan_numbers.should == [1, 2, 3] 
       sizes = [20168, 315, 634]
       plms1.spectra.zip(sizes).each do |spec,exp_size|
-        spec.class.should == MS::Spectrum
+        spec.should be_a_kind_of(MS::SpectrumLike)
         spec.size.should == 2
         spec.mzs.size.should == exp_size
         spec.intensities.size.should == exp_size

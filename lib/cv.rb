@@ -1,3 +1,5 @@
 
-require 'cv/description'
+module CV
+end
+
 require 'cv/param'

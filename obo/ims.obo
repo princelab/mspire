@@ -299,7 +299,7 @@ relationship: is_a IMS:1000001 ! Ibd Offest Handle
 relationship: has_units UO:0000189 ! Count
 
 [Term]
-id: IMS:100104
+id: IMS:1000104
 name: external encoded length
 def: "Describes the length of the written data." [COMPUTIS:IMS]
 xref: value-type:xsd\:nonNegativeInteger "The allowed value-type for this CV term."
