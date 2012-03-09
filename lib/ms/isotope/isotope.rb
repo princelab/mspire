@@ -26,12 +26,13 @@ module MS
           body = Mechanize.new.get('http://physics.nist.gov/cgi-bin/Compositions/stand_alone.pl?ele=&all=all&ascii=ascii2&isotype=some').body.split("\n")
           body.delete_if {|l| l[/^(<|\/)/]}
           body.shift(22)
-          @@isotopes = body.each_slice(8).map do |lines|
+          isotopes = body.each_slice(8).map do |lines|
             arr = (1..4).to_a.map {|i| match lines[i] }
             rel, avg = match(lines[5]), match(lines[6])
             next if rel.nil?
             rel.size > 0 ? Isotope.new(*arr, rel, avg) : nil
           end.compact!
+          File.open("#{Time.now.to_i}_NIST_isotopes.txt", 'w')
         end #parse_NIST_site
 
         def group_by_element
