@@ -1,5 +1,6 @@
+
 module MS
-  module Isotope
+  class Isotope
     module AA
       # These represent counts for the individual residues (i.e., no extra H
       # and OH on the ends)
