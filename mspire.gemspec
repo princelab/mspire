@@ -5,11 +5,11 @@
 
 Gem::Specification.new do |s|
   s.name = "mspire"
-  s.version = "0.6.22"
+  s.version = "0.6.24"
 
   s.required_rubygems_version = Gem::Requirement.new(">= 0") if s.respond_to? :required_rubygems_version=
   s.authors = ["John T. Prince", "Simon Chiang"]
-  s.date = "2012-02-29"
+  s.date = "2012-03-13"
   s.description = "mass spectrometry proteomics, lipidomics, and tools, a rewrite of mspire, merging of ms-* gems"
   s.email = "jtprince@gmail.com"
   s.extra_rdoc_files = [
@@ -56,7 +56,9 @@ Gem::Specification.new do |s|
     "lib/ms/ident/protein.rb",
     "lib/ms/ident/protein_group.rb",
     "lib/ms/ident/search.rb",
+    "lib/ms/isotope.rb",
     "lib/ms/isotope/aa.rb",
+    "lib/ms/isotope/nist_isotope_info.yml",
     "lib/ms/mascot.rb",
     "lib/ms/mass.rb",
     "lib/ms/mass/aa.rb",
@@ -112,6 +114,7 @@ Gem::Specification.new do |s|
     "obo/ims.obo",
     "obo/ms.obo",
     "obo/unit.obo",
+    "script/mzml_read_binary.rb",
     "spec/bin_spec.rb",
     "spec/ms/cv/param_spec.rb",
     "spec/ms/digester_spec.rb",
@@ -123,8 +126,10 @@ Gem::Specification.new do |s|
     "spec/ms/ident/pepxml_spec.rb",
     "spec/ms/ident/protein_group_spec.rb",
     "spec/ms/isotope/aa_spec.rb",
+    "spec/ms/isotope_spec.rb",
     "spec/ms/mass_spec.rb",
     "spec/ms/mzml/cv_spec.rb",
+    "spec/ms/mzml/data_array_spec.rb",
     "spec/ms/mzml/file_content_spec.rb",
     "spec/ms/mzml/file_description_spec.rb",
     "spec/ms/mzml/index_list_spec.rb",
@@ -142,7 +147,7 @@ Gem::Specification.new do |s|
     "spec/testfiles/ms/ident/peptide/db/uni_11_sp_tr.fasta",
     "spec/testfiles/ms/ident/peptide/db/uni_11_sp_tr.msd_clvg2.min_aaseq4.yml",
     "spec/testfiles/ms/mzml/j24z.idx_comp.3.mzML",
-    "spec/testfiles/ms/mzml/mspire_simulated.noidx.check.mzML",
+    "spec/testfiles/ms/mzml/mspire_simulated.MSn.check.mzML",
     "spec/testfiles/ms/mzml/openms.noidx_nocomp.12.mzML",
     "spec/testfiles/ms/quant/kill_extra_tabs.rb",
     "spec/testfiles/ms/quant/max_quant_output.provenance.txt",
@@ -179,6 +184,8 @@ Gem::Specification.new do |s|
       s.add_runtime_dependency(%q<bsearch>, [">= 1.5.0"])
       s.add_runtime_dependency(%q<andand>, [">= 1.3.1"])
       s.add_runtime_dependency(%q<obo>, [">= 0.1.0"])
+      s.add_runtime_dependency(%q<builder>, [">= 3.0.0"])
+      s.add_runtime_dependency(%q<trollop>, [">= 1.16.2"])
       s.add_development_dependency(%q<rspec>, ["~> 2.6"])
       s.add_development_dependency(%q<jeweler>, ["~> 1.5.2"])
       s.add_development_dependency(%q<rcov>, [">= 0"])
@@ -187,6 +194,8 @@ Gem::Specification.new do |s|
       s.add_dependency(%q<bsearch>, [">= 1.5.0"])
       s.add_dependency(%q<andand>, [">= 1.3.1"])
       s.add_dependency(%q<obo>, [">= 0.1.0"])
+      s.add_dependency(%q<builder>, [">= 3.0.0"])
+      s.add_dependency(%q<trollop>, [">= 1.16.2"])
       s.add_dependency(%q<rspec>, ["~> 2.6"])
       s.add_dependency(%q<jeweler>, ["~> 1.5.2"])
       s.add_dependency(%q<rcov>, [">= 0"])
@@ -196,6 +205,8 @@ Gem::Specification.new do |s|
     s.add_dependency(%q<bsearch>, [">= 1.5.0"])
     s.add_dependency(%q<andand>, [">= 1.3.1"])
     s.add_dependency(%q<obo>, [">= 0.1.0"])
+    s.add_dependency(%q<builder>, [">= 3.0.0"])
+    s.add_dependency(%q<trollop>, [">= 1.16.2"])
     s.add_dependency(%q<rspec>, ["~> 2.6"])
     s.add_dependency(%q<jeweler>, ["~> 1.5.2"])
     s.add_dependency(%q<rcov>, [">= 0"])
