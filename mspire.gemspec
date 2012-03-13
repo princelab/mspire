@@ -5,7 +5,7 @@
 
 Gem::Specification.new do |s|
   s.name = "mspire"
-  s.version = "0.6.24"
+  s.version = "0.6.25"
 
   s.required_rubygems_version = Gem::Requirement.new(">= 0") if s.respond_to? :required_rubygems_version=
   s.authors = ["John T. Prince", "Simon Chiang"]
@@ -58,10 +58,12 @@ Gem::Specification.new do |s|
     "lib/ms/ident/search.rb",
     "lib/ms/isotope.rb",
     "lib/ms/isotope/aa.rb",
+    "lib/ms/isotope/distribution.rb",
     "lib/ms/isotope/nist_isotope_info.yml",
     "lib/ms/mascot.rb",
     "lib/ms/mass.rb",
     "lib/ms/mass/aa.rb",
+    "lib/ms/molecular_formula.rb",
     "lib/ms/mzml.rb",
     "lib/ms/mzml/activation.rb",
     "lib/ms/mzml/chromatogram.rb",
@@ -126,8 +128,10 @@ Gem::Specification.new do |s|
     "spec/ms/ident/pepxml_spec.rb",
     "spec/ms/ident/protein_group_spec.rb",
     "spec/ms/isotope/aa_spec.rb",
+    "spec/ms/isotope/distribution_spec.rb",
     "spec/ms/isotope_spec.rb",
     "spec/ms/mass_spec.rb",
+    "spec/ms/molecular_formula_spec.rb",
     "spec/ms/mzml/cv_spec.rb",
     "spec/ms/mzml/data_array_spec.rb",
     "spec/ms/mzml/file_content_spec.rb",
