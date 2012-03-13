@@ -1,7 +1,7 @@
 #!/usr/bin/env ruby
 
 require 'trollop'
-require 'ms/mzml/spectrum'
+require 'ms/mzml/data_array'
 
 parser = Trollop::Parser.new do
   banner "usage: #{File.basename(__FILE__)} [OPTIONS] <base64> ..."
@@ -24,7 +24,7 @@ type = opts[:type].to_sym
 compressed = !opts[:not_compressed]
 
 ARGV.each do |base64|
-  puts MS::Mzml::Spectrum.unpack_binary(base64, type, compressed).join(" ")
+  puts MS::Mzml::DataArray.from_binary(base64, type, compressed).join(" ")
 end
 
 

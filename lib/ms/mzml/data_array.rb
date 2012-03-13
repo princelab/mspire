@@ -5,6 +5,7 @@ require 'ms/cv/paramable'
 module MS
   class Mzml
     class DataArray < Array
+      alias_method :array_initialize, :initialize
       include MS::CV::Paramable
 
       DEFAULT_DTYPE = :float64
@@ -20,6 +21,10 @@ module MS
       # the type of data array (:mz, :intensity, :mz_external, or :intensity_external)
       attr_accessor :type
 
+      def initialize(*args)
+        array_initialize(*args)
+      end
+
       # returns a new MS::Mzml::DataArray object (an array)
       #
       #     args:
@@ -32,6 +37,7 @@ module MS
       #     MS::Mzml::Spectrum.unpack_binary("ADBA/=") # uses float64 and compression
       def self.from_binary(base64, *args)
         if args.first.respond_to?(:include?)
+          accessions = args.first
           compressed =
             if accessions.include?('MS:1000574') then true # zlib compression
             elsif accessions.include?('MS:1000576') then false # no compression
@@ -57,14 +63,31 @@ module MS
             end
         end
         data = base64.unpack("m*").first
-        p data
         unzipped = compressed ? Zlib::Inflate.inflate(data) : data
         self.new( unzipped.unpack(precision_unpack) )
       end
 
       # returns a base64 string that can be used for xml representations of
       # the data
-      def self.to_binary(array_ish, dtype=DEFAULT_DTYPE, compression=DEFAULT_COMPRESSION)
+      #
+      #     args:
+      #       array-like  set-like               # where set-like responds to include?
+      #       array-like  type=:float64, compression=true
+      def self.to_binary(array_ish, *args)
+        if args.first.respond_to?(:include?)
+          accessions = args.first
+          dtype = 
+            if accessions.include?('MS:1000521') 
+              :float32
+            else
+              :float64
+            end
+          compression = accessions.include?('MS:1000576') ? false : true 
+        else
+          dtype = args[0] || DEFAULT_DTYPE
+          compression = args[1] || DEFAULT_COMPRESSION
+        end
+
         pack_code = 
           case dtype
           when :float64 ; 'E*'
@@ -77,6 +100,11 @@ module MS
         string = array_ish.to_a.pack(pack_code) 
         string = Zlib::Deflate.deflate(string) if compression
         Base64.strict_encode64(string)
+      end
+
+      # calls the class to_binary method with self and the given args
+      def to_binary(*args)
+        self.class.to_binary(self, *args)
       end
 
       def to_xml(builder, dtype=DEFAULT_DTYPE, compression=DEFAULT_COMPRESSION)
@@ -110,8 +138,8 @@ module MS
               if data_ar.is_a?(MS::Mzml::DataArray)
                 data_ar
               else
-                real_data_array = MS::Mzml::DataArray.new(typ)
-                real_data_array.replace(data_ar)
+                real_data_array = MS::Mzml::DataArray.new(data_ar)
+                real_data_array.type = typ
                 real_data_array
               end
             ar.type = typ unless ar.type
