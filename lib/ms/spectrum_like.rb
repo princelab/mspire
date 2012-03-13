@@ -39,10 +39,18 @@ module MS
     def mzs
       @data_arrays[0]
     end
+
+    def mzs=(ar)
+      @data_arrays[0] = ar
+    end
       
     # An array of the intensities data, corresponding to mzs.
     def intensities
       @data_arrays[1]
+    end
+
+    def intensities=(ar)
+      @data_arrays[1] = ar
     end
 
     def mzs_and_intensities
