@@ -38,6 +38,12 @@ describe MS::Mzml do
         spectrum.should be_a(MS::Mzml::Spectrum)
       end
 
+      it 'each spectrum knows its retention_time' do
+        spec = @mzml[1]
+        rt = @mzml[1].retention_time
+        rt.should == 33.035128333333333
+      end
+
       it 'goes through spectrum with #each or #each_spectrum' do
         mz_sizes = [20168, 315, 634]
         centroided = [false, true, true]

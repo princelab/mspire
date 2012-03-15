@@ -64,6 +64,10 @@ module MS
       # currently being described, ordered.
       attr_accessor :products
 
+      attr_accessor :retention_time
+      # when properly implemented, this will access the first scan and the
+      # 'scan start time' cv element.
+
       # takes a Nokogiri node and sets relevant properties
       def self.from_xml(xml)
         spec = MS::Mzml::Spectrum.new(xml[:id])
@@ -77,8 +81,21 @@ module MS
         spec.centroided = !params.key?("MS:1000128") # profile spectrum 
         # centroid -> "MS:1000127"
 
+        # this is a quick hack to get retention time, implement fully as shown
+        # below!
+        cv_param = xml.xpath("./scanList/scan/cvParam[@accession='MS:1000016']").first
+        retention_time = cv_param && cv_param['value'].to_f
+
+        # this is roughly how the scan list stuff should be implemented:
+=begin
+        sl_obj = MS::Mzml::ScanList.new
+
         # TODO: need to slot in all the other info in reasonable ways
         # TODO: need to make sure we deal with referencable params
+        scan_list = xml.xpath('.scanList/scan').each do |scan_n|
+          sl_obj << MS::Mzml::Scan.from_xml(scan_n)
+        end
+=end
 
         data_arrays = xml.xpath('./binaryDataArrayList/binaryDataArray').map do |binary_data_array_n|
           accessions = binary_data_array_n.xpath('./cvParam').map {|node| node['accession'] }
@@ -89,6 +106,7 @@ module MS
         # just has no mzs or intensities
         data_arrays = [MS::Mzml::DataArray.new, MS::Mzml::DataArray.new] if data_arrays.size == 0
         spec.data_arrays = data_arrays
+        spec.retention_time = retention_time
         spec
       end
 

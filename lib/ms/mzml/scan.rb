@@ -24,6 +24,10 @@ module MS
         block.call(self) if block
       end
 
+      # takes a nokogiri node
+      #def self.from_xml(xml)
+      #end
+
       def to_xml(builder)
         atts = {}
         if @from_external_source_file
