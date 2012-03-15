@@ -1,7 +1,7 @@
 #!/usr/bin/env ruby
 
 require 'trollop'
-require 'ms/mzml/data_array'
+require 'mspire/mzml/data_array'
 
 parser = Trollop::Parser.new do
   banner "usage: #{File.basename(__FILE__)} [OPTIONS] <base64> ..."
