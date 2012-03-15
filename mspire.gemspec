@@ -5,11 +5,11 @@
 
 Gem::Specification.new do |s|
   s.name = "mspire"
-  s.version = "0.6.25"
+  s.version = "0.6.26"
 
   s.required_rubygems_version = Gem::Requirement.new(">= 0") if s.respond_to? :required_rubygems_version=
   s.authors = ["John T. Prince", "Simon Chiang"]
-  s.date = "2012-03-13"
+  s.date = "2012-03-15"
   s.description = "mass spectrometry proteomics, lipidomics, and tools, a rewrite of mspire, merging of ms-* gems"
   s.email = "jtprince@gmail.com"
   s.extra_rdoc_files = [
@@ -177,7 +177,7 @@ Gem::Specification.new do |s|
   s.homepage = "http://github.com/princelab/mspire"
   s.licenses = ["MIT"]
   s.require_paths = ["lib"]
-  s.rubygems_version = "1.8.15"
+  s.rubygems_version = "1.8.18"
   s.summary = "mass spectrometry proteomics, lipidomics, and tools"
 
   if s.respond_to? :specification_version then
