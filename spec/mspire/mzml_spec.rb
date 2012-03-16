@@ -41,7 +41,7 @@ describe Mspire::Mzml do
       it 'each spectrum knows its retention_time' do
         spec = @mzml[1]
         rt = @mzml[1].retention_time
-        rt.should == 33.035128333333333
+        rt.should == 1982.1077
       end
 
       it 'goes through spectrum with #each or #each_spectrum' do

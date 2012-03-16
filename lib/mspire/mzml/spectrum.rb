@@ -64,6 +64,7 @@ module Mspire
       # currently being described, ordered.
       attr_accessor :products
 
+      # retention time in seconds
       attr_accessor :retention_time
       # when properly implemented, this will access the first scan and the
       # 'scan start time' cv element.
@@ -84,7 +85,19 @@ module Mspire
         # this is a quick hack to get retention time, implement fully as shown
         # below!
         cv_param = xml.xpath("./scanList/scan/cvParam[@accession='MS:1000016']").first
-        retention_time = cv_param && cv_param['value'].to_f
+        if cv_param
+          retention_time = cv_param['value'].to_f
+          units = cv_param['unitAccession']
+          multiplier = 
+            case units
+            when 'UO:0000010' ; 1  # second
+            when 'UO:0000031' ; 60 # minute
+            when 'UO:0000032' ; 3600 # hour
+            when 'UO:0000028' ; 0.001 # millisecond
+            else raise 'unsupported units'
+            end
+          retention_time *= multiplier
+        end
 
         # this is roughly how the scan list stuff should be implemented:
 =begin
