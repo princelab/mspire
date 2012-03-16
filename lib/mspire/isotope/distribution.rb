@@ -78,7 +78,7 @@ module Mspire
       end
 
       ffts = self.map do |el, cnt|
-        isotope_el_ar = NArray.float(high_nominal)
+        isotope_el_ar = NArray.float(high_nominal+1)
         Mspire::Isotope::BY_ELEMENT[el].each do |isotope|
           isotope_el_ar[isotope.mass_number] = isotope.relative_abundance
         end
