@@ -3,6 +3,7 @@ require 'spec_helper'
 require 'mspire/quant/qspec'
 require 'csv'
 
+=begin
 describe 'running qspec' do 
   before do
     #@file = TESTFILES + '/mspire/quant/max_quant_output.txt'
@@ -23,3 +24,4 @@ describe 'running qspec' do
   describe 'on MaxQuant LFQ data' do
   end
 end
+=end

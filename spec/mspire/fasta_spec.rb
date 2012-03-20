@@ -41,10 +41,6 @@ describe 'basic fasta operations' do
     end
   end
 
-  xit 'can deliver length and description hashes' do
-    # need to test
-  end
-
   it 'can read a file' do
     %w(newlines_file carriage_returns_and_newlines_file).each do |file|
       Mspire::Fasta.open(@data[file]) do |fasta|

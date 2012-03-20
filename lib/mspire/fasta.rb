@@ -1,4 +1,5 @@
-require 'bio'
+require 'bio/io/flatfile'
+require 'bio/db/fasta'
 require 'stringio'
 
 class Bio::FlatFile
@@ -57,6 +58,7 @@ module Mspire
       Bio::FlatFile.new(Bio::FastaFormat, io)
     end
 
+=begin
     # returns two hashes [id_to_length, id_to_description]
     # faster (~4x) than official route.
     def self.protein_lengths_and_descriptions(file)
@@ -82,6 +84,7 @@ module Mspire
       lengths.shift # remove the first nil entry
       [Hash[ids.zip(lengths).to_a], protid_to_description]
     end
+=end
 
   end
 end
