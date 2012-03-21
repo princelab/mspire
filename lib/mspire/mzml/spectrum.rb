@@ -139,7 +139,7 @@ module Mspire
       # see SpectrumList for generating the entire list
       def to_xml(builder)
         atts = {}
-        atts[:sourceFile] = @source_file.id if @source_file
+        atts[:sourceFileRef] = @source_file.id if @source_file
         atts[:spotID] = @spot_id if @spot_id
         super(builder, atts) do |node|
           @scan_list.list_xml( node ) if @scan_list
