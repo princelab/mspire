@@ -12,4 +12,12 @@ describe Mspire::MolecularFormula do
     mf.should == data
   end
 
+  it 'expects properly capitalized abbreviations' do
+    Mspire::MolecularFormula.new('Ni7Se3').should == {:ni=>7, :se=>3}
+    # there is no such thing as the E element, so this is going to get the
+    # user in trouble.  However, this is the proper interpretation of the
+    # formula.
+    Mspire::MolecularFormula.new('Ni7SE3').should == {:ni=>7, :s=>1, :e=>3}
+  end
+
 end

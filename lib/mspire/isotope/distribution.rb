@@ -10,7 +10,6 @@ module Mspire
   class Isotope
     module Distribution
       NORMALIZE = :total
-      PERCENT_CUTOFF = 0.001
     end
   end
 end
@@ -20,42 +19,53 @@ module Mspire
 
     # takes any element composition (see any_to_num_elements).
     #
-    # returns isotopic distribution beginning with monoisotopic peak and
-    # finishing when the peak contributes less than percent_cutoff to the total
-    # distribution.  Then, normalization occurs.
+    # returns isotopic distribution beginning with monoisotopic peak.  It cuts
+    # off when no more peaks contribute more than percent_cutoff to the total
+    # distribution.  After that, normalization is performed.
     #
     # all values will be fractional.  normalize may be one of:
     #
     #     :total   normalize to the total intensity
     #     :max     normalize to the highest peak intensity
-    #     :low     normalize to the intensity of the lowest m/z peak 
+    #     :first   normalize to the intensity of the first peak 
     #             (this is typically the monoisotopic peak)
-    def isotope_distribution(normalize=Mspire::Isotope::Distribution::NORMALIZE, percent_cutoff=Mspire::Isotope::Distribution::PERCENT_CUTOFF)
+    def isotope_distribution(normalize=Mspire::Isotope::Distribution::NORMALIZE, percent_cutoff=nil)
       mono_dist = raw_isotope_distribution
-      # percent_cutoff:
-      final_output = []
-      sum = 0.0
-      mono_dist.each do |peak|
-        break if (peak / sum)*100 < percent_cutoff
-        final_output << peak
-        sum += peak 
+
+      if percent_cutoff
+        total_signal = mono_dist.reduce(:+)
+        cutoff_index = (mono_dist.size-1).downto(0).find do |i|
+          (mono_dist[i] / total_signal) >= (percent_cutoff/100.0)
+        end
+        # deletes these elements
+        if cutoff_index
+          mono_dist.slice!((cutoff_index+1)..-1)
+        else
+          # no peaks pass that percent cutoff threshold!
+          mono_dist = []
+        end
       end
 
       # normalization
       norm_by =
         case normalize
         when :total
-          sum
+          total_signal || mono_dist.reduce(:+)
         when :max
-          final_output.max
-        when :low
-          final_output.first
+          mono_dist.max
+        when :first
+          mono_dist.first
         end
-      final_output.map {|i| i / norm_by }
+      mono_dist.map do |i| 
+        v = i / norm_by
+        (v > 0) ? v : 0
+      end
     end
 
     # returns a spectrum object with mass values and intensity values.
     # Arguments are passed directly to isotope_distribution.
+    # the molecule has a charge, this will be used to adjust the m/z values
+    # (by removing or adding electrons to the m/z and as the z)
     def isotope_distribution_spectrum(*args)
       intensities = isotope_distribution(*args)
       mono = self.map {|el,cnt| Mspire::Mass::MONO[el]*cnt }.reduce(:+)
@@ -63,6 +73,11 @@ module Mspire
       neutron = Mspire::Mass::NEUTRON
       masses[0] = mono
       (1...masses.size).each {|i| masses[i] = masses[i-1] + neutron }
+      if self.charge && self.charge != 0
+        masses.map! do |mass| 
+          (mass - (self.charge * Mspire::Mass::ELECTRON)) / self.charge 
+        end
+      end
       Mspire::Spectrum.new [masses, intensities]
     end
 
@@ -92,12 +107,14 @@ module Mspire
 
   class Isotope
     module Distribution
-      def self.calculate(molecular_formula_like, normalize=Mspire::Isotope::Distribution::NORMALIZE, percent_cutoff=Mspire::Isotope::Distribution::PERCENT_CUTOFF)
-        Mspire::MolecularFormula.new(molecular_formula_like).isotope_distribution(normalize, percent_cutoff)
+      def self.calculate(molecular_formula_like, normalize=Mspire::Isotope::Distribution::NORMALIZE, percent_cutoff=nil)
+        mf = molecular_formula_like.is_a?(Mspire::MolecularFormula) ? molecular_formula_like : Mspire::MolecularFormula.new(molecular_formula_like)
+        mf.isotope_distribution(normalize, percent_cutoff)
       end
 
-      def self.spectrum(molecular_formula_like, normalize=Mspire::Isotope::Distribution::NORMALIZE, percent_cutoff=Mspire::Isotope::Distribution::PERCENT_CUTOFF)
-        Mspire::MolecularFormula.new(molecular_formula_like).isotope_distribution_spectrum(normalize, percent_cutoff)
+      def self.spectrum(molecular_formula_like, normalize=Mspire::Isotope::Distribution::NORMALIZE, percent_cutoff=nil)
+        mf = molecular_formula_like.is_a?(Mspire::MolecularFormula) ? molecular_formula_like : Mspire::MolecularFormula.new(molecular_formula_like)
+        mf.isotope_distribution_spectrum(normalize, percent_cutoff)
       end
     end
   end
