@@ -10,7 +10,7 @@ describe Mspire::Mzml::FileContent do
 
     desc = filecontent.params
     desc.size.should == 2
-    desc.all? {|par| par.class == Mspire::CV::Param }.should be_true
+    desc.all? {|par| par.class == ::CV::Param }.should be_true
     b = Builder::XmlMarkup.new
     filecontent.to_xml(b)
     xml = b.to_xml
@@ -19,6 +19,7 @@ describe Mspire::Mzml::FileContent do
     end
   end
 
+  it 'can be created from xml'
 
 end
 

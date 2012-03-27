@@ -26,10 +26,15 @@ module Mspire
       end
 
       def self.list_xml(objs, builder)
+        # we don't extend Mzml::List because of custom name below
         builder.cvList(count: objs.size) do |cvl_n|
           objs.each {|obj| obj.to_xml(cvl_n) }
         end
         builder
+      end
+
+      def self.from_xml(xml)
+        self.new(xml[:id], xml[:fullName], xml[:URI], xml[:version])
       end
 
       # These are derived by looking in the obo folder at the top of mspire

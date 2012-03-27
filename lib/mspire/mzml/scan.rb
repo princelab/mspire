@@ -1,4 +1,5 @@
 require 'mspire/cv/paramable'
+require 'mspire/mzml/scan_window'
 
 module Mspire
   class Mzml
@@ -20,13 +21,22 @@ module Mspire
       attr_accessor :scan_windows
 
       def initialize(opts={params: []}, &block)
-        describe!(*opts[:params])
+        describe_many!(opts[:params])
         block.call(self) if block
       end
 
       # takes a nokogiri node
       #def self.from_xml(xml)
       #end
+
+      def self.from_xml(xml)
+        scan = self.new
+        [:cvParam, :userParam].each {|v| scan.describe! xml.xpath("./#{v}") }
+        scan.scan_windows = xml.xpath('./scanWindowList/scanWindow').map do |scan_window_n|
+          Mspire::Mzml::ScanWindow.from_xml(scan_window_n)
+        end
+        scan
+      end
 
       def to_xml(builder)
         atts = {}

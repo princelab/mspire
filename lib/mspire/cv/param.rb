@@ -5,7 +5,7 @@ module Mspire
   module CV
 
     # a mass spec related CVParam.  
-    class Param < ::CV::Param
+    module Param
 
       # Takes one of these invocations:
       #
@@ -15,6 +15,8 @@ module Mspire
       # Where acc_num and unit_acc_num are strings containing valid accession
       # numbers (e.g., 'MS:1000514' or 'UO:0000108').  Note that sometimes units are
       # from obo's other than UO.
+      #
+      # returns a CV::Param object
       def self.[](*args)
         #puts "param args #{args.inspect}"
         unit = 
@@ -27,7 +29,7 @@ module Mspire
             Mspire::CV::Param[args.pop]
           end
         obo_type = args[0][/([A-Za-z]+):/,1]
-        self.new(obo_type, args[0], Mspire::CV::Obo[obo_type][args.first], args[1], unit)
+        ::CV::Param.new(obo_type, args[0], Mspire::CV::Obo[obo_type][args.first], args[1], unit)
       end
     end
   end

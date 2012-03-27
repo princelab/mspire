@@ -38,12 +38,6 @@ describe Mspire::Mzml do
         spectrum.should be_a(Mspire::Mzml::Spectrum)
       end
 
-      it 'each spectrum knows its retention_time' do
-        spec = @mzml[1]
-        rt = @mzml[1].retention_time
-        rt.should == 1982.1077
-      end
-
       it 'goes through spectrum with #each or #each_spectrum' do
         mz_sizes = [20168, 315, 634]
         centroided = [false, true, true]
@@ -65,6 +59,14 @@ describe Mspire::Mzml do
         iter = Mspire::Mzml.foreach(@file)
         3.times { iter.next.mzs.size.should == mz_sizes.shift }
         lambda {iter.next}.should raise_error
+      end
+
+      # not quite ready for this one yet
+      xit 'contains scans linked to their instrument config objects' do
+        instr_config_first = @mzml.file_description.instrument_configurations[0]
+        instr_config_last = @mzml.file_description.instrument_configurations[1]
+        @mzml[0].scan_list.first.instrument_configuration.should == instr_config_first 
+        @mzml[1].scan_list.first.instrument_configuration.should == instr_config_last
       end
 
       it 'can gracefully determine the m/z with highest peak in select scans' do
@@ -89,7 +91,7 @@ describe Mspire::Mzml do
         spec.scan_list = Mspire::Mzml::ScanList.new do |sl|
           scan = Mspire::Mzml::Scan.new do |scan|
             # retention time of 42 seconds
-            scan.describe! ['MS:1000016', 40.0, 'UO:0000010']
+            scan.describe! 'MS:1000016', 40.0, 'UO:0000010'
           end
           sl << scan
         end
@@ -103,18 +105,18 @@ describe Mspire::Mzml do
         spec.scan_list = Mspire::Mzml::ScanList.new do |sl|
           scan = Mspire::Mzml::Scan.new do |scan|
             # retention time of 42 seconds
-            scan.describe! ['MS:1000016', 45.0, 'UO:0000010']
+            scan.describe! 'MS:1000016', 45.0, 'UO:0000010'
           end
           sl << scan
         end
         precursor = Mspire::Mzml::Precursor.new( spec1 )
         si = Mspire::Mzml::SelectedIon.new
         # the selected ion m/z:
-        si.describe! ["MS:1000744", 2.0]
+        si.describe! "MS:1000744", 2.0
         # the selected ion charge state
-        si.describe! ["MS:1000041", 2]
+        si.describe! "MS:1000041", 2
         # the selected ion intensity
-        si.describe! ["MS:1000042", 5]
+        si.describe! "MS:1000042", 5
         precursor.selected_ions = [si]
         spec.precursors = [precursor]
       end

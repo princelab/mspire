@@ -1,6 +1,6 @@
 require 'mspire/spectrum_like'
 require 'bsearch'
-require 'bin'
+require 'mspire/bin'
 require 'mspire/peak'
 
 module Mspire

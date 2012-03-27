@@ -13,7 +13,7 @@ module Mspire
       include Mspire::CV::Paramable
 
       def initialize(opts={params: []}, &block)
-        describe!(*opts[:params])
+        describe_many!(opts[:params])
         block.call(self) if block
       end
 

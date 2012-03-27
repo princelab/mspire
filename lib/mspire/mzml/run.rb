@@ -30,7 +30,7 @@ module Mspire
       def initialize(id, default_instrument_configuration, opts={params: []}, &block)
         @id = id
         @default_instrument_configuration = default_instrument_configuration
-        describe!(*opts[:params])
+        describe_many!(opts[:params])
         block.call(self) if block
       end
 

@@ -1,8 +1,8 @@
 require 'spec_helper'
 
-require 'bin'
+require 'mspire/bin'
 
-describe Bin do
+describe Mspire::Bin do
 
   describe 'putting data into bins' do
 
@@ -18,7 +18,7 @@ describe Bin do
     end
 
     def self.make_ranges(range, use_bin=false)
-      klass = use_bin ? Bin : Range
+      klass = use_bin ? Mspire::Bin : Range
       range.map {|i| klass.new(i.to_f, (i+1).to_f, true) }
     end
 
@@ -27,7 +27,7 @@ describe Bin do
     end
 
     def ranges_to_bins(ranges)
-      ranges.map {|range| Bin.new(range.begin, range.end, true) }
+      ranges.map {|range| Mspire::Bin.new(range.begin, range.end, true) }
     end
 
     data = {
@@ -62,7 +62,7 @@ describe Bin do
 
     data.each do |type, init|
       it "works for bins to data #{type.to_s.gsub('_',' ')}" do
-        rbins = Bin.bin(ranges_to_bins(init[:ranges]), init[:peaks], &:first)
+        rbins = Mspire::Bin.bin(ranges_to_bins(init[:ranges]), init[:peaks], &:first)
         matching(rbins, init[:peaks], init[:bin_to_peak_index_pairs])
       end
     end
@@ -70,7 +70,7 @@ describe Bin do
     data.each do |type, init|
       it "works for ranges to data #{type.to_s.gsub('_',' ')}" do
         custom_data_store = (0...init[:ranges].size).map { [] }
-        rbins = Bin.bin(init[:ranges], init[:peaks], custom_data_store, &:first)
+        rbins = Mspire::Bin.bin(init[:ranges], init[:peaks], custom_data_store, &:first)
         matching(rbins, init[:peaks], init[:bin_to_peak_index_pairs])
       end
     end

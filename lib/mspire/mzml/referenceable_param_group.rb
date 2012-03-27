@@ -14,7 +14,7 @@ module Mspire
 
       def initialize(id, opts={params: []} )
         @id = id
-        describe!(*opts[:params])
+        describe_many!(opts[:params])
       end
 
       def to_xml(builder)

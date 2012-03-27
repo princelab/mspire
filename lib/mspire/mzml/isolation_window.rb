@@ -16,6 +16,11 @@ module Mspire
     #     e.g.: MS:1000829 (isolation window upper offset)
     class IsolationWindow
       include Mspire::CV::Paramable
+      def self.from_xml(xml)
+        obj = self.new
+        [:cvParam, :userParam].each {|v| obj.describe! xml.xpath("./#{v}") }
+        obj
+      end
     end
   end
 end

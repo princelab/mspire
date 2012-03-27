@@ -104,7 +104,6 @@ module Mspire
 
   end
 
-
   class Isotope
     module Distribution
       def self.calculate(molecular_formula_like, normalize=Mspire::Isotope::Distribution::NORMALIZE, percent_cutoff=nil)

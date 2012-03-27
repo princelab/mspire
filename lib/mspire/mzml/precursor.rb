@@ -1,5 +1,7 @@
 require 'mspire/mzml/list'
 require 'mspire/mzml/selected_ion'
+require 'mspire/mzml/isolation_window'
+require 'mspire/mzml/activation'
 
 module Mspire
   class Mzml
@@ -23,6 +25,19 @@ module Mspire
 
       def initialize(spectrum_derived_from=nil)
         @spectrum=spectrum_derived_from
+      end
+
+      def self.from_xml(xml)
+        obj = self.new
+        %w(isolationWindow activation).each do |el|
+          sub_node = xml.xpath("./#{el}").first
+          el[0] = el[0].capitalize
+          Mspire::Mzml.const_get(el).from_xml(sub_node) if sub_node
+        end
+        obj.selected_ions = xml.xpath('./selectedIonList/selectedIon').map do |si_n|
+          Mspire::Mzml::SelectedIon.from_xml(si_n)
+        end
+        obj
       end
 
       def to_xml(builder)

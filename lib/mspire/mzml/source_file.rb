@@ -33,7 +33,7 @@ module Mspire
 
       def initialize(id="sourcefile1", name="mspire-simulated", location='file://', opts={params: []}, &block)
         @id, @name, @location = id, name, location
-        describe!(*opts[:params])
+        describe_many!(opts[:params])
         block.call(self) if block
       end
 

@@ -5,6 +5,8 @@ require 'mspire/mzml/scan_list'
 require 'mspire/mzml/precursor'
 require 'mspire/mzml/product'
 
+require 'andand'
+
 module Mspire
   class Mzml
 
@@ -64,62 +66,73 @@ module Mspire
       # currently being described, ordered.
       attr_accessor :products
 
-      # retention time in seconds
-      attr_accessor :retention_time
-      # when properly implemented, this will access the first scan and the
-      # 'scan start time' cv element.
-
-      # takes a Nokogiri node and sets relevant properties
-      def self.from_xml(xml)
-        spec = Mspire::Mzml::Spectrum.new(xml[:id])
-
-        params = {}
-        xml.xpath("./cvParam").each do |cvparam|
-          params[cvparam[:accession]] = cvparam[:value]
-        end
-        spec.ms_level = params['MS:1000511'].to_i
-        # we assume centroid if they don't tell us profile
-        spec.centroided = !params.key?("MS:1000128") # profile spectrum 
-        # centroid -> "MS:1000127"
-
-        # this is a quick hack to get retention time, implement fully as shown
-        # below!
-        cv_param = xml.xpath("./scanList/scan/cvParam[@accession='MS:1000016']").first
-        if cv_param
-          retention_time = cv_param['value'].to_f
-          units = cv_param['unitAccession']
+      # returns the retention time of the first scan object in the scan list
+      # *in seconds*!
+      def retention_time
+        rt_param = scan_list.first.find_param_by_accession('MS:1000016')
+        if rt_param
           multiplier = 
-            case units
+            case rt_param.unit.accession
             when 'UO:0000010' ; 1  # second
             when 'UO:0000031' ; 60 # minute
             when 'UO:0000032' ; 3600 # hour
             when 'UO:0000028' ; 0.001 # millisecond
             else raise 'unsupported units'
             end
-          retention_time *= multiplier
+          rt_param.value.to_f * multiplier
         end
+      end
 
-        # this is roughly how the scan list stuff should be implemented:
-=begin
-        sl_obj = Mspire::Mzml::ScanList.new
+      # returns the ms_level as an Integer
+      def ms_level
+        find_param_value_by_accession('MS:1000511', :to_i)
+      end
 
-        # TODO: need to slot in all the other info in reasonable ways
-        # TODO: need to make sure we deal with referencable params
-        scan_list = xml.xpath('.scanList/scan').each do |scan_n|
-          sl_obj << Mspire::Mzml::Scan.from_xml(scan_n)
+      def centroided?
+        param_exists_by_accession?('MS:1000127')
+      end
+
+      def profile?
+        param_exists_by_accession?('MS:1000128')
+      end
+
+      # returns the charge state of the first precursor as an integer
+      def precursor_charge
+        precursors.andand.first.andand.selected_ions.andand.first.andand.find_param_value_by_accession('MS:1000041', :to_i)
+      end
+
+      def precursor_mz
+        precursors.andand.first.andand.selected_ions.andand.first.andand.find_param_value_by_accession('MS:1000744', :to_f)
+      end
+
+      # takes a Nokogiri node and sets relevant properties
+      def self.from_xml(xml)
+        spec = Mspire::Mzml::Spectrum.new(xml[:id])
+
+        spec.spot_id = xml[:spotID]
+
+        [:cvParam, :userParam].each {|v| spec.describe! xml.xpath("./#{v}") }
+
+        scan_list = Mspire::Mzml::ScanList.new
+        xml.xpath('./scanList/scan').each do |scan_n|
+          scan_list << Mspire::Mzml::Scan.from_xml(scan_n)
         end
-=end
+        spec.scan_list = scan_list
+
+        spec.precursors = xml.xpath('./precursorList/precursor').map do |prec_n|
+          Mspire::Mzml::Precursor.from_xml(prec_n)
+        end
 
         data_arrays = xml.xpath('./binaryDataArrayList/binaryDataArray').map do |binary_data_array_n|
           accessions = binary_data_array_n.xpath('./cvParam').map {|node| node['accession'] }
           base64 = binary_data_array_n.xpath('./binary').text
           Mspire::Mzml::DataArray.from_binary(base64, accessions)
         end
+
         # if there is no spectrum, we will still return a spectrum object, it
         # just has no mzs or intensities
         data_arrays = [Mspire::Mzml::DataArray.new, Mspire::Mzml::DataArray.new] if data_arrays.size == 0
         spec.data_arrays = data_arrays
-        spec.retention_time = retention_time
         spec
       end
 
@@ -131,7 +144,7 @@ module Mspire
       #
       def initialize(id, opts={params: []}, &block)
         @id = id
-        describe! *opts[:params]
+        describe_many! opts[:params]
         block.call(self) if block
       end
 

@@ -13,6 +13,12 @@ module Mspire
     class SelectedIon
       include Mspire::CV::Paramable
       extend(Mspire::Mzml::List)
+      
+      def self.from_xml(xml)
+        obj = self.new
+        [:cvParam, :userParam].each {|v| obj.describe! xml.xpath("./#{v}") }
+        obj
+      end
     end
   end
 end

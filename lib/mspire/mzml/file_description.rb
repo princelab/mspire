@@ -24,7 +24,11 @@ module Mspire
       def initialize(file_content=nil, source_files=[], contacts=[], &block)
         @file_content, @source_files, @contacts = file_content, source_files, contacts
         block.call(self) if block
-        raise ArgumentError, "FileDescription must have file_content" unless @file_content
+        #raise ArgumentError, "FileDescription must have file_content" unless @file_content
+      end
+
+      def self.from_xml(xml)
+        self.new
       end
 
       def to_xml(builder)

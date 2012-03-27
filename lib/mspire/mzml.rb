@@ -152,12 +152,55 @@ module Mspire
         @io = arg
         @encoding = @io.bookmark(true) {|io| io.readline.match(/encoding=["'](.*?)["']/)[1] }
         @index_list = get_index_list
-        # TODO: and read in 'header' info (everything until 'run'
+        read_header!
       when Hash
         arg.each {|k,v| self.send("#{k}=", v) }
       end
       if block
         block.call(self)
+      end
+    end
+
+    def read_header!
+      @io.rewind
+      chunk_size = 2**12
+      loc = 0
+      string = ''
+      while chunk = @io.read(chunk_size)
+        string << chunk
+        start_looking = ((loc-20) < 0) ? 0 : (loc-20)
+        break if string[start_looking..-1] =~ /<(spectrum|chromatogram)/
+        loc += chunk_size
+      end
+      doc = Nokogiri::XML.parse(string, nil, @encoding, Parser::NOBLANKS)
+      mzml_n = doc.root
+      if mzml_n.name == 'indexedmzML'
+        mzml_n = mzml_n.child
+      end
+      cv_list_n = mzml_n.child
+      file_description_n = cv_list_n.next
+      self.cvs = cv_list_n.children.map do |cv_n|
+        Mspire::Mzml::CV.from_xml(cv_n)
+      end
+      self.file_description = Mspire::Mzml::FileDescription.from_xml(file_description_n)
+      next_n = file_description_n.next
+      loop do
+        case next_n.name
+        when 'referenceableParamGroupList'
+          # get a hash ready
+        when 'sampleList'
+          # set objects
+        when 'softwareList'  # required
+          # set objects
+        when 'instrumentConfigurationList'
+          # set objects
+        when 'dataProcessingList'
+          # set objects
+        when 'run'
+          # get defaults ready
+          break
+        end
+        next_n = next_n.next
       end
     end
 
@@ -211,6 +254,11 @@ module Mspire
     end
 
     alias_method :each, :each_spectrum
+
+    # returns the nokogiri xml node for the spectrum at that index
+    def spectrum_node(index)
+      spectrum_node_from_start_byte(@index_list[:spectrum][index])
+    end
 
     def spectrum_node_from_start_byte(start_byte)
       xml = get_xml_string(start_byte, :spectrum)

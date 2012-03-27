@@ -17,7 +17,7 @@ module Mspire
       attr_accessor :software
 
       def initialize(id, components=[], opts={params: []})
-        describe!(*opts[:params])
+        describe_many!(opts[:params])
         @id = id
         @components = components
       end
