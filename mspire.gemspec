@@ -5,11 +5,11 @@
 
 Gem::Specification.new do |s|
   s.name = "mspire"
-  s.version = "0.7.5"
+  s.version = "0.7.6"
 
   s.required_rubygems_version = Gem::Requirement.new(">= 0") if s.respond_to? :required_rubygems_version=
   s.authors = ["John T. Prince", "Simon Chiang"]
-  s.date = "2012-03-23"
+  s.date = "2012-03-27"
   s.description = "mass spectrometry proteomics, lipidomics, and tools, a rewrite of mspire, merging of ms-* gems"
   s.email = "jtprince@gmail.com"
   s.extra_rdoc_files = [
@@ -21,7 +21,6 @@ Gem::Specification.new do |s|
     "README.rdoc",
     "Rakefile",
     "VERSION",
-    "lib/bin.rb",
     "lib/core_ext/array/in_groups.rb",
     "lib/cv.rb",
     "lib/cv/param.rb",
@@ -29,6 +28,7 @@ Gem::Specification.new do |s|
     "lib/io/bookmark.rb",
     "lib/merge.rb",
     "lib/mspire.rb",
+    "lib/mspire/bin.rb",
     "lib/mspire/cv.rb",
     "lib/mspire/cv/param.rb",
     "lib/mspire/cv/paramable.rb",
@@ -90,6 +90,7 @@ Gem::Specification.new do |s|
     "lib/mspire/mzml/scan.rb",
     "lib/mspire/mzml/scan_list.rb",
     "lib/mspire/mzml/scan_settings.rb",
+    "lib/mspire/mzml/scan_window.rb",
     "lib/mspire/mzml/selected_ion.rb",
     "lib/mspire/mzml/software.rb",
     "lib/mspire/mzml/source_file.rb",
@@ -116,7 +117,8 @@ Gem::Specification.new do |s|
     "obo/ms.obo",
     "obo/unit.obo",
     "script/mzml_read_binary.rb",
-    "spec/bin_spec.rb",
+    "spec/cv/param_spec.rb",
+    "spec/mspire/bin_spec.rb",
     "spec/mspire/cv/param_spec.rb",
     "spec/mspire/digester_spec.rb",
     "spec/mspire/error_rate/qvalue_spec.rb",
@@ -138,6 +140,8 @@ Gem::Specification.new do |s|
     "spec/mspire/mzml/index_list_spec.rb",
     "spec/mspire/mzml/plms1_spec.rb",
     "spec/mspire/mzml/referenceable_param_group_spec.rb",
+    "spec/mspire/mzml/source_file_spec.rb",
+    "spec/mspire/mzml/spectrum_spec.rb",
     "spec/mspire/mzml_spec.rb",
     "spec/mspire/peak_spec.rb",
     "spec/mspire/plms1_spec.rb",
