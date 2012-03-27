@@ -111,9 +111,9 @@ module Mspire
 
         # iterates over @params and calls .to_xml on each object.
         def to_xml(xml)
-          if ar=self.params
-            ar.each do |el|
-              el.to_xml(xml)
+          [:ref_param_groups, :cv_params, :user_params].each do |kind|
+            self.send(kind).each do |obj|
+              obj.to_xml(xml)
             end
           end
           xml

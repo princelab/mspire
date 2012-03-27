@@ -265,7 +265,7 @@ module Mspire::Imzml
         "MS:1000579", # MS1 spectrum
         ["MS:1000511", 1], # ms level - default implementation uses 0 but I disagree...
         "MS:1000127",  # centroid spectrum
-        "MS:1000129" # <- negative scan 
+        "MS:1000130" # <- positive scan
       ]}.map do |id, list|
         Mspire::Mzml::ReferenceableParamGroup.new id, params: list
       end
@@ -318,8 +318,10 @@ module Mspire::Imzml
           sourcefile_id = "source_file_#{i}"
           sourcefile_ids << sourcefile_id
           Mspire::Mzml.open(mzml_filename) do |mzml|
-            sourcefile_id_parallel_to_spectra << sourcefile_id 
-            mzml.each {|spec| yielder << spec }
+            mzml.each do |spec| 
+              sourcefile_id_parallel_to_spectra << sourcefile_id 
+              yielder << spec
+            end
           end
         end
       end
@@ -336,7 +338,6 @@ module Mspire::Imzml
       end
       sourcefile_id_to_sourcefile = Hash[ source_files.group_by(&:id).map {|k,v| [k,v.first] } ]
 
-
       imzml_obj = Mspire::Mzml.new do |imzml|
         imzml.id = UUID.new.generate.gsub('-','')
         imzml.cvs = Mspire::Mzml::CV::DEFAULT_CVS
@@ -345,7 +346,7 @@ module Mspire::Imzml
 
         rparms_by_id = create_referenceable_params_by_id_hash
 
-        warn "using negative scan in every case but need to get this from orig mzml!"
+        warn "using positive scan in every case but need to get this from original mzml!"
 
         imzml.referenceable_param_groups = rparms_by_id.values
         # skip sample list for now
@@ -357,6 +358,7 @@ module Mspire::Imzml
         imzml.scan_settings_list = [Mspire::Mzml::ScanSettings.new("scansettings1", params: scan_setting_params)]
 
         warn 'todo: need to borrow instrumentConfiguration from original mzml'
+
         default_instrument_config = Mspire::Mzml::InstrumentConfiguration.new("borrow_from_mzml")
         warn 'todo: need to include default softare from mzml in default_instrument_config'
         #default_instrument_config.software = Software.new( from the mzml file! )
@@ -382,11 +384,11 @@ module Mspire::Imzml
             scan.instrument_configuration = default_instrument_config
             spectrum.scan_list = (scan_list << scan)
             
-            data_arrays = %w(mz intensity).zip(pair).map do |kind, data_array_info|
-              type = (kind + "_external").to_sym
-              rparmgroup = rparms_by_id[(kind + "_array").to_sym]
+            data_arrays = %w(mz intensity).zip(pair).map do |type, data_array_info|
+              rparmgroup = rparms_by_id[(type + "_array").to_sym]
               data_array = Mspire::Mzml::DataArray.new
               data_array.type = type
+              data_array.external = true
               data_array.describe_many! [rparmgroup, *%w(IMS:1000103 IMS:1000102 IMS:1000104).zip(data_array_info).map.to_a]
               data_array
             end
