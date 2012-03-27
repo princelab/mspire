@@ -9,7 +9,7 @@ module Mspire
 
       def initialize(order, software, opts={params: []}, &block)
         @order, @software = order, software
-        describe_many!(opts[:params])
+        super(opts)
         block.call(self) if block
       end
 

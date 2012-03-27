@@ -14,7 +14,7 @@ module Mspire
 
       def initialize(id, opts={params: []} )
         @id = id
-        describe_many!(opts[:params])
+        super(opts)
       end
 
       def to_xml(builder)
@@ -24,7 +24,7 @@ module Mspire
 
       def to_xml_definition(builder)
         builder.referenceableParamGroup(id: @id) do |fc_n|
-          @params.each {|obj| obj.to_xml(fc_n) }
+          params.each {|obj| obj.to_xml(fc_n) }
         end
         builder
       end

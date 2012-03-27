@@ -21,7 +21,7 @@ module Mspire
       attr_accessor :scan_windows
 
       def initialize(opts={params: []}, &block)
-        describe_many!(opts[:params])
+        super(opts)
         block.call(self) if block
       end
 

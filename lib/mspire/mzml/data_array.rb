@@ -7,6 +7,8 @@ module Mspire
     class DataArray < Array
       alias_method :array_initialize, :initialize
       include Mspire::CV::Paramable
+      alias_method :params_initialize, :initialize
+      alias_method :params_to_xml, :to_xml
 
       DEFAULT_DTYPE = :float64
       DEFAULT_COMPRESSION = true
@@ -18,11 +20,35 @@ module Mspire
         int32: 'MS:1000519', # signed
       }
 
-      # the type of data array (:mz, :intensity, :mz_external, or :intensity_external)
-      attr_accessor :type
+      def type=(arg)
+        all_accs = %w(MS:1000514 MS:1000515)
+        params.delete_if {|param| all_accs.include?(param.accession) } if params
+        case arg
+        when :mz
+          describe! all_accs[0] # , nil, "MS:1000040"
+        when :intensity
+          describe! all_accs[1] # , nil, "MS:1000131"
+        end
+        arg
+      end
+
+      def type
+        if params
+          if params.any? {|param| param.accession == 'MS:1000514' }
+            :mz
+          elsif params.any? {|param| param.accession == 'MS:1000515' }
+            :intensity
+          end
+        end
+      end
+
+      # set this if the data is written to an external file (such as the ibd
+      # file for imzML files)
+      attr_accessor :external
 
       def initialize(*args)
         array_initialize(*args)
+        params_initialize
       end
 
       # returns a new Mspire::Mzml::DataArray object (an array)
@@ -72,7 +98,7 @@ module Mspire
       #
       #     args:
       #       array-like  set-like               # where set-like responds to include?
-      #       array-like  type=:float64, compression=true
+      #       array-like  dtype=:float64, compression=true
       def self.to_binary(array_ish, *args)
         if args.first.respond_to?(:include?)
           accessions = args.first
@@ -117,15 +143,11 @@ module Mspire
           end
 
         builder.binaryDataArray(encodedLength: encoded_length) do |bda_n|
-          @params.each {|param| param.to_xml(bda_n) } if @params
-          unless @external
+          params_to_xml(bda_n)
+          unless self.external
             Mspire::CV::Param[ DTYPE_TO_ACC[dtype] ].to_xml(bda_n)
             Mspire::CV::Param[ compression ? 'MS:1000574' : 'MS:1000576' ].to_xml(bda_n)
-            if @type
-              accession = ( (@type == :mz) ? 'MS:1000514' : 'MS:1000515' )
-              Mspire::CV::Param[accession].to_xml(bda_n)
-              bda_n.binary(base64)
-            end
+            bda_n.binary(base64)
           end
         end
       end
@@ -138,9 +160,7 @@ module Mspire
               if data_ar.is_a?(Mspire::Mzml::DataArray)
                 data_ar
               else
-                real_data_array = Mspire::Mzml::DataArray.new(data_ar)
-                real_data_array.type = typ
-                real_data_array
+                Mspire::Mzml::DataArray.new(data_ar)
               end
             ar.type = typ unless ar.type
             ar.to_xml(bdal_n)

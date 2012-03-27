@@ -26,11 +26,6 @@ module Mspire
       # (optional) an array of Mspire::Mzml::DataArray
       attr_accessor :data_arrays
 
-      def initialize(id, opts={params: []})
-        @id = id
-        describe_many!(opts[:params])
-      end
-
       def default_array_length
         if @data_arrays
           if @data_arrays.first

@@ -1,0 +1,9 @@
+#!/usr/bin/env ruby
+# encoding: UTF-8
+
+require 'mspire/imzml/writer/commandline'
+
+argv = ARGV.dup
+ARGV.clear
+Mspire::Imzml::Writer::Commandline.run(argv)
+

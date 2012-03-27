@@ -7,29 +7,48 @@ module Mspire
   module CV
     module Paramable
 
-      attr_accessor :params
+      attr_accessor :cv_params
+      attr_accessor :user_params
+      attr_accessor :ref_param_groups
+
+      def params
+        cv_params + ref_param_groups.flat_map(&:params) + user_params 
+      end
+
+      def accessionable_params
+        cv_params + ref_param_groups.flat_map(&:params)
+      end
+
+      def params_by_name
+        params.index_by &:name
+      end
+
+      def params_by_accession
+        accessionable_params.index_by &:accession
+      end
 
       def initialize(opts={params: []})
+        @cv_params = []
+        @user_params = []
+        @ref_param_groups = []
         describe_many!(opts[:params])
       end
 
       # cast may be something like :to_i or :to_f
       def find_param_value_by_accession(accession, cast=nil)
-        param = params.find {|v| v.accession == accession }
+        param = accessionable_params.find {|v| v.accession == accession }
         if param
           val = param.value
           cast ? (val && val.send(cast)) : val
         end
       end
 
-      # cast may be something like :to_i or :to_f
       def find_param_by_accession(accession)
-        params.find {|v| v.accession == accession }
+        accessionable_params.find {|v| v.accession == accession }
       end
 
-
       def param_exists_by_accession?(accession)
-        params.any? {|v| v.accession == accession }
+        accessionable_params.any? {|v| v.accession == accession }
       end
 
       # takes an array of values, each of which is fed into describe!
@@ -57,11 +76,15 @@ module Mspire
       #
       #     # given an XML
       #     obj.describe! xml_node.xpath('.//cvParam').first
+      #
+      # returns self
       def describe!(*args)
-        @params ||= []
+        return self if args.first.nil?
         case (arg=args.first)
         when String
-          @params << Mspire::CV::Param[ *args ]
+          @cv_params << Mspire::CV::Param[ *args ]
+        when Mspire::Mzml::ReferenceableParamGroup
+          @ref_param_groups << arg
         when Nokogiri::XML::Node  # a nokogiri node in particular
           param = 
             case arg.name
@@ -73,25 +96,29 @@ module Mspire
           if (unit_acc = arg[:unitAccession])
             param.unit = ::CV::Param.new(arg[:unitCvRef], unit_acc, arg[:unitName])
           end
-          @params << param
+          @cv_params << param
         when Nokogiri::XML::NodeSet
           arg.each {|node| describe!(node) }
         else
-          (@params << arg) if arg
-        end
-        @params
-      end
-
-      # iterates over @params and calls .to_xml on each object.
-      def to_xml(xml)
-        if @params
-          @params.each do |el|
-            el.to_xml(xml)
+          if arg.is_a?(Mspire::UserParam)
+            @user_params << arg
+          else
+            (@cv_params << arg) if arg
           end
         end
-        xml
+        self
       end
 
+        # iterates over @params and calls .to_xml on each object.
+        def to_xml(xml)
+          if ar=self.params
+            ar.each do |el|
+              el.to_xml(xml)
+            end
+          end
+          xml
+        end
+
+      end
     end
   end
-end

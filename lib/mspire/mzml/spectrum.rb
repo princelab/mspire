@@ -43,6 +43,7 @@ module Mspire
     class Spectrum
       include Mspire::SpectrumLike
       include Mspire::Mzml::DataArrayContainerLike
+      alias_method :params_initialize, :initialize
 
       # (optional) an Mspire::Mzml::SourceFile object
       attr_accessor :source_file
@@ -144,7 +145,7 @@ module Mspire
       #
       def initialize(id, opts={params: []}, &block)
         @id = id
-        describe_many! opts[:params]
+        params_initialize(opts)
         block.call(self) if block
       end
 

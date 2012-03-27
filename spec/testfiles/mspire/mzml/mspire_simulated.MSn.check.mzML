@@ -40,15 +40,15 @@
         </scanList>
         <binaryDataArrayList count="2">
           <binaryDataArray encodedLength="28">
+            <cvParam cvRef="MS" accession="MS:1000514" name="m/z array"/>
             <cvParam cvRef="MS" accession="MS:1000523" name="64-bit float"/>
             <cvParam cvRef="MS" accession="MS:1000574" name="zlib compression"/>
-            <cvParam cvRef="MS" accession="MS:1000514" name="m/z array"/>
             <binary>eJxjYACBD/YMEOAAoTgcABe3Abg=</binary>
           </binaryDataArray>
           <binaryDataArray encodedLength="28">
+            <cvParam cvRef="MS" accession="MS:1000515" name="intensity array"/>
             <cvParam cvRef="MS" accession="MS:1000523" name="64-bit float"/>
             <cvParam cvRef="MS" accession="MS:1000574" name="zlib compression"/>
-            <cvParam cvRef="MS" accession="MS:1000515" name="intensity array"/>
             <binary>eJxjYAABAQcwxSACpSUcAAjwAP0=</binary>
           </binaryDataArray>
         </binaryDataArrayList>
@@ -73,15 +73,15 @@
         </precursorList>
         <binaryDataArrayList count="2">
           <binaryDataArray encodedLength="28">
+            <cvParam cvRef="MS" accession="MS:1000514" name="m/z array"/>
             <cvParam cvRef="MS" accession="MS:1000523" name="64-bit float"/>
             <cvParam cvRef="MS" accession="MS:1000574" name="zlib compression"/>
-            <cvParam cvRef="MS" accession="MS:1000514" name="m/z array"/>
             <binary>eJxjYACBD/YMEOAAoXgcABe/Abw=</binary>
           </binaryDataArray>
           <binaryDataArray encodedLength="28">
+            <cvParam cvRef="MS" accession="MS:1000515" name="intensity array"/>
             <cvParam cvRef="MS" accession="MS:1000523" name="64-bit float"/>
             <cvParam cvRef="MS" accession="MS:1000574" name="zlib compression"/>
-            <cvParam cvRef="MS" accession="MS:1000515" name="intensity array"/>
             <binary>eJxjYAABEQcwxSABpUUcAAlYAQE=</binary>
           </binaryDataArray>
         </binaryDataArrayList>

@@ -11,7 +11,7 @@ module Mspire
 
       def initialize(id='mspire', version=Mspire::VERSION, opts={params: []}, &block)
         @id, @version = id, version
-        describe_many!(opts[:params])
+        super(opts)
         block.call(self) if block
       end
 

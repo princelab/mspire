@@ -10,7 +10,7 @@ module Mspire
 
       def initialize(id, opts={params: []}, &block)
         @id = id
-        describe_many!(opts[:params])
+        super(opts)
         block.call(self) if block
       end
 

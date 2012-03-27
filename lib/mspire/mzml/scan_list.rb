@@ -13,13 +13,13 @@ module Mspire
       include Mspire::CV::Paramable
 
       def initialize(opts={params: []}, &block)
-        describe_many!(opts[:params])
+        super(opts)
         block.call(self) if block
       end
 
       def to_xml(builder)
         builder.scanList(count: self.size) do |sl_n|
-          @params.each {|param| param.to_xml(sl_n) } if @params
+          super(sl_n)
           self.each do |scan|
             scan.to_xml(sl_n)
           end
