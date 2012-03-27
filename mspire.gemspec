@@ -5,13 +5,14 @@
 
 Gem::Specification.new do |s|
   s.name = "mspire"
-  s.version = "0.7.6"
+  s.version = "0.7.7"
 
   s.required_rubygems_version = Gem::Requirement.new(">= 0") if s.respond_to? :required_rubygems_version=
   s.authors = ["John T. Prince", "Simon Chiang"]
   s.date = "2012-03-27"
   s.description = "mass spectrometry proteomics, lipidomics, and tools, a rewrite of mspire, merging of ms-* gems"
   s.email = "jtprince@gmail.com"
+  s.executables = ["mzml_to_imzml"]
   s.extra_rdoc_files = [
     "LICENSE",
     "README.rdoc"
@@ -21,6 +22,7 @@ Gem::Specification.new do |s|
     "README.rdoc",
     "Rakefile",
     "VERSION",
+    "bin/mzml_to_imzml",
     "lib/core_ext/array/in_groups.rb",
     "lib/cv.rb",
     "lib/cv/param.rb",
@@ -56,6 +58,8 @@ Gem::Specification.new do |s|
     "lib/mspire/ident/protein.rb",
     "lib/mspire/ident/protein_group.rb",
     "lib/mspire/ident/search.rb",
+    "lib/mspire/imzml/writer.rb",
+    "lib/mspire/imzml/writer/commandline.rb",
     "lib/mspire/isotope.rb",
     "lib/mspire/isotope/aa.rb",
     "lib/mspire/isotope/distribution.rb",
@@ -128,6 +132,7 @@ Gem::Specification.new do |s|
     "spec/mspire/ident/pepxml/search_hit/modification_info_spec.rb",
     "spec/mspire/ident/pepxml_spec.rb",
     "spec/mspire/ident/protein_group_spec.rb",
+    "spec/mspire/imzml/writer_spec.rb",
     "spec/mspire/isotope/aa_spec.rb",
     "spec/mspire/isotope/distribution_spec.rb",
     "spec/mspire/isotope_spec.rb",
@@ -151,8 +156,11 @@ Gem::Specification.new do |s|
     "spec/mspire_spec.rb",
     "spec/obo_spec.rb",
     "spec/spec_helper.rb",
+    "spec/testfiles/continuous_binary.tmp.ibd",
     "spec/testfiles/mspire/ident/peptide/db/uni_11_sp_tr.fasta",
     "spec/testfiles/mspire/ident/peptide/db/uni_11_sp_tr.msd_clvg2.min_aaseq4.yml",
+    "spec/testfiles/mspire/imzml/continuous_binary_check.ibd",
+    "spec/testfiles/mspire/imzml/processed_binary_check.ibd",
     "spec/testfiles/mspire/mzml/j24z.idx_comp.3.mzML",
     "spec/testfiles/mspire/mzml/mspire_simulated.MSn.check.mzML",
     "spec/testfiles/mspire/mzml/openms.noidx_nocomp.12.mzML",
@@ -175,7 +183,8 @@ Gem::Specification.new do |s|
     "spec/testfiles/mspire/quant/pdcd5_lfq_tabdel.txt_qspecgp",
     "spec/testfiles/mspire/quant/remove_rest_of_proteins.rb",
     "spec/testfiles/mspire/quant/unlog_transform.rb",
-    "spec/testfiles/plms1/output.key"
+    "spec/testfiles/plms1/output.key",
+    "spec/testfiles/processed_binary.tmp.ibd"
   ]
   s.homepage = "http://github.com/princelab/mspire"
   s.licenses = ["MIT"]
