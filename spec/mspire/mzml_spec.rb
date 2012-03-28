@@ -71,7 +71,7 @@ describe Mspire::Mzml do
 
       it 'can gracefully determine the m/z with highest peak in select scans' do
         highest_mzs = Mspire::Mzml.foreach(@file).select {|v| v.ms_level > 1 }.map do |spec|
-          spec.points.sort_by(&:last).first.first
+          spec.peaks.sort_by(&:last).first.first
         end
         highest_mzs.map(&:round).should == [453, 866]
       end

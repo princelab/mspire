@@ -1,3 +1,5 @@
+require 'bsearch'
+
 module Mspire
   module SpectrumLike
     include Enumerable
@@ -63,12 +65,12 @@ module Mspire
     end
 
     # yields(mz, inten) across the spectrum, or array of doublets if no block
-    def points(&block)
+    def peaks(&block)
       @data_arrays[0].zip(@data_arrays[1], &block)
     end
 
-    alias_method :each, :points
-    alias_method :each_point, :points
+    alias_method :each, :peaks
+    alias_method :each_peak, :peaks
 
     # if the mzs and intensities are the same then the spectra are considered
     # equal
@@ -91,9 +93,9 @@ module Mspire
     # instruments are bad about this)
     # returns self
     def sort!
-      _points = points.to_a
-      _points.sort!
-      _points.each_with_index {|(mz,int), i| @data_arrays[0][i] = mz ; @data_arrays[1][i] = int }
+      _peaks = peaks.to_a
+      _peaks.sort!
+      _peaks.each_with_index {|(mz,int), i| @data_arrays[0][i] = mz ; @data_arrays[1][i] = int }
       self
     end
 
@@ -134,9 +136,5 @@ module Mspire
       find_all_nearest_index(val).map {|i| mzs[i] }
     end
 
-    # uses Mspire::Spectrum.merge
-    def merge(other_spectra, opts={})
-      Mspire::Spectrum.merge([self, *other_spectra], opts)
-    end
   end
 end

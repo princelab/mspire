@@ -22,14 +22,14 @@ require 'mspire/mzml/cv'
 require 'mspire/mzml/sample'
 
 module Mspire
-  # Reading an mzxml file:
+  # Reading an mzml file:
   #
   #     Mspire::Mzml.open("somefile.mzML") do |mzml|
   #       mzml.each do |spectrum|
   #         scan = spectrum.scan
   #         spectrum.mzs                  # array of m/zs
   #         spectrum.intensities          # array of intensities
-  #         spectrum.points.each do |mz,intensity|
+  #         spectrum.peaks do |mz,intensity|
   #           puts "mz: #{mz} intensity: #{intensity}" 
   #         end
   #       end
