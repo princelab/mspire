@@ -70,7 +70,7 @@ module Mspire
       # returns the retention time of the first scan object in the scan list
       # *in seconds*!
       def retention_time
-        rt_param = scan_list.first.find_param_by_accession('MS:1000016')
+        rt_param = scan_list.first.param_by_acc('MS:1000016')
         if rt_param
           multiplier = 
             case rt_param.unit.accession
@@ -86,24 +86,24 @@ module Mspire
 
       # returns the ms_level as an Integer
       def ms_level
-        find_param_value_by_accession('MS:1000511', :to_i)
+        fetch_by_acc('MS:1000511')
       end
 
       def centroided?
-        param_exists_by_accession?('MS:1000127')
+        fetch_by_acc('MS:1000127')
       end
 
       def profile?
-        param_exists_by_accession?('MS:1000128')
+        fetch_by_acc('MS:1000128')
       end
 
       # returns the charge state of the first precursor as an integer
       def precursor_charge
-        precursors.andand.first.andand.selected_ions.andand.first.andand.find_param_value_by_accession('MS:1000041', :to_i)
+        precursors.andand.first.andand.selected_ions.andand.first.andand.fetch_by_acc('MS:1000041')
       end
 
       def precursor_mz
-        precursors.andand.first.andand.selected_ions.andand.first.andand.find_param_value_by_accession('MS:1000744', :to_f)
+        precursors.andand.first.andand.selected_ions.andand.first.andand.fetch_by_acc('MS:1000744')
       end
 
       # takes a Nokogiri node and sets relevant properties

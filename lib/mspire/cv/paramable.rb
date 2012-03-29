@@ -47,7 +47,7 @@ module Mspire
       end
 
       def fetch_by_accession(acc)
-        param = accessionable_params.find {|v| v.accession == accession }
+        param = accessionable_params.find {|v| v.accession == acc }
         if param
           param.value || true
         else
@@ -67,8 +67,8 @@ module Mspire
         describe_many!(opts[:params])
       end
 
-      def param_by_accession(accession)
-        accessionable_params.find {|v| v.accession == accession }
+      def param_by_accession(acc)
+        accessionable_params.find {|v| v.accession == acc }
       end
       alias_method :param_by_acc, :param_by_accession
 
@@ -110,7 +110,7 @@ module Mspire
           param = 
             case arg.name
             when 'cvParam'
-              ::CV::Param.new(arg[:cvRef], arg[:accession], arg[:name], arg[:value])
+              Mspire::CV::Param[ arg[:accession], arg[:value] ]
             when 'userParam'
               Mspire::UserParam.new(arg[:name], arg[:value], arg[:type])
             end
