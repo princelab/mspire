@@ -1,5 +1,5 @@
-require 'cv/param'
-require 'mspire/cv'
+require 'mspire/cv/param'
+require 'mspire/cv/obo'
 
 module Mspire
   module CV
@@ -28,8 +28,14 @@ module Mspire
           when 3
             Mspire::CV::Param[args.pop]
           end
-        obo_type = args[0][/([A-Za-z]+):/,1]
-        ::CV::Param.new(obo_type, args[0], Mspire::CV::Obo[obo_type][args.first], args[1], unit)
+        acc = args[0]
+        obo_type = acc[/([A-Za-z]+):/,1]
+        val = args[1]
+        if val
+          cast = Mspire::CV::Obo::CAST[acc]
+          (val = val.send(cast)) if cast
+        end
+        ::CV::Param.new(obo_type, args[0], Mspire::CV::Obo::NAME[acc], val, unit)
       end
     end
   end

@@ -19,5 +19,17 @@ describe Mspire::CV::Param do
       param2.unit.accession.should == 'UO:0000024'
     end
 
+    it 'casts values based on info in the obo itself' do
+      param = Mspire::CV::Param['MS:1000005', "2.2"]
+      param.value.should == 2.2
+      param.value.should be_a(Float)
+      param = Mspire::CV::Param['MS:1000041', "3"]
+      param.value.should be_a(Integer)
+      param.value.should == 3
+      # doesn't get greedy about casting things like nil
+      param = Mspire::CV::Param['MS:1000041', nil]
+      param.value.should be_nil
+    end
+
   end
 end

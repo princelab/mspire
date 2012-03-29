@@ -2,6 +2,7 @@ require 'cv/param'
 require 'mspire/user_param'
 require 'mspire/cv/param'
 require 'nokogiri'
+require 'andand'
 
 module Mspire
   module CV
@@ -15,16 +16,48 @@ module Mspire
         cv_params + ref_param_groups.flat_map(&:params) + user_params 
       end
 
+      def params?
+        total_num_params = cv_params.size + 
+          ref_param_groups.reduce(0) {|sum,group| sum + 
+            group.params.size } + user_params.size
+        total_num_params > 0
+      end
+
       def accessionable_params
         cv_params + ref_param_groups.flat_map(&:params)
       end
 
-      def params_by_name
-        params.index_by &:name
+      #def params_by_name
+      #  params.index_by &:name
+      #end
+
+      #def params_by_accession
+      #  accessionable_params.index_by &:accession
+      #end
+      
+      # returns the value if the param exists by that name.  Returns true if
+      # the param exists but has no value. returns false if no param
+      def fetch(name)
+        param = params.find {|param| param.name == name}
+        if param
+          param.value || true
+        else
+          false
+        end
       end
 
-      def params_by_accession
-        accessionable_params.index_by &:accession
+      def fetch_by_accession(acc)
+        param = accessionable_params.find {|v| v.accession == accession }
+        if param
+          param.value || true
+        else
+          false
+        end
+      end
+      alias_method :fetch_by_acc, :fetch_by_accession
+
+      def param?(name)
+        params.any? {|param| param.name == name }
       end
 
       def initialize(opts={params: []})
@@ -34,22 +67,10 @@ module Mspire
         describe_many!(opts[:params])
       end
 
-      # cast may be something like :to_i or :to_f
-      def find_param_value_by_accession(accession, cast=nil)
-        param = accessionable_params.find {|v| v.accession == accession }
-        if param
-          val = param.value
-          cast ? (val && val.send(cast)) : val
-        end
-      end
-
-      def find_param_by_accession(accession)
+      def param_by_accession(accession)
         accessionable_params.find {|v| v.accession == accession }
       end
-
-      def param_exists_by_accession?(accession)
-        accessionable_params.any? {|v| v.accession == accession }
-      end
+      alias_method :param_by_acc, :param_by_accession
 
       # takes an array of values, each of which is fed into describe!
       def describe_many!(array)

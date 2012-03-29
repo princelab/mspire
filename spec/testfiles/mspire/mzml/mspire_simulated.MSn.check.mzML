@@ -67,7 +67,7 @@
             <selectedIonList count="1">
               <cvParam cvRef="MS" accession="MS:1000744" name="selected ion m/z" value="2.0"/>
               <cvParam cvRef="MS" accession="MS:1000041" name="charge state" value="2"/>
-              <cvParam cvRef="MS" accession="MS:1000042" name="peak intensity" value="5"/>
+              <cvParam cvRef="MS" accession="MS:1000042" name="peak intensity" value="5.0"/>
             </selectedIonList>
           </precursor>
         </precursorList>
