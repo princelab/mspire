@@ -29,6 +29,10 @@ module Mspire
         divisions = []
         bin_width = opts[:bin_width]
         use_ppm = (opts[:bin_unit] == :ppm)
+
+        puts "using bin width: #{bin_width}" if $VERBOSE
+        puts "using ppm for bins: #{use_ppm}" if $VERBOSE
+
         current_mz = min
         loop do
           if current_mz >= max
@@ -58,53 +62,59 @@ module Mspire
       end
 
       def merge_centroids(peaklists, opts={})
+        opts[:return_data] = true if opts[:only_data]
 
         # Create Mspire::Bin objects
         bins = opts[:bins] ? opts[:bins] : create_bins(peaklists, opts)
+        puts "created #{bins.size} bins" if $VERBOSE
 
         peaklists.each do |peaklist|
-          Mspire::Bin.bin(bins, peaklist, &:first)
+          Mspire::Bin.bin(bins, peaklist, &:mz)
         end
 
         pseudo_peaks = bins.map do |bin|
-          [bin, bin.data.reduce(0.0) {|sum,peak| sum + peak[1] }]
+          [bin, bin.data.reduce(0.0) {|sum,peak| sum + peak.intensity }]
         end
 
         pseudo_peaklist = Mspire::PeakList.new(pseudo_peaks)
 
-        peak_lists = pseudo_peaklist.split(opts[:split])
+        separate_peaklists = pseudo_peaklist.split(opts[:split])
 
         return_data = []
         final_peaklist = []
-        peak_lists.each_with_index do |peak_list,i|
+        separate_peaklists.each_with_index do |peak_list,i|
           #peaks.each do |peak|
-          tot_intensity = peak_list.map(&:last).reduce(:+)
+          tot_intensity = peak_list.map(&:last).reduce(:+) unless opts[:only_data]
           return_data_per_peak = [] if opts[:return_data]
           weighted_mz = 0.0
           peak_list.each do |peak|
-            pre_scaled_intensity = peak[0].data.reduce(0.0) {|sum,v| sum + v.last }
-            post_scaled_intensity = peak[1]
-            # some peaks may have been shared.  In this case the intensity
-            # for that peak was downweighted.  However, the actual data
-            # composing that peak is not altered when the intensity is
-            # shared.  So, to calculate a proper weighted avg we need to
-            # downweight the intensity of any data point found within a bin
-            # whose intensity was scaled.
-            correction_factor = 
-              if pre_scaled_intensity != post_scaled_intensity
-                post_scaled_intensity / pre_scaled_intensity
-              else
-                1.0
+            if !opts[:only_data]
+              pre_scaled_intensity = peak[0].data.reduce(0.0) {|sum,v| sum + v.last }
+              post_scaled_intensity = peak[1]
+              # some peaks may have been shared.  In this case the intensity
+              # for that peak was downweighted.  However, the actual data
+              # composing that peak is not altered when the intensity is
+              # shared.  So, to calculate a proper weighted avg we need to
+              # downweight the intensity of any data point found within a bin
+              # whose intensity was scaled.
+              correction_factor = 
+                if pre_scaled_intensity != post_scaled_intensity
+                  post_scaled_intensity / pre_scaled_intensity
+                else
+                  1.0
+                end
+
+
+              peak[0].data.each do |lil_point|
+                weighted_mz += lil_point[0] * ( (lil_point[1].to_f * correction_factor) / tot_intensity)
               end
-
-            return_data_per_peak.push(*peak[0].data) if opts[:return_data]
-
-            peak[0].data.each do |lil_point|
-              weighted_mz += lil_point[0] * ( (lil_point[1].to_f * correction_factor) / tot_intensity)
+            end
+            if opts[:return_data]
+              return_data_per_peak.push(*peak[0].data) 
             end
           end
           return_data << return_data_per_peak if opts[:return_data]
-          final_peaklist << Mspire::Peak.new([weighted_mz, tot_intensity])
+          final_peaklist << Mspire::Peak.new([weighted_mz, tot_intensity]) unless opts[:only_data]
         end
         [final_peaklist, return_data]
       end
@@ -135,7 +145,7 @@ module Mspire
 
         (peaklist, returned_data) =  
           if opts[:centroided]
-            merge_centroids(peaklists, opts)
+            merge_centroids(peaklists, opts.dup)
           else
             raise NotImplementedError, "need to implement profile merging"
           end
@@ -150,6 +160,13 @@ module Mspire
         else
           $stderr.puts "returning peaklist (#{peaklist.size})" if $VERBOSE
           peaklist 
+        end
+        if opts[:only_data]
+          returned_data
+        elsif opts[:return_data]
+          [peaklist, returned_data]
+        else
+          peaklist
         end
       end
     end

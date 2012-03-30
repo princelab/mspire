@@ -150,7 +150,11 @@ module Mspire
       case arg
       when IO
         @io = arg
-        @encoding = @io.bookmark(true) {|io| io.readline.match(/encoding=["'](.*?)["']/)[1] }
+        begin
+          @encoding = @io.bookmark(true) {|io| io.readline.match(/encoding=["'](.*?)["']/)[1] }
+        rescue EOFError
+          raise RuntimeError, "no encoding present in XML!  (Is this even an xml file?)"
+        end
         @index_list = get_index_list
         read_header!
       when Hash

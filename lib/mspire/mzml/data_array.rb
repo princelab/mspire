@@ -89,7 +89,15 @@ module Mspire
             end
         end
         data = base64.unpack("m*").first
-        unzipped = compressed ? Zlib::Inflate.inflate(data) : data
+        # some implementations leave data blank if there aren't peaks
+        # even if they say it is zlib compressed... (so breaks on the empty
+        # string)
+        unzipped = 
+          if data.size > 0  
+            compressed ? Zlib::Inflate.inflate(data) : data
+          else
+            data
+          end
         self.new( unzipped.unpack(precision_unpack) )
       end
 
