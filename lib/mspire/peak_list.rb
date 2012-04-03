@@ -1,7 +1,8 @@
 require 'mspire/bin'
 
 module Mspire
-  # a collection of peak objects
+  # a collection of peak objects.  At a minimum, each peak should respond to
+  # :x and :y
   class PeakList < Array
 
     def lo_x
@@ -21,10 +22,22 @@ module Mspire
       :centroided => true,
     }
 
+    # for spectral peaks, this is the weighted m/z
+    def weighted_x
+      tot_intensity = self.inject(0.0) {|sum,peak| sum + peak.y }
+      _weighted_x = 0.0
+      self.each do |peak|
+        int = peak.y
+        signal_by_sample_index[peak.sample_id] += int
+        _weighted_x += (peak.first * (int/tot_intensity))
+      end
+      _weighted_x
+    end
+
     class << self
 
       def create_bins(peaklists, opts)
-        min, max = min_max_mz(peaklists)
+        min, max = min_max_x(peaklists)
 
         divisions = []
         bin_width = opts[:bin_width]
@@ -33,14 +46,14 @@ module Mspire
         puts "using bin width: #{bin_width}" if $VERBOSE
         puts "using ppm for bins: #{use_ppm}" if $VERBOSE
 
-        current_mz = min
+        current_x = min
         loop do
-          if current_mz >= max
+          if current_x >= max
             divisions << max
             break
           else
-            divisions << current_mz
-            current_mz += ( use_ppm ? current_mz./(1e6).*(bin_width) : bin_width )
+            divisions << current_x
+            current_x += ( use_ppm ? current_x./(1e6).*(bin_width) : bin_width )
           end
         end
         # make each bin exclusive so there is no overlap
@@ -50,10 +63,10 @@ module Mspire
         bins
       end
 
-      def min_max_mz(peaklists)
+      def min_max_x(peaklists)
         # find the min and max across all spectra
         first_peaklist = peaklists.first
-        min = first_peaklist.first[0]; max = first_peaklist.last[0]
+        min = first_peaklist.first.x; max = first_peaklist.last.x
         peaklists.each do |peaklist|
           min = peaklist.lo_x if peaklist.lo_x < min
           max = peaklist.hi_x if peaklist.hi_x > max
@@ -69,11 +82,11 @@ module Mspire
         puts "created #{bins.size} bins" if $VERBOSE
 
         peaklists.each do |peaklist|
-          Mspire::Bin.bin(bins, peaklist, &:mz)
+          Mspire::Bin.bin(bins, peaklist, &:x)
         end
 
         pseudo_peaks = bins.map do |bin|
-          [bin, bin.data.reduce(0.0) {|sum,peak| sum + peak.intensity }]
+          [bin, bin.data.reduce(0.0) {|sum,peak| sum + peak.y }]
         end
 
         pseudo_peaklist = Mspire::PeakList.new(pseudo_peaks)
@@ -84,13 +97,13 @@ module Mspire
         final_peaklist = []
         separate_peaklists.each_with_index do |peak_list,i|
           #peaks.each do |peak|
-          tot_intensity = peak_list.map(&:last).reduce(:+) unless opts[:only_data]
+          tot_y = peak_list.map(&:last).reduce(:+) unless opts[:only_data]
           return_data_per_peak = [] if opts[:return_data]
-          weighted_mz = 0.0
+          weighted_x = 0.0
           peak_list.each do |peak|
             if !opts[:only_data]
-              pre_scaled_intensity = peak[0].data.reduce(0.0) {|sum,v| sum + v.last }
-              post_scaled_intensity = peak[1]
+              pre_scaled_y = peak[0].data.reduce(0.0) {|sum,v| sum + v.last }
+              post_scaled_y = peak[1]
               # some peaks may have been shared.  In this case the intensity
               # for that peak was downweighted.  However, the actual data
               # composing that peak is not altered when the intensity is
@@ -98,15 +111,15 @@ module Mspire
               # downweight the intensity of any data point found within a bin
               # whose intensity was scaled.
               correction_factor = 
-                if pre_scaled_intensity != post_scaled_intensity
-                  post_scaled_intensity / pre_scaled_intensity
+                if pre_scaled_y != post_scaled_y
+                  post_scaled_y / pre_scaled_y
                 else
                   1.0
                 end
 
 
               peak[0].data.each do |lil_point|
-                weighted_mz += lil_point[0] * ( (lil_point[1].to_f * correction_factor) / tot_intensity)
+                weighted_x += lil_point[0] * ( (lil_point[1].to_f * correction_factor) / tot_y)
               end
             end
             if opts[:return_data]
@@ -114,7 +127,7 @@ module Mspire
             end
           end
           return_data << return_data_per_peak if opts[:return_data]
-          final_peaklist << Mspire::Peak.new([weighted_mz, tot_intensity]) unless opts[:only_data]
+          final_peaklist << Mspire::Peak.new([weighted_x, tot_y]) unless opts[:only_data]
         end
         [final_peaklist, return_data]
       end
@@ -172,28 +185,122 @@ module Mspire
     end
 
 
+    # returns an array with the indices outlining each peak.  The first index
+    # is the start of the peak, the last index is the last of the peak.
+    # Interior indices represent local minima.  So, peaks that have only two
+    # indices have no local minima.
+    def peak_boundaries(gt=0.0)
+      in_peak = false
+      prev_y = gt
+      prev_prev_y = gt
+      peak_inds = []
+      self.each_with_index do |peak, index|
+        curr_y = peak.y
+        if curr_y > gt
+          if !in_peak
+            in_peak = true
+            peak_inds << [index]
+          else
+            # if on_upslope
+            if prev_y < curr_y
+              # If we were previously on a downslope and we are now on an upslope
+              # then the previous index is a local min
+              # on_downslope(prev_previous_y, prev_y)
+              if prev_prev_y > prev_y
+                # We have found a local min
+                peak_inds.last << (index - 1)
+              end
+            end # end if (upslope)
+          end # end if !in_peak
+        elsif in_peak
+          peak_inds.last << (index - 1)
+          in_peak = false
+        end 
+        prev_prev_y = prev_y
+        prev_y = curr_y
+      end
+      peak_inds
+    end
+
+    # returns an array of PeakList objects
+    def split_on_zeros(given_peak_boundaries=nil)
+      pk_bounds = given_peak_boundaries || peak_boundaries(0.0)
+      pk_bounds.map do |indices|
+        self.class.new self[indices.first..indices.last]
+      end
+    end
+
+    # returns an array of PeakList objects
+    def split_multipeak(methd=:greedy_y, boundaries=nil)
+      boundaries ||= peak_boundaries.first
+      p boundaries
+      local_minima_indices = boundaries
+      zero = local_minima_indices.shift 
+      _last = local_minima_indices.pop
+
+      prev_lm_i = -1  # <- don't worry, will be set to bumped to zero
+      peak_lists = [self.class.new([self[0]]) ]
+      local_minima_indices.each do |lm_i|
+        peak_lists.last.push( *self[(prev_lm_i+1)..(lm_i-1)] )
+        case methd
+        when :greedy_y
+          if self[lm_i-1].y >= self[lm_i+1].y
+            peak_lists.last << self[lm_i]
+            peak_lists << self.class.new
+          else
+            peak_lists << self.class.new( [self[lm_i]] )
+          end
+          prev_lm_i = lm_i
+        when :share
+          abort 'not implemented yet'
+        end
+      end
+      peak_lists
+    end
+
     # returns an Array of peaklist objects.  Splits run of 1 or more local
     # minima into multiple peaklists.  When a point is 'shared' between two
     # adjacent hill-ish areas, the choice of how to resolve multi-hills (runs
     # of data above zero) is one of:
     #
-    #     false/nil => only split on zeros
-    #     :share => give each peak its rightful portion of shared peaks, dividing the
+    #     false/nil = only split on zeros
+    #     :share = give each peak its rightful portion of shared peaks, dividing the
     #               intensity based on the intensity of adjacent peaks
-    #     :greedy_y => give the point to the peak with highest point next to
+    #     :greedy_y = give the point to the peak with highest point next to
     #                  the point in question. tie goes lower.
     #
-    # if return_local_minima is true, a parallel array of local minima indices is
-    # returned (only makes sense if split_multipeaks is false)
-    # 
+    # Note that local_minima may be altered if using :share
+    #
     # assumes that a new peak can be made with an array containing the x
     # value and the y value.
-    def split(split_multipeaks=false, return_local_minima=false)
-      if split_multipeaks
-        (zeroed_peaks, local_min_ind_ar) = self.split(false, true)
-        $stderr.print "splitting on local minima ..." if $VERBOSE
-        no_local_minima_peaks = zeroed_peaks.zip(local_min_ind_ar).map do |peak, lm_indices|
-          new_peaks = [ peak.class.new ]
+    def split(split_multipeaks_mthd=false)
+      if split_multipeaks_mthd
+        boundaries = peak_boundaries(0.0)
+        no_lm_pklsts = []
+        boundaries.each do |indices|
+          peak = self[indices.first..indices.last]
+          if indices.size == 2
+            no_lm_pklsts << peak
+          else # have local minima
+            multipeak = PeakList.new(peak)
+            indices_first = indices.first
+            peaklists = multipeak.split_multipeak(split_multipeaks_mthd, indices.map {|i| i-indices_first})
+            no_lm_pklsts.push *peaklists
+          end
+        end
+        #$stderr.puts "now #{no_lm_pklsts.size} peaks." if $VERBOSE
+        no_lm_pklsts 
+      else
+        split_on_zeros
+      end 
+    end # def split
+  end
+end
+
+
+
+=begin
+
           if lm_indices.size > 0
             prev_lm_i = -1   # <- it's okay, we don't use until it is zero
             lm_indices.each do |lm_i|
@@ -229,49 +336,8 @@ module Mspire
             end
             new_peaks.last.push( *peak[(prev_lm_i+1)...peak.size] )
             new_peaks
-          else
-            [peak]
           end
         end.flatten(1) # end zip
         $stderr.puts "now #{no_local_minima_peaks.size} peaks." if $VERBOSE
         no_local_minima_peaks 
-      else
-        $stderr.print "splitting on zeros..." if $VERBOSE
-        # first, split the peaks based on zero intensity values 
-        # and simultaneously keep track of the local minima within each
-        # resulting peak
-        peak_lists = []
-        local_min_ind_ar = []
-        in_peak = false
-        self.each_with_index do |peak, index|
-          previous_y = self[index - 1][1]
-          if peak[1] > 0
-            if !in_peak
-              in_peak = 0
-              peak_lists << self.class.new([peak])
-              local_min_ind_ar << []
-            else
-              peak_lists.last << peak
-              # if on_upslope(previous_y, point[1])
-              if previous_y < peak[1]
-                # If we were previously on a downslope and we are now on an upslope
-                # then the previous index is a local min
-                prev_previous_y = self[index - 2][1]
-                # on_downslope(prev_previous_y, previous_y)
-                if prev_previous_y > previous_y
-                  # We have found a local min
-                  local_min_ind_ar.last << (in_peak-1)
-                end
-              end # end if (upslope)
-            end # end if !in_peak
-            in_peak += 1
-          elsif in_peak
-            in_peak = false
-          end # end if point[1] > 0
-        end
-        $stderr.puts "#{peak_lists.size} no-whitespace-inside peak_lists." if $VERBOSE
-        return_local_minima ? [peak_lists, local_min_ind_ar] : peak_lists
-      end # 
-    end # def split
-  end
-end
+=end

@@ -31,8 +31,10 @@ if ARGV.size == 0
 end
 
 class TracedPeak < Array
-  alias_method :mz, :first
-  alias_method :intensity, :last
+  # the m/z or x value
+  alias_method :x, :first
+  # the intensity or y value
+  alias_method :y, :last
 
   def initialize(data, sample_id)
     self[0] = data.first
@@ -99,13 +101,6 @@ File.open(opts[:outfile],'w') do |out|
 
   data.each do |bucket_of_peaks|
     signal_by_sample_index = Hash.new {|h,k| h[k] = 0.0 }
-    tot_intensity = bucket_of_peaks.inject(0.0) {|sum,peak| sum + peak.last }
-    weighted_mz = 0.0
-    bucket_of_peaks.each do |peak|
-      int = peak.last 
-      signal_by_sample_index[peak.sample_id] += int
-      weighted_mz += (peak.first * (int/tot_intensity))
-    end
     mz = weighted_mz
     row = [mz.round(6), *sample_ids.each_with_index.map {|id,index| signal_by_sample_index[index] }]
     out.puts row.join("\t")
