@@ -142,38 +142,81 @@ describe Mspire::PeakList do
 
   describe '#merge' do
 
+    def compare_peaklist_sets(set1, set2)
+      set1.zip(set2) do |pl1, pl2|
+        pl1.sort.should == pl2.sort
+      end
+    end
+
     subject do  
 
-      list1 = [[10.1, 1], [10.5, 2], [10.7, 3], [11.5, 4]].map {|pair| Mspire::Peak.new pair }
-      list2 = [[10.11, 5], [10.49, 6], [10.71, 7], [11.48, 8]].map {|pair| Mspire::Peak.new pair }
-      list3 = [[10.09, 9], [10.51, 10], [10.72, 11], [11.51, 12]].map {|pair| Mspire::Peak.new pair }
+      list1 = [[9.1, 2], [10.5, 1], [10.7, 3], [13.5, 4]].map {|pair| Mspire::Peak.new pair }
+      list2 = [[9.11, 6], [10.49, 5], [10.71, 7], [13.48, 8]].map {|pair| Mspire::Peak.new pair }
+      list3 = [[9.09, 11], [10.51, 9], [10.72, 10], [13.51, 12]].map {|pair| Mspire::Peak.new pair }
 
       [list1, list2, list3].map {|peaks| Mspire::PeakList.new( peaks ) }
     end
 
-    it 'whether we ask for data back or not, the peaklist is equal' do
+    xit 'whether we ask for data back or not, the peaklist is equal' do
       (peaklist1, data) = Mspire::PeakList.merge(subject, :bin_width => 0.08, :bin_unit => :amu, :return_data => true, :split => false) 
-      peaklist2 = Mspire::PeakList.merge(subject, :bin_width => 0.08, :bin_unit => :amu, :split => false)
+      peaklist2 = Mspire::PeakList.merge(subject, :bin_width => 0.08, :bin_unit => :amu, :split => :zero)
       peaklist1.should == peaklist2
 
       peaks = [[10.097333333333331, 10.502222222222223, 10.713809523809525, 11.498333333333333], [5.0, 6.0, 7.0, 8.0]].transpose
-      peaklist1.should == Mspire::PeakList.new(peaks)
-      data.should == [[[10.1, 1], [10.11, 5], [10.09, 9]], [[10.5, 2], [10.49, 6], [10.51, 10]], [[10.7, 3], [10.71, 7], [10.72, 11]], [[11.5, 4], [11.48, 8], [11.51, 12]]] 
+      #compare_peaklist_sets(peaklist1, Mspire::PeakList.new(peaks))
+      #compare_peaklist_sets(data, [[[10.1, 1], [10.11, 5], [10.09, 9]], [[10.5, 2], [10.49, 6], [10.51, 10]], [[10.7, 3], [10.71, 7], [10.72, 11]], [[11.5, 4], [11.48, 8], [11.51, 12]]] )
 
     end
 
-    fail 'still checking this stuff!!!!'
+    xit 'gives one peak with large bin width' do
+      [true, false].zip([26.0, 78.0]) do |normalize, inten|
+        peak_list = Mspire::PeakList.merge(subject, :bin_width => 2.5, :bin_unit => :amu, :normalize => normalize, :split => :greedy_y)
+        peak_list.size.should == 1
+        peak_list.first.x.should be_within(0.00000000001).of(11.136153846153846)
+        peak_list.first.y.should == inten
+      end
+    end
 
-    it 'gives one peak with very large bin width and no :split => false' do
-      peak_list, data = Mspire::PeakList.merge(subject, :bin_width => 0.5, :bin_unit => :amu, :return_data => true)
+    xit 'regardless of split method, the total intensity remains the same' do
+      (0.1..2.3).step(0.1).to_a.each do |bw|
+        tot_ints = [:zero, :split, :greedy_y].map do |splt|
+          peak_list = Mspire::PeakList.merge(subject, :bin_width => bw, :bin_unit => :amu, :split => :zero)
+          peak_list.map(&:y).reduce(:+)
+        end
+        tot_ints.all? {|v| tot_ints.first == v }.should be_true
+      end
+    end
+
+    xit 'does not alter the original data in any way' do
+      before = Marshal.load(Marshal.dump(subject))
+      subj = Marshal.load(Marshal.dump(subject))
+      [:zero, :share, :greedy_y].each do |split_mthd|
+        Mspire::PeakList.merge(subj, :bin_width => 2.2, :bin_unit => :amu, :split => split_mthd, :return_data => true)
+        subj.should == before
+      end
+    end
+
+    it 'makes sense' do
+      bw = 0.001
+      #(0.1..2.3).step(0.1).to_a.each do |bw|
+      peak_list, data = Mspire::PeakList.merge(subject, :bin_width => bw, :bin_unit => :amu, :split => :share, :return_data => true)
+      puts "ZERO:"
       p peak_list
-      data.should == [[[10.1, 1], [10.5, 2], [10.11, 5], [10.49, 6], [10.09, 9], [10.51, 10], [10.7, 3], [10.71, 7], [10.72, 11]], [[10.7, 3], [10.71, 7], [10.72, 11], [11.5, 4], [11.48, 8], [11.51, 12]]]
-    end
-
-    it 'gives multiple peaks with large bin width and splitting' do
-      data = Mspire::PeakList.merge(subject, :bin_width => 0.1, :bin_unit => :amu, :only_data => true, :split => :greedy_y)
-      # frozen, not checked exactly:
-      data.should == [[[10.1, 1], [10.11, 5], [10.09, 9]], [[10.5, 2], [10.49, 6], [10.51, 10]], [[10.7, 3], [10.71, 7], [10.72, 11]], [[11.48, 8], [11.5, 4], [11.51, 12]]]
+      puts
+      p data
+      peak_list, data = Mspire::PeakList.merge(subject, :bin_width => bw, :bin_unit => :amu, :split => :share, :return_data => true)
+      puts "SHARE:"
+      p peak_list
+      puts
+      p data
+      peak_list, data = Mspire::PeakList.merge(subject, :bin_width => bw, :bin_unit => :amu, :split => :greedy_y, :return_data => true)
+      puts "GREEDY Y:"
+      p peak_list
+      puts
+      p data
+      #peak_list.size.should == 1
+      #peak_list.first.x.should be_within(0.00000000001).of(10.903205128205128)
+      #peak_list.first.y.should == inten
     end
 
 =begin

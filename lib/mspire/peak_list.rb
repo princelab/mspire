@@ -101,41 +101,44 @@ module Mspire
 
         separate_peaklists = pseudo_peaklist.split(opts[:split])
 
+        normalize_factor = opts[:normalize] ? peaklists.size : 1
+
         return_data = []
-        final_peaklist = []
-        separate_peaklists.each_with_index do |peak_list,i|
-          #peaks.each do |peak|
-          tot_y = peak_list.map(&:last).reduce(:+) unless opts[:only_data]
-          return_data_per_peak = [] if opts[:return_data]
-          weighted_x = 0.0
-          peak_list.each do |peak|
-            if !opts[:only_data]
-              pre_scaled_y = peak[0].data.reduce(0.0) {|sum,v| sum + v.last }
-              post_scaled_y = peak[1]
-              # some peaks may have been shared.  In this case the intensity
-              # for that peak was downweighted.  However, the actual data
-              # composing that peak is not altered when the intensity is
-              # shared.  So, to calculate a proper weighted avg we need to
-              # downweight the intensity of any data point found within a bin
-              # whose intensity was scaled.
-              correction_factor = 
-                if pre_scaled_y != post_scaled_y
-                  post_scaled_y / pre_scaled_y
-                else
-                  1.0
-                end
+        final_peaklist = Mspire::PeakList.new
 
+        ### 
+        NEED TO GRAB DATA STILL!
 
-              peak[0].data.each do |lil_point|
-                weighted_x += lil_point[0] * ( (lil_point[1].to_f * correction_factor) / tot_y)
+        separate_peaklists.each do |pseudo_peaklist|
+          weight_x = 0.0
+          tot_intensity = pseudo_peaklist.inject(0.0) {|sum, bin_peak| sum + bin_peak.y }
+          pseudo_peaklist.each do |bin_peak|
+
+            # some peaks may have been shared.  In this case the intensity
+            # for that peak was downweighted.  However, the actual data
+            # composing that peak is not altered when the intensity is
+            # shared.  So, to calculate a proper weighted avg we need to
+            # downweight the intensity of any data point found within a bin
+            # whose intensity was scaled.
+            correction_factor = 
+              if opts[:split] == :shared
+                pre_scaled_y = bin_peak.x.data.reduce(0.0) {|sum,v| sum + v.last }
+                post_scaled_y = bin_peak.y
+                post_scaled_y / pre_scaled_y
+              else
+                1.0
               end
-            end
-            if opts[:return_data]
-              return_data_per_peak.push(*peak[0].data) 
+
+            bin_peak.x.data.each do |lil_peak|
+              weight_x += lil_peak.x * ( (lil_peak.y.to_f * correction_factor) / tot_intensity)
             end
           end
-          return_data << return_data_per_peak if opts[:return_data]
-          final_peaklist << Mspire::Peak.new([weighted_x, tot_y]) unless opts[:only_data]
+          final_peaklist << Mspire::Peak.new([weight_x, tot_intensity / normalize_factor])
+
+          #end
+          #if opts[:return_data]
+          #  return_data << Mspire::PeakList.new(peaklist) if opts[:return_data]
+          #end
         end
         [final_peaklist, return_data]
       end
@@ -153,7 +156,7 @@ module Mspire
       #                                     number of spectra
       #     :return_data => false           returns a parallel array containing
       #                                     the peaks associated with each returned peak
-      #     :split => false|:greedy_y|:share  see Mspire::Peak#split
+      #     :split => :zero|:greedy_y|:share  see Mspire::Peak#split
       #     :centroided => true             treat the data as centroided
       #
       # The binning algorithm is roughly the fastest possible algorithm that
@@ -171,10 +174,6 @@ module Mspire
             raise NotImplementedError, "need to implement profile merging"
           end
 
-        if opts[:normalize]
-          sz = peaklists.size
-          peaklist.each {|peak| peak[1] = peak[1].to_f / sz }
-        end
         if opts[:return_data]
           $stderr.puts "returning peaklist (#{peaklist.size}) and data" if $VERBOSE
           [peaklist, returned_data]
@@ -292,7 +291,7 @@ module Mspire
     # adjacent hill-ish areas, the choice of how to resolve multi-hills (runs
     # of data above zero) is one of:
     #
-    #     false/nil = only split on zeros
+    #     :zero = only split on zeros
     #     :share = give each peak its rightful portion of shared peaks, dividing the
     #               intensity based on the intensity of adjacent peaks
     #     :greedy_y = give the point to the peak with highest point next to
@@ -302,8 +301,10 @@ module Mspire
     #
     # assumes that a new peak can be made with an array containing the x
     # value and the y value.
-    def split(split_multipeaks_mthd=false)
-      if split_multipeaks_mthd
+    def split(split_multipeaks_mthd=:zero)
+      if split_multipeaks_mthd == :zero
+        split_on_zeros
+      else
         boundaries = peak_boundaries(0.0)
         no_lm_pklsts = []
         boundaries.each do |indices|
@@ -319,8 +320,6 @@ module Mspire
         end
         #$stderr.puts "now #{no_lm_pklsts.size} peaks." if $VERBOSE
         no_lm_pklsts 
-      else
-        split_on_zeros
       end 
     end # def split
   end
@@ -329,44 +328,6 @@ end
 
 
 =begin
-
-          if lm_indices.size > 0
-            prev_lm_i = -1   # <- it's okay, we don't use until it is zero
-            lm_indices.each do |lm_i|
-              lm = peak[lm_i]
-              point_class = lm.class
-
-              # push onto the last peak all the points from right after the previous local min
-              # to just before this local min
-              new_peaks.last.push( *peak[(prev_lm_i+1)..(lm_i-1)] )
-              before_pnt = peak[lm_i-1]
-              after_pnt = peak[lm_i+1]
-
-              case split_multipeaks
-              when :share
-                sum = before_pnt[1] + after_pnt[1]
-                # push onto the last peak its portion of the local min
-                new_peaks.last << point_class.new( [lm[0], lm[1] * (before_pnt[1].to_f/sum)] )
-                # create a new peak that contains its portion of the local min
-                new_peaks << self.class.new( [point_class.new([lm[0], lm[1] * (after_pnt[1].to_f/sum)])] )
-                prev_lm_i = lm_i
-              when :greedy_y
-                if before_pnt[1] >= after_pnt[1]
-                  new_peaks.last << lm
-                  new_peaks << self.class.new
-                  prev_lm_i = lm_i
-                else
-                  new_peaks << self.class.new( [lm] )
-                  prev_lm_i = lm_i
-                end
-              else
-                raise ArgumentError, "only recognize :share, :greedy_y, or false for the arg in #split(arg)"
-              end
-            end
-            new_peaks.last.push( *peak[(prev_lm_i+1)...peak.size] )
-            new_peaks
-          end
-        end.flatten(1) # end zip
-        $stderr.puts "now #{no_local_minima_peaks.size} peaks." if $VERBOSE
-        no_local_minima_peaks 
+if !opts[:only_data]
 =end
+

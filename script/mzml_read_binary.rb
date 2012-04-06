@@ -24,7 +24,7 @@ type = opts[:type].to_sym
 compressed = !opts[:not_compressed]
 
 ARGV.each do |base64|
-  puts MS::Mzml::DataArray.from_binary(base64, type, compressed).join(" ")
+  puts Mspire::Mzml::DataArray.from_binary(base64, type, compressed).join(" ")
 end
 
 
