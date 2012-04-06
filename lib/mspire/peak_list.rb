@@ -104,41 +104,34 @@ module Mspire
         normalize_factor = opts[:normalize] ? peaklists.size : 1
 
         return_data = []
-        final_peaklist = Mspire::PeakList.new
-
-        ### 
-        NEED TO GRAB DATA STILL!
+        final_peaklist = Mspire::PeakList.new unless opts[:only_data]
 
         separate_peaklists.each do |pseudo_peaklist|
+          data_peaklist = Mspire::PeakList.new
           weight_x = 0.0
           tot_intensity = pseudo_peaklist.inject(0.0) {|sum, bin_peak| sum + bin_peak.y }
           pseudo_peaklist.each do |bin_peak|
 
-            # some peaks may have been shared.  In this case the intensity
-            # for that peak was downweighted.  However, the actual data
-            # composing that peak is not altered when the intensity is
-            # shared.  So, to calculate a proper weighted avg we need to
-            # downweight the intensity of any data point found within a bin
-            # whose intensity was scaled.
-            correction_factor = 
-              if opts[:split] == :shared
-                pre_scaled_y = bin_peak.x.data.reduce(0.0) {|sum,v| sum + v.last }
-                post_scaled_y = bin_peak.y
-                post_scaled_y / pre_scaled_y
-              else
-                1.0
+            # For the :shared method, the psuedo_peak intensity may have been
+            # adjusted, but the individual peaks were not.  Correct this.             
+            if opts[:split] == :shared
+              post_scaled_y = bin_peak.y
+              pre_scaled_y = bin_peak.x.data.reduce(0.0) {|sum,peak| sum + peak.last }
+              if (post_scaled_y - pre_scaled_y).abs.round(10) != 0.0
+                correction = post_scaled_y / pre_scaled_y
+                bin_peak.x.data.each {|peak| peak.y = (peak.y * correction) }
               end
-
-            bin_peak.x.data.each do |lil_peak|
-              weight_x += lil_peak.x * ( (lil_peak.y.to_f * correction_factor) / tot_intensity)
             end
-          end
-          final_peaklist << Mspire::Peak.new([weight_x, tot_intensity / normalize_factor])
 
-          #end
-          #if opts[:return_data]
-          #  return_data << Mspire::PeakList.new(peaklist) if opts[:return_data]
-          #end
+            unless opts[:only_data]
+              bin_peak.x.data.each do |peak|
+                weight_x += peak.x * ( peak.y.to_f / tot_intensity)
+              end
+            end
+            (data_peaklist.push( *bin_peak.x.data )) if opts[:return_data]
+          end
+          final_peaklist << Mspire::Peak.new([weight_x, tot_intensity / normalize_factor]) unless opts[:only_data]
+          return_data << data_peaklist if opts[:return_data]
         end
         [final_peaklist, return_data]
       end
@@ -174,13 +167,6 @@ module Mspire
             raise NotImplementedError, "need to implement profile merging"
           end
 
-        if opts[:return_data]
-          $stderr.puts "returning peaklist (#{peaklist.size}) and data" if $VERBOSE
-          [peaklist, returned_data]
-        else
-          $stderr.puts "returning peaklist (#{peaklist.size})" if $VERBOSE
-          peaklist 
-        end
         if opts[:only_data]
           returned_data
         elsif opts[:return_data]

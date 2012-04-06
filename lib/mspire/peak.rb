@@ -7,5 +7,13 @@ module Mspire
   class Peak < Array
     alias_method :x, :first
     alias_method :y, :last
+
+    def y=(val)
+      self[0] = val
+    end
+
+    def x=(val)
+      self[1] = val
+    end
   end
 end
