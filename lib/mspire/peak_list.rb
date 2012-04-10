@@ -110,6 +110,11 @@ module Mspire
           data_peaklist = Mspire::PeakList.new
           weight_x = 0.0
           tot_intensity = pseudo_peaklist.inject(0.0) {|sum, bin_peak| sum + bin_peak.y }
+          #puts "TOT INTENSITY:"
+          #p tot_intensity
+          calc_from_lil_bins = pseudo_peaklist.inject(0.0) {|sum, bin_peak| sum + bin_peak.x.data.map(&:y).reduce(:+) }
+          #puts "LILBINS: "
+          #p calc_from_lil_bins
           pseudo_peaklist.each do |bin_peak|
 
             # For the :share method, the psuedo_peak intensity may have been
@@ -117,6 +122,8 @@ module Mspire
             if opts[:split] == :share
               post_scaled_y = bin_peak.y
               pre_scaled_y = bin_peak.x.data.reduce(0.0) {|sum,peak| sum + peak.last }
+              #puts "PRESCALED Y:"
+              #p pre_scaled_y
               if (post_scaled_y - pre_scaled_y).abs.round(10) != 0.0
                 correction = post_scaled_y / pre_scaled_y
                 bin_peak.x.data.each {|peak| peak.y = (peak.y * correction) }
@@ -157,6 +164,9 @@ module Mspire
       # algorithm O(n + m))
       #
       # Assumes the peaklists are already sorted by m/z.
+      #
+      # Note that the peaks themselves will be altered if using the :share
+      # split method.
       def merge(peaklists, opts={})
         opts = DEFAULT_MERGE.merge(opts)
 
@@ -283,7 +293,8 @@ module Mspire
     #     :greedy_y = give the point to the peak with highest point next to
     #                  the point in question. tie goes lower.
     #
-    # Note that local_minima may be altered if using :share
+    # Note that the peak surrounding a local_minima may be altered if using
+    # :share
     #
     # assumes that a new peak can be made with an array containing the x
     # value and the y value.
@@ -301,8 +312,6 @@ module Mspire
             multipeak = PeakList.new(peak)
             local_min_inds = indices[1..-2].map {|i| i-indices.first}
             peaklists = multipeak.split_contiguous(split_multipeaks_mthd, local_min_inds)
-            puts "INSIDE"
-            p peaklists
             no_lm_pklsts.push *peaklists
           end
         end
