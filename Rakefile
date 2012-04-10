@@ -19,6 +19,7 @@ Jeweler::Tasks.new do |gem|
   gem.add_dependency "builder", "~> 3.0.0"
   gem.add_dependency "bio", "~> 1.4.2"
   gem.add_dependency "trollop", "~> 1.16.2"
+  gem.add_dependency "uuid", ">= 2.3.5"
   # this should be a real dependency, but need to document getting this
   # working on windows first!
   gem.add_development_dependency "fftw3", "~> 0.3"

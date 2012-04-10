@@ -2,3 +2,4 @@ pkg
 test_files_large
 doc/output/*
 .*.swp
+*.gemspec
