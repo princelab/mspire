@@ -28,7 +28,7 @@ describe Mspire::PeakList do
       @peaks = @xs.zip(@intensities)
     end
 
-    it 'outlines peak boundaries' do
+    xit 'outlines peak boundaries' do
 
       peaklist = Mspire::PeakList[[5.08, 3]]
       boundaries = peaklist.peak_boundaries
@@ -50,7 +50,7 @@ describe Mspire::PeakList do
       boundaries.should == [[0,2,5,6]]
     end
 
-    it 'splits on zeros by default' do
+    xit 'splits on zeros by default' do
       peaklist = Mspire::PeakList[*@peaks] # <- maybe more like a collection of peaks, but PeakList is flexible
       split_peaklist = peaklist.split
       split_peaklist.size.should == 4
@@ -63,7 +63,7 @@ describe Mspire::PeakList do
     end
 
     # which it should since zeros are the ultimate local min!
-    it 'always cleans up surrounding zeros and does not split non-multipeaks' do
+    xit 'always cleans up surrounding zeros and does not split non-multipeaks' do
       peak = Mspire::PeakList[*@peaks[0,7]]  # simple
       [:share, :greedy_y].each do |multipeak_split_method|
         peaks = peak.split(multipeak_split_method)
@@ -77,7 +77,7 @@ describe Mspire::PeakList do
         Mspire::PeakList[[50.07, 0], [50.08, 3], [50.09, 8], [50.1, 2], [50.11, 9], [50.12, 7], [50.13, 1], [50.14, 3], [50.15, 0]]
       end
 
-      it 'can split a multipeak' do
+      xit 'can split a multipeak' do
         multipeak = Mspire::PeakList[[5.08, 3], [5.09, 8]]
         peaklists = multipeak.split_contiguous(:greedy_y)
         peaklists.should == [[5.08, 3], [5.09, 8]]
@@ -98,7 +98,7 @@ describe Mspire::PeakList do
 
       end
 
-      it 'does #split(:share) and shares the peak proportional to adjacent peaks' do
+      xit 'does #split(:share) and shares the peak proportional to adjacent peaks' do
         answer = [
           [[50.08, 3], [50.09, 8], [50.1, (2*8.0/17)]], 
           [[50.1, 2*9.0/17], [50.11, 9], [50.12, 7], [50.13, 0.7]],
@@ -107,7 +107,7 @@ describe Mspire::PeakList do
         subject.split(:share).should == answer
       end
 
-      it 'does #split(:greedy_y) and gives the local min to highest adjacent peak' do
+      xit 'does #split(:greedy_y) and gives the local min to highest adjacent peak' do
 
         answer = [
           [[50.08, 3], [50.09, 8]], 
@@ -118,12 +118,12 @@ describe Mspire::PeakList do
 
       end
 
-      it '#split splits on whitespace by default' do
+      xit '#split splits on whitespace by default' do
         subject[4,0] = [Mspire::Peak.new([50.105, 0])]
         subject.split.should == [[[50.08, 3], [50.09, 8], [50.1, 2]], [[50.11, 9], [50.12, 7], [50.13, 1], [50.14, 3]]]
       end
 
-      it 'gives local min to left peaklist in event of a tie with #split(:greedy_y)' do
+      xit 'gives local min to left peaklist in event of a tie with #split(:greedy_y)' do
         answer = [
           [[50.08, 3], [50.09, 9], [50.1, 2]], 
           [[50.11, 9], [50.12, 7], [50.13, 1]], 
@@ -196,28 +196,55 @@ describe Mspire::PeakList do
       end
     end
 
-    it 'makes sense' do
+    xit 'gives reasonable m/z values with very small binwidths' do
+      expected = [[9.09, 3.6666666666666665], [9.1, 0.6666666666666666], [9.11, 2.0], [10.49, 1.6666666666666667], [10.5, 0.3333333333333333], [10.51, 3.0], [10.7, 1.0], [10.71, 2.3333333333333335], [10.72, 3.3333333333333335], [13.48, 2.6666666666666665], [13.5, 1.3333333333333333], [13.51, 4.0]]
       bw = 0.001
-      #(0.1..2.3).step(0.1).to_a.each do |bw|
-      peak_list, data = Mspire::PeakList.merge(subject, :bin_width => bw, :bin_unit => :amu, :split => :share, :return_data => true)
-      puts "ZERO:"
-      p peak_list
-      puts
-      p data
-      peak_list, data = Mspire::PeakList.merge(subject, :bin_width => bw, :bin_unit => :amu, :split => :share, :return_data => true)
-      puts "SHARE:"
-      p peak_list
-      puts
-      p data
-      peak_list, data = Mspire::PeakList.merge(subject, :bin_width => bw, :bin_unit => :amu, :split => :greedy_y, :return_data => true)
-      puts "GREEDY Y:"
-      p peak_list
-      puts
-      p data
-      #peak_list.size.should == 1
-      #peak_list.first.x.should be_within(0.00000000001).of(10.903205128205128)
-      #peak_list.first.y.should == inten
+      [:zero, :share, :greedy_y].each do |methd|
+        peak_list = Mspire::PeakList.merge(subject, :bin_width => bw, :bin_unit => :amu, :split => methd)
+        peak_list.size.should == expected.size
+        expected.zip(peak_list) do |exp, act|
+          act.first.should == exp.first
+          act.last.should be_within(0.00000000001).of(exp.last)
+        end
+      end
     end
+    
+    xit 'gives reasonable m/z values for large binwidths' do
+      bw = 2.2
+      [:zero, :share, :greedy_y].each do |methd|
+        peak_list = Mspire::PeakList.merge(subject, :bin_width => bw, :bin_unit => :amu, :split => methd)
+        (peak_list.last.x > 13.51).should_not be_true
+        (peak_list.size > 2).should_not be_true
+      end
+    end
+
+    HERERERERERERER
+    it 'gives reasonable m/z values for smaller binwidths' do
+      bw = 0.8
+      [:zero, :share, :greedy_y].each do |methd|
+        puts "*******************************"
+        puts methd
+        peak_list, data = Mspire::PeakList.merge(subject, :bin_width => bw, :bin_unit => :amu, :split => methd, :return_data => true)
+        puts
+        p peak_list.map {|peak| [peak.first.round(3), peak.last.round(3)] }
+        p data
+      end
+    end
+
+    xit 'gives reasonable m/z values for medium-large binwidths' do
+      expected = [[10.086296296296297, 18.0], [13.498333333333333, 8.0]]
+      bw = 1.3
+      [:zero, :share, :greedy_y].each do |methd|
+        peak_list = Mspire::PeakList.merge(subject, :bin_width => bw, :bin_unit => :amu, :split => methd)
+        expected.zip(peak_list) do |exp, act|
+
+          act.first.should == exp.first
+          act.last.should be_within(0.00000000001).of(exp.last)
+        end
+      end
+    end
+
+
 
 =begin
       data = Mspire::PeakList.merge(subject, :bin_width => 1000, :bin_unit => :ppm, :only_data => true)

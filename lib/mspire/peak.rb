@@ -8,11 +8,11 @@ module Mspire
     alias_method :x, :first
     alias_method :y, :last
 
-    def y=(val)
+    def x=(val)
       self[0] = val
     end
 
-    def x=(val)
+    def y=(val)
       self[1] = val
     end
   end

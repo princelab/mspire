@@ -112,9 +112,9 @@ module Mspire
           tot_intensity = pseudo_peaklist.inject(0.0) {|sum, bin_peak| sum + bin_peak.y }
           pseudo_peaklist.each do |bin_peak|
 
-            # For the :shared method, the psuedo_peak intensity may have been
+            # For the :share method, the psuedo_peak intensity may have been
             # adjusted, but the individual peaks were not.  Correct this.             
-            if opts[:split] == :shared
+            if opts[:split] == :share
               post_scaled_y = bin_peak.y
               pre_scaled_y = bin_peak.x.data.reduce(0.0) {|sum,peak| sum + peak.last }
               if (post_scaled_y - pre_scaled_y).abs.round(10) != 0.0
@@ -301,6 +301,8 @@ module Mspire
             multipeak = PeakList.new(peak)
             local_min_inds = indices[1..-2].map {|i| i-indices.first}
             peaklists = multipeak.split_contiguous(split_multipeaks_mthd, local_min_inds)
+            puts "INSIDE"
+            p peaklists
             no_lm_pklsts.push *peaklists
           end
         end
