@@ -1,10 +1,17 @@
+require 'mspire/molecular_formula'
+
+module Mspire
+  class MolecularFormula < Hash
+  end
+end
+
 
 module Mspire
   class Isotope
     module AA
       # These represent counts for the individual residues (i.e., no extra H
       # and OH on the ends)
-      ATOM_COUNTS_STR = {
+      aa_to_el_hash = {
         'A' => { :c =>3, :h =>5 , :o =>1 , :n =>1 , :s =>0 , :p =>0, :se =>0 },
         'R' => { :c =>6, :h =>12 , :o =>1 , :n =>4 , :s =>0 , :p =>0, :se =>0 },
         'N' => { :c =>4, :h =>6 , :o =>2 , :n =>2 , :s =>0 , :p =>0, :se =>0 },
@@ -28,11 +35,20 @@ module Mspire
         'U' => { :c =>3, :h =>5 , :o =>1 , :n =>1 , :s =>0 , :p =>0, :se =>1 },
         'O' => { :c =>12, :h =>19 , :o =>2 , :n =>3 , :s =>0 , :p =>0, :se =>0 }
       }
-      ATOM_COUNTS_SYM = Hash[ATOM_COUNTS_STR.map {|k,v| [k.to_sym, v] }]
 
-      # string and symbol access of amino acid (atoms are all lower case
-      # symbols)
-      ATOM_COUNTS = ATOM_COUNTS_SYM.merge ATOM_COUNTS_STR
+      # 
+      FORMULAS_STR = Hash[ 
+        aa_to_el_hash.map {|k,v| [k, Mspire::MolecularFormula.new(v)] }
+      ]
+
+      FORMULAS_SYM = Hash[FORMULAS_STR.map {|k,v| [k.to_sym, v] }]
+
+      # string and symbol access of amino acid residues (amino acids are
+      # accessed upper case and atoms are all lower case symbols)
+      FORMULAS = FORMULAS_SYM.merge FORMULAS_STR
+      
+      # an alias for FORMULAS
+      ATOM_COUNTS = FORMULAS
     end
   end
 end

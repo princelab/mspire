@@ -25,7 +25,7 @@ module Mspire
 
     def self.from_aaseq(aaseq)
       hash = aaseq.each_char.inject({}) do |hash,aa| 
-        hash.merge(Mspire::Isotope::AA::ATOM_COUNTS[aa]) {|h,o,n| (o ? o : 0) +n }
+        hash.merge(Mspire::Isotope::AA::FORMULAS[aa]) {|h,o,n| (o ? o : 0) +n }
       end
       hash[:h] += 2
       hash[:o] += 1

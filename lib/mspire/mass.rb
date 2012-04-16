@@ -16,6 +16,7 @@ module Mspire
       'e' => 0.0005486,   # www.mikeblaber.org/oldwine/chm1045/notes/Atoms/.../Atoms03.htm
       'neutron' => 1.0086649156,
     }
+
     Mspire::Isotope::BY_ELEMENT.each do |el, isotopes|
       MONO_STR[el.to_s] = isotopes.find {|iso| iso.mono }.atomic_mass
     end

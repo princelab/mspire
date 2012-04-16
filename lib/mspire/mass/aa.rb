@@ -3,6 +3,7 @@ require 'mspire/mass'
 module Mspire
   module Mass
     module AA
+
       # amino_acids keys as strings, average masses
       AVG_STRING = {
         "*"=>118.88603,
@@ -32,6 +33,7 @@ module Mspire
         "Y"=>163.17326,
         "Z"=>128.6231
       }
+
       # amino_acids keys as strings, monoisotopic masses
       MONO_STRING = {
         "*"=>118.805716,
@@ -69,10 +71,11 @@ module Mspire
       AVG_SYM = Hash[AVG_STRING.map {|aa,mass| [aa.to_sym, mass] } ]
 
       # Monoisotopic amino acid masses keyed as symbols and also strings (all
-      # upper case).  Also includes Mspire::Mass::MONO for things like protons ('h+')
+      # upper case).  Also includes Mspire::Mass::MONO for things like protons ('h+' and 'h2o')
       MONO = MONO_SYM.merge(MONO_STRING).merge(Mspire::Mass::MONO)
+
       # Average amino acid masses keyed as symbols and also strings (all
-      # uppder case).  Also includes Mspire::Mass::AVG for things like protons ('h+')
+      # uppder case).  Also includes Mspire::Mass::AVG for things like protons ('h+' and 'h2o')
       AVG = AVG_SYM.merge(AVG_STRING).merge(Mspire::Mass::AVG)
     end
   end

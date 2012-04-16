@@ -8,12 +8,12 @@ describe 'accessing an amino acid atom count' do
   end
 
   it 'residue can be accessed with a symbol' do
-    hash = Mspire::Isotope::AA::ATOM_COUNTS[:A]
+    hash = Mspire::Isotope::AA::FORMULAS[:A]
     [:c, :h, :o, :n, :s].each {|key| hash[key].should == @alanine[key] }
   end
     
   it 'residue can be accessed with a string' do
-    hash = Mspire::Isotope::AA::ATOM_COUNTS['A']
+    hash = Mspire::Isotope::AA::FORMULAS['A']
     [:c, :h, :o, :n, :s].each {|key| hash[key].should == @alanine[key] }
   end
 
