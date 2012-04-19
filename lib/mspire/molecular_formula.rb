@@ -23,6 +23,15 @@ module Mspire
       end
     end
 
+    # returns a new formula object where all the atoms have been added up
+    def +(*others)
+      new_form = self.dup
+      others.each do |form|
+        new_form.merge!(form) {|key, oldval, newval| new_form[key] = oldval+newval }
+      end
+      new_form
+    end
+
     def self.from_aaseq(aaseq)
       hash = aaseq.each_char.inject({}) do |hash,aa| 
         hash.merge(Mspire::Isotope::AA::FORMULAS[aa]) {|h,o,n| (o ? o : 0) +n }
@@ -36,6 +45,23 @@ module Mspire
     def mass
       mss = inject(0.0) {|sum,(el,cnt)| sum + (Mspire::Mass::MONO[el]*cnt) }
       mss - (Mspire::Mass::ELECTRON * charge)
+    end
+
+    def to_s(alphabetize=true)
+      h = alphabetize ? self.sort : self
+      h.flat_map {|k,v| 
+        [k.capitalize, v > 1 ? v : '']
+      }.join
+    end
+
+    def to_hash
+      Hash[ self ]
+    end
+
+    alias_method :old_equal, '=='.to_sym
+
+    def ==(other)
+      old_equal(other) && self.charge == other.charge
     end
 
   end
