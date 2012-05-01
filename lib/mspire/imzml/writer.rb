@@ -327,6 +327,15 @@ module Mspire::Imzml
       end
 
       data_info_pairs = write_binary(config[:ibd_filename], all_spectra_iter, config)
+      xy_positions_array = x_y_positions(config)
+
+      unless data_info_pairs.size == xy_positions_array.size
+        STDERR.puts "Input Error! The number of calculated scans must equal the number of actual scans!" 
+        STDERR.puts "The number of calculated positions: #{xy_positions_array.size}"
+        STDERR.puts "The number of actual scans: #{data_info_pairs.size}"
+        raise
+      end
+
       config[:ibd_sha1] = Digest::SHA1.hexdigest(IO.read(config[:ibd_filename]))
 
       source_files = mzml_filenames.zip(sourcefile_ids).map do |mzml_filename, source_file_id|
@@ -374,7 +383,7 @@ module Mspire::Imzml
         # low intensity data point removal: "MS:1000594"
         imzml.run = Mspire::Mzml::Run.new("run1", default_instrument_config) do |run|
           spec_list = Mspire::Mzml::SpectrumList.new(data_processing_obj)
-          data_info_pairs.zip(x_y_positions(config), sourcefile_id_parallel_to_spectra).each_with_index do |(pair, xy, sourcefile_id),i|
+          data_info_pairs.zip(xy_positions_array, sourcefile_id_parallel_to_spectra).each_with_index do |(pair, xy, sourcefile_id),i|
             # TODO: we should probably copy the id from the orig mzml (e.g.
             # scan=1)
             spectrum = Mspire::Mzml::Spectrum.new("spectrum#{i}", params: [rparms_by_id[:spectrum1]])
