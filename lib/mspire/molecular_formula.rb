@@ -1,5 +1,4 @@
 require 'mspire/isotope'
-require 'mspire/isotope/aa'
 require 'mspire/mass'
 
 module Mspire
@@ -66,3 +65,5 @@ module Mspire
 
   end
 end
+
+require 'mspire/isotope/aa'

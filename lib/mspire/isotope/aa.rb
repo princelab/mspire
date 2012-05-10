@@ -1,10 +1,5 @@
 require 'mspire/molecular_formula'
 
-module Mspire
-  class MolecularFormula < Hash
-  end
-end
-
 
 module Mspire
   class Isotope
