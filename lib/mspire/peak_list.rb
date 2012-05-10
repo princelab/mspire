@@ -1,4 +1,5 @@
 require 'mspire/bin'
+require 'mspire/peak'
 
 module Mspire
   # a collection of peak objects.  At a minimum, each peak should respond to

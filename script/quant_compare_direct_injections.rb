@@ -34,6 +34,7 @@ parser = Trollop::Parser.new do
   opt :mz_prefix, "use this prefix for mz values", :default => DEFAULTS[:mz_prefix]
   opt :round_mz, "round the final m/z values to this place", :default => DEFAULTS[:round_mz]
   opt :round_intensity, "round the final int values to this place", :default => DEFAULTS[:round_intensity]
+  opt :simple_calibrate, "adjust the m/z values by that amount", :default => 0.0
   opt :verbose, "talk about it"
 end
 
@@ -129,7 +130,7 @@ File.open(opts[:outfile],'w') do |out|
       signal_by_sample_index[peak.sample_id] += peak.y
     end
 
-    row = [opts[:mz_prefix] + meta_peak.x.round(opts[:round_mz]).to_s, *sample_ids.each_with_index.map {|id,index| signal_by_sample_index[index].round(opts[:round_intensity]) }]
+    row = [opts[:mz_prefix] + (meta_peak.x + opts[:simple_calibrate]).round(opts[:round_mz]).to_s, *sample_ids.each_with_index.map {|id,index| signal_by_sample_index[index].round(opts[:round_intensity]) }]
     out.puts row.join("\t")
   end
 end
