@@ -64,13 +64,34 @@ module Mspire
       [@data_arrays[0][array_index], @data_arrays[1][array_index]]
     end
 
-    # yields(mz, inten) across the spectrum, or array of doublets if no block
+    # yields(mz, inten) across the spectrum, or array of doublets if no block.
+    # Note that each peak is merely an array of m/z and intensity.  For a
+    # genuine 
     def peaks(&block)
       @data_arrays[0].zip(@data_arrays[1], &block)
     end
 
     alias_method :each, :peaks
     alias_method :each_peak, :peaks
+
+    # returns a bonafide Peaklist object (i.e., each peak is cast as a
+    # Mspire::Peak object).  If peak_id is defined, each peak will be cast
+    # as a TaggedPeak object with the given peak_id
+    def to_peaklist(peak_id=nil)
+      # realize this isn't dry, but it is in such an inner loop it needs to be
+      # as fast as possible.
+      pl = Peaklist.new
+      if peak_id
+        peaks.each_with_index do |peak,i|
+          pl[i] = Mspire::Peak.new( peak )
+        end
+      else
+        peaks.each_with_index do |peak,i|
+          pl[i] = Mspire::TaggedPeak.new( peak, peak_id )
+        end
+      end
+      pl
+    end
 
     # if the mzs and intensities are the same then the spectra are considered
     # equal

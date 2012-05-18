@@ -2,7 +2,8 @@
 
 require 'trollop'
 require 'mspire/mzml'
-require 'mspire/peak_list'
+require 'mspire/peaklist'
+require 'mspire/tagged_peak'
 require 'mspire/peak'
 
 def putsv(*args)
@@ -48,34 +49,6 @@ if ARGV.size == 0
   exit
 end
 
-class TracedPeak < Array
-  # the m/z or x value
-  alias_method :x, :first
-  # the intensity or y value
-  alias_method :y, :last
-
-  def x=(val)
-    self[0] = val
-  end
-
-  def y=(val)
-    self[2] = val
-  end
-
-  def initialize(data, sample_id)
-    self[0] = data.first
-    self[1] = sample_id
-    self[2] = data.last
-  end
-
-  def sample_id
-    self[1]
-  end
-
-  def sample_id=(val)
-    self[1] = val
-  end
-end
 
 files = ARGV.dup
 
@@ -85,52 +58,39 @@ if opts[:sample_ids]
   basename_to_sample_id = YAML.load_file(opts[:sample_ids]) 
 end
 
-index_to_sample_id = {}
-sample_ids = files.each_with_index.map do |filename,index|
+sample_ids = files.map do |filename|
   basename = filename.chomp(File.extname(filename))
-  sample_id = basename_to_sample_id ? basename_to_sample_id[basename] : basename
+  basename_to_sample_id ? basename_to_sample_id[basename] : basename
+end
+
+peaklists = files.map do |filename|
   putsv "processing: #{filename}"
+  bunch_of_peaks = []
   Mspire::Mzml.open(filename) do |mzml|
     mzml.each_with_index do |spec,i|
       if spec.ms_level == 1
-        peaks = spec.peaks
-        #p peaks.size
-        peaks.each do |peak|
-          tp = TracedPeak.new(peak, index)
-          peaklist << tp
-        end
+        bunch_of_peaks.push(*spec.peaks)
       end
     end
   end
-  index_to_sample_id[index] = sample_id
-  sample_id
+  peaklist.sort_by!(&:x)
+  peaklist
 end
-
-putsv "gathered #{peaklist.size} peaks!"
-
-putsv "sorting all peaks"
-peaklist.sort! 
 
 putsv "merging peaks"
 share_method = :greedy_y
 #share_method = :share
 
-
-peaks, data = Mspire::PeakList.merge([peaklist], opts.merge( {:split => share_method, :return_data => true} ))
+ar_of_doublets = Mspire::PeakList.merge_and_deconvolve(peaklists, opts.merge( {:split => share_method, :return_data => true} ))
 
 File.open(opts[:outfile],'w') do |out|
 
   header = ["mzs", *sample_ids]
   out.puts header.join("\t")
 
-  data.zip(peaks) do |bucket_of_peaks, meta_peak|
+  ar_of_doublets.each do |mz, ar_of_signals|
 
-    signal_by_sample_index = Hash.new {|h,k| h[k] = 0.0 }
-    bucket_of_peaks.each do |peak|
-      signal_by_sample_index[peak.sample_id] += peak.y
-    end
-
-    row = [opts[:mz_prefix] + (meta_peak.x + opts[:simple_calibrate]).round(opts[:round_mz]).to_s, *sample_ids.each_with_index.map {|id,index| signal_by_sample_index[index].round(opts[:round_intensity]) }]
+    row = [opts[:mz_prefix] + (mz + opts[:simple_calibrate]).round(opts[:round_mz]).to_s, *ar_of_signals.map {|signal| signal.round(opts[:round_intensity]) }]
     out.puts row.join("\t")
   end
 end

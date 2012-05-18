@@ -2,9 +2,9 @@ require 'mspire/bin'
 require 'mspire/peak'
 
 module Mspire
-  # a collection of peak objects.  At a minimum, each peak should respond to
+  # a collection of Peak objects.  At a minimum, each peak should respond to
   # :x and :y
-  class PeakList < Array
+  class Peaklist < Array
 
     def lo_x
       self.first[0]
@@ -38,7 +38,7 @@ module Mspire
     # class methods
     class << self
 
-      # creates a new Mspire::PeakList and coerces each peak into an
+      # creates a new Mspire::Peaklist and coerces each peak into an
       # Mspire::Peak.  If your peaks already behave like peaks you should use
       # .new
       def [](*peaks)
@@ -98,17 +98,17 @@ module Mspire
           Mspire::Peak.new( [bin, bin.data.reduce(0.0) {|sum,peak| sum + peak.y }] )
         end
 
-        pseudo_peaklist = Mspire::PeakList.new(pseudo_peaks)
+        pseudo_peaklist = Mspire::Peaklist.new(pseudo_peaks)
 
         separate_peaklists = pseudo_peaklist.split(opts[:split])
 
         normalize_factor = opts[:normalize] ? peaklists.size : 1
 
         return_data = []
-        final_peaklist = Mspire::PeakList.new unless opts[:only_data]
+        final_peaklist = Mspire::Peaklist.new unless opts[:only_data]
 
         separate_peaklists.each do |pseudo_peaklist|
-          data_peaklist = Mspire::PeakList.new
+          data_peaklist = Mspire::Peaklist.new
           weight_x = 0.0
           tot_intensity = pseudo_peaklist.inject(0.0) {|sum, bin_peak| sum + bin_peak.y }
           #puts "TOT INTENSITY:"
@@ -144,7 +144,7 @@ module Mspire
         [final_peaklist, return_data]
       end
 
-      # returns a new peak_list which has been merged with the others. 
+      # returns a new peaklist which has been merged with the others. 
       # opts[:resolution]) and then segment according to monotonicity (sharing
       # intensity between abutting points).  The  final m/z is the weighted
       # averaged of all the m/z's in each peak.  Valid opts (with default listed
@@ -157,6 +157,7 @@ module Mspire
       #                                     number of spectra
       #     :return_data => false           returns a parallel array containing
       #                                     the peaks associated with each returned peak
+      #     :only_data => false           only returns the binned peaks
       #     :split => :zero|:greedy_y|:share  see Mspire::Peak#split
       #     :centroided => true             treat the data as centroided
       #
@@ -186,8 +187,42 @@ module Mspire
           peaklist
         end
       end
-    end # end class << self
 
+      # takes an array of peaklists, merges them together (like merge), then
+      # returns an array of doublets.  Each doublet is an m/z and an array of
+      # values (parallel to input) of intensities]
+      #
+      # If you are already using tagged peak objects, then you should set
+      # have_tagged_peaks to false (default is true).  The peaks will be
+      # deconvolved based on the sample_id in this case.
+      #
+      #     :have_tagged_peaks => false|true
+      #
+      def merge_and_deconvolve(peaklists, opts={})
+        unless htp=opts.delete(:have_tagged_peaks)
+          peaklists.each_with_index do |peaklist,i|
+            peaklist.map! do |peak|
+              TaggedPeak.new(peak, i)
+            end
+          end
+        end
+
+        # make sure we get the data back out
+        opts[:return_data] = true
+        opts[:only_data] = false
+
+        sample_ids = peaklists.map {|pl| pl.first.sample_id }
+        peaks, data = merge(peaklists, opts)
+        data.zip(peaks).map do |bucket_of_peaks, meta_peak|
+          signal_by_sample_id = Hash.new {|h,k| h[k] = 0.0 }
+          bucket_of_peaks.each do |peak|
+            signal_by_sample_id[peak.sample_id] += peak.y
+          end
+          [meta_peak.x, sample_ids.map {|sample_id| signal_by_sample_id[sample_id] } ]
+        end
+      end
+
+    end # end class << self
 
     # returns an array with the indices outlining each peak.  The first index
     # is the start of the peak, the last index is the last of the peak.
@@ -230,7 +265,7 @@ module Mspire
       peak_inds
     end
 
-    # returns an array of PeakList objects
+    # returns an array of Peaklist objects
     def split_on_zeros(given_peak_boundaries=nil)
       pk_bounds = given_peak_boundaries || peak_boundaries(0.0)
       pk_bounds.map do |indices|
@@ -238,7 +273,7 @@ module Mspire
       end
     end
 
-    # returns an array of PeakList objects
+    # returns an array of Peaklist objects
     # assumes that this is one connected list of peaks (i.e., no
     # zeros/whitespace on the edges or internally)
     #
@@ -255,31 +290,31 @@ module Mspire
       else
         peak_class = first.class
         prev_lm_i = 0  # <- don't worry, will be set to bumped to zero
-        peak_lists = [ self.class.new([self[0]]) ]
+        peaklists = [ self.class.new([self[0]]) ]
         local_min_indices.each do |lm_i|
-          peak_lists.last.push( *self[(prev_lm_i+1)..(lm_i-1)] )
+          peaklists.last.push( *self[(prev_lm_i+1)..(lm_i-1)] )
           case methd
           when :greedy_y
             if self[lm_i-1].y >= self[lm_i+1].y
-              peak_lists.last << self[lm_i]
-              peak_lists << self.class.new
+              peaklists.last << self[lm_i]
+              peaklists << self.class.new
             else
-              peak_lists << self.class.new( [self[lm_i]] )
+              peaklists << self.class.new( [self[lm_i]] )
             end
           when :share
             # for each local min, two new peaks will be created, with
-            # intensity shared between adjacent peak_lists
+            # intensity shared between adjacent peaklists
             lm = self[lm_i]
             sum = self[lm_i-1].y + self[lm_i+1].y
             # push onto the last peaklist its portion of the local min
-            peak_lists.last << peak_class.new( [lm.x, lm.y * (self[lm_i-1].y.to_f/sum)] )
+            peaklists.last << peak_class.new( [lm.x, lm.y * (self[lm_i-1].y.to_f/sum)] )
             # create a new peaklist that contains its portion of the local min
-            peak_lists << self.class.new( [peak_class.new([lm.x, lm.y * (self[lm_i+1].y.to_f/sum)])] )
+            peaklists << self.class.new( [peak_class.new([lm.x, lm.y * (self[lm_i+1].y.to_f/sum)])] )
           end
           prev_lm_i = lm_i
         end
-        peak_lists.last.push(*self[(prev_lm_i+1)...(self.size)] )
-        peak_lists
+        peaklists.last.push(*self[(prev_lm_i+1)...(self.size)] )
+        peaklists
       end
     end
 
@@ -310,7 +345,7 @@ module Mspire
           if indices.size == 2
             no_lm_pklsts << peak
           else # have local minima
-            multipeak = PeakList.new(peak)
+            multipeak = Peaklist.new(peak)
             local_min_inds = indices[1..-2].map {|i| i-indices.first}
             peaklists = multipeak.split_contiguous(split_multipeaks_mthd, local_min_inds)
             no_lm_pklsts.push *peaklists

@@ -1,6 +1,6 @@
 require 'spec_helper'
 
-require 'mspire/peak_list'
+require 'mspire/peaklist'
 require 'mspire/peak'
 
 describe Mspire::PeakList do
@@ -72,7 +72,7 @@ describe Mspire::PeakList do
       end
     end
 
-    describe 'splitting a peak_list that is a multipeak' do
+    describe 'splitting a peaklist that is a multipeak' do
       subject do
         Mspire::PeakList[[50.07, 0], [50.08, 3], [50.09, 8], [50.1, 2], [50.11, 9], [50.12, 7], [50.13, 1], [50.14, 3], [50.15, 0]]
       end
@@ -170,18 +170,18 @@ describe Mspire::PeakList do
 
     it 'gives one peak with large bin width' do
       [true, false].zip([26.0, 78.0]) do |normalize, inten|
-        peak_list = Mspire::PeakList.merge(subject, :bin_width => 2.5, :bin_unit => :amu, :normalize => normalize, :split => :greedy_y)
-        peak_list.size.should == 1
-        peak_list.first.x.should be_within(0.00000000001).of(11.136153846153846)
-        peak_list.first.y.should == inten
+        peaklist = Mspire::PeakList.merge(subject, :bin_width => 2.5, :bin_unit => :amu, :normalize => normalize, :split => :greedy_y)
+        peaklist.size.should == 1
+        peaklist.first.x.should be_within(0.00000000001).of(11.136153846153846)
+        peaklist.first.y.should == inten
       end
     end
 
     it 'regardless of split method, the total intensity remains the same' do
       (0.1..2.3).step(0.1).to_a.each do |bw|
         tot_ints = [:zero, :split, :greedy_y].map do |splt|
-          peak_list = Mspire::PeakList.merge(subject, :bin_width => bw, :bin_unit => :amu, :split => :zero)
-          peak_list.map(&:y).reduce(:+)
+          peaklist = Mspire::PeakList.merge(subject, :bin_width => bw, :bin_unit => :amu, :split => :zero)
+          peaklist.map(&:y).reduce(:+)
         end
         tot_ints.all? {|v| tot_ints.first == v }.should be_true
       end
@@ -201,9 +201,9 @@ describe Mspire::PeakList do
       it "gives reasonable m/z values with very small binwidths (#{methd})" do
         expected = [[9.09, 3.6666666666666665], [9.1, 0.6666666666666666], [9.11, 2.0], [10.49, 1.6666666666666667], [10.5, 0.3333333333333333], [10.51, 3.0], [10.7, 1.0], [10.71, 2.3333333333333335], [10.72, 3.3333333333333335], [13.48, 2.6666666666666665], [13.5, 1.3333333333333333], [13.51, 4.0]]
         bw = 0.001
-        peak_list = Mspire::PeakList.merge(subject, :bin_width => bw, :bin_unit => :amu, :split => methd)
-        peak_list.size.should == expected.size
-        expected.zip(peak_list) do |exp, act|
+        peaklist = Mspire::PeakList.merge(subject, :bin_width => bw, :bin_unit => :amu, :split => methd)
+        peaklist.size.should == expected.size
+        expected.zip(peaklist) do |exp, act|
           act.first.should == exp.first
           act.last.should be_within(0.00000000001).of(exp.last)
         end
@@ -211,24 +211,24 @@ describe Mspire::PeakList do
 
       it 'gives reasonable m/z values for large binwidths' do
         bw = 2.2
-        peak_list = Mspire::PeakList.merge(subject, :bin_width => bw, :bin_unit => :amu, :split => methd)
-        (peak_list.last.x > 13.51).should_not be_true
-        (peak_list.size > 2).should_not be_true
+        peaklist = Mspire::PeakList.merge(subject, :bin_width => bw, :bin_unit => :amu, :split => methd)
+        (peaklist.last.x > 13.51).should_not be_true
+        (peaklist.size > 2).should_not be_true
       end
 
       it 'gives same total intensity' do
         bw = 0.8
         total_intensity = subject.inject(0.0) {|sum,peaklist| sum + peaklist.map(&:y).reduce(:+) }
-        peak_list, data = Mspire::PeakList.merge(subject, :bin_width => bw, :bin_unit => :amu, :split => methd, :normalize => false, :return_data => true)
-        after = peak_list.inject(0.0) {|sum,peak| sum + peak.y }
+        peaklist, data = Mspire::PeakList.merge(subject, :bin_width => bw, :bin_unit => :amu, :split => methd, :normalize => false, :return_data => true)
+        after = peaklist.inject(0.0) {|sum,peak| sum + peak.y }
         after.should be_within(0.00000001).of(total_intensity)
       end
 
       it 'gives reasonable m/z values for medium-large binwidths' do
         expected = [[10.086296296296297, 18.0], [13.498333333333333, 8.0]]
         bw = 1.3
-        peak_list = Mspire::PeakList.merge(subject, :bin_width => bw, :bin_unit => :amu, :split => methd)
-        expected.zip(peak_list) do |exp, act|
+        peaklist = Mspire::PeakList.merge(subject, :bin_width => bw, :bin_unit => :amu, :split => methd)
+        expected.zip(peaklist) do |exp, act|
 
           act.first.should == exp.first
           act.last.should be_within(0.00000000001).of(exp.last)
