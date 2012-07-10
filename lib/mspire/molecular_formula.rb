@@ -14,10 +14,8 @@ module Mspire
         self.new(hash)
       end
 
-      # takes a string, properly capitalized with the formula.  The elements
-      # may be in any order.
-      #
-      #     "H22C12N1O3S2BeLi2"                    # <= order doesn't matter
+      # takes a string, with properly capitalized elements making up the
+      # formula.  The elements may be in any order.
       def from_string(mol_form_str, charge=0)
         mf = self.new({}, charge)
         mol_form_str.scan(/([A-Z][a-z]?)(\d*)/).each do |k,v| 
@@ -26,7 +24,16 @@ module Mspire
         mf
       end
 
-      alias_method :[], :from_string
+      # arg may be a String, Hash, or MolecularFormula object.
+      def from_any(arg, charge=0)
+        if arg.is_a?(String)
+          from_string(arg, charge)
+        else
+          self.new(arg, arg.respond_to?(:charge) ? arg.charge : 0)
+        end
+      end
+      alias_method :[], :from_any
+
     end
 
     # integer desribing the charge state

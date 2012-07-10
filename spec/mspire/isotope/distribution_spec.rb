@@ -49,7 +49,7 @@ describe 'Mspire::Isotope::Distribution class methods' do
     end
 
     it 'gives proper m/z values if the molecule is charged' do
-      charged_molecule = Mspire::MolecularFormula.new( subject )
+      charged_molecule = Mspire::MolecularFormula.from_any( subject )
       charged_molecule.charge = -3
       spec = Mspire::Isotope::Distribution.spectrum( charged_molecule )
       [:mzs, :intensities].each {|att| spec.send(att).size.should == 253 }

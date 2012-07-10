@@ -4,11 +4,10 @@ require 'mspire/molecular_formula'
 module Mspire
   module Mass
 
-    # takes a molecular formula in this format: C2BrH12O
+    # takes a molecular formula as a string, hash or MolecularFormula object
+    # and returns the exact mass.
     def self.formula_to_exact_mass(formula)
-      Mspire::MolecularFormula.new(formula).map do |el,cnt|
-        MONO[el] * cnt
-      end.reduce(:+)
+      Mspire::MolecularFormula.from_any(formula).mass
     end
 
     MONO_STR = {

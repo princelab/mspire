@@ -107,12 +107,12 @@ module Mspire
   class Isotope
     module Distribution
       def self.calculate(molecular_formula_like, normalize=Mspire::Isotope::Distribution::NORMALIZE, percent_cutoff=nil)
-        mf = molecular_formula_like.is_a?(Mspire::MolecularFormula) ? molecular_formula_like : Mspire::MolecularFormula.new(molecular_formula_like)
+        mf = molecular_formula_like.is_a?(Mspire::MolecularFormula) ? molecular_formula_like : Mspire::MolecularFormula.from_any(molecular_formula_like)
         mf.isotope_distribution(normalize, percent_cutoff)
       end
 
       def self.spectrum(molecular_formula_like, normalize=Mspire::Isotope::Distribution::NORMALIZE, percent_cutoff=nil)
-        mf = molecular_formula_like.is_a?(Mspire::MolecularFormula) ? molecular_formula_like : Mspire::MolecularFormula.new(molecular_formula_like)
+        mf = molecular_formula_like.is_a?(Mspire::MolecularFormula) ? molecular_formula_like : Mspire::MolecularFormula.from_any(molecular_formula_like)
         mf.isotope_distribution_spectrum(normalize, percent_cutoff)
       end
     end
