@@ -5,6 +5,7 @@ require 'io/bookmark'
 require 'zlib'
 require 'mspire/mzml/index_list'
 require 'mspire/mzml/spectrum'
+require 'mspire/mzml/chromatogram'
 require 'mspire/mzml/file_description'
 require 'mspire/mzml/software'
 require 'mspire/mzml/scan_list'
@@ -239,6 +240,13 @@ module Mspire
       data.join
     end
 
+    def each_chromatogram(&block)
+      block or return enum_for(__method__)
+      (0...num_chromatograms).each do |int|
+        block.call(chromatogram(int))
+      end
+    end
+
     def each_spectrum(&block)
       block or return enum_for(__method__)
       (0...self.size).each do |int|
@@ -270,12 +278,30 @@ module Mspire
       doc.root
     end
 
+    def chromatogram_node_from_start_byte(start_byte)
+      xml = get_xml_string(start_byte, :chromatogram)
+      doc = Nokogiri::XML.parse(xml, nil, @encoding, Parser::NOBLANKS)
+      doc.root
+    end
+
     # @param [Object] arg an index number (Integer) or id string (String)
-    # @return [Mspire::Spectrum] a spectrum object
+    # @return [Mspire::Mzml::Spectrum] a spectrum object
     def spectrum(arg)
       start_byte = index_list[0].start_byte(arg)
       spec_n = spectrum_node_from_start_byte(start_byte)
       Mspire::Mzml::Spectrum.from_xml(spec_n)
+    end
+
+    # @param [Object] arg an index number (Integer) or id string (String)
+    # @return [Mspire::Mzml::Chromatogram] a spectrum object
+    def chromatogram(arg)
+      start_byte = index_list[:chromatogram].start_byte(arg)
+      chrom_n = chromatogram_node_from_start_byte(start_byte)
+      Mspire::Mzml::Chromatogram.from_xml(chrom_n)
+    end
+
+    def num_chromatograms
+      @index_list[:chromatogram].size
     end
 
     # returns the number of spectra
