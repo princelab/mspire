@@ -119,7 +119,7 @@ module Mspire
     # adds/subtracts electron masses for the charges)
     def mass(consider_electron_masses = true)
       mss = inject(0.0) {|sum,(el,cnt)| sum + (Mspire::Mass::MONO[el]*cnt) }
-      mss -= (Mspire::Mass::ELECTRON * charge) if consider_electron_mass
+      mss -= (Mspire::Mass::ELECTRON * charge) if consider_electron_masses
       mss
     end
 
