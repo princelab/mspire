@@ -1,3 +1,5 @@
+#!/usr/bin/env ruby
+
 require 'mspire/commandline'
 
 Mspire::Commandline.run(ARGV)
