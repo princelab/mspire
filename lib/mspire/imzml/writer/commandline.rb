@@ -13,7 +13,9 @@ end
 
 module Mspire::Imzml::Writer::Commandline
 
-  def self.run(argv, progname=$0)
+  # generates the Trollop parser
+  def self.parser
+    return @parser if @parser
 
     default_config = "config.yaml"
     scan_patterns = %w(flyback meandering random)
@@ -24,9 +26,9 @@ module Mspire::Imzml::Writer::Commandline
     default_pixel_size = '1x1'
     matrix_application_types = %w(sprayed precoated printed drieddroplet)
 
-    parser = Trollop::Parser.new do
+    @parser = Trollop::Parser.new do
       banner <<-EOS
-usage: #{File.basename(progname)} [OPTIONS] <file>.mzML ..."
+usage: mspire to_imzml [OPTIONS] <file>.mzML ..."
 output: <file>.imzML and <file>.ibd
 
 * imzML docs: 
@@ -76,8 +78,15 @@ output: <file>.imzML and <file>.ibd
       # filters (cutoff / max # peaks, etc.)
       # ms_level, etc.
     end
+  end
 
-    opts = parser.parse(argv)
+  def self.run(argv, globalopts)
+    begin
+      opts = parser.parse(argv)
+    rescue Trollop::HelpNeeded
+      return parser.educate
+    end
+
     opts = Hash[YAML.load_file(opts[:config]).map {|k,v| [k.to_sym, v]}].merge(opts) if opts[:config]
 
     opts[:combine] ||= opts.delete(:outfile)
@@ -104,6 +113,3 @@ output: <file>.imzML and <file>.ibd
 
   end
 end
-
-
-
