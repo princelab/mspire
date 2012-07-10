@@ -5,6 +5,24 @@ require 'mspire/mzml'
 
 describe Mspire::Mzml do
 
+  describe 'reading a SIM file' do
+    before do
+      @file = TESTFILES + "/mspire/mzml/1_BB7_SIM_478.5.mzML"
+      @io = File.open(@file)
+      @mzml = Mspire::Mzml.new(@io)
+    end
+    after do
+      @io.close
+    end
+
+    it '#each_chromatogram' do
+      @mzml.each_chromatogram do |chrm|
+        chrm.should be_a(Mspire::Mzml::Chromatogram)
+        p chrm
+      end
+    end
+  end
+
   describe 'reading an indexed, compressed peaks, mzML file' do
     describe 'reading a spectrum' do
 
