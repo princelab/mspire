@@ -45,6 +45,9 @@ output: <file>.imzML and <file>.ibd
       opt :combine, "combine all files and set the base name of resulting imzML and ibd files", :type => String
       opt :outfile, "use a specific basename for the resulting file. Acts like --combine for multiple files", :type => String
 
+      text "\nediting:"
+      opt :trim_files, "determines the least number of spectra in a file and shortens all spectra to be the same length"
+
       text "\nimaging:"
       opt :continuous, "assumes m/z values are the same for every scan. The 'processed' storage format is used unless this flag is given."
       opt :scan_pattern, scan_patterns.join('|'), :default => scan_patterns.first

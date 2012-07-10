@@ -241,7 +241,7 @@ module Mspire
 
     def each_spectrum(&block)
       block or return enum_for(__method__)
-      (0...@index_list[:spectrum].size).each do |int|
+      (0...self.size).each do |int|
         block.call(spectrum(int))
       end
       #block_given? or return enum_for(__method__)
