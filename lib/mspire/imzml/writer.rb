@@ -286,6 +286,9 @@ module Mspire::Imzml
     #       :solvent_flowrate => flowrate of the solvent (ml/min)
     #       :spray_voltage => spray voltage in kV
     #       :target_material => the material the target is made of
+    #     editing:
+    #       :trim_files => determines min # spectra in file and lops
+    #                      off the ends of other files.
     #     general:
     #       :omit_zeros => remove zero values
     #       :combine => use this outfile base name to combine files
@@ -311,6 +314,10 @@ module Mspire::Imzml
       config[:uuid_hyphenated] = uuid_with_hyphens
       config[:uuid] = uuid_with_hyphens.gsub('-','')
 
+      if config[:trim_files]
+        config[:trim_to] = mzml_filenames.map(&:size).min
+      end
+
       sourcefile_id_parallel_to_spectra = []
       sourcefile_ids = []
       all_spectra_iter = Enumerator.new do |yielder|
@@ -318,7 +325,8 @@ module Mspire::Imzml
           sourcefile_id = "source_file_#{i}"
           sourcefile_ids << sourcefile_id
           Mspire::Mzml.open(mzml_filename) do |mzml|
-            mzml.each do |spec| 
+            mzml.each_with_index do |spec,i| 
+              break if config[:trim_to] && (i >= config[:trim_to])
               sourcefile_id_parallel_to_spectra << sourcefile_id 
               yielder << spec
             end
