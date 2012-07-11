@@ -21,6 +21,11 @@ module Mspire
         builder
       end
 
+      def self.from_xml(xml)
+        WORKING HERE!
+        
+      end
+
       extend(Mspire::Mzml::List)
     end
   end

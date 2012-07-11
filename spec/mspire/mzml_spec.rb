@@ -15,17 +15,36 @@ describe Mspire::Mzml do
       @io.close
     end
 
-    it '#each_chromatogram' do
+    specify '#chromatogram' do
+      tic = @mzml.chromatogram(0)
+      tic.id.should == 'TIC'
+
+      sim = @mzml.chromatogram(1)
+      sim.id.should == 'SIM SIC 478.5'
+    end
+
+    specify '#num_chromatograms' do
+      @mzml.num_chromatograms.should == 2
+    end
+
+    specify '#each_chromatogram' do
       @mzml.each_chromatogram do |chrm|
         chrm.should be_a(Mspire::Mzml::Chromatogram)
-        p chrm
+        chrm.times.should be_an(Array)
+        chrm.intensities.should be_an(Array)
+        chrm.times.size.should == 72
+        chrm.intensities.size.should == 72
       end
     end
   end
 
   describe 'reading an indexed, compressed peaks, mzML file' do
-    describe 'reading a spectrum' do
 
+    describe 'reading the header things' do
+
+    end
+
+    describe 'reading a spectrum' do
       before do
         @file = TESTFILES + "/mspire/mzml/j24z.idx_comp.3.mzML"
         @io = File.open(@file)

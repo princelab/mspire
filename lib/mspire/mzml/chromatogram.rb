@@ -4,6 +4,7 @@ module Mspire
   class Mzml
     class Chromatogram
       include Mspire::Mzml::DataArrayContainerLike
+      alias_method :params_initialize, :initialize
 
       # (optional) precursor isolations to the chromatogram currently being
       # described
@@ -12,8 +13,9 @@ module Mspire
       # (optional) Description of product isolation to the chromatogram
       attr_accessor :product
 
-      def initialize(*args, &block)
-        super(*args)
+      def initialize(id, opts={params: []}, &block)
+        @id = id
+        params_initialize(opts)
         block.call(self) if block
       end
 
@@ -22,25 +24,14 @@ module Mspire
 
         [:cvParam, :userParam].each {|v| chrom.describe! xml.xpath("./#{v}") }
 
-        scan_list = Mspire::Mzml::ScanList.new
-        xml.xpath('./scanList/scan').each do |scan_n|
-          scan_list << Mspire::Mzml::Scan.from_xml(scan_n)
-        end
-        chrom.scan_list = scan_list
+        precursor_n = xml.xpath('./precursor').first
+        precursor = Mspire::Mzml::Precursor.from_xml(precursor_n) if precursor_n
 
-        precursor = Mspire::Mzml::Precursor.from_xml(xml.xpath('./precursor').first)
-        product = Mspire::Mzml::Product.from_xml(xml.xpath('./product').first)
+        product_n = xml.xpath('./product').first
+        product = Mspire::Mzml::Product.from_xml(product_n) if product_n
 
-        data_arrays = xml.xpath('./binaryDataArrayList/binaryDataArray').map do |binary_data_array_n|
-          accessions = binary_data_array_n.xpath('./cvParam').map {|node| node['accession'] }
-          base64 = binary_data_array_n.xpath('./binary').text
-          Mspire::Mzml::DataArray.from_binary(base64, accessions)
-        end
+        chrom.data_arrays = Mspire::Mzml::DataArray.data_arrays_from_xml(xml)
 
-        # if there is no chromatogram, we will still return a chromatogram object, it
-        # just has no values
-        data_arrays = [Mspire::Mzml::DataArray.new, Mspire::Mzml::DataArray.new] if data_arrays.size == 0
-        chrom.data_arrays = data_arrays
         chrom
       end
 

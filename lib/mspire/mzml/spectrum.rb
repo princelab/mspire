@@ -1,6 +1,7 @@
-require 'mspire/mzml/data_array_container_like'
+
 require 'mspire/spectrum_like'
 require 'mspire/mzml/data_array'
+require 'mspire/mzml/data_array_container_like'
 require 'mspire/mzml/scan_list'
 require 'mspire/mzml/precursor'
 require 'mspire/mzml/product'
@@ -124,31 +125,21 @@ module Mspire
           Mspire::Mzml::Precursor.from_xml(prec_n)
         end
 
-        data_arrays = xml.xpath('./binaryDataArrayList/binaryDataArray').map do |binary_data_array_n|
-          accessions = binary_data_array_n.xpath('./cvParam').map {|node| node['accession'] }
-          base64 = binary_data_array_n.xpath('./binary').text
-          Mspire::Mzml::DataArray.from_binary(base64, accessions)
-        end
-
-        # if there is no spectrum, we will still return a spectrum object, it
-        # just has no mzs or intensities
-        data_arrays = [Mspire::Mzml::DataArray.new, Mspire::Mzml::DataArray.new] if data_arrays.size == 0
-        spec.data_arrays = data_arrays
+        spec.data_arrays = Mspire::Mzml::DataArray.data_arrays_from_xml(xml)
         spec
       end
 
       # the most common param to pass in would be ms level: 'MS:1000511'
       #
-      # This would generate a spectrum of ms_level=2 :
+      # This would generate a spectrum of ms_level 2 :
       #
-      #     Mspire::Mzml::Spectrum.new(0, "scan=1", 'MS:1000511')
+      #     Mspire::Mzml::Spectrum.new("scan=1", params: [['MS:1000511', 2]])
       #
       def initialize(id, opts={params: []}, &block)
         @id = id
         params_initialize(opts)
         block.call(self) if block
       end
-
 
       # see SpectrumList for generating the entire list
       def to_xml(builder)

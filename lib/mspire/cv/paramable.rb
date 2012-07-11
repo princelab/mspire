@@ -83,8 +83,9 @@ module Mspire
         end
       end
 
-      # Expects arguments describing a single CV::Param or Mapire::UserParam.
-      # Will also accept an Nokogiri::XML::Node or Nokogiri::XML::NodeSet
+      # Expects arguments describing a single CV::Param or Mspire::UserParam.
+      # Will also accept an Nokogiri::XML::Node of the thing that is
+      # describable (meaning it has child elements of cvParam etc.)
       #
       #     obj.describe! 'MS:1000130'  # a positive scan
       #     obj.describe! CV::Param['MS:1000130']  # same behavior
@@ -93,7 +94,7 @@ module Mspire
       #     obj.describe! "MS:1000505", 1524.5865478515625, 'MS:1000131'
       #
       #     # given an XML::NodeSet
-      #     obj.describe! xml_node.xpath('.//cvParam')
+      #     obj.describe! xml_node
       #
       #     # given an XML
       #     obj.describe! xml_node.xpath('.//cvParam').first
@@ -107,7 +108,8 @@ module Mspire
         when Mspire::Mzml::ReferenceableParamGroup
           @ref_param_groups << arg
         when Nokogiri::XML::Node  # a nokogiri node in particular
-          param = 
+HERE -->    xpath referenceableParamGroup, cvParam, userParam (can use the order!!)
+
             case arg.name
             when 'cvParam'
               Mspire::CV::Param[ arg[:accession], arg[:value] ]
