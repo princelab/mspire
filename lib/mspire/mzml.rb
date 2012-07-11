@@ -3,6 +3,7 @@ require 'builder'
 require 'nokogiri'
 require 'io/bookmark'
 require 'zlib'
+require 'core_ext/enumerable'
 require 'mspire/mzml/index_list'
 require 'mspire/mzml/spectrum'
 require 'mspire/mzml/chromatogram'
@@ -189,12 +190,18 @@ module Mspire
       end
       self.file_description = Mspire::Mzml::FileDescription.from_xml(file_description_n)
       next_n = file_description_n.next
+      referenceable_params = {}
       loop do
         case next_n.name
         when 'referenceableParamGroupList'
-          # get a hash ready
+          ref_param_groups = next_n.children.map do |rpg_n|
+            Mspire::Mzml::ReferenceableParamGroup.from_xml(rpg_n)
+          end
+          referenceable_params = ref_param_groups.index_by(&:id)
         when 'sampleList'
-          # set objects
+          samples = next_n.children.map do |sample_n|
+            Mspire::Mzml::Sample.from_xml(sample_n)
+          end
         when 'softwareList'  # required
           # set objects
         when 'instrumentConfigurationList'

@@ -51,6 +51,15 @@ module Mspire
         params_initialize
       end
 
+      def self.data_arrays_from_xml(xml)
+        data_arrays = xml.xpath('./binaryDataArrayList/binaryDataArray').map do |binary_data_array_n|
+          accessions = binary_data_array_n.xpath('./cvParam').map {|node| node['accession'] }
+          base64 = binary_data_array_n.xpath('./binary').text
+          Mspire::Mzml::DataArray.from_binary(base64, accessions)
+        end
+        (data_arrays.size > 0) ? data_arrays : [Mspire::Mzml::DataArray.new, Mspire::Mzml::DataArray.new]
+      end
+
       # returns a new Mspire::Mzml::DataArray object (an array)
       #
       #     args:

@@ -29,6 +29,12 @@ module Mspire
         builder
       end
 
+      def self.from_xml(xml)
+        obj = self.new(xml[:id])
+        [:cvParam, :userParam].each {|v| obj.describe! xml.xpath("./#{v}") }
+        obj
+      end
+
       def self.list_xml(objs, builder)
         builder.referenceableParamGroupList(count: objs.size) do |rpgl_n|
           objs.each {|obj| obj.to_xml_definition(rpgl_n) }
