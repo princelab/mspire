@@ -27,15 +27,15 @@ module Mspire
         @spectrum=spectrum_derived_from
       end
 
-      def self.from_xml(xml)
+      def self.from_xml(xml, ref_hash)
         obj = self.new
         %w(isolationWindow activation).each do |el|
           sub_node = xml.xpath("./#{el}").first
           el[0] = el[0].capitalize
-          Mspire::Mzml.const_get(el).from_xml(sub_node) if sub_node
+          Mspire::Mzml.const_get(el).from_xml(sub_node, ref_hash) if sub_node
         end
         obj.selected_ions = xml.xpath('./selectedIonList/selectedIon').map do |si_n|
-          Mspire::Mzml::SelectedIon.from_xml(si_n)
+          Mspire::Mzml::SelectedIon.from_xml(si_n, ref_hash)
         end
         obj
       end

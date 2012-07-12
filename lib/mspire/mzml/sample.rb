@@ -6,10 +6,14 @@ module Mspire
     class Sample
       include Mspire::CV::Paramable
 
-      attr_accessor :id, :name
+      # A unique identifier across the samples with which to reference this sample description.
+      attr_accessor :id
 
-      def initialize(id, name, opts={params: []}, &block)
-        @id, @name = id, name
+      # An optional name for the sample description, mostly intended as a quick mnemonic.
+      attr_accessor :name
+
+      def initialize(id, opts={params: []}, &block)
+        @id = id
         super(opts)
         block.call(self) if block
       end
@@ -21,9 +25,10 @@ module Mspire
         builder
       end
 
-      def self.from_xml(xml)
-        WORKING HERE!
-        
+      def self.from_xml(xml, ref_hash)
+        obj = self.new(xml[:id])
+        obj.name = xml[:name]
+        describe!(xml, ref_hash)
       end
 
       extend(Mspire::Mzml::List)

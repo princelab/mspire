@@ -6,6 +6,18 @@ require 'andand'
 
 module Mspire
   module CV
+
+    # a module providing the method from_xml for the classes of paramable objects
+    module ParamableFromXml
+
+      def from_xml(xml, ref_hash, obj=nil)
+        obj ||= self.new
+        obj.describe!(xml, ref_hash)
+        obj
+      end
+
+    end
+
     module Paramable
 
       attr_accessor :cv_params
@@ -16,11 +28,26 @@ module Mspire
         cv_params + ref_param_groups.flat_map(&:params) + user_params 
       end
 
+      def each_param(&block)
+        return enum_for __method__ unless block
+        cv_params.each(&block)
+        ref_param_groups.flat_map(&:params).each(&block)
+        user_params.each(&block)
+        nil
+      end
+
       def params?
         total_num_params = cv_params.size + 
           ref_param_groups.reduce(0) {|sum,group| sum + 
             group.params.size } + user_params.size
         total_num_params > 0
+      end
+
+      def each_accessionable_param(&block)
+        return enum_for __method__ unless block
+        cv_params.each(&block)
+        ref_param_groups.flat_map(&:params).each(&block)
+        nil
       end
 
       def accessionable_params
@@ -38,7 +65,7 @@ module Mspire
       # returns the value if the param exists by that name.  Returns true if
       # the param exists but has no value. returns false if no param
       def fetch(name)
-        param = params.find {|param| param.name == name}
+        param = each_param.find {|param| param.name == name}
         if param
           param.value || true
         else
@@ -68,7 +95,7 @@ module Mspire
       end
 
       def param_by_accession(acc)
-        accessionable_params.find {|v| v.accession == acc }
+        each_accessionable_param.find {|v| v.accession == acc }
       end
       alias_method :param_by_acc, :param_by_accession
 
@@ -93,11 +120,9 @@ module Mspire
       #     # base peak intensity, units=number of counts
       #     obj.describe! "MS:1000505", 1524.5865478515625, 'MS:1000131'
       #
-      #     # given an XML::NodeSet
-      #     obj.describe! xml_node
-      #
-      #     # given an XML
-      #     obj.describe! xml_node.xpath('.//cvParam').first
+      #     # given an XML::NodeSet (and an optional hash of
+      #     ReferenceableParamGroup objects indexed by id)
+      #     obj.describe! xml_node, ref_param_hash
       #
       # returns self
       def describe!(*args)
@@ -108,13 +133,19 @@ module Mspire
         when Mspire::Mzml::ReferenceableParamGroup
           @ref_param_groups << arg
         when Nokogiri::XML::Node  # a nokogiri node in particular
-HERE -->    xpath referenceableParamGroup, cvParam, userParam (can use the order!!)
-
+          xpath.children.each do |child_n|
+            case child_n.name
+            when 'referenceableParamGroup'
+              @ref_param_groups << arg.last[child_n[:ref]]
+            when 'cvParam'
+              @cv_params << Mspire::CV::Param[ child_n[:accession], child_n[:value] ]
+            when 'userParam'
+              @user_params << Mspire::UserParam.new(child_n[:name], child_n[:value], child_n[:type])
+            end
+          end
             case arg.name
             when 'cvParam'
-              Mspire::CV::Param[ arg[:accession], arg[:value] ]
             when 'userParam'
-              Mspire::UserParam.new(arg[:name], arg[:value], arg[:type])
             end
           if (unit_acc = arg[:unitAccession])
             param.unit = ::CV::Param.new(arg[:unitCvRef], unit_acc, arg[:unitName])

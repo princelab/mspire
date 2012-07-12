@@ -5,6 +5,7 @@ require 'mspire/mzml/contact'
 module Mspire
   class Mzml
     class FileDescription
+      # note: FileDescription is NOT paramable!
 
       # a summary of the different types of spectra, must be present
       attr_accessor :file_content
@@ -27,8 +28,16 @@ module Mspire
         #raise ArgumentError, "FileDescription must have file_content" unless @file_content
       end
 
-      def self.from_xml(xml)
-        self.new
+      def self.from_xml(xml, ref_hash)
+        obj = self.new
+        obj.file_content = Mspire::Mzml::FileContent.from_xml(xml.xpath('./fileContent').first, ref_hash)
+        obj.source_files = xml.xpath('./sourceFileList/sourceFile').map do |source_file_n|
+          Mspire::Mzml::SourceFile.from_xml(source_file_n, ref_hash)
+        end
+        obj.contacts = xml.xpath('./contacts').map do |contact_n|
+          Mspire::Mzml::Contact.from_xml(contact_n, ref_hash)
+        end
+        obj
       end
 
       def to_xml(builder)

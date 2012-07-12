@@ -8,12 +8,7 @@ module Mspire
     #     accession="MS:1000500" name="scan window upper limit" value="1800"
     class ScanWindow
       include Mspire::CV::Paramable
-
-      def self.from_xml(xml)
-        obj = self.new
-        [:cvParam, :userParam].each {|v| obj.describe! xml.xpath("./#{v}") }
-        obj
-      end
+      extend Mspire::CV::ParamableFromXml
     end
   end
 end

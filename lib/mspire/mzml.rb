@@ -190,7 +190,10 @@ module Mspire
       end
       self.file_description = Mspire::Mzml::FileDescription.from_xml(file_description_n)
       next_n = file_description_n.next
-      referenceable_params = {}
+
+      # a hash of referenceable_param_groups indexed by id
+      ref_hash = {}
+
       loop do
         case next_n.name
         when 'referenceableParamGroupList'
@@ -200,11 +203,17 @@ module Mspire
           referenceable_params = ref_param_groups.index_by(&:id)
         when 'sampleList'
           samples = next_n.children.map do |sample_n|
-            Mspire::Mzml::Sample.from_xml(sample_n)
+            Mspire::Mzml::Sample.from_xml(sample_n, ref_hash)
           end
         when 'softwareList'  # required
-          # set objects
+          software_list = next_n.children.map do |software_n|
+            Mspire::Mzml::Software.from_xml(software_n, ref_hash)
+          end
         when 'instrumentConfigurationList'
+          instrument_configurations = next_n.children.map do |inst_config_n|
+            Mspire::Mzml::InstrumentConfiguration.from_xml(inst_config_n, ref_hash)
+          end
+          ??? MORE??
           # set objects
         when 'dataProcessingList'
           # set objects

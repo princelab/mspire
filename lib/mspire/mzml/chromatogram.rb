@@ -19,18 +19,18 @@ module Mspire
         block.call(self) if block
       end
 
-      def self.from_xml(xml)
+      def self.from_xml(xml, ref_hash)
         chrom = Mspire::Mzml::Chromatogram.new(xml[:id])
 
         [:cvParam, :userParam].each {|v| chrom.describe! xml.xpath("./#{v}") }
 
         precursor_n = xml.xpath('./precursor').first
-        precursor = Mspire::Mzml::Precursor.from_xml(precursor_n) if precursor_n
+        precursor = Mspire::Mzml::Precursor.from_xml(precursor_n, ref_hash) if precursor_n
 
         product_n = xml.xpath('./product').first
-        product = Mspire::Mzml::Product.from_xml(product_n) if product_n
+        product = Mspire::Mzml::Product.from_xml(product_n, ref_hash) if product_n
 
-        chrom.data_arrays = Mspire::Mzml::DataArray.data_arrays_from_xml(xml)
+        chrom.data_arrays = Mspire::Mzml::DataArray.data_arrays_from_xml(xml, ref_hash)
 
         chrom
       end
