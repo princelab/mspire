@@ -31,7 +31,7 @@ module Mspire
 
       def self.from_xml(xml)
         obj = self.new(xml[:id])
-        [:cvParam, :userParam].each {|v| obj.describe! xml.xpath("./#{v}") }
+        describe!(xml)
         obj
       end
 

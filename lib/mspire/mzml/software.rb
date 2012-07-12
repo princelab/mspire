@@ -6,6 +6,8 @@ module Mspire
   class Mzml
     class Software
       include Mspire::CV::Paramable
+      extend Mspire::Mzml::List
+      extend Mspire::CV::ParamableFromXml
 
       attr_accessor :id, :version
 
@@ -22,7 +24,11 @@ module Mspire
         builder
       end
 
-      extend(Mspire::Mzml::List)
+      def from_xml(xml, ref_hash)
+        obj = self.new(xml[:id], xml[:version])
+        super(xml, ref_hash, obj)
+      end
+
     end
   end
 end

@@ -2,6 +2,7 @@
 module Mspire
   class Mzml
     class CV
+      # note: CV is NOT paramable!
 
       # (required) The short label to be used as a reference tag with which to refer to
       # this particular Controlled Vocabulary source description (e.g., from

@@ -29,13 +29,12 @@ module Mspire
       #def self.from_xml(xml)
       #end
 
-      def self.from_xml(xml)
-        scan = self.new
-        [:cvParam, :userParam].each {|v| scan.describe! xml.xpath("./#{v}") }
-        scan.scan_windows = xml.xpath('./scanWindowList/scanWindow').map do |scan_window_n|
-          Mspire::Mzml::ScanWindow.from_xml(scan_window_n)
+      def self.from_xml(xml, ref_hash)
+        obj = super(xml, ref_hash)
+        obj.scan_windows = xml.xpath('./scanWindowList/scanWindow').map do |scan_window_n|
+          Mspire::Mzml::ScanWindow.from_xml(scan_window_n, ref_hash)
         end
-        scan
+        obj
       end
 
       def to_xml(builder)

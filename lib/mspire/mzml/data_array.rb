@@ -51,10 +51,12 @@ module Mspire
         params_initialize
       end
 
-      def self.data_arrays_from_xml(xml)
+      def self.data_arrays_from_xml(xml, ref_hash)
         data_arrays = xml.xpath('./binaryDataArrayList/binaryDataArray').map do |binary_data_array_n|
           accessions = binary_data_array_n.xpath('./cvParam').map {|node| node['accession'] }
           base64 = binary_data_array_n.xpath('./binary').text
+          # for now we will actually just ignore the units associated with the
+          # intensity data array.
           Mspire::Mzml::DataArray.from_binary(base64, accessions)
         end
         (data_arrays.size > 0) ? data_arrays : [Mspire::Mzml::DataArray.new, Mspire::Mzml::DataArray.new]

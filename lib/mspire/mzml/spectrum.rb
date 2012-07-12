@@ -44,6 +44,9 @@ module Mspire
     class Spectrum
       include Mspire::SpectrumLike
       include Mspire::Mzml::DataArrayContainerLike
+
+      extend Mspire::CV::ParamableFromXml
+
       alias_method :params_initialize, :initialize
 
       # (optional) an Mspire::Mzml::SourceFile object
@@ -108,24 +111,23 @@ module Mspire
       end
 
       # takes a Nokogiri node and sets relevant properties
-      def self.from_xml(xml)
+      def self.from_xml(xml, ref_hash)
         spec = Mspire::Mzml::Spectrum.new(xml[:id])
-
         spec.spot_id = xml[:spotID]
 
-        [:cvParam, :userParam].each {|v| spec.describe! xml.xpath("./#{v}") }
+        super(xml, ref_hash)
 
         scan_list = Mspire::Mzml::ScanList.new
         xml.xpath('./scanList/scan').each do |scan_n|
-          scan_list << Mspire::Mzml::Scan.from_xml(scan_n)
+          scan_list << Mspire::Mzml::Scan.from_xml(scan_n, ref_hash)
         end
         spec.scan_list = scan_list
 
         spec.precursors = xml.xpath('./precursorList/precursor').map do |prec_n|
-          Mspire::Mzml::Precursor.from_xml(prec_n)
+          Mspire::Mzml::Precursor.from_xml(prec_n, ref_hash)
         end
 
-        spec.data_arrays = Mspire::Mzml::DataArray.data_arrays_from_xml(xml)
+        spec.data_arrays = Mspire::Mzml::DataArray.data_arrays_from_xml(xml, ref_hash)
         spec
       end
 
