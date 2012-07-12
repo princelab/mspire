@@ -2,7 +2,7 @@
 
 module Mspire
   class Mzml
-    class ChromatogramList < Array
+    class ChromatogramList
 
       # a DataProcessing object
       attr_reader :default_data_processing

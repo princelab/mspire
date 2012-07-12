@@ -21,6 +21,13 @@ module Mspire
         builder
       end
 
+      def self.from_xml(xml, ref_hash, software_hash)
+        processing_methods = xml.children.map do |pm_n| 
+          ProcessingMethod.from_xml(pm_n, ref_hash, software_hash)
+        end
+        self.new(xml[:id], processing_methods)
+      end
+
       extend(Mspire::Mzml::List)
     end
   end

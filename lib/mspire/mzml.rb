@@ -1,10 +1,16 @@
+
+
+# TODO: trim down these require statements to only include upper level
 require 'mspire'
 require 'builder'
 require 'nokogiri'
 require 'io/bookmark'
 require 'zlib'
+
 require 'core_ext/enumerable'
+require 'mspire/mzml/parser'
 require 'mspire/mzml/index_list'
+require 'mspire/mzml/index'
 require 'mspire/mzml/spectrum'
 require 'mspire/mzml/chromatogram'
 require 'mspire/mzml/file_description'
@@ -75,6 +81,23 @@ module Mspire
   #       end
   #     end
   class Mzml
+    include Enumerable  # each_spectrum
+
+    class << self
+      # read-only right now
+      def open(filename, &block)
+        File.open(filename) do |io|
+          block.call(self.new(io))
+        end
+      end
+
+      def foreach(filename, &block)
+        block or return enum_for(__method__, filename)
+        open(filename) do |mzml|
+          mzml.each(&block)
+        end
+      end
+    end
 
     module Default
       NAMESPACE = {
@@ -130,14 +153,16 @@ module Mspire
     # (required) an Mspire::Mzml::Run object
     attr_accessor :run
 
-    module Parser
-      NOBLANKS = ::Nokogiri::XML::ParseOptions::DEFAULT_XML | ::Nokogiri::XML::ParseOptions::NOBLANKS
-    end
-    include Enumerable
-
+    # the io object of the mzml file
     attr_accessor :io
+
+    # Mspire::Mzml::IndexList object associated with the file (only expected when reading
+    # mzml files at the moment)
     attr_accessor :index_list
+
+    # xml file encoding
     attr_accessor :encoding
+
 
     # arg must be an IO object for automatic index and header parsing to
     # occur.  If arg is a hash, then attributes are set.  In addition (or
@@ -157,17 +182,15 @@ module Mspire
         rescue EOFError
           raise RuntimeError, "no encoding present in XML!  (Is this even an xml file?)"
         end
-        @index_list = get_index_list
-        read_header!
+        @index_list = Mspire::Mzml::IndexList.from_io(@io)
+        read_header!(@index_list)
       when Hash
         arg.each {|k,v| self.send("#{k}=", v) }
       end
-      if block
-        block.call(self)
-      end
+      block.call(self) if block
     end
 
-    def read_header!
+    def read_header!(index_list)
       @io.rewind
       chunk_size = 2**12
       loc = 0
@@ -189,209 +212,90 @@ module Mspire
         Mspire::Mzml::CV.from_xml(cv_n)
       end
       self.file_description = Mspire::Mzml::FileDescription.from_xml(file_description_n)
-      next_n = file_description_n.next
+      xml_n = file_description_n.next
 
       # a hash of referenceable_param_groups indexed by id
       ref_hash = {}
 
       loop do
-        case next_n.name
+        case xml_n.name
         when 'referenceableParamGroupList'
-          ref_param_groups = next_n.children.map do |rpg_n|
+          ref_param_groups = xml_n.children.map do |rpg_n|
             Mspire::Mzml::ReferenceableParamGroup.from_xml(rpg_n)
           end
           referenceable_params = ref_param_groups.index_by(&:id)
         when 'sampleList'
-          samples = next_n.children.map do |sample_n|
+          samples = xml_n.children.map do |sample_n|
             Mspire::Mzml::Sample.from_xml(sample_n, ref_hash)
           end
         when 'softwareList'  # required
-          software_list = next_n.children.map do |software_n|
+          software_list = xml_n.children.map do |software_n|
             Mspire::Mzml::Software.from_xml(software_n, ref_hash)
           end
         when 'instrumentConfigurationList'
-          instrument_configurations = next_n.children.map do |inst_config_n|
+          instrument_configurations = xml_n.children.map do |inst_config_n|
             Mspire::Mzml::InstrumentConfiguration.from_xml(inst_config_n, ref_hash)
           end
-          ??? MORE??
-          # set objects
         when 'dataProcessingList'
-          # set objects
+          data_processing_list = xml_n..children.map do |data_processing_n|
+            Mspire::Mzml::DataProcessing.from_xml(data_processing_n, ref_hash)
+          end
         when 'run'
-          # get defaults ready
+          run = Mspire::Mzml::Run.from_xml(xml_n, ref_hash, index_list, instrument_configurations.index_by(&:id), data_processing_list.index_by(&:id))
           break
         end
-        next_n = next_n.next
+        xml_n = xml_n.next
       end
     end
 
-    class << self
-
-      # read-only right now
-      def open(filename, &block)
-        File.open(filename) do |io|
-          block.call(self.new(io))
-        end
+    module Convenience
+      def each_chromatogram(&block)
+        @run.chromatogram_list.each(&block)
       end
 
-      def foreach(filename, &block)
-        block or return enum_for(__method__, filename)
-        open(filename) do |mzml|
-          mzml.each(&block)
-        end
-      end
-    end
-
-    # name can be :spectrum or :chromatogram
-    def get_xml_string(start_byte, name=:spectrum)
-      io.seek(start_byte)
-      data = []
-      regexp = %r{</#{name}>}
-      io.each_line do |line|
-        data << line 
-        #unless (line.index('<binary') && line[-12..-1].include?('</binary>'))
-          break if regexp.match(line)
-        #end
-      end
-      data.join
-    end
-
-    def each_chromatogram(&block)
-      block or return enum_for(__method__)
-      (0...num_chromatograms).each do |int|
-        block.call(chromatogram(int))
-      end
-    end
-
-    def each_spectrum(&block)
-      block or return enum_for(__method__)
-      (0...self.size).each do |int|
-        block.call(spectrum(int))
-      end
-      #block_given? or return enum_for(__method__)
-      #(0...@index_list[:spectrum].size).each do |int|
-      #  yield spectrum(int)
-      #end
-    end
-
-    # returns the Nokogiri::XML::Node object associated with each spectrum
-    def each_spectrum_node(&block)
-      @index_list[:spectrum].each do |start_byte|
-        block.call spectrum_node_from_start_byte(start_byte)
-      end
-    end
-
-    alias_method :each, :each_spectrum
-
-    # returns the nokogiri xml node for the spectrum at that index
-    def spectrum_node(index)
-      spectrum_node_from_start_byte(@index_list[:spectrum][index])
-    end
-
-    def spectrum_node_from_start_byte(start_byte)
-      xml = get_xml_string(start_byte, :spectrum)
-      doc = Nokogiri::XML.parse(xml, nil, @encoding, Parser::NOBLANKS)
-      doc.root
-    end
-
-    def chromatogram_node_from_start_byte(start_byte)
-      xml = get_xml_string(start_byte, :chromatogram)
-      doc = Nokogiri::XML.parse(xml, nil, @encoding, Parser::NOBLANKS)
-      doc.root
-    end
-
-    # @param [Object] arg an index number (Integer) or id string (String)
-    # @return [Mspire::Mzml::Spectrum] a spectrum object
-    def spectrum(arg)
-      start_byte = index_list[0].start_byte(arg)
-      spec_n = spectrum_node_from_start_byte(start_byte)
-      Mspire::Mzml::Spectrum.from_xml(spec_n)
-    end
-
-    # @param [Object] arg an index number (Integer) or id string (String)
-    # @return [Mspire::Mzml::Chromatogram] a spectrum object
-    def chromatogram(arg)
-      start_byte = index_list[:chromatogram].start_byte(arg)
-      chrom_n = chromatogram_node_from_start_byte(start_byte)
-      Mspire::Mzml::Chromatogram.from_xml(chrom_n)
-    end
-
-    def num_chromatograms
-      @index_list[:chromatogram].size
-    end
-
-    # returns the number of spectra
-    def size
-      @index_list[:spectrum].size
-    end
-
-    alias_method :'[]', :spectrum
-
-    # @param [Integer] scan_num the scan number 
-    # @return [Mspire::Spectrum] a spectrum object, or nil if not found
-    # @raise [ScanNumbersNotUnique] if scan numbers are not unique
-    # @raise [ScanNumbersNotFound] if spectra exist but scan numbers were not
-    #   found
-    def spectrum_from_scan_num(scan_num)
-      @scan_to_index ||= @index_list[0].create_scan_index
-      raise ScanNumbersNotUnique if @scan_to_index == false
-      raise ScanNumbersNotFound if @scan_to_index == nil
-      spectrum(@scan_to_index[scan_num])
-    end
-
-    # @return [Mspire::Mzml::IndexList] or nil if there is no indexList in the
-    # mzML
-    def read_index_list
-      if offset=Mspire::Mzml::Index.index_offset(@io)
-        @io.seek(offset)
-        xml = Nokogiri::XML.parse(@io.read, nil, @encoding, Parser::NOBLANKS)
-        index_list = xml.root
-        num_indices = index_list['count'].to_i
-        array = index_list.children.map do |index_n|
-          #index = Index.new(index_n['name'])
-          index = Index.new
-          index.name = index_n['name'].to_sym
-          ids = []
-          index_n.children.map do |offset_n| 
-            index << offset_n.text.to_i 
-            ids << offset_n['idRef']
-          end
-          index.ids = ids
-          index
-        end
-        IndexList.new(array)
-      end
-    end
-    # Reads through and captures start bytes
-    # @return [Mspire::Mzml::IndexList] 
-    def create_index_list
-      indices_hash = @io.bookmark(true) do |inner_io|   # sets to beginning of file
-        indices = {:spectrum => {}, :chromatogram => {}}
-        byte_total = 0
-        @io.each do |line|
-          if md=%r{<(spectrum|chromatogram).*?id=['"](.*?)['"][ >]}.match(line)
-            indices[md[1].to_sym][md[2]] = byte_total + md.pre_match.bytesize
-          end
-          byte_total += line.bytesize
-        end
-        indices
+      def each_spectrum(&block)
+        @run.spectrum_list.each(&block)
       end
 
-      indices = indices_hash.map do |sym, hash|
-        indices = Index.new ; ids = []
-        hash.each {|id, startbyte| ids << id ; indices << startbyte }
-        indices.ids = ids ; indices.name = sym
-        indices
+      alias_method :each, :each_spectrum
+
+      # @param [Object] arg an index number (Integer) or id string (String)
+      # @return [Mspire::Mzml::Spectrum] a spectrum object
+      def spectrum(arg)
+        run.spectrum_list[arg]
       end
-      IndexList.new(indices)
-    end
+      alias_method :'[]', :spectrum
 
-    # reads or creates an index list
-    # @return [Array] an array of indices
-    def get_index_list
-      read_index_list || create_index_list
-    end
+      # @param [Object] arg an index number (Integer) or id string (String)
+      # @return [Mspire::Mzml::Chromatogram] a spectrum object
+      def chromatogram(arg)
+        run.chromatogram_list[arg]
+      end
 
+      def num_chromatograms
+        run.chromatogram_list.size
+      end
+
+      # returns the number of spectra
+      def length
+        run.spectrum_list.size
+      end
+      alias_method :size, :length
+
+      # @param [Integer] scan_num the scan number 
+      # @return [Mspire::Spectrum] a spectrum object, or nil if not found
+      # @raise [ScanNumbersNotUnique] if scan numbers are not unique
+      # @raise [ScanNumbersNotFound] if spectra exist but scan numbers were not
+      #   found
+      def spectrum_from_scan_num(scan_num)
+        @scan_to_index ||= @index_list[0].create_scan_index
+        raise ScanNumbersNotUnique if @scan_to_index == false
+        raise ScanNumbersNotFound if @scan_to_index == nil
+        spectrum(@scan_to_index[scan_num])
+      end
+    end
+    include Convenience
+    
     # Because mzml files are often very large, we try to avoid storing the
     # entire object tree in memory before writing.
     # 
