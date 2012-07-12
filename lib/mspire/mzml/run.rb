@@ -49,6 +49,20 @@ module Mspire
         end
         builder
       end
+
+      def self.from_xml(xml, ref_hash, io_index_list, instrument_config_hash, data_processing_hash)
+        obj = self.new(xml[:id], instrument_config_hash[xml[:defaultInstrumentConfigurationRef]])
+        (list_node = obj.describe_from_xml!(xml, ref_hash)) || return obj
+        loop do
+          start_time = Time.now
+          io_index = io_index_list.find {|io_index| io_index.name.to_s == list_node.name }
+          list_class = Mspire::Mzml.const_get(io_index.name.to_s.capitalize + "List")
+          list_obj = list_class.new(data_processing_hash[list_node[:defaultDataProcessingRef]], io_index)
+          self.send(io_index.name.to_s + "_list=", list_obj)
+          puts "TIME TO READ HEADER: #{Time.now - start_time}"
+          break unless list_node = list_node.next
+        end
+      end
     end
   end
 end

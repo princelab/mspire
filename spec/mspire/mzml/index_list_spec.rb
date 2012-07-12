@@ -1,7 +1,6 @@
 require 'spec_helper'
 
-require 'mspire/mzml'
-require 'mspire/mzml/index_list'
+require 'mspire/mzml' # require index and index_list
 
 describe 'non-indexed uncompressed peaks, mzML file' do
   subject { TESTFILES + "/mspire/mzml/openms.noidx_nocomp.12.mzML" }

@@ -1,6 +1,6 @@
 require 'spec_helper'
-require 'builder'
 
+require 'builder'
 require 'mspire/mzml'
 
 describe Mspire::Mzml do

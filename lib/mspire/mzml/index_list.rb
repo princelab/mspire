@@ -1,10 +1,11 @@
+
 module Mspire
   class Mzml
     # A simple array of indices but #[] has been overloaded to find an index
     # by name
     #
     #     index_list[0]  # the first index
-    #     index_list.map(&:names) # -> [:spectrum, :chromatogram] 
+    #     index_list.map(&:name) # -> [:spectrum, :chromatogram] 
     #     index_list[:spectrum]  # the spectrum index
     #     index_list[:chromatogram]  # the chromatogram index
     class IndexList < Array
@@ -20,12 +21,14 @@ module Mspire
           self.find {|index| index.name == int_or_symbol }
         end
       end
-    end
-
-    # the array holds start bytes
-    class Index < Array
 
       class << self
+
+        # either reads in from file or creates an IndexList
+        def from_io(io)
+          read_index_list(io) || create_index_list(io)
+        end
+
         # returns an Integer or nil if not found
         # does a single jump backwards from the tail of the file looking for
         # an xml element based on tag.  If it is not found, returns nil
@@ -35,64 +38,57 @@ module Mspire
           md = io.readlines("\n").map {|line| line.match(tag_re) }.compact.shift
           md[1].to_i if md
         end
-      end
 
-      # an index indexed by scan number
-      attr_accessor :by_scans
-
-      # the name of the index (as a symbol)
-      attr_accessor :name
-
-      # a parallel array of ids (idRef's)
-      attr_accessor :ids
-
-      def start_byte_and_id(int)
-        [self[int], ids[int]]
-      end
-
-      # returns hash of id to start_byte
-      def create_id_index
-        Hash[self.ids.zip(self)]
-      end
-
-      # @return [Integer] the start byte of the spectrum
-      # @param [Object] an Integer (the index number) or String (an id string)
-      def start_byte(arg)
-        case arg
-        when Integer
-          self[arg]
-        when String
-          @id_index ||= create_id_index
-          @id_index[arg]
-        end
-      end
-
-      # generates a scan to index hash that points from scan number to the
-      # spectrum index number.  returns the index, nil if the scan ids
-      # are not present and spectra are, or false if they are not unique.
-      def create_scan_to_index
-        scan_re = /scan=(\d+)/
-          scan_to_index = {}
-        ids.each_with_index do |id, index|
-          md = id.match(scan_re)
-          scan_num = md[1].to_i if md
-          if scan_num
-            if scan_to_index.key?(scan_num)
-              return false
-            else
-              scan_to_index[scan_num] = index
+        # @return [Mspire::Mzml::IndexList] or nil if there is no indexList in the
+        # mzML
+        def read_index_list(io)
+          if (offset = index_offset(io))
+            io.seek(offset)
+            xml = Nokogiri::XML.parse(io.read, nil, @encoding, Parser::NOBLANKS)
+            index_list = xml.root
+            num_indices = index_list['count'].to_i
+            array = index_list.children.map do |index_n|
+              #index = Index.new(index_n['name'])
+              index = Index.new
+              index.name = index_n['name'].to_sym
+              ids = []
+              index_n.children.map do |offset_n| 
+                index << offset_n.text.to_i 
+                ids << offset_n['idRef']
+              end
+              index.ids = ids
+              index
             end
+            IndexList.new(array)
           end
         end
-        if scan_to_index.size > 0
-          by_scans = scan_to_index
-        elsif ids.size > 0
-          nil  # there are scans, but we did not find scan numbers
-        else
-          scan_to_index
+
+        # Reads through and captures start bytes
+        # @return [Mspire::Mzml::IndexList] 
+        def create_index_list
+          indices_hash = io.bookmark(true) do |inner_io|   # sets to beginning of file
+            indices = {:spectrum => {}, :chromatogram => {}}
+            byte_total = 0
+            io.each do |line|
+              if md=%r{<(spectrum|chromatogram).*?id=['"](.*?)['"][ >]}.match(line)
+                indices[md[1].to_sym][md[2]] = byte_total + md.pre_match.bytesize
+              end
+              byte_total += line.bytesize
+            end
+            indices
+          end
+
+          indices = indices_hash.map do |sym, hash|
+            indices = Index.new ; ids = []
+            hash.each {|id, startbyte| ids << id ; indices << startbyte }
+            indices.ids = ids ; indices.name = sym
+            indices
+          end
+          IndexList.new(indices)
         end
+
       end
     end
   end
-end
 
+end

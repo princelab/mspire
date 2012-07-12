@@ -12,7 +12,7 @@ module Mspire
 
       def from_xml(xml, ref_hash, obj=nil)
         obj ||= self.new
-        obj.describe!(xml, ref_hash)
+        obj.describe_from_xml!(xml, ref_hash)
         obj
       end
 
@@ -110,19 +110,44 @@ module Mspire
         end
       end
 
-      # Expects arguments describing a single CV::Param or Mspire::UserParam.
-      # Will also accept an Nokogiri::XML::Node of the thing that is
-      # describable (meaning it has child elements of cvParam etc.)
+      # takes a node with children that are cvParam, userParam or
+      # referenceableParamGroupRef.  
+      #
+      # All param elements are required to appear before other elements, so
+      # the code is careful to walk through the xml element by element and
+      # break as soon as a non param node is encountered.
+      #
+      # returns the next sibling node or nil if none
+      def describe_from_xml!(xml_node, ref_hash)
+        (child_n = xml_node.child) || return self
+        loop do
+          array = 
+            case child_n.name
+            when 'referenceableParamGroupRef'
+              @ref_param_groups << ref_hash[arg[:ref]]
+            when 'cvParam'
+              @cv_params << Mspire::CV::Param[ child_n[:accession], child_n[:value] ]
+            when 'userParam'
+              @user_params << Mspire::UserParam.new(child_n[:name], child_n[:value], child_n[:type])
+            else # assumes that the above precede any following children as per the spec
+              break 
+            end
+          if (unit_acc = child_n[:unitAccession])
+            array.last.unit = ::CV::Param.new(child_n[:unitCvRef], unit_acc, child_n[:unitName])
+          end
+          break unless child_n = child_n.next
+        end
+        child_n
+      end
+
+      # Expects arguments describing a single CV::Param, Mspire::UserParam, or
+      # Mspire::Mzml::ReferenceableParamGroup
       #
       #     obj.describe! 'MS:1000130'  # a positive scan
       #     obj.describe! CV::Param['MS:1000130']  # same behavior
       #
       #     # base peak intensity, units=number of counts
       #     obj.describe! "MS:1000505", 1524.5865478515625, 'MS:1000131'
-      #
-      #     # given an XML::NodeSet (and an optional hash of
-      #     ReferenceableParamGroup objects indexed by id)
-      #     obj.describe! xml_node, ref_param_hash
       #
       # returns self
       def describe!(*args)
@@ -132,47 +157,26 @@ module Mspire
           @cv_params << Mspire::CV::Param[ *args ]
         when Mspire::Mzml::ReferenceableParamGroup
           @ref_param_groups << arg
-        when Nokogiri::XML::Node  # a nokogiri node in particular
-          xpath.children.each do |child_n|
-            case child_n.name
-            when 'referenceableParamGroup'
-              @ref_param_groups << arg.last[child_n[:ref]]
-            when 'cvParam'
-              @cv_params << Mspire::CV::Param[ child_n[:accession], child_n[:value] ]
-            when 'userParam'
-              @user_params << Mspire::UserParam.new(child_n[:name], child_n[:value], child_n[:type])
-            end
-          end
-            case arg.name
-            when 'cvParam'
-            when 'userParam'
-            end
-          if (unit_acc = arg[:unitAccession])
-            param.unit = ::CV::Param.new(arg[:unitCvRef], unit_acc, arg[:unitName])
-          end
-          @cv_params << param
-        when Nokogiri::XML::NodeSet
-          arg.each {|node| describe!(node) }
         else
           if arg.is_a?(Mspire::UserParam)
             @user_params << arg
           else
-            (@cv_params << arg) if arg
+            @cv_params << arg
           end
         end
         self
       end
 
-        # iterates over @params and calls .to_xml on each object.
-        def to_xml(xml)
-          [:ref_param_groups, :cv_params, :user_params].each do |kind|
-            self.send(kind).each do |obj|
-              obj.to_xml(xml)
-            end
+      # iterates over @params and calls .to_xml on each object.
+      def to_xml(xml)
+        [:ref_param_groups, :cv_params, :user_params].each do |kind|
+          self.send(kind).each do |obj|
+            obj.to_xml(xml)
           end
-          xml
         end
-
+        xml
       end
+
     end
   end
+end
