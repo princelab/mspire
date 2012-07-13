@@ -7,6 +7,7 @@ module Mspire
     class InstrumentConfiguration
       include Mspire::CV::Paramable
       extend Mspire::Mzml::List
+      extend Mspire::CV::ParamableFromXml
 
       # (required) the id that this guy can be referenced from
       attr_accessor :id
@@ -32,7 +33,7 @@ module Mspire
         builder
       end
 
-      def from_xml(xml, ref_hash)
+      def self.from_xml(xml, ref_hash)
         obj = self.new(xml[:id])
         obj.components = xml.xpath('./componentList').first.children.map do |component_n|
           Mspire::Mzml::Component.from_xml(component_n, ref_hash)

@@ -30,7 +30,9 @@ module Mspire
 
       def self.from_xml(xml, ref_hash)
         obj = self.new
-        obj.file_content = Mspire::Mzml::FileContent.from_xml(xml.xpath('./fileContent').first, ref_hash)
+        file_content_n = xml.child
+        obj.file_content = Mspire::Mzml::FileContent.from_xml(file_content_n, ref_hash)
+
         obj.source_files = xml.xpath('./sourceFileList/sourceFile').map do |source_file_n|
           Mspire::Mzml::SourceFile.from_xml(source_file_n, ref_hash)
         end

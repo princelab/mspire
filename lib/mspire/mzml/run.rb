@@ -1,4 +1,5 @@
 require 'mspire/cv/paramable'
+require 'mspire/mzml/io_index'
 
 module Mspire
   class Mzml
@@ -50,16 +51,27 @@ module Mspire
         builder
       end
 
-      def self.from_xml(xml, ref_hash, io_index_list, instrument_config_hash, data_processing_hash)
+      def self.from_xml(io, xml, ref_hash, index_list, instrument_config_hash, spec_data_processing, chromatogram_data_processing)
+
+        # expects that the DataProcessing objects to link to have *already* been
+        # parsed (parse the defaultDataProcessingRef's after grabbing the
+        # index, then grab the DataProcessing object associated with that id).
+        
         obj = self.new(xml[:id], instrument_config_hash[xml[:defaultInstrumentConfigurationRef]])
-        (list_node = obj.describe_from_xml!(xml, ref_hash)) || return obj
+        return obj unless (list_node = obj.describe_from_xml!(xml, ref_hash))
         loop do
-          start_time = Time.now
-          io_index = io_index_list.find {|io_index| io_index.name.to_s == list_node.name }
-          list_class = Mspire::Mzml.const_get(io_index.name.to_s.capitalize + "List")
-          list_obj = list_class.new(data_processing_hash[list_node[:defaultDataProcessingRef]], io_index)
-          self.send(io_index.name.to_s + "_list=", list_obj)
-          puts "TIME TO READ HEADER: #{Time.now - start_time}"
+          index = index_list.find {|index| index.name.to_s == list_node.name.sub('List','') }
+
+          list_class = Mspire::Mzml.const_get(index.name.to_s.capitalize + "List")
+
+          io_index = IOIndex.new(io, index)
+          default_data_processing = 
+            if index.name == :spectrum then spec_data_processing 
+            else chromatogram_data_processing end
+
+          list_obj = list_class.new(default_data_processing, io_index)
+          obj.send(index.name.to_s + "_list=", list_obj)
+
           break unless list_node = list_node.next
         end
       end

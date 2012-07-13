@@ -9,6 +9,7 @@ module Mspire
     # appropriate CV term.
     class FileContent
       include Mspire::CV::Paramable
+      extend Mspire::CV::ParamableFromXml
 
       def to_xml(builder, &block)
         builder.fileContent do |fc_n|
