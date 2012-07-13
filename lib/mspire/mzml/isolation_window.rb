@@ -16,7 +16,7 @@ module Mspire
     #     e.g.: MS:1000829 (isolation window upper offset)
     class IsolationWindow
       include Mspire::CV::Paramable
-      extend Mspire::Mzml::ParamableFromXml
+      extend Mspire::CV::ParamableFromXml
     end
   end
 end

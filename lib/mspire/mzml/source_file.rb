@@ -6,6 +6,8 @@ module Mspire
   class Mzml
     class SourceFile
       include Mspire::CV::Paramable
+      extend Mspire::Mzml::List
+      extend Mspire::CV::ParamableFromXml
 
       DEFAULT_SOURCEFILE_ID = 'sourcefile1'
 
@@ -44,7 +46,11 @@ module Mspire
         builder
       end
 
-      extend(Mspire::Mzml::List)
+      def self.from_xml(xml, ref_hash)
+        obj = self.new(xml[:id], xml[:name], xml[:location])
+        super(xml, ref_hash, obj)
+      end
+
     end
   end
 end

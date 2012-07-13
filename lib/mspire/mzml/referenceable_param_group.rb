@@ -31,7 +31,7 @@ module Mspire
 
       def self.from_xml(xml)
         obj = self.new(xml[:id])
-        describe!(xml)
+        obj.describe_from_xml!(xml)
         obj
       end
 

@@ -111,20 +111,22 @@ module Mspire
       end
 
       # takes a node with children that are cvParam, userParam or
-      # referenceableParamGroupRef.  
+      # referenceableParamGroupRef and a hash containing
+      # referenceableParamGroup objects indexed by id.  The only time this
+      # should be left nil is for the referenceableParamGroup itself.
       #
       # All param elements are required to appear before other elements, so
       # the code is careful to walk through the xml element by element and
       # break as soon as a non param node is encountered.
       #
       # returns the next sibling node or nil if none
-      def describe_from_xml!(xml_node, ref_hash)
-        (child_n = xml_node.child) || return self
+      def describe_from_xml!(xml_node, ref_hash=nil)
+        return self unless (child_n = xml_node.child) 
         loop do
           array = 
             case child_n.name
             when 'referenceableParamGroupRef'
-              @ref_param_groups << ref_hash[arg[:ref]]
+              @ref_param_groups << ref_hash[xml_node[:ref]]
             when 'cvParam'
               @cv_params << Mspire::CV::Param[ child_n[:accession], child_n[:value] ]
             when 'userParam'

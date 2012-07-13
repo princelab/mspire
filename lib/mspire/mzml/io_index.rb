@@ -22,8 +22,8 @@ module Mspire
         @byte_index.name
       end
 
-      def each
-        block || return enum_for(__method__)
+      def each(&block)
+        return enum_for(__method__) unless block
         (0...byte_index.size).each do |int|
           block.call(fetch(int))
         end
