@@ -38,7 +38,8 @@ module Mspire
         obj.components = xml.xpath('./componentList').first.children.map do |component_n|
           Mspire::Mzml::Component.from_xml(component_n, ref_hash)
         end
-        super(xml, ref_hash, obj)
+        obj.describe_from_xml!(xml, ref_hash)
+        obj
       end
 
     end

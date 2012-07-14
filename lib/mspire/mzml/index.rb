@@ -4,23 +4,13 @@ module Mspire
     # the array holds start bytes
     class Index < Array
 
-      # a hash index pointing from scan number to byte, created by create_scan_to_index!
-      attr_accessor :by_scans
-
       # the name of the index (as a symbol)
       attr_accessor :name
 
       # a parallel array of ids (idRef's)
       attr_accessor :ids
 
-      def start_byte_and_id(int)
-        [self[int], ids[int]]
-      end
-
-      # returns hash of id to start_byte
-      def create_id_index
-        Hash[self.ids.zip(self)]
-      end
+      # Hash[self.ids.zip(self)]
 
       # @return [Integer] the start byte of the spectrum
       # @param [Object] an Integer (the index number) or String (an id string)

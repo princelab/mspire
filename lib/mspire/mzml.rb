@@ -183,23 +183,30 @@ module Mspire
           raise RuntimeError, "no encoding present in XML!  (Is this even an xml file?)"
         end
         @index_list = Mspire::Mzml::IndexList.from_io(@io)
-
-
-
-
-HERE --> read off the defaultDataProcessing using the info from the index_list
-
-
-
-
-
-        read_header!
+        read_header!( get_default_data_processing_ids(@io, @index_list) )
       when Hash
         arg.each {|k,v| self.send("#{k}=", v) }
       end
       block.call(self) if block
     end
 
+    # returns a hash keyed by :spectrum or :chromatogram that gives the id
+    # (aka ref) as a string.
+    def get_default_data_processing_ids(io, index_list, lookback=200)
+      hash = {}
+      index_list.each_pair do |name, index|
+        io.bookmark do |io|
+          io.pos = index[0] - lookback 
+          hash[name] = io.read(lookback)[/<#{name}List.*defaultDataProcessingRef=['"](.*?)['"]/m, 1]
+        end
+      end
+      hash
+    end
+
+    # saves ~ 3 seconds when reading a 83M mzML file to scrape off the
+    # header string (even though we're just handing in an IO object to
+    # Nokogiri::XML::Document.parse and we are very careful to not parse too
+    # far).
     def get_header_string(io)
       chunk_size = 2**12
       loc = 0
@@ -213,13 +220,13 @@ HERE --> read off the defaultDataProcessing using the info from the index_list
       string
     end
 
-    def read_header!
+    # default_data_processing_hash is a hash keyed by :spectrum or
+    # :chromatogram that gives the default data_processing_object for the
+    # SpectrumList and/or the ChromatogramList.  This information is not
+    # obtainable from the header string, so must be pre-obtained.
+    def read_header!(default_data_processing_hash)
       @io.rewind
 
-      # saves ~ 3 seconds when reading a 83M mzML file to scrape off the
-      # header string (even though we're just handing in an IO object to
-      # Nokogiri::XML::Document.parse and we are very careful to not parse too
-      # far).
       string = get_header_string(@io)
       doc = Nokogiri::XML.parse(string, nil, @encoding, Parser::NOBLANKS)
 
@@ -267,7 +274,13 @@ HERE --> read off the defaultDataProcessing using the info from the index_list
             Mspire::Mzml::DataProcessing.from_xml(data_processing_n, ref_hash, self.software_list.index_by(&:id))
           end
         when 'run'
-          self.run = Mspire::Mzml::Run.from_xml(@io, xml_n, ref_hash, @index_list, instrument_configurations.index_by(&:id), data_processing_list.index_by(&:id))
+          source_files = self.file_description.source_files
+          source_file_hash = (source_files.size > 0)  ?  source_files.index_by(&:id)  :  {}
+
+          samples = self.samples || []
+          sample_hash = (samples.size > 0)  ?  samples.index_by(&:id)  :  {}
+
+          self.run = Mspire::Mzml::Run.from_xml(@io, xml_n, ref_hash, @index_list, self.instrument_configurations.index_by(&:id), source_file_hash, sample_hash, default_data_processing_hash)
           break
         end
         xml_n = xml_n.next

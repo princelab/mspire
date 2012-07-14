@@ -126,7 +126,7 @@ module Mspire
           array = 
             case child_n.name
             when 'referenceableParamGroupRef'
-              @ref_param_groups << ref_hash[xml_node[:ref]]
+              @ref_param_groups << ref_hash[child_n[:ref]]
             when 'cvParam'
               @cv_params << Mspire::CV::Param[ child_n[:accession], child_n[:value] ]
             when 'userParam'

@@ -22,6 +22,16 @@ module Mspire
         end
       end
 
+      def keys
+        self.map(&:name)
+      end
+
+      # returns each name and associated index object
+      def each_pair(&block)
+        block or return enum_for __method__
+        each {|index| block.call([index.name, index]) }
+      end
+
       class << self
 
         # either reads in from file or creates an IndexList
