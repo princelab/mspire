@@ -51,29 +51,27 @@ module Mspire
         builder
       end
 
-      def self.from_xml(io, xml, ref_hash, index_list, instrument_config_hash, spec_data_processing, chromatogram_data_processing)
+      def self.from_xml(io, xml, ref_hash, index_list, instrument_config_hash, source_file_hash, sample_hash, default_data_processing_hash)
 
         # expects that the DataProcessing objects to link to have *already* been
         # parsed (parse the defaultDataProcessingRef's after grabbing the
         # index, then grab the DataProcessing object associated with that id).
         
         obj = self.new(xml[:id], instrument_config_hash[xml[:defaultInstrumentConfigurationRef]])
-        return obj unless (list_node = obj.describe_from_xml!(xml, ref_hash))
-        loop do
-          index = index_list.find {|index| index.name.to_s == list_node.name.sub('List','') }
+        obj.start_time_stamp = xml[:startTimeStamp]
 
-          list_class = Mspire::Mzml.const_get(index.name.to_s.capitalize + "List")
+        # two optional object refs
+        obj.default_source_file = source_file_hash[xml[:defaultSourceFileRef]]
+        obj.sample = sample_hash[xml[:sampleRef]]
 
-          io_index = IOIndex.new(io, index)
-          default_data_processing = 
-            if index.name == :spectrum then spec_data_processing 
-            else chromatogram_data_processing end
+        obj.describe_from_xml!(xml, ref_hash)
 
-          list_obj = list_class.new(default_data_processing, io_index)
-          obj.send(index.name.to_s + "_list=", list_obj)
-
-          break unless list_node = list_node.next
+        [:spectrum, :chromatogram].each do |list_type|
+          io_index = IOIndex.new(io, index_list[list_type])
+          list_obj = Mspire::Mzml.const_get(list_type.to_s.capitalize).new(default_data_processing_hash[list_type], io_index)
+          obj.send(list_type.to_s + "_list=", list_obj)
         end
+        obj
       end
     end
   end

@@ -3,12 +3,40 @@ require 'delegate'
 
 module Mspire
   class Mzml
+
+    # An IOIndexableList is the base object for SpectrumList and
+    # ChromatogramList.  It's main feature is that it delegates all of its
+    # duties to the array like object.
     class IOIndexableList < SimpleDelegator
 
-      # arg may be an array of objects or an IOIndex object
-      def initialize(default_data_processing, arg)
+      attr_accessor :default_data_processing
+
+      # a hash linking an id to the Integer index
+      attr_accessor :id_to_index
+
+      # array_like must implement #[] (with an Integer index), #each, size and length.  For example, it may be an
+      # actual Array object, or it may be an IOIndex, something that behaves
+      # similar to an array but is really pulling objects by reading an io
+      # object.
+      def initialize(default_data_processing, array_like, id_to_index=nil)
+        @id_to_index = id_to_index
         @default_data_processing = default_data_processing
-        __setobj__(arg)
+        __setobj__(array_like)
+      end
+
+      # method to generate the id_to_index hash from the underlying delegated
+      # object.
+      def create_id_to_index!
+        @id_to_index = {}
+        __getobj__.each_with_index do |obj, i|
+          @id_to_index[obj.id] = i
+        end
+        @id_to_index
+      end
+
+      # arg may be an Integer or a String (an id)
+      def [](arg)
+        arg.is_a?(Integer) ? __getobj__[arg] : __getobj__[ @id_to_index[arg] ]
       end
 
       def to_xml(builder)

@@ -24,7 +24,7 @@ module Mspire
         builder
       end
 
-      def from_xml(xml, ref_hash)
+      def self.from_xml(xml, ref_hash)
         obj = self.new(xml[:id], xml[:version])
         super(xml, ref_hash, obj)
       end

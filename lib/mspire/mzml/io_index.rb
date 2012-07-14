@@ -3,7 +3,7 @@ require 'mspire/mzml/parser'
 module Mspire
   class Mzml
 
-    # an index that retrieves its objects by index or id
+    # an index that retrieves its objects on the fly by index from the IO object.
     class IOIndex
       include Enumerable
 
@@ -16,6 +16,7 @@ module Mspire
         @io = io
         @byte_index = byte_index
         @object_class = Mspire::Mzml.const_get(@byte_index.name.to_s.capitalize)
+        @closetag_regexp = %r{</#{name}>}
       end
 
       def name
@@ -29,16 +30,8 @@ module Mspire
         end
       end
 
-      # gets the data string string up until 
-      def get_xml_string(start_byte)
-        @io.seek(start_byte)
-        data = ""
-        regexp = %r{</#{@byte_index.name}>}
-        @io.each_line do |line|
-          data << line 
-          break if regexp.match(line)
-        end
-        data
+      def [](index)
+        @object_class.from_xml(fetch_xml_node(index_or_id))
       end
 
       def length
@@ -46,20 +39,25 @@ module Mspire
       end
       alias_method :size, :length
 
+      # gets the data string through to last element
+      def get_xml_string(start_byte)
+        @io.seek(start_byte)
+        data = ""
+        @io.each_line do |line|
+          data << line 
+          break if @closetag_regexp.match(line)
+        end
+        data
+      end
+
       def xml_node_from_start_byte(start_byte)
         xml = get_xml_string(start_byte)
         Nokogiri::XML.parse(xml, nil, @encoding, Parser::NOBLANKS).root
       end
 
-      def fetch_xml_node(index_or_id)
-        xml_node_from_start_byte(byte_index.start_byte(index_or_id))
+      def fetch_xml_node(index)
+        xml_node_from_start_byte(byte_index[index])
       end
-
-      def fetch(index_or_id)
-        @object_class.from_xml(fetch_xml_node(index_or_id))
-      end
-
-      alias_method :[], :fetch
 
     end
   end

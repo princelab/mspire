@@ -91,8 +91,93 @@ describe Mspire::Mzml do
       end
 
       it 'reads the softwareList' do
+        sl = @mzml.software_list
+        sl.size.should == 2
+        xcal = sl.first
+        xcal.id.should == 'Xcalibur'
+        xcal.version.should == '2.4 SP1'
+        xcal.params.first.to_a.should == ["MS", "MS:1000532", "Xcalibur", nil, nil]
+
+        pwiz = sl.last
+        pwiz.id.should == 'pwiz'
+        pwiz.version.should == "2.1.2086"
+        pwiz.params.first.to_a.should == ["MS", "MS:1000615", "ProteoWizard", nil, nil]
       end
 
+      
+      def component_is_correct(component, klass, accs)
+        component.should be_a(Mspire::Mzml.const_get(klass))
+        accs.each do |acc|
+          component.fetch_by_acc(acc).should be_true
+        end
+      end
+
+      it 'reads the instrumentConfigurationList' do
+        ics = @mzml.instrument_configurations
+        ics.size.should == 2
+        ic1 = ics.first
+        ic1.id.should == 'IC1'
+
+        # grabbing a referenceable param!
+        ic1.fetch_by_acc('MS:1000449').should be_true
+        ic1.fetch_by_acc('MS:1000529').should be_true
+
+        %w{Source Analyzer Detector}.zip(
+          [["MS:1000398", "MS:1000485"], ["MS:1000484"], ["MS:1000624"]], 
+          ic1.components
+        ).each do |klass,accs,component|
+          component_is_correct(component, klass, accs)
+        end
+
+        ic2 = ics.last
+
+        %w{Source Analyzer Detector}.zip(
+          [["MS:1000398", "MS:1000485"], ["MS:1000083"], ["MS:1000253"]], 
+          ic2.components
+        ).each do |klass,accs,component|
+          component_is_correct(component, klass, accs)
+        end
+      end
+
+      it 'reads the dataProcessingList' do
+        dpl = @mzml.data_processing_list
+        dpl.size.should == 1
+        dp = dpl.first
+
+        dp.id.should == 'pwiz_Reader_Thermo_conversion'
+        pms = dp.processing_methods
+        pms.size.should == 1
+        pm = pms.first
+        pm.should be_a(Mspire::Mzml::ProcessingMethod)
+
+        # the order is not instrinsic to the object but to the container
+        # (i.e., it is an index)
+        dp.order(pm).should == 0
+        pm.software.should be_a(Mspire::Mzml::Software)
+        pm.params.first.to_a.should == ["MS", "MS:1000544", "Conversion to mzML", nil, nil]
+      end
+
+      it 'reads the run' do
+        run = @mzml.run
+        run.id.should == 'j24'
+
+        ic = run.default_instrument_configuration
+        ic.should be_a(Mspire::Mzml::InstrumentConfiguration)
+        ic.fetch_by_acc('MS:1000449').should be_true
+
+        run.start_time_stamp.should == "2010-07-08T11:34:52Z"
+        sf = run.default_source_file
+        sf.should be_a(Mspire::Mzml::SourceFile)
+        sf.id.should == 'RAW1'
+
+        run.sample.should be_nil # no sample
+
+        sl = run.spectrum_list
+        sl.should be_a(Mspire::Mzml::SpectrumList)
+
+        cl = run.chromatogram_list
+        cl.should be_a(Mspire::Mzml::ChromatogramList)
+      end
     end
 
     describe 'reading a spectrum', :pending do
