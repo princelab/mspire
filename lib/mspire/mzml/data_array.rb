@@ -52,11 +52,19 @@ module Mspire
       end
 
       def self.data_arrays_from_xml(xml, ref_hash)
-        data_arrays = xml.xpath('./binaryDataArrayList/binaryDataArray').map do |binary_data_array_n|
+        data_arrays = xml.children.map do |binary_data_array_n|
+          puts "INTERNAL DATA ARRAY"
+          p binary_data_array_n.name
+          puts "END INTERNAL DATA ARRAY"
+
+          # TODO: need to handle possibility of ReferenceableParamGroupRef!!
           accessions = binary_data_array_n.xpath('./cvParam').map {|node| node['accession'] }
+          p accessions
           base64 = binary_data_array_n.xpath('./binary').text
           # for now we will actually just ignore the units associated with the
-          # intensity data array.
+          # intensity data array. 
+          # TODO: revamp to include better handling of units and params in
+          # general (treat more like other Paramable objects)
           Mspire::Mzml::DataArray.from_binary(base64, accessions)
         end
         (data_arrays.size > 0) ? data_arrays : [Mspire::Mzml::DataArray.new, Mspire::Mzml::DataArray.new]
@@ -69,9 +77,9 @@ module Mspire
       #       base64, type=:float64, compression=true
       #
       #     examples:
-      #     Mspire::Mzml::Spectrum.unpack_binary('eJxjYACBD/YMEOAAoTgcABe3Abg=', ['MS:1000574', MS:1000523']).
-      #     Mspire::Mzml::Spectrum.unpack_binary("ADBA/=", :float32, true)
-      #     Mspire::Mzml::Spectrum.unpack_binary("ADBA/=") # uses float64 and compression
+      #     Mspire::Mzml::Spectrum.from_binary('eJxjYACBD/YMEOAAoTgcABe3Abg=', ['MS:1000574', MS:1000523']).
+      #     Mspire::Mzml::Spectrum.from_binary("ADBA/=", :float32, true)
+      #     Mspire::Mzml::Spectrum.from_binary("ADBA/=") # uses float64 and compression
       def self.from_binary(base64, *args)
         if args.first.respond_to?(:include?)
           accessions = args.first

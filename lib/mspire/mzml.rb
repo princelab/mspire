@@ -220,11 +220,11 @@ module Mspire
       string
     end
 
-    # default_data_processing_hash is a hash keyed by :spectrum or
+    # list_to_default_data_processing_id is a hash keyed by :spectrum or
     # :chromatogram that gives the default data_processing_object for the
     # SpectrumList and/or the ChromatogramList.  This information is not
     # obtainable from the header string, so must be pre-obtained.
-    def read_header!(default_data_processing_hash)
+    def read_header!(list_to_default_data_processing_id)
       @io.rewind
 
       string = get_header_string(@io)
@@ -280,7 +280,12 @@ module Mspire
           samples = self.samples || []
           sample_hash = (samples.size > 0)  ?  samples.index_by(&:id)  :  {}
 
-          self.run = Mspire::Mzml::Run.from_xml(@io, xml_n, ref_hash, @index_list, self.instrument_configurations.index_by(&:id), source_file_hash, sample_hash, default_data_processing_hash)
+          list_to_default_data_processing = {}
+          list_to_default_data_processing_id.each do |key,id|
+            list_to_default_data_processing[key] = self.data_processing_list.find {|dp| dp.id == id }
+          end
+
+          self.run = Mspire::Mzml::Run.from_xml(@io, xml_n, ref_hash, @index_list, self.instrument_configurations.index_by(&:id), source_file_hash, sample_hash, list_to_default_data_processing)
           break
         end
         xml_n = xml_n.next

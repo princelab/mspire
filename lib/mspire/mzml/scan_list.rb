@@ -27,6 +27,18 @@ module Mspire
         builder
       end
 
+      def self.from_xml(xml, ref_hash)
+        scan_list = self.new
+        scan_n = scan_list.describe_from_xml!(xml, ref_hash)
+        if scan_n
+          loop do
+            scan_list << Mspire::Mzml::Scan.from_xml(scan_n, ref_hash)
+            break unless scan_n = scan_n.next
+          end
+        end
+        scan_list
+      end
+
       alias_method :list_xml, :to_xml
     end
   end

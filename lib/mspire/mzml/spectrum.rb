@@ -44,10 +44,10 @@ module Mspire
     class Spectrum
       include Mspire::SpectrumLike
       include Mspire::Mzml::DataArrayContainerLike
+      alias_method :params_initialize, :initialize
 
       extend Mspire::CV::ParamableFromXml
 
-      alias_method :params_initialize, :initialize
 
       # (optional) an Mspire::Mzml::SourceFile object
       attr_accessor :source_file
@@ -111,24 +111,32 @@ module Mspire
       end
 
       # takes a Nokogiri node and sets relevant properties
-      def self.from_xml(xml, ref_hash)
-        spec = Mspire::Mzml::Spectrum.new(xml[:id])
-        spec.spot_id = xml[:spotID]
+      def self.from_xml(xml, ref_hash, spectrum_list, source_file_hash)
+        obj = self.new(xml[:id])
+        obj.spot_id = xml[:spotID]
 
-        super(xml, ref_hash)
+        xml_n = obj.describe_from_xml!(xml, ref_hash)
+        return obj unless xml_n
 
-        scan_list = Mspire::Mzml::ScanList.new
-        xml.xpath('./scanList/scan').each do |scan_n|
-          scan_list << Mspire::Mzml::Scan.from_xml(scan_n, ref_hash)
+        loop do
+          case xml_n.name
+          when 'scanList'
+            obj.scan_list = Mspire::Mzml::ScanList.from_xml(xml_n, ref_hash)
+          when 'precursorList'
+            obj.precursors = xml_n.children.map do |prec_n|
+              Mspire::Mzml::Precursor.from_xml(prec_n, ref_hash, spectrum_list, source_file_hash)
+            end
+          when 'productList'
+            obj.products = xml_n.children.map do |product_n|
+              Mspire::Mzml::Product.from_xml(product_n, ref_hash)
+            end
+          when 'binaryDataArrayList'
+            obj.data_arrays = Mspire::Mzml::DataArray.data_arrays_from_xml(xml_n, ref_hash)
+          end
+          break unless xml_n = xml_n.next
         end
-        spec.scan_list = scan_list
 
-        spec.precursors = xml.xpath('./precursorList/precursor').map do |prec_n|
-          Mspire::Mzml::Precursor.from_xml(prec_n, ref_hash)
-        end
-
-        spec.data_arrays = Mspire::Mzml::DataArray.data_arrays_from_xml(xml, ref_hash)
-        spec
+        obj
       end
 
       # the most common param to pass in would be ms level: 'MS:1000511'

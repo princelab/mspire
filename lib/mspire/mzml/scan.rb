@@ -1,10 +1,12 @@
 require 'mspire/cv/paramable'
+require 'mspire/cv/paramable'
 require 'mspire/mzml/scan_window'
 
 module Mspire
   class Mzml
     class Scan
       include Mspire::CV::Paramable
+      extend Mspire::CV::ParamableFromXml
 
       # (optional) the Mspire::Mzml::Spectrum object from which the precursor is
       # derived.  (the sourceFileRef is derived from this spectrum object if
@@ -25,13 +27,10 @@ module Mspire
         block.call(self) if block
       end
 
-      # takes a nokogiri node
-      #def self.from_xml(xml)
-      #end
-
       def self.from_xml(xml, ref_hash)
-        obj = super(xml, ref_hash)
-        obj.scan_windows = xml.xpath('./scanWindowList/scanWindow').map do |scan_window_n|
+        obj = self.new
+        scan_window_list_n = obj.describe_from_xml!(xml, ref_hash)
+        obj.scan_windows = scan_window_list_n.children.map do |scan_window_n|
           Mspire::Mzml::ScanWindow.from_xml(scan_window_n, ref_hash)
         end
         obj

@@ -17,8 +17,12 @@ module Mspire
       # array_like must implement #[] (with an Integer index), #each, size and length.  For example, it may be an
       # actual Array object, or it may be an IOIndex, something that behaves
       # similar to an array but is really pulling objects by reading an io
-      # object.
+      # object.  Sets the spectrum_list attribute of array_like if it can be
+      # set.
       def initialize(default_data_processing, array_like, id_to_index=nil)
+        if array_like.respond_to?(:spectrum_list=)
+          array_like.spectrum_list = self
+        end
         @id_to_index = id_to_index
         @default_data_processing = default_data_processing
         __setobj__(array_like)
