@@ -50,37 +50,45 @@ describe Mspire::Mzml do
         @io.close
       end
 
-      it 'reads the cvList' do
+      specify '#cvs - reads the cvList' do
         cvs = @mzml.cvs
         cvs.size.should == 2
         cvs.first.id.should == 'MS'
         cvs.last.id.should == 'UO'
       end
 
-      it 'reads the fileDescription' do
-        fd = @mzml.file_description
-        fd.should be_a(Mspire::Mzml::FileDescription)
-
-        fc = fd.file_content
-        fc.fetch_by_acc("MS:1000579").should be_true
-        fc.fetch_by_acc("MS:1000580").should be_true
-        fc.fetch_by_acc("MS:1000550").should be_false
-        fc.params.size.should == 2
-
-        sfs = fd.source_files
-        sfs.size.should == 1
-        sf = sfs.first
-        sf.id.should == 'RAW1'
-        sf.name.should == 'j24.raw'
-        sf.location.should == 'file://.'
-        sf.params.size.should == 3
-        sha1 = sf.param_by_acc('MS:1000569')
-        sha1.name.should == 'SHA-1'
-        sha1.accession.should == 'MS:1000569'
-        sha1.value.should == "6023d121fb6ca7f19fada3b6c5e4d5da09c95f12"
+      specify '#file_description reads the fileDescription' do
+        @mzml.file_description.should be_a(Mspire::Mzml::FileDescription)
       end
 
-      it 'reads the referenceableParamGroupList' do
+      describe Mspire::Mzml::FileDescription do
+
+        let(:file_description) { @mzml.file_description }
+
+        specify '#file_content' do
+          fc = file_description.file_content
+          fc.fetch_by_acc("MS:1000579").should be_true
+          fc.fetch_by_acc("MS:1000580").should be_true
+          fc.fetch_by_acc("MS:1000550").should be_false
+          fc.params.size.should == 2
+        end
+
+        specify '#source_files' do
+          sfs = file_description.source_files
+          sfs.size.should == 1
+          sf = sfs.first
+          sf.id.should == 'RAW1'
+          sf.name.should == 'j24.raw'
+          sf.location.should == 'file://.'
+          sf.params.size.should == 3
+          sha1 = sf.param_by_acc('MS:1000569')
+          sha1.name.should == 'SHA-1'
+          sha1.accession.should == 'MS:1000569'
+          sha1.value.should == "6023d121fb6ca7f19fada3b6c5e4d5da09c95f12"
+        end
+      end
+
+      specify '#referenceable_param_groups (reads the referenceableParamGroupList)' do
         rpgs = @mzml.referenceable_param_groups
         rpgs.size.should == 1
         rpg = rpgs.first
@@ -171,16 +179,41 @@ describe Mspire::Mzml do
         sf.id.should == 'RAW1'
 
         run.sample.should be_nil # no sample
+      end
 
-        sl = run.spectrum_list
-        sl.should be_a(Mspire::Mzml::SpectrumList)
+      describe Mspire::Mzml::Run do
 
-        cl = run.chromatogram_list
-        cl.should be_a(Mspire::Mzml::ChromatogramList)
+        specify '#spectrum_list' do
+          sl = @mzml.run.spectrum_list
+          sl.should be_a(Mspire::Mzml::SpectrumList)
+          sl.default_data_processing.should be_a(Mspire::Mzml::DataProcessing)
+          sl.default_data_processing.id.should == 'pwiz_Reader_Thermo_conversion'
+          sl.size.should == 3
+
+          sl.each do |spec|
+            spec.should be_a(Mspire::Mzml::Spectrum)
+            spec.params.size.should == 9
+            scan_list = spec.scan_list
+            scan_list.size.should == 1
+            scan_list.params.size.should == 1
+          end
+        end
+
+        specify '#chromatogram_list' do
+          cl = @mzml.run.chromatogram_list
+          cl.should be_a(Mspire::Mzml::ChromatogramList)
+          cl.size.should == 1
+          cl.default_data_processing.should be_a(Mspire::Mzml::DataProcessing)
+          cl.default_data_processing.id.should == 'pwiz_Reader_Thermo_conversion'
+
+          cl.each do |chrom|
+            chrom.should be_a(Mspire::Mzml::Chromatogram)
+          end
+        end
       end
     end
 
-    describe 'reading a spectrum', :pending do
+    describe 'reading a spectrum' do
       before do
         @file = TESTFILES + "/mspire/mzml/j24z.idx_comp.3.mzML"
         @io = File.open(@file)
@@ -198,6 +231,9 @@ describe Mspire::Mzml do
         spectrum.should be_a(Mspire::Mzml::Spectrum)
         spectrum.should respond_to(:mzs)
         spectrum.should respond_to(:intensities)
+
+        spectrum.params.size.should == 9
+
         spectrum.mzs.size.should == 315
         spectrum.intensities.size.should == 315
         spectrum.mzs[2].should be_within(1e-10).of(164.32693481445312)

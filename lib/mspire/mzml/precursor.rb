@@ -7,9 +7,10 @@ module Mspire
   class Mzml
     # The method of precursor ion selection and activation
     class Precursor
-      # (optional) the Mspire::Mzml::Spectrum object from which the precursor is
-      # derived
-      attr_accessor :spectrum
+
+      # (optional) the id of the Spectrum object, whether internal or
+      # externally derived.
+      attr_accessor :spectrum_id
 
       # (optional)
       attr_accessor :isolation_window 
@@ -20,34 +21,52 @@ module Mspire
       # (required) The type and energy level used for activation.
       attr_accessor :activation
 
-      # a boolean indicating the spectrum is from an external source file
-      attr_accessor :from_external_source_file
+      # This is an *EXTERNAL* source file *ONLY*.  It should NOT be set if the
+      # spectrum is internal.
+      attr_accessor :source_file
 
-      def initialize(spectrum_derived_from=nil)
-        @spectrum=spectrum_derived_from
+      # the spectrum list object which enables the spectrum to be accessed directly
+      attr_accessor :spectrum_list
+
+      # provide the SpectrumList object for #spectrum access
+      def initialize(spectrum_id=nil, spectrum_list=nil)
+        @spectrum_id, @spectrum_list = spectrum_id, spectrum_list
       end
 
-      def self.from_xml(xml, ref_hash)
+      def spectrum
+        @spectrum_list[@spectrum_id]
+      end
+
+      def self.from_xml(xml, ref_hash, spectrum_list=nil, source_file_hash=nil)
         obj = self.new
-        %w(isolationWindow activation).each do |el|
-          sub_node = xml.xpath("./#{el}").first
-          el[0] = el[0].capitalize
-          Mspire::Mzml.const_get(el).from_xml(sub_node, ref_hash) if sub_node
+        obj.spectrum_id = xml[:spectrumRef] || xml[:externalSpectrumID]
+        obj.source_file = source_file_hash[ xml[:sourceFileRef] ] if source_file_hash
+
+        xml.children.each do |child_n|
+          case child_n.name
+          when 'activation' # the only one required
+            Mspire::Mzml::Activation.from_xml(child_n, ref_hash)
+          when 'isolationWindow'
+            Mspire::Mzml::IsolationWindow.from_xml(child_n, ref_hash)
+          when 'selectedIonList'
+            obj.selected_ions = child_n.children.map do |si_n|
+              Mspire::Mzml::SelectedIon.from_xml(si_n, ref_hash)
+            end
+          end
         end
-        obj.selected_ions = xml.xpath('./selectedIonList/selectedIon').map do |si_n|
-          Mspire::Mzml::SelectedIon.from_xml(si_n, ref_hash)
-        end
+        
         obj
       end
 
       def to_xml(builder)
         atts = {}
-        if @from_external_source_file
-          atts[:sourceFileRef] = @spectrum.source_file.id
-          atts[:externalSpectrumRef] = @spectrum.id
-        else
-          atts[:spectrumRef] = @spectrum.id if @spectrum
+        if @source_file
+          atts[:sourceFileRef] = @source_file.id
+          atts[:externalSpectrumRef] = @spectrum_id
+        elsif @spectrum_id
+          atts[:spectrumRef] = @spectrum_id
         end
+
         builder.precursor(atts) do |prec_n|
           @isolation_window.to_xml(prec_n) if @isolation_window
           Mspire::Mzml::SelectedIon.list_xml(@selected_ions, prec_n) if @selected_ions

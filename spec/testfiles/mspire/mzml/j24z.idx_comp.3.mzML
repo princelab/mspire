@@ -74,7 +74,7 @@
       </dataProcessing>
     </dataProcessingList>
     <run id="j24" defaultInstrumentConfigurationRef="IC1" startTimeStamp="2010-07-08T11:34:52Z" defaultSourceFileRef="RAW1">
-      <spectrumList count="24" defaultDataProcessingRef="pwiz_Reader_Thermo_conversion">
+      <spectrumList count="3" defaultDataProcessingRef="pwiz_Reader_Thermo_conversion">
         <spectrum index="0" id="controllerType=0 controllerNumber=1 scan=1" defaultArrayLength="20168">
           <cvParam cvRef="MS" accession="MS:1000511" name="ms level" value="1"/>
           <cvParam cvRef="MS" accession="MS:1000579" name="MS1 spectrum" value=""/>
@@ -258,14 +258,14 @@
   </mzML>
   <indexList count="2">
     <index name="spectrum">
-      <offset idRef="controllerType=0 controllerNumber=1 scan=1">4398</offset>
-      <offset idRef="controllerType=0 controllerNumber=1 scan=2">219667</offset>
-      <offset idRef="controllerType=0 controllerNumber=1 scan=3">227895</offset>
+      <offset idRef="controllerType=0 controllerNumber=1 scan=1">4397</offset>
+      <offset idRef="controllerType=0 controllerNumber=1 scan=2">219666</offset>
+      <offset idRef="controllerType=0 controllerNumber=1 scan=3">227894</offset>
     </index>
     <index name="chromatogram">
-      <offset idRef="TIC">239184</offset>
+      <offset idRef="TIC">239183</offset>
     </index>
   </indexList>
-  <indexListOffset>240801</indexListOffset>
+  <indexListOffset>240800</indexListOffset>
   <fileChecksum>4204d7e91808d1976df85df5c97f239ff085090d</fileChecksum>
 </indexedmzML>

@@ -1,5 +1,6 @@
 require 'mspire/cv/paramable'
 require 'mspire/mzml/io_index'
+require 'mspire/mzml/spectrum_io_index'
 
 module Mspire
   class Mzml
@@ -67,8 +68,14 @@ module Mspire
         obj.describe_from_xml!(xml, ref_hash)
 
         [:spectrum, :chromatogram].each do |list_type|
-          io_index = IOIndex.new(io, index_list[list_type])
-          list_obj = Mspire::Mzml.const_get(list_type.to_s.capitalize).new(default_data_processing_hash[list_type], io_index)
+          byte_index = index_list[list_type]
+
+          io_index_class = list_type == :spectrum ? SpectrumIOIndex : IOIndex
+          io_index = io_index_class.new(io, byte_index, ref_hash)
+          io_index.source_file_hash = source_file_hash if (list_type == :spectrum)
+
+          list_obj = Mspire::Mzml.const_get(list_type.to_s.capitalize + "List").new(default_data_processing_hash[list_type], io_index, Hash[byte_index.ids.each_with_index.map.to_a])
+
           obj.send(list_type.to_s + "_list=", list_obj)
         end
         obj

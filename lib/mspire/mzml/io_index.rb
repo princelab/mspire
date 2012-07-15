@@ -11,10 +11,9 @@ module Mspire
 
       attr_reader :byte_index
 
-      # byte_index will typically be an Mspire::Mzml::Index object
-      def initialize(io, byte_index)
-        @io = io
-        @byte_index = byte_index
+      # byte_index will typically be an Mspire::Mzml::Index object.
+      def initialize(io, byte_index, ref_hash)
+        @io, @byte_index, @ref_hash = io, byte_index, ref_hash
         @object_class = Mspire::Mzml.const_get(@byte_index.name.to_s.capitalize)
         @closetag_regexp = %r{</#{name}>}
       end
@@ -26,12 +25,12 @@ module Mspire
       def each(&block)
         return enum_for(__method__) unless block
         (0...byte_index.size).each do |int|
-          block.call(fetch(int))
+          block.call(self[int])
         end
       end
 
       def [](index)
-        @object_class.from_xml(fetch_xml_node(index_or_id))
+        @object_class.from_xml(fetch_xml_node(index), @ref_hash)
       end
 
       def length

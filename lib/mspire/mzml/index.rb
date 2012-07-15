@@ -10,8 +10,6 @@ module Mspire
       # a parallel array of ids (idRef's)
       attr_accessor :ids
 
-      # Hash[self.ids.zip(self)]
-
       # @return [Integer] the start byte of the spectrum
       # @param [Object] an Integer (the index number) or String (an id string)
       def start_byte(arg)

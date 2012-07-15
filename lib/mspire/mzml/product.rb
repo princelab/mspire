@@ -2,7 +2,13 @@ require 'mspire/mzml/list'
 
 module Mspire
   class Mzml
+    # The method of product ion selection and activation in a precursor ion scan
+    #
+    # this object is NOT paramable, it just contains a single IsolationWindow
     class Product
+      
+      extend Mspire::Mzml::List
+
       attr_accessor :isolation_window
 
       def initialize(isolation_window=nil)
@@ -15,7 +21,14 @@ module Mspire
         end
       end
 
-      extend(Mspire::Mzml::List)
+      def self.from_xml(xml, ref_hash)
+        isolation_window_n = xml.child
+        if isolation_window_n
+          iw = Mspire::Mzml::IsolationWindow.from_xml(isolation_window_n, ref_hash)
+        end
+        self.new(iw)
+      end
+
     end
   end
 end
