@@ -15,9 +15,9 @@ end
 DEFAULT_OUTFILE = "quant_compare.tsv"
 
 DEFAULTS = { 
-  :bin_width => Mspire::PeakList::DEFAULT_MERGE[:bin_width], 
-  :bin_unit => Mspire::PeakList::DEFAULT_MERGE[:bin_unit],
-  :split => Mspire::PeakList::DEFAULT_MERGE[:split],
+  :bin_width => Mspire::Peaklist::DEFAULT_MERGE[:bin_width], 
+  :bin_unit => Mspire::Peaklist::DEFAULT_MERGE[:bin_unit],
+  :split => Mspire::Peaklist::DEFAULT_MERGE[:split],
   :round_mz => 6,
   :round_intensity => 6,
   :mz_prefix => "mz"
@@ -52,8 +52,6 @@ end
 
 files = ARGV.dup
 
-peaklist = Mspire::PeakList.new
-
 if opts[:sample_ids]
   basename_to_sample_id = YAML.load_file(opts[:sample_ids]) 
 end
@@ -63,25 +61,27 @@ sample_ids = files.map do |filename|
   basename_to_sample_id ? basename_to_sample_id[basename] : basename
 end
 
-peaklists = files.map do |filename|
+peaklists = files.zip(sample_ids).map do |filename, sample_id|
   putsv "processing: #{filename}"
-  bunch_of_peaks = []
+  bunch_of_peaks = Mspire::Peaklist.new
   Mspire::Mzml.open(filename) do |mzml|
     mzml.each_with_index do |spec,i|
       if spec.ms_level == 1
-        bunch_of_peaks.push(*spec.peaks)
+        spec.mzs.zip(spec.intensities) do |mz, int|
+          bunch_of_peaks.push Mspire::TaggedPeak.new([mz, int], sample_id)
+        end
       end
     end
   end
-  peaklist.sort_by!(&:x)
-  peaklist
+  bunch_of_peaks.sort_by!(&:x)
+  bunch_of_peaks 
 end
 
 putsv "merging peaks"
 share_method = :greedy_y
 #share_method = :share
 
-ar_of_doublets = Mspire::PeakList.merge_and_deconvolve(peaklists, opts.merge( {:split => share_method, :return_data => true} ))
+ar_of_doublets = Mspire::Peaklist.merge_and_deconvolve(peaklists, opts.merge( {:split => share_method, :return_data => true, :have_tagged_peaks => true} ))
 
 File.open(opts[:outfile],'w') do |out|
 
