@@ -19,8 +19,9 @@ module Mspire
         block.call(self) if block
       end
 
-      def self.from_xml(xml, ref_hash)
+      def self.from_xml(xml, ref_hash, data_processing_hash)
         chrom = Mspire::Mzml::Chromatogram.new(xml[:id])
+        obj.data_processing = data_processing_hash[xml[:dataProcessingRef]]
 
         [:cvParam, :userParam].each {|v| chrom.describe! xml.xpath("./#{v}") }
 

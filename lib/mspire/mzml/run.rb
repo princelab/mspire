@@ -52,7 +52,7 @@ module Mspire
         builder
       end
 
-      def self.from_xml(io, xml, ref_hash, index_list, instrument_config_hash, source_file_hash, sample_hash, default_data_processing_hash)
+      def self.from_xml(io, xml, ref_hash, index_list, instrument_config_hash, source_file_hash, sample_hash, list_type_to_default_data_processing_id, data_processing_hash)
 
         # expects that the DataProcessing objects to link to have *already* been
         # parsed (parse the defaultDataProcessingRef's after grabbing the
@@ -70,11 +70,12 @@ module Mspire
         [:spectrum, :chromatogram].each do |list_type|
           byte_index = index_list[list_type]
 
+          default_data_processing = data_processing_hash[list_type_to_default_data_processing_id[list_type]]
           io_index_class = list_type == :spectrum ? SpectrumIOIndex : IOIndex
-          io_index = io_index_class.new(io, byte_index, ref_hash)
+          io_index = io_index_class.new(io, byte_index, ref_hash, data_processing_hash)
           io_index.source_file_hash = source_file_hash if (list_type == :spectrum)
 
-          list_obj = Mspire::Mzml.const_get(list_type.to_s.capitalize + "List").new(default_data_processing_hash[list_type], io_index, Hash[byte_index.ids.each_with_index.map.to_a])
+          list_obj = Mspire::Mzml.const_get(list_type.to_s.capitalize + "List").new(default_data_processing, io_index, Hash[byte_index.ids.each_with_index.map.to_a])
 
           obj.send(list_type.to_s + "_list=", list_obj)
         end

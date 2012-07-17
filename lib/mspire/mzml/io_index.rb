@@ -12,7 +12,8 @@ module Mspire
       attr_reader :byte_index
 
       # byte_index will typically be an Mspire::Mzml::Index object.
-      def initialize(io, byte_index, ref_hash)
+      def initialize(io, byte_index, ref_hash, data_processing_hash)
+        @data_processing_hash = data_processing_hash
         @io, @byte_index, @ref_hash = io, byte_index, ref_hash
         @object_class = Mspire::Mzml.const_get(@byte_index.name.to_s.capitalize)
         @closetag_regexp = %r{</#{name}>}
@@ -30,7 +31,7 @@ module Mspire
       end
 
       def [](index)
-        @object_class.from_xml(fetch_xml_node(index), @ref_hash)
+        @object_class.from_xml(fetch_xml_node(index), @ref_hash, @data_processing_hash)
       end
 
       def length

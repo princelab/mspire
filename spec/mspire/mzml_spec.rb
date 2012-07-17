@@ -40,7 +40,7 @@ describe Mspire::Mzml do
 
   describe 'reading an indexed, compressed peaks, mzML file' do
 
-    describe 'reading the header things' do
+    describe 'reading the header things', :pending do
       before do
         @file = TESTFILES + "/mspire/mzml/j24z.idx_comp.3.mzML"
         @io = File.open(@file)
@@ -239,7 +239,7 @@ describe Mspire::Mzml do
         spectrum.mzs[2].should be_within(1e-10).of(164.32693481445312)
       end
 
-      it '#spectrum (or #[]) returns a spectrum when queried by id (String)' do
+      xit '#spectrum (or #[]) returns a spectrum when queried by id (String)' do
         spectrum = @mzml.spectrum("controllerType=0 controllerNumber=1 scan=2")
         spectrum1 = @mzml["controllerType=0 controllerNumber=1 scan=2"]
         spectrum.ms_level.should == 2
@@ -247,7 +247,7 @@ describe Mspire::Mzml do
         spectrum.should be_a(Mspire::Mzml::Spectrum)
       end
 
-      it 'goes through spectrum with #each or #each_spectrum' do
+      xit 'goes through spectrum with #each or #each_spectrum' do
         mz_sizes = [20168, 315, 634]
         centroided_list = [false, true, true]
         @mzml.each do |spec|
@@ -257,14 +257,14 @@ describe Mspire::Mzml do
         end
       end
 
-      it 'gets an enumerator if called without a block' do
+      xit 'gets an enumerator if called without a block' do
         mz_sizes = [20168, 315, 634]
         iter = @mzml.each
         3.times { iter.next.mzs.size.should == mz_sizes.shift }
         lambda {iter.next}.should raise_error
       end
 
-      it 'iterates with foreach' do
+      xit 'iterates with foreach' do
         mz_sizes = [20168, 315, 634]
         iter = Mspire::Mzml.foreach(@file)
         3.times { iter.next.mzs.size.should == mz_sizes.shift }
@@ -279,7 +279,7 @@ describe Mspire::Mzml do
         @mzml[1].scan_list.first.instrument_configuration.should == instr_config_last
       end
 
-      it 'can gracefully determine the m/z with highest peak in select scans' do
+      xit 'can gracefully determine the m/z with highest peak in select scans' do
         highest_mzs = Mspire::Mzml.foreach(@file).select {|v| v.ms_level > 1 }.map do |spec|
           spec.peaks.sort_by(&:last).first.first
         end

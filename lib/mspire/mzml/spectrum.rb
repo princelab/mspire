@@ -52,6 +52,8 @@ module Mspire
       # (optional) an Mspire::Mzml::SourceFile object
       attr_accessor :source_file
 
+      # data_processing is included with DataArrayContainerLike
+
       # (optional) The identifier for the spot from which this spectrum was derived, if a
       # MALDI or similar run.
       attr_accessor :spot_id
@@ -111,9 +113,11 @@ module Mspire
       end
 
       # takes a Nokogiri node and sets relevant properties
-      def self.from_xml(xml, ref_hash, spectrum_list, source_file_hash)
+      def self.from_xml(xml, ref_hash, spectrum_list, data_processing_hash, source_file_hash)
         obj = self.new(xml[:id])
         obj.spot_id = xml[:spotID]
+        obj.data_processing = data_processing_hash[xml[:dataProcessingRef]]
+        obj.source_file = source_file_hash[xml[:sourceFileRef]]
 
         xml_n = obj.describe_from_xml!(xml, ref_hash)
         return obj unless xml_n
