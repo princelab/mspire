@@ -22,6 +22,7 @@ class Mspire::Mzml::DataArray < Array
     int32: 'MS:1000519', # signed
   }
 
+  # :mz or :intensity
   def type
     if params
       accs_params = accessionable_params
@@ -33,20 +34,26 @@ class Mspire::Mzml::DataArray < Array
     end
   end
 
+  # (optional) the DataProcessing object associated with this DataArray
+  attr_accessor :data_processing
+
   # set this if the data is written to an external file (such as the ibd
   # file for imzML files)
   attr_accessor :external
 
   def self.data_arrays_from_xml(xml, ref_hash)
     data_arrays = xml.children.map do |binary_data_array_n|
-      Mspire::Mzml::DataArray.from_xml(xml, ref_hash)
+      Mspire::Mzml::DataArray.from_xml(binary_data_array_n, ref_hash)
     end
     (data_arrays.size > 0) ? data_arrays : [Mspire::Mzml::DataArray.new, Mspire::Mzml::DataArray.new]
   end
 
-  def self.from_xml(xml, ref_hash)
+  def self.from_xml(xml, link)
     da = self.new 
-    binary_n = da.describe_from_xml!(xml, ref_hash)
+    binary_n = da.describe_from_xml!(xml, link[:ref_hash])
+    if (dp_id = xml[:dataProcessingRef])
+      da.data_processing = link[:data_processing_hash][dp_id]
+    end
     zlib_compression = nil
     precision_unpack = nil
     # could also implement with set or hash lookup (need to test for

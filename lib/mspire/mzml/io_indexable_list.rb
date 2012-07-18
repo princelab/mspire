@@ -43,13 +43,13 @@ module Mspire
         arg.is_a?(Integer) ? __getobj__[arg] : __getobj__[ @id_to_index[arg] ]
       end
 
-      def to_xml(builder)
-        xml_name = self.class.split('::').last
+      def to_xml(builder, link)
+        xml_name = self.class.to_s.split('::').last
         xml_name[0] = xml_name[0].downcase
         builder.tag!(xml_name.to_sym, count: self.size, defaultDataProcessingRef: @default_data_processing.id) do |iol_n|
           self.each_with_index do |obj,i|
             obj.index = i unless obj.index
-            obj.to_xml(iol_n)
+            obj.to_xml(iol_n, link)
           end
         end
         builder

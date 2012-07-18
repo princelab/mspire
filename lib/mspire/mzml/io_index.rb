@@ -11,10 +11,23 @@ module Mspire
 
       attr_reader :byte_index
 
+      # hash of relevant hashes and objects for linking
+      attr_accessor :link
+
       # byte_index will typically be an Mspire::Mzml::Index object.
-      def initialize(io, byte_index, ref_hash, data_processing_hash)
-        @data_processing_hash = data_processing_hash
-        @io, @byte_index, @ref_hash = io, byte_index, ref_hash
+      #
+      # link will have the following keys:
+      #
+      #     :ref_hash
+      #     :data_processing_hash
+      #     :default_data_processing
+      #
+      # may have:
+      #
+      #     :source_file_hash
+      #
+      def initialize(io, byte_index, link)
+        @io, @byte_index, @link = io, byte_index, link
         @object_class = Mspire::Mzml.const_get(@byte_index.name.to_s.capitalize)
         @closetag_regexp = %r{</#{name}>}
       end
@@ -31,7 +44,7 @@ module Mspire
       end
 
       def [](index)
-        @object_class.from_xml(fetch_xml_node(index), @ref_hash, @data_processing_hash)
+        @object_class.from_xml(fetch_xml_node(index), @link)
       end
 
       def length

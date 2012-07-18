@@ -12,7 +12,7 @@ module Mspire
       attr_accessor :source_file_hash
 
       def [](index)
-        @object_class.from_xml(fetch_xml_node(index), @ref_hash, @spectrum_list, @data_processing_hash, @source_file_hash)
+        @object_class.from_xml(fetch_xml_node(index), @ref_hash, @spectrum_list, @data_processing_hash, @default_data_processing, @source_file_hash)
       end
 
     end

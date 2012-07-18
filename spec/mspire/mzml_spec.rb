@@ -223,7 +223,7 @@ describe Mspire::Mzml do
         @io.close
       end
 
-      it '#spectrum (or #[]) returns a spectrum when queried by index (Integer)' do
+      specify '#spectrum (or #[]) returns a spectrum when queried by index (Integer)' do
         spectrum = @mzml.spectrum(1) # getting the second spectrum
         spectrum1 = @mzml[1] # can get with brackets
         spectrum.ms_level.should == 2
@@ -239,7 +239,11 @@ describe Mspire::Mzml do
         spectrum.mzs[2].should be_within(1e-10).of(164.32693481445312)
       end
 
-      xit '#spectrum (or #[]) returns a spectrum when queried by id (String)' do
+      specify '#spectrum always returns spectrum with data_processing object (uses default if none given)' do
+        @mzml.spectrum(1).data_processing.should be_a(Mspire::Mzml::DataProcessing)
+      end
+
+      specify '#spectrum (or #[]) returns a spectrum when queried by id (String)' do
         spectrum = @mzml.spectrum("controllerType=0 controllerNumber=1 scan=2")
         spectrum1 = @mzml["controllerType=0 controllerNumber=1 scan=2"]
         spectrum.ms_level.should == 2
@@ -247,7 +251,7 @@ describe Mspire::Mzml do
         spectrum.should be_a(Mspire::Mzml::Spectrum)
       end
 
-      xit 'goes through spectrum with #each or #each_spectrum' do
+      specify '#each or #each_spectrum goes through each spectrum' do
         mz_sizes = [20168, 315, 634]
         centroided_list = [false, true, true]
         @mzml.each do |spec|
@@ -257,24 +261,29 @@ describe Mspire::Mzml do
         end
       end
 
-      xit 'gets an enumerator if called without a block' do
+      it 'gets an enumerator if called without a block' do
         mz_sizes = [20168, 315, 634]
         iter = @mzml.each
         3.times { iter.next.mzs.size.should == mz_sizes.shift }
         lambda {iter.next}.should raise_error
       end
 
-      xit 'iterates with foreach' do
+      it 'iterates with foreach' do
         mz_sizes = [20168, 315, 634]
         iter = Mspire::Mzml.foreach(@file)
         3.times { iter.next.mzs.size.should == mz_sizes.shift }
         lambda {iter.next}.should raise_error
       end
 
-      # not quite ready for this one yet
-      xit 'contains scans linked to their instrument config objects' do
-        instr_config_first = @mzml.file_description.instrument_configurations[0]
-        instr_config_last = @mzml.file_description.instrument_configurations[1]
+      it 'contains scans linked to their instrument config objects' do
+        # this is tricky because we need to use the default instrument config
+        # from the run for the first scan and an element ref for the second...
+        [0,1].each do |i| 
+          @mzml[i].scan_list.first.instrument_configuration.should be_a(Mspire::Mzml::InstrumentConfiguration)
+        end
+        instr_config_first = @mzml.instrument_configurations[0]
+        instr_config_last = @mzml.instrument_configurations[1]
+
         @mzml[0].scan_list.first.instrument_configuration.should == instr_config_first 
         @mzml[1].scan_list.first.instrument_configuration.should == instr_config_last
       end

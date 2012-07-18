@@ -113,29 +113,40 @@ module Mspire
       end
 
       # takes a Nokogiri node and sets relevant properties
-      def self.from_xml(xml, ref_hash, spectrum_list, data_processing_hash, source_file_hash)
+      # 
+      # linking is a hash that should contain the following keys and
+      # associated objects:
+      #
+      #     :ref_hash                         id -> ReferenceableParamGroup
+      #     :spectrum_list                    SpectrumList object
+      #     :data_processing_hash             id -> DataProcessing object
+      #     :default_data_processing          DataProcessing object
+      #     :instrument_configuration_hash    id -> InstrumentConfiguration object
+      #     :default_instrument_configuration InstrumentConfiguration object
+      #     :source_file_hash                 id -> SourceFile object
+      def self.from_xml(xml, link)
         obj = self.new(xml[:id])
         obj.spot_id = xml[:spotID]
-        obj.data_processing = data_processing_hash[xml[:dataProcessingRef]]
-        obj.source_file = source_file_hash[xml[:sourceFileRef]]
+        obj.data_processing = link[:data_processing_hash[xml[:dataProcessingRef]]] || link[:default_data_processing]
+        obj.source_file = link[:source_file_hash[xml[:sourceFileRef]]]
 
-        xml_n = obj.describe_from_xml!(xml, ref_hash)
+        xml_n = obj.describe_from_xml!(xml, link[:ref_hash])
         return obj unless xml_n
 
         loop do
           case xml_n.name
           when 'scanList'
-            obj.scan_list = Mspire::Mzml::ScanList.from_xml(xml_n, ref_hash)
+            obj.scan_list = Mspire::Mzml::ScanList.from_xml(xml_n, link)
           when 'precursorList'
             obj.precursors = xml_n.children.map do |prec_n|
-              Mspire::Mzml::Precursor.from_xml(prec_n, ref_hash, spectrum_list, source_file_hash)
+              Mspire::Mzml::Precursor.from_xml(prec_n, link)
             end
           when 'productList'
             obj.products = xml_n.children.map do |product_n|
-              Mspire::Mzml::Product.from_xml(product_n, ref_hash)
+              Mspire::Mzml::Product.from_xml(product_n, link)
             end
           when 'binaryDataArrayList'
-            obj.data_arrays = Mspire::Mzml::DataArray.data_arrays_from_xml(xml_n, ref_hash)
+            obj.data_arrays = Mspire::Mzml::DataArray.data_arrays_from_xml(xml_n, link)
           end
           break unless xml_n = xml_n.next
         end
