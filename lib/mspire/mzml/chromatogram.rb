@@ -13,13 +13,13 @@ module Mspire
       # (optional) Description of product isolation to the chromatogram
       attr_accessor :product
 
-      def initialize(id, opts={params: []}, &block)
+      def initialize(id)
         @id = id
-        params_initialize(opts)
-        block.call(self) if block
+        params_initialize
+        yield(self) if block_given?
       end
 
-      def self.from_xml(xml, ref_hash, data_processing_hash, default_data_processing)
+      def self.from_xml(xml, link)
         chrom = Mspire::Mzml::Chromatogram.new(xml[:id])
         obj.data_processing = data_processing_hash[xml[:dataProcessingRef]] || default_data_processing
 

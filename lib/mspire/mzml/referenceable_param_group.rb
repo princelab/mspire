@@ -12,9 +12,9 @@ module Mspire
 
       attr_accessor :id
 
-      def initialize(id, opts={params: []} )
+      def initialize(id)
         @id = id
-        super(opts)
+        yield(self) if block_given?
       end
 
       def to_xml(builder)

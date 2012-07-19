@@ -11,10 +11,9 @@ module Mspire
 
       attr_accessor :id, :version
 
-      def initialize(id='mspire', version=Mspire::VERSION, opts={params: []}, &block)
+      def initialize(id='mspire', version=Mspire::VERSION)
         @id, @version = id, version
-        super(opts)
-        block.call(self) if block
+        yield(self) if block_given?
       end
 
       def to_xml(builder)
@@ -24,9 +23,9 @@ module Mspire
         builder
       end
 
-      def self.from_xml(xml, ref_hash)
+      def self.from_xml(xml, link)
         obj = self.new(xml[:id], xml[:version])
-        super(xml, ref_hash, obj)
+        obj.describe_self_from_xml!(xml, link[:ref_hash])
       end
 
     end

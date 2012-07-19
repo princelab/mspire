@@ -22,22 +22,28 @@ module Mspire
       attr_accessor :contacts
 
       # hands the user the object if given a block
-      def initialize(file_content=nil, source_files=[], contacts=[], &block)
+      def initialize(file_content=nil, source_files=[], contacts=[])
         @file_content, @source_files, @contacts = file_content, source_files, contacts
-        block.call(self) if block
+        yield(self) if block_given?
         #raise ArgumentError, "FileDescription must have file_content" unless @file_content
       end
 
-      def self.from_xml(xml, ref_hash)
-        obj = self.new
+      def self.from_xml(xml, link)
+        ref_hash = link[:ref_hash]
         file_content_n = xml.child
-        obj.file_content = Mspire::Mzml::FileContent.from_xml(file_content_n, ref_hash)
+        obj = self.new( Mspire::Mzml::FileContent.from_xml(file_content_n, ref_hash) )
 
-        obj.source_files = xml.xpath('./sourceFileList/sourceFile').map do |source_file_n|
-          Mspire::Mzml::SourceFile.from_xml(source_file_n, ref_hash)
+        next_n = file_content_n.next
+        if next_n.name == 'sourceFileList'
+          obj.source_files = next_n.children.map do |source_file_n|
+            Mspire::Mzml::SourceFile.from_xml(source_file_n, ref_hash)
+          end
+          next_n = next_n.next
         end
-        obj.contacts = xml.xpath('./contacts').map do |contact_n|
-          Mspire::Mzml::Contact.from_xml(contact_n, ref_hash)
+        return obj unless contact_n = next_n
+        loop do
+          obj.contacts << Mspire::Mzml::Contact.from_xml(contact_n, ref_hash)
+          break unless contact_n = contact_n.next
         end
         obj
       end

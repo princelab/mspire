@@ -18,10 +18,9 @@ module Mspire
       # a single software object associated with the instrument
       attr_accessor :software
 
-      def initialize(id, components=[], opts={params: []})
-        super(opts)
-        @id = id
-        @components = components
+      def initialize(id, components=[])
+        @id, @components = id, components
+        yield(self) if block_given?
       end
 
       def to_xml(builder)

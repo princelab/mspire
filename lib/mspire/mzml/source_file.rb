@@ -33,10 +33,10 @@ module Mspire
         [pathname.basename, 'file://'+ dir]
       end
 
-      def initialize(id="sourcefile1", name="mspire-simulated", location='file://', opts={params: []}, &block)
+      def initialize(id="sourcefile1", name="mspire-simulated", location='file://')
         @id, @name, @location = id, name, location
-        super(opts)
-        block.call(self) if block
+        super
+        yield(self) if block_given?
       end
 
       def to_xml(builder)

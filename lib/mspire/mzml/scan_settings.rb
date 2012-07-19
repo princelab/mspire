@@ -5,13 +5,13 @@ module Mspire
   class Mzml
     class ScanSettings
       include Mspire::CV::Paramable
+      extend Mspire::Mzml::List
 
       attr_accessor :id
 
-      def initialize(id, opts={params: []}, &block)
+      def initialize(id)
         @id = id
-        super(opts)
-        block.call(self) if block
+        yield(self) if block_given?
       end
 
       def to_xml(builder)
@@ -20,8 +20,6 @@ module Mspire
         end
         builder
       end
-
-      extend(Mspire::Mzml::List)
 
     end
   end

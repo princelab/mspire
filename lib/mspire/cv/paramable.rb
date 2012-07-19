@@ -87,11 +87,10 @@ module Mspire
         params.any? {|param| param.name == name }
       end
 
-      def initialize(opts={params: []})
+      def initialize
         @cv_params = []
         @user_params = []
         @ref_param_groups = []
-        describe_many!(opts[:params])
       end
 
       def param_by_accession(acc)

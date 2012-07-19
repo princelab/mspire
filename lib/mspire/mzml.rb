@@ -1,33 +1,12 @@
 
-
 # TODO: trim down these require statements to only include upper level
 require 'mspire'
 require 'builder'
-require 'nokogiri'
-require 'io/bookmark'
-require 'zlib'
-
 require 'core_ext/enumerable'
-require 'mspire/mzml/parser'
-require 'mspire/mzml/index_list'
-require 'mspire/mzml/index'
-require 'mspire/mzml/spectrum'
-require 'mspire/mzml/chromatogram'
-require 'mspire/mzml/file_description'
-require 'mspire/mzml/software'
-require 'mspire/mzml/scan_list'
-require 'mspire/mzml/selected_ion'
-require 'mspire/mzml/scan'
+
+require 'mspire/mzml/reader'
+
 require 'mspire/mzml/scan_settings'
-require 'mspire/mzml/processing_method'
-require 'mspire/mzml/run'
-require 'mspire/mzml/spectrum_list'
-require 'mspire/mzml/chromatogram_list'
-require 'mspire/mzml/instrument_configuration'
-require 'mspire/mzml/data_processing'
-require 'mspire/mzml/referenceable_param_group'
-require 'mspire/mzml/cv'
-require 'mspire/mzml/sample'
 
 module Mspire
   # Reading an mzml file:
@@ -50,7 +29,8 @@ module Mspire
   #
   # Writing an mzml file from scratch:
   #
-  #     spec1 = Mspire::Mzml::Spectrum.new('scan=1', params: ['MS:1000127', ['MS:1000511', 1]]) do |spec|
+  #     spec1 = Mspire::Mzml::Spectrum.new('scan=1') do |spec|
+  #       spec.describe_many! ['MS:1000127', ['MS:1000511', 1]]
   #       spec.data_arrays = [[1,2,3], [4,5,6]]
   #       spec.scan_list = Mspire::Mzml::ScanList.new do |sl|
   #         scan = Mspire::Mzml::Scan.new do |scan|
@@ -68,7 +48,8 @@ module Mspire
   #         fd.file_content = Mspire::Mzml::FileContent.new
   #         fd.source_files << Mspire::Mzml::SourceFile.new
   #       end
-  #       default_instrument_config = Mspire::Mzml::InstrumentConfiguration.new("IC",[], params: ['MS:1000031'])
+  #       default_instrument_config = Mspire::Mzml::InstrumentConfiguration.new("IC",[])
+  #       default_instrument_config.describe! 'MS:1000031'
   #       mzml.instrument_configurations << default_instrument_config
   #       software = Mspire::Mzml::Software.new
   #       mzml.software_list << software
@@ -172,119 +153,15 @@ module Mspire
     # which allows seeking.  get_index_list is called to get or create the
     # index list.
     def initialize(arg=nil, &block)
-      %w(cvs software_list instrument_configurations data_processing_list).each {|guy| self.send( guy + '=', [] ) }
+      %w(cvs software_list instrument_configurations samples data_processing_list).each {|guy| self.send( guy + '=', [] ) }
 
       case arg
       when IO
-        @io = arg
-        begin
-          @encoding = @io.bookmark(true) {|io| io.readline.match(/encoding=["'](.*?)["']/)[1] }
-        rescue EOFError
-          raise RuntimeError, "no encoding present in XML!  (Is this even an xml file?)"
-        end
-        @index_list = Mspire::Mzml::IndexList.from_io(@io)
-        read_header!( get_default_data_processing_ids(@io, @index_list) )
+        set_from_xml_io!(arg)
       when Hash
         arg.each {|k,v| self.send("#{k}=", v) }
       end
       block.call(self) if block
-    end
-
-    # returns a hash keyed by :spectrum or :chromatogram that gives the id
-    # (aka ref) as a string.
-    def get_default_data_processing_ids(io, index_list, lookback=200)
-      hash = {}
-      index_list.each_pair do |name, index|
-        io.bookmark do |io|
-          io.pos = index[0] - lookback 
-          hash[name] = io.read(lookback)[/<#{name}List.*defaultDataProcessingRef=['"](.*?)['"]/m, 1]
-        end
-      end
-      hash
-    end
-
-    # saves ~ 3 seconds when reading a 83M mzML file to scrape off the
-    # header string (even though we're just handing in an IO object to
-    # Nokogiri::XML::Document.parse and we are very careful to not parse too
-    # far).
-    def get_header_string(io)
-      chunk_size = 2**12
-      loc = 0
-      string = ''
-      while chunk = @io.read(chunk_size)
-        string << chunk
-        start_looking = ((loc-20) < 0) ? 0 : (loc-20)
-        break if string[start_looking..-1] =~ /<(spectrum|chromatogram)/
-          loc += chunk_size
-      end
-      string
-    end
-
-    # list_type_to_default_data_processing_id is a hash keyed by :spectrum or
-    # :chromatogram that gives the default data_processing_object for the
-    # SpectrumList and/or the ChromatogramList.  This information is not
-    # obtainable from the header string, so must be pre-obtained.
-    def read_header!(list_type_to_default_data_processing_id)
-      @io.rewind
-
-      string = get_header_string(@io)
-      doc = Nokogiri::XML.parse(string, nil, @encoding, Parser::NOBLANKS)
-
-      doc.remove_namespaces!
-      mzml_n = doc.root
-      if mzml_n.name == 'indexedmzML'
-        mzml_n = mzml_n.child
-      end
-      cv_list_n = mzml_n.child
-      self.cvs = cv_list_n.children.map do |cv_n|
-        Mspire::Mzml::CV.from_xml(cv_n)
-      end
-
-      # get the file description node but deal with it after getting ref_hash
-      file_description_n = cv_list_n.next
-
-      xml_n = file_description_n.next
-
-      # a hash of referenceable_param_groups indexed by id
-      ref_hash = {}
-
-      loop do
-        case xml_n.name
-        when 'referenceableParamGroupList'
-          self.referenceable_param_groups = xml_n.children.map do |rpg_n|
-            Mspire::Mzml::ReferenceableParamGroup.from_xml(rpg_n)
-          end
-          ref_hash = self.referenceable_param_groups.index_by(&:id)
-          # now we can set the file description because we have the ref_hash
-          self.file_description = Mspire::Mzml::FileDescription.from_xml(file_description_n, ref_hash)
-        when 'sampleList'
-          self.samples = xml_n.children.map do |sample_n|
-            Mspire::Mzml::Sample.from_xml(sample_n, ref_hash)
-          end
-        when 'softwareList'  # required
-          self.software_list = xml_n.children.map do |software_n|
-            Mspire::Mzml::Software.from_xml(software_n, ref_hash)
-          end
-        when 'instrumentConfigurationList'
-          self.instrument_configurations = xml_n.children.map do |inst_config_n|
-            Mspire::Mzml::InstrumentConfiguration.from_xml(inst_config_n, ref_hash)
-          end
-        when 'dataProcessingList'
-          self.data_processing_list = xml_n.children.map do |data_processing_n|
-            Mspire::Mzml::DataProcessing.from_xml(data_processing_n, ref_hash, self.software_list.index_by(&:id))
-          end
-        when 'run'
-          source_files = self.file_description.source_files
-          source_file_hash = (source_files.size > 0)  ?  source_files.index_by(&:id)  :  {}
-
-          samples = self.samples || []
-          sample_hash = (samples.size > 0)  ?  samples.index_by(&:id)  :  {}
-
-          self.run = Mspire::Mzml::Run.from_xml(@io, xml_n, ref_hash, @index_list, self.instrument_configurations.index_by(&:id), source_file_hash, sample_hash, list_type_to_default_data_processing_id, data_processing_list.index_by(&:id))
-          break
-        end
-        xml_n = xml_n.next
-      end
     end
 
     module Convenience

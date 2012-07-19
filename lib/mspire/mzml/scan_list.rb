@@ -12,9 +12,9 @@ module Mspire
     class ScanList < Array
       include Mspire::CV::Paramable
 
-      def initialize(opts={params: []}, &block)
-        super(opts)
-        block.call(self) if block
+      def initialize
+        super
+        yield(self) if block_given?
       end
 
       def to_xml(builder)

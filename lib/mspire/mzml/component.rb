@@ -9,8 +9,8 @@ module Mspire
       extend Mspire::CV::ParamableFromXml
       # using custom list_xml, so no extend Mspire::Mzml::List
 
-      def initialize(opts={params: []})
-        super(opts)
+      def initialize
+        yield(self) if block_given?
       end
 
       def to_xml(builder, order)

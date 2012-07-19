@@ -22,9 +22,9 @@ module Mspire
       # ScanWindow objects
       attr_accessor :scan_windows
 
-      def initialize(opts={params: []}, &block)
-        super(opts)
-        block.call(self) if block
+      def initialize
+        super
+        yield(self) if block_given?
       end
 
       # link should have:

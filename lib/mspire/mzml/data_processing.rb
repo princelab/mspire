@@ -8,9 +8,9 @@ module Mspire
       attr_accessor :id, :processing_methods
 
       # yields self if given a block
-      def initialize(id, processing_methods=[], &block)
+      def initialize(id, processing_methods=[])
         @id, @processing_methods = id, processing_methods
-        block.call(self) if block
+        yield(self) if block_given?
       end
 
       def to_xml(builder)
