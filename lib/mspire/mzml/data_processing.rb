@@ -1,4 +1,5 @@
 require 'mspire/mzml/list'
+require 'mspire/mzml/processing_method'
 
 module Mspire
   class Mzml
@@ -27,9 +28,10 @@ module Mspire
         processing_methods.index(processing_method)
       end
 
-      def self.from_xml(xml, ref_hash, software_hash)
+      def self.from_xml(xml, link)
         processing_methods = xml.children.map do |pm_n| 
-          ProcessingMethod.from_xml(pm_n, ref_hash, software_hash)
+          ProcessingMethod.new(link[:software_hash][xml[:softwareRef]])
+            .describe_self_from_xml!(pm_n, link[:ref_hash])
         end
         self.new(xml[:id], processing_methods)
       end

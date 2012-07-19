@@ -6,10 +6,10 @@ module Mspire
     # order is not an intrinsic property of this object, so it 
     module Component
       include Mspire::CV::Paramable
-      extend Mspire::CV::ParamableFromXml
       # using custom list_xml, so no extend Mspire::Mzml::List
 
       def initialize
+        params_init
         yield(self) if block_given?
       end
 
@@ -26,11 +26,6 @@ module Mspire
             component.to_xml(xml_n, order)
           end
         end
-      end
-
-      def self.from_xml(xml, ref_hash)
-        obj = Mspire::Mzml.const_get(xml.name.capitalize).new
-        super(xml, ref_hash, obj)
       end
     end
 

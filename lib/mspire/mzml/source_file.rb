@@ -7,7 +7,6 @@ module Mspire
     class SourceFile
       include Mspire::CV::Paramable
       extend Mspire::Mzml::List
-      extend Mspire::CV::ParamableFromXml
 
       DEFAULT_SOURCEFILE_ID = 'sourcefile1'
 
@@ -35,7 +34,7 @@ module Mspire
 
       def initialize(id="sourcefile1", name="mspire-simulated", location='file://')
         @id, @name, @location = id, name, location
-        super
+        params_init
         yield(self) if block_given?
       end
 
@@ -47,8 +46,7 @@ module Mspire
       end
 
       def self.from_xml(xml, ref_hash)
-        obj = self.new(xml[:id], xml[:name], xml[:location])
-        super(xml, ref_hash, obj)
+        self.new(xml[:id], xml[:name], xml[:location]).describe_self_from_xml!(xml, ref_hash)
       end
 
     end

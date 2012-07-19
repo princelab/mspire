@@ -7,12 +7,12 @@ module Mspire
     class Software
       include Mspire::CV::Paramable
       extend Mspire::Mzml::List
-      extend Mspire::CV::ParamableFromXml
 
       attr_accessor :id, :version
 
       def initialize(id='mspire', version=Mspire::VERSION)
         @id, @version = id, version
+        params_init
         yield(self) if block_given?
       end
 

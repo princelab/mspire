@@ -31,7 +31,7 @@ module Mspire
       def self.from_xml(xml, link)
         ref_hash = link[:ref_hash]
         file_content_n = xml.child
-        obj = self.new( Mspire::Mzml::FileContent.from_xml(file_content_n, ref_hash) )
+        obj = self.new( Mspire::Mzml::FileContent.new.describe_self_from_xml!(file_content_n, ref_hash) )
 
         next_n = file_content_n.next
         if next_n.name == 'sourceFileList'

@@ -2,7 +2,6 @@ require 'io/bookmark'
 
 %w(
   parser
-  nokogiri
 
   index_list
 
@@ -15,7 +14,9 @@ require 'io/bookmark'
   instrument_configuration
   data_processing
   run
-)
+).each do |file|
+  require "mspire/mzml/#{file}"
+end
 
 module Mspire
   class Mzml
@@ -73,7 +74,7 @@ module Mspire::Mzml::Reader
     @io.rewind
 
     string = get_header_string(@io)
-    doc = Nokogiri::XML.parse(string, nil, @encoding, Parser::NOBLANKS)
+    doc = Nokogiri::XML.parse(string, nil, @encoding, Mspire::Mzml::Parser::NOBLANKS)
 
     doc.remove_namespaces!
     mzml_n = doc.root
@@ -112,7 +113,7 @@ module Mspire::Mzml::Reader
         self.software_list = xml_n.children.map do |software_n|
           Mspire::Mzml::Software.from_xml(software_n, link)
         end
-        link[:software_list_hash] = self.software_list.index_by(&:id)
+        link[:software_hash] = self.software_list.index_by(&:id)
       when 'instrumentConfigurationList'
         self.instrument_configurations = xml_n.children.map do |inst_config_n|
           Mspire::Mzml::InstrumentConfiguration.from_xml(inst_config_n, link)
@@ -125,7 +126,9 @@ module Mspire::Mzml::Reader
         link[:data_processing_hash] = self.data_processing_list.index_by(&:id)
       when 'run'
         link[:index_list] = @index_list
-        link[:list_type_to_default_data_processing_id] = list_type_to_default_data_processing_id
+        list_type_to_default_data_processing_id.each do |type, process_id|
+          link["#{type}_default_data_processing".to_sym] = link[:data_processing_hash][process_id]
+        end
         self.run = Mspire::Mzml::Run.from_xml(@io, xml_n, link)
         break
       end

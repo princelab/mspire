@@ -1,4 +1,6 @@
 require 'mspire/mzml/parser'
+require 'mspire/mzml/spectrum'
+require 'mspire/mzml/chromatogram'
 
 module Mspire
   class Mzml
@@ -20,7 +22,7 @@ module Mspire
       #
       #     :ref_hash
       #     :data_processing_hash
-      #     :default_data_processing
+      #     :(<sample>|<chromatogram>)_default_data_processing
       #
       # may have:
       #

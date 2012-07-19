@@ -3,6 +3,9 @@ require 'spec_helper'
 require 'builder'
 require 'mspire/mzml'
 
+require 'mspire/mzml/file_description'
+require 'mspire/mzml/run'
+
 describe Mspire::Mzml do
 
   describe 'reading a SIM file', :pending do

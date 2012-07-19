@@ -8,7 +8,6 @@ module Mspire
     #     accession="MS:1000500" name="scan window upper limit" value="1800"
     class ScanWindow
       include Mspire::CV::Paramable
-      extend Mspire::CV::ParamableFromXml
     end
   end
 end

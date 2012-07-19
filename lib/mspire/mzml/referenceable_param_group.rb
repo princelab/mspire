@@ -14,6 +14,7 @@ module Mspire
 
       def initialize(id)
         @id = id
+        params_init
         yield(self) if block_given?
       end
 

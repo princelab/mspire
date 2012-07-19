@@ -12,7 +12,6 @@ module Mspire
     class SelectedIon
       include Mspire::CV::Paramable
       extend Mspire::Mzml::List
-      extend Mspire::CV::ParamableFromXml
     end
   end
 end

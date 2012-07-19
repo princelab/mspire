@@ -8,14 +8,13 @@ module Mspire
     # methods.  (zero based indexing is fine)
     class ProcessingMethod
       include Mspire::CV::Paramable
-      extend Mspire::CV::ParamableFromXml
 
       attr_accessor :software
 
-      def initialize(software, opts={params: []}, &block)
+      def initialize(software)
         @software = software
-        super(opts)
-        block.call(self) if block
+        params_init
+        yield(self) if block_given?
       end
 
       def to_xml(builder, order)
@@ -23,11 +22,6 @@ module Mspire
           super(pm_n) # params
         end
         builder
-      end
-
-      def self.from_xml(xml, ref_hash, software_hash)
-        obj = self.new(software_hash[xml[:softwareRef]])
-        super(xml, ref_hash, obj)
       end
     end
   end

@@ -6,18 +6,6 @@ require 'andand'
 
 module Mspire
   module CV
-
-    # a module providing the method from_xml for the classes of paramable objects
-    module ParamableFromXml
-
-      def from_xml(xml, ref_hash, obj=nil)
-        obj ||= self.new
-        obj.describe_from_xml!(xml, ref_hash)
-        obj
-      end
-
-    end
-
     module Paramable
 
       attr_accessor :cv_params
@@ -92,6 +80,7 @@ module Mspire
         @user_params = []
         @ref_param_groups = []
       end
+      alias_method :params_init, :initialize
 
       def param_by_accession(acc)
         each_accessionable_param.find {|v| v.accession == acc }
@@ -99,6 +88,7 @@ module Mspire
       alias_method :param_by_acc, :param_by_accession
 
       # takes an array of values, each of which is fed into describe!
+      # returns self.
       def describe_many!(array)
         array.each do |arg|
           if arg.is_a?(Array)
@@ -107,20 +97,29 @@ module Mspire
             describe!(arg)
           end
         end
+        self
+      end
+
+      # reads the paramable nodes and returns self.  Use this if your element
+      # does not have anything besides paramable elements.
+      def describe_self_from_xml!(xml_node, ref_hash=nil)
+        describe_from_xml!(xml_node, ref_hash)
+        self
       end
 
       # takes a node with children that are cvParam, userParam or
       # referenceableParamGroupRef and a hash containing
-      # referenceableParamGroup objects indexed by id.  The only time this
+      # referenceableParamGroup objects indexed by id.  The only time ref_hash
       # should be left nil is for the referenceableParamGroup itself.
       #
       # All param elements are required to appear before other elements, so
-      # the code is careful to walk through the xml element by element and
-      # break as soon as a non param node is encountered.
+      # the code walks through each child node to see if it is a paramable
+      # element.  The first child node that is not paramable is returned (or
+      # nil if none)
       #
-      # returns the next sibling node or nil if none
+      # returns the next child node after the paramable elements or nil if none
       def describe_from_xml!(xml_node, ref_hash=nil)
-        return self unless (child_n = xml_node.child) 
+        return nil unless (child_n = xml_node.child) 
         loop do
           array = 
             case child_n.name

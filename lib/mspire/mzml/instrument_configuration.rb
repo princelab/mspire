@@ -7,19 +7,19 @@ module Mspire
     class InstrumentConfiguration
       include Mspire::CV::Paramable
       extend Mspire::Mzml::List
-      extend Mspire::CV::ParamableFromXml
 
       # (required) the id that this guy can be referenced from
       attr_accessor :id
 
-      # a list of Source, Analyzer, Detector objects
+      # a list of Source, Analyzer, Detector objects (optional)
       attr_accessor :components
 
-      # a single software object associated with the instrument
+      # a single software object associated with the instrument (optional)
       attr_accessor :software
 
       def initialize(id, components=[])
         @id, @components = id, components
+        params_init
         yield(self) if block_given?
       end
 
@@ -32,12 +32,18 @@ module Mspire
         builder
       end
 
-      def self.from_xml(xml, ref_hash)
+      def self.from_xml(xml, link)
         obj = self.new(xml[:id])
-        obj.components = xml.xpath('./componentList').first.children.map do |component_n|
-          Mspire::Mzml::Component.from_xml(component_n, ref_hash)
+        next_n = obj.describe_from_xml!(xml, link[:ref_hash])
+        if next_n.name == 'componentList'
+          obj.components = next_n.children.map do |component_n|
+            Mspire::Mzml.const_get(component_n.name.capitalize).new.describe_self_from_xml!(component_n, link[:ref_hash])
+          end
+          next_n = next_n.next
         end
-        obj.describe_from_xml!(xml, ref_hash)
+        if next_n.name == 'softwareRef'
+          obj.software = link[:software_hash][next_n[:ref]]
+        end
         obj
       end
 

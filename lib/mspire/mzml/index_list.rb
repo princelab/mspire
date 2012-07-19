@@ -1,3 +1,4 @@
+require 'mspire/mzml/index'
 
 module Mspire
   class Mzml

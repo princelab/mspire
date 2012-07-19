@@ -28,7 +28,6 @@ module Mspire
     #     et al.
     class Activation
       include Mspire::CV::Paramable
-      extend Mspire::CV::ParamableFromXml
     end
   end
 end

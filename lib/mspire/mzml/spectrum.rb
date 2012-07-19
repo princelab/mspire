@@ -46,9 +46,6 @@ module Mspire
       include Mspire::Mzml::DataArrayContainerLike
       alias_method :params_initialize, :initialize
 
-      extend Mspire::CV::ParamableFromXml
-
-
       # (optional) an Mspire::Mzml::SourceFile object
       attr_accessor :source_file
 
@@ -127,8 +124,18 @@ module Mspire
       def self.from_xml(xml, link)
         obj = self.new(xml[:id])
         obj.spot_id = xml[:spotID]
-        obj.data_processing = link[:data_processing_hash[xml[:dataProcessingRef]]] || link[:default_data_processing]
-        obj.source_file = link[:source_file_hash[xml[:sourceFileRef]]]
+
+        puts "EXAMIN:"
+        p link[:sample_default_data_processing]
+        p xml[:dataProcessingRef]
+
+        obj.data_processing = link[:data_processing_hash][xml[:dataProcessingRef]] || link[:sample_default_data_processing]
+        puts "POST"
+        p obj.data_processing
+
+        if source_file_ref=xml[:sourceFileRef]
+          obj.source_file = link[:source_file_hash][source_file_ref]
+        end
 
         xml_n = obj.describe_from_xml!(xml, link[:ref_hash])
         return obj unless xml_n
@@ -158,12 +165,12 @@ module Mspire
       #
       # This would generate a spectrum of ms_level 2 :
       #
-      #     Mspire::Mzml::Spectrum.new("scan=1", params: [['MS:1000511', 2]])
+      #     spec = Mspire::Mzml::Spectrum.new("scan=1").describe!('MS:1000511')
       #
-      def initialize(id, opts={params: []}, &block)
+      def initialize(id)
         @id = id
-        params_initialize(opts)
-        block.call(self) if block
+        params_initialize
+        yield(self) if block_given?
       end
 
       # see SpectrumList for generating the entire list

@@ -37,20 +37,23 @@ module Mspire
         @spectrum_list[@spectrum_id]
       end
 
-      def self.from_xml(xml, ref_hash, spectrum_list=nil, source_file_hash=nil)
+      def self.from_xml(xml, link)
+        ref_hash = link[:ref_hash]
         obj = self.new
         obj.spectrum_id = xml[:spectrumRef] || xml[:externalSpectrumID]
-        obj.source_file = source_file_hash[ xml[:sourceFileRef] ] if source_file_hash
+        if source_file_ref = xml[:sourceFileRef]
+          obj.source_file = link[:source_file_hash][ source_file_ref ]
+        end
 
         xml.children.each do |child_n|
           case child_n.name
           when 'activation' # the only one required
-            Mspire::Mzml::Activation.from_xml(child_n, ref_hash)
+            obj.activation = Mspire::Mzml::Activation.new.describe_self_from_xml!(child_n, ref_hash)
           when 'isolationWindow'
-            Mspire::Mzml::IsolationWindow.from_xml(child_n, ref_hash)
+            obj.isolation_window = Mspire::Mzml::IsolationWindow.new.describe_self_from_xml!(child_n, ref_hash)
           when 'selectedIonList'
             obj.selected_ions = child_n.children.map do |si_n|
-              Mspire::Mzml::SelectedIon.from_xml(si_n, ref_hash)
+              Mspire::Mzml::SelectedIon.new.describe_self_from_xml!(si_n, ref_hash)
             end
           end
         end

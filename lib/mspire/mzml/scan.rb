@@ -6,7 +6,6 @@ module Mspire
   class Mzml
     class Scan
       include Mspire::CV::Paramable
-      extend Mspire::CV::ParamableFromXml
 
       # (optional) the Mspire::Mzml::Spectrum object from which the precursor is
       # derived.  (the sourceFileRef is derived from this spectrum object if
@@ -23,7 +22,7 @@ module Mspire
       attr_accessor :scan_windows
 
       def initialize
-        super
+        params_init
         yield(self) if block_given?
       end
 
@@ -33,6 +32,7 @@ module Mspire
       #     :default_instrument_configuration
       #     :instrument_configuration_hash
       def self.from_xml(xml, link)
+        ref_hash = link[:ref_hash]
         obj = self.new
         obj.instrument_configuration =
           if icf = xml[:instrumentConfigurationRef]
@@ -40,9 +40,9 @@ module Mspire
           else
             link[:default_instrument_configuration]
           end
-        scan_window_list_n = obj.describe_from_xml!(xml, link[:ref_hash])
+        scan_window_list_n = obj.describe_from_xml!(xml, ref_hash)
         obj.scan_windows = scan_window_list_n.children.map do |scan_window_n|
-          Mspire::Mzml::ScanWindow.from_xml(scan_window_n, ref_hash)
+          Mspire::Mzml::ScanWindow.new.describe_self_from_xml!(scan_window_n, ref_hash)
         end
         obj
       end

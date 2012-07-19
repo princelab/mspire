@@ -215,13 +215,13 @@ module Mspire::Imzml
     def create_file_description(source_files, config)
       Mspire::Mzml::FileDescription.new  do |fd|
 
-        fd.file_content = Mspire::Mzml::FileContent.new :params => [
+        fd.file_content = Mspire::Mzml::FileContent.new.describe_many!( [
           'MS:1000579', # MS1 Spectrum
           config[:profile] ? 'MS:1000128' : 'MS:1000127',
           ['IMS:1000080', "{"+config[:uuid_hyphenated]+"}"],
           ['IMS:1000091', config[:ibd_sha1]],
           (config[:data_structure] == :processed) ? 'IMS:1000031' : 'IMS:1000030',
-        ]
+        ] )
 
         fd.source_files.replace(source_files)
         if [:name, :organization, :address, :email].any? {|key| config[key] }
@@ -267,9 +267,9 @@ module Mspire::Imzml
         "MS:1000127",  # centroid spectrum
         "MS:1000130" # <- positive scan
       ]}.map do |id, list|
-        Mspire::Mzml::ReferenceableParamGroup.new id, params: list
+        Mspire::Mzml::ReferenceableParamGroup.new(id).describe_many!(list)
       end
-      Hash[ rparms.map {|parm| [parm.id, parm]} ]
+      Hash[ rparms.map {|prm_group_obj| [prm_group_obj.id, prm_group_obj]} ]
     end
 
     # mzml_filenames can each be a partial or relative path
@@ -367,12 +367,12 @@ module Mspire::Imzml
 
         imzml.referenceable_param_groups = rparms_by_id.values
         # skip sample list for now
-        mspire_software = Mspire::Mzml::Software.new( "mspire", Mspire::VERSION, params: ["MS:1000799"] )
+        mspire_software = Mspire::Mzml::Software.new("mspire", Mspire::VERSION).describe!("MS:1000799")
         imzml.software_list << mspire_software
 
         scan_setting_params = image_hash_to_cvs( config )
         scan_setting_params.push *experiment_hash_to_cvs( config )
-        imzml.scan_settings_list = [Mspire::Mzml::ScanSettings.new("scansettings1", params: scan_setting_params)]
+        imzml.scan_settings_list = [Mspire::Mzml::ScanSettings.new("scansettings1").describe_many!(scan_setting_params)]
 
         warn 'todo: need to borrow instrumentConfiguration from original mzml'
 
@@ -384,7 +384,7 @@ module Mspire::Imzml
         # this is a generic 'file format conversion' but its the closest we
         # have for mzml to imzml (which is really mzml to mzml)
         data_processing_obj = Mspire::Mzml::DataProcessing.new('mzml_to_imzml')
-        data_processing_obj.processing_methods << Mspire::Mzml::ProcessingMethod.new(1, mspire_software, params: ['MS:1000530'] )
+        data_processing_obj.processing_methods << Mspire::Mzml::ProcessingMethod.new(1, mspire_software).describe!('MS:1000530')
         imzml.data_processing_list << data_processing_obj
 
         warn "not implemented 'omit_zeros' yet"
@@ -394,10 +394,10 @@ module Mspire::Imzml
           data_info_pairs.zip(xy_positions_array, sourcefile_id_parallel_to_spectra).each_with_index do |(pair, xy, sourcefile_id),i|
             # TODO: we should probably copy the id from the orig mzml (e.g.
             # scan=1)
-            spectrum = Mspire::Mzml::Spectrum.new("spectrum#{i}", params: [rparms_by_id[:spectrum1]])
+            spectrum = Mspire::Mzml::Spectrum.new("spectrum#{i}").describe!(rparms_by_id[:spectrum1])
             spectrum.source_file = sourcefile_id_to_sourcefile[sourcefile_id]
-            scan_list = Mspire::Mzml::ScanList.new(params: ['MS:1000795'])  # no combination
-            scan = Mspire::Mzml::Scan.new( params: [rparms_by_id[:scan1], ["IMS:1000050", xy[0]], ["IMS:1000051", xy[1]]] )
+            scan_list = Mspire::Mzml::ScanList.new.describe!('MS:1000795')  # no combination
+            scan = Mspire::Mzml::Scan.new.describe_many!([rparms_by_id[:scan1], ["IMS:1000050", xy[0]], ["IMS:1000051", xy[1]]])
             scan.instrument_configuration = default_instrument_config
             spectrum.scan_list = (scan_list << scan)
             

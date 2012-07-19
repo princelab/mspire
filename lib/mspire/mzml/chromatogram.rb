@@ -21,7 +21,7 @@ module Mspire
 
       def self.from_xml(xml, link)
         chrom = Mspire::Mzml::Chromatogram.new(xml[:id])
-        obj.data_processing = data_processing_hash[xml[:dataProcessingRef]] || default_data_processing
+        obj.data_processing = link[:data_processing_hash][xml[:dataProcessingRef]] || link[:chromatogram_default_data_processing]
 
         [:cvParam, :userParam].each {|v| chrom.describe! xml.xpath("./#{v}") }
 

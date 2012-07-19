@@ -1,4 +1,5 @@
 require 'mspire/cv/paramable'
+require 'mspire/mzml/scan'
 
 module Mspire
   class Mzml
@@ -13,7 +14,7 @@ module Mspire
       include Mspire::CV::Paramable
 
       def initialize
-        super
+        params_init
         yield(self) if block_given?
       end
 
@@ -27,12 +28,12 @@ module Mspire
         builder
       end
 
-      def self.from_xml(xml, ref_hash)
+      def self.from_xml(xml, link)
         scan_list = self.new
-        scan_n = scan_list.describe_from_xml!(xml, ref_hash)
+        scan_n = scan_list.describe_from_xml!(xml, link[:ref_hash])
         if scan_n
           loop do
-            scan_list << Mspire::Mzml::Scan.from_xml(scan_n, ref_hash)
+            scan_list << Mspire::Mzml::Scan.from_xml(scan_n, link)
             break unless scan_n = scan_n.next
           end
         end
