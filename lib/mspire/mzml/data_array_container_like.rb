@@ -38,21 +38,14 @@ module Mspire
         end
       end
 
-      # see SpectrumList for generating the entire list
-      # the opt key :sub_elements can be used to pass in subelements whose
-      # to_xml methods will be called.
-      def to_xml(builder, opts={}, &block)
+      # returns a hash with id, index, defaultArrayLength and the proper
+      # dataProcessing attributes filled out.
+      def data_array_xml_atts(default_ids)
         atts = {id: @id, index: @index, defaultArrayLength: default_array_length}
-        atts[:dataProcessingRef] = @data_processing.id if @data_processing
-        atts.merge!(opts)
-        raise "#{self.class} object must have index at xml writing time!" unless atts[:index] 
-
-        builder.spectrum(atts) do |sp_n|
-          super(sp_n) # params
-          block.call(sp_n) if block
-          Mspire::Mzml::DataArray.list_xml(@data_arrays, sp_n) if @data_arrays
+        if @data_processing && default_ids[:data_processing] != @data_processing.id 
+          atts[:dataProcessingRef] = @data_processing.id 
         end
-        builder
+        atts
       end
 
     end

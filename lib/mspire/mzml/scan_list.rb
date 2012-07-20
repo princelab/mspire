@@ -18,11 +18,11 @@ module Mspire
         yield(self) if block_given?
       end
 
-      def to_xml(builder)
+      def to_xml(builder, default_ids)
         builder.scanList(count: self.size) do |sl_n|
           super(sl_n)
           self.each do |scan|
-            scan.to_xml(sl_n)
+            scan.to_xml(sl_n, default_ids)
           end
         end
         builder

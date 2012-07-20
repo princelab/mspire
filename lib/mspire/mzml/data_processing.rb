@@ -30,7 +30,7 @@ module Mspire
 
       def self.from_xml(xml, link)
         processing_methods = xml.children.map do |pm_n| 
-          ProcessingMethod.new(link[:software_hash][xml[:softwareRef]])
+          ProcessingMethod.new(link[:software_hash][pm_n[:softwareRef]])
             .describe_self_from_xml!(pm_n, link[:ref_hash])
         end
         self.new(xml[:id], processing_methods)

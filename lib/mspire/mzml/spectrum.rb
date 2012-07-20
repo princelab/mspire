@@ -168,14 +168,17 @@ module Mspire
       end
 
       # see SpectrumList for generating the entire list
-      def to_xml(builder)
-        atts = {}
+      def to_xml(builder, default_ids)
+        atts = data_array_xml_atts(default_ids)
         atts[:sourceFileRef] = @source_file.id if @source_file
         atts[:spotID] = @spot_id if @spot_id
-        super(builder, atts) do |node|
-          @scan_list.list_xml( node ) if @scan_list
-          Mspire::Mzml::Precursor.list_xml(@precursors, node) if @precursors
-          Mspire::Mzml::Product.list_xml(@products, node) if @products
+
+        builder.spectrum(atts) do |sp_n|
+          super(sp_n)
+          @scan_list.list_xml( sp_n, default_ids ) if @scan_list
+          Mspire::Mzml::Precursor.list_xml(@precursors, sp_n) if @precursors
+          Mspire::Mzml::Product.list_xml(@products, sp_n) if @products
+          Mspire::Mzml::DataArray.list_xml(@data_arrays, sp_n) if @data_arrays
         end
       end
 

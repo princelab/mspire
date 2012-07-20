@@ -8,7 +8,7 @@ require 'mspire/mzml/run'
 
 describe Mspire::Mzml do
 
-  describe 'reading a SIM file', :pending do
+  describe 'reading a SIM file' do
     before do
       @file = TESTFILES + "/mspire/mzml/1_BB7_SIM_478.5.mzML"
       @io = File.open(@file)
@@ -43,7 +43,7 @@ describe Mspire::Mzml do
 
   describe 'reading an indexed, compressed peaks, mzML file' do
 
-    describe 'reading the header things', :pending do
+    describe 'reading the header things' do
       before do
         @file = TESTFILES + "/mspire/mzml/j24z.idx_comp.3.mzML"
         @io = File.open(@file)
@@ -300,15 +300,16 @@ describe Mspire::Mzml do
     end
   end
 
-  describe 'writing mzml', :pending do 
+  describe 'writing mzml' do 
 
     def sanitize_version(string)
       string.gsub(/"mspire" version="([\.\d]+)"/, %Q{"mspire" version="X.X.X"})    
     end
 
     it 'writes MS1 and MS2 spectra' do
-      # params: profile and ms_level 1
-      spec1 = Mspire::Mzml::Spectrum.new('scan=1', params: ['MS:1000128', ['MS:1000511', 1]]) do |spec|
+      spec1 = Mspire::Mzml::Spectrum.new('scan=1') do |spec|
+        # profile and ms_level 1
+        spec.describe_many!(['MS:1000128', ['MS:1000511', 1]])
         spec.data_arrays = [[1,2,3], [4,5,6]]
         spec.scan_list = Mspire::Mzml::ScanList.new do |sl|
           scan = Mspire::Mzml::Scan.new do |scan|
@@ -319,10 +320,9 @@ describe Mspire::Mzml do
         end
       end
 
-      # centroid,  ms_level 2, MSn spectrum, 
-      spec_params = ['MS:1000127', ['MS:1000511', 2], "MS:1000580"]
-
-      spec2 = Mspire::Mzml::Spectrum.new('scan=2', params: spec_params) do |spec| 
+      spec2 = Mspire::Mzml::Spectrum.new('scan=2') do |spec| 
+        # centroid,  ms_level 2, MSn spectrum, 
+        spec.describe_many!(['MS:1000127', ['MS:1000511', 2], "MS:1000580"])
         spec.data_arrays = [[1,2,3.5], [5,6,5]]
         spec.scan_list = Mspire::Mzml::ScanList.new do |sl|
           scan = Mspire::Mzml::Scan.new do |scan|
@@ -331,7 +331,7 @@ describe Mspire::Mzml do
           end
           sl << scan
         end
-        precursor = Mspire::Mzml::Precursor.new( spec1 )
+        precursor = Mspire::Mzml::Precursor.new( spec1.id )
         si = Mspire::Mzml::SelectedIon.new
         # the selected ion m/z:
         si.describe! "MS:1000744", 2.0
@@ -350,7 +350,7 @@ describe Mspire::Mzml do
           fd.file_content = Mspire::Mzml::FileContent.new
           fd.source_files << Mspire::Mzml::SourceFile.new
         end
-        default_instrument_config = Mspire::Mzml::InstrumentConfiguration.new("IC",[], params: ['MS:1000031'])
+        default_instrument_config = Mspire::Mzml::InstrumentConfiguration.new("IC").describe!('MS:1000031')
         mzml.instrument_configurations << default_instrument_config
         software = Mspire::Mzml::Software.new
         mzml.software_list << software

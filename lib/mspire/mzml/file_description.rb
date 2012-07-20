@@ -33,14 +33,15 @@ module Mspire
         file_content_n = xml.child
         obj = self.new( Mspire::Mzml::FileContent.new.describe_self_from_xml!(file_content_n, ref_hash) )
 
-        next_n = file_content_n.next
+        return obj unless next_n = file_content_n.next
+
         if next_n.name == 'sourceFileList'
           obj.source_files = next_n.children.map do |source_file_n|
             Mspire::Mzml::SourceFile.from_xml(source_file_n, ref_hash)
           end
-          next_n = next_n.next
+          return obj unless next_n = next_n.next
         end
-        return obj unless contact_n = next_n
+
         loop do
           obj.contacts << Mspire::Mzml::Contact.from_xml(contact_n, ref_hash)
           break unless contact_n = contact_n.next

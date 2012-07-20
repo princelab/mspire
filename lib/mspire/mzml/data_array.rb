@@ -9,8 +9,8 @@ end
 
 
 class Mspire::Mzml::DataArray < Array
+  alias_method :array_init, :initialize
   include Mspire::CV::Paramable
-  alias_method :params_to_xml, :to_xml
 
   DEFAULT_DTYPE = :float64
   DEFAULT_COMPRESSION = true
@@ -21,17 +21,41 @@ class Mspire::Mzml::DataArray < Array
     int64: 'MS:1000522', # signed
     int32: 'MS:1000519', # signed
   }
+  TYPE_XML = {
+    mz: '<cvParam cvRef="MS" accession="MS:1000514" name="m/z array"/>',
+    intensity: '<cvParam cvRef="MS" accession="MS:1000515" name="intensity array"/>'
+  }
 
-  # :mz or :intensity
-  def type
-    if params
-      accs_params = accessionable_params
-      if accs_params.any? {|param| param.accession == 'MS:1000514' }
-        :mz
-      elsif accs_params.any? {|param| param.accession == 'MS:1000515' }
-        :intensity
-      end
+  def initialize(*args)
+    params_init # paramable
+    array_init(*args)
+  end
+
+  # takes :mz or :intensity and sets the proper param among cvParams.  Does not do
+  # referenceableParamGroup resolution.
+  def type=(symbol)
+    new_cv_params = []
+    already_present = false
+    cvs = ['MS:1000514', 'MS:1000515']
+    cvs.reverse! if symbol == :intensity
+    (keep, remove) = cvs
+
+    @cv_params.each do |param|
+      new_cv_params << param unless param.accession == remove
+      (already_present = true) if (param.accession == keep)
     end
+    new_cv_params.push(Mspire::CV::Param[keep]) unless already_present
+    @cv_params = new_cv_params
+    symbol
+  end
+
+  # :mz or :intensity (or nil if none found)
+  def type
+    each_accessionable_param do |param|
+      return :mz if (param.accession == 'MS:1000514')
+      return :intensity if (param.accession == 'MS:1000515')
+    end
+    nil
   end
 
   # (optional) the DataProcessing object associated with this DataArray
@@ -41,9 +65,9 @@ class Mspire::Mzml::DataArray < Array
   # file for imzML files)
   attr_accessor :external
 
-  def self.data_arrays_from_xml(xml, ref_hash)
+  def self.data_arrays_from_xml(xml, link)
     data_arrays = xml.children.map do |binary_data_array_n|
-      Mspire::Mzml::DataArray.from_xml(binary_data_array_n, ref_hash)
+      Mspire::Mzml::DataArray.from_xml(binary_data_array_n, link)
     end
     (data_arrays.size > 0) ? data_arrays : [Mspire::Mzml::DataArray.new, Mspire::Mzml::DataArray.new]
   end
@@ -51,9 +75,11 @@ class Mspire::Mzml::DataArray < Array
   def self.from_xml(xml, link)
     da = self.new 
     binary_n = da.describe_from_xml!(xml, link[:ref_hash])
+
     if (dp_id = xml[:dataProcessingRef])
       da.data_processing = link[:data_processing_hash][dp_id]
     end
+
     zlib_compression = nil
     precision_unpack = nil
     # could also implement with set or hash lookup (need to test for
@@ -73,6 +99,7 @@ class Mspire::Mzml::DataArray < Array
         end
       end
     end
+
     data = binary_n.text.unpack("m*").first
 
     # some implementations leave data blank if there aren't peaks
@@ -134,8 +161,9 @@ class Mspire::Mzml::DataArray < Array
       end
 
     builder.binaryDataArray(encodedLength: encoded_length) do |bda_n|
-      params_to_xml(bda_n)
+      super(bda_n)
       unless self.external
+        # can significantly speed up the below 2 lines:
         Mspire::CV::Param[ DTYPE_TO_ACC[dtype] ].to_xml(bda_n)
         Mspire::CV::Param[ compression ? 'MS:1000574' : 'MS:1000576' ].to_xml(bda_n)
         bda_n.binary(base64)
@@ -148,11 +176,8 @@ class Mspire::Mzml::DataArray < Array
     builder.binaryDataArrayList(count: arrays.size) do |bdal_n|
       arrays.zip([:mz, :intensity]) do |data_ar, typ|
         ar = 
-          if data_ar.is_a?(Mspire::Mzml::DataArray)
-            data_ar
-          else
-            Mspire::Mzml::DataArray.new(data_ar)
-          end
+          if data_ar.is_a?(Mspire::Mzml::DataArray) then data_ar
+          else Mspire::Mzml::DataArray.new(data_ar) end
         ar.type = typ unless ar.type
         ar.to_xml(bdal_n)
       end

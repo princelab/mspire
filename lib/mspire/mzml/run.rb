@@ -44,11 +44,13 @@ module Mspire
         atts[:defaultSourceFileRef] = @default_source_file.id if @default_source_file
         atts[:sampleRef] = @sample.id if @sample
         atts[:startTimeStamp] = @start_time_stamp if @start_time_stamp
+
+        default_ids = { instrument_configuration: @default_instrument_configuration.id }
         
         builder.run(atts) do |run_n|
           super(run_n)
-          spectrum_list.to_xml(run_n) if spectrum_list
-          chromatogram_list.to_xml(run_n) if chromatogram_list
+          spectrum_list.to_xml(run_n, default_ids) if spectrum_list
+          chromatogram_list.to_xml(run_n, default_ids) if chromatogram_list
         end
         builder
       end
@@ -88,11 +90,9 @@ module Mspire
 
         index_list = link[:index_list]
         [:spectrum, :chromatogram].each do |list_type|
-          byte_index = index_list[list_type]
+          next unless (byte_index = index_list[list_type])
 
           io_index = IOIndex.new(io, byte_index, link)
-
-          link["#{list_type}_default_data_processing".to_sym]
 
           list_obj = Mspire::Mzml.const_get(list_type.to_s.capitalize + "List")
             .new(link["#{list_type}_default_data_processing".to_sym], 

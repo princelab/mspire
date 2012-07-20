@@ -236,7 +236,7 @@ module Mspire
         if @referenceable_param_groups
           Mspire::Mzml::ReferenceableParamGroup.list_xml(@referenceable_param_groups, mzml_n)
         end
-        if @samples
+        if @samples && @samples.size > 0
           Mspire::Mzml::Sample.list_xml(@samples, mzml_n)
         end
         Mspire::Mzml::Software.list_xml(@software_list, mzml_n)

@@ -21,7 +21,7 @@ module Mspire
       end
 
       def self.list_xml(components, builder)
-        self.componentList(count: components.size) do |xml_n|
+        builder.componentList(count: components.size) do |xml_n|
           components.each_with_index do |component, order|
             component.to_xml(xml_n, order)
           end

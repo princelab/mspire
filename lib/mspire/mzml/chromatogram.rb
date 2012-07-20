@@ -20,20 +20,25 @@ module Mspire
       end
 
       def self.from_xml(xml, link)
-        chrom = Mspire::Mzml::Chromatogram.new(xml[:id])
-        obj.data_processing = link[:data_processing_hash][xml[:dataProcessingRef]] || link[:chromatogram_default_data_processing]
+        obj = self.new(xml[:id])
 
-        [:cvParam, :userParam].each {|v| chrom.describe! xml.xpath("./#{v}") }
+        obj.data_processing = link[:data_processing_hash][xml[:dataProcessingRef]] || link[:spectrum_default_data_processing]
 
-        precursor_n = xml.xpath('./precursor').first
-        precursor = Mspire::Mzml::Precursor.from_xml(precursor_n, ref_hash) if precursor_n
+        xml_n = obj.describe_from_xml!(xml, link[:ref_hash])
 
-        product_n = xml.xpath('./product').first
-        product = Mspire::Mzml::Product.from_xml(product_n, ref_hash) if product_n
-
-        chrom.data_arrays = Mspire::Mzml::DataArray.data_arrays_from_xml(xml, ref_hash)
-
-        chrom
+        loop do
+          case xml_n.name
+          when 'precursor'
+            obj.precursor = Mspire::Mzml::Precursor.from_xml(xml_n, link)
+          when 'product'
+            obj.product = Mspire::Mzml::Product.from_xml(xml_n, link)
+          when 'binaryDataArrayList'
+            obj.data_arrays = Mspire::Mzml::DataArray.data_arrays_from_xml(xml_n, link)
+            break
+          end
+          break unless xml_n = xml_n.next
+        end
+        obj
       end
 
       def times
@@ -46,9 +51,12 @@ module Mspire
 
       # see SpectrumList for generating the entire list
       def to_xml(builder, opts={})
-        super(builder) do |node|
-          @precursor.to_xml(node) if @precursor
-          @product.to_xml(node) if @product
+        atts = data_array_xml_atts(default_ids)
+        builder.chromatogram(atts) do |chrom_n|
+          super(chrom_n)
+          @precursor.to_xml(chrom_n) if @precursor
+          @product.to_xml(chrom_n) if @product
+          Mspire::Mzml::DataArray.list_xml(@data_arrays, chrom_n) if @data_arrays
         end
       end
     end

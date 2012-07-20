@@ -8,6 +8,7 @@ module Mspire
     # ChromatogramList.  It's main feature is that it delegates all of its
     # duties to the array like object.
     class IOIndexableList < SimpleDelegator
+      alias_method :get_delegate, :__getobj__
 
       attr_accessor :default_data_processing
 
@@ -28,15 +29,20 @@ module Mspire
         __setobj__(array_like)
       end
 
-      def get_delegate
-        __getobj__
+      # for a class like <Object>List, returns :object.  So a SpectrumList
+      # will return :spectrum.
+      def list_type
+        base = self.class.to_s.split('::').last.sub(/List$/,'')
+        base[0] = base[0].downcase
+        base.to_sym
       end
+
 
       # method to generate the id_to_index hash from the underlying delegated
       # object.
       def create_id_to_index!
         @id_to_index = {}
-        __getobj__.each_with_index do |obj, i|
+        get_delegate.each_with_index do |obj, i|
           @id_to_index[obj.id] = i
         end
         @id_to_index
@@ -44,16 +50,17 @@ module Mspire
 
       # arg may be an Integer or a String (an id)
       def [](arg)
-        arg.is_a?(Integer) ? __getobj__[arg] : __getobj__[ @id_to_index[arg] ]
+        arg.is_a?(Integer) ? get_delegate[arg] : get_delegate[ @id_to_index[arg] ]
       end
 
-      def to_xml(builder, link)
+      def to_xml(builder, default_ids)
+        default_ids["#{list_type}_data_processing".to_sym] = @default_data_processing.id
         xml_name = self.class.to_s.split('::').last
         xml_name[0] = xml_name[0].downcase
         builder.tag!(xml_name.to_sym, count: self.size, defaultDataProcessingRef: @default_data_processing.id) do |iol_n|
           self.each_with_index do |obj,i|
             obj.index = i unless obj.index
-            obj.to_xml(iol_n, link)
+            obj.to_xml(iol_n, default_ids)
           end
         end
         builder

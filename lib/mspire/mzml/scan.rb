@@ -15,7 +15,7 @@ module Mspire
       # a boolean indicating the spectrum is from an external source file
       attr_accessor :from_external_source_file
 
-      # an InstrumentConfiguration object
+      # an InstrumentConfiguration object (optional).
       attr_accessor :instrument_configuration
 
       # ScanWindow objects
@@ -47,7 +47,7 @@ module Mspire
         obj
       end
 
-      def to_xml(builder, link)
+      def to_xml(builder, default_ids)
         atts = {}
         if @from_external_source_file
           atts[:sourceFileRef] = @spectrum.source_file.id
@@ -56,7 +56,7 @@ module Mspire
           atts[:spectrumRef] = @spectrum.id if @spectrum
         end
         if @instrument_configuration
-          unless @instrument_configuration.id == link[:default_instrument_configuration].id
+          unless @instrument_configuration.id == default_ids[:instrument_configuration]
             atts[:instrumentConfigurationRef] = @instrument_configuration.id 
           end
         end
