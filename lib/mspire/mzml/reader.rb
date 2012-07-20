@@ -94,16 +94,21 @@ module Mspire::Mzml::Reader
     # a hash of referenceable_param_groups indexed by id
     link = {}
 
+    if xml_n.name == 'referenceableParamGroupList'
+      self.referenceable_param_groups = xml_n.children.map do |rpg_n|
+        Mspire::Mzml::ReferenceableParamGroup.from_xml(rpg_n) # <- no ref_hash (not made yet)
+      end
+      link[:ref_hash] = self.referenceable_param_groups.index_by(&:id)
+      xml_n = xml_n.next
+    end
+
+    # now we can set the file description because we have the ref_hash
+    self.file_description = Mspire::Mzml::FileDescription.from_xml(file_description_n, link)
+    link[:source_file_hash] = self.file_description.source_files.index_by(&:id)
+
+
     loop do
       case xml_n.name
-      when 'referenceableParamGroupList'
-        self.referenceable_param_groups = xml_n.children.map do |rpg_n|
-          Mspire::Mzml::ReferenceableParamGroup.from_xml(rpg_n) # <- no ref_hash (not made yet)
-        end
-        link[:ref_hash] = self.referenceable_param_groups.index_by(&:id)
-        # now we can set the file description because we have the ref_hash
-        self.file_description = Mspire::Mzml::FileDescription.from_xml(file_description_n, link)
-        link[:source_file_hash] = self.file_description.source_files.index_by(&:id)
       when 'sampleList'
         self.samples = xml_n.children.map do |sample_n|
           Mspire::Mzml::Sample.from_xml(sample_n, link)

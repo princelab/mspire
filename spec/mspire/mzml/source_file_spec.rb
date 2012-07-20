@@ -5,7 +5,7 @@ require 'builder'
 
 describe 'making a SourceFile' do
   it 'can be generated with params and a block' do
-    source_file = Mspire::Mzml::SourceFile.new("someFileID", "filename.mzML", "/home/jtprince/tmp", params: ['MS:1000584'])
+    source_file = Mspire::Mzml::SourceFile.new("someFileID", "filename.mzML", "/home/jtprince/tmp").describe!('MS:1000584')
 
     params = source_file.params
     params.size.should == 1

@@ -76,7 +76,7 @@ module Mspire
 
         # Reads through and captures start bytes
         # @return [Mspire::Mzml::IndexList] 
-        def create_index_list
+        def create_index_list(io)
           indices_hash = io.bookmark(true) do |inner_io|   # sets to beginning of file
             indices = {:spectrum => {}, :chromatogram => {}}
             byte_total = 0
@@ -95,6 +95,8 @@ module Mspire
             indices.ids = ids ; indices.name = sym
             indices
           end
+          # we only return an index if there were some guys there
+          indices.delete_if {|ind| ind.size == 0 }
           IndexList.new(indices)
         end
 

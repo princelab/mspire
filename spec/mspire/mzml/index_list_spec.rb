@@ -25,12 +25,7 @@ describe 'non-indexed uncompressed peaks, mzML file' do
         "scan=10935", "scan=10936", "scan=10937", 
         "scan=10938", "scan=10939", "scan=10940"
       ]
-      # right now, the behavior is to expect a chromatogram index, even if
-      # there are no chromatograms... is that the right behavior???
-      chromatogram_idx = index_list[:chromatogram]
-      chromatogram_idx.name.should == :chromatogram
-      chromatogram_idx.should == []
-      chromatogram_idx.ids.should == []
+      index_list[:chromatogram].should == nil
     end
   end
 end
@@ -51,7 +46,7 @@ describe 'indexed, compressed peaks, mzML file' do
     correct_index_list = lambda do |index_list|
       spectrum_idx = index_list[:spectrum]
       spectrum_idx.name.should == :spectrum
-      spectrum_idx.should == [4398, 219667, 227895]
+      spectrum_idx.should == [4397, 219666, 227894]
       spectrum_idx.ids.should == [
         "controllerType=0 controllerNumber=1 scan=1", 
         "controllerType=0 controllerNumber=1 scan=2", 
@@ -59,7 +54,7 @@ describe 'indexed, compressed peaks, mzML file' do
       ]
       chromatogram_idx = index_list[:chromatogram]
       chromatogram_idx.name.should == :chromatogram
-      chromatogram_idx.should == [239184]
+      chromatogram_idx.should == [239183]
       chromatogram_idx.ids.should == ["TIC"]
     end
 
@@ -70,8 +65,7 @@ describe 'indexed, compressed peaks, mzML file' do
     end
 
     it 'can create the index manually, if requested' do
-      mzml = Mspire::Mzml.new(@io)
-      index_list =  mzml.create_index_list
+      index_list = Mspire::Mzml::IndexList.create_index_list(@io)
       correct_index_list.call(index_list)
     end
 

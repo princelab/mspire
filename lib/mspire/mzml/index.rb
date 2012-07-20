@@ -25,7 +25,7 @@ module Mspire
       # generates a scan to index hash that points from scan number to the
       # spectrum index number.  returns the index, nil if the scan ids
       # are not present and spectra are, or false if they are not unique.
-      def create_scan_to_index!
+      def create_scan_to_index
         scan_re = /scan=(\d+)/
           scan_to_index = {}
         ids.each_with_index do |id, index|
@@ -40,7 +40,7 @@ module Mspire
           end
         end
         if scan_to_index.size > 0
-          by_scans = scan_to_index
+          scan_to_index
         elsif ids.size > 0
           nil  # there are scans, but we did not find scan numbers
         else

@@ -29,7 +29,7 @@ module Mspire
       def self.from_xml(xml, link)
         obj = self.new(xml[:id])
         obj.name = xml[:name]
-        describe_from_xml!(xml, link[:ref_hash])
+        obj.describe_self_from_xml!(xml, link[:ref_hash])
       end
 
     end

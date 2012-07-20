@@ -5,16 +5,16 @@ require 'mspire/cv/param'
 require 'mspire/user_param'
 require 'mspire/mzml/referenceable_param_group'
 
-class MockObject
+class ParamableObject
   include Mspire::CV::Paramable
 end
 
 describe 'Mspire::CV::Paramable' do
 
   subject do
-    paramable = MockObject.new :params => ['MS:1000007', ['MS:1000511', 2]]
+    paramable = ParamableObject.new.describe_many!(['MS:1000007', ['MS:1000511', 2]])
     paramable.user_params << Mspire::UserParam.new('hello', 477)
-    paramable.ref_param_groups << Mspire::Mzml::ReferenceableParamGroup.new('id1', :params => [['MS:1000512', 'filter string']])
+    paramable.ref_param_groups << Mspire::Mzml::ReferenceableParamGroup.new('id1').describe!('MS:1000512', 'filter string')
     paramable
   end
 
