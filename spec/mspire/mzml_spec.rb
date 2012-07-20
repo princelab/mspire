@@ -291,11 +291,11 @@ describe Mspire::Mzml do
         @mzml[1].scan_list.first.instrument_configuration.should == instr_config_last
       end
 
-      xit 'can gracefully determine the m/z with highest peak in select scans' do
+      it 'can gracefully determine the m/z with highest peak in select scans' do
         highest_mzs = Mspire::Mzml.foreach(@file).select {|v| v.ms_level > 1 }.map do |spec|
-          spec.peaks.sort_by(&:last).first.first
+          spec.peaks.max_by(&:last)[0]
         end
-        highest_mzs.map(&:round).should == [453, 866]
+        highest_mzs.map(&:round).should == [746, 644]
       end
     end
   end

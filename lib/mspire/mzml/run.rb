@@ -65,9 +65,6 @@ module Mspire
       #     :index_list
       def self.from_xml(io, xml, link)
 
-        p link[:spectrum_default_data_processing]
-        p link[:chromatogram_default_data_processing]
-
         # expects that the DataProcessing objects to link to have *already* been
         # parsed (parse the defaultDataProcessingRef's after grabbing the
         # index, then grab the DataProcessing object associated with that id).
@@ -76,6 +73,8 @@ module Mspire
           link[:instrument_configuration_hash][xml[:defaultInstrumentConfigurationRef]]
         )
         obj.start_time_stamp = xml[:startTimeStamp]
+
+        link[:default_instrument_configuration] = obj.default_instrument_configuration
 
         # two optional object refs
         if def_source_ref=xml[:defaultSourceFileRef]

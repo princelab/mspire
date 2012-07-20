@@ -111,8 +111,8 @@ module Mspire
 
       # takes a Nokogiri node and sets relevant properties
       # 
-      # linking is a hash that should contain the following keys and
-      # associated objects:
+      # link is a hash that should contain the following keys and associated
+      # objects (some are required by downstream objects, like Scan):
       #
       #     :ref_hash                         id -> ReferenceableParamGroup
       #     :spectrum_list                    SpectrumList object
@@ -125,13 +125,7 @@ module Mspire
         obj = self.new(xml[:id])
         obj.spot_id = xml[:spotID]
 
-        puts "EXAMIN:"
-        p link[:sample_default_data_processing]
-        p xml[:dataProcessingRef]
-
-        obj.data_processing = link[:data_processing_hash][xml[:dataProcessingRef]] || link[:sample_default_data_processing]
-        puts "POST"
-        p obj.data_processing
+        obj.data_processing = link[:data_processing_hash][xml[:dataProcessingRef]] || link[:spectrum_default_data_processing]
 
         if source_file_ref=xml[:sourceFileRef]
           obj.source_file = link[:source_file_hash][source_file_ref]

@@ -28,6 +28,10 @@ module Mspire
         __setobj__(array_like)
       end
 
+      def get_delegate
+        __getobj__
+      end
+
       # method to generate the id_to_index hash from the underlying delegated
       # object.
       def create_id_to_index!
