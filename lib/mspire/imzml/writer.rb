@@ -315,7 +315,7 @@ module Mspire::Imzml
       config[:uuid] = uuid_with_hyphens.gsub('-','')
 
       if config[:trim_files]
-        config[:trim_to] = mzml_filenames.map(&:size).min
+        config[:trim_to] = mzml_filenames.map {|fn| Mspire::Mzml.open(fn, &:size) }.min
       end
 
       sourcefile_id_parallel_to_spectra = []
@@ -384,13 +384,13 @@ module Mspire::Imzml
         # this is a generic 'file format conversion' but its the closest we
         # have for mzml to imzml (which is really mzml to mzml)
         data_processing_obj = Mspire::Mzml::DataProcessing.new('mzml_to_imzml')
-        data_processing_obj.processing_methods << Mspire::Mzml::ProcessingMethod.new(1, mspire_software).describe!('MS:1000530')
+        data_processing_obj.processing_methods << Mspire::Mzml::ProcessingMethod.new(mspire_software).describe!('MS:1000530')
         imzml.data_processing_list << data_processing_obj
 
         warn "not implemented 'omit_zeros' yet"
         # low intensity data point removal: "MS:1000594"
         imzml.run = Mspire::Mzml::Run.new("run1", default_instrument_config) do |run|
-          spec_list = Mspire::Mzml::SpectrumList.new(data_processing_obj)
+          spectra = []
           data_info_pairs.zip(xy_positions_array, sourcefile_id_parallel_to_spectra).each_with_index do |(pair, xy, sourcefile_id),i|
             # TODO: we should probably copy the id from the orig mzml (e.g.
             # scan=1)
@@ -410,9 +410,9 @@ module Mspire::Imzml
               data_array
             end
             spectrum.data_arrays = data_arrays
-            spec_list << spectrum
+            spectra << spectrum
           end
-          run.spectrum_list = spec_list
+          run.spectrum_list = Mspire::Mzml::SpectrumList.new(data_processing_obj, spectra)
         end # run
       end # imzml
       imzml_obj.to_xml(config[:imzml_filename])

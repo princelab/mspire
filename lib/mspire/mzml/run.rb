@@ -34,7 +34,9 @@ module Mspire
         @id = id
         @default_instrument_configuration = default_instrument_configuration
         params_init
-        yield(self) if block_given?
+        if block_given?
+          yield self
+        end
       end
 
       def to_xml(builder)
