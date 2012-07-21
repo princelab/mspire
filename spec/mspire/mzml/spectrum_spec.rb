@@ -16,8 +16,7 @@ describe Mspire::Mzml::Spectrum do
     end
 
     it 'gathers key data for ms1 spectrum' do
-      xml_node = @mzml.spectrum_node(0)
-      spec = Mspire::Mzml::Spectrum.from_xml(xml_node)
+      spec = @mzml.run.spectrum_list[0]
 
       # convenient access to common attributes 
       spec.retention_time.should == 1981.5726
@@ -36,8 +35,7 @@ describe Mspire::Mzml::Spectrum do
     end
 
     it 'gathers key data for ms2 spectrum' do
-      xml_node = @mzml.spectrum_node(1)
-      spec = Mspire::Mzml::Spectrum.from_xml(xml_node)
+      spec = @mzml.run.spectrum_list[1]
 
       # convenient access to common attributes 
       spec.retention_time.should == 1982.1077

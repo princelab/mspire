@@ -25,6 +25,8 @@ end
 
 module Mspire::Mzml::Reader
 
+  attr_accessor :link
+
   def set_from_xml_io!(xml_io)
     @io = xml_io
     begin
@@ -92,49 +94,49 @@ module Mspire::Mzml::Reader
     xml_n = file_description_n.next
 
     # a hash of referenceable_param_groups indexed by id
-    link = {}
+    @link = {}
 
     if xml_n.name == 'referenceableParamGroupList'
       self.referenceable_param_groups = xml_n.children.map do |rpg_n|
         Mspire::Mzml::ReferenceableParamGroup.from_xml(rpg_n) # <- no ref_hash (not made yet)
       end
-      link[:ref_hash] = self.referenceable_param_groups.index_by(&:id)
+      @link[:ref_hash] = self.referenceable_param_groups.index_by(&:id)
       xml_n = xml_n.next
     end
 
     # now we can set the file description because we have the ref_hash
-    self.file_description = Mspire::Mzml::FileDescription.from_xml(file_description_n, link)
-    link[:source_file_hash] = self.file_description.source_files.index_by(&:id)
+    self.file_description = Mspire::Mzml::FileDescription.from_xml(file_description_n, @link)
+    @link[:source_file_hash] = self.file_description.source_files.index_by(&:id)
 
 
     loop do
       case xml_n.name
       when 'sampleList'
         self.samples = xml_n.children.map do |sample_n|
-          Mspire::Mzml::Sample.from_xml(sample_n, link)
+          Mspire::Mzml::Sample.from_xml(sample_n, @link)
         end
-        link[:sample_hash] = self.samples.index_by(&:id)
+        @link[:sample_hash] = self.samples.index_by(&:id)
       when 'softwareList'  # required
         self.software_list = xml_n.children.map do |software_n|
-          Mspire::Mzml::Software.from_xml(software_n, link)
+          Mspire::Mzml::Software.from_xml(software_n, @link)
         end
-        link[:software_hash] = self.software_list.index_by(&:id)
+        @link[:software_hash] = self.software_list.index_by(&:id)
       when 'instrumentConfigurationList'
         self.instrument_configurations = xml_n.children.map do |inst_config_n|
-          Mspire::Mzml::InstrumentConfiguration.from_xml(inst_config_n, link)
+          Mspire::Mzml::InstrumentConfiguration.from_xml(inst_config_n, @link)
         end
-        link[:instrument_configuration_hash] = self.instrument_configurations.index_by(&:id)
+        @link[:instrument_configuration_hash] = self.instrument_configurations.index_by(&:id)
       when 'dataProcessingList'
         self.data_processing_list = xml_n.children.map do |data_processing_n|
-          Mspire::Mzml::DataProcessing.from_xml(data_processing_n, link)
+          Mspire::Mzml::DataProcessing.from_xml(data_processing_n, @link)
         end
-        link[:data_processing_hash] = self.data_processing_list.index_by(&:id)
+        @link[:data_processing_hash] = self.data_processing_list.index_by(&:id)
       when 'run'
-        link[:index_list] = @index_list
+        @link[:index_list] = @index_list
         list_type_to_default_data_processing_id.each do |type, process_id|
-          link["#{type}_default_data_processing".to_sym] = link[:data_processing_hash][process_id]
+          @link["#{type}_default_data_processing".to_sym] = @link[:data_processing_hash][process_id]
         end
-        self.run = Mspire::Mzml::Run.from_xml(@io, xml_n, link)
+        self.run = Mspire::Mzml::Run.from_xml(@io, xml_n, @link)
         break
       end
       xml_n = xml_n.next
