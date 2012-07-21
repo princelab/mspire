@@ -6,7 +6,7 @@ require 'mspire/mzml/file_content'
 describe Mspire::Mzml::FileContent do 
 
   it 'can be initialized with params' do
-    filecontent = Mspire::Mzml::FileContent.new(:params => ['MS:1000579', ['IMS:1000080', "{9D501BDC-5344-4916-B7E9-7E795B02C856}"]])
+    filecontent = Mspire::Mzml::FileContent.new.describe_many!(['MS:1000579', ['IMS:1000080', "{9D501BDC-5344-4916-B7E9-7E795B02C856}"]])
 
     desc = filecontent.params
     desc.size.should == 2
@@ -18,9 +18,6 @@ describe Mspire::Mzml::FileContent do
       xml.should match(regexp)
     end
   end
-
-  it 'can be created from xml'
-
 end
 
 

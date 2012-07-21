@@ -65,11 +65,15 @@ class Mspire::Mzml::DataArray < Array
   # file for imzML files)
   attr_accessor :external
 
+  def self.empty_data_arrays
+    [self.new, self.new]
+  end
+
   def self.data_arrays_from_xml(xml, link)
     data_arrays = xml.children.map do |binary_data_array_n|
       Mspire::Mzml::DataArray.from_xml(binary_data_array_n, link)
     end
-    (data_arrays.size > 0) ? data_arrays : [Mspire::Mzml::DataArray.new, Mspire::Mzml::DataArray.new]
+    (data_arrays.size > 0) ? data_arrays : empty_data_arrays
   end
 
   def self.from_xml(xml, link)

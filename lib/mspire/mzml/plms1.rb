@@ -10,16 +10,14 @@ module Mspire
 
       scan_nums = spectrum_index.create_scan_to_index.keys if use_scan_nums
 
-      spectra = []
-      rts = []
+      nums = [] ; rts = [] ; spectra = []
+
       self.each_with_index do |spec, index|
         next unless spec.ms_level == 1
         nums << (use_scan_nums ? scan_nums[index] : index)
         spectra << spec
         rts << spec.retention_time
       end
-      # plms1 only requires that the obect respond to :each, giving a spectrum
-      # object, so an Mzml object will work.
       Mspire::Plms1.new(nums, rts, spectra)
     end
   end

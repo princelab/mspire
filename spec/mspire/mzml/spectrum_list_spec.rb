@@ -11,7 +11,7 @@ class MockSpectrum
   def initialize(id)
     @id = id
   end
-  def to_xml(builder)
+  def to_xml(builder, default_ids)
     builder.mockSpectrum {}
     builder
   end
@@ -45,7 +45,7 @@ describe Mspire::Mzml::SpectrumList do
     require 'stringio' 
     st = StringIO.new
     builder = Builder::XmlMarkup.new(:target => st)
-    speclist.to_xml(builder)
+    speclist.to_xml(builder, {})
     st.string.should == "<spectrumList count=\"1\" defaultDataProcessingRef=\"default_data_processing\"><mockSpectrum></mockSpectrum></spectrumList>"
   end
 

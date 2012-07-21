@@ -118,6 +118,9 @@ module Mspire
         out.puts scan_numbers.join(' ')
         out.puts times.join(' ')
         spectra.each do |spectrum|
+          puts "HIAYDSFA DSF"
+          puts spectrum.class
+          p spectrum
           out.puts spectrum.size
           if spectrum.size > 0
             out.puts spectrum.mzs.size

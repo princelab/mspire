@@ -151,6 +151,11 @@ module Mspire
           end
           break unless xml_n = xml_n.next
         end
+        unless obj.data_arrays
+          obj.data_arrays = Mspire::Mzml::DataArray.empty_data_arrays
+        end
+
+
 
         obj
       end

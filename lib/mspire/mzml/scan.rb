@@ -41,8 +41,10 @@ module Mspire
             link[:default_instrument_configuration]
           end
         scan_window_list_n = obj.describe_from_xml!(xml, ref_hash)
-        obj.scan_windows = scan_window_list_n.children.map do |scan_window_n|
-          Mspire::Mzml::ScanWindow.new.describe_self_from_xml!(scan_window_n, ref_hash)
+        if scan_window_list_n
+          obj.scan_windows = scan_window_list_n.children.map do |scan_window_n|
+            Mspire::Mzml::ScanWindow.new.describe_self_from_xml!(scan_window_n, ref_hash)
+          end
         end
         obj
       end

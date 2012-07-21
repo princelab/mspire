@@ -18,7 +18,6 @@ describe 'making a SourceFile' do
     end
   end
 
-  it 'can be created from xml'
 end
 
 
