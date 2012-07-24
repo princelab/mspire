@@ -1,6 +1,7 @@
 require 'rubygems'
 require 'rake'
 require 'rspec/core/rake_task'
+require 'yard'
 
 require 'jeweler'
 Jeweler::Tasks.new do |gem|
@@ -35,6 +36,11 @@ RSpec::Core::RakeTask.new(:spec) do |spec|
   spec.pattern = FileList['spec/**/*_spec.rb']
 end
 
+YARD::Rake::YardocTask.new do |t|
+  t.files   = ['lib/**/*.rb', 'obo/**/*', 'README.md', 'script/**/*']   # optional
+  #t.options = ['--any', '--extra', '--opts'] # optional
+end
+
 RSpec::Core::RakeTask.new(:rcov) do |spec|
   spec.pattern = 'spec/**/*_spec.rb'
   spec.rcov = true
@@ -59,7 +65,13 @@ Rake::RDocTask.new do |rdoc|
   rdoc.rdoc_files.include('lib/**/*.rb')
 end
 
-# need to write updaters to get latest obo
-#task 'update-obo' do
-#  "http://psidev.cvs.sourceforge.net/*checkout*/psidev/psi/psi-ms/mzML/controlledVocabulary/psi-ms.obo"
-#end
+desc "downloads the latest obo to appropriate spot"
+task 'obo-update' do
+  require 'mspire/mzml/cv'
+  require 'open-uri'
+  Mspire::Mzml::CV::DEFAULT_CVS.each do |const|
+    obo_fn = File.dirname(__FILE__) + "/obo/#{const.id.downcase}.obo"
+    File.write(obo_fn, open(const.uri, &:read).gsub(/\r\n?/, "\n"))
+    puts "NOTE: if a file changed (git status), then update lib/mspire/mzml/cv.rb with correct version !!!"
+  end
+end

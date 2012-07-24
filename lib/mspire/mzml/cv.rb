@@ -38,12 +38,11 @@ module Mspire
         self.new(xml[:id], xml[:fullName], xml[:URI], xml[:version])
       end
 
-      # These are derived by looking in the obo folder at the top of mspire
       IMS = self.new("IMS",  "Imaging MS Ontology", "http://www.maldi-msi.org/download/imzml/imagingMS.obo", "0.9.1")
-      MS = self.new('MS', "Proteomics Standards Initiative Mass Spectrometry Ontology", "http://psidev.cvs.sourceforge.net/*checkout*/psidev/psi/psi-ms/mzML/controlledVocabulary/psi-ms.obo", "3.18.0")
+      MS = self.new('MS', "Proteomics Standards Initiative Mass Spectrometry Ontology", "http://psidev.cvs.sourceforge.net/*checkout*/psidev/psi/psi-ms/mzML/controlledVocabulary/psi-ms.obo", "3.29.0")
       # the version for UO doesn't really exist: seen files where they use the
-      # download date: DD:MM:YYY
-      UO = self.new("UO", "Unit Ontology", "http://obo.cvs.sourceforge.net/*checkout*/obo/obo/ontology/phenotype/unit.obo", "16:02:2012")
+      # download date: DD:MM:YYY.  I'm going to use the save date in the header.
+      UO = self.new("UO", "Unit Ontology", "http://obo.cvs.sourceforge.net/*checkout*/obo/obo/ontology/phenotype/unit.obo", "12:10:2011")
 
       DEFAULT_CVS = [MS, UO, IMS]
 

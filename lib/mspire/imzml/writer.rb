@@ -4,6 +4,7 @@ require 'uuid'
 require 'cv'
 require 'mspire/mzml'
 require 'mspire/mzml/spectrum'
+require 'mspire/spectrum'
 require 'pathname'
 require 'digest/sha1'
 
@@ -325,7 +326,25 @@ module Mspire::Imzml
           sourcefile_id = "source_file_#{i}"
           sourcefile_ids << sourcefile_id
           Mspire::Mzml.open(mzml_filename) do |mzml|
-            mzml.each_with_index do |spec,i| 
+            enumerates_spectra = 
+              # handle SIM files "MS:1001472", "selected ion monitoring chromatogram"
+              if mzml.file_description.file_content.fetch_by_acc('MS:1001472')
+                # handle normal mzml files
+                mz_ars = []
+                its_ars = []
+                mzml.each_chromatogram.each do |chromatogram,i| 
+                  next unless chromatogram.fetch_by_acc('MS:1001472')
+                  target_mz = chromatogram.precursor.isolation_window.fetch_by_acc('MS:1000827').to_f
+                  its = chromatogram.intensities
+                  mz_ars << Array.new(its.size, target_mz)
+                  its_ars << its
+                end
+                mz_ars.transpose.zip(its_ars.tranpose).map {|mzs, its| Mspire::Spectrum.new([mzs, its]) }
+              else
+                # normal mzml file with spectra
+                mzml
+              end
+            enumerates_spectra.each_with_index do |spec,i| 
               break if config[:trim_to] && (i >= config[:trim_to])
               sourcefile_id_parallel_to_spectra << sourcefile_id 
               yielder << spec
