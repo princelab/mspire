@@ -49,8 +49,8 @@ module Mspire
         data_arrays[1]
       end
 
-      # see SpectrumList for generating the entire list
-      def to_xml(builder, opts={})
+      # see ChromatogramList for generating the entire list
+      def to_xml(builder, default_ids)
         atts = data_array_xml_atts(default_ids)
         builder.chromatogram(atts) do |chrom_n|
           super(chrom_n)

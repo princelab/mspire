@@ -25,5 +25,18 @@ module Mspire
       self.name, self.value, self.type = args
     end
 
+    def to_xml(xml)
+      atts = { name: name, value: value, type: type }
+      if unit
+        atts.merge!( 
+                    { :unitCvRef => unit.cv_ref, 
+                      :unitAccession => unit.accession,
+                      :unitName => unit.name } 
+                   )
+      end
+      xml.userParam(atts)
+      xml
+    end
+
   end
 end

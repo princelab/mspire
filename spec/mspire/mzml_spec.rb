@@ -41,6 +41,46 @@ describe Mspire::Mzml do
     end
   end
 
+  describe 'roundtrip: reading and then writing' do
+    before do
+      @file = TESTFILES + "/mspire/mzml/j24z.idx_comp.3.mzML"
+    end
+
+    it 'works' do
+      outfile = TESTFILES + "/mspire/mzml/j24z.idx_comp.3.WRITTEN.mzML"
+      Mspire::Mzml.open(@file) do |mzml|
+        mzml.write(outfile)
+      end
+    end
+
+  end
+
+  describe 'normalizing spectra in a compressed mzML file (read in and write out)', :pending do
+    before do
+      @file = TESTFILES + "/mspire/mzml/j24z.idx_comp.3.mzML"
+    end
+
+    specify 'adding to source file, software, and data processing' do
+      Mspire::Mzml.open(@file) do |mzml|
+        mzml.source
+      end
+    end
+
+    specify 'normalize highest peak of each spectrum to 100' do
+      # this is very bad form to not change data_processing etc, but it
+      # demonstrates the minimal amount to normalize the spectra.
+      Mspire::Mzml.open(@file) do |mzml|
+        spectra = mzml.map do |spectrum|
+          normalizer = 100.0 / spectrum.intensities.max
+          spectrum.intensities.map! {|i| i * normalizer }
+          spectrum
+        end
+        mzml.spectrum_list = Mpire::Mzml::SpectrumList.new(mzml.spectrum_list.default_data_processing, spectra)
+        mzml.write("normalized.mzML")
+      end
+    end
+  end
+
   describe 'reading an indexed, compressed peaks, mzML file' do
 
     describe 'reading the header things' do

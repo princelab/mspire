@@ -83,6 +83,9 @@ module Mspire::Mzml::Reader
     if mzml_n.name == 'indexedmzML'
       mzml_n = mzml_n.child
     end
+
+    @id = mzml_n[:id]
+
     cv_list_n = mzml_n.child
     self.cvs = cv_list_n.children.map do |cv_n|
       Mspire::Mzml::CV.from_xml(cv_n)

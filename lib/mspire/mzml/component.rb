@@ -14,7 +14,9 @@ module Mspire
       end
 
       def to_xml(builder, order)
-        builder.component(order: order) do |c_n|
+        klass = self.class.to_s.split('::').last
+        klass[0] = klass[0].downcase
+        builder.tag!(klass, order: order) do |c_n|
           super(c_n)
         end
         builder

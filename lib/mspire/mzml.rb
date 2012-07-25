@@ -85,6 +85,7 @@ module Mspire
         :xmlns => "http://psi.hupo.org/ms/mzml",
         "xmlns:xsi" => "http://www.w3.org/2001/XMLSchema-instance", 
         "xmlns:xsd" => "http://www.w3.org/2001/XMLSchema", 
+        "xsi:schemaLocation" => "http://psi.hupo.org/ms/mzml http://psidev.info/files/ms/mzML/xsd/mzML1.1.0.xsd"
       }
 
       VERSION = '1.1.0'
@@ -255,6 +256,7 @@ module Mspire
         io.string
       end
     end
+    alias_method :write, :to_xml
 
     class ScanNumbersNotUnique < Exception
     end
