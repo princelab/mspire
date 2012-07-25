@@ -2,7 +2,7 @@
 
 Tools for working with mass spectrometry data in ruby.  Please cite: 
 
-Prince JT, Marcotte EM. <u>Bioinformatics.</u> 2008 Dec 1;24(23):2796-7. ([pubmed](http://www.ncbi.nlm.nih.gov/pubmed/18930952))
+Prince JT, Marcotte EM. *mspire: mass spectrometry proteomics in Ruby.* **Bioinformatics.** 2008 Dec 1;24(23):2796-7. ([pubmed](http://www.ncbi.nlm.nih.gov/pubmed/18930952))
 
 ## Features
 
