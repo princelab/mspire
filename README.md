@@ -19,14 +19,14 @@ Prince JT, Marcotte EM. <b>mspire: mass spectrometry proteomics in Ruby.</b> *Bi
 
 ### imzml
 
-Mspire has the *only* converter from mzml into imzml.  
+Mspire is the *only* converter from mzml into imzml.  
 
 * handles both processed and continuous modes
 * gracefully handles SIM data
 
 ### Other Feature Highlights
 
-* isotope distribution: uses fastest method known (FFT convolution)
+* isotope distribution prediction: uses fastest method known (FFT convolution)
 * protein digestion: Support for 32 enzymes/variants by name
 * pepxml: full object model and complete write support
 * fasta files: complete programmatic access to description lines (via bio-ruby)
@@ -53,7 +53,7 @@ Mspire has the *only* converter from mzml into imzml.
 
 ## Acronym
 
-<i>M</i>ass <i>SP</i>ectrometry <i>I</i>n <i>R</i>uby.  Mspire originally stood for <i>M</i>ass <i>S</i>pectrometry <i>P</i>roteomics <i>I</i>n <i>R</i>uby in Ruby but the library has since proven useful for all kinds of mass spectrometry projects, hence the more inclusive form.  The <i>e</i> was originally included for aesthetic reasons, but it also provides the user/developer the ability to attach whatever <i>E</i>xclamation or <i>E</i>pithet they choose to the acronym (the best ones will begin with <i>e</i> of course).
+<i>M</i>ass <i>SP</i>ectrometry <i>I</i>n <i>R</i>uby.  Mspire originally stood for <i>M</i>ass <i>S</i>pectrometry <i>P</i>roteomics <i>I</i>n <i>R</i>uby but the library has since proven useful for all kinds of mass spectrometry projects, hence the more inclusive form.  The <i>e</i> was originally included for aesthetic reasons, but it also provides the user/developer the ability to attach whatever <i>E</i>xclamation or <i>E</i>pithet they choose to the acronym (the best ones will begin with <i>e</i> of course).
 
 ## Copyright
 
