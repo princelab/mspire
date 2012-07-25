@@ -1,14 +1,13 @@
 # mspire
 
-Tools for working with mass spectrometry data in ruby.  If you use mspire in
-association with a publication, please cite:
+Tools for working with mass spectrometry data in ruby.  Please cite: 
 
-Prince JT, Marcotte EM. Bioinformatics. 2008 Dec 1;24(23):2796-7. ([pubmed](http://www.ncbi.nlm.nih.gov/pubmed/18930952))
+Prince JT, Marcotte EM. <u>Bioinformatics.</u> 2008 Dec 1;24(23):2796-7. ([pubmed](http://www.ncbi.nlm.nih.gov/pubmed/18930952))
 
 ## Features
 
-Mspire is a full featured library for working with mass spectrometry data
-(e.g., proteomics and metabolomics/lipidomics).
+Mspire is a full featured library for working with mass spectrometry data,
+particularly proteomic, metabolomic and lipidomic data sets.
 
 ### mzml
 
