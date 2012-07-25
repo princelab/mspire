@@ -53,7 +53,7 @@ Mspire has the *only* converter from mzml into imzml.
 
 ## Acronym
 
-<i>M</i>ass *SP*ectrometry *I*n *R*uby.  Mspire originally stood for *M*ass *S*pectrometry *P*roteomics *I*n *R*uby in Ruby but the library has since proven useful for all kinds of mass spectrometry projects, hence the more inclusive form.  The *e* was originally included for aesthetic reasons, but it also provides the user/developer the ability to attach whatever *E*xclamation or *E*pithet they choose to the acronym (the best ones will begin with *e* of course).
+<i>M</i>ass <i>SP</i>ectrometry <i>I</i>n <i>R</i>uby.  Mspire originally stood for <i>M</i>ass <i>S</i>pectrometry <i>P</i>roteomics <i>I</i>n <i>R</i>uby in Ruby but the library has since proven useful for all kinds of mass spectrometry projects, hence the more inclusive form.  The <i>e</i> was originally included for aesthetic reasons, but it also provides the user/developer the ability to attach whatever <i>E</i>xclamation or <i>E</i>pithet they choose to the acronym (the best ones will begin with <i>e</i> of course).
 
 ## Copyright
 
