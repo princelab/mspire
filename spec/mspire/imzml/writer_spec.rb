@@ -1,6 +1,7 @@
 require 'spec_helper'
 
 require 'mspire/imzml/writer'
+require 'mspire/imzml/writer/commandline'
 require 'mspire/spectrum'
 
 describe Mspire::Imzml::Writer do
@@ -95,6 +96,35 @@ describe Mspire::Imzml::Writer do
       info_pair.last.offset.should == offsets.next
     end
     File.unlink(write_to) if File.exist?(write_to)
+  end
+
+  describe 'full conversion of a file' do
+
+    before do
+      @file = TESTFILES + "/mspire/mzml/1_BB7_SIM_478.5.mzML"
+    end
+
+    # reads file and removes parts that change run to run
+    def sanitize(file)
+      reject = ['xmlns="http://psi.hupo.org/ms/mzml', 'universally unique identifier', 'ibd SHA-1']
+      IO.readlines(file).reject do |line| 
+        reject.any? {|fragment| line.include?(fragment) }
+      end.join
+    end
+
+    it 'converts sim files' do
+      Mspire::Imzml::Writer::Commandline.run([@file, @file, "--max-dimensions-microns", "72x2", "--max-dimensions-pixels", "72x2"])
+      # checking ibd is hard, reserved for above specs
+      imzml_check = TESTFILES + "/mspire/mzml/1_BB7_SIM_478.5.CHECK.imzML"
+      ibd_check = TESTFILES + "/mspire/mzml/1_BB7_SIM_478.5.CHECK.ibd"
+      # really just frozen for now until I inspect it more critically
+      imzml = imzml_check.sub('.CHECK','')
+      ibd = ibd_check.sub('.CHECK','')
+      File.exist?(ibd).should be_true
+      File.exist?(imzml).should be_true
+      sanitize(imzml_check).should == sanitize(imzml)
+      File.unlink(ibd) ; File.unlink(imzml)
+    end
   end
 
 

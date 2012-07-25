@@ -83,7 +83,7 @@ output: <file>.imzML and <file>.ibd
     end
   end
 
-  def self.run(argv, globalopts)
+  def self.run(argv, globalopts=[])
     begin
       opts = parser.parse(argv)
     rescue Trollop::HelpNeeded

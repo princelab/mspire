@@ -339,7 +339,7 @@ module Mspire::Imzml
                   mz_ars << Array.new(its.size, target_mz)
                   its_ars << its
                 end
-                mz_ars.transpose.zip(its_ars.tranpose).map {|mzs, its| Mspire::Spectrum.new([mzs, its]) }
+                mz_ars.transpose.zip(its_ars.transpose).map {|mzs, its| Mspire::Spectrum.new([mzs, its]) }
               else
                 # normal mzml file with spectra
                 mzml
