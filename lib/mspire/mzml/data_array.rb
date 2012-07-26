@@ -168,6 +168,7 @@ class Mspire::Mzml::DataArray < Array
       super(bda_n)
       unless self.external
         # can significantly speed up the below 2 lines:
+HELLO LOOOKEY !!!!!! HERER need to get attributes correct first...
         Mspire::CV::Param[ DTYPE_TO_ACC[dtype] ].to_xml(bda_n)
         Mspire::CV::Param[ compression ? 'MS:1000574' : 'MS:1000576' ].to_xml(bda_n)
         bda_n.binary(base64)

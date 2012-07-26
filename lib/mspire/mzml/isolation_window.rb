@@ -16,6 +16,10 @@ module Mspire
     #     e.g.: MS:1000829 (isolation window upper offset)
     class IsolationWindow
       include Mspire::CV::Paramable
+
+      def to_xml(builder)
+        builder.isolationWindow {|xml| super(xml) }
+      end
     end
   end
 end

@@ -7,6 +7,7 @@ module Mspire
   class Mzml
     # The method of precursor ion selection and activation
     class Precursor
+      extend Mspire::Mzml::List
 
       # (optional) the id of the Spectrum object, whether internal or
       # externally derived.
@@ -71,13 +72,14 @@ module Mspire
         end
 
         builder.precursor(atts) do |prec_n|
+          puts "ISWINDOEW"
+          p @isolation_window
           @isolation_window.to_xml(prec_n) if @isolation_window
           Mspire::Mzml::SelectedIon.list_xml(@selected_ions, prec_n) if @selected_ions
           @activation.to_xml(prec_n) if @activation
         end
       end
 
-      extend(Mspire::Mzml::List)
 
     end
   end

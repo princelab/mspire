@@ -51,7 +51,11 @@ module Mspire
 
       # see ChromatogramList for generating the entire list
       def to_xml(builder, default_ids)
-        atts = data_array_xml_atts(default_ids)
+        atts = data_array_xml_atts
+        if @data_processing && default_ids[:chromatogram_data_processing] != @data_processing.id 
+          atts[:dataProcessingRef] = @data_processing.id 
+        end
+
         builder.chromatogram(atts) do |chrom_n|
           super(chrom_n)
           @precursor.to_xml(chrom_n) if @precursor

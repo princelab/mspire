@@ -12,6 +12,10 @@ module Mspire
     class SelectedIon
       include Mspire::CV::Paramable
       extend Mspire::Mzml::List
+
+      def to_xml(builder)
+        builder.selectedIon {|xml| super(xml) }
+      end
     end
   end
 end

@@ -155,8 +155,6 @@ module Mspire
           obj.data_arrays = Mspire::Mzml::DataArray.empty_data_arrays
         end
 
-
-
         obj
       end
 
@@ -174,7 +172,10 @@ module Mspire
 
       # see SpectrumList for generating the entire list
       def to_xml(builder, default_ids)
-        atts = data_array_xml_atts(default_ids)
+        atts = data_array_xml_atts
+        if @data_processing && default_ids[:spectrum_data_processing] != @data_processing.id 
+          atts[:dataProcessingRef] = @data_processing.id 
+        end
         atts[:sourceFileRef] = @source_file.id if @source_file
         atts[:spotID] = @spot_id if @spot_id
 

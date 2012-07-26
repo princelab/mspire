@@ -28,6 +28,10 @@ module Mspire
     #     et al.
     class Activation
       include Mspire::CV::Paramable
+
+      def to_xml(builder)
+        builder.activation {|xml| super(xml) }
+      end
     end
   end
 end

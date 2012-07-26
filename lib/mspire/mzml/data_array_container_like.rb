@@ -40,12 +40,8 @@ module Mspire
 
       # returns a hash with id, index, defaultArrayLength and the proper
       # dataProcessing attributes filled out.
-      def data_array_xml_atts(default_ids)
-        atts = {id: @id, index: @index, defaultArrayLength: default_array_length}
-        if @data_processing && default_ids[:data_processing] != @data_processing.id 
-          atts[:dataProcessingRef] = @data_processing.id 
-        end
-        atts
+      def data_array_xml_atts
+        {index: @index, id: @id, defaultArrayLength: default_array_length}
       end
 
     end
