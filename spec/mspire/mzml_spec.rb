@@ -350,7 +350,10 @@ describe Mspire::Mzml do
       spec1 = Mspire::Mzml::Spectrum.new('scan=1') do |spec|
         # profile and ms_level 1
         spec.describe_many!(['MS:1000128', ['MS:1000511', 1]])
-        spec.data_arrays = [[1,2,3], [4,5,6]]
+        spec.data_arrays = [
+          Mspire::Mzml::DataArray[1,2,3],  
+          Mspire::Mzml::DataArray[4,5,6]
+        ]
         spec.scan_list = Mspire::Mzml::ScanList.new do |sl|
           scan = Mspire::Mzml::Scan.new do |scan|
             # retention time of 42 seconds

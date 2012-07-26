@@ -219,22 +219,6 @@ module Mspire
       :trypsin => 'Trypsin 	C-Term	KR 	P 	no 	no',
       :v8_e_trypsin => 'V8-E+Trypsin 	C-Term 	EKRZ 	P 	no 	no',
       :v8_de_trypsin => 'V8-DE+Trypsin 	C-Term 	BDEKRZ 	P 	no 	no',
-      :arg_c => 'Arg-C 	C-Term 	R 	P 	 no 	 no',
-      :asp_n => 'Asp-N 	N-Term 	BD 	  	no 	no',
-      :asp_n_ambic => 'Asp-N_ambic 	N-Term 	DE 	  	no 	no',
-      :chymotrypsin => 'Chymotrypsin 	C-Term 	FLWY 	P 	no 	no',
-      :cnbr => 'CNBr 	C-Term 	M 	  	no 	no',
-      :lys_c => 'Lys-C 	C-Term 	K 	P 	no 	no',
-      :lys_c_p => 'Lys-C/P 	C-Term 	K 	  	no 	no',
-      :pepsin_a => 'PepsinA 	C-Term 	FL 	  	no 	no',
-      :tryp_cnbr => 'Tryp-CNBr 	C-Term 	KMR 	P 	no 	no',
-      :tryp_chymo => 'TrypChymo 	C-Term 	FKLRWY 	P 	no 	no',
-      :trypsin_p => 'Trypsin/P 	C-Term 	KR 	  	no 	no',
-      :v8_de => 'V8-DE 	C-Term 	BDEZ 	P 	no 	no',
-      :v8_e => 'V8-E 	C-Term 	EZ 	P 	no 	no',
-      :trypsin => 'Trypsin 	C-Term	KR 	P 	no 	no',
-      :v8_e_trypsin => 'V8-E+Trypsin 	C-Term 	EKRZ 	P 	no 	no',
-      :v8_de_trypsin => 'V8-DE+Trypsin 	C-Term 	BDEKRZ 	P 	no 	no',
     }
 
     ENZYMES = MASCOT_ENZYME_CONFIG_STRINGS.inject(Hash.new) do |hash,(k,v)| 

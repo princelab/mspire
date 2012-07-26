@@ -18,15 +18,26 @@ class Mspire::Mzml::DataArray < Array
   alias_method :array_init, :initialize
   include Mspire::CV::Paramable
 
-  DEFAULT_DTYPE = :float64
-  DEFAULT_COMPRESSION = true
-  DTYPE_TO_ACC = {
-    float64: 'MS:1000523',
-    float32: 'MS:1000521',
-    # float16: 'MS:1000520',  # <- not supported w/o other gems
-    int64: 'MS:1000522', # signed
-    int32: 'MS:1000519', # signed
+  DEFAULT_DTYPE_ACC = 'MS:1000523' # float64
+  DEFAULT_COMPRESSION_ACC = 'MS:1000574'
+  COMPRESSION_ACC = 'MS:1000574'
+  NO_COMPRESSION_ACC = 'MS:1000576'
+  ACC_TO_DTYPE = {
+    'MS:1000523' => :float64,
+    'MS:1000521' => :float32,
+    #'MS:1000520' => :float16,  # <- not supported w/o other gems
+    'MS:1000522' => :int64, # signed
+    'MS:1000519' => :int32, # signed
   }
+  ACC_TO_UNPACK_CODE = {
+    'MS:1000523' => 'E*',
+    'MS:1000521' => 'e*',
+    #'MS:1000520' => :float16,  # <- not supported w/o other gems
+    'MS:1000522' => 'q<*',
+    'MS:1000519' => 'l<*',
+  }
+
+  DTYPE_ACCS = ACC_TO_DTYPE.keys
 
   # unless data type (see DTYPE_TO_ACC) or TYPE
   def initialize(*args)
@@ -102,49 +113,44 @@ class Mspire::Mzml::DataArray < Array
     da
   end
 
-  # returns a base64 string that can be used for xml representations of
-  # the data
-  #
-  #     args:
-  #       array-like  set-like               # where set-like responds to include?
-  #       array-like  dtype=:float64, compression=true
-  def self.to_binary(array_ish, *args)
-    end
-
-  # calls the class to_binary method with self and the given args
+  # creates a base64 binary string based on the objects params.  If no dtype
+  # or compression are specified, then it will be set (i.e., params added to
+  # the object).
   def to_binary
-    
-###########
-  NEEED TO REVAMP TO JUST USE CV
-###########
-
-    if args.first.respond_to?(:include?)
-      accessions = args.first
-      dtype = 
-        if accessions.include?('MS:1000521') 
-          :float32
-        else
-          :float64
+    # single pass over params for speed
+    pack_code = nil
+    compression = nil
+    each_accessionable_param do |param|
+      acc = param.accession
+      if !pack_code && (code=ACC_TO_UNPACK_CODE[acc])
+        pack_code = code
+      end
+      if compression.nil?
+        compression = 
+          case acc
+          when COMPRESSION_ACC then true
+          when NO_COMPRESSION_ACC then false
+          end
+      end
+    end
+    # can speed these up:
+    unless param
+      describe! DEFAULT_DTYPE_ACC
+      pack_code = ACC_TO_UNPACK_CODE[DEFAULT_DTYPE_ACC]
+    end
+    if compression.nil?
+      describe! DEFAULT_COMPRESSION_ACC
+      compression = 
+        case DEFAULT_COMPRESSION_ACC
+        when COMPRESSION_ACC then true
+        when NO_COMPRESSION_ACC then false
         end
-      compression = accessions.include?('MS:1000576') ? false : true 
-    else
-      dtype = args[0] || DEFAULT_DTYPE
-      compression = args[1] || DEFAULT_COMPRESSION
     end
 
-    pack_code = 
-      case dtype
-      when :float64 ; 'E*'
-      when :float32 ; 'e*'
-      when :int64   ; 'q<*'
-      when :int32   ; 'l<*'
-      else ; raise "unsupported dtype: #{dtype}"
-      end
-    # TODO: support faster pack method for NArray's in future
-    string = array_ish.to_a.pack(pack_code) 
+    # TODO: support faster pack method with nmatrix or narray
+    string = self.pack(pack_code) 
     string = Zlib::Deflate.deflate(string) if compression
     Base64.strict_encode64(string)
-
   end
 
   # will set the data type to DEFAULT_DTYPE and compression if n
@@ -153,31 +159,20 @@ class Mspire::Mzml::DataArray < Array
       if @external
         0
       else
-        # set DTYPE AND COMPRESSION HERE if not set!
-        <<<------ HERE
         base64 = to_binary
         base64.bytesize
       end
 
     builder.binaryDataArray(encodedLength: encoded_length) do |bda_n|
       super(bda_n)
-      unless self.external
-        # can significantly speed up the below 2 lines:
-HELLO LOOOKEY !!!!!! HERER need to get attributes correct first...
-        Mspire::CV::Param[ DTYPE_TO_ACC[dtype] ].to_xml(bda_n)
-        Mspire::CV::Param[ compression ? 'MS:1000574' : 'MS:1000576' ].to_xml(bda_n)
-        bda_n.binary(base64)
-      end
+      bda_n.binary(base64) unless self.external
     end
   end
 
   # takes an array of DataArray objects or other kinds of objects
   def self.list_xml(arrays, builder)
     builder.binaryDataArrayList(count: arrays.size) do |bdal_n|
-      arrays.zip([:mz, :intensity]) do |data_ar, typ|
-        ar = 
-          if data_ar.is_a?(Mspire::Mzml::DataArray) then data_ar
-          else Mspire::Mzml::DataArray.new(data_ar) end
+      arrays.each do |ar|
         ar.type = typ unless ar.type
         ar.to_xml(bdal_n)
       end
