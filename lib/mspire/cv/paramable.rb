@@ -25,10 +25,9 @@ module Mspire
       end
 
       def params?
-        total_num_params = cv_params.size + 
-          ref_param_groups.reduce(0) {|sum,group| sum + 
-            group.params.size } + user_params.size
-        total_num_params > 0
+        cv_params.size > 0 || 
+          ref_param_groups.any? {|group| group.params.size > 0 } || 
+          user_params.size > 0
       end
 
       def each_accessionable_param(&block)
@@ -61,6 +60,9 @@ module Mspire
         end
       end
 
+      # returns the value if the param exists with that accession.  Returns
+      # true if the param exists but has no value. returns false if no param
+      # with that accession.
       def fetch_by_accession(acc)
         param = accessionable_params.find {|v| v.accession == acc }
         if param

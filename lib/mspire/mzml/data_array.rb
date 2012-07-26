@@ -8,7 +8,13 @@ module Mspire
 end
 
 
-class Mspire::Mzml::DataArray < Array
+# Mspire::Mzml::DataArray's are currently implemented as a standard Ruby
+# array.  Data may be input or output with less precision, but a standard data
+# array will be accessible from ruby as Float (float64).  Thus, the params
+# merely alter what will be output to xml, so, to alter what is written with
+# to_xml, change the params.  If no params are changed in the data array it
+# will be written with the same precision as it was read in with.
+class Mspire::Mzml::DataArray < Array 
   alias_method :array_init, :initialize
   include Mspire::CV::Paramable
 
