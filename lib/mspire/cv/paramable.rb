@@ -41,6 +41,25 @@ module Mspire
         cv_params + ref_param_groups.flat_map(&:params)
       end
 
+      # yields each current param.  If the return value is not false or nil,
+      # it is deleted (i.e., any true value and it is deleted).  Then adds the
+      # given parameter or makes a new one by accession number.
+      def replace!(*describe_args, &block)
+        reject!(&block).describe!(*describe_args)
+      end
+
+      # returns self
+      def reject!(&block)
+        cv_params.reject!(&block)
+        ref_param_groups.each {|group| group.reject!(&block) }
+        user_params.reject!(&block)
+        self
+      end
+
+      def replace_many!(describe_many_arg, &block)
+        reject!(&block).describe_many!(describe_many_arg)
+      end
+
       #def params_by_name
       #  params.index_by &:name
       #end

@@ -27,41 +27,11 @@ class Mspire::Mzml::DataArray < Array
     int64: 'MS:1000522', # signed
     int32: 'MS:1000519', # signed
   }
-  TYPE_XML = {
-    mz: '<cvParam cvRef="MS" accession="MS:1000514" name="m/z array"/>',
-    intensity: '<cvParam cvRef="MS" accession="MS:1000515" name="intensity array"/>'
-  }
 
+  # unless data type (see DTYPE_TO_ACC) or TYPE
   def initialize(*args)
     params_init # paramable
     array_init(*args)
-  end
-
-  # takes :mz or :intensity and sets the proper param among cvParams.  Does not do
-  # referenceableParamGroup resolution.
-  def type=(symbol)
-    new_cv_params = []
-    already_present = false
-    cvs = ['MS:1000514', 'MS:1000515']
-    cvs.reverse! if symbol == :intensity
-    (keep, remove) = cvs
-
-    @cv_params.each do |param|
-      new_cv_params << param unless param.accession == remove
-      (already_present = true) if (param.accession == keep)
-    end
-    new_cv_params.push(Mspire::CV::Param[keep]) unless already_present
-    @cv_params = new_cv_params
-    symbol
-  end
-
-  # :mz or :intensity (or nil if none found)
-  def type
-    each_accessionable_param do |param|
-      return :mz if (param.accession == 'MS:1000514')
-      return :intensity if (param.accession == 'MS:1000515')
-    end
-    nil
   end
 
   # (optional) the DataProcessing object associated with this DataArray
