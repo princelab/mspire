@@ -38,8 +38,7 @@ module Mspire
         end
       end
 
-      # returns a hash with id, index, defaultArrayLength and the proper
-      # dataProcessing attributes filled out.
+      # returns a hash with id, index, defaultArrayLength
       def data_array_xml_atts
         {index: @index, id: @id, defaultArrayLength: default_array_length}
       end

@@ -41,8 +41,19 @@ class Mspire::Mzml::DataArray < Array
   # file for imzML files)
   attr_accessor :external
 
-  def self.empty_data_arrays
-    [self.new, self.new]
+  # returns a DataArray object. Analogous to [] for creating an array.
+  def self.[](*data)
+    self.new(data)
+  end
+
+  # returns an array of DataArray objects based on the given arrays
+  def self.from_arrays(arrays)
+    arrays.map {|ar| self.new(ar) }
+  end
+
+    # returns an array of DataArray objects (2)
+  def self.empty_data_arrays(num=2)
+    Array.new(num) { self.new }
   end
 
   def self.data_arrays_from_xml(xml, link)
@@ -98,6 +109,15 @@ class Mspire::Mzml::DataArray < Array
   #       array-like  set-like               # where set-like responds to include?
   #       array-like  dtype=:float64, compression=true
   def self.to_binary(array_ish, *args)
+    end
+
+  # calls the class to_binary method with self and the given args
+  def to_binary
+    
+###########
+  NEEED TO REVAMP TO JUST USE CV
+###########
+
     if args.first.respond_to?(:include?)
       accessions = args.first
       dtype = 
@@ -124,19 +144,18 @@ class Mspire::Mzml::DataArray < Array
     string = array_ish.to_a.pack(pack_code) 
     string = Zlib::Deflate.deflate(string) if compression
     Base64.strict_encode64(string)
+
   end
 
-  # calls the class to_binary method with self and the given args
-  def to_binary(*args)
-    self.class.to_binary(self, *args)
-  end
-
-  def to_xml(builder, dtype=DEFAULT_DTYPE, compression=DEFAULT_COMPRESSION)
+  # will set the data type to DEFAULT_DTYPE and compression if n
+  def to_xml(builder)
     encoded_length = 
       if @external
         0
       else
-        base64 = self.class.to_binary(self, dtype, compression)
+        # set DTYPE AND COMPRESSION HERE if not set!
+        <<<------ HERE
+        base64 = to_binary
         base64.bytesize
       end
 
