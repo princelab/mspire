@@ -9,6 +9,12 @@ module Mspire
     class ScanWindow
       include Mspire::CV::Paramable
       extend Mspire::Mzml::List
+
+      def to_xml(builder)
+        builder.scanWindow do |xml|
+          super(xml)
+        end
+      end
     end
   end
 end

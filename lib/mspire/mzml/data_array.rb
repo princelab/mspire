@@ -134,7 +134,7 @@ class Mspire::Mzml::DataArray < Array
       end
     end
     # can speed these up:
-    unless param
+    unless pack_code
       describe! DEFAULT_DTYPE_ACC
       pack_code = ACC_TO_UNPACK_CODE[DEFAULT_DTYPE_ACC]
     end
@@ -173,7 +173,6 @@ class Mspire::Mzml::DataArray < Array
   def self.list_xml(arrays, builder)
     builder.binaryDataArrayList(count: arrays.size) do |bdal_n|
       arrays.each do |ar|
-        ar.type = typ unless ar.type
         ar.to_xml(bdal_n)
       end
     end

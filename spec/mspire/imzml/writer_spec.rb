@@ -54,10 +54,10 @@ describe Mspire::Imzml::Writer do
   end
 
   it 'writes :processed binary file with spectra and returns DataArrayInfo objects' do
-    expected_file = TESTFILES + "/mspire/imzml/processed_binary_check.ibd"
-    write_to = TESTFILES + "/mspire/imzml/processed_binary.tmp.ibd"
+    write_to = TESTFILES + "/mspire/imzml/processed_binary.ibd"
     array = subject.write_binary(write_to, @spectra.each, @config.merge( {:data_structure => :processed} ))
-    IO.read(write_to).should == IO.read(expected_file)
+    file_check(write_to)
+
     array.should be_an(Array)
     length = 3
     offsets = (16..76).step(12)
@@ -71,14 +71,12 @@ describe Mspire::Imzml::Writer do
         obj.offset.should == offsets.next
       end
     end
-    File.unlink(write_to) if File.exist?(write_to)
   end
 
   it 'writes :continuous binary file with spectra and returns DataArrayInfo objects' do
-    expected_file = TESTFILES + "/mspire/imzml/continuous_binary_check.ibd"
-    write_to = TESTFILES + "/mspire/imzml/continuous_binary.tmp.ibd"
+    write_to = TESTFILES + "/mspire/imzml/continuous_binary.ibd"
     array = subject.write_binary(write_to, @spectra.each, @config.merge( {:data_structure => :continuous} ))
-    IO.read(write_to).should == IO.read(expected_file)
+    file_check(write_to)
     array.should be_an(Array)
 
     length = 3
@@ -95,7 +93,6 @@ describe Mspire::Imzml::Writer do
       info_pair.first.offset.should == first_offset
       info_pair.last.offset.should == offsets.next
     end
-    File.unlink(write_to) if File.exist?(write_to)
   end
 
   describe 'full conversion of a file' do
@@ -105,25 +102,24 @@ describe Mspire::Imzml::Writer do
     end
 
     # reads file and removes parts that change run to run
-    def sanitize(file)
+    def sanitize(string)
+      string = sanitize_mspire_version_xml(string)
       reject = ['xmlns="http://psi.hupo.org/ms/mzml', 'universally unique identifier', 'ibd SHA-1']
-      IO.readlines(file).reject do |line| 
+      string.split(/\r?\n/).reject do |line| 
         reject.any? {|fragment| line.include?(fragment) }
-      end.join
+      end.join("\n")
     end
 
     it 'converts sim files' do
-      Mspire::Imzml::Writer::Commandline.run([@file, @file, "--max-dimensions-microns", "72x2", "--max-dimensions-pixels", "72x2"])
-      # checking ibd is hard, reserved for above specs
-      imzml_check = TESTFILES + "/mspire/mzml/1_BB7_SIM_478.5.CHECK.imzML"
-      ibd_check = TESTFILES + "/mspire/mzml/1_BB7_SIM_478.5.CHECK.ibd"
+      outbase = TESTFILES + "/mspire/imzml/1_BB7_SIM_478.5"
+      Mspire::Imzml::Writer::Commandline.run([@file, @file, "--max-dimensions-microns", "72x2", "--max-dimensions-pixels", "72x2", "--outfile", outbase])
       # really just frozen for now until I inspect it more critically
-      imzml = imzml_check.sub('.CHECK','')
-      ibd = ibd_check.sub('.CHECK','')
-      File.exist?(ibd).should be_true
-      File.exist?(imzml).should be_true
-      sanitize(imzml_check).should == sanitize(imzml)
-      File.unlink(ibd) ; File.unlink(imzml)
+      file_check( TESTFILES + "/mspire/imzml/1_BB7_SIM_478.5.imzML" ) do |st|
+        sanitize(st)
+      end
+      file_check( TESTFILES + "/mspire/imzml/1_BB7_SIM_478.5.ibd" ) do |st|
+        st.each_byte.map.to_a[20..-1]
+      end
     end
   end
 

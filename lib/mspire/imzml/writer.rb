@@ -422,8 +422,8 @@ module Mspire::Imzml
             
             data_arrays = %w(mz intensity).zip(pair).map do |type, data_array_info|
               rparmgroup = rparms_by_id[(type + "_array").to_sym]
+              # the type is defined in the refparams
               data_array = Mspire::Mzml::DataArray.new
-              data_array.type = type
               data_array.external = true
               data_array.describe_many! [rparmgroup, *%w(IMS:1000103 IMS:1000102 IMS:1000104).zip(data_array_info).map.to_a]
               data_array

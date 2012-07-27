@@ -170,8 +170,21 @@ module Mspire
         yield(self) if block_given?
       end
 
+      # sets the data_arrays from the given array objects.  Sets the type of
+      # the first array to be an m/z array, and the second to be an intensity
+      # array.
+      def self.from_arrays(id, arrays)
+        spec = self.new(id)
+        arrays.zip(['MS:1000514','MS:1000515']).each do |ar, acc|
+          dar = DataArray.new(ar).describe!(acc)
+        end
+        spec
+      end
+
       # see SpectrumList for generating the entire list
       def to_xml(builder, default_ids)
+        io = builder.target!
+
         atts = data_array_xml_atts
         if @data_processing && default_ids[:spectrum_data_processing] != @data_processing.id 
           atts[:dataProcessingRef] = @data_processing.id 
@@ -186,6 +199,7 @@ module Mspire
           Mspire::Mzml::Product.list_xml(@products, sp_n) if @products
           Mspire::Mzml::DataArray.list_xml(@data_arrays, sp_n) if @data_arrays
         end
+        builder
       end
 
     end

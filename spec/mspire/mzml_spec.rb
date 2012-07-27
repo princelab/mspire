@@ -47,37 +47,41 @@ describe Mspire::Mzml do
     end
 
     it 'works' do
-      outfile = TESTFILES + "/mspire/mzml/j24z.idx_comp.3.WRITTEN.mzML"
+      outfile = TESTFILES + "/mspire/mzml/j24z.idx_comp.3.ROUNDTRIP.mzML"
       Mspire::Mzml.open(@file) do |mzml|
         mzml.write(outfile)
       end
+      # I went through this file line by line to make sure it is correct
+      # output.
+      file_check(outfile)
     end
-
   end
 
-  describe 'normalizing spectra in a compressed mzML file (read in and write out)', :pending do
+  describe 'global normalizing spectra in a compressed mzML file (read in and write out)' do
     before do
       @file = TESTFILES + "/mspire/mzml/j24z.idx_comp.3.mzML"
     end
 
-    specify 'adding to source file, software, and data processing' do
-      Mspire::Mzml.open(@file) do |mzml|
-        mzml.source
-      end
-    end
+    specify 'adding to source file, software, and data processing'
+      #Mspire::Mzml.open(@file) do |mzml|
+      #  mzml.source
+      #end
 
     specify 'normalize highest peak of each spectrum to 100' do
       # this is very bad form to not change data_processing etc, but it
       # demonstrates the minimal amount to normalize the spectra.
+      outfile = TESTFILES + "/mspire/mzml/j24z.idx_comp.3.NORMALIZED.mzML" 
       Mspire::Mzml.open(@file) do |mzml|
         spectra = mzml.map do |spectrum|
           normalizer = 100.0 / spectrum.intensities.max
           spectrum.intensities.map! {|i| i * normalizer }
           spectrum
         end
-        mzml.spectrum_list = Mpire::Mzml::SpectrumList.new(mzml.spectrum_list.default_data_processing, spectra)
-        mzml.write("normalized.mzML")
+        mzml.run.spectrum_list = Mspire::Mzml::SpectrumList.new(mzml.run.spectrum_list.default_data_processing, spectra)
+        mzml.write(outfile)
       end
+      # this output was checked to be accurate with TOPPView
+      file_check(outfile)
     end
   end
 
@@ -342,17 +346,13 @@ describe Mspire::Mzml do
 
   describe 'writing mzml' do 
 
-    def sanitize_version(string)
-      string.gsub(/"mspire" version="([\.\d]+)"/, %Q{"mspire" version="X.X.X"})    
-    end
-
     it 'writes MS1 and MS2 spectra' do
       spec1 = Mspire::Mzml::Spectrum.new('scan=1') do |spec|
         # profile and ms_level 1
         spec.describe_many!(['MS:1000128', ['MS:1000511', 1]])
         spec.data_arrays = [
-          Mspire::Mzml::DataArray[1,2,3],  
-          Mspire::Mzml::DataArray[4,5,6]
+          Mspire::Mzml::DataArray[1,2,3].describe!('MS:1000514'),  
+          Mspire::Mzml::DataArray[4,5,6].describe!('MS:1000515')   
         ]
         spec.scan_list = Mspire::Mzml::ScanList.new do |sl|
           scan = Mspire::Mzml::Scan.new do |scan|
@@ -366,7 +366,10 @@ describe Mspire::Mzml do
       spec2 = Mspire::Mzml::Spectrum.new('scan=2') do |spec| 
         # centroid,  ms_level 2, MSn spectrum, 
         spec.describe_many!(['MS:1000127', ['MS:1000511', 2], "MS:1000580"])
-        spec.data_arrays = [[1,2,3.5], [5,6,5]]
+        spec.data_arrays = [
+          Mspire::Mzml::DataArray[1,2,3.5].describe!('MS:1000514'),  
+          Mspire::Mzml::DataArray[5,6,5].describe!('MS:1000515')   
+        ]
         spec.scan_list = Mspire::Mzml::ScanList.new do |sl|
           scan = Mspire::Mzml::Scan.new do |scan|
             # retention time of 42 seconds
@@ -405,16 +408,13 @@ describe Mspire::Mzml do
         end
       end
 
-      #check = TESTFILES + '/mspire/mzml/mspire_simulated.noidx.check.mzML'
-      tmpfile = TESTFILES + '/mspire/mzml/mspire_simulated.MSn.TMP.mzML'
+      tmpfile = TESTFILES + '/mspire/mzml/mspire_simulated.MSn.mzML'
       mzml.to_xml(tmpfile)
       as_string = mzml.to_xml
-      check_string = IO.read(TESTFILES + '/mspire/mzml/mspire_simulated.MSn.check.mzML')
-
-      [IO.read(tmpfile), as_string].each do |st|
-        sanitize_version(check_string).should == sanitize_version(st)
+      as_string.should == IO.read(tmpfile)
+      file_check(tmpfile) do |string|
+        sanitize_mspire_version_xml(string)
       end
-      File.unlink(tmpfile) if File.exist?(tmpfile)
     end
   end
 end

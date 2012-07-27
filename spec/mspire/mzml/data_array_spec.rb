@@ -35,11 +35,6 @@ describe Mspire::Mzml::DataArray do
   describe 'an instantiated Mspire::Mzml::DataArray' do
     subject { Mspire::Mzml::DataArray.new [1,2,3] }
 
-    it "can have a 'type'" do
-      subject.type = :mz
-      subject.type.should == :mz
-    end
-
     it 'can be converted to a binary string' do
       string = subject.to_binary
       # frozen
