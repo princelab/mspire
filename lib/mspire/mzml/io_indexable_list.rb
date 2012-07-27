@@ -20,7 +20,7 @@ module Mspire
       # similar to an array but is really pulling objects by reading an io
       # object.  Sets the spectrum_list attribute of array_like if it can be
       # set.
-      def initialize(default_data_processing, array_like, id_to_index=nil)
+      def initialize(default_data_processing, array_like=[], id_to_index=nil)
         if array_like.respond_to?(:spectrum_list=)
           array_like.spectrum_list = self
         end

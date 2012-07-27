@@ -10,7 +10,7 @@ module Mspire
 
       attr_accessor :id, :version
 
-      def initialize(id='mspire', version=Mspire::VERSION)
+      def initialize(id="mspire_#{Mspire::VERSION}", version=Mspire::VERSION)
         @id, @version = id, version
         params_init
         yield(self) if block_given?

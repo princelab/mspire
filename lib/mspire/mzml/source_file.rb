@@ -8,8 +8,6 @@ module Mspire
       include Mspire::CV::Paramable
       extend Mspire::Mzml::List
 
-      DEFAULT_SOURCEFILE_ID = 'sourcefile1'
-
       # (required) An identifier for this file.
       attr_accessor :id
       # (required) Name of the source file, without reference to location
@@ -18,9 +16,11 @@ module Mspire
       # (required) URI-formatted location where the file was retrieved.
       attr_accessor :location
 
-      # expands the path and sets the name and location
+      # expands the path and sets the name and location.  Sets the id to the
+      # basename.
       def self.[](path, opts={})
-        self.new DEFAULT_SOURCEFILE_ID, *uri_basename_and_path(path)
+        (name, path) = uri_basename_and_path(path)
+        self.new(name, name, path)
       end
 
       # takes a filename (with a relative or expanded path) and returns the
