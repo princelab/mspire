@@ -37,44 +37,114 @@ Mspire is the *only* converter from mzml into imzml.
 
 ## Examples
 
+```ruby
+mzml_file = "yourfile.mzML"
+```
+
 ### mzml
+
+See Mspire::Mzml, Mspire::CV::Paramable, Mspire::Mzml::Spectrum and other
+objects associated with Mzml files.
 
 #### reading
 
 ```ruby
-    require 'mspire/mzml'
+require 'mspire/mzml'
 
-    Mspire::Mzml.open("somefile.mzml") do |mzml|
+Mspire::Mzml.open(mzml_file) do |mzml|
 
-      # random access by index or id (even if file wasn't indexed)
-      spectrum = mzml[0]
-      spectrum = mzml["controllerType=0 controllerNumber=1 scan=2"]
+  # random access by index or id (even if file wasn't indexed)
+  spectrum = mzml[0]
+  spectrum = mzml["controllerType=0 controllerNumber=1 scan=2"]
 
-      spectrum.mzs
-      spectrum.intensities
-      spectrum.peaks do |mz, intensity|
-        puts "#{mz} #{intensity}"
-      end
+  spectrum.mzs
+  spectrum.intensities
 
-      # true if key exists and no value, the value if present, or false
-      if spectrum.fetch_by_acc('MS:1000128')
-        puts "this is a profile spectrum!"
-      end
+  # first 5 peaks
+  spectrum.peaks[0,5].each do |mz, intensity|
+    puts "#{mz} #{intensity}"
+  end
 
-      if spectrum.ms_level == 2
-        low_mz = spectrum.scan_list.first.scan_windows.first.to_i
-        puts "begin scan at #{low_mz} m/z"
-      end
-    end
+  # true if key exists and no value, the value if present, or false
+  if spectrum.fetch_by_acc('MS:1000128')
+    puts "this is a profile spectrum!"
+  end
+
+  if spectrum.ms_level == 2
+    low_mz = spectrum.scan_list.first.scan_windows.first.fetch_by_acc("MS:1000501").to_i
+    puts "begin scan at #{low_mz} m/z"
+  end
+end
 ```
 
+#### normalize spectra and write new mzML
 
+See Mspire::Mzml for complete example building all objects from scratch.
 
-    require 'ms/mass/aa'
+```ruby
+require 'mspire/mzml'
 
-    MS::Mass::AA::MONO['A'] # or access by symbol
+Mspire::Mzml.open(mzml_file) do |mzml|
 
+  # MS:1000584 -> an mzML file
+  mzml.file_description.source_files << Mspire::Mzml::SourceFile[mzml_file].describe!('MS:1000584')
+  mspire = Mspire::Mzml::Software.new
+  mzml.software_list.push(mspire).uniq_by(&:id)
+  normalize_processing = Mspire::Mzml::DataProcessing.new("ms1_normalization") do |dp|
+    # 'MS:1001484' -> intensity normalization 
+    dp.processing_methods << Mspire::Mzml::ProcessingMethod.new(mspire).describe!('MS:1001484')
+  end
 
+  mzml.data_processing_list << normalize_processing
+
+  spectra = mzml.map do |spectrum|
+    normalizer = 100.0 / spectrum.intensities.max
+    spectrum.intensities.map! {|i| i * normalizer }
+    spectrum
+  end
+  mzml.run.spectrum_list = Mspire::Mzml::SpectrumList.new(normalize_processing, spectra)
+  mzml.write(outfile)
+end
+```
+### Masses
+
+```ruby
+# very high precision NIST masses
+aa_to_mass = Mspire::Mass::AA::MONO # a hash with residue masses
+aa_to_mass['A'] # or access by symbol - Alanine
+
+# elements
+Mspire::Mass::MONO[:c] # carbon
+Mspire::Mass::MONO[:e] # electron (includes other useful symbols)
+```
+
+### Isotopes and molecular formulas
+
+```ruby
+require 'mspire/isotope'
+isotopes = Mspire::Isotope::ISOTOPES  # 288 isotopes
+hydrogen_isotopes = isotopes.select {|iso| iso.element == :h }
+
+c12 = Mspire::Isotope::BY_ELEMENT[:c].first
+c12.atomic_number # also: mass_number atomic_mass relative_abundance average_mass
+c12.mono   # => true (this is the monoisotopic isotope)
+
+require 'mspire/molecular_formula'  # requires fftw gem
+propane = Mspire::MolecularFormula['C3H8']
+butane = propane + Mspire::MolecularFormula['CH2']
+puts butane  # => C4H10
+
+require 'mspire/isotope/distribution'  # requires fftw gem
+puts butane.isotope_distribution  # :total, :max, :first as arg to normalize
+```
+
+### Digestion
+
+```ruby
+require 'mspire/digester'
+trypsin = Mspire::Digester[:trypsin].
+trypsin.digest("AACCKDDEERFFKPGG") # => ["AACCK", "DDEER", "FFKPGG"]
+```
 ## TODO
 
 * write the mzml index onto a file (along with correct SHA-1)

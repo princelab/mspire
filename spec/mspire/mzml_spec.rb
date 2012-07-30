@@ -62,22 +62,28 @@ describe Mspire::Mzml do
       @file = TESTFILES + "/mspire/mzml/j24z.idx_comp.3.mzML"
     end
 
-    specify 'adding to source file, software, and data processing'
-      #Mspire::Mzml.open(@file) do |mzml|
-      #  mzml.source
-      #end
-
     specify 'normalize highest peak of each spectrum to 100' do
-      # this is very bad form to not change data_processing etc, but it
-      # demonstrates the minimal amount to normalize the spectra.
       outfile = TESTFILES + "/mspire/mzml/j24z.idx_comp.3.NORMALIZED.mzML" 
+
       Mspire::Mzml.open(@file) do |mzml|
+
+        # MS:1000584 -> an mzML file
+        mzml.file_description.source_files << Mspire::Mzml::SourceFile[@file].describe!('MS:1000584')
+        mspire = Mspire::Mzml::Software.new
+        mzml.software_list.push(mspire).uniq_by(&:id)
+        normalize_processing = Mspire::Mzml::DataProcessing.new("ms1_normalization") do |dp|
+          # 'MS:1001484' -> intensity normalization 
+          dp.processing_methods << Mspire::Mzml::ProcessingMethod.new(mspire).describe!('MS:1001484')
+        end
+
+        mzml.data_processing_list << normalize_processing
+
         spectra = mzml.map do |spectrum|
           normalizer = 100.0 / spectrum.intensities.max
           spectrum.intensities.map! {|i| i * normalizer }
           spectrum
         end
-        mzml.run.spectrum_list = Mspire::Mzml::SpectrumList.new(mzml.run.spectrum_list.default_data_processing, spectra)
+        mzml.run.spectrum_list = Mspire::Mzml::SpectrumList.new(normalize_processing, spectra)
         mzml.write(outfile)
       end
       # this output was checked to be accurate with TOPPView

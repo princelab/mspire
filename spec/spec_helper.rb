@@ -46,3 +46,19 @@ end
 def sanitize_mspire_version_xml(string)
   string.gsub(/"mspire(_[\d\.]+)?" version="([\.\d]+)"/, %Q{"mspire" version="X.X.X"})
 end
+
+require 'stringio'
+ 
+module Kernel
+ 
+  def capture_stdout
+    out = StringIO.new
+    $stdout = out
+    yield
+    out.string
+  ensure
+    $stdout = STDOUT
+  end
+
+end
+
