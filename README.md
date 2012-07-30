@@ -39,17 +39,48 @@ Mspire is the *only* converter from mzml into imzml.
 
 ### mzml
 
-    require 'ms/mzml'
+#### reading
 
-    MS::Mzml.open("somefile.mzml") do |mzml|
-      spectrum = mzml[0]   # the first spectrum ( same as mzml.spectrum(0) )
-      spectrum = mzml["controllerType=0 controllerNumber=1 scan=2"]  # query by id string
-      mzml.spectrum_from_scan_num(23) # raises ScanNumbersNotFound or ScanNumbersNotUnique errors if problems
+```ruby
+    require 'mspire/mzml'
+
+    Mspire::Mzml.open("somefile.mzml") do |mzml|
+
+      # random access by index or id (even if file wasn't indexed)
+      spectrum = mzml[0]
+      spectrum = mzml["controllerType=0 controllerNumber=1 scan=2"]
+
+      spectrum.mzs
+      spectrum.intensities
+      spectrum.peaks do |mz, intensity|
+        puts "#{mz} #{intensity}"
+      end
+
+      # true if key exists and no value, the value if present, or false
+      if spectrum.fetch_by_acc('MS:1000128')
+        puts "this is a profile spectrum!"
+      end
+
+      if spectrum.ms_level == 2
+        low_mz = spectrum.scan_list.first.scan_windows.first.to_i
+        puts "begin scan at #{low_mz} m/z"
+      end
     end
+```
+
+
 
     require 'ms/mass/aa'
 
     MS::Mass::AA::MONO['A'] # or access by symbol
+
+
+## TODO
+
+* write the mzml index onto a file (along with correct SHA-1)
+* implement spectrum unpack into an nmatrix or narray
+* do a proper copy over of meta-data from mzml into imzml
+* consider implementing params as a hash and formalizing more complete implementation agnostic params api
 
 ## Acronym
 

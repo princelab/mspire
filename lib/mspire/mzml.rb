@@ -1,5 +1,4 @@
 
-# TODO: trim down these require statements to only include upper level
 require 'mspire'
 require 'builder'
 require 'core_ext/enumerable'
@@ -19,6 +18,23 @@ module Mspire
   #         spectrum.peaks do |mz,intensity|
   #           puts "mz: #{mz} intensity: #{intensity}" 
   #         end
+  #
+  #         spectrum.params  # list all the params associated with an object
+  #
+  #         # true if key exists and no value, the value if present, or false
+  #         if spectrum.fetch_by_acc('MS:1000128')
+  #           puts "this is a profile spectrum!"
+  #         end
+  #
+  #         if spectrum.ms_level == 2
+  #           low_mz = spectrum.scan_list.first.scan_windows.first.to_i
+  #           puts "begin scan at #{low_mz} m/z"
+  #         end
+  #       end
+  #
+  #       mzml.each_chromatogram do |chrm|
+  #         chrm.times
+  #         chrm.intensities
   #       end
   #     end
   #
@@ -29,38 +45,68 @@ module Mspire
   #
   # Writing an mzml file from scratch:
   #
-  #     spec1 = Mspire::Mzml::Spectrum.new('scan=1') do |spec|
-  #       spec.describe_many! ['MS:1000127', ['MS:1000511', 1]]
-  #       spec.data_arrays = [[1,2,3], [4,5,6]]
-  #       spec.scan_list = Mspire::Mzml::ScanList.new do |sl|
-  #         scan = Mspire::Mzml::Scan.new do |scan|
-  #           # retention time of 40 seconds
-  #           scan.describe! ['MS:1000016', 40.0, 'UO:0000010']
-  #         end
-  #         sl << scan
-  #       end
-  #     end
-  #
-  #     mzml = Mspire::Mzml.new do |mzml|
-  #       mzml.id = 'the_little_example'
-  #       mzml.cvs = Mspire::Mzml::CV::DEFAULT_CVS
-  #       mzml.file_description = Mspire::Mzml::FileDescription.new  do |fd|
-  #         fd.file_content = Mspire::Mzml::FileContent.new
-  #         fd.source_files << Mspire::Mzml::SourceFile.new
-  #       end
-  #       default_instrument_config = Mspire::Mzml::InstrumentConfiguration.new("IC",[])
-  #       default_instrument_config.describe! 'MS:1000031'
-  #       mzml.instrument_configurations << default_instrument_config
-  #       software = Mspire::Mzml::Software.new
-  #       mzml.software_list << software
-  #       default_data_processing = Mspire::Mzml::DataProcessing.new("did_nothing")
-  #       mzml.data_processing_list << default_data_processing
-  #       mzml.run = Mspire::Mzml::Run.new("little_run", default_instrument_config) do |run|
-  #         spectrum_list = Mspire::Mzml::SpectrumList.new(default_data_processing)
-  #         spectrum_list.push(spec1)
-  #         run.spectrum_list = spectrum_list
-  #       end
-  #     end
+  #    spec1 = Mspire::Mzml::Spectrum.new('scan=1') do |spec|
+  #      # profile and ms_level 1
+  #      spec.describe_many!(['MS:1000128', ['MS:1000511', 1]])
+  #      spec.data_arrays = [
+  #        Mspire::Mzml::DataArray[1,2,3].describe!('MS:1000514'),  
+  #        Mspire::Mzml::DataArray[4,5,6].describe!('MS:1000515')   
+  #      ]
+  #      spec.scan_list = Mspire::Mzml::ScanList.new do |sl|
+  #        scan = Mspire::Mzml::Scan.new do |scan|
+  #          # retention time of 42 seconds
+  #          scan.describe! 'MS:1000016', 40.0, 'UO:0000010'
+  #        end
+  #        sl << scan
+  #      end
+  #    end
+  #  
+  #    spec2 = Mspire::Mzml::Spectrum.new('scan=2') do |spec| 
+  #      # centroid,  ms_level 2, MSn spectrum, 
+  #      spec.describe_many!(['MS:1000127', ['MS:1000511', 2], "MS:1000580"])
+  #      spec.data_arrays = [
+  #        Mspire::Mzml::DataArray[1,2,3.5].describe!('MS:1000514'),  
+  #        Mspire::Mzml::DataArray[5,6,5].describe!('MS:1000515')   
+  #      ]
+  #      spec.scan_list = Mspire::Mzml::ScanList.new do |sl|
+  #        scan = Mspire::Mzml::Scan.new do |scan|
+  #          # retention time of 42 seconds
+  #          scan.describe! 'MS:1000016', 45.0, 'UO:0000010'
+  #        end
+  #        sl << scan
+  #      end
+  #      precursor = Mspire::Mzml::Precursor.new( spec1.id )
+  #      si = Mspire::Mzml::SelectedIon.new
+  #      # the selected ion m/z:
+  #      si.describe! "MS:1000744", 2.0
+  #      # the selected ion charge state
+  #      si.describe! "MS:1000041", 2
+  #      # the selected ion intensity
+  #      si.describe! "MS:1000042", 5
+  #      precursor.selected_ions = [si]
+  #      spec.precursors = [precursor]
+  #    end
+  #  
+  #    mzml = Mspire::Mzml.new do |mzml|
+  #      mzml.id = 'ms1_and_ms2'
+  #      mzml.cvs = Mspire::Mzml::CV::DEFAULT_CVS
+  #      mzml.file_description = Mspire::Mzml::FileDescription.new  do |fd|
+  #        fd.file_content = Mspire::Mzml::FileContent.new
+  #        fd.source_files << Mspire::Mzml::SourceFile.new
+  #      end
+  #      default_instrument_config = Mspire::Mzml::InstrumentConfiguration.new("IC").describe!('MS:1000031')
+  #      mzml.instrument_configurations << default_instrument_config
+  #      software = Mspire::Mzml::Software.new
+  #      mzml.software_list << software
+  #      default_data_processing = Mspire::Mzml::DataProcessing.new("did_nothing")
+  #      mzml.data_processing_list << default_data_processing
+  #      mzml.run = Mspire::Mzml::Run.new("little_run", default_instrument_config) do |run|
+  #        spectrum_list = Mspire::Mzml::SpectrumList.new(default_data_processing, [spec1, spec2])
+  #        run.spectrum_list = spectrum_list
+  #      end
+  #    end
+  #    
+  #    mzml.write("writtenxml.mzML")
   class Mzml
     include Enumerable  # each_spectrum
 
