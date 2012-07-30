@@ -44,5 +44,5 @@ def file_check(filename, delete=true, &block)
 end
 
 def sanitize_mspire_version_xml(string)
-  string.gsub(/"mspire" version="([\.\d]+)"/, %Q{"mspire" version="X.X.X"})
+  string.gsub(/"mspire(_[\d\.]+)?" version="([\.\d]+)"/, %Q{"mspire" version="X.X.X"})
 end
