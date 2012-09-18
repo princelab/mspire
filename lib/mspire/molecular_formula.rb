@@ -134,9 +134,14 @@ module Mspire
 
     def to_s(alphabetize=true)
       h = alphabetize ? self.sort : self
-      h.flat_map {|k,v| 
-        [k.capitalize, v > 1 ? v : '']
-      }.join
+      st = ''
+      h.each do |k,v|
+        if v > 0
+          st << k.to_s.capitalize
+          st << v.to_s if v > 1
+        end
+      end 
+      st
     end
 
     def to_hash

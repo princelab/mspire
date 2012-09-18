@@ -33,6 +33,15 @@ describe Mspire::MolecularFormula do
       Mspire::MolecularFormula['Ni7SE3'].to_hash.should == {:ni=>7, :s=>1, :e=>3}
     end
 
+    describe 'correct to_s' do
+      subject {
+        Mspire::MolecularFormula.new({:c=>669, :h=>1129, :o=>185, :n=>215, :s=>4, :p=>0, :se=>0})
+      }
+      it 'to_s gives output' do
+        subject.to_s.should == "C669H1129N215O185S4"
+      end
+    end
+
     describe 'conversion' do
 
       subject {
