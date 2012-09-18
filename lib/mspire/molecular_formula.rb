@@ -123,6 +123,10 @@ module Mspire
       mss
     end
 
+    def avg_mass
+      inject(0.0) {|sum,(el,cnt)| sum + (Mspire::Mass::AVG[el]*cnt) }
+    end
+
     # returns nil if the charge == 0
     def mz(consider_electron_masses = true)
       if charge == 0
