@@ -45,6 +45,7 @@ end
 
 def sanitize_mspire_version_xml(string)
   string.gsub(/"mspire(_[\d\.]+)?" version="([\.\d]+)"/, %Q{"mspire" version="X.X.X"})
+  .gsub(/softwareRef="mspire_[\d\.]+/, 'softwareRef="mspire_X.X.X')
 end
 
 require 'stringio'

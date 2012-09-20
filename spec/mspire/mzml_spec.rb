@@ -87,7 +87,9 @@ describe Mspire::Mzml do
         mzml.write(outfile)
       end
       # this output was checked to be accurate with TOPPView
-      file_check(outfile)
+      file_check(outfile) do |string|
+        sanitize_mspire_version_xml(string)
+      end
     end
   end
 

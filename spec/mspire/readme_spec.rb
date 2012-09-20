@@ -69,7 +69,9 @@ describe 'performing what is on the readme' do
         mzml.run.spectrum_list = Mspire::Mzml::SpectrumList.new(normalize_processing, spectra)
         mzml.write(outfile)
       end
-      file_check(outfile)
+      file_check(outfile) do |string|
+        sanitize_mspire_version_xml(string)
+      end
     end
 
   end
