@@ -96,7 +96,8 @@ end
 
 to_run.each do |file, bundle|
   putsv "calculating qvalues for #{file}"
-  hit_qvalue_pairs = Mspire::ErrorRate::Qvalue.target_decoy_qvalues(bundle.target, bundle.decoy, :z_together => opt[:z_together]) {|hit| hit.search_scores[:ionscore] }
+  hit_qvalue_pairs = Mspire::ErrorRate::Qvalue.target_decoy_qvalues(bundle.target, bundle.decoy, :z_together => opt[:z_together])
+  # {|hit| hit.search_scores[:ionscore] }
   hits = [] ; qvals = []
   hit_qvalue_pairs.each do |hit, qval|
     hits << hit ; qvals << qval
