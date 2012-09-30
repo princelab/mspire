@@ -1,0 +1,5 @@
+# structure of a very simple file for holding peptide hit qvalues
+# entries should be separated by a tab!!!
+aaseq  charge  qvalue
+String Integer Float
+...    ...     ...
