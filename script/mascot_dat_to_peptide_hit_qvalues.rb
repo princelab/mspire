@@ -13,6 +13,7 @@ rescue LoadError
   puts ">     gem install mascot-dat"
   raise LoadError
 end
+raise "need princelab mascot-dat gem!" unless Mascot::DAT::VERSION == "0.3.1.1"
 
 # target-decoy bundle
 TDB = Struct.new(:target, :decoy)
