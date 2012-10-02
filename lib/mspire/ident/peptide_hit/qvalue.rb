@@ -19,12 +19,13 @@ class Mspire::Ident::PeptideHit
 
       # writes the peptide hits to a phq.tsv file. qvalues is a parallel array
       # to hits that can provide qvalues if not inherent to the hits
-      # returns the filename.
+      # returns the filename.  Expects each hit to implement #search_id, #id,
+      # #aaseq and #charge
       def to_file(filename, hits, qvalues=[])
         File.open(filename,'w') do |out|
           out.puts HEADER.join(FILE_DELIMITER)
           hits.zip(qvalues) do |hit, qvalue|
-            out.puts [hit.search.id, hit.id, hit.aaseq, hit.charge, qvalue || hit.qvalue].join(FILE_DELIMITER)
+            out.puts [hit.search_id, hit.id, hit.aaseq, hit.charge, qvalue || hit.qvalue].join(FILE_DELIMITER)
           end
         end
         filename

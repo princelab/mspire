@@ -16,9 +16,17 @@ end
 raise "need princelab mascot-dat gem!" unless Mascot::DAT::VERSION == "0.3.1.1"
 
 # target-decoy bundle
-TDB = Struct.new(:target, :decoy)
+SearchBundle = Struct.new(:target, :decoy) do
+  # combines all bundles under self so that all targets are grouped and all
+  # decoys are grouped.  returns self
+  def combine(bundles)
+    (targets, decoys) = bundles.map {|bundle| [bundle.target, bundle.decoy] }
+    .transpose.map {|ars| ars.reduce(:+) }
+    self
+  end
+end
 
-PSM = Struct.new(:aaseq, :charge, :score, :qvalue) 
+PSM = Struct.new(:search_id, :id, :aaseq, :charge, :score)
 
 # turns 1+ into 1
 def charge_string_to_charge(st)
@@ -29,18 +37,27 @@ def charge_string_to_charge(st)
 end
 
 def read_mascot_dat_hits(dat_file)
+  filename =nil
+  IO.foreach(dat_file) do |line| 
+    if line =~ /^FILE=(.*?).mgf/i
+      filename = $1.dup
+      break
+    end
+  end
   dat = Mascot::DAT.open(dat_file)
-  data = [:peptides, :decoy_peptides].each do |mthd|
+
+  data = [:peptides, :decoy_peptides].map do |mthd|
     psms = []
     dat.send(mthd).each do |psm|
       next unless psm.query
       query = dat.query(psm.query)
       charge = charge_string_to_charge(query.charge)
-      psms << PSM.new(psm.pep, charge, psm.score) if psm.score
+      psms << PSM.new(filename, query.title, psm.pep, charge, psm.score) if psm.score
     end
+    psms
   end
   dat.close
-  TDB.new(*data)
+  SearchBundle.new(*data)
 end
 
 
@@ -82,12 +99,7 @@ end
 to_run = {}
 if opt[:combine]
   putsv "combining all target hits together and all decoy hits together"
-  all_target = [] ; all_decoy = []
-  bundles.each do |bundle| 
-    all_target.push(*bundle.target) 
-    all_decoy.push(*bundle.decoy)
-  end
-  bundle = TDB.new(all_target, all_decoy)
+  bundle = SearchBundle.new.combine(bundles)
   to_run[combine_base + EXT] = bundle
 else
   files.zip(bundles) do |file, bundle|
@@ -99,11 +111,7 @@ to_run.each do |file, bundle|
   putsv "calculating qvalues for #{file}"
   hit_qvalue_pairs = Mspire::ErrorRate::Qvalue.target_decoy_qvalues(bundle.target, bundle.decoy, :z_together => opt[:z_together])
   # {|hit| hit.search_scores[:ionscore] }
-  hits = [] ; qvals = []
-  hit_qvalue_pairs.each do |hit, qval|
-    hits << hit ; qvals << qval
-  end
-  outfile = Mspire::Ident::PeptideHit::Qvalue.to_file(file, hits, qvals)
+  outfile = Mspire::Ident::PeptideHit::Qvalue.to_file(file, *hit_qvalue_pairs.transpose)
   putsv "created: #{outfile}"
 end
 
