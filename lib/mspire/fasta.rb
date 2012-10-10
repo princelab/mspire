@@ -58,33 +58,11 @@ module Mspire
       Bio::FlatFile.new(Bio::FastaFormat, io)
     end
 
-=begin
-    # returns two hashes [id_to_length, id_to_description]
-    # faster (~4x) than official route.
-    def self.protein_lengths_and_descriptions(file)
-      protid_to_description = {}
-      protid_to_length = {}
-      re = /^>([^\s]+) (.*)/
-        ids = []
-      lengths = []
-      current_length = nil
-      IO.foreach(file) do |line|
-        line.chomp!
-        if md=re.match(line)  
-          lengths << current_length
-          current_id = md[1]
-          ids << current_id
-          current_length = 0
-          protid_to_description[current_id] = md[2]
-        else
-          current_length += line.size
-        end
-      end
-      lengths << current_length
-      lengths.shift # remove the first nil entry
-      [Hash[ids.zip(lengths).to_a], protid_to_description]
+    # takes the header string and returns the uniprot id
+    #
+    #     'sp|Q04917|1433F_HUMAN' #=> 'Q04917'
+    def self.uniprot_id(header)
+      header[/^[^\|]+\|([^\|]+)\|/, 1]
     end
-=end
-
   end
 end
