@@ -19,7 +19,7 @@ Prince JT, Marcotte EM. <b>mspire: mass spectrometry proteomics in Ruby.</b> *Bi
 
 ### imzml
 
-Mspire is the *only* converter from mzml into imzml.  
+Mspire is the *only* commandline converter from mzml into imzml (also see [imzMLConverter](http://www.cs.bham.ac.uk/~ibs/imzMLConverter/)) 
 
 * handles both processed and continuous modes
 * gracefully handles SIM data
