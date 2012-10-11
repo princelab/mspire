@@ -98,6 +98,7 @@ class Mspire::Ident::Peptide::Db::Creator
                 (pep =~ letters_to_expand_re) ? expand_peptides(pep, EXPAND_AA) : pep
               end
             else
+              reply = peptides.map {|pep| pep !~ letters_to_expand_re }.compact
               peptides.map {|pep| pep =~ letters_to_expand_re }.compact
             end
           header = prot.header
@@ -128,8 +129,8 @@ class Mspire::Ident::Peptide::Db::Creator
 
     File.open(final_outfile, 'w') do |out|
       hash_like.each do |k,v|
-        #out.puts( [k, v.join(Mspire::Ident::Peptide::Db::PROTEIN_DELIMITER)].join(Mspire::Ident::Peptide::Db::KEY_VALUE_DELIMITER) )
-        out.puts "#{k}#{Mspire::Ident::Peptide::Db::KEY_VALUE_DELIMITER}#{v}"       
+        out.puts( [k, v.join(Mspire::Ident::Peptide::Db::PROTEIN_DELIMITER)].join(Mspire::Ident::Peptide::Db::KEY_VALUE_DELIMITER) )
+        #out.puts "#{k}#{Mspire::Ident::Peptide::Db::KEY_VALUE_DELIMITER}#{v}"       
       end
     end
     puts "#{Time.now - start_time} sec" if $VERBOSE
@@ -188,18 +189,15 @@ class Mspire::Ident::Peptide::Db::Creator
       #abort "HERE"
       #trie
     else
-      hash = {}
+      hash = Hash.new {|h,k| h[k] = [] }
       ::IO.foreach(digestion_file) do |line|
-        (prot, *peps) = line.chomp!.split(/\s+/)
+        line.chomp!
+        (prot, *peps) = line.split(/\s+/)
         # prot is something like this: "P31946"
+        peps.uniq!
         peps.each do |pep|
           if pep.size >= min_length
-            if val = hash[pep]
-              val << Mspire::Ident::Peptide::Db::PROTEIN_DELIMITER << prot
-            else
-              val = prot
-            end
-            hash[pep] = val
+            hash[pep] << prot
           end
         end
       end
