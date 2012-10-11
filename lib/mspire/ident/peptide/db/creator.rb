@@ -47,6 +47,7 @@ class Mspire::Ident::Peptide::Db::Creator
       op.on("-e", "--enzyme <name>", "enzyme for digestion") {|v| opt[:enzyme] = Mspire::Insilico::Digester.const_get(v.upcase) }
       op.on("-v", "--verbose", "talk about it") { $VERBOSE = 5 }
       op.on("--list-enzymes", "lists approved enzymes and exits") do
+      op.on("-v", "--verbose", "talk about it") { $VERBOSE = 5 }
         puts Mspire::Digester::ENZYMES.keys.join("\n")
         exit
       end
@@ -155,7 +156,6 @@ class Mspire::Ident::Peptide::Db::Creator
   end
 
   def hash_like_from_digestion_file(digestion_file, min_length, use_trie=false)
-    cnt = 0
     if use_trie
       raise NotImplementedError
       #puts "using trie" if $VERBOSE
@@ -202,8 +202,6 @@ class Mspire::Ident::Peptide::Db::Creator
             hash[pep] = val
           end
         end
-        cnt += 1
-        puts cnt if (cnt % 1000) == 0
       end
       hash
     end
@@ -217,6 +215,7 @@ class Mspire::Ident::Peptide::Db::Creator
   def create(fasta_file, opts={})
     opts = DEFAULT_PEPTIDE_CENTRIC_DB.merge(opts)
     digestion_file = create_digestion_file(fasta_file, opts)
+    puts "created file of size: #{File.size(digestion_file)}" if $VERBOSE
     db_from_fasta_digestion_file(digestion_file, opts)
   end
 
