@@ -98,8 +98,7 @@ class Mspire::Ident::Peptide::Db::Creator
                 (pep =~ letters_to_expand_re) ? expand_peptides(pep, EXPAND_AA) : pep
               end
             else
-              reply = peptides.map {|pep| pep !~ letters_to_expand_re }.compact
-              peptides.map {|pep| pep =~ letters_to_expand_re }.compact
+              peptides.select {|pep| pep !~ letters_to_expand_re }
             end
           header = prot.header
           id = opts[:uniprot] ? Mspire::Fasta.uniprot_id(header) : header.split(/\s+/).first
