@@ -42,8 +42,10 @@ class Mspire::Ident::Peptide::Db::Creator
       op.on("--no-cleaved-methionine", "does not cleave off initiator methionine") { opt[:cleave_initiator_methionine] = false }
       op.on("--no-expand-x", "don't enumerate aa possibilities", "(removes these peptides)") { opt[:expand_aa] = false }
       op.on("--no-uniprot", "use entire protid section of fasta header", "for non-uniprot fasta files") { opt[:uniprot] = false }
-      op.on("--trie", "use a trie (for very large uniprot files)", "must have fast_trie gem installed") {|v| opt[:trie] = v }
+      #op.on("--trie", "use a trie (for very large uniprot files)", "must have fast_trie gem installed") {|v| opt[:trie] = v }
+
       op.on("-e", "--enzyme <name>", "enzyme for digestion") {|v| opt[:enzyme] = Mspire::Insilico::Digester.const_get(v.upcase) }
+      op.on("-v", "--verbose", "talk about it") { $VERBOSE = 5 }
       op.on("--list-enzymes", "lists approved enzymes and exits") do
         puts Mspire::Digester::ENZYMES.keys.join("\n")
         exit
