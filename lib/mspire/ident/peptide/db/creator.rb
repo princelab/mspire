@@ -42,7 +42,7 @@ class Mspire::Ident::Peptide::Db::Creator
       op.on("--no-cleaved-methionine", "does not cleave off initiator methionine") { opt[:cleave_initiator_methionine] = false }
       op.on("--no-expand-x", "don't enumerate aa possibilities", "(removes these peptides)") { opt[:expand_aa] = false }
       op.on("--no-uniprot", "use entire protid section of fasta header", "for non-uniprot fasta files") { opt[:uniprot] = false }
-      #op.on("--trie", "use a trie (for very large uniprot files)", "must have fast_trie gem installed") {|v| opt[:trie] = v }
+      op.on("--trie", "use a trie (for very large uniprot files)", "must have fast_trie gem installed") {|v| opt[:trie] = v }
 
       op.on("-e", "--enzyme <name>", "enzyme for digestion") {|v| opt[:enzyme] = Mspire::Insilico::Digester.const_get(v.upcase) }
       op.on("-v", "--verbose", "talk about it") { $VERBOSE = 5 }
@@ -121,15 +121,25 @@ class Mspire::Ident::Peptide::Db::Creator
     hash_like = hash_like_from_digestion_file(digestion_file, opts[:min_length], opts[:trie])
 
     base = digestion_file.chomp(File.extname(digestion_file))
-    final_outfile = base + ".min_aaseq#{opts[:min_length]}" + ".yml"
+    final_outfile = 
+      if opts[:trie]
+        base + ".min_aaseq#{opts[:min_length]}"
+      else
+        base + ".min_aaseq#{opts[:min_length]}" + ".yml"
+      end
 
     start_time = Time.now
     print "Writing #{hash_like.size} peptides to #{} ..." if $VERBOSE
 
-    File.open(final_outfile, 'w') do |out|
-      hash_like.each do |k,v|
-        out.puts( [k, v.join(Mspire::Ident::Peptide::Db::PROTEIN_DELIMITER)].join(Mspire::Ident::Peptide::Db::KEY_VALUE_DELIMITER) )
-        #out.puts "#{k}#{Mspire::Ident::Peptide::Db::KEY_VALUE_DELIMITER}#{v}"       
+      if opts[:trie]
+        trie = hash_like
+        trie.save(final_outfile)
+      else
+        File.open(final_outfile, 'w') do |out|
+        hash_like.each do |k,v|
+          out.puts( [k, v.join(Mspire::Ident::Peptide::Db::PROTEIN_DELIMITER)].join(Mspire::Ident::Peptide::Db::KEY_VALUE_DELIMITER) )
+          #out.puts "#{k}#{Mspire::Ident::Peptide::Db::KEY_VALUE_DELIMITER}#{v}"       
+        end
       end
     end
     puts "#{Time.now - start_time} sec" if $VERBOSE
@@ -140,53 +150,35 @@ class Mspire::Ident::Peptide::Db::Creator
     File.expand_path(final_outfile)
   end
 
-  def hash_like_tree
-    require 'trie'
-    trie = Trie.new
-    def trie.[](key)
-      val = self.get(key) 
-      if val.nil?
-        self.add(key,"")
-        self.get(key)
-      else
-        val
-      end
+  def get_a_trie
+    begin
+      require 'trie'
+    rescue
+      raise LoadError, "must first install fast_trie"
     end
-    trie
+    Trie.new
   end
 
   def hash_like_from_digestion_file(digestion_file, min_length, use_trie=false)
     if use_trie
-      raise NotImplementedError
-      #puts "using trie" if $VERBOSE
-      #trie = hash_like_tree
-      #line_cnt = 0
-      #::IO.foreach(digestion_file) do |line|
-        #line_cnt += 1
-        ##puts "LINE COUND"
-        ##p line_cnt
-        #(prot, *peps) = line.chomp!.split(/\s+/)
-        ##p peps
-        ##p peps.class
-        ## prot is something like this: "P31946"
-        #puts line
-        #peps.each do |pep|
-          #if pep.size >= min_length
-            #to_set = 
-              #if val = trie.get(pep)
-                #val +  Mspire::Ident::Peptide::Db::PROTEIN_DELIMITER + prot
-              #else
-                #prot
-              #end
-            #p to_set.size
-            #trie.add(pep, to_set)
-          #end
-        #end
-        #cnt += 1
-        #puts cnt if (cnt % 1000) == 0
-      #end
-      #abort "HERE"
-      #trie
+      trie = get_a_trie
+      ::IO.foreach(digestion_file) do |line|
+        line.chomp!
+        (prot, *peps) = line.split(/\s+/)
+        # prot is something like this: "P31946"
+        peps.uniq!
+        peps.each do |pep|
+          if pep.size >= min_length
+            if trie.has_key?(pep)
+              ar = trie.get(pep)
+              ar << prot
+            else
+              trie.add( pep, [prot] )
+            end
+          end
+        end
+      end
+      trie
     else
       hash = Hash.new {|h,k| h[k] = [] }
       ::IO.foreach(digestion_file) do |line|

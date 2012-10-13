@@ -49,6 +49,17 @@ describe 'creating a peptide centric database' do
       #File.unlink(@output_file)
     end
 
+    it 'can use a trie' do
+      Mspire::Ident::Peptide::Db::Creator.cmdline([@fasta_file, '--trie'])
+      triefile = TESTFILES + '/mspire/ident/peptide/db/uni_11_sp_tr.msd_clvg2.min_aaseq4'
+      %w(.trie .tail .da).each do |ext|
+        File.exist?(triefile + ext).should be_true
+      end
+      trie = Trie.read(triefile)
+      p trie.get('MADGSGWQPPRPCEAYR')
+      #trie.get('MADGSGWQPPRPCEAYR').should == ["D3DX18"]
+    end
+
     it 'lists approved enzymes and exits' do
       output = capture_stdout do
         begin
