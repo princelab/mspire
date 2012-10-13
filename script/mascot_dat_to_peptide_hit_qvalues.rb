@@ -66,7 +66,6 @@ def putsv(*args)
   $stdout.flush
 end
 
-EXT = Mspire::Ident::PeptideHit::Qvalue::FILE_EXTENSION
 combine_base  = "combined"
 
 opts = Trollop::Parser.new do
@@ -100,19 +99,20 @@ to_run = {}
 if opt[:combine]
   putsv "combining all target hits together and all decoy hits together"
   bundle = SearchBundle.new.combine(bundles)
-  to_run[combine_base + EXT] = bundle
+  to_run[combine_base] = bundle
 else
   files.zip(bundles) do |file, bundle|
-    to_run[file.chomp(File.extname(file)) + EXT] = bundle
+    to_run[file.chomp(File.extname(file))] = bundle
   end
 end
 
-to_run.each do |file, bundle|
-  putsv "calculating qvalues for #{file}"
-  hit_qvalue_pairs = Mspire::ErrorRate::Qvalue.target_decoy_qvalues(bundle.target, bundle.decoy, :z_together => opt[:z_together])
+to_run.each do |file_base, bundle|
+  putsv "calculating qvalues for #{file_base}"
+  qvalues = Mspire::ErrorRate::Qvalue.target_decoy_qvalues(bundle.target, bundle.decoy, :z_together => opt[:z_together])
   # {|hit| hit.search_scores[:ionscore] }
-  outfile = Mspire::Ident::PeptideHit::Qvalue.to_file(file, *hit_qvalue_pairs.transpose)
+  #outfile = Mspire::Ident::PeptideHit::Qvalue.to_file(file, *hit_qvalue_pairs.transpose)
+  outfile = Mspire::Ident::PeptideHit::Qvalue.to_phq(file_base, bundle.target, qvalues)
+
   putsv "created: #{outfile}"
 end
-
 

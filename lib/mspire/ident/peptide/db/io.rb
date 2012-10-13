@@ -39,6 +39,10 @@ class Mspire::Ident::Peptide::Db::IO
     string.split(Mspire::Ident::Peptide::Db::PROTEIN_DELIMITER)
   end
 
+  def key?(key)
+    @index[key]
+  end
+
   # number of entries
   def size ; @index.size end
   alias_method :length, :size

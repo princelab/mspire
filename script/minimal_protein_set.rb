@@ -4,6 +4,7 @@ require 'yaml'
 require 'set'
 require 'optparse'
 require 'mspire/fasta'
+require 'mspire/ident/peptide/db/io'
 
 SET_RE = /Set\s+(.*)/i
 QVALUE_EXT = ".phq.tsv"
@@ -125,20 +126,20 @@ opt = {
 }
 
 opts = OptionParser.new do |op|
-  op.banner = "USAGE: #{File.basename(__FILE__)} sets_compare.txt"
-  op.separator "OUTPUT: #{opt[:outfile]}"
+  op.banner = "usage: #{File.basename(__FILE__)} pepcentric_db.yml sets_compare.txt"
+  op.separator "output: #{opt[:outfile]}"
   op.separator ""
-  op.separator "INPUT: "
+  op.separator "input: "
   op.separator "    each <file> referenced in sets_compare.txt should have a"
   op.separator "    <file>.phq.tsv file"
   op.separator ""
-  op.separator "OPTIONS:"
+  op.separator "options:"
   op.on("-q", "--qvalue <0-1[,...]>", Array, "only take qvalues < given ['-' for no threshold]") {|v| opt[:cutoffs] = cutoffs_to_floats(v)}
   op.separator ""
-  op.on("--proteins <fasta>,<pep-db>", Array, "path to fasta and peptide centric DB", "peptide_centric_db is in the format: ", "<PEPTIDE>: <ID>-<ID>-<ID>") {|v| opt[:proteins] = v }
-  op.separator "FORMATS:"
+  op.separator "formats:"
   op.on("--output-format", "prints the output yaml scheme and exits") {|v| opt[:output_format] = v }
   op.on("--input-format", "prints sets_compare.txt format and exits") {|v| opt[:input_format] = v }
+  op.on("--pepcentric-db-format", "prints peptide centric db format and exits") {|v| opt[:pepcentric_db_format] = v }
 end
 
 # later on we could implement full isoform resolution like IsoformResolver
@@ -150,6 +151,15 @@ end
 
 opts.parse!
 
+pd = Mspire::Ident::Peptide::Db::PROTEIN_DELIMITER
+kvd  = Mspire::Ident::Peptide::Db::KEY_VALUE_DELIMITER
+
+if opt[:pepcentric_db_format]
+  puts "pepcentric_db.yml needs to be in the format:"
+  puts "<PEPTIDE>#{kvd.inspect}<ID>#{pd.inspect}<ID>#{pd.inspect}<ID>"
+  puts "(The delimiters are shown with #inspect)"
+end
+
 if opt[:output_format]
   yaml = <<SKEL
 results: 
@@ -160,40 +170,32 @@ results:
       num_aaseqs_not_in_pep_db: <Integer>
       num_uniq_aaseqs_charge: <Integer>
       proteins: 
-        <IPI_ID>: 
+        <protein_id>: 
           num_hits_all: 
           - <Integer> # total num aaseqs
-          - <Integer> # total num aaseq+charge
+          - <Integer> # total num aaseq+charge "prints sets_compare.txt format and exits") {|v| opt[:input_format] = v }
+  op.on("--pepcentric-db-
           - <Integer> # total num hits
           num_hits_minimal: 
           - <Integer> # total num aaseqs
           - <Integer> # total num aaseq+charge
           - <Integer> # total num hits
           indistinguishable: 
-          - <IPI_ID>
-          - <IPI_ID>
+          - <protein_id>
+          - <protein_id>
           aaseqs: 
           - <String>
           - <String>
 sets_order:
 - <String>
 - <String>
-protein_info: 
-  <IPI_ID>: 
-    Gene_Symbol: <String>
-    IPI: <IPI_ID>
-    Tax_Id: <String>
-    SWISS-PROT: <String>
-    description: <String>
-    ENSEMBL: <String>
 SKEL
   print yaml
-  exit
 end
 
 if opt[:input_format]
   string =<<EXPLANATION
-# the sets_compare.yml format is very simple:
+# the sets_compare.txt format is very simple:
 
 Set <some_name_for_set1>
 filename1_no_ext
@@ -204,114 +206,92 @@ filename4_no_ext
 ...
 EXPLANATION
   puts string
-  exit
 end
 
-if ARGV.size != 1
+exit if opt.keys.any? {|key| key.to_s =~ /_format/ }
+
+if ARGV.size != 2
+  p opts
   puts opts.to_s
   exit
 end
 
+(pepcentric_fn, sets_compare_fn) = ARGV
 
 results = {}
 
-protein_info = {}
-results['protein_info'] = protein_info
 results['results'] = []
 
-(sets_hash, sets_order) = sets_compare_to_paths(ARGV.shift)
+(sets_hash, sets_order) = sets_compare_to_paths(sets_compare_fn)
 results['sets_order'] = sets_order
 
-if opt[:proteins]
-  (fasta, pep_db_file) = opt[:proteins]
-  
-  # a hash indexed on ipi containing all info
-  prot_header_hash = {}
-
-  STDERR.print "Loading information from fasta file..."
-  start = Time.now
-  prot_sizes_hash = {}
-  Ms::Fasta.open(fasta, 'rb', :io_index => []) do |obj|
-    obj.each do |entry|
-      hash = Ms::Fasta::Ipi.parse(entry.header)
-      ipi = hash['IPI']
-      prot_header_hash[ipi] = hash
-      prot_sizes_hash[ipi] = entry.sequence.size
-    end
-  end
+STDERR.print "Loading peptide centric DB (this takes about a minute)..."
+start = Time.now
+Mspire::Ident::Peptide::Db::IO.open(pepcentric_fn) do |pep_to_prots|
   STDERR.puts "#{Time.now - start} seconds."
 
-  STDERR.print "Loading peptide centric DB (this takes about a minute)..."
-  start = Time.now
-  pep_db = YAML.load_file(pep_db_file)
-  STDERR.puts "#{Time.now - start} seconds."
+  opt[:cutoffs].each do |cutoff|
 
-end
+    cutoff_results = {'qvalue_cutoff' => cutoff}
+    results_sets_hash = {}
+    cutoff_results['sets'] = results_sets_hash
+    results['results'] << cutoff_results
 
-opt[:cutoffs].each do |cutoff|
+    #########################
+    # FOR EACH SET:
+    #########################
+    pep_klass = nil
+    sets_hash.each do |set, files|
+      set_results = {}
+      results_sets_hash[set] = set_results
 
-  cutoff_results = {'qvalue_cutoff' => cutoff}
-  results_sets_hash = {}
-  cutoff_results['sets'] = results_sets_hash
-  results['results'] << cutoff_results
+      # assumes the indices are the same into each data file
 
-  #########################
-  # FOR EACH SET:
-  #########################
-  pep_klass = nil
-  sets_hash.each do |set, files|
-    set_results = {}
-    results_sets_hash[set] = set_results
+      # get the complete set of passing hits
+      all_passing_hits = files.inject([]) do |all_passing_hits, file|
+        hash = YAML.load_file(file)
 
-    # assumes the indices are the same into each data file
+        header_hash = hash['headers']
+        pep_klass ||= Struct.new(*(header_hash.map {|v| v.to_sym }))
+        hits = hash['data'].map {|v| pep_klass.new(*v) }
 
-    # get the complete set of passing hits
-    all_passing_hits = files.inject([]) do |all_passing_hits, file|
-      hash = YAML.load_file(file)
-
-      header_hash = hash['headers']
-      pep_klass ||= Struct.new(*(header_hash.map {|v| v.to_sym }))
-      hits = hash['data'].map {|v| pep_klass.new(*v) }
-
-      passing_hits = 
-        if cutoff
-          # assumes monotonic qvalues values!
-          (above, below) = hits.partition {|hit| hit.qvalue <= cutoff }
-          above
-        else
-          hits
-        end
-      all_passing_hits.push(*passing_hits)
-    end
-
-    
-    # create an index from aaseq to hits
-    seq_to_hits = Hash.new {|h,k| h[k] = []}
-    uniq_seqcharge = Set.new
-    all_passing_hits.each do |hit|
-      seq_to_hits[hit.sequence] << hit
-      uniq_seqcharge.add( hit.sequence + '_' + hit.charge.to_s )
-    end
+        passing_hits = 
+          if cutoff
+            # assumes monotonic qvalues values!
+            (above, below) = hits.partition {|hit| hit.qvalue <= cutoff }
+            above
+          else
+            hits
+          end
+        all_passing_hits.push(*passing_hits)
+      end
 
 
-    # determine the number of uniq aaseqs
-    uniq_seqs = seq_to_hits.size
+      # create an index from aaseq to hits
+      seq_to_hits = Hash.new {|h,k| h[k] = []}
+      uniq_seqcharge = Set.new
+      all_passing_hits.each do |hit|
+        seq_to_hits[hit.sequence] << hit
+        uniq_seqcharge.add( hit.sequence + '_' + hit.charge.to_s )
+      end
 
-    num_uniq_seqcharges = uniq_seqcharge.size
 
-    set_results.merge!( { 'num_peptide_hits' => all_passing_hits.size,
-      'num_uniq_aaseqs' => uniq_seqs,
-      'num_uniq_aaseqs_charge' => num_uniq_seqcharges,
-    })
+      # determine the number of uniq aaseqs
+      uniq_seqs = seq_to_hits.size
 
-    if opt[:proteins]
+      num_uniq_seqcharges = uniq_seqcharge.size
+
+      set_results.merge!( { 'num_peptide_hits' => all_passing_hits.size,
+                         'num_uniq_aaseqs' => uniq_seqs,
+                         'num_uniq_aaseqs_charge' => num_uniq_seqcharges,
+      })
 
       # create an index from proteins to peptides
       prots_to_peps = Hash.new {|h,k| h[k] = [] }
       peptides_not_found = []
       seq_to_hits.keys.each do |seq|
         if pep_db.key?(seq)
-          pep_db[seq].split('-').each do |prot|
+          pep_db[seq].each do |prot|
             prots_to_peps[prot] << seq
           end
         else
@@ -340,11 +320,11 @@ opt[:cutoffs].each do |cutoff|
       protein_data_hashes_hash = {}
       prot_to_uniq_peps_hash.each do |prot, peps|
         protein_data_hashes_hash[prot] = { 
-            'aaseqs' => peps,
-            # this will be a triplet 
-            'num_hits_minimal' => stats_per_protein_minimal[prot],
-            'indistinguishable' => indistinguishable_protein_hash[prot],
-            'num_hits_all' => stats_per_protein_before[prot],
+          'aaseqs' => peps,
+          # this will be a triplet 
+          'num_hits_minimal' => stats_per_protein_minimal[prot],
+          'indistinguishable' => indistinguishable_protein_hash[prot],
+          'num_hits_all' => stats_per_protein_before[prot],
         } 
       end
 
@@ -356,10 +336,10 @@ opt[:cutoffs].each do |cutoff|
       end
     end
   end
-end
 
-File.open(opt[:outfile], 'w') do |out|
-  out.print results.to_yaml
-end
+  File.open(opt[:outfile], 'w') do |out|
+    out.print results.to_yaml
+  end
 
+end
 
