@@ -35,10 +35,17 @@ module Mspire
       def self.from_xml(xml, link)
         obj = self.new(xml[:id])
         next_n = obj.describe_from_xml!(xml, link[:ref_hash])
-        if next_n && next_n.name == 'componentList'
+        if next_n && (next_n.name == 'componentList')
           obj.components = next_n.children.map do |component_n|
-            Mspire::Mzml.const_get(component_n.name.capitalize).new.describe_self_from_xml!(component_n, link[:ref_hash])
-          end
+            if component_n.is_a?(Nokogiri::XML::Text)
+              # TODO: this is a fix for when there is an empty component list but
+              # Nokogiri returns a text node.  Really this needs to be fixed
+              # in our xml writer!
+              nil
+            else
+              Mspire::Mzml.const_get(component_n.name.capitalize).new.describe_self_from_xml!(component_n, link[:ref_hash])
+            end
+          end.compact
           next_n = next_n.next
         end
         if next_n && next_n.name == 'softwareRef'
