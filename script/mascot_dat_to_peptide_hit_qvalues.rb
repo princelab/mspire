@@ -4,16 +4,7 @@ require 'trollop'
 require 'set'
 require 'mspire/ident/peptide_hit/qvalue'
 require 'mspire/error_rate/qvalue'
-
-begin
-  require 'mascot/dat'
-rescue LoadError
-  puts "You need the mascot-dat gem for this to work!"
-  puts "AND IT MUST BE THE PRINCELAB GITHUB FORK until changes get incorporated upstream!"
-  puts ">     gem install mascot-dat"
-  raise LoadError
-end
-raise "need princelab mascot-dat gem!" unless Mascot::DAT::VERSION == "0.3.1.1"
+require 'mspire/mascot/dat'
 
 # target-decoy bundle
 SearchBundle = Struct.new(:target, :decoy) do
@@ -36,7 +27,7 @@ def charge_string_to_charge(st)
   i
 end
 
-def read_mascot_dat_hits(dat_file)
+def run_name_from_dat(dat_file)
   filename =nil
   IO.foreach(dat_file) do |line| 
     if line =~ /^FILE=(.*?).mgf/i
@@ -44,20 +35,34 @@ def read_mascot_dat_hits(dat_file)
       break
     end
   end
-  dat = Mascot::DAT.open(dat_file)
+  filename
+end
 
-  data = [:peptides, :decoy_peptides].map do |mthd|
-    psms = []
-    dat.send(mthd).each do |psm|
-      next unless psm.query
-      query = dat.query(psm.query)
-      charge = charge_string_to_charge(query.charge)
-      psms << PSM.new(filename, query.title, psm.pep, charge, psm.score) if psm.score
+def read_mascot_dat_hits(dat_file)
+  run_name_from_dat(dat_file)
+
+  Mspire::Mascot::Dat.open(dat_file) do |dat|
+    data = [true, false].map do |mthd|
+
+      ################################################################
+      ################################################################
+      ################################################################
+      ################################################################
+      ################################################################
+      # working here
+      ################################################################
+      psms = []
+      dat.send(mthd).each do |psm|
+        next unless psm.query
+        query = dat.query(psm.query)
+        charge = charge_string_to_charge(query.charge)
+        psms << PSM.new(filename, query.title, psm.pep, charge, psm.score) if psm.score
+      end
+      psms
     end
-    psms
+    dat.close
+    SearchBundle.new(*data)
   end
-  dat.close
-  SearchBundle.new(*data)
 end
 
 
