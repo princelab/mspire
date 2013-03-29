@@ -22,8 +22,8 @@ module Mspire
         # Proc.new doesn't do arity checking
         hit_with_qvalue_pairs = Proc.new do |hits|
           sorted_best_to_worst = (hits.sort_by(&sorting)).reverse
-          (target_hits, qvalues) = Mspire::ErrorRate::Qvalue.mixed_target_decoy(sorted_best_to_worst, target_set, opts)
-          target_hits.zip(qvalues)
+          (sorted_target_hits, qvalues) = Mspire::ErrorRate::Qvalue.mixed_target_decoy(sorted_best_to_worst, target_set, opts)
+          sorted_target_hits.zip(qvalues)
         end
 
         all_together = target_hits + decoy_hits
@@ -49,13 +49,13 @@ module Mspire
         opts = {:monotonic => true}.merge(opts)
         num_target = 0 ; num_decoy = 0
         monotonic = opts[:monotonic]
-        target_hits = []
+        sorted_target_hits = []
         qvalues = []
         best_to_worst.each do |hit|
           if target_setlike.include?(hit) 
             num_target += 1
             precision = Mspire::ErrorRate::Decoy.precision(num_target, num_decoy)
-            target_hits << hit
+            sorted_target_hits << hit
             qvalues << (1.0 - precision)
           else
             num_decoy += 1
@@ -72,7 +72,7 @@ module Mspire
             end
           end.reverse
         end
-        [target_hits, qvalues]
+        [sorted_target_hits, qvalues]
       end
 
 

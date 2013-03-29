@@ -41,10 +41,9 @@ end
 def read_mascot_dat_hits(dat_file)
   filename = run_name_from_dat(dat_file)
 
-  Mspire::Mascot::Dat.open(dat_file) do |dat|
+  reply = Mspire::Mascot::Dat.open(dat_file) do |dat|
     target_and_decoy = [true, false].map do |target_or_decoy|
       dat.each_peptide(target_or_decoy, 1).map do |pephit|
-        p pephit
         query = dat.query(pephit.query_num)
         PSM.new(filename, query.title, pephit.seq, query.charge, pephit.ions_score) if pephit.ions_score
       end
@@ -60,7 +59,8 @@ def putsv(*args)
 end
 
 combine_base  = "combined"
-EXT = ".phq.tsv"
+
+EXT = Mspire::Ident::PeptideHit::Qvalue::FILE_EXTENSION
 
 opts = Trollop::Parser.new do
   banner %Q{usage: #{File.basename(__FILE__)} <mascot>.dat ...
@@ -90,8 +90,6 @@ bundles = files.map do |file|
   read_mascot_dat_hits(file)
 end
 
-p bundles[0]
-
 to_run = {}
 if opt[:combine]
   putsv "combining all target hits together and all decoy hits together"
@@ -105,10 +103,9 @@ end
 
 to_run.each do |file_base, bundle|
   putsv "calculating qvalues for #{file_base}"
-  qvalues = Mspire::ErrorRate::Qvalue.target_decoy_qvalues(bundle.target, bundle.decoy, :z_together => opt[:z_together])
-  # {|hit| hit.search_scores[:ionscore] }
-  #outfile = Mspire::Ident::PeptideHit::Qvalue.to_file(file, *hit_qvalue_pairs.transpose)
-  outfile = Mspire::Ident::PeptideHit::Qvalue.to_phq(file_base, bundle.target, qvalues)
+  hit_and_qvalue_pairs = Mspire::ErrorRate::Qvalue.target_decoy_qvalues(bundle.target, bundle.decoy, :z_together => opt[:z_together])
+
+  outfile = Mspire::Ident::PeptideHit::Qvalue.to_phq(file_base, *hit_and_qvalue_pairs.transpose)
 
   putsv "created: #{outfile}"
 end
