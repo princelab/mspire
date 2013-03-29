@@ -39,29 +39,17 @@ def run_name_from_dat(dat_file)
 end
 
 def read_mascot_dat_hits(dat_file)
-  run_name_from_dat(dat_file)
+  filename = run_name_from_dat(dat_file)
 
   Mspire::Mascot::Dat.open(dat_file) do |dat|
-    data = [true, false].map do |mthd|
-
-      ################################################################
-      ################################################################
-      ################################################################
-      ################################################################
-      ################################################################
-      # working here
-      ################################################################
-      psms = []
-      dat.send(mthd).each do |psm|
-        next unless psm.query
-        query = dat.query(psm.query)
-        charge = charge_string_to_charge(query.charge)
-        psms << PSM.new(filename, query.title, psm.pep, charge, psm.score) if psm.score
+    target_and_decoy = [true, false].map do |target_or_decoy|
+      dat.each_peptide(target_or_decoy, 1).map do |pephit|
+        p pephit
+        query = dat.query(pephit.query_num)
+        PSM.new(filename, query.title, pephit.seq, query.charge, pephit.ions_score) if pephit.ions_score
       end
-      psms
     end
-    dat.close
-    SearchBundle.new(*data)
+    SearchBundle.new(*target_and_decoy)
   end
 end
 
@@ -72,14 +60,16 @@ def putsv(*args)
 end
 
 combine_base  = "combined"
+EXT = ".phq.tsv"
 
 opts = Trollop::Parser.new do
-  #banner %Q{usage: #{File.basename(__FILE__)} <target>.xml <decoy>.xml ...
   banner %Q{usage: #{File.basename(__FILE__)} <mascot>.dat ...
-outputs: <mascot>.phq.tsv
-assumes a decoy search was run *with* the initial search
-phq.tsv?: see schema/peptide_hit_qvalues.phq.tsv
+outputs: <mascot>#{EXT}
+
+    assumes a decoy search was run *with* the initial search
+    phq.tsv?: see schema/peptide_hit_qvalues.phq.tsv
 }
+  text ""
   opt :combine, "groups target and decoy hits together from all files, writing to #{combine_base}#{EXT}", :default => false
   opt :z_together, "do not group by charge state", :default => false
   opt :verbose, "be verbose", :default => false
@@ -99,6 +89,8 @@ bundles = files.map do |file|
   # assumes the file has both target and decoy hits
   read_mascot_dat_hits(file)
 end
+
+p bundles[0]
 
 to_run = {}
 if opt[:combine]
