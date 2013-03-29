@@ -22,8 +22,10 @@ PSM = Struct.new(:search_id, :id, :aaseq, :charge, :score)
 def run_name_from_dat(dat_file)
   filename =nil
   IO.foreach(dat_file) do |line| 
-    if line =~ /^FILE=(.*?).mgf/i
+    if line =~ /^FILE=(.*)/i
       filename = $1.dup
+      filename.sub!(/^File Name: /,'')
+      filename.sub!(/.(mgf|raw|mzxml|mzml)$/i,'')
       break
     end
   end
@@ -33,16 +35,16 @@ end
 def read_mascot_dat_hits(dat_file)
   filename = run_name_from_dat(dat_file)
 
-  Mspire::Mascot::Dat.open(dat_file) do |dat|
+  reply = Mspire::Mascot::Dat.open(dat_file) do |dat|
+    # for some reason, I am getting diff results using the 'map' tagged onto the
+    # method. For now just going to collect old-fashioned.
+    cnt = 0
     target_and_decoy = [true, false].map do |target_or_decoy|
-      peps = dat.each_peptide(target_or_decoy, 1).map do |pephit|
+      dat.each_peptide(target_or_decoy, 1).map do |pephit|
+        cnt += 1
         query = dat.query(pephit.query_num)
-        PSM.new(filename, query.title, pephit.seq, query.charge, pephit.ions_score) if pephit.ions_score
+        PSM.new(filename, query.title, pephit.seq, query.charge, pephit.ions_score)
       end
-      puts "PEPS:"
-      p peps
-      puts "ENDPEPS:"
-      abort 'ehre'
     end
     SearchBundle.new(*target_and_decoy)
   end
@@ -85,8 +87,6 @@ bundles = files.map do |file|
   # assumes the file has both target and decoy hits
   read_mascot_dat_hits(file)
 end
-p bundles.first
-abort 'here'
 
 to_run = {}
 if opt[:combine]

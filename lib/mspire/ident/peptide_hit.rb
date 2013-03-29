@@ -19,8 +19,8 @@ class Mspire::Ident::PeptideHit
   include Mspire::Ident::PeptideHitLike
   include Merge
 
-  def initialize(hash)
-    merge!(hash)
+  def initialize(hash=nil)
+    merge!(hash) if hash
   end
 end
 

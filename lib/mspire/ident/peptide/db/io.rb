@@ -6,6 +6,7 @@ class Mspire::Ident::Peptide::Db::IO
   # behaves like a hash once it is opened.
   include Enumerable
   def self.open(filename, &block)
+    p filename
     raise ArgumentError unless block
     File.open(filename) do |io|
       block.call(self.new(io))
