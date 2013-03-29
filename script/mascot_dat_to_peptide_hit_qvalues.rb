@@ -19,14 +19,6 @@ end
 
 PSM = Struct.new(:search_id, :id, :aaseq, :charge, :score)
 
-# turns 1+ into 1
-def charge_string_to_charge(st)
-  md = st.match(/(\d)([\+\-])/)
-  i = md[1].to_i 
-  i *= -1 if (md[2] == '-')
-  i
-end
-
 def run_name_from_dat(dat_file)
   filename =nil
   IO.foreach(dat_file) do |line| 
@@ -41,12 +33,16 @@ end
 def read_mascot_dat_hits(dat_file)
   filename = run_name_from_dat(dat_file)
 
-  reply = Mspire::Mascot::Dat.open(dat_file) do |dat|
+  Mspire::Mascot::Dat.open(dat_file) do |dat|
     target_and_decoy = [true, false].map do |target_or_decoy|
-      dat.each_peptide(target_or_decoy, 1).map do |pephit|
+      peps = dat.each_peptide(target_or_decoy, 1).map do |pephit|
         query = dat.query(pephit.query_num)
         PSM.new(filename, query.title, pephit.seq, query.charge, pephit.ions_score) if pephit.ions_score
       end
+      puts "PEPS:"
+      p peps
+      puts "ENDPEPS:"
+      abort 'ehre'
     end
     SearchBundle.new(*target_and_decoy)
   end
@@ -89,6 +85,8 @@ bundles = files.map do |file|
   # assumes the file has both target and decoy hits
   read_mascot_dat_hits(file)
 end
+p bundles.first
+abort 'here'
 
 to_run = {}
 if opt[:combine]
