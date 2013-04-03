@@ -99,6 +99,7 @@ group names can be arbitrarily defined
   opt :write_subset, "(dev use only) write subset db", :default => false
 end
 
+commandline_incantation = ARGV.join(" ")
 opt = opts.parse(ARGV)
 opt[:count_type] = opt[:count_type].to_sym
 
@@ -271,5 +272,10 @@ if opt[:peptides]
   hits_table.to_tsv(pephits_outfile, :footer => ["parallel to #{outfile}"])
 end
 
-intro = ["samples: #{samplename_to_filename}", "options: #{opt}"]
+intro = ["software: mspire #{Mspire::VERSION}", 
+  "cite: #{Mspire::CITE}",
+  "samples: #{samplename_to_filename}", 
+"options: #{opt}", 
+"commandline: #{commandline_incantation}"
+]
 counts_table.to_tsv(outfile, :footer => intro)
