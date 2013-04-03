@@ -5,14 +5,16 @@ require 'set'
 require 'ruport'
 
 require 'mspire/ident/peptide_hit/qvalue'
+require 'mspire/ident/peptide_hit'
 require 'mspire/ident/protein_group'
-#require 'mspire/ident/protein'
-require 'mspire/ident/peptide/db'
+require 'mspire/ident/protein'
+require 'mspire/ident/peptide/db/io'
 require 'mspire/quant/spectral_counts'
 require 'mspire/quant/protein_group_comparison'
 require 'mspire/quant/qspec/protein_group_comparison'
 require 'mspire/quant/qspec'
 require 'mspire/quant/cmdline'
+require 'mspire/fasta'
 
 
 require 'yaml'
@@ -77,12 +79,11 @@ pephits_outfile = "spectral_counts.pephits.tsv"
 delimiter = "\t"
 
 opts = Trollop::Parser.new do
-  banner %Q{usage: #{File.basename(__FILE__)} <fasta>.peptide_centric_db.yml group1=f1.psq,f2.psq group2=f3.psq,f4.psq
-or (each file a group):    #{File.basename(__FILE__)} <fasta>.peptide_centric_db.yml file1.psq file2.psq ...
+  banner %Q{usage: #{File.basename(__FILE__)} <fasta>.peptide_centric_db.yml group1=f1.phq.tsv,f2.phq.tsv group2=f3.phq.tsv,f4.phq.tsv
+or (each file a group):    #{File.basename(__FILE__)} <fasta>.peptide_centric_db.yml file1.phq.tsv file2.phq.tsv ...
 
 writes to #{outfile}
 group names can be arbitrarily defined
-psq is really .psq.tsv file
 }
   opt :fdr_percent, "%FDR as cutoff", :default => 1.0
   opt :qspec, "return qspec results (executes qspec or qspecgp). Requires :fasta.  Only 2 groups currently allowed", :default => false
@@ -92,6 +93,7 @@ psq is really .psq.tsv file
   opt :peptides, "also write peptide hits (to: #{pephits_outfile})", :default => false
   opt :verbose, "speak up", :default => false
   opt :count_type, "type of spectral counts (<spectral|aaseqcharge|aaseq>)", :default => 'spectral'
+  opt :qspec_decibans, "report bayesfactor in decibans"
   opt :qspec_normalize, "normalize spectral counts per run", :default => false
   opt :qspec_keep_files, "keep a copy of the files submitted and returned from Qspec", :default => false
   opt :write_subset, "(dev use only) write subset db", :default => false
@@ -127,6 +129,7 @@ class Mspire::Ident::PeptideHit
   attr_accessor :experiment_name
   attr_accessor :protein_groups
 end
+
 class Mspire::Ident::Protein
   attr_accessor :length
 end
@@ -136,7 +139,14 @@ fdr_cutoff = opt[:fdr_percent] / 100
 
 if opt[:qspec] || opt[:descriptions]
   putsv "reading lengths and descriptions from #{opt[:fasta]}"
-  (id_to_length, id_to_desc) = Mspire::Fasta.protein_lengths_and_descriptions(opt[:fasta])
+  #Mspire::Fasta.protein_lengths_and_descriptions(opt[:fasta])
+  id_to_length = {}
+  id_to_desc = {}
+  Mspire::Fasta.foreach(opt[:fasta]) do |entry|
+    acc = entry.accession
+    id_to_length[acc] = entry.length
+    id_to_desc[acc] = entry.definition[/^\S+\s(.*)/,1]
+  end
 end
 
 samplename_to_peptidehits = samplename_to_filename.map do |sample, file|
@@ -147,10 +157,11 @@ end
 all_protein_hits = Hash.new {|h,id| h[id] = Mspire::Ident::Protein.new(id) }
 
 Mspire::Ident::Peptide::Db::IO.open(peptide_centric_db_file) do |peptide_to_proteins|
-  p peptide_to_proteins
-  abort 'here'
   samplename_to_peptidehits.map do |sample, peptide_hits|
-    peptide_hits.each do |hit|
+    # removes pephits that aren't in the database, (usually ones with aa 'X'
+    # in them )
+    normal_pephits = peptide_hits.select {|hit| peptide_to_proteins[hit.aaseq] }
+    normal_pephits.each do |hit|
       # update each peptide with its protein hits
       protein_hits = peptide_to_proteins[hit.aaseq].map do |id| 
         protein = all_protein_hits[id]
@@ -217,9 +228,22 @@ if opt[:qspec]
   qspec_results = Mspire::Quant::Qspec.new(name_length_pairs, condition_to_count_array).run(opt[:qspec_normalize], :keep => opt[:qspec_keep_files])
   
   cols_to_add = [:bayes_factor, :fold_change, :fdr]
-  counts_table.add_columns cols_to_add
+  to_add_as_headers = cols_to_add.map do |v| 
+    if opt[:qspec_decibans] && v == :bayes_factor
+      :decibans
+    else
+      v
+    end
+  end
+  counts_table.add_columns to_add_as_headers
   counts_table.data.zip(qspec_results) do |row, qspec_result|
-    cols_to_add.each {|cat| row[cat] = qspec_result[cat] }
+    cols_to_add.each do |cat| 
+      if cat == :bayes_factor && opt[:qspec_decibans]
+        row[:decibans] = 10 * Math.log10(qspec_result[cat])
+      else
+        row[cat] = qspec_result[cat]
+      end
+    end
   end
 end
 

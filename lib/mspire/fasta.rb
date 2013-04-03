@@ -61,6 +61,8 @@ module Mspire
     # takes the header string and returns the uniprot id
     #
     #     'sp|Q04917|1433F_HUMAN' #=> 'Q04917'
+    # This can also be found with BioFastaFormat#accession (but it may be much
+    # slower)
     def self.uniprot_id(header)
       header[/^[^\|]+\|([^\|]+)\|/, 1]
     end

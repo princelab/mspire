@@ -38,8 +38,10 @@ module Mspire
         # note to self: I wrote this in 2011, so I think I know what I'm doing now
         protein_to_peptides = Hash.new {|h,k| h[k] = Set.new }
         peptide_hits.each do |peptide_hit|
-          peptide_hit.proteins.each do |protein|
-            protein_to_peptides[protein] << peptide_hit
+          if prots = peptide_hit.proteins
+            prots.each do |protein|
+              protein_to_peptides[protein] << peptide_hit
+            end
           end
         end
         peptides_to_protein_group = Hash.new {|h,k| h[k] = [] }
