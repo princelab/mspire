@@ -4,6 +4,7 @@ require 'andand'
 require 'set'
 require 'ruport'
 
+require 'mspire'
 require 'mspire/ident/peptide_hit/qvalue'
 require 'mspire/ident/peptide_hit'
 require 'mspire/ident/protein_group'
@@ -96,10 +97,11 @@ group names can be arbitrarily defined
   opt :qspec_decibans, "report bayesfactor in decibans"
   opt :qspec_normalize, "normalize spectral counts per run", :default => false
   opt :qspec_keep_files, "keep a copy of the files submitted and returned from Qspec", :default => false
+  opt :version_tag, "pass in a version tag (e.g. pass in git describe --tags) for version record", :type => String
   opt :write_subset, "(dev use only) write subset db", :default => false
 end
 
-commandline_incantation = ARGV.join(" ")
+commandline_incantation = __FILE__ + " " + ARGV.join(" ")
 opt = opts.parse(ARGV)
 opt[:count_type] = opt[:count_type].to_sym
 
@@ -272,10 +274,14 @@ if opt[:peptides]
   hits_table.to_tsv(pephits_outfile, :footer => ["parallel to #{outfile}"])
 end
 
-intro = ["software: mspire #{Mspire::VERSION}", 
+intro = [
+  "",
+  "ruby: #{RUBY_VERSION}",
+  "software: mspire #{Mspire::VERSION}", 
   "cite: #{Mspire::CITE}",
   "samples: #{samplename_to_filename}", 
 "options: #{opt}", 
 "commandline: #{commandline_incantation}"
 ]
+intro.push "version_tag: #{opt[:version_tag]}" if opt[:version_tag]
 counts_table.to_tsv(outfile, :footer => intro)
