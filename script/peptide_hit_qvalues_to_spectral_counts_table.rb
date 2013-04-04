@@ -283,5 +283,6 @@ intro = [
 "options: #{opt}", 
 "commandline: #{commandline_incantation}"
 ]
-intro.push "version_tag: #{opt[:version_tag]}" if opt[:version_tag]
+intro.insert(3, "version_tag: #{opt[:version_tag]}") if opt[:version_tag]
+
 counts_table.to_tsv(outfile, :footer => intro)
