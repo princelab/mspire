@@ -104,6 +104,7 @@ end
 commandline_incantation = __FILE__ + " " + ARGV.join(" ")
 opt = opts.parse(ARGV)
 opt[:count_type] = opt[:count_type].to_sym
+outfile = opt[:outfile] || outfile
 
 $VERBOSE = opt.delete(:verbose)
 
