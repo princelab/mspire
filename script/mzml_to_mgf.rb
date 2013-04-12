@@ -3,6 +3,13 @@
 require 'mspire/mzml'
 require 'optparse'
 
+
+# returns '3+' for 3 or '2-' for -2
+def mascot_charge(val)
+  "#{val}#{val > 0 ? '+' : '-'}"
+end
+
+
 opt = {
   filter_zero_intensity: true,
   retention_times: true,
@@ -10,7 +17,7 @@ opt = {
 opts = OptionParser.new do |op|
   op.banner = "usage: #{File.basename($0)} <file>.mzML ..."
   op.separator "outputs: <file>.mgf"
-  #op.on("--no-filter-zeros", "won't remove values with zero intensity") {|v| opt[:filter_zero_intensity] = false }
+  op.on("--no-filter-zeros", "won't remove values with zero intensity") {|v| opt[:filter_zero_intensity] = false }
   # the default is set in ms/msrun/search.rb -> set_opts
   op.on("--no-retention-times", "won't include RT even if available") {|v| opt[:retention_times] = false }
 end
@@ -22,25 +29,35 @@ if ARGV.size == 0
   exit
 end
 
+filter_zeros = opt[:filter_zero_intensity]
+
 ARGV.each do |file|
-  if File.exist?(file)
+  basename = file.chomp(File.extname(file))
+  outfile = basename + ".mgf"
+
+  File.open(outfile, 'w') do |out|
     Mspire::Mzml.foreach(file).with_index do |spectrum,i|
       next unless spectrum.ms_level > 1
-      puts "BEGIN IONS"
+      out.puts "BEGIN IONS"
       # id, spectrumid, 
       rt = spectrum.retention_time
-      title = [i, "id_#{spectrum.id}", "rt_#{rt.round}"].join('.')
-      puts "TITLE=#{title}"
-      puts "RTINSECONDS=#{rt}" if opt[:retention_times]
-      puts "PEPMASS=#{spectrum.precursor_mz}"
-      puts "CHARGE=#{spectrum.precursor_charge}+"
-      spectrum.each do |mz,int|
-        puts [mz, int].join(" ")
+      title_ar = [i, "id_#{spectrum.id}"]
+      title_ar.push("rt_#{rt.round}") if opt[:retention_times]
+      title = title_ar.join('.')
+      out.puts "TITLE=#{title}"
+      out.puts "RTINSECONDS=#{rt}" if opt[:retention_times]
+      out.puts "PEPMASS=#{spectrum.precursor_mz}"
+      if z=spectrum.precursor_charge
+        out.puts "CHARGE=#{mascot_charge(z)}"
       end
-      puts "END IONS"
-      puts ""
+
+      spectrum.each do |mz,int|
+        unless filter_zeros && (int==0.0)
+          out.puts([mz, int].join(" ")) 
+        end
+      end
+      out.puts "END IONS"
+      out.puts ""
     end
-  else
-    puts "missing file: #{file} [skipping]"
   end
 end
