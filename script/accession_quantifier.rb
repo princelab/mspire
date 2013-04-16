@@ -28,22 +28,26 @@ opt = OpenStruct.new( {
   max_rt_before: 60,
   max_rt_after: 60,
   mz_window: 0.01,
-  scan_id_regex: Regexp.new("id_([^\\.]+)"),
+  scan_id_regex: Regexp.new("(.*)"),
+  # the regex I use:
+  #scan_id_regex: Regexp.new("id_([^\\.]+)"),
 } )
+
 
 opts = OptionParser.new do |op|
   op.banner = "usage: #{File.basename(__FILE__)} [OPTS] <mzML> <dat> <accession> ..."
   op.separator "output: <TBD>"
   op.separator ""
   op.separator "options: "
-  op.on("--max_rt_before <60>", Float, "(sec) max RT to look before") {v| opt.max_rt_before = v }
-  op.on("--max_rt_after <60>", Float, "(sec) max RT to look after") {v| opt.max_rt_after = v }
+  op.on("--max_rt_before <#{opt.max_rt_before}>", Float, "(sec) max RT to look before") {v| opt.max_rt_before = v }
+  op.on("--max_rt_after <#{opt.max_rt_after}>", Float, "(sec) max RT to look after") {v| opt.max_rt_after = v }
   op.on("--mz_window <#{opt.mz_window}>", Float, "(Th) window around m/z value") {|v| opt.mz_window = v }
-  op.on("--enzyme <String>", "provide enzyme name if can't match") {|v| opt.enzyme = v }
   op.on("--scan_id_regex <#{opt.scan_id_regex.source}>", "scan") {|v| opt.scan_id_regex = Regexp.new(v) } 
+  op.on("--add-filename", "adds the filename to output files") {|v| opt.add_filename = v }
 end
+opts.parse!
 
-if ARGV.size < 4
+if ARGV.size < 3
   puts opts
   exit
 end
@@ -89,7 +93,7 @@ def create_chromatogram(mzml, index_enum, mz, mz_window, ms_level=1, &block)
   chromatogram
 end
 
-Pephit = Struct.new(:spectrum_id, :exp_mz, :charge, :seq, :accessions, :var_mods_string)
+Pephit = Struct.new(:spectrum_id, :exp_mz, :charge, :seq, :accessions, :var_mods_string, :chromatogram)
 
 pephits = []
 Mspire::Mascot::Dat.open(dat_file) do |dat|
@@ -109,19 +113,21 @@ Mspire::Mascot::Dat.open(dat_file) do |dat|
   end
 end
 
+puts "Found: #{pephits.size} pephits"
+exit unless pephits.size > 0
 
 Mspire::Mzml.open(mzml_file) do |mzml|
   spec_index = mzml.index_list[:spectrum]
 
   tic = mzml.map {|spec| spec.fetch_by_acc('MS:1000285').to_f }.reduce(:+)
-  puts "#{mzml_file} TIC: #{tic}"
-  
   divisor = tic.to_f/1e7
-
+  
   id_to_index = {}
   spec_index.ids.each_with_index {|id,index| id_to_index[id] = index }
 
+
   pephits.each do |pephit|
+    print "." ; $stdout.flush
 
     ms1_spec_id = mzml[pephit.spectrum_id].precursors.first.spectrum_id
     index = id_to_index[ms1_spec_id]
@@ -137,20 +143,34 @@ Mspire::Mzml.open(mzml_file) do |mzml|
     chromatogram = (first_chunk + last_chunk).sort
     chromatogram.each {|pair| pair[1] /= divisor }
 
-    filename = [pephit.seq, pephit.charge].join(".") + ".tsv"
-    puts "writing: #{filename}"
-    File.open(filename, 'w') do |out|
-      pephit.each_pair do |k,v|
-        out.puts "# #{k}: #{v}"
-      end
-      out.puts
-      out.puts "rt(sec)\tnorm_intensity"
-      chromatogram.each do |row|
-        out.puts row.join("\t")
-      end
+    pephit.chromatogram = chromatogram
+  end
+end
+puts "finished with mzml"
+
+pephits.group_by {|pephit| [pephit.seq, pephit.charge, pephit.var_mods_string] }.map do |group, sub_pephits|
+  puts "grouping: #{group.join(', ')}"
+  avg_exp_mz = sub_pephits.map(&:exp_mz).reduce(:+) / sub_pephits.size
+  new_chrom = sub_pephits.flat_map(&:chromatogram).uniq.sort
+  cpephit = Pephit.new("(#{sub_pephits.size})", avg_exp_mz, *[:charge, :seq, :accessions, :var_mods_string].map {|key| sub_pephits.first.send(key) }, new_chrom)
+
+  fileparts = [cpephit.seq, cpephit.charge, cpephit.var_mods_string]
+  if opt.add_filename
+    fileparts.unshift(dat_file.chomp(File.extname(dat_file)))
+  end
+  filename = fileparts.join(".") + ".tsv"
+
+  puts "writing: #{filename}"
+  File.open(filename, 'w') do |out|
+    cpephit.each_pair do |k,v|
+      out.puts "# #{k}: #{v}" unless k.to_sym == :chromatogram
+    end
+    out.puts
+    out.puts "rt(sec)\tnorm_intensity"
+    cpephit.chromatogram.each do |row|
+      out.puts row.join("\t")
     end
   end
 end
-
 
 
