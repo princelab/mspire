@@ -12,7 +12,11 @@ require 'mspire/mascot/dat'
 class Array
 
   def sum
-    inject( nil ) { |sum,x| sum ? sum + x.to_f : x.to_f }
+    inject( 0.0 ) { |sum,x| sum + x }
+  end
+
+  def avg
+    sum / array.size
   end
 
   def weighted_mean(weights_array)
@@ -29,6 +33,7 @@ opt = OpenStruct.new( {
   max_rt_after: 60,
   mz_window: 0.01,
   scan_id_regex: Regexp.new("(.*)"),
+  ions_score_cutoff: 15.0,
   # the regex I use:
   #scan_id_regex: Regexp.new("id_([^\\.]+)"),
 } )
@@ -44,6 +49,7 @@ opts = OptionParser.new do |op|
   op.on("--mz_window <#{opt.mz_window}>", Float, "(Th) window around m/z value") {|v| opt.mz_window = v }
   op.on("--scan_id_regex <#{opt.scan_id_regex.source}>", "scan") {|v| opt.scan_id_regex = Regexp.new(v) } 
   op.on("--add-filename", "adds the filename to output files") {|v| opt.add_filename = v }
+  op.on("--ions-score_cutoff <#{opt.ions_score_cutoff}", Float, "minimum ions score") {|v| opt.ions_score_cutoff = v }
 end
 opts.parse!
 
@@ -95,7 +101,7 @@ end
 
 Pephit = Struct.new(:spectrum_id, :exp_mz, :charge, :seq, :accessions, :var_mods_string, :chromatogram)
 
-pephits = []
+all_pephits = []
 Mspire::Mascot::Dat.open(dat_file) do |dat|
   dat.each_peptide(1) do |pephit|     
     intersecting_accessions = accessions & pephit.protein_hits_info.map(&:accession)
@@ -108,9 +114,23 @@ Mspire::Mascot::Dat.open(dat_file) do |dat|
       if md
         spectrum_id = md[1]
       end
-      pephits << Pephit.new(spectrum_id, exp_mz, z, pephit.seq, intersecting_accessions.to_a, pephit.var_mods_string)
+      if pephit.ions_score > opt.ions_score_cutoff
+        all_pephits << Pephit.new(spectrum_id, exp_mz, z, pephit.seq, intersecting_accessions.to_a, pephit.var_mods_string)
+      end
     end
   end
+end
+
+# group all_pephits here, then combine if they aren't outliers
+# not a sophisticated algorithm:
+# combine everything that is within the windows specified and with same
+# sequence, charge, or var_mods_string
+all_pephits.group_by {|pephit| [pephit.seq, pephit.charge, pephit.var_mods_string] }.map do |grouping, pephits|
+  # throw out any peptides that are more than the window edges away from the
+  # mean of the group
+  pephits.map(&:exp_mz)
+
+
 end
 
 puts "Found: #{pephits.size} pephits"
