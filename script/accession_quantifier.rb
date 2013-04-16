@@ -1,8 +1,10 @@
 #!/usr/bin/env ruby
 
+require 'gnuplot'
 require 'optparse'
 require 'ostruct'
 require 'set'
+require 'array_stats'
 
 require 'mspire/mzml'
 require 'mspire/digester'
@@ -11,9 +13,7 @@ require 'mspire/mascot/dat'
 
 class Array
 
-  def sum
-    inject( 0.0 ) { |sum,x| sum + x }
-  end
+  alias_method :sum, :total_sum
 
   def avg
     sum / array.size
@@ -99,7 +99,7 @@ def create_chromatogram(mzml, index_enum, mz, mz_window, ms_level=1, &block)
   chromatogram
 end
 
-Pephit = Struct.new(:spectrum_id, :exp_mz, :charge, :seq, :accessions, :var_mods_string, :chromatogram)
+Pephit = Struct.new(:spectrum_id, :exp_mz, :charge, :seq, :accessions, :var_mods_string, :chromatogram, :mean_mz, :rt, :rt_start, :rt_end, :num_hits, :file_tic, :ions_score)
 
 all_pephits = []
 Mspire::Mascot::Dat.open(dat_file) do |dat|
@@ -115,7 +115,9 @@ Mspire::Mascot::Dat.open(dat_file) do |dat|
         spectrum_id = md[1]
       end
       if pephit.ions_score > opt.ions_score_cutoff
-        all_pephits << Pephit.new(spectrum_id, exp_mz, z, pephit.seq, intersecting_accessions.to_a, pephit.var_mods_string)
+        mypephit = Pephit.new(spectrum_id, exp_mz, z, pephit.seq, intersecting_accessions.to_a, pephit.var_mods_string)
+        mypephit.ions_score = pephit.ions_score
+        all_pephits << mypephit
       end
     end
   end
@@ -125,72 +127,109 @@ end
 # not a sophisticated algorithm:
 # combine everything that is within the windows specified and with same
 # sequence, charge, or var_mods_string
-all_pephits.group_by {|pephit| [pephit.seq, pephit.charge, pephit.var_mods_string] }.map do |grouping, pephits|
+pephit_groups = all_pephits.group_by {|pephit| [pephit.seq, pephit.charge, pephit.var_mods_string] }.map do |grouping, pephits|
   # throw out any peptides that are more than the window edges away from the
   # mean of the group
-  pephits.map(&:exp_mz)
+  median_mz = pephits.map(&:exp_mz).median
+  same_mz_pephits = pephits.select {|pephit| (pephit.exp_mz - median_mz).abs <= (opt.mz_window / 2.0) }
+  mean_mz = same_mz_pephits.map(&:exp_mz).mean
+  same_mz_pephits.each {|pephit| pephit.mean_mz = mean_mz }
+  same_mz_pephits.size > 0 ? same_mz_pephits : nil
+end.compact
 
+puts "Found: #{pephit_groups.size} pephit groupings"
+p pephit_groups.first
 
-end
+pephits = Mspire::Mzml.open(mzml_file) do |mzml|
 
-puts "Found: #{pephits.size} pephits"
-exit unless pephits.size > 0
-
-Mspire::Mzml.open(mzml_file) do |mzml|
   spec_index = mzml.index_list[:spectrum]
 
   tic = mzml.map {|spec| spec.fetch_by_acc('MS:1000285').to_f }.reduce(:+)
-  divisor = tic.to_f/1e7
   
   id_to_index = {}
   spec_index.ids.each_with_index {|id,index| id_to_index[id] = index }
 
+  print "." ; $stdout.flush
+  pephit_groups.map do |pephit_group|
 
-  pephits.each do |pephit|
-    print "." ; $stdout.flush
+    pephit_group.each {|pephit| pephit.rt = mzml[pephit.spectrum_id].retention_time }
 
-    ms1_spec_id = mzml[pephit.spectrum_id].precursors.first.spectrum_id
+    pephit_group.sort_by!(&:rt)
+
+    median_pephit = pephit_group[ pephit_group.size / 2 ]
+    median_rt = median_pephit.rt
+    valid_pephits = pephit_group.select do |pephit| 
+      if pephit.rt <= median_rt
+        (median_rt - pephit.rt) <= opt.max_rt_before
+      else
+        pephit.rt - median_rt <= opt.max_rt_after
+      end
+    end
+
+    valid_rts = valid_pephits.map(&:rt)
+    rep_pephit = median_pephit.dup
+
+    rep_pephit.ions_score = valid_pephits.map(&:ions_score)
+    rep_pephit.file_tic = tic
+
+    rep_pephit.rt_start = valid_rts.min - opt.max_rt_before
+    rep_pephit.rt_end = valid_rts.max + opt.max_rt_after
+
+    ms1_spec_id = mzml[rep_pephit.spectrum_id].precursors.first.spectrum_id
+
     index = id_to_index[ms1_spec_id]
     spectrum = mzml[index]
 
-    orig_rt = spectrum.retention_time
-    lo_rt = orig_rt - opt.max_rt_before
-    hi_rt = orig_rt + opt.max_rt_after
+    lo_rt = rep_pephit.rt_start
+    hi_rt = rep_pephit.rt_end
 
-    first_chunk = create_chromatogram(mzml, index.downto(0), pephit.exp_mz, opt.mz_window) {|rt| rt >= lo_rt }
-    last_chunk = create_chromatogram(mzml, (index+1).upto(Float::INFINITY), pephit.exp_mz, opt.mz_window) {|rt| rt <= hi_rt }
+    first_chunk = create_chromatogram(mzml, index.downto(0), rep_pephit.mean_mz, opt.mz_window) {|rt| rt >= lo_rt }
+    last_chunk = create_chromatogram(mzml, (index+1).upto(Float::INFINITY), rep_pephit.mean_mz, opt.mz_window) {|rt| rt <= hi_rt }
 
     chromatogram = (first_chunk + last_chunk).sort
-    chromatogram.each {|pair| pair[1] /= divisor }
 
-    pephit.chromatogram = chromatogram
+    rep_pephit.chromatogram = chromatogram
+    rep_pephit
   end
 end
 puts "finished with mzml"
 
-pephits.group_by {|pephit| [pephit.seq, pephit.charge, pephit.var_mods_string] }.map do |group, sub_pephits|
-  puts "grouping: #{group.join(', ')}"
-  avg_exp_mz = sub_pephits.map(&:exp_mz).reduce(:+) / sub_pephits.size
-  new_chrom = sub_pephits.flat_map(&:chromatogram).uniq.sort
-  cpephit = Pephit.new("(#{sub_pephits.size})", avg_exp_mz, *[:charge, :seq, :accessions, :var_mods_string].map {|key| sub_pephits.first.send(key) }, new_chrom)
-
-  fileparts = [cpephit.seq, cpephit.charge, cpephit.var_mods_string]
+pephits.each do |pephit|
+  fileparts = [:seq, :charge, :var_mods_string].map {|key| pephit.send(key) }
   if opt.add_filename
     fileparts.unshift(dat_file.chomp(File.extname(dat_file)))
   end
-  filename = fileparts.join(".") + ".tsv"
+  base = fileparts.join('.')
+  filename = base + ".tsv"
 
   puts "writing: #{filename}"
   File.open(filename, 'w') do |out|
-    cpephit.each_pair do |k,v|
+    pephit.each_pair do |k,v|
       out.puts "# #{k}: #{v}" unless k.to_sym == :chromatogram
     end
     out.puts
-    out.puts "rt(sec)\tnorm_intensity"
-    cpephit.chromatogram.each do |row|
+    out.puts "rt(sec)\tintensity"
+    pephit.chromatogram.each do |row|
       out.puts row.join("\t")
     end
   end
-end
 
+  xs = pephit.chromatogram.map(&:first)
+  ys = pephit.chromatogram.map(&:last)
+
+  Gnuplot.open do |gp|
+    Gnuplot::Plot.new( gp ) do |plot|
+      plot.title  base
+      plot.xlabel "rt(sec)"
+      plot.ylabel "intensity"
+      plot.terminal "svg"
+      plot.output( base + ".svg" )
+
+      plot.data << Gnuplot::DataSet.new( [xs, ys] ) do |ds|
+        ds.with = "linespoints"
+        ds.notitle
+      end
+    end
+  end
+end
 
