@@ -17,7 +17,8 @@ class Mspire::Ident::Peptide::Db::Creator
     remove_digestion_file: true, 
     cleave_initiator_methionine: true, 
     expand_aa: false, 
-    uniprot: true 
+    uniprot: true,
+    data_type: :hash,
   }
 
   # sets defaults according to DEFAULT_PEPTIDE_CENTRIC_DB
@@ -41,8 +42,9 @@ class Mspire::Ident::Peptide::Db::Creator
       op.on("--expand-x", "enumerate all aa possibilities for 'X'", "(default is to remove these peptides)") {|v| opt[:expand_aa] = v }
       op.on("--no-uniprot", "use entire protid section of fasta header", "for non-uniprot fasta files") { opt[:uniprot] = false }
       #op.on("--trie", "use a trie (for very large uniprot files)", "must have fast_trie gem installed") {|v| opt[:trie] = v }
+      op.on("--data-type <#{opt[:data_type]}>", "hash|google_hash|trie", "need google_hash or fast_trie gem installed") {|v| opt[:data_type] = v.to_sym }
 
-      op.on("-e", "--enzyme <name>", "enzyme for digestion") {|v| opt[:enzyme] = Mspire::Insilico::Digester.const_get(v.upcase) }
+      op.on("-e", "--enzyme <#{opt[:enzyme].name}>", "enzyme for digestion (Mspire::Digester[name])") {|v| opt[:enzyme] = Mspire::Digester[v] }
       op.on("-v", "--verbose", "talk about it") { $VERBOSE = 5 }
       op.on("--list-enzymes", "lists approved enzymes and exits") do
       op.on("-v", "--verbose", "talk about it") { $VERBOSE = 5 }
@@ -116,11 +118,11 @@ class Mspire::Ident::Peptide::Db::Creator
     puts "Organizing raw digestion #{digestion_file} ..." if $VERBOSE
 
     puts "#{Time.now - start_time} sec" if $VERBOSE
-    hash_like = hash_like_from_digestion_file(digestion_file, opts[:min_length], opts[:trie])
+    hash_like = hash_like_from_digestion_file(digestion_file, opts[:min_length], opts[:data_type])
 
     base = digestion_file.chomp(File.extname(digestion_file))
     final_outfile = 
-      if opts[:trie]
+      if opts[:data_type] == :trie
         base + ".min_aaseq#{opts[:min_length]}"
       else
         base + ".min_aaseq#{opts[:min_length]}" + ".yml"
@@ -129,7 +131,7 @@ class Mspire::Ident::Peptide::Db::Creator
     start_time = Time.now
     print "Writing #{hash_like.size} peptides to #{} ..." if $VERBOSE
 
-      if opts[:trie]
+      if opts[:data_type] == :trie
         trie = hash_like
         trie.save(final_outfile)
       else
@@ -157,8 +159,11 @@ class Mspire::Ident::Peptide::Db::Creator
     Trie.new
   end
 
-  def hash_like_from_digestion_file(digestion_file, min_length, use_trie=false)
-    if use_trie
+  # data_type can be :hash (default), :google_hash (better memory and speed),
+  # or :trie (experimental/broken)
+  def hash_like_from_digestion_file(digestion_file, min_length, data_type=:hash)
+    case data_type
+    when :trie
       trie = get_a_trie
       ::IO.foreach(digestion_file) do |line|
         line.chomp!
@@ -177,8 +182,17 @@ class Mspire::Ident::Peptide::Db::Creator
         end
       end
       trie
-    else
-      hash = Hash.new {|h,k| h[k] = [] }
+    when :hash, :google_hash
+      hash = 
+        case data_type
+        when :hash
+          Hash.new
+        when :google_hash
+          require 'google_hash'
+          puts "using google hash"
+          GoogleHashDenseRubyToRuby.new
+          #GoogleHashSparseRubyToRuby.new
+        end
       ::IO.foreach(digestion_file) do |line|
         line.chomp!
         (prot, *peps) = line.split(/\s+/)
@@ -186,7 +200,11 @@ class Mspire::Ident::Peptide::Db::Creator
         peps.uniq!
         peps.each do |pep|
           if pep.size >= min_length
-            hash[pep] << prot
+            if hash.key?(pep)
+              hash[pep] << prot
+            else
+              hash[pep] = [prot]
+            end
           end
         end
       end
