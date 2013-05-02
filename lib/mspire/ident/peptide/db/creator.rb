@@ -12,20 +12,18 @@ class Mspire::Ident::Peptide::Db::Creator
 
   DEFAULT_PEPTIDE_CENTRIC_DB = {
     missed_cleavages: 2, 
-    min_length: 4,
+    min_length: 5,
     enzyme: Mspire::Digester[:trypsin], 
     remove_digestion_file: true, 
     cleave_initiator_methionine: true, 
-    expand_aa: true, 
+    expand_aa: false, 
     uniprot: true 
   }
 
+  # sets defaults according to DEFAULT_PEPTIDE_CENTRIC_DB
   def self.cmdline(argv)
+    opt = DEFAULT_PEPTIDE_CENTRIC_DB.dup
 
-    opt = {
-      :remove_digestion_file => true,
-      :enzyme => Mspire::Digester[:trypsin]
-    }
     opts = OptionParser.new do |op|
       op.banner = "usage: #{File.basename($0)} <file>.fasta ..."
       op.separator "output: "
@@ -40,9 +38,9 @@ class Mspire::Ident::Peptide::Db::Creator
       op.on("--missed-cleavages <#{opt[:missed_cleavages]}>", Integer, "max num of missed cleavages") {|v| opt[:missed_cleavages] = v }
       op.on("--min-length <#{opt[:min_length]}>", Integer, "the minimum peptide aaseq length") {|v| opt[:min_length] = v }
       op.on("--no-cleaved-methionine", "does not cleave off initiator methionine") { opt[:cleave_initiator_methionine] = false }
-      op.on("--no-expand-x", "don't enumerate aa possibilities", "(removes these peptides)") { opt[:expand_aa] = false }
+      op.on("--expand-x", "enumerate all aa possibilities for 'X'", "(default is to remove these peptides)") {|v| opt[:expand_aa] = v }
       op.on("--no-uniprot", "use entire protid section of fasta header", "for non-uniprot fasta files") { opt[:uniprot] = false }
-      op.on("--trie", "use a trie (for very large uniprot files)", "must have fast_trie gem installed") {|v| opt[:trie] = v }
+      #op.on("--trie", "use a trie (for very large uniprot files)", "must have fast_trie gem installed") {|v| opt[:trie] = v }
 
       op.on("-e", "--enzyme <name>", "enzyme for digestion") {|v| opt[:enzyme] = Mspire::Insilico::Digester.const_get(v.upcase) }
       op.on("-v", "--verbose", "talk about it") { $VERBOSE = 5 }

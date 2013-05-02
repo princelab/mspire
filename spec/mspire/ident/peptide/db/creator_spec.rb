@@ -34,7 +34,7 @@ describe 'creating a peptide centric database' do
     end
 
     it 'converts a fasta file into peptide centric db' do
-      output_files = Mspire::Ident::Peptide::Db::Creator.cmdline([@fasta_file])
+      output_files = Mspire::Ident::Peptide::Db::Creator.cmdline([@fasta_file, "--min-length", "4"])
       output_files.first.should == File.expand_path(@output_file)
       File.exist?(@output_file).should == true
       hash = {}
@@ -49,7 +49,7 @@ describe 'creating a peptide centric database' do
       #File.unlink(@output_file)
     end
 
-    it 'can use a trie' do
+    xit 'can use a trie' do
       Mspire::Ident::Peptide::Db::Creator.cmdline([@fasta_file, '--trie'])
       triefile = TESTFILES + '/mspire/ident/peptide/db/uni_11_sp_tr.msd_clvg2.min_aaseq4'
       %w(.trie .tail .da).each do |ext|
