@@ -1,6 +1,6 @@
 
 require 'nokogiri'
-require 'uuid'
+require 'securerandom'
 require 'cv'
 require 'mspire/mzml'
 require 'mspire/mzml/spectrum'
@@ -311,7 +311,7 @@ module Mspire::Imzml
       config[:imzml_filename] = base + ".imzML"
       config[:ibd_filename] = base + ".ibd"
 
-      uuid_with_hyphens = UUID.new.generate
+      uuid_with_hyphens = SecureRandom.uuid
       config[:uuid_hyphenated] = uuid_with_hyphens
       config[:uuid] = uuid_with_hyphens.gsub('-','')
 
@@ -375,7 +375,7 @@ module Mspire::Imzml
       sourcefile_id_to_sourcefile = Hash[ source_files.group_by(&:id).map {|k,v| [k,v.first] } ]
 
       imzml_obj = Mspire::Mzml.new do |imzml|
-        imzml.id = UUID.new.generate.gsub('-','')
+        imzml.id = SecureRandom.uuid.gsub('-','')
         imzml.cvs = Mspire::Mzml::CV::DEFAULT_CVS
 
         imzml.file_description = create_file_description(source_files, config)

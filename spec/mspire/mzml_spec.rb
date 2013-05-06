@@ -326,7 +326,9 @@ describe Mspire::Mzml do
       it 'iterates with foreach' do
         mz_sizes = [20168, 315, 634]
         iter = Mspire::Mzml.foreach(@file)
-        3.times { iter.next.mzs.size.should == mz_sizes.shift }
+        3.times { 
+          iter.next.mzs.size.should == mz_sizes.shift 
+        }
         lambda {iter.next}.should raise_error
       end
 

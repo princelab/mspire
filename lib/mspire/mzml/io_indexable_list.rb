@@ -37,7 +37,6 @@ module Mspire
         base.to_sym
       end
 
-
       # method to generate the id_to_index hash from the underlying delegated
       # object.
       def create_id_to_index!

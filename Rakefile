@@ -13,19 +13,18 @@ Jeweler::Tasks.new do |gem|
   gem.description = %Q{mass spectrometry proteomics, lipidomics, and tools, a rewrite of mspire, merging of ms-* gems}
   gem.email = "jtprince@gmail.com"
   gem.authors = ["John T. Prince", "Simon Chiang"]
-  gem.add_dependency "nokogiri", "~> 1.5"
+  gem.add_dependency "nokogiri", "~> 1.5.9"
   gem.add_dependency "bsearch", ">= 1.5.0"
-  gem.add_dependency "andand", ">= 1.3.1"
-  gem.add_dependency "obo", ">= 0.1.0"
-  gem.add_dependency "builder", "~> 3.0.0"
-  gem.add_dependency "bio", "~> 1.4.2"
+  gem.add_dependency "andand", ">= 1.3.3"
+  gem.add_dependency "obo", ">= 0.1.3"
+  gem.add_dependency "builder", "~> 3.2.0"
+  gem.add_dependency "bio", "~> 1.4.3"
   gem.add_dependency "trollop", "~> 2.0.0"
-  gem.add_dependency "uuid", ">= 2.3.5"
   # this should be a real dependency, but need to document getting this
   # working on windows first!
   gem.add_development_dependency "fftw3", "~> 0.3"
-  gem.add_development_dependency "rspec", "~> 2.6"
-  gem.add_development_dependency "jeweler", "~> 1.5.2"
+  gem.add_development_dependency "rspec", "~> 2.13"
+  gem.add_development_dependency "jeweler", "~> 1.8.4"
   #gem.add_development_dependency "rcov", ">= 0"
 end
 Jeweler::RubygemsDotOrgTasks.new

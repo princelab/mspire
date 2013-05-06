@@ -119,7 +119,7 @@ module Mspire
       end
 
       def foreach(filename, &block)
-        block or return enum_for(__method__, filename)
+        return to_enum(__method__, filename) unless block
         open(filename) do |mzml|
           mzml.each(&block)
         end

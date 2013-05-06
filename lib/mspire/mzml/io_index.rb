@@ -39,7 +39,7 @@ module Mspire
       end
 
       def each(&block)
-        return enum_for(__method__) unless block
+        return to_enum(__method__) unless block
         (0...byte_index.size).each do |int|
           block.call(self[int])
         end
