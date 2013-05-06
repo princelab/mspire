@@ -189,8 +189,11 @@ class Mspire::Ident::Peptide::Db::Creator
           Hash.new
         when :google_hash
           require 'google_hash'
-          puts "using google hash"
+          # this guy is very slow compared to ruby hash (10X slower?) but more
+          # memory efficient (but only ~10% or so improvement with this
+          # application)
           GoogleHashDenseRubyToRuby.new
+          # still need to try Sparse one out and compare performance
           #GoogleHashSparseRubyToRuby.new
         end
       ::IO.foreach(digestion_file) do |line|
