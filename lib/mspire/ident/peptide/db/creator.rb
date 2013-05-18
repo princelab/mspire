@@ -101,7 +101,7 @@ class Mspire::Ident::Peptide::Db::Creator
               peptides.select {|pep| pep !~ letters_to_expand_re }
             end
           header = prot.header
-          id = opts[:uniprot] ? Mspire::Fasta.uniprot_id(header) : header.split(/\s+/).first
+          id = opts[:uniprot] ? Mspire::Fasta.uniprot_id(header) : header.split(/\s/,2).first
           fh.puts( id + "\t" + peptides.join(" ") )
         end
       end

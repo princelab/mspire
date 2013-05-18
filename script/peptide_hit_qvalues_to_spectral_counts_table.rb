@@ -147,6 +147,7 @@ if opt[:qspec] || opt[:descriptions]
   id_to_length = {}
   id_to_desc = {}
   Mspire::Fasta.foreach(opt[:fasta]) do |entry|
+    #acc = Mspire::Fasta.uniprot_id(entry.header)
     acc = entry.accession
     id_to_length[acc] = entry.length
     id_to_desc[acc] = entry.definition[/^\S+\s(.*)/,1]
