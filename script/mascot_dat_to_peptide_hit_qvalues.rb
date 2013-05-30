@@ -102,9 +102,7 @@ end
 to_run.each do |file_base, bundle|
   putsv "calculating qvalues for #{file_base}"
   hit_and_qvalue_pairs = Mspire::ErrorRate::Qvalue.target_decoy_qvalues(bundle.target, bundle.decoy, :z_together => opt[:z_together])
-
   outfile = Mspire::Ident::PeptideHit::Qvalue.to_phq(file_base, *hit_and_qvalue_pairs.transpose)
-
   putsv "created: #{outfile}"
 end
 

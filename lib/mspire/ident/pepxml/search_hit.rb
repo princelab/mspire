@@ -137,7 +137,7 @@ class Mspire::Ident::Pepxml
       self
     end
 
-    Simple = Struct.new(:id, :search, :aaseq, :charge, :search_scores)
+    Simple = Struct.new(:id, :search, :aaseq, :charge, :search_scores, :analysis_results)
   end
 
 end

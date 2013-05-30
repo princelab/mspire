@@ -24,8 +24,11 @@ class Mspire::Ident::Pepxml
 
   attr_accessor :msms_pipeline_analysis
 
-  # returns an array of Mspire::Ident::Pepxml::SearchHit::Simple structs
-  def self.simple_search_hits(file)
+  # returns an array of Mspire::Ident::Pepxml::SearchHit::Simple structs will
+  # only process last result if duplicate search scores are included.  Score
+  # keys returned as symbols and values cast as Floats while analysis results
+  # are all returned as strings.
+  def self.simple_search_hits(file, &block)
     hit_values = File.open(file) do |io|
       doc = Nokogiri::XML.parse(io, nil, nil, Nokogiri::XML::ParseOptions::DEFAULT_XML | Nokogiri::XML::ParseOptions::NOBLANKS | Nokogiri::XML::ParseOptions::STRICT)
       # we can work with namespaces, or just remove them ...
@@ -35,12 +38,24 @@ class Mspire::Ident::Pepxml
       search_hits.each_with_index.map do |search_hit,i| 
         aaseq = search_hit['peptide']
         charge = search_hit.parent.parent['assumed_charge'].to_i
-        search_score_nodes = search_hit.children.select {|node| node.name == 'search_score' }
+        nodes_by_name = search_hit.children.group_by(&:name)
         search_scores = {}
-        search_score_nodes.each do |node|
+        nodes_by_name['search_score'].each do |node|
           search_scores[node['name'].to_sym] = node['value'].to_f
         end
-        Mspire::Ident::Pepxml::SearchHit::Simple.new("hit_#{i}", Mspire::Ident::Search.new(file.chomp(File.extname(file))), aaseq, charge, search_scores)
+        analysis_results = {}
+        nodes_by_name['analysis_result'].each do |node|
+          analysis_results[node['analysis']] = node.children.map do |atnode| 
+            atnode.attribute_nodes.each_with_object({}) do |attribute, hash|
+              hash[attribute.name] = attribute.value
+            end
+          end
+        end
+        hit = Mspire::Ident::Pepxml::SearchHit::Simple.new("hit_#{i}", Mspire::Ident::Search.new(file.chomp(File.extname(file))), aaseq, charge, search_scores, analysis_results)
+        if block
+          block.call(search_hit_n.parent.parent)
+        end
+        hit
       end
     end
   end
