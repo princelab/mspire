@@ -44,7 +44,8 @@ Mspire::Ident::Pepxml::SearchHit::ModificationInfo = Struct.new(:modified_peptid
     ## Collect the modifications:
     ## Create the attribute string:
     atts = [:mod_nterm_mass, :mod_cterm_mass, :modified_peptide]
-    atts.map! {|at| (v=send(at)) && [at, v] }.compact
+    atts.map! {|at| (v=send(at)) && [at, v] }
+    atts.compact!
     xmlb.modification_info(Hash[atts]) do |xmlb|
       mod_aminoacid_masses.andand.each do |mod_aa_mass|
         mod_aa_mass.to_xml(xmlb)

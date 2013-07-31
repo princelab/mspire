@@ -72,7 +72,7 @@ class Mspire::Ident::Pepxml::TerminalModification
   def to_xml(builder=nil)
     xmlb = builder || Nokogiri::XML::Builder.new
     #short_element_xml_from_instance_vars("terminal_modification")
-   attrs = [:terminus, :massdiff, :mass, :variable, :protein_terminus, :description].map {|at| v=send(at) ; [at,v] if v }
+   attrs = [:terminus, :massdiff, :mass, :variable, :protein_terminus, :description].map {|at| v=send(at) ; [at,v] if v }.compact
    hash = Hash[attrs] 
     hash[:massdiff] = hash[:massdiff].to_plus_minus_string
     xmlb.terminal_modification(hash)

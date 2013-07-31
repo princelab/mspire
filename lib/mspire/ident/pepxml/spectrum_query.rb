@@ -49,7 +49,7 @@ class Mspire::Ident::Pepxml::SpectrumQuery
   def to_xml(builder=nil)
     xmlb = builder || Nokogiri::XML::Builder.new
     # all through search_specification
-    attrs = members[0, 8].map {|at| v=send(at) ; [at, v] if v }
+    attrs = members[0, 8].map {|at| v=send(at) ; [at, v] if v }.compact
     attrs_hash = Hash[attrs]
     case pepxml_version
     when 18

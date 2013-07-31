@@ -4,7 +4,6 @@
 [![Build Status][BS img]][Build Status]
 [![Dependency Status][DS img]][Dependency Status]
 [![Code Climate][CC img]][Code Climate]
-[![Coverage Status][CS img]][Coverage Status]
 
 Mspire is a full featured library for working with mass spectrometry data,
 particularly proteomic, metabolomic and lipidomic data sets.  It aims to be
@@ -171,10 +170,8 @@ MIT license.  See LICENSE for details.
 [travis pull requests]: https://travis-ci.org/princelab/mspire/pull_requests
 [Dependency Status]: https://gemnasium.com/princelab/mspire
 [Code Climate]: https://codeclimate.com/github/princelab/mspire
-[Coverage Status]: https://coveralls.io/r/princelab/mspire
 
 [GV img]: https://badge.fury.io/rb/mspire.png
 [BS img]: https://travis-ci.org/princelab/mspire.png
 [DS img]: https://gemnasium.com/princelab/mspire.png
 [CC img]: https://codeclimate.com/github/princelab/mspire.png
-[CS img]: https://coveralls.io/repos/princelab/mspire/badge.png?branch=master
