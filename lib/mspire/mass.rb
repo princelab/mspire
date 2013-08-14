@@ -1,5 +1,6 @@
-require 'mspire/isotope'
 require 'mspire/molecular_formula'
+require 'mspire/mass/element'
+require 'mspire/mass/aa'
 
 module Mspire
   module Mass
@@ -10,30 +11,6 @@ module Mspire
       Mspire::MolecularFormula.from_any(formula).mass
     end
 
-    MONO_STR = {
-      'h+' => 1.00727646677,
-      'e' => 0.0005486,   # www.mikeblaber.org/oldwine/chm1045/notes/Atoms/.../Atoms03.htm
-      'neutron' => 1.0086649156,
-    }
-
-    Mspire::Isotope::BY_ELEMENT.each do |el, isotopes|
-      MONO_STR[el.to_s] = isotopes.find {|iso| iso.mono }.atomic_mass
-    end
-    MONO_STR['h2o'] = %w(h h o).map {|el| MONO_STR[el] }.reduce(:+)
-    MONO_STR['oh'] = %w(o h).map {|el| MONO_STR[el] }.reduce(:+)
-    # add on deuterium
-    MONO_STR['d'] = Mspire::Isotope::BY_ELEMENT[:h].find {|iso| iso.element == :h && iso.mass_number == 2 }.atomic_mass
-
-    AVG_STR = {
-      'h+' => 1.007276, # using Mascot_H_plus mass (is this right for AVG??)
-      'e' => 0.0005486,
-      'neutron' => 1.0086649156,
-    }
-    Mspire::Isotope::BY_ELEMENT.each do |el, isotopes|
-      AVG_STR[el.to_s] = isotopes.first.average_mass
-    end
-    AVG_STR['h2o'] = %w(h h o).map {|el| AVG_STR[el] }.reduce(:+)
-    AVG_STR['oh'] = %w(o h).map {|el| AVG_STR[el] }.reduce(:+)
 
     # sets MONO_SYM, MONO, AVG_SYM, and AVG
     %w(MONO AVG).each do |type|
@@ -43,7 +20,7 @@ module Mspire
 
     ELECTRON = MONO[:e]
     NEUTRON = MONO[:neutron]
-    H_PLUS = MONO['h+']
+    H_PLUS = MONO['H+']
 
   end
 end

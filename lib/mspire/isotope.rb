@@ -19,7 +19,7 @@ module Mspire
       # atomic_number and mass_number are ints
       [0,2].each {|i| args[i] = args[i].to_i }
       # element is a downcase sym
-      args[1] = args[1].downcase.to_sym
+      args[1] = args[1].to_sym
       # atomic_mass, relative_abundance, and average_mass as floats
       [3, 4, 5].each {|i| args[i] = args[i][/([\w.]*)/].to_f }
       # by default call every isotope the non-monoisotopic peak
@@ -63,7 +63,7 @@ module Mspire
           end.compact!
 
           # deuterium should be grouped with hydrogen, not as its own element!
-          isotopes.find {|iso| iso.element == :d }.element = :h if deuterium_is_kind_of_hydrogen
+          isotopes.find {|iso| iso.element == :D }.element = :H if deuterium_is_kind_of_hydrogen
 
           # update the mono boolean if this is the highest abundance peak
           isotopes.group_by(&:element).values.each do |set|
