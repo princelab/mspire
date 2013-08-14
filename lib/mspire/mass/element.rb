@@ -1,22 +1,28 @@
 require 'mspire/isotope'
+require 'mspire/mass/util'
 
 module Mspire
   module Mass
     module Element
 
-      AVG_STR = {}
-      MONO_STR = {}
+      AVG_STRING = {}
+      MONO_STRING = {}
       Mspire::Isotope::BY_ELEMENT.each do |el, isotopes|
-        AVG_STR[el.to_s] = isotopes.first.average_mass
-        MONO_STR[el.to_s] = isotopes.find {|iso| iso.mono }.atomic_mass
+        AVG_STRING[el.to_s] = isotopes.first.average_mass
+        MONO_STRING[el.to_s] = isotopes.find {|iso| iso.mono }.atomic_mass
       end
 
-      MONO_STR['D'] = Mspire::Isotope::BY_ELEMENT[:H].find {|iso| iso.element == :H && iso.mass_number == 2 }.atomic_mass
+      MONO_STRING['D'] = Mspire::Isotope::BY_ELEMENT[:H].find {|iso| iso.element == :H && iso.mass_number == 2 }.atomic_mass
 
-      # sets MONO_SYM, MONO, AVG_SYM, and AVG
-      %w(MONO AVG).each do |type|
-        const_set "#{type}_SYM", Hash[ const_get("#{type}_STR").map {|k,v| [k.to_sym, v] } ]
-        const_set type, const_get("#{type}_STR").merge( const_get("#{type}_SYM") )
+      MONO_SYMBOL = Mspire::Mass::Util.symbol_keys( MONO_STRING )
+      AVG_SYMBOL = Mspire::Mass::Util.symbol_keys( AVG_STRING )
+      MONO = MONO_SYMBOL.merge(MONO_STRING)
+      AVG = AVG_SYMBOL.merge(AVG_STRING)
+
+      class << self
+        def [](key)
+          MONO[key]
+        end
       end
 
     end

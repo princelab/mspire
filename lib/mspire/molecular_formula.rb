@@ -5,12 +5,12 @@ module Mspire
   class MolecularFormula < Hash
 
     class << self
-      def from_aaseq(aaseq)
+      def from_aaseq(aaseq, formula_hash=Mspire::Isotope::AA::FORMULAS)
         hash = aaseq.each_char.inject({}) do |hash,aa| 
-          hash.merge(Mspire::Isotope::AA::FORMULAS[aa]) {|h,o,n| (o ? o : 0) +n }
+          hash.merge(formula_hash[aa]) {|hash,old,new| (old ? old : 0) + new }
         end
-        hash[:h] += 2
-        hash[:o] += 1
+        hash[:H] += 2
+        hash[:O] += 1
         self.new(hash)
       end
 
@@ -19,7 +19,7 @@ module Mspire
       def from_string(mol_form_str, charge=0)
         mf = self.new({}, charge)
         mol_form_str.scan(/([A-Z][a-z]?)(\d*)/).each do |k,v| 
-          mf[k.downcase.to_sym] = (v == '' ? 1 : v.to_i)
+          mf[k.to_sym] = (v == '' ? 1 : v.to_i)
         end
         mf
       end
@@ -41,7 +41,7 @@ module Mspire
     attr_accessor :charge
 
     # Takes a hash and an optional Integer expressing the charge
-    #     {h: 22, c: 12, n: 1, o: 3, s: 2}  # case and string/sym doesn't matter
+    #     {H: 22, C: 12, N: 1, O: 3, S: 2}  # case and string/sym doesn't matter
     def initialize(hash={}, charge=0)
       @charge = charge
       self.merge!(hash)
@@ -118,13 +118,15 @@ module Mspire
     # gives the monoisotopic mass adjusted by the current charge (i.e.,
     # adds/subtracts electron masses for the charges)
     def mass(consider_electron_masses = true)
-      mss = inject(0.0) {|sum,(el,cnt)| sum + (Mspire::Mass::MONO[el]*cnt) }
+      mss = inject(0.0) do |sum,(el,cnt)| 
+        sum + (Mspire::Mass::Element::MONO[el]*cnt)
+      end
       mss -= (Mspire::Mass::ELECTRON * charge) if consider_electron_masses
       mss
     end
 
     def avg_mass
-      inject(0.0) {|sum,(el,cnt)| sum + (Mspire::Mass::AVG[el]*cnt) }
+      inject(0.0) {|sum,(el,cnt)| sum + (Mspire::Mass::Element::AVG[el]*cnt) }
     end
 
     # returns nil if the charge == 0

@@ -1,24 +1,33 @@
+require 'mspire/mass/util'
+require 'mspire/mass/element'
+
 module Mspire
   module Mass
     module Common
+      mono_string = Mspire::Mass::Element::MONO_STRING
+      avg_string = Mspire::Mass::Element::AVG_STRING
 
-      MONO_STR = {
-        'h+' => 1.00727646677,
-        'e' => 0.0005486,   # www.mikeblaber.org/oldwine/chm1045/notes/Atoms/.../Atoms03.htm
-        'neutron' => 1.0086649156,
+      MONO_STRING = {
+        'H2O' => %w(H H O).map {|el| mono_string[el] }.reduce(:+),
+        'OH' => %w(O H).map {|el| mono_string[el] }.reduce(:+),
       }
 
-      MONO_STR['h2o'] = %w(H H O).map {|el| MONO_STR[el] }.reduce(:+)
-      MONO_STR['oh'] = %w(O H).map {|el| MONO_STR[el] }.reduce(:+)
-
-      AVG_STR = {
-        'h+' => 1.007276, # using Mascot_H_plus mass (is this right for AVG??)
-        'e' => 0.0005486,
-        'neutron' => 1.0086649156,
+      AVG_STRING = {
+        'H2O' => %w(H H O).map {|el| avg_string[el] }.reduce(:+),
+        'OH' => %w(O H).map {|el| avg_string[el] }.reduce(:+),
       }
 
-      AVG_STR['H2O'] = %w(H H O).map {|el| AVG_STR[el] }.reduce(:+)
-      AVG_STR['OH'] = %w(O H).map {|el| AVG_STR[el] }.reduce(:+)
+      MONO_SYMBOL = Mspire::Mass::Util.symbol_keys( MONO_STRING )
+      MONO = MONO_STRING.merge( MONO_SYMBOL )
+
+      AVG_SYMBOL = Mspire::Mass::Util.symbol_keys( AVG_STRING )
+      AVG = AVG_STRING.merge( AVG_SYMBOL )
+
+      class << self
+        def [](key)
+          MONO[key]
+        end
+      end
 
     end
   end

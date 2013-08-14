@@ -1,4 +1,4 @@
-require 'mspire/mass'
+require 'mspire/mass/util'
 
 module Mspire
   module Mass
@@ -65,18 +65,22 @@ module Mspire
       }
 
       # amino_acids keys as symbols, monoisotopic masses
-      MONO_SYM = Hash[MONO_STRING.map {|aa,mass| [aa.to_sym, mass] } ]
+      MONO_SYMBOL = Mspire::Mass::Util.symbol_keys( MONO_STRING )
 
       # amino_acids keys as symbols, average masses
-      AVG_SYM = Hash[AVG_STRING.map {|aa,mass| [aa.to_sym, mass] } ]
+      AVG_SYMBOL = Mspire::Mass::Util.symbol_keys( AVG_STRING )
 
-      # Monoisotopic amino acid masses keyed as symbols and also strings (all
-      # upper case).  Also includes Mspire::Mass::MONO for things like protons ('h+' and 'h2o')
-      MONO = MONO_SYM.merge(MONO_STRING).merge(Mspire::Mass::MONO)
+      # Monoisotopic amino acid masses keyed as symbols and also strings 
+      MONO = MONO_SYMBOL.merge(MONO_STRING)
 
-      # Average amino acid masses keyed as symbols and also strings (all
-      # uppder case).  Also includes Mspire::Mass::AVG for things like protons ('h+' and 'h2o')
-      AVG = AVG_SYM.merge(AVG_STRING).merge(Mspire::Mass::AVG)
+      # Average amino acid masses keyed as symbols and also strings
+      AVG = AVG_SYMBOL.merge(AVG_STRING)
+
+      class << self
+        def [](key) 
+          MONO[key]
+        end
+      end
     end
   end
 end
