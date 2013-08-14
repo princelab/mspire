@@ -119,8 +119,8 @@ aa_to_mass = Mspire::Mass::AA::MONO # a hash with residue masses
 aa_to_mass['A'] # or access by symbol - Alanine
 
 # elements
-Mspire::Mass::MONO[:c] # carbon
-Mspire::Mass::MONO[:e] # electron (includes other useful symbols)
+Mspire::Mass::Element::MONO[:C] # carbon
+Mspire::Mass::Subatomic::MONO[:electron]
 ```
 
 ### Isotopes and molecular formulas

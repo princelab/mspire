@@ -1,4 +1,4 @@
-require 'mspire/mass'
+require 'mspire/mass/util'
 
 module Mspire
   module Mass
@@ -14,7 +14,7 @@ module Mspire
         .merge( AA::MONO_STRING )
         .merge( downcase_keys( Subatomic::MONO_STRING ) )
 
-      MONO_SYMBOL = Mspire::Mass.symbol_hash( MONO_STRING )
+      MONO_SYMBOL = Mspire::Mass::Util.symbol_keys( MONO_STRING )
       MONO = MONO_STRING.merge( MONO_SYMBOL )
 
       AVG_STRING = downcase_keys( Element::AVG_STRING )
@@ -23,7 +23,7 @@ module Mspire
         .merge( downcase_keys( Subatomic::MONO_STRING ) )  
         # ^^ NOTE: we use MONO values for Subatomic since avg makes no sense
 
-      AVG_SYMBOL = Mspire::Mass.symbol_hash( AVG_STRING )
+      AVG_SYMBOL = Mspire::Mass::Util.symbol_keys( AVG_STRING )
       AVG = AVG_STRING.merge( AVG_SYMBOL )
 
       class << self

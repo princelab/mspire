@@ -43,12 +43,12 @@ describe "creating an Mspire::Ident::Pepxml" do
               :variable => 'Y', :symbol => '*')
               # invented, for example, a protein terminating mod
             modifications << Mspire::Ident::Pepxml::TerminalModification.new( 
-              :terminus => 'c', :massdiff => 23.3333, :mass => Mspire::Mass::MONO['OH'] + 23.3333, 
+              :terminus => 'c', :massdiff => 23.3333, :mass => Mspire::Mass::Common::MONO['OH'] + 23.3333, 
               :variable => 'Y', :symbol => '[', :protein_terminus => 'c', 
               :description => 'leave protein_terminus off if not protein mod'
             )
             modifications << Mspire::Ident::Pepxml::TerminalModification.new( 
-              :terminus => 'c', :massdiff => 25.42322, :mass => Mspire::Mass::MONO['H+'] + 25.42322, 
+              :terminus => 'c', :massdiff => 25.42322, :mass => Mspire::Mass::PROTON + 25.42322, 
               :variable => 'N', :symbol => ']', :description => 'example: c term mod'
             )
             parameters.merge!( 

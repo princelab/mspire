@@ -83,9 +83,8 @@ describe 'performing what is on the readme' do
     aa_to_mass = Mspire::Mass::AA::MONO # a hash with residue masses
     aa_to_mass['A'] # or access by symbol - Alanine
 
-    # elements
-    Mspire::Mass::MONO[:c] # carbon
-    Mspire::Mass::MONO[:e] # electron (includes other useful symbols)
+    Mspire::Mass::Element::MONO[:C] # carbon
+    Mspire::Mass::Subatomic::MONO[:electron] # electron
   end
 
   specify 'isotopes and molecular formulas' do
@@ -95,7 +94,7 @@ describe 'performing what is on the readme' do
       isotopes = Mspire::Isotope::ISOTOPES  # 288 isotopes
       hydrogen_isotopes = isotopes.select {|iso| iso.element == :h }
 
-      c12 = Mspire::Isotope::BY_ELEMENT[:c].first
+      c12 = Mspire::Isotope::BY_ELEMENT[:C].first
       c12.atomic_number # also: mass_number atomic_mass relative_abundance average_mass
       c12.mono   # => true (this is the monoisotopic isotope)
 

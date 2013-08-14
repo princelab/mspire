@@ -68,7 +68,7 @@ module Mspire
     # (by removing or adding electrons to the m/z and as the z)
     def isotope_distribution_spectrum(*args)
       intensities = isotope_distribution(*args)
-      mono = self.map {|el,cnt| Mspire::Mass::MONO[el]*cnt }.reduce(:+)
+      mono = self.map {|el,cnt| Mspire::Mass::Element::MONO[el]*cnt }.reduce(:+)
       masses = Array.new(intensities.size)
       neutron = Mspire::Mass::NEUTRON
       masses[0] = mono
