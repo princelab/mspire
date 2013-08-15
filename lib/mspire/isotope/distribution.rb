@@ -29,8 +29,8 @@ module Mspire
     #     :max     normalize to the highest peak intensity
     #     :first   normalize to the intensity of the first peak 
     #             (this is typically the monoisotopic peak)
-    def isotope_distribution(normalize=Mspire::Isotope::Distribution::NORMALIZE, percent_cutoff=nil)
-      mono_dist = raw_isotope_distribution
+    def isotope_distribution(normalize=Mspire::Isotope::Distribution::NORMALIZE, percent_cutoff=nil, isotope_table=Mspire::Isotope::BY_ELEMENT)
+      mono_dist = raw_isotope_distribution(isotope_table)
 
       if percent_cutoff
         total_signal = mono_dist.reduce(:+)
@@ -83,18 +83,18 @@ module Mspire
 
     # returns relative ratios from low nominal mass to high nominal mass.
     # These are *not* normalized at all.
-    def raw_isotope_distribution
+    def raw_isotope_distribution(isotope_table=Mspire::Isotope::BY_ELEMENT)
       low_nominal = 0
       high_nominal = 0
       self.each do |el,cnt|
-        isotopes = Mspire::Isotope::BY_ELEMENT[el]
+        isotopes = isotope_table[el]
         low_nominal += (isotopes.first.mass_number * cnt)
         high_nominal += (isotopes.last.mass_number * cnt)
       end
 
       ffts = self.map do |el, cnt|
         isotope_el_ar = NArray.float(high_nominal+1)
-        Mspire::Isotope::BY_ELEMENT[el].each do |isotope|
+        isotope_table[el].each do |isotope|
           isotope_el_ar[isotope.mass_number] = isotope.relative_abundance
         end
         FFTW3.fft(isotope_el_ar)**cnt
