@@ -125,12 +125,15 @@ Mspire::Mass::Subatomic::MONO[:electron]
 
 ### Isotopes and molecular formulas
 
+Uses Richard Neese biological isotope ratios by default.  All other isotope information culled from NIST.
+
 ```ruby
 require 'mspire/isotope'
 isotopes = Mspire::Isotope::ISOTOPES  # 288 isotopes
-hydrogen_isotopes = isotopes.select {|iso| iso.element == :h }
+# same as Mspire::Isotope::Neese::ISOTOPES ; compare to Mspire::Isotope::NIST::ISOTOPES
+hydrogen_isotopes = isotopes.select {|iso| iso.element == :H }
 
-c12 = Mspire::Isotope::BY_ELEMENT[:c].first
+c12 = Mspire::Isotope::BY_ELEMENT[:C].first
 c12.atomic_number # also: mass_number atomic_mass relative_abundance average_mass
 c12.mono   # => true (this is the monoisotopic isotope)
 
