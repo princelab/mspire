@@ -1,5 +1,4 @@
 require 'cv/param'
-require 'mspire/user_param'
 require 'mspire/cv/param'
 require 'nokogiri'
 require 'andand'
@@ -9,12 +8,9 @@ module Mspire
     module Paramable
 
       attr_accessor :cv_params
-      attr_accessor :user_params
-      attr_accessor :ref_param_groups
 
-      def params
-        cv_params + ref_param_groups.flat_map(&:params) + user_params 
-      end
+      alias_method :cv_params, :params
+      alias_method :cv_params=, :params=
 
       def each_param(&block)
         return enum_for __method__ unless block
@@ -30,17 +26,6 @@ module Mspire
           user_params.size > 0
       end
 
-      def each_accessionable_param(&block)
-        return enum_for __method__ unless block
-        cv_params.each(&block)
-        ref_param_groups.flat_map(&:params).each(&block)
-        nil
-      end
-
-      def accessionable_params
-        cv_params + ref_param_groups.flat_map(&:params)
-      end
-
       # yields each current param.  If the return value is not false or nil,
       # it is deleted (i.e., any true value and it is deleted).  Then adds the
       # given parameter or makes a new one by accession number.
@@ -51,8 +36,6 @@ module Mspire
       # returns self
       def reject!(&block)
         cv_params.reject!(&block)
-        ref_param_groups.each {|group| group.reject!(&block) }
-        user_params.reject!(&block)
         self
       end
 
@@ -60,14 +43,6 @@ module Mspire
         reject!(&block).describe_many!(describe_many_arg)
       end
 
-      #def params_by_name
-      #  params.index_by &:name
-      #end
-
-      #def params_by_accession
-      #  accessionable_params.index_by &:accession
-      #end
-      
       # returns the value if the param exists by that name.  Returns true if
       # the param exists but has no value. returns false if no param
       def fetch(name)
@@ -98,8 +73,6 @@ module Mspire
 
       def initialize
         @cv_params = []
-        @user_params = []
-        @ref_param_groups = []
       end
       alias_method :params_init, :initialize
 
@@ -128,28 +101,17 @@ module Mspire
         self
       end
 
-      # takes a node with children that are cvParam, userParam or
-      # referenceableParamGroupRef and a hash containing
-      # referenceableParamGroup objects indexed by id.  The only time ref_hash
-      # should be left nil is for the referenceableParamGroup itself.
-      #
-      # All param elements are required to appear before other elements, so
-      # the code walks through each child node to see if it is a paramable
-      # element.  The first child node that is not paramable is returned (or
-      # nil if none)
-      #
+      # takes a node with children that are cvParam objects 
       # returns the next child node after the paramable elements or nil if none
       def describe_from_xml!(xml_node, ref_hash=nil)
+        # TODO: this was merely cleaned up from Paramable and should be
+        # re-factored
         return nil unless (child_n = xml_node.child) 
         loop do
           array = 
             case child_n.name
-            when 'referenceableParamGroupRef'
-              @ref_param_groups << ref_hash[child_n[:ref]]
             when 'cvParam'
               @cv_params << Mspire::CV::Param[ child_n[:accession], child_n[:value] ]
-            when 'userParam'
-              @user_params << Mspire::UserParam.new(child_n[:name], child_n[:value], child_n[:type])
             else # assumes that the above precede any following children as per the spec
               break 
             end
@@ -161,8 +123,7 @@ module Mspire
         child_n
       end
 
-      # Expects arguments describing a single CV::Param, Mspire::UserParam, or
-      # Mspire::Mzml::ReferenceableParamGroup
+      # Expects arguments describing a single CV::Param
       #
       #     obj.describe! 'MS:1000130'  # a positive scan
       #     obj.describe! CV::Param['MS:1000130']  # same behavior
@@ -176,24 +137,16 @@ module Mspire
         case (arg=args.first)
         when String
           @cv_params << Mspire::CV::Param[ *args ]
-        when Mspire::Mzml::ReferenceableParamGroup
-          @ref_param_groups << arg
         else
-          if arg.is_a?(Mspire::UserParam)
-            @user_params << arg
-          else
-            @cv_params << arg
-          end
+          @cv_params << arg
         end
         self
       end
 
       # iterates over @params and calls .to_xml on each object.
       def to_xml(xml)
-        [:ref_param_groups, :cv_params, :user_params].each do |kind|
-          self.send(kind).each do |obj|
-            obj.to_xml(xml)
-          end
+        self.cv_params.each do |obj|
+          obj.to_xml(xml)
         end
         xml
       end
