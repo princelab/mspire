@@ -1,10 +1,10 @@
-require 'mspire/cv/paramable'
+require 'mspire/paramable'
 require 'mspire/mzml/list'
 
 module Mspire
   class Mzml
     class Sample
-      include Mspire::CV::Paramable
+      include Mspire::Paramable
       extend Mspire::Mzml::List
 
       # A unique identifier across the samples with which to reference this sample description.

@@ -1,4 +1,4 @@
-require 'mspire/cv/paramable'
+require 'mspire/paramable'
 require 'mspire/mzml/io_index'
 require 'mspire/mzml/spectrum_list'
 require 'mspire/mzml/chromatogram_list'
@@ -6,7 +6,7 @@ require 'mspire/mzml/chromatogram_list'
 module Mspire
   class Mzml
     class Run
-      include Mspire::CV::Paramable
+      include Mspire::Paramable
 
       # required
       attr_accessor :default_instrument_configuration

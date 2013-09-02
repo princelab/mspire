@@ -1,11 +1,11 @@
-require 'mspire/cv/paramable'
+require 'mspire/paramable'
 require 'mspire/mzml/list'
 
 module Mspire
   class Mzml
     # order is not an intrinsic property of this object, so it 
     module Component
-      include Mspire::CV::Paramable
+      include Mspire::Paramable
       # using custom list_xml, so no extend Mspire::Mzml::List
 
       def initialize

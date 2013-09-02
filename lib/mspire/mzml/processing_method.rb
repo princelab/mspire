@@ -1,4 +1,4 @@
-require 'mspire/cv/paramable'
+require 'mspire/paramable'
 
 module Mspire
   class Mzml
@@ -22,7 +22,7 @@ module Mspire
     #     e.g.: MS:1000745 (retention time alignment)
     #     e.g.: MS:1000746 (high intensity data point removal)
     class ProcessingMethod
-      include Mspire::CV::Paramable
+      include Mspire::Paramable
 
       attr_accessor :software
 

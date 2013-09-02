@@ -1,11 +1,11 @@
 require 'mspire'
 require 'mspire/mzml/list'
-require 'mspire/cv/paramable'
+require 'mspire/paramable'
 
 module Mspire
   class Mzml
     class Software
-      include Mspire::CV::Paramable
+      include Mspire::Paramable
       extend Mspire::Mzml::List
 
       attr_accessor :id, :version

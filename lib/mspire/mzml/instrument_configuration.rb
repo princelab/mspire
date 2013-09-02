@@ -1,11 +1,11 @@
-require 'mspire/cv/paramable'
+require 'mspire/paramable'
 require 'mspire/mzml/component'
 require 'mspire/mzml/list'
 
 module Mspire
   class Mzml
     class InstrumentConfiguration
-      include Mspire::CV::Paramable
+      include Mspire::Paramable
       extend Mspire::Mzml::List
 
       # (required) the id that this guy can be referenced from

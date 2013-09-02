@@ -1,4 +1,4 @@
-require 'mspire/cv/paramable'
+require 'mspire/paramable'
 
 module Mspire
   class Mzml
@@ -8,7 +8,7 @@ module Mspire
     # object itself (and not a reference).  Merely callying #to_xml will
     # result in a referenceableParamGroupRef being created.
     class ReferenceableParamGroup
-      include Mspire::CV::Paramable
+      include Mspire::Paramable
 
       attr_accessor :id
 

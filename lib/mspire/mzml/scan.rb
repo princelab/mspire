@@ -1,11 +1,11 @@
-require 'mspire/cv/paramable'
-require 'mspire/cv/paramable'
+require 'mspire/paramable'
+require 'mspire/paramable'
 require 'mspire/mzml/scan_window'
 
 module Mspire
   class Mzml
     class Scan
-      include Mspire::CV::Paramable
+      include Mspire::Paramable
 
       # (optional) the Mspire::Mzml::Spectrum object from which the precursor is
       # derived.  (the sourceFileRef is derived from this spectrum object if

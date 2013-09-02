@@ -1,10 +1,10 @@
-require 'mspire/cv/paramable'
+require 'mspire/paramable'
 require 'mspire/mzml/data_array'
 
 module Mspire
   class Mzml
     module DataArrayContainerLike
-      include Mspire::CV::Paramable
+      include Mspire::Paramable
 
       ###########################################
       # ATTRIBUTES

@@ -1,11 +1,11 @@
-require 'mspire/cv/paramable'
+require 'mspire/paramable'
 require 'mspire/mzml/list'
 require 'pathname'
 
 module Mspire
   class Mzml
     class SourceFile
-      include Mspire::CV::Paramable
+      include Mspire::Paramable
       extend Mspire::Mzml::List
 
       # (required) An identifier for this file.

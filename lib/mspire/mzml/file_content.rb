@@ -1,4 +1,4 @@
-require 'mspire/cv/paramable'
+require 'mspire/paramable'
 
 module Mspire
   class Mzml
@@ -8,7 +8,7 @@ module Mspire
     # describe the nativeID format used in the file by referring to an
     # appropriate CV term.
     class FileContent
-      include Mspire::CV::Paramable
+      include Mspire::Paramable
 
       def to_xml(builder, &block)
         builder.fileContent do |fc_n|

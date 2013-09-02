@@ -1,6 +1,6 @@
 require 'base64'
 require 'zlib'
-require 'mspire/cv/paramable'
+require 'mspire/paramable'
 
 module Mspire
   class Mzml
@@ -16,7 +16,7 @@ end
 # will be written with the same precision as it was read in with.
 class Mspire::Mzml::DataArray < Array 
   alias_method :array_init, :initialize
-  include Mspire::CV::Paramable
+  include Mspire::Paramable
 
   DEFAULT_DTYPE_ACC = 'MS:1000523' # float64
   DEFAULT_COMPRESSION_ACC = 'MS:1000574'

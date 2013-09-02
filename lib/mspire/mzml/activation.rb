@@ -1,4 +1,4 @@
-require 'mspire/cv/paramable'
+require 'mspire/paramable'
 
 module Mspire
   class Mzml
@@ -27,7 +27,7 @@ module Mspire
     #     e.g.: MS:1000433 (low-energy collision-induced dissociation)
     #     et al.
     class Activation
-      include Mspire::CV::Paramable
+      include Mspire::Paramable
 
       def to_xml(builder)
         builder.activation {|xml| super(xml) }

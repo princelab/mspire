@@ -1,4 +1,4 @@
-require 'mspire/cv/paramable'
+require 'mspire/paramable'
 
 module Mspire
   class Mzml
@@ -7,7 +7,7 @@ module Mspire
     #     accession="MS:1000501" name="scan window lower limit" value="400"
     #     accession="MS:1000500" name="scan window upper limit" value="1800"
     class ScanWindow
-      include Mspire::CV::Paramable
+      include Mspire::Paramable
       extend Mspire::Mzml::List
 
       def to_xml(builder)

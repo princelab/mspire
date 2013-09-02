@@ -1,5 +1,5 @@
 require 'mspire/mzml/list'
-require 'mspire/cv/paramable'
+require 'mspire/paramable'
 
 module Mspire
   class Mzml
@@ -10,7 +10,7 @@ module Mspire
     #     e.g.: MS:1000633 (possible charge state)
     #     e.g.: MS:1000744 (selected ion m/z)
     class SelectedIon
-      include Mspire::CV::Paramable
+      include Mspire::Paramable
       extend Mspire::Mzml::List
 
       def to_xml(builder)

@@ -1,15 +1,15 @@
 require 'spec_helper'
 
-require 'mspire/cv/paramable'
+require 'mspire/paramable'
 require 'mspire/cv/param'
 require 'mspire/user_param'
 require 'mspire/mzml/referenceable_param_group'
 
 class ParamableObject
-  include Mspire::CV::Paramable
+  include Mspire::Paramable
 end
 
-describe 'Mspire::CV::Paramable' do
+describe 'Mspire::Paramable' do
 
   subject do
     paramable = ParamableObject.new.describe_many!(['MS:1000007', ['MS:1000511', 2]])

@@ -1,4 +1,4 @@
-require 'mspire/cv/paramable'
+require 'mspire/paramable'
 
 module Mspire
   class Mzml
@@ -15,7 +15,7 @@ module Mspire
     #     e.g.: MS:1000828 (isolation window lower offset)
     #     e.g.: MS:1000829 (isolation window upper offset)
     class IsolationWindow
-      include Mspire::CV::Paramable
+      include Mspire::Paramable
 
       def to_xml(builder)
         builder.isolationWindow {|xml| super(xml) }

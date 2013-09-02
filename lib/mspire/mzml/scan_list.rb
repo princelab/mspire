@@ -1,4 +1,4 @@
-require 'mspire/cv/paramable'
+require 'mspire/paramable'
 require 'mspire/mzml/scan'
 
 module Mspire
@@ -11,7 +11,7 @@ module Mspire
     #     e.g.: MS:1000575 (mean of spectra)
     #     e.g.: MS:1000795 (no combination)
     class ScanList < Array
-      include Mspire::CV::Paramable
+      include Mspire::Paramable
 
       def initialize
         params_init

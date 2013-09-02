@@ -1,4 +1,4 @@
-require 'mspire/cv/paramable'
+require 'mspire/paramable'
 
 module Mspire
   class Mzml
@@ -11,7 +11,7 @@ module Mspire
         email: 'MS:1000589'
       }
 
-      include Mspire::CV::Paramable
+      include Mspire::Paramable
 
       def to_xml(builder)
         builder.contact do |fc_n|
