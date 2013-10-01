@@ -38,25 +38,27 @@ module Mspire
     #
     #
     def self.bin(bins, objects, *data_capture_obj, &block)
-      obj_e = objects.each ; obj = obj_e.next  
-
       data_capture = data_capture_obj.first || bins
 
-      bin_i = 0  # the bin index
-      cbin = bins[bin_i]  # the current bin
-      done = false
-      until done
-        value = (block.nil? ? obj : block.call(obj))
-        if cbin.begin <= value
-          until cbin === value && data_capture[bin_i] << obj
-            bin_i += 1
-            cbin=bins[bin_i] || (done=true && break)
-          end
-          obj=obj_e.next rescue done=true
-        else
-          while cbin.begin > value && !done
-            obj=obj_e.next rescue done=true && break
-            value = (block.nil? ? obj : block.call(obj))
+      if objects.size > 0
+        obj_e = objects.each ; obj = obj_e.next  
+
+        bin_i = 0  # the bin index
+        cbin = bins[bin_i]  # the current bin
+        done = false
+        until done
+          value = (block.nil? ? obj : block.call(obj))
+          if cbin.begin <= value
+            until cbin === value && data_capture[bin_i] << obj
+              bin_i += 1
+              cbin=bins[bin_i] || (done=true && break)
+            end
+            obj=obj_e.next rescue done=true
+          else
+            while cbin.begin > value && !done
+              obj=obj_e.next rescue done=true && break
+              value = (block.nil? ? obj : block.call(obj))
+            end
           end
         end
       end

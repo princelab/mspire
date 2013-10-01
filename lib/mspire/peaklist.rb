@@ -7,11 +7,11 @@ module Mspire
   class Peaklist < Array
 
     def lo_x
-      self.first[0]
+      self.first[0] if size > 0
     end
 
     def hi_x
-      self.last[0]
+      self.last[0] if size > 0
     end
 
     DEFAULT_MERGE = {
@@ -77,8 +77,10 @@ module Mspire
         first_peaklist = peaklists.first
         min = first_peaklist.first.x; max = first_peaklist.last.x
         peaklists.each do |peaklist|
-          min = peaklist.lo_x if peaklist.lo_x < min
-          max = peaklist.hi_x if peaklist.hi_x > max
+          if peaklist.size > 0
+            min = peaklist.lo_x if peaklist.lo_x < min
+            max = peaklist.hi_x if peaklist.hi_x > max
+          end
         end
         [min, max]
       end
@@ -355,6 +357,15 @@ module Mspire
         no_lm_pklsts 
       end 
     end # def split
+
+    # returns an Mspire::Spectrum object
+    def to_spectrum
+      xs = [] ; ys = []
+      each do |peak|
+        xs << peak.x ; ys << peak.y
+      end
+      Mspire::Spectrum.new([xs, ys])
+    end
   end
 end
 

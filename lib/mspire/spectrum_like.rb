@@ -83,11 +83,11 @@ module Mspire
       pl = Peaklist.new
       if peak_id
         peaks.each_with_index do |peak,i|
-          pl[i] = Mspire::Peak.new( peak )
+          pl[i] = Mspire::TaggedPeak.new( peak, peak_id )
         end
       else
         peaks.each_with_index do |peak,i|
-          pl[i] = Mspire::TaggedPeak.new( peak, peak_id )
+          pl[i] = Mspire::Peak.new( peak )
         end
       end
       pl
