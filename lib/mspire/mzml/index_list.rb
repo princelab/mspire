@@ -63,9 +63,11 @@ module Mspire
               index = Index.new
               index.name = index_n['name'].to_sym
               ids = []
-              index_n.children.map do |offset_n| 
-                index << offset_n.text.to_i 
-                ids << offset_n['idRef']
+              index_n.children.each do |offset_n| 
+                if offset_n.name == 'offset'  # <- pwiz sometimes makes an index with no offsets, in violation of the mzML 1.1 schema--this simple check circumvents their mistake
+                  index << offset_n.text.to_i 
+                  ids << offset_n['idRef']
+                end
               end
               index.ids = ids
               index

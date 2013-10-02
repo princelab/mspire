@@ -40,7 +40,7 @@ module Mspire::Mzml::Reader
 
   # returns a hash keyed by :spectrum or :chromatogram that gives the id
   # (aka ref) as a string.
-  def get_default_data_processing_ids(io, index_list, lookback=200)
+  def get_default_data_processing_ids(io, index_list, lookback=300)
     hash = {}
     index_list.each_pair do |name, index|
       io.bookmark do |io|
