@@ -43,9 +43,15 @@ module Mspire::Mzml::Reader
   def get_default_data_processing_ids(io, index_list, lookback=300)
     hash = {}
     index_list.each_pair do |name, index|
-      io.bookmark do |io|
-        io.pos = index[0] - lookback 
-        hash[name] = io.read(lookback)[/<#{name}List.*defaultDataProcessingRef=['"](.*?)['"]/m, 1]
+      if index.size > 0
+        # ^ we cannot quickly retrieve a defaultDataProcessingRef unless there
+        # is at least one spectrum/chromatogram to start with.  However, if
+        # there is no spectrum/chromatogram, then the defaultDataProcessingRef
+        # will not be needed either.
+        io.bookmark do |io|
+          io.pos = index[0] - lookback 
+          hash[name] = io.read(lookback)[/<#{name}List.*defaultDataProcessingRef=['"](.*?)['"]/m, 1]
+        end
       end
     end
     hash
