@@ -120,6 +120,25 @@ module Mspire
       self
     end
 
+    # the range begin value will also be excluded on an exact match if
+    # exclude_begin is true.  (respects the ranges exclude_end? value for the
+    # end).
+    def select_indices(range, exclude_begin=false)
+      indices = []
+      _mzs = mzs
+      lo_i = _mzs.bsearch_lower_boundary {|v| v <=> range.begin }
+      return indices unless lo_i
+
+      hi_i = nil
+      (lo_i..._mzs.size).each do |i|
+        break unless range === _mzs[i]
+        indices << i
+      end
+
+      indices.shift if exclude_begin && range.begin == _mzs[indices.first]
+      indices
+    end
+
     # returns the m/z that is closest to the value, favoring the lower m/z in
     # the case of a tie. Uses a binary search.
     def find_nearest(val)

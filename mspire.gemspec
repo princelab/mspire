@@ -19,23 +19,23 @@ Gem::Specification.new do |spec|
   spec.require_paths = ["lib"]
 
   [
-    ["nokogiri", "~> 1.5.9"],
+    ["nokogiri", "~> 1.6.1"],
     ["bsearch", ">= 1.5.0"],
     ["andand", ">= 1.3.3"],
-    ["obo", ">= 0.1.3"],
-    ["builder", "~> 3.2.0"],
-    ["bio", "~> 1.4.3"],
+    ["obo", ">= 0.1.4"],
+    ["builder", "~> 3.2.2"],
+    ["bio", "~> 1.4.3.0001"],
     ["trollop", "~> 2.0.0"],
   ].each do |args|
     spec.add_dependency(*args)
   end
 
   [
-    ["bundler", "~> 1.3"],
+    ["bundler", "~> 1.5.1"],
     ["rake"],
-    ["rspec", "~> 2.13.0"], 
-    ["rdoc", "~> 3.12"], 
-    ["simplecov"],
+    ["rspec", "~> 2.14.1"], 
+    ["rdoc", "~> 4.1.0"], 
+    ["simplecov", "~> 0.8.2"],
     ["coveralls"],
     # here because bad microsoft OS support
     ["fftw3", "~> 0.3"],

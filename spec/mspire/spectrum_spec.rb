@@ -43,5 +43,16 @@ describe Mspire::Spectrum do
       spec.mzs.should == subject.mzs
       spec.intensities.should == subject.intensities
     end
+
+    specify 'select_indices returns the indices whose m/z values lie within the given range' do
+      spec = Mspire::Spectrum.new [[10.1, 10.5, 10.7, 11.5, 11.6], [2, 1, 4, 3, 5]]
+      expect(spec.select_indices( 10.5...11.5 )).to eq([1,2])
+      expect(spec.select_indices( 10.5..11.5 )).to eq([1,2,3])
+      expect(spec.select_indices( 10.5...11.5, true )).to eq([2])
+
+      [10.6..10.65, 0..1, 12..13].each do |range|
+        expect(spec.select_indices(range)).to eq([])
+      end
+    end
   end
 end
