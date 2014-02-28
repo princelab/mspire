@@ -1,7 +1,7 @@
 
 module Mspire
   module Mass
-      end
+  end
 end
 
 require 'mspire/molecular_formula'
@@ -35,7 +35,6 @@ module Mspire
       alias_method :aa, :aa_to_exact_mass
 
     end
-
 
   end
 end

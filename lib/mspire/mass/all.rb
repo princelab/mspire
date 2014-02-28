@@ -1,4 +1,9 @@
 require 'mspire/mass/util'
+require 'mspire/mass/element'
+require 'mspire/mass/common'
+require 'mspire/mass/aa'
+require 'mspire/mass/subatomic'
+require 'mspire/mass'
 
 module Mspire
   module Mass
