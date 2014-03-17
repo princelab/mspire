@@ -26,6 +26,21 @@ module Mspire
         yield(self) if block_given?
       end
 
+      # returns the first existing scan window, or nil if none
+      def scan_window
+        return nil unless scan_windows
+        scan_windows.first
+      end
+
+      # returns a doublet: the upper and lower scan window limits as floats.
+      # Returns an array of two values, but may be nil if they don't exist.
+      def scan_window_limits
+        %w(MS:1000501 MS:1000500).map do |acc|
+          val = scan_window.fetch_by_acc(acc)
+          val && val.to_f
+        end
+      end
+
       # link should have:
       #
       #     :ref_hash

@@ -87,6 +87,12 @@ module Mspire
         end
       end
 
+      # returns the first scan from the scan_list, or nil if none are found
+      def scan
+        return nil unless scan_list 
+        scan_list.first
+      end
+
       # returns the ms_level as an Integer
       def ms_level
         fetch_by_acc('MS:1000511')
