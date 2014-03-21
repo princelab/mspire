@@ -56,12 +56,23 @@ objects associated with Mzml files.
 ```ruby
 require 'mspire/mzml'
 
-Mspire::Mzml.open(mzml_file) do |mzml|
+# get the intensity of the highest peak from each spectrum
+intensities = Mspire::Mzml.foreach(mzml_file).map do |spectrum|
+  spectrum.intensities.max
+end
 
-  # random access by index or id (even if file wasn't indexed)
+# open the file for other operations
+Mspire::Mzml.open(mzml_file) do |mzml|
+  # read each spectra
+  mzml.each do |spectrum|
+    # do something with each spectrum ...
+  end
+
+  # or random access by index or id (even if file wasn't indexed)
   spectrum = mzml[0]
   spectrum = mzml["controllerType=0 controllerNumber=1 scan=2"]
 
+  # some things to do with a spectrum
   spectrum.mzs
   spectrum.intensities
 
