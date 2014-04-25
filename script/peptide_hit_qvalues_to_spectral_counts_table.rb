@@ -87,7 +87,7 @@ writes to #{outfile}
 group names can be arbitrarily defined
 }
   opt :fdr_percent, "%FDR as cutoff", :default => 1.0
-  opt :qspec, "return qspec results (executes qspec or qspecgp). Requires :fasta.  Only 2 groups currently allowed", :default => false
+  opt :qprot, "return qprot results (executes qprot-param or qspecgp). Requires :fasta.  Only 2 groups currently allowed", :default => false
   opt :descriptions, "include descriptions of proteins, requires :fasta", :default => false
   opt :fasta, "the fasta file.  Required for :qspec and :descriptions", :type => String
   opt :outfile, "the to which file data are written", :default => outfile
@@ -134,22 +134,20 @@ class Mspire::Ident::PeptideHit
   attr_accessor :protein_groups
 end
 
-class Mspire::Ident::Protein
-  attr_accessor :length
-end
+#class Mspire::Ident::Protein
+#  attr_accessor :length
+#end
 
 
 fdr_cutoff = opt[:fdr_percent] / 100
 
-if opt[:qspec] || opt[:descriptions]
-  putsv "reading lengths and descriptions from #{opt[:fasta]}"
+if opt[:descriptions]
+  putsv "reading descriptions from #{opt[:fasta]}"
   #Mspire::Fasta.protein_lengths_and_descriptions(opt[:fasta])
-  id_to_length = {}
   id_to_desc = {}
   Mspire::Fasta.foreach(opt[:fasta]) do |entry|
     #acc = Mspire::Fasta.uniprot_id(entry.header)
     acc = entry.accession
-    id_to_length[acc] = entry.length
     id_to_desc[acc] = entry.definition[/^\S+\s(.*)/,1]
   end
 end
@@ -170,7 +168,6 @@ Mspire::Ident::Peptide::Db::IO.open(peptide_centric_db_file) do |peptide_to_prot
       # update each peptide with its protein hits
       protein_hits = peptide_to_proteins[hit.aaseq].map do |id| 
         protein = all_protein_hits[id]
-        protein.length = id_to_length[id] if id_to_length
         protein.description = id_to_desc[id] if id_to_desc
         protein
       end
@@ -219,18 +216,19 @@ end
 counts_table = Ruport::Data::Table.new(:data => counts_data, :column_names => samplenames)
 
 # return a list of ProteinGroupComparisons
-if opt[:qspec]
+if opt[:qprot]
 
-  # prepare data for qspec
+  # prepare data for qprot
   condition_to_count_array = counts_table.column_names.map do |name| 
     [samplename_to_condition[name], counts_table.column(name)] 
   end
   # average length of the proteins in the group
-  name_length_pairs = protein_groups.map do |pg|
-    [pg.map(&:id).join(":"), pg.map(&:length).reduce(:+)./(pg.size).round]
+  protnames = protein_groups.map do |pg|
+    #[pg.map(&:id).join(":"), pg.map(&:length).reduce(:+)./(pg.size).round]
+    pg.map(&:id).join(":")  # <- triggers qprot
   end
 
-  qspec_results = Mspire::Quant::Qspec.new(name_length_pairs, condition_to_count_array).run(opt[:qspec_normalize], :keep => opt[:qspec_keep_files])
+  qspec_results = Mspire::Quant::Qspec.new(protnames, condition_to_count_array).run(opt[:qspec_normalize], :keep => opt[:qspec_keep_files])
   
   cols_to_add = [:bayes_factor, :fold_change, :fdr]
   to_add_as_headers = cols_to_add.map do |v| 
@@ -254,7 +252,8 @@ end
 
 counts_table.add_columns( [:name, :ids, :description] )
 counts_table.data.zip(protein_groups) do |row, pg|
-  best_id = pg.sort_by {|prot| [prot.id, prot.length] }.first
+  #best_id = pg.sort_by {|prot| [prot.id, prot.length] }.first
+  best_id = pg.first
   row.name = best_id.description.andand.match(/ GN=([^\s]+) ?/).andand[1] || best_id.id
   row.ids = pg.map(&:id).join(',')
   row.description = best_id.description

@@ -2,6 +2,26 @@ module Mspire ; end
 module Mspire::Quant ; end
 
 class Mspire::Quant::Qspec
+  # This is my current best guess based on the behavior of the original QSpec
+  # and going into the source code and looking at the paired and param
+  # versions.
+  
+  # qspec: discrete spectral count data
+  # qprot: continuous protein abundance data (could be non-discrete spectral
+  # counts or quantitation data)
+  # paired: one sample against another sample
+  # param: one sample against another sample but with one or more replicates
+  EXE = {
+    qspec: {
+      paired: 'qspec-paired',  # <- the old qspec (use qspec here if you have old software)
+      param: 'qspec-param',    # <  the old qspecgp (use qspecgp if you have old software)
+    },
+    qprot: {
+      paired: 'qprot-paired',
+      param: 'qprot-param',
+    }
+    getfdr: 'getfdr',
+  }
 
   # personal communication with Hyungwon Choi: "We typically use nburn=2000,
   # niter=10000, which is quite sufficient to guarantee the reproducibility of
@@ -44,15 +64,21 @@ class Mspire::Quant::Qspec
   end
 
   # returns the right executable based on the array of conditions
-  def self.executable(conditions)
+  def executable
     biggest_size = conditions.group_by {|v| v }.values.map(&:size).max
-    (biggest_size >= 3) ? 'qspecgp' : 'qspec'
+    EXE[@protnames ? :qprot : :qspec][(biggest_size >= 3) ? :param : :paired]
   end
 
-  # protname_length_pairs is an array of doublets: [protname, length]
+  # protname is a list of protein names.
+  # by default, qprot will be run.  If you really want qspec to be run, then
+  # supply a [protname, length] doublet in place of each protname.
   # condition_to_count_array is an array doublets: [condition, array_of_counts]
-  def initialize(protname_length_pairs, condition_to_count_array)
-    @protname_length_pairs = protname_length_pairs
+  def initialize(protnames, condition_to_count_array)
+    @protnames = protnames
+    if @protnames.first.is_a?(Array)
+      @protname_length_pairs = @protnames
+      @protnames = nil
+    end
     @condition_to_count_array = condition_to_count_array
   end
 
@@ -62,9 +88,11 @@ class Mspire::Quant::Qspec
 
   # writes a qspec formatted file to filename
   def write(filename)
-    ints = Mspire::Quant::Qspec.conditions_to_ints(conditions)
-    header_cats = INIT_HEADER + ints
-    rows = @protname_length_pairs.map {|pair| pair.map.to_a }
+    header_cats = %w(protid)
+    header_cats << 'protLen' if @protname_length_pairs
+    header_cats.push(*Mspire::Quant::Qspec.conditions_to_ints(conditions))
+    ar = @protnames || @protname_length_pairs
+    rows = ar.map {|obj| Array(obj) }
     @condition_to_count_array.each do |cond,counts|
       rows.zip(counts) {|row,cnt| row << cnt }
     end
@@ -85,7 +113,7 @@ class Mspire::Quant::Qspec
       FileUtils.cp(tfile.path, local_file, :verbose => $VERBOSE)
       puts "(copy of) file submitted to qspec: #{local_file}" if $VERBOSE
     end
-    qspec_exe = self.class.executable(conditions)
+    qspec_exe = executable
     cmd = [qspec_exe, tfile.path, NBURNIN, NITER, (normalize ? 1 : 0)].join(' ')
     if $VERBOSE
       puts "running #{cmd}" if $VERBOSE
