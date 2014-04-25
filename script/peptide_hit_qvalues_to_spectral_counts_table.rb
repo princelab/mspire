@@ -17,7 +17,6 @@ require 'mspire/quant/qspec'
 require 'mspire/quant/cmdline'
 require 'mspire/fasta'
 
-
 require 'yaml'
 require 'tempfile'
 
@@ -96,6 +95,7 @@ group names can be arbitrarily defined
   opt :count_type, "type of spectral counts (<spectral|aaseqcharge|aaseq>)", :default => 'spectral'
   opt :qprot_normalize, "normalize spectral counts per run", :default => false
   opt :qprot_keep_files, "keep a copy of the files submitted and returned from Qprot", :default => false
+  opt :qprot_remove_sparse_rows, "remove any row with only one non-zero value", :default => false
   opt :version_tag, "pass in a version tag (e.g. pass in git describe --tags) for version record", :type => String
   opt :write_subset, "(dev use only) write subset db", :default => false
 end
@@ -214,20 +214,31 @@ end
 # each cell holds a SpectralCounts object, which hash 3 types of count data
 counts_table = Ruport::Data::Table.new(:data => counts_data, :column_names => samplenames)
 
+counts_table.add_columns( [:name, :ids, :description, :qprot_protname] )
+counts_table.data.zip(protein_groups) do |row, pg|
+  best_id = pg.first   # pg.sort_by {|prot| [prot.id, prot.length] }.first
+  row.name = best_id.description.andand.match(/ GN=([^\s]+) ?/).andand[1] || best_id.id
+  row.ids = pg.map(&:id).join(',')
+  row.description = best_id.description
+  row.qprot_protname = pg.map(&:id).join(":")
+end
+
 # return a list of ProteinGroupComparisons
 if opt[:qprot]
 
-  # prepare data for qprot
-  condition_to_count_array = counts_table.column_names.map do |name| 
-    [samplename_to_condition[name], counts_table.column(name)] 
-  end
-  # average length of the proteins in the group
-  protnames = protein_groups.map do |pg|
-    #[pg.map(&:id).join(":"), pg.map(&:length).reduce(:+)./(pg.size).round]
-    pg.map(&:id).join(":")  # <- triggers qprot
+  if opt[:qprot_remove_sparse_rows]
+    newrows = counts_table.data.select do |row|
+      row.to_a[0,samplenames.size].select {|v| v > 0 }.size >= 2
+    end
+    counts_table = Ruport::Data::Table.new(:data => newrows, :column_names => counts_table.column_names)
   end
 
-  qprot_results = Mspire::Quant::Qspec.new(protnames, condition_to_count_array).run(opt[:qprot_normalize], :keep => opt[:qprot_keep_files])
+  # prepare data for qprot
+  condition_to_count_array = counts_table.column_names.select {|name| name.is_a?(String) }.map do |name| 
+    [samplename_to_condition[name], counts_table.column(name)]
+  end
+
+  qprot_results = Mspire::Quant::Qspec.new(counts_table.column(:qprot_protname), condition_to_count_array).run(opt[:qprot_normalize], :keep => opt[:qprot_keep_files])
   
   cols_to_add = [:log_fold_change, :fdr, :fdr_up, :fdr_down]
 
@@ -239,15 +250,7 @@ if opt[:qprot]
   end
 end
 
-counts_table.add_columns( [:name, :ids, :description] )
-counts_table.data.zip(protein_groups) do |row, pg|
-  #best_id = pg.sort_by {|prot| [prot.id, prot.length] }.first
-  best_id = pg.first
-  row.name = best_id.description.andand.match(/ GN=([^\s]+) ?/).andand[1] || best_id.id
-  row.ids = pg.map(&:id).join(',')
-  row.description = best_id.description
-end
-
+counts_table.remove_column(:qprot_protname)
 
 if opt[:peptides]
   hits_table.each do |record|
