@@ -53,7 +53,7 @@ class Ruport::Data::Table
     File.open(file,'w') do |out|
       opt[:header].each {|line| out.puts "# #{line}" } if opt[:header]
       out.puts self.column_names.join(delimiter)
-      self.data.each do |row|
+      self.sort_rows_by(:fdr).data.each do |row|
         out.puts row.to_a.join(delimiter)
       end
       opt[:footer].each {|line| out.puts "# #{line}" } if opt[:footer]
@@ -87,16 +87,15 @@ writes to #{outfile}
 group names can be arbitrarily defined
 }
   opt :fdr_percent, "%FDR as cutoff", :default => 1.0
-  opt :qprot, "return qprot results (executes qprot-param or qspecgp). Requires :fasta.  Only 2 groups currently allowed", :default => false
+  opt :qprot, "return qprot results (executes qprot-param or qprot-paired). Requires :fasta.  Only 2 groups currently allowed", :default => false
   opt :descriptions, "include descriptions of proteins, requires :fasta", :default => false
-  opt :fasta, "the fasta file.  Required for :qspec and :descriptions", :type => String
+  opt :fasta, "the fasta file.  Required for :descriptions", :type => String
   opt :outfile, "the to which file data are written", :default => outfile
   opt :peptides, "also write peptide hits (to: #{pephits_outfile})", :default => false
   opt :verbose, "speak up", :default => false
   opt :count_type, "type of spectral counts (<spectral|aaseqcharge|aaseq>)", :default => 'spectral'
-  opt :qspec_decibans, "report bayesfactor in decibans"
-  opt :qspec_normalize, "normalize spectral counts per run", :default => false
-  opt :qspec_keep_files, "keep a copy of the files submitted and returned from Qspec", :default => false
+  opt :qprot_normalize, "normalize spectral counts per run", :default => false
+  opt :qprot_keep_files, "keep a copy of the files submitted and returned from Qprot", :default => false
   opt :version_tag, "pass in a version tag (e.g. pass in git describe --tags) for version record", :type => String
   opt :write_subset, "(dev use only) write subset db", :default => false
 end
@@ -112,8 +111,8 @@ if ARGV.size < 2
   opts.educate && exit
 end
 
-if (opt[:qspec] || opt[:descriptions]) && !opt[:fasta]
-  puts "You must provide a fasta file with --fasta to use qspec or descriptions!!"
+if opt[:descriptions] && !opt[:fasta]
+  puts "You must provide a fasta file with --fasta to use descriptions!!"
   opts.educate && exit
 end
 
@@ -125,7 +124,7 @@ putsv "using: #{peptide_centric_db_file} as peptide centric db"
 
 (samplename_to_filename, condition_to_samplenames, samplename_to_condition) = Mspire::Quant::Cmdline.args_to_hashes(ARGV)
 
-raise ArgumentError, "must have 2 conditions for qspec!" if opt[:qspec] && condition_to_samplenames.size != 2
+raise ArgumentError, "must have 2 conditions for qprot to work!" if opt[:qprot] && condition_to_samplenames.size != 2
 
 samplenames = samplename_to_filename.keys
 
@@ -228,24 +227,14 @@ if opt[:qprot]
     pg.map(&:id).join(":")  # <- triggers qprot
   end
 
-  qspec_results = Mspire::Quant::Qspec.new(protnames, condition_to_count_array).run(opt[:qspec_normalize], :keep => opt[:qspec_keep_files])
+  qprot_results = Mspire::Quant::Qspec.new(protnames, condition_to_count_array).run(opt[:qprot_normalize], :keep => opt[:qprot_keep_files])
   
-  cols_to_add = [:bayes_factor, :fold_change, :fdr]
-  to_add_as_headers = cols_to_add.map do |v| 
-    if opt[:qspec_decibans] && v == :bayes_factor
-      :decibans
-    else
-      v
-    end
-  end
-  counts_table.add_columns to_add_as_headers
-  counts_table.data.zip(qspec_results) do |row, qspec_result|
+  cols_to_add = [:log_fold_change, :fdr, :fdr_up, :fdr_down]
+
+  counts_table.add_columns cols_to_add
+  counts_table.data.zip(qprot_results) do |row, qprot_result|
     cols_to_add.each do |cat| 
-      if cat == :bayes_factor && opt[:qspec_decibans]
-        row[:decibans] = 10 * Math.log10(qspec_result[cat])
-      else
-        row[cat] = qspec_result[cat]
-      end
+      row[cat] = qprot_result[cat]
     end
   end
 end

@@ -19,7 +19,7 @@ class Mspire::Quant::Qspec
     qprot: {
       paired: 'qprot-paired',
       param: 'qprot-param',
-    }
+    },
     getfdr: 'getfdr',
   }
 
@@ -30,8 +30,6 @@ class Mspire::Quant::Qspec
   NITER = 10000
   INIT_HEADER = %w(protid protLen)
   DELIMITER = "\t"
-
-  SUBMITTED_TO_QSPEC = 'submitted_to_qspec.txt'
 
   # takes an ordered list of conditions ['cond1', 'cond1', 'cond2', 'cond2'] and
   # returns an array of ints [0,0,0,1,1,1...]
@@ -49,16 +47,15 @@ class Mspire::Quant::Qspec
   end
 
   # returns an array of Results structs which is each row of the returned file
-  # works with V2 of QSpec
+  # works with version 1.2.2 of Qprot
   def self.results_array(resultsfile)
     rows = IO.readlines(resultsfile).map {|line| line.chomp.split("\t") }
     headers = rows.shift
-    start_bayes = headers.index {|v| v =~ /BayesFactor/i }
+    start_log_fold = headers.index {|v| v =~ /LogFoldChange/i }
     rows.map do |row| 
       data = [row[0]]
-      data.push( row[1...start_bayes].map(&:to_f) )
-      data.push( *row[start_bayes,4].map(&:to_f) )
-      data.push( row[start_bayes+4] )
+      data.push( row[1...start_log_fold].map(&:to_f) )
+      data.push( *row[start_log_fold,5].map(&:to_f) )
       Results.new(*data)
     end
   end
@@ -105,16 +102,19 @@ class Mspire::Quant::Qspec
   # returns an array of Qspec::Results objects (each object can be considered
   # a row of data)
   def run(normalize=true, opts={})
+    exe = executable
+    puts "using #{exe}" if $VERBOSE
+    executable_base = exe.split('-')[0]
+
     puts "normalize: #{normalize}" if $VERBOSE
-    tfile = Tempfile.new("qspec")
+    tfile = Tempfile.new(executable_base)
     write(tfile.path)
     if opts[:keep]
       local_file = File.join(Dir.pwd,File.basename(tfile.path))
       FileUtils.cp(tfile.path, local_file, :verbose => $VERBOSE)
-      puts "(copy of) file submitted to qspec: #{local_file}" if $VERBOSE
+      puts "(copy of) file submitted to #{exe}: #{local_file}" if $VERBOSE
     end
-    qspec_exe = executable
-    cmd = [qspec_exe, tfile.path, NBURNIN, NITER, (normalize ? 1 : 0)].join(' ')
+    cmd = [exe, tfile.path, NBURNIN, NITER, (normalize ? 1 : 0)].join(' ')
     if $VERBOSE
       puts "running #{cmd}" if $VERBOSE
     else
@@ -122,12 +122,20 @@ class Mspire::Quant::Qspec
     end
     reply = `#{cmd}`
     puts reply if $VERBOSE
-    outfile = tfile.path + '_' + qspec_exe
-    results = self.class.results_array(outfile)
+    outfile = tfile.path + '_' + executable_base
+    system EXE[:getfdr], outfile
+    fdr_file = outfile + "_fdr"
+    puts "FDR_FILE: #{fdr_file} exists? #{fdr_file}" if $VERBOSE
+    results = self.class.results_array(fdr_file)
     if opts[:keep]
       local_outfile = File.join(Dir.pwd, File.basename(outfile))
+      local_fdrfile = File.join(Dir.pwd, File.basename(fdr_file))
       FileUtils.cp(outfile, local_outfile, :verbose => $VERBOSE)
-      puts "(copy of) file returned from qspec: #{outfile}"
+      FileUtils.cp(fdr_file, local_fdrfile, :verbose => $VERBOSE)
+      if $VERBOSE
+        puts "(copy of) file returned from qspec: #{outfile}"
+        puts "(copy of) file returned from qspec: #{fdr_file}"
+      end
     end
     tfile.unlink
     results
@@ -135,6 +143,10 @@ class Mspire::Quant::Qspec
 
   # for version 2 of QSpec
   # counts array is parallel to the experiment names passed in originally
-  Results = Struct.new(:protid, :counts_array, :bayes_factor, :fold_change, :rb_stat, :fdr, :flag)
+  #Results = Struct.new(:protid, :counts_array, :bayes_factor, :fold_change, :rb_stat, :fdr, :flag)
+  
+  # for version 1.2.2 of QProt
+  # counts array is parallel to the experiment names passed in originally
+  Results = Struct.new(:protid, :counts_array, :log_fold_change, :z_statistic, :fdr, :fdr_up, :fdr_down)
 end
 
