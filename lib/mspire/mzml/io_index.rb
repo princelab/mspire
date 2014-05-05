@@ -66,8 +66,9 @@ module Mspire
       end
 
       def xml_node_from_start_byte(start_byte)
+        # consider passing in @encoding from upstream object (as second nil):
         xml = get_xml_string(start_byte)
-        Nokogiri::XML.parse(xml, nil, @encoding, Parser::NOBLANKS).root
+        Nokogiri::XML.parse(xml, nil, nil, Parser::NOBLANKS).root
       end
 
       def fetch_xml_node(index)

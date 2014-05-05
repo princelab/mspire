@@ -55,7 +55,8 @@ module Mspire
         def read_index_list(io)
           if (offset = index_offset(io))
             io.seek(offset)
-            xml = Nokogiri::XML.parse(io.read, nil, @encoding, Parser::NOBLANKS)
+            # TODO: pass in encoding (as second nil)
+            xml = Nokogiri::XML.parse(io.read, nil, nil, Parser::NOBLANKS)
             index_list = xml.root
             num_indices = index_list['count'].to_i
             array = index_list.children.map do |index_n|
