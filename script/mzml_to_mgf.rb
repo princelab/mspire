@@ -9,7 +9,6 @@ def mascot_charge(val)
   "#{val}#{val > 0 ? '+' : '-'}"
 end
 
-
 opt = {
   filter_zero_intensity: true,
   retention_times: true,
@@ -37,7 +36,7 @@ ARGV.each do |file|
 
   File.open(outfile, 'w') do |out|
     Mspire::Mzml.foreach(file).with_index do |spectrum,i|
-      next unless spectrum.ms_level > 1
+      next unless spectrum.ms_level > 1 && spectrum.mzs.size > 0
       out.puts "BEGIN IONS"
       # id, spectrumid, 
       rt = spectrum.retention_time
