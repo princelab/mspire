@@ -251,7 +251,7 @@ module Mspire
       # @raise [ScanNumbersNotFound] if spectra exist but scan numbers were not
       #   found
       def spectrum_from_scan_num(scan_num)
-        @scan_to_index ||= @index_list[0].create_scan_index
+        @scan_to_index ||= @index_list[0].create_scan_to_index
         raise ScanNumbersNotUnique if @scan_to_index == false
         raise ScanNumbersNotFound if @scan_to_index == nil
         spectrum(@scan_to_index[scan_num])

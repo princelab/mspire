@@ -294,6 +294,12 @@ describe Mspire::Mzml do
         spectrum.mzs[2].should be_within(1e-10).of(164.32693481445312)
       end
 
+      specify '#spectrum_from_scan_num returns a spectrum given a scan number' do
+        # only for files with scan numbers embedded in id with "...scan=<scan_num>..."
+        spectrum = @mzml.spectrum_from_scan_num(2)
+        expect(spectrum.id).to match(/scan=2/)
+      end
+
       specify '#spectrum always returns spectrum with data_processing object (uses default if none given)' do
         @mzml.spectrum(1).data_processing.should be_a(Mspire::Mzml::DataProcessing)
       end
