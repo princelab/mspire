@@ -1,30 +1,25 @@
 
 module Mspire
-  class Mzml
+  class Mzid
     class CV
       # note: CV is NOT paramable!
 
-      # (required) The short label to be used as a reference tag with which to refer to
-      # this particular Controlled Vocabulary source description (e.g., from
-      # the cvLabel attribute, in CVParamType elements).
+      # (required)The unique identifier of this cv within the document to be
+      # referenced by cvParam elements.      
       attr_accessor :id
-      # (required) The usual name for the resource (e.g. The PSI-MS Controlled Vocabulary).
+      # (required) The full name of the CV.
       attr_accessor :full_name
-      # (required) The URI for the resource.
+      # (required) The URI of the source CV.
       attr_accessor :uri
-      # (optional) The version of the CV from which the referred-to terms are drawn.
+      # (optional) The version of the CV.
       attr_accessor :version
 
       def initialize(id, full_name, uri, version=nil)
         @id, @full_name, @uri, @version = id, full_name, uri, version
       end
 
-      def basename(ext=true)
-        File.basename(uri, ext ? '' : File.extname(uri) ) 
-      end
-
       def to_xml(builder)
-        atts = {id: @id, fullName: @full_name, :URI => @uri}
+        atts = {id: @id, fullName: @full_name, uri: @uri}
         atts[:version] = @version if @version
         builder.cv( atts )
         builder
@@ -39,7 +34,7 @@ module Mspire
       end
 
       def self.from_xml(xml)
-        self.new(xml[:id], xml[:fullName], xml[:URI], xml[:version])
+        self.new(xml[:id], xml[:fullName], xml[:uri], xml[:version])
       end
 
       IMS = self.new("IMS",  "Imaging MS Ontology", "http://www.maldi-msi.org/download/imzml/imagingMS.obo", "0.9.1")
