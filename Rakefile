@@ -17,14 +17,3 @@ Rake::RDocTask.new do |rdoc|
   rdoc.rdoc_files.include('README*')
   rdoc.rdoc_files.include('lib/**/*.rb')
 end
-
-desc "downloads the latest obo to appropriate spot"
-task 'obo-update' do
-  require 'mspire/mzml/cv'
-  require 'open-uri'
-  Mspire::Mzml::CV::DEFAULT_CVS.each do |const|
-    obo_fn = File.dirname(__FILE__) + "/obo/#{const.id.downcase}.obo"
-    File.write(obo_fn, open(const.uri, &:read).gsub(/\r\n?/, "\n"))
-    puts "NOTE: if a file changed (git status), then update lib/mspire/mzml/cv.rb with correct version !!!"
-  end
-end
