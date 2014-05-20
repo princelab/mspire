@@ -19,10 +19,10 @@ Gem::Specification.new do |spec|
   spec.require_paths = ["lib"]
 
   [
-    ["nokogiri", "~> 1.6.1"],
+    ["nokogiri", "~> 1.6.2"],
     ["bsearch", ">= 1.5.0"],
     ["andand", ">= 1.3.3"],
-    ["obo", ">= 0.1.4"],
+    ["mspire-obo", "~> 0.0.1"],
     ["builder", "~> 3.2.2"],
     ["bio", "~> 1.4.3.0001"],
     ["trollop", "~> 2.0.0"],

@@ -36,7 +36,7 @@ Mspire is the *only* commandline converter from mzml into imzml (also see [imzML
 * pepxml: full object model and complete write support
 * fasta files: complete programmatic access to description lines (via bio-ruby)
 * peak lists: merging/summing and splitting algorithms
-* obo: ontology hash access
+* obo: ontology hash access and casting (provided by the mspire-obo gem)
 * molecular formulas: can do arithmetic with formulas
 * calculates q-values
 
