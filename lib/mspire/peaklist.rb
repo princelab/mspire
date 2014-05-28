@@ -360,11 +360,7 @@ module Mspire
 
     # returns an Mspire::Spectrum object
     def to_spectrum
-      xs = [] ; ys = []
-      each do |peak|
-        xs << peak.x ; ys << peak.y
-      end
-      Mspire::Spectrum.new([xs, ys])
+      Mspire::Spectrum.new(self.transpose)
     end
   end
 end

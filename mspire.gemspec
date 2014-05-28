@@ -31,10 +31,10 @@ Gem::Specification.new do |spec|
   end
 
   [
-    ["bundler", "~> 1.5.1"],
+    ["bundler", "~> 1.6.2"],
     ["rake"],
     ["rspec", "~> 2.14.1"], 
-    ["rdoc", "~> 4.1.0"], 
+    ["rdoc", "~> 4.1.1"], 
     ["simplecov", "~> 0.8.2"],
     ["coveralls"],
     # here because bad microsoft OS support
