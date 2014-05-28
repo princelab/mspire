@@ -181,8 +181,8 @@ module Mspire
       # array.
       def self.from_arrays(id, arrays)
         spec = self.new(id)
-        arrays.zip(['MS:1000514','MS:1000515']).each do |ar, acc|
-          dar = DataArray.new(ar).describe!(acc)
+        spec.data_arrays = arrays.zip(['MS:1000514','MS:1000515']).map do |ar, acc|
+          DataArray.new(ar).describe!(acc)
         end
         spec
       end
