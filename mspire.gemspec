@@ -22,7 +22,7 @@ Gem::Specification.new do |spec|
     ["nokogiri", "~> 1.6.2"],
     ["bsearch", ">= 1.5.0"],
     ["andand", ">= 1.3.3"],
-    ["mspire-obo", "~> 0.0.1"],
+    ["mspire-obo", "~> 0.0.4"],
     ["builder", "~> 3.2.2"],
     ["bio", "~> 1.4.3.0001"],
     ["trollop", "~> 2.0.0"],

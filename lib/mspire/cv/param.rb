@@ -1,5 +1,4 @@
 require 'mspire/cv/param'
-require 'mspire/cv/obo'
 
 module Mspire
   module CV
