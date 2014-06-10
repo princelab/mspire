@@ -146,7 +146,7 @@ module Mspire
           when 'referenceableParamGroupRef'
             @ref_param_groups << ref_hash[child_n[:ref]]
           when 'cvParam'
-            @cv_params << Mspire::CV::Param[ child_n[:accession], child_n[:value] ]
+            @cv_params << @cv[ child_n[:accession], child_n[:value] ]
           when 'userParam'
             @user_params << Mspire::UserParam.new(child_n[:name], child_n[:value], child_n[:type])
           else # assumes that the above precede any following children as per the spec
@@ -174,7 +174,7 @@ module Mspire
       return self if args.first.nil?
       case (arg=args.first)
       when String
-        @cv_params << Mspire::CV::Param[ *args ]
+        @cv_params << @cv[ *args ]
       when Mspire::Mzml::ReferenceableParamGroup
         @ref_param_groups << arg
       else
