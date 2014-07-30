@@ -125,16 +125,19 @@ module Mspire
       mss
     end
 
-    def avg_mass
-      inject(0.0) {|sum,(el,cnt)| sum + (Mspire::Mass::Element::AVG[el]*cnt) }
+    def avg_mass(consider_electron_masses = true)
+      mss = inject(0.0) {|sum,(el,cnt)| sum + (Mspire::Mass::Element::AVG[el]*cnt) }
+      mss -= (Mspire::Mass::ELECTRON * charge) if consider_electron_masses
+      mss
     end
 
+    # the mass to charge ratio (m/z)
     # returns nil if the charge == 0
-    def mz(consider_electron_masses = true)
+    def mz(consider_electron_masses = true, negative_mz_allowed = true)
       if charge == 0
         nil
       else
-        mass(consider_electron_masses) / charge
+        mass(consider_electron_masses) / (negative_mz_allowed ? charge : charge.abs)
       end
     end
 

@@ -115,5 +115,57 @@ describe Mspire::MolecularFormula do
 
     end
 
+    describe 'mass and mz' do
+      # (for all these, checked to make sure in close ballpark, but not
+      # necessarily exact, unless otherwise stated)
+      
+      before do
+        @exact = 65.02654910101
+        @avg = 65.07332
+        @e = 0.0005486  # set with -> Mspire::Mass::ELECTRON
+        @exact_plus_2e = @exact + (2*@e)
+      end
+
+      subject {
+        data = {H: 3, C: 4, N: 1}
+        Mspire::MolecularFormula.new(data, -2)
+      }
+
+      specify '#mass (of an uncharged molecule) -> the exact mass' do
+        subject.charge = 0
+        subject.mass.should == @exact # BMRB databank says: 65.0265491015
+      end
+
+      specify '#mass -> the exact mass (adjusts for electrons)' do
+        subject.mass.should == @exact_plus_2e
+      end
+
+      specify '#mass (no charge adjustment)' do
+        subject.mass(false).should == @exact # BMRB databank says: 65.0265491015
+      end
+
+      specify '#avg_mass' do
+        subject.avg_mass.should == (@avg + 2*@e)
+
+        # changes the value
+        subject.charge = 0
+        subject.avg_mass.should == @avg # BMRB databank says: 65.073320
+      end
+
+      specify '#mz -> the m/z ratio' do
+        subject.mz.should == (@exact_plus_2e / -2.0)
+        subject.charge = +2
+        subject.mz.should == ((@exact - 2*@e) / 2.0)
+      end
+
+      specify '#mz(true, false) will only yield positive m/z ratio' do
+        subject.mz(true, false).should == (@exact_plus_2e / 2.0)
+      end
+
+      specify '#mz(false, true) will not consider electrons in mass determination' do
+        subject.mz(false, true).should == (@exact / -2.0)
+      end
+    end
+
   end
 end
