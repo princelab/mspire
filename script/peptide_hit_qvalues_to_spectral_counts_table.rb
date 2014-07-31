@@ -86,7 +86,7 @@ writes to #{outfile}
 group names can be arbitrarily defined
 }
   opt :fdr_percent, "%FDR as cutoff", :default => 1.0
-  opt :qprot, "return qprot results (executes qprot-param or qprot-paired). Requires :fasta.  Only 2 groups currently allowed", :default => false
+  opt :qprot, "return qprot results (executes qprot-param or qprot-paired). Requires :fasta.  Only 2 groups currently allowed. Sorts table by FDR (ascending) then abs val of log_fold_change (descending).", :default => false
   opt :descriptions, "include descriptions of proteins, requires :fasta", :default => false
   opt :fasta, "the fasta file.  Required for :descriptions", :type => String
   opt :outfile, "the to which file data are written", :default => outfile
@@ -248,9 +248,12 @@ if opt[:qprot]
       row[cat] = qprot_result[cat]
     end
   end
+
+  # sort table ascending FDR, then negative abs value of log fold change!
+  counts_table.sort_rows_by!(nil) {|r| [r[:fdr], -(r[:log_fold_change]).abs] }
 end
 
-counts_table.remove_column(:qprot_protname)
+counts_table.remove_column(:qprot_protname) # keep outside qprot block for now
 
 if opt[:peptides]
   hits_table.each do |record|

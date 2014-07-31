@@ -5,6 +5,7 @@ require 'mspire/mzml'
 if ARGV.size == 0
   puts "usage: #{File.basename(__FILE__)} <file>.mzML ..."
   puts "output: <file>.baselined.mzML ..."
+  puts "NOT SURE THIS IS WORKING JUST YET!!"
   exit
 end
 
@@ -15,7 +16,7 @@ ARGV.each do |file|
   Mspire::Mzml.open(file) do |mzml|
 
     # MS:1000584 -> an mzML file
-    mzml.file_description.source_files << Mspire::Mzml::SourceFile[mzml_file].describe!('MS:1000584')
+    mzml.file_description.source_files << Mspire::Mzml::SourceFile[file].describe!('MS:1000584')
     mspire = Mspire::Mzml::Software.new
     mzml.software_list.push(mspire).uniq_by(&:id)
     processing = Mspire::Mzml::DataProcessing.new("simple_baseline_reduction") do |dp|
