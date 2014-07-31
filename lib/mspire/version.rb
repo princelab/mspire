@@ -1,3 +1,3 @@
 module Mspire
-  VERSION = "0.10.8.1"
+  VERSION = "0.10.9.0"
 end

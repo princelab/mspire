@@ -9,33 +9,33 @@ describe Mspire::MolecularFormula do
 
     it 'is initialized with Hash' do
       data = {H: 22, C: 12, N: 1, O: 3, S: 2}
-      mf = Mspire::MolecularFormula.new(data)
-      mf.to_hash.should == {:H=>22, :C=>12, :N=>1, :O=>3, :S=>2}
-      mf.to_hash.should == data
+      mf = MF.new(data)
+      mf.to_h.should == {:H=>22, :C=>12, :N=>1, :O=>3, :S=>2}
+      mf.to_h.should == data
     end
 
     it 'can be initialized with charge, too' do
-      mf = Mspire::MolecularFormula["H22BeC12N1O3S2Li2", 2]
-      mf.to_hash.should == {:H=>22, :Be=>1, :C=>12, :N=>1, :O=>3, :S=>2, :Li=>2}
+      mf = MF["H22BeC12N1O3S2Li2", 2]
+      mf.to_h.should == {:H=>22, :Be=>1, :C=>12, :N=>1, :O=>3, :S=>2, :Li=>2}
       mf.charge.should == 2
     end
 
     it 'from_string or ::[] to make from a capitalized string formula' do
-      Mspire::MolecularFormula.from_string("H22BeC12N1O3S2Li2").to_hash.should == {:H=>22, :Be=>1, :C=>12, :N=>1, :O=>3, :S=>2, :Li=>2}
+      MF.from_string("H22BeC12N1O3S2Li2").to_h.should == {:H=>22, :Be=>1, :C=>12, :N=>1, :O=>3, :S=>2, :Li=>2}
 
-      mf = Mspire::MolecularFormula['Ni7Se3', 1]
+      mf = MF['Ni7Se3', 1]
       mf.charge.should == 1
-      mf.to_hash.should == {:Ni=>7, :Se=>3}
+      mf.to_h.should == {:Ni=>7, :Se=>3}
 
       # there is no such thing as the E element, so this is going to get the
       # user in trouble.  However, this is the proper interpretation of the
       # formula.
-      Mspire::MolecularFormula['Ni7SE3'].to_hash.should == {:Ni=>7, :S=>1, :E=>3}
+      MF['Ni7SE3'].to_h.should == {:Ni=>7, :S=>1, :E=>3}
     end
 
     describe 'correct to_s' do
       subject {
-        Mspire::MolecularFormula.new({:C=>669, :H=>1129, :O=>185, :N=>215, :S=>4, :P=>0, :Se=>0})
+        MF.new({:C=>669, :H=>1129, :O=>185, :N=>215, :S=>4, :P=>0, :Se=>0})
       }
       it 'to_s gives output' do
         subject.to_s.should == "C669H1129N215O185S4"
@@ -46,22 +46,42 @@ describe Mspire::MolecularFormula do
 
       subject {
         data = {H: 22, C: 12, N: 1, O: 3, S: 2, Be: 1}
-        Mspire::MolecularFormula.new(data)
+        MF.new(data)
       }
 
-      it 'the string output is a standard molecular formula' do
+      specify '#to_s a standard molecular formula' do
         subject.to_s.should == "BeC12H22NO3S2"
       end
 
-      it 'can be converted to a hash' do
-        subject.to_hash.should == {H: 22, C: 12, N: 1, O: 3, S: 2, Be: 1}
+      specify '#to_s contains the charge by default' do
+        subject.charge = 3
+        subject.to_s.should == "BeC12H22NO3S2+3"
+        subject.charge = -3
+        subject.to_s.should == "BeC12H22NO3S2-3"
+      end
+
+      specify '#to_s(false) turns off charge' do
+        subject.charge = 3
+        subject.to_s(false).should == "BeC12H22NO3S2"
+        subject.charge = -3
+        subject.to_s(false).should == "BeC12H22NO3S2"
+      end
+
+      specify '#to_s(true, false) does not sort' do
+        subject.charge = 2
+        subject.to_s(true, false) == "H22C12NO3S2Be+2"
+      end
+
+      specify '#to_h converts to a hash' do
+        subject.charge = 2
+        subject.to_h.should == {H: 22, C: 12, N: 1, O: 3, S: 2, Be: 1}
       end
     end
 
     describe 'equality' do
       subject {
         data = {H: 22, C: 12, N: 1, O: 3, S: 2, Be: 1}
-        Mspire::MolecularFormula.new(data)
+        MF.new(data)
       }
       it 'is only equal if the charge is equal' do
         another = subject.dup
@@ -74,43 +94,43 @@ describe Mspire::MolecularFormula do
     describe 'arithmetic' do
       subject {
         data = {H: 22, C: 12, N: 1, O: 3, S: 2, Be: 1}
-        Mspire::MolecularFormula.new(data, 2)
+        MF.new(data, 2)
       }
       it 'can do non-destructive arithmetic' do
         orig = subject.dup
         reply = subject + MF["H2C3P2", 2]
-        reply.to_hash.should == {H: 24, C: 15, N: 1, O: 3, S: 2, Be: 1, P: 2}
+        reply.to_h.should == {H: 24, C: 15, N: 1, O: 3, S: 2, Be: 1, P: 2}
         reply.charge.should == 4
         subject.should == orig
 
         reply = subject - MF["H2C3P2", 2]
-        reply.to_hash.should == {H: 20, C: 9, N: 1, O: 3, S: 2, Be: 1, P: -2}
+        reply.to_h.should == {H: 20, C: 9, N: 1, O: 3, S: 2, Be: 1, P: -2}
         reply.charge.should == 0
         subject.should == orig
 
         by2 = subject * 2
-        by2.to_hash.should == {H: 44, C: 24, N: 2, O: 6, S: 4, Be: 2}
+        by2.to_h.should == {H: 44, C: 24, N: 2, O: 6, S: 4, Be: 2}
         by2.charge.should == 4
         subject.should == orig
 
         reply = by2 / 2
-        reply.to_hash.should == {H: 22, C: 12, N: 1, O: 3, S: 2, Be: 1}
+        reply.to_h.should == {H: 22, C: 12, N: 1, O: 3, S: 2, Be: 1}
         reply.charge.should == 2
         subject.should == orig
       end
 
       it 'can do destructive arithmetic' do
         orig = subject.dup
-        subject.sub!(MF["H2C3"]).to_hash.should == {H: 20, C: 9, N: 1, O: 3, S: 2, Be: 1}
+        subject.sub!(MF["H2C3"]).to_h.should == {H: 20, C: 9, N: 1, O: 3, S: 2, Be: 1}
         subject.should_not == orig
-        subject.add!(MF["H2C3"]).to_hash.should == {H: 22, C: 12, N: 1, O: 3, S: 2, Be: 1}
+        subject.add!(MF["H2C3"]).to_h.should == {H: 22, C: 12, N: 1, O: 3, S: 2, Be: 1}
         subject.should == orig
 
         by2 = subject.mul!(2)
         subject.should_not == orig
-        by2.to_hash.should == {H: 44, C: 24, N: 2, O: 6, S: 4, Be: 2}
-        by2.div!(2).to_hash.should == {H: 22, C: 12, N: 1, O: 3, S: 2, Be: 1}
-        by2.to_hash.should == orig
+        by2.to_h.should == {H: 44, C: 24, N: 2, O: 6, S: 4, Be: 2}
+        by2.div!(2).to_h.should == {H: 22, C: 12, N: 1, O: 3, S: 2, Be: 1}
+        by2.to_h.should == orig
       end
 
     end
@@ -128,7 +148,7 @@ describe Mspire::MolecularFormula do
 
       subject {
         data = {H: 3, C: 4, N: 1}
-        Mspire::MolecularFormula.new(data, -2)
+        MF.new(data, -2)
       }
 
       specify '#mass (of an uncharged molecule) -> the exact mass' do
@@ -164,6 +184,16 @@ describe Mspire::MolecularFormula do
 
       specify '#mz(false, true) will not consider electrons in mass determination' do
         subject.mz(false, true).should == (@exact / -2.0)
+      end
+    end
+
+    describe 'reading in a formula and charge from a string' do
+      subject { MF }
+      specify 'self.formula_and_charge' do
+        subject.formula_and_charge( 'C2H4+3' ).should == ['C2H4', 3]
+        subject.formula_and_charge( 'C2H4+++' ).should == ['C2H4', 3]
+        subject.formula_and_charge( 'C2H4-').should == ['C2H4', -1]
+        subject.formula_and_charge( 'C2H4-2').should == ['C2H4', -2]
       end
     end
 
