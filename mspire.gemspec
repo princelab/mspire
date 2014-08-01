@@ -26,6 +26,7 @@ Gem::Specification.new do |spec|
     ["builder", "~> 3.2.2"],
     ["bio", "~> 1.4.3.0001"],
     ["trollop", "~> 2.0.0"],
+    ["mspire-molecular_formula", "~> 0.1.0"],
   ].each do |args|
     spec.add_dependency(*args)
   end
