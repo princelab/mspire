@@ -38,8 +38,6 @@ Gem::Specification.new do |spec|
     ["rdoc", "~> 4.1.1"], 
     ["simplecov", "~> 0.8.2"],
     ["coveralls"],
-    # here because bad microsoft OS support
-    ["fftw3", "~> 0.3"],
   ].each do |args|
     spec.add_development_dependency(*args)
   end
